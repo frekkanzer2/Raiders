@@ -1,0 +1,22 @@
+Game/Raiders/Build/*
+Game/Raiders/Build
+Game/Raiders/Library/*
+Game/Raiders/Library
+Game/Raiders/Temp/*
+Game/Raiders/Temp
+Game/Raiders/.vs/*
+Game/Raiders/.vs
+Game/Raiders/Raiders.sln
+Game/Raiders/Assembly-CSharp-Editor-firstpass.csproj
+Game/Raiders/Assembly-CSharp-firstpass.csproj
+Game/Raiders/Assembly-CSharp.csproj
+Game/Raiders/obj/*
+Game/Raiders/obj
+Game/Raiders/Assembly-CSharp-Editor.csproj
+Game/Raiders/ProjectSettings/ProjectVersion.txt
+Game/Raiders/ProjectSettings/ProjectVersion.txt
+Game/Raiders/.vsconfig
+Game/Raiders/Logs
+Game/Raiders/Logs/*
+Game/Raiders/Assets/GUI PRO Kit - Casual Game
+Game/Raiders/Assets/GUI PRO Kit - Casual Game.meta

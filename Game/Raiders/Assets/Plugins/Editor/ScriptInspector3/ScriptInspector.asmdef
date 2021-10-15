@@ -1,0 +1,8 @@
+{
+    "name": "ScriptInspector",
+    "references": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}
