@@ -23,6 +23,7 @@ public class Character : MonoBehaviour
     private bool isMoving = false;
     private List<Block> followPath = new List<Block>();
     private Block followingBlock = null;
+    private int movement_speed = 0;
 
     void Start()
     {
@@ -30,6 +31,15 @@ public class Character : MonoBehaviour
         actual_hp = hp;
         actual_pa = pa;
         actual_pm = pm;
+        if (pm <= 2)
+            movement_speed = 10;
+        else if (pm <= 4)
+            movement_speed = 16;
+        else if (pm <= 6)
+            movement_speed = 20;
+        else if (pm <= 8)
+            movement_speed = 25;
+        else movement_speed = 30;
     }
 
     // Update is called once per frame
@@ -37,7 +47,15 @@ public class Character : MonoBehaviour
     {
 
         if (isMoving) {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(Coordinate.getPosition(followingBlock.coordinate).x, Coordinate.getPosition(followingBlock.coordinate).y, -20), 20 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(
+                transform.position, 
+                new Vector3(
+                    Coordinate.getPosition(followingBlock.coordinate).x, 
+                    Coordinate.getPosition(followingBlock.coordinate).y, 
+                    -20
+                ), 
+                movement_speed * Time.deltaTime // Speed
+            );
             if (new Vector2(transform.position.x, transform.position.y) == Coordinate.getPosition(followingBlock.coordinate)) {
                 // I'm on a new cell
                 GameObject previous_link = this.connectedCell;
@@ -326,7 +344,7 @@ public class Character : MonoBehaviour
             List<Block> path = null;
             path = ai_getDestinationPath(origin.connectedCell.GetComponent<Block>(), b, 100);
             if (path == null) toRemove.Add(b);
-            else if (path.Count > actual_pm + 1) toRemove.Add(b);
+            else if (path.Count > origin.actual_pm + 1) toRemove.Add(b);
         }
         foreach(Block b in toRemove)
             bufferColored.Remove(b);
