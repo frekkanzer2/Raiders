@@ -7,18 +7,17 @@ public class MapInitializer : MonoBehaviour
 
     public GameObject blockPrefab;
     public List<Sprite> availableSprites;
+    [HideInInspector]
     public TextAsset mapFile;
     [HideInInspector]
     public Map mapBlocks;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        mapBlocks = new Map();
-        generate();   
+    public void initialize(TextAsset chosenMap) {
+        mapFile = chosenMap;
+        generate();
     }
 
-    public void generate() {
+    private void generate() {
         string mapContent = mapFile.text;
         string title = "", ids = "", mapids = "";
         for (int i = 0, j = 0; i < mapContent.Length; i++) {
@@ -51,6 +50,7 @@ public class MapInitializer : MonoBehaviour
         }
         _buffer = "";
         int row = 0, col = 0; // row and columns
+        mapBlocks = new Map();
         foreach (char c in mapids) {
             if (c == '0') {
                 _buffer = "";
@@ -63,8 +63,6 @@ public class MapInitializer : MonoBehaviour
                 if (_buffer != "") {
                     if (char.IsDigit(_buffer[0])) {
                         GameObject inst = GameObject.Instantiate(blockPrefab);
-                        Debug.Log(availableSprites);
-                        Debug.Log(int.Parse(_buffer) - 1);
                         inst.GetComponent<Block>().initialize(availableSprites[spriteIds[int.Parse(_buffer)-1]], new Coordinate(row, col));
                         mapBlocks.addBlock(row, col, inst.GetComponent<Block>());
                     }

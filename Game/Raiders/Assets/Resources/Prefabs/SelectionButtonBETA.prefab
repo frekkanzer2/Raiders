@@ -197,7 +197,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6697091341936279184}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1328067371327575811}
+        m_TargetAssemblyTypeName: ButtonPreview, Assembly-CSharp
+        m_MethodName: onPreviewPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1328067371327575811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,9 +224,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charImage: {fileID: 1663020899160947109}
   statusImage: {fileID: 6697091342582119012}
+  connectedInfo:
+    characterName: 
+    characterFullSprite: {fileID: 0}
+    characterMidSprite: {fileID: 0}
   noChar: {fileID: 21300000, guid: 2515158cde85b604497736ca4290b3e0, type: 3}
   empty: {fileID: 21300000, guid: e80e2ddc01cef1f4686cdfa2fb006051, type: 3}
   idk: {fileID: 21300000, guid: c12a6c1771168284c8355b917924c857, type: 3}
+  team: 0
   isSet: 0
 --- !u!1 &6697091342582119012
 GameObject:

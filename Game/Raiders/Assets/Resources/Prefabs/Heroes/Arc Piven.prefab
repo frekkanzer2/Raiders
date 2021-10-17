@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 557098361630938740}
   - component: {fileID: 8528018890230597465}
   m_Layer: 0
-  m_Name: Lamarguedon
+  m_Name: Arc Piven
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 31d787c7fcd2d904d871699477ee780b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65f2fd0b3d73af7449f115fd58217d41, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,13 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8166a5c395145dc489abd6518c5ac693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Lamarguedon
+  name: Arc Piven
   spells: []
   team: 1
-  hp: 1380
-  pa: 7
+  hp: 970
+  pa: 6
   pm: 3
-  ini: 60
+  ini: 140
   connectedCell: {fileID: 0}
 --- !u!61 &8528018890230597465
 BoxCollider2D:
@@ -120,7 +120,7 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.54368836, y: 0.119827725}
+    pivot: {x: 0.51490724, y: 0.11012015}
     oldSize: {x: 3.2894738, y: 4.2763157}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5

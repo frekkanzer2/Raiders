@@ -12,31 +12,71 @@ public class ConfirmButton : MonoBehaviour
     public GameObject img;
     private Image cimg;
 
+    public SelectionManager sm;
+    public int team;
+
     [HideInInspector]
     public int state = -1;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         cimg = img.GetComponent<Image>();
         setCanDeny();
         state = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void setCanValidate() {
+        if (team == 1) {
+            sm.isAlphaLocked = false;
+        }
+        if (team == 2) {
+            sm.isBetaLocked = false;
+        }
         cimg.sprite = validate;
+        state = 1;
     }
     public void setCanConfirm() {
         cimg.sprite = confirm;
+        state = 2;
     }
     public void setCanDeny() {
         cimg.sprite = deny;
+        state = 0;
+    }
+
+    public void OnClick() {
+        if (state == 0) {
+            // Deny state, do nothing
+            return;
+        } else if (state == 1) {
+            // Deny state, you are clicking to validate
+            if (team == 1) {
+                if (!sm.isBetaLocked) {
+                    sm.isAlphaLocked = true;
+                    setCanConfirm();
+                } else {
+                    SelectionContainer sc = sm.gameObject.GetComponent<SelectionContainer>();
+                    if (sc.areSameDimension()) {
+                        sm.isAlphaLocked = true;
+                        setCanConfirm();
+                        sm.setDefinitiveLock();
+                    }
+                }
+            }
+            if (team == 2) {
+                if (!sm.isAlphaLocked) {
+                    sm.isBetaLocked = true;
+                    setCanConfirm();
+                } else {
+                    SelectionContainer sc = sm.gameObject.GetComponent<SelectionContainer>();
+                    if (sc.areSameDimension()) {
+                        sm.isBetaLocked = true;
+                        setCanConfirm();
+                        sm.setDefinitiveLock();
+                    }
+                }
+            }
+        }
     }
 
 }

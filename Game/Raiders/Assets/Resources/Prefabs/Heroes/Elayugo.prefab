@@ -99,10 +99,10 @@ MonoBehaviour:
   name: Elayugo
   spells: []
   team: 1
-  hp: 1400
+  hp: 860
   pa: 7
   pm: 4
-  ini: 20
+  ini: 160
   connectedCell: {fileID: 0}
 --- !u!61 &8528018890230597465
 BoxCollider2D:

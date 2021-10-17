@@ -9,4 +9,8 @@ public class CharacterInfo {
     public Sprite characterFullSprite;
     public Sprite characterMidSprite;
 
+    public bool isEqualsTo(CharacterInfo ci) {
+        return this.characterName == ci.characterName;
+    }
+
 }

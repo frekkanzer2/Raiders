@@ -99,10 +99,10 @@ MonoBehaviour:
   name: Ragedala
   spells: []
   team: 1
-  hp: 1800
-  pa: 7
+  hp: 1545
+  pa: 8
   pm: 2
-  ini: 150
+  ini: 20
   connectedCell: {fileID: 0}
 --- !u!61 &8528018890230597465
 BoxCollider2D:

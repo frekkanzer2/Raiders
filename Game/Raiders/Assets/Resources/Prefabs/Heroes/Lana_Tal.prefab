@@ -99,10 +99,10 @@ MonoBehaviour:
   name: Lana Tal
   spells: []
   team: 1
-  hp: 1400
+  hp: 1070
   pa: 6
   pm: 4
-  ini: 60
+  ini: 140
   connectedCell: {fileID: 0}
 --- !u!61 &8528018890230597465
 BoxCollider2D:

@@ -99,7 +99,7 @@ MonoBehaviour:
   name: Elamo
   spells: []
   team: 1
-  hp: 1500
+  hp: 1275
   pa: 6
   pm: 3
   ini: 80
