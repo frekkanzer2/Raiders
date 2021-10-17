@@ -134,9 +134,11 @@ GameObject:
   - component: {fileID: 93772479}
   - component: {fileID: 93772480}
   - component: {fileID: 93772478}
-  - component: {fileID: 93772477}
-  - component: {fileID: 93772476}
   - component: {fileID: 93772481}
+  - component: {fileID: 93772483}
+  - component: {fileID: 93772482}
+  - component: {fileID: 93772476}
+  - component: {fileID: 93772477}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -206,6 +208,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d393f7d79bd718441aabd0c9819b39a4, type: 3}
   - {fileID: 21300000, guid: 51744eabe378714468ac85d20ed281cf, type: 3}
   - {fileID: 21300000, guid: 06ba59b88041f794984421951aa3a0e4, type: 3}
+  mapContainer: {fileID: 606105194}
   mapFile: {fileID: 4900000, guid: 151aef5894359a442a1e9e19fc8a95c2, type: 3}
 --- !u!4 &93772479
 Transform:
@@ -236,6 +239,7 @@ MonoBehaviour:
   mapFiles:
   - {fileID: 4900000, guid: 9f5c9149f9149c741b0f78f0f19e3ef2, type: 3}
   - {fileID: 4900000, guid: 151aef5894359a442a1e9e19fc8a95c2, type: 3}
+  - {fileID: 4900000, guid: ecfe8b13db7c1424c95e4690946e9654, type: 3}
 --- !u!114 &93772481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,28 +253,137 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroesPrefabs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 557098361630938699, guid: 3968d5a638ef5994cad63e85612468ac, type: 3}
+  - {fileID: 557098361630938699, guid: 2ccb042d5c633dc48854a46bd4a9972e, type: 3}
+  - {fileID: 557098361630938699, guid: 97c2e1f28de821a4894b1e48b486a1a9, type: 3}
+  - {fileID: 557098361630938699, guid: 8893734d882f75d41b1d0bbc6f0516d7, type: 3}
+  - {fileID: 557098361630938699, guid: cab40f0ef599ec34c887b43d0eb3e469, type: 3}
+  - {fileID: 557098361630938699, guid: af0a1d41faba3c9438afdc331ac918cf, type: 3}
+  - {fileID: 557098361630938699, guid: 3fb375066ecd8984b83fce11da7aabce, type: 3}
+  - {fileID: 557098361630938699, guid: cee8e587e9bb88849939a1652a85f366, type: 3}
+  - {fileID: 557098361630938699, guid: 951f0aece71a37a4a8ef09f92e64540f, type: 3}
+  - {fileID: 557098361630938699, guid: fc19c109e57e61840a68c157bd8e1e36, type: 3}
+  - {fileID: 557098361630938699, guid: 1fe4eea06acc64a46afc5441ffbc1b6d, type: 3}
+  - {fileID: 557098361630938699, guid: f960b2b30921381459ac5c8ffa090f17, type: 3}
+  - {fileID: 557098361630938699, guid: 7f787ed37ae5a7b4b969ae7e693cf3f6, type: 3}
+  - {fileID: 557098361630938699, guid: 22f01548d7656bc4fb01363ea6b86e4c, type: 3}
+  - {fileID: 557098361630938699, guid: 60883b9acaf4ac848981d136ba119271, type: 3}
+  - {fileID: 557098361630938699, guid: d4db6d3e692a41f4d8ceb52e6bd65f57, type: 3}
+  - {fileID: 557098361630938699, guid: 722f08382bb225247898c6e0811990b8, type: 3}
+  - {fileID: 557098361630938699, guid: 95fb7bdf490186b4aa372660c14f2360, type: 3}
+--- !u!114 &93772482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93772475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a02dd94e2c401054a922e3bfda2ad7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamACharacters: []
+  teamBCharacters: []
+  teamAHeroes: []
+  teamBHeroes: []
+--- !u!114 &93772483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93772475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c226245a9614b4f8c4fcc6ecfc4531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  library:
+  - characterName: Rabiote
+    characterFullSprite: {fileID: 21300000, guid: ec39795f805fe9342bc963d82d185382, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: ce95a93ef24418c439c461a5f91903ef, type: 3}
+  - characterName: Borapoda
+    characterFullSprite: {fileID: 21300000, guid: 16df424cf23a49b45b7853b047abb9ff, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 133791619451eea49a250d0e25f10f88, type: 3}
+  - characterName: Katina
+    characterFullSprite: {fileID: 21300000, guid: f768e3e5d90a74c498cd40ec8cb50b0d, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 8951c5d16df06694eb828b7aa82c5366, type: 3}
+  - characterName: Lamarguedon
+    characterFullSprite: {fileID: 21300000, guid: 31d787c7fcd2d904d871699477ee780b, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 0104129301f7ea14dafae9b05094cc41, type: 3}
+  - characterName: Missiz Frizz
+    characterFullSprite: {fileID: 21300000, guid: 4798bac39cf131947a3c26a267f80653, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: fe6197d08296edd4fad633fe6f5196c6, type: 3}
+  - characterName: Ragedala
+    characterFullSprite: {fileID: 21300000, guid: e60280595e920ef45a34d735537e0cd6, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: a2878c383f8d5974782ae64103a38a5e, type: 3}
+  - characterName: Arc Piven
+    characterFullSprite: {fileID: 21300000, guid: 65f2fd0b3d73af7449f115fd58217d41, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 5fb894558cbf3eb49ab0893f79a60f11, type: 3}
+  - characterName: Voldorak
+    characterFullSprite: {fileID: 21300000, guid: f3baabbff6dbd01468be898a002abd48, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 6186dda16585afa4aa6f777fcb5d8723, type: 3}
+  - characterName: Shiru Shaden
+    characterFullSprite: {fileID: 21300000, guid: fba389113031acc448e1290f84652c63, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: d83c5aca64277c74fabc76208893d824, type: 3}
+  - characterName: Pilobouli
+    characterFullSprite: {fileID: 21300000, guid: 8a08852fa9dd4634694451fb9dd630fd, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 1c7cd06e1fd1c9c4fbac5f390b1abb14, type: 3}
+  - characterName: Globula
+    characterFullSprite: {fileID: 21300000, guid: 0a667cdb15ecc9444ad07d8ea2156ed5, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 5b2ce62ebdfb9bf4b976769c740725bf, type: 3}
+  - characterName: Darde Kan
+    characterFullSprite: {fileID: 21300000, guid: 775d68325f8ff9a49a2ce95aa88e07e0, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 960bc6c92d01e354eab02ec5f894a46a, type: 3}
+  - characterName: Jikan
+    characterFullSprite: {fileID: 21300000, guid: fcba5ae657eb0e24190b361cad20adb1, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 0b01a1476c4cb5a4a8a6c9212aaa06d3, type: 3}
+  - characterName: Quadranpa
+    characterFullSprite: {fileID: 21300000, guid: bed98aa2f4e716141b7d92e6a9999079, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 51425403ad7a6594fab526229cee4546, type: 3}
+  - characterName: Chrona
+    characterFullSprite: {fileID: 21300000, guid: 593da1345154ef94a87cf4600ace5c78, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 544f02b6f2532984eb0dfcea2f0c4c78, type: 3}
+  - characterName: Elayugo
+    characterFullSprite: {fileID: 21300000, guid: 883379b9fc32a384e84b23b0c267e15e, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 665b3e2a15c5a4348bf16fb7f3fa5c57, type: 3}
+  - characterName: Elamo
+    characterFullSprite: {fileID: 21300000, guid: 6347a1aea804fe1469b453f2c2e59b45, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 7e90bb21df45ec9409b8800f3926f2d0, type: 3}
+  - characterName: Lana Tal
+    characterFullSprite: {fileID: 21300000, guid: 69712cfcb0298e441a4605792b009660, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 899128ebae1401347ae14131b8a071a9, type: 3}
+--- !u!1 &606105194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 606105195}
+  m_Layer: 0
+  m_Name: MapContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &606105195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606105194}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.8076563, y: 7.479599, z: -471.64688}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1335533667
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +437,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 26
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -348,7 +461,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335533667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 32.2, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

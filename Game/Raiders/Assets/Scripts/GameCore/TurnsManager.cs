@@ -21,13 +21,28 @@ public class TurnsManager : MonoBehaviour
         IniComparer ic = new IniComparer();
         first.Sort(ic);
         second.Sort(ic);
-        turns.Clear();
+        // sum of ini
+        int first_ini = 0, second_ini = 0;
         for (int i = 0; i < first.Count; i++) {
-            turns.Add(first[i]);
-            turns.Add(second[i]);
+            first_ini += first[i].GetComponent<Character>().ini;
+            second_ini += second[i].GetComponent<Character>().ini;
         }
-        active = turns[0];
-        Debug.Log("Turn of " + active.name);
+        turns.Clear();
+        if (first_ini == second_ini) {
+            int choise = Random.Range(0, 2);
+            if (choise == 0) first_ini++;
+            else second_ini++;
+        }
+        if (first_ini > second_ini)
+            for (int i = 0; i < first.Count; i++) {
+                turns.Add(first[i]);
+                turns.Add(second[i]);
+            }
+        else
+            for (int i = 0; i < first.Count; i++) {
+                turns.Add(second[i]);
+                turns.Add(first[i]);
+            }
     }
 
     // Update is called once per frame

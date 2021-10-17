@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 557098361630938740}
   - component: {fileID: 8528018890230597465}
   m_Layer: 0
-  m_Name: Pilobouli
+  m_Name: Pirobouli
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

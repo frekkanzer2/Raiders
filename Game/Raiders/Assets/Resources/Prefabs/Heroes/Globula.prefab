@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8166a5c395145dc489abd6518c5ac693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Pilobouli
+  name: Globula
   spells: []
   team: 1
   hp: 1560

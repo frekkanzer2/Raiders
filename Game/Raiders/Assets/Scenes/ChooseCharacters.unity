@@ -1360,7 +1360,7 @@ MonoBehaviour:
   - characterName: Shiru Shaden
     characterFullSprite: {fileID: 21300000, guid: fba389113031acc448e1290f84652c63, type: 3}
     characterMidSprite: {fileID: 21300000, guid: d83c5aca64277c74fabc76208893d824, type: 3}
-  - characterName: Pirobouli
+  - characterName: Pilobouli
     characterFullSprite: {fileID: 21300000, guid: 8a08852fa9dd4634694451fb9dd630fd, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 1c7cd06e1fd1c9c4fbac5f390b1abb14, type: 3}
   - characterName: Globula
@@ -1401,6 +1401,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamACharacters: []
   teamBCharacters: []
+  teamAHeroes: []
+  teamBHeroes: []
 --- !u!1 &1545333965
 GameObject:
   m_ObjectHideFlags: 0

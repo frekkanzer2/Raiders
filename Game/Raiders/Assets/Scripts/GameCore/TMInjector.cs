@@ -5,23 +5,17 @@ using UnityEngine;
 public class TMInjector : MonoBehaviour
 {
 
+    [HideInInspector]
     public List<GameObject> charsToInject;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public void InjectIntoTurnsManager() {
+        SelectionContainer sc = GetComponent<SelectionContainer>();
+        charsToInject = sc.getAll();
+        TurnsManager tm = this.GetComponent<TurnsManager>();
+        foreach (GameObject go in charsToInject) {
+            tm.turns.Add(go.GetComponent<Character>());
+        }
+        tm.initialize();
     }
 
-    // Update is called once per frame
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.J)) {
-            Debug.LogWarning("Execute only one time!!!\nDo not execute J key anymore!!!");
-            TurnsManager tm = this.GetComponent<TurnsManager>();
-            foreach(GameObject go in charsToInject) {
-                tm.turns.Add(go.GetComponent<Character>());
-            }
-            tm.initialize();
-        }
-    }
 }

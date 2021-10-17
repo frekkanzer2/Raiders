@@ -7,6 +7,20 @@ public class Block : MonoBehaviour {
     public GameObject linkedObject;
     public Coordinate coordinate;
 
+    private bool isSpawnable = false;
+    private int spawnableTeam = -1;
+
+    public bool canSpawnHero() {
+        return isSpawnable;
+    }
+
+    public void setSpawnable(int team) {
+        isSpawnable = true;
+        spawnableTeam = team;
+        if (team == 1) setSpawnableTeamAlpha();
+        else if (team == 2) setSpawnableTeamBeta();
+    }
+
     public void initialize(Sprite s, Coordinate c) {
         setPosition(c);
         setZindex();
@@ -20,6 +34,14 @@ public class Block : MonoBehaviour {
 
     private void setZindex() {
         this.GetComponent<SpriteRenderer>().sortingOrder = Coordinate.getBlockZindex(coordinate);
+    }
+
+    private void setSpawnableTeamAlpha() {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 106f/255f, 219f/255f, 1);
+    }
+
+    private void setSpawnableTeamBeta() {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(186f/255f, 0, 4f / 255f, 1);
     }
 
     public void setMovementColor() {

@@ -7,6 +7,7 @@ public class MapInitializer : MonoBehaviour
 
     public GameObject blockPrefab;
     public List<Sprite> availableSprites;
+    public GameObject mapContainer;
     [HideInInspector]
     public TextAsset mapFile;
     [HideInInspector]
@@ -15,6 +16,7 @@ public class MapInitializer : MonoBehaviour
     public void initialize(TextAsset chosenMap) {
         mapFile = chosenMap;
         generate();
+        loadHeroes();
     }
 
     private void generate() {
@@ -49,8 +51,9 @@ public class MapInitializer : MonoBehaviour
             _buffer = "";
         }
         _buffer = "";
-        int row = 0, col = 0; // row and columns
+        int row = 0, col = 0;
         mapBlocks = new Map();
+        // SCANNING MAP
         foreach (char c in mapids) {
             if (c == '0') {
                 _buffer = "";
@@ -61,10 +64,19 @@ public class MapInitializer : MonoBehaviour
             }
             if (c == '-' || c == '\n') {
                 if (_buffer != "") {
+                    GameObject inst = null;
                     if (char.IsDigit(_buffer[0])) {
-                        GameObject inst = GameObject.Instantiate(blockPrefab);
-                        inst.GetComponent<Block>().initialize(availableSprites[spriteIds[int.Parse(_buffer)-1]], new Coordinate(row, col));
+                        inst = GameObject.Instantiate(blockPrefab);
+                        inst.GetComponent<Block>().initialize(availableSprites[spriteIds[int.Parse(""+_buffer[0])-1]], new Coordinate(row, col));
                         mapBlocks.addBlock(row, col, inst.GetComponent<Block>());
+                        inst.transform.SetParent(mapContainer.transform);
+                    }
+                    if (inst != null && _buffer.Length > 1) {
+                        char teamid = _buffer[1];
+                        if (teamid == 'a')
+                            inst.GetComponent<Block>().setSpawnable(1);
+                        else if (teamid == 'b')
+                            inst.GetComponent<Block>().setSpawnable(2);
                     }
                     _buffer = "";
                 }
@@ -76,12 +88,29 @@ public class MapInitializer : MonoBehaviour
             }
         }
         if (_buffer != "") {
+            GameObject inst = null;
             if (char.IsDigit(_buffer[0])) {
-                GameObject inst = GameObject.Instantiate(blockPrefab);
-                inst.GetComponent<Block>().initialize(availableSprites[spriteIds[int.Parse(_buffer)-1]], new Coordinate(row, col));
+                inst = GameObject.Instantiate(blockPrefab);
+                inst.GetComponent<Block>().initialize(availableSprites[spriteIds[int.Parse(""+_buffer[0]) - 1]], new Coordinate(row, col));
+                mapBlocks.addBlock(row, col, inst.GetComponent<Block>());
+                inst.transform.SetParent(mapContainer.transform);
+            }
+            if (inst != null && _buffer.Length > 1) {
+                char teamid = _buffer[1];
+                if (teamid == 'a')
+                    inst.GetComponent<Block>().setSpawnable(1);
+                else if (teamid == 'b')
+                    inst.GetComponent<Block>().setSpawnable(2);
             }
             _buffer = "";
         }
+    }
+
+    private void loadHeroes() {
+        SelectionContainer sc = GetComponent<SelectionContainer>();
+        sc.loadSavedTeams();
+        TMInjector tmi = GetComponent<TMInjector>();
+        tmi.InjectIntoTurnsManager();
     }
 
 }

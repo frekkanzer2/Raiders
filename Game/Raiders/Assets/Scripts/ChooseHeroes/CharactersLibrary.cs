@@ -20,4 +20,11 @@ public class CharactersLibrary : MonoBehaviour
         return CharactersLibrary.public_library;
     }
 
+    public CharacterInfo getCharacterInfoByName(string n) {
+        foreach(CharacterInfo ci in library) {
+            if (ci.characterName == n) return ci;
+        }
+        return null;
+    }
+
 }
