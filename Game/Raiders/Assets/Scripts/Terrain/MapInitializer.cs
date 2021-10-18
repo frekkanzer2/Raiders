@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class MapInitializer : MonoBehaviour
 {
@@ -12,6 +14,58 @@ public class MapInitializer : MonoBehaviour
     public TextAsset mapFile;
     [HideInInspector]
     public Map mapBlocks;
+
+    public GameObject blackScreen;
+    public GameObject imageTitle;
+    public GameObject mapTitle;
+    private Image img_bs, img_title;
+    private TextMeshProUGUI txt_title;
+
+    private void Start() {
+        img_bs = blackScreen.GetComponent<Image>();
+        img_title = imageTitle.GetComponent<Image>();
+        txt_title = mapTitle.GetComponent<TextMeshProUGUI>();
+        StartCoroutine(removeBlackScreen());
+        StartCoroutine(appearAndRemoveImageTitle());
+        StartCoroutine(appearAndRemoveTitle());
+    }
+
+    IEnumerator removeBlackScreen() {
+        yield return new WaitForSeconds(5);
+        while(img_bs.color.a >= 0.001f) {
+            yield return new WaitForSeconds(0.02f);
+            img_bs.color = new Color(img_bs.color.r, img_bs.color.b, img_bs.color.g, img_bs.color.a - 0.02f);
+        }
+        img_bs.gameObject.SetActive(false);
+        img_bs.gameObject.transform.parent.gameObject.SetActive(false);
+    }
+
+    IEnumerator appearAndRemoveImageTitle() {
+        yield return new WaitForSeconds(1f);
+        while (img_title.color.a <= 0.999f) {
+            yield return new WaitForSeconds(0.05f);
+            img_title.color = new Color(img_title.color.r, img_title.color.b, img_title.color.g, img_title.color.a + 0.06f);
+        }
+        yield return new WaitForSeconds(2);
+        while (img_title.color.a >= 0.001f) {
+            yield return new WaitForSeconds(0.02f);
+            img_title.color = new Color(img_title.color.r, img_title.color.b, img_title.color.g, img_title.color.a - 0.03f);
+        }
+    }
+
+    IEnumerator appearAndRemoveTitle() {
+        yield return new WaitForSeconds(1.5f);
+        while (txt_title.color.a <= 0.999f) {
+            yield return new WaitForSeconds(0.001f);
+            txt_title.color = new Color(txt_title.color.r, txt_title.color.b, txt_title.color.g, txt_title.color.a + 0.002f);
+        }
+        yield return new WaitForSeconds(1f);
+        while (txt_title.color.a >= 0.001f) {
+            yield return new WaitForSeconds(0.02f);
+            txt_title.color = new Color(txt_title.color.r, txt_title.color.b, txt_title.color.g, txt_title.color.a - 0.01f);
+        }
+        img_title.gameObject.SetActive(false);
+    }
 
     public void initialize(TextAsset chosenMap) {
         mapFile = chosenMap;
@@ -35,6 +89,7 @@ public class MapInitializer : MonoBehaviour
             } else if (j != 2) j++;
             else mapids += mapContent[i];
         }
+        txt_title.text = title;
         List<int> spriteIds = new List<int>();
         string _buffer = "";
         foreach (char c in ids) {
