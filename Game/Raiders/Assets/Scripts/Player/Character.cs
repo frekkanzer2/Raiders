@@ -25,8 +25,11 @@ public class Character : MonoBehaviour
     private Block followingBlock = null;
     private int movement_speed = 0;
 
+    public bool isDebugEnabled = false;
+
     void Start()
     {
+        if (isDebugEnabled) Debug.LogWarning("DEBUG > Connect manually the hero to the cell and start by pressing SPACE key");
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -20);
         actual_hp = hp;
         actual_pa = pa;
@@ -110,6 +113,17 @@ public class Character : MonoBehaviour
                 resetBufferedCells();
             }
         }
+
+        if (isDebugEnabled) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                Debug.LogWarning("DEBUG > Pressed SPACE key: new turn started");
+                TurnsManager.active = this;
+                this.connectedCell.GetComponent<Block>().linkedObject = this.gameObject;
+                turnPassed();
+                newTurn();
+            }
+        }
+
     }
 
     public void turnPassed() {

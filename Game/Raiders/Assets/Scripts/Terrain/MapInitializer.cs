@@ -18,16 +18,20 @@ public class MapInitializer : MonoBehaviour
     public GameObject blackScreen;
     public GameObject imageTitle;
     public GameObject mapTitle;
+    public bool isDebugEnabled = false;
+
     private Image img_bs, img_title;
     private TextMeshProUGUI txt_title;
 
     private void Start() {
-        img_bs = blackScreen.GetComponent<Image>();
-        img_title = imageTitle.GetComponent<Image>();
-        txt_title = mapTitle.GetComponent<TextMeshProUGUI>();
-        StartCoroutine(removeBlackScreen());
-        StartCoroutine(appearAndRemoveImageTitle());
-        StartCoroutine(appearAndRemoveTitle());
+        if (!isDebugEnabled) {
+            img_bs = blackScreen.GetComponent<Image>();
+            img_title = imageTitle.GetComponent<Image>();
+            txt_title = mapTitle.GetComponent<TextMeshProUGUI>();
+            StartCoroutine(removeBlackScreen());
+            StartCoroutine(appearAndRemoveImageTitle());
+            StartCoroutine(appearAndRemoveTitle());
+        }
     }
 
     IEnumerator removeBlackScreen() {
@@ -70,7 +74,8 @@ public class MapInitializer : MonoBehaviour
     public void initialize(TextAsset chosenMap) {
         mapFile = chosenMap;
         generate();
-        loadHeroes();
+        if (!isDebugEnabled)
+            loadHeroes();
     }
 
     private void generate() {
@@ -89,7 +94,8 @@ public class MapInitializer : MonoBehaviour
             } else if (j != 2) j++;
             else mapids += mapContent[i];
         }
-        txt_title.text = title;
+        if (!isDebugEnabled)
+            txt_title.text = title;
         List<int> spriteIds = new List<int>();
         string _buffer = "";
         foreach (char c in ids) {
@@ -126,7 +132,7 @@ public class MapInitializer : MonoBehaviour
                         mapBlocks.addBlock(row, col, inst.GetComponent<Block>());
                         inst.transform.SetParent(mapContainer.transform);
                     }
-                    if (inst != null && _buffer.Length > 1) {
+                    if (inst != null && _buffer.Length > 1 && !isDebugEnabled) {
                         char teamid = _buffer[1];
                         if (teamid == 'a')
                             inst.GetComponent<Block>().setSpawnable(1);
@@ -150,7 +156,7 @@ public class MapInitializer : MonoBehaviour
                 mapBlocks.addBlock(row, col, inst.GetComponent<Block>());
                 inst.transform.SetParent(mapContainer.transform);
             }
-            if (inst != null && _buffer.Length > 1) {
+            if (inst != null && _buffer.Length > 1 && !isDebugEnabled) {
                 char teamid = _buffer[1];
                 if (teamid == 'a')
                     inst.GetComponent<Block>().setSpawnable(1);
