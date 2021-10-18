@@ -47,4 +47,18 @@ public class Map {
         return all;
     }
 
+    public void moveAllBlocksOf(float h, float v) {
+        List<Block> all = getAllBlocks();
+        GameObject toMove = all[0].gameObject.transform.parent.gameObject;
+        toMove.transform.position = new Vector3(toMove.transform.position.x - h, toMove.transform.position.y - v);
+    }
+
+    public Vector2 getPositionOfParent() {
+        List<Block> all = getAllBlocks();
+        if (all == null || all.Count == 0) return Vector2.zero;
+        GameObject toMove = all[0].gameObject.transform.parent.gameObject;
+        if (toMove == null) return Vector2.zero;
+        return toMove.transform.position;
+    }
+
 }

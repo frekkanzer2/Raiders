@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -112,7 +112,8 @@ public class MapInitializer : MonoBehaviour
             _buffer = "";
         }
         _buffer = "";
-        int row = 0, col = 0;
+	    int row = 0, col = 0;
+	    int max_col = 0, max_row = 0;
         mapBlocks = new Map();
         // SCANNING MAP
         foreach (char c in mapids) {
@@ -142,10 +143,14 @@ public class MapInitializer : MonoBehaviour
                     _buffer = "";
                 }
                 if (c == '\n') {
-                    row++;
+	                row++;
+	                if (row > max_row) max_row = row;
                     col = 0;
                 }
-                if (c == '-') col++;
+	            if (c == '-') {
+	            	col++;
+	            	if (col > max_col) max_col = col;
+	            }
             }
         }
         if (_buffer != "") {
@@ -163,8 +168,16 @@ public class MapInitializer : MonoBehaviour
                 else if (teamid == 'b')
                     inst.GetComponent<Block>().setSpawnable(2);
             }
+	        col++;
+	        if (col > max_col) max_col = col;
             _buffer = "";
         }
+        float h_toMove = 0, v_toMove = 0;
+        Coordinate toMove = new Coordinate(max_row, max_col);
+        Vector2 pp = Coordinate.getPosition(toMove);
+        h_toMove = pp.x / 2f;
+        v_toMove = pp.y / 2f;
+        mapBlocks.moveAllBlocksOf(h_toMove, v_toMove);
     }
 
     private void loadHeroes() {

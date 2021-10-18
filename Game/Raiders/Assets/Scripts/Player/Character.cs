@@ -86,7 +86,6 @@ public class Character : MonoBehaviour
                     Character charPressed = hit.collider.gameObject.GetComponent<Character>();
                     if (charPressed.Equals(TurnsManager.active)) {
                         if (charPressed.actual_pm > 0) {
-                            Debug.Log("Displaying cells of " + TurnsManager.active.name);
                             displayMovementCells(TurnsManager.active);
                         }
                     }
