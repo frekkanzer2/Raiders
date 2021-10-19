@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class Character : MonoBehaviour
@@ -13,13 +14,26 @@ public class Character : MonoBehaviour
     public int pa;
     public int pm;
     public int ini;
-    private int actual_hp;
-    private int actual_pa;
-    private int actual_pm;
+    public int res_e;
+    public int res_f;
+    public int res_a;
+    public int res_w;
+    public int att_e;
+    public int att_f;
+    public int att_a;
+    public int att_w;
+    [HideInInspector]
+    public int actual_hp;
+    [HideInInspector]
+    public int actual_pa;
+    [HideInInspector]
+    public int actual_pm;
+    [HideInInspector]
+    public GameObject connectedPreview = null;
 
     public GameObject connectedCell;
 
-    private List<Block> bufferColored = new List<Block>();
+    public static List<Block> bufferColored = new List<Block>();
     private bool isMoving = false;
     private List<Block> followPath = new List<Block>();
     private Block followingBlock = null;
@@ -48,6 +62,13 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (TurnsManager.isGameStarted && this.connectedPreview != null) {
+            Slider s = this.connectedPreview.transform.GetChild(2).gameObject.GetComponent<Slider>();
+            s.maxValue = this.hp;
+            s.minValue = 0;
+            s.value = this.actual_hp;
+        }
 
         if (isMoving) {
             transform.position = Vector3.MoveTowards(
@@ -145,7 +166,8 @@ public class Character : MonoBehaviour
     }
 
     public void newTurn() {
-
+        resetBufferedCells();
+        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -20);
     }
 
     void resetBufferedCells() {
