@@ -65,7 +65,7 @@ public class Character : MonoBehaviour
                 previous_link.GetComponent<Block>().linkedObject = null;
                 this.connectedCell = followingBlock.gameObject;
                 followingBlock.GetComponent<Block>().linkedObject = this.gameObject;
-                this.GetComponent<SpriteRenderer>().sortingOrder = Coordinate.getBlockZindex(this.followingBlock.coordinate) + 10;
+                setZIndex(followingBlock);
                 if (followPath.Count > 0) {
                     followingBlock = followPath[0];
                     followPath.RemoveAt(0);
@@ -76,7 +76,7 @@ public class Character : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && !isMoving) {
+        if (Input.GetMouseButtonDown(0) && !isMoving && TurnsManager.isGameStarted) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
@@ -111,6 +111,16 @@ public class Character : MonoBehaviour
             } else {
                 resetBufferedCells();
             }
+        } else if (Input.GetMouseButtonDown(0) && !isMoving && !TurnsManager.isGameStarted && CameraDragDrop.canMove) {
+            // Clicked positioned preview
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+            if (hit.collider != null) {
+                GameObject clicked = hit.collider.gameObject;
+                if (clicked.CompareTag("Player") && clicked.GetComponent<Character>().name == this.name && clicked.GetComponent<Character>().team == this.team) {
+                    PreparationManager.Instance.OnCellAlreadyChosen(this);
+                }
+            }
         }
 
         if (isDebugEnabled) {
@@ -123,6 +133,10 @@ public class Character : MonoBehaviour
             }
         }
 
+    }
+
+    public void setZIndex(Block toRegolate) {
+        this.GetComponent<SpriteRenderer>().sortingOrder = Coordinate.getBlockZindex(toRegolate.coordinate) + 10;
     }
 
     public void turnPassed() {

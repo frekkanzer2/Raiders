@@ -67,14 +67,17 @@ public class SelectionManager : MonoBehaviour
         PlayerPrefs.SetInt("TEAM_DIMENSION", la.Count);
         int index = 0;
         foreach(CharacterInfo ci in la) {
+            Debug.Log(ci.characterName + " TEAM " + 1);
             PlayerPrefs.SetString("TEAM_ALPHA_" + index, ci.characterName);
             index++;
         }
         index = 0;
         foreach (CharacterInfo ci in lb) {
+            Debug.Log(ci.characterName + " TEAM " + 2);
             PlayerPrefs.SetString("TEAM_BETA_" + index, ci.characterName);
             index++;
         }
+        Debug.LogWarning("GAMMA CHECKPOINT");
         SceneManager.LoadScene("BattleScene", LoadSceneMode.Single);
     }
 

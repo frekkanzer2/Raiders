@@ -42,6 +42,8 @@ public class MapInitializer : MonoBehaviour
         }
         img_bs.gameObject.SetActive(false);
         img_bs.gameObject.transform.parent.gameObject.SetActive(false);
+        PreparationManager.isPreparationPhaseActived = true;
+        GetComponent<PreparationManager>().initializeChooseCards();
     }
 
     IEnumerator appearAndRemoveImageTitle() {

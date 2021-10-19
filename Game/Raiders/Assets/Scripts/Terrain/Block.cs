@@ -14,6 +14,10 @@ public class Block : MonoBehaviour {
         return isSpawnable;
     }
 
+    public int getSpawnableTeam() {
+        return spawnableTeam;
+    }
+
     public void setSpawnable(int team) {
         isSpawnable = true;
         spawnableTeam = team;

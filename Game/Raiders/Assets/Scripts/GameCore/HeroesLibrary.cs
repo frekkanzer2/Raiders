@@ -5,21 +5,33 @@ using UnityEngine;
 public class HeroesLibrary : MonoBehaviour
 {
 
-    public List<GameObject> heroesPrefabs;
+    public List<GameObject> heroesPrefabs_team1;
+    public List<GameObject> heroesPrefabs_team2;
 
-    public Character getCharacter(string name) {
-        foreach(GameObject chgo in heroesPrefabs) {
-            Character ch = chgo.GetComponent<Character>();
-            if (ch.name == name) return ch;
-        }
+    public Character getCharacter(string name, int team) {
+        if (team == 1)
+            foreach(GameObject chgo in heroesPrefabs_team1) {
+                Character ch = chgo.GetComponent<Character>();
+                if (ch.name == name) return ch;
+            }
+        else if (team == 2)
+            foreach (GameObject chgo in heroesPrefabs_team2) {
+                Character ch = chgo.GetComponent<Character>();
+                if (ch.name == name) return ch;
+            }
         return null;
     }
 
-    public GameObject getCharacter_GameObject(string name) {
-        foreach (GameObject chgo in heroesPrefabs) {
-            Character ch = chgo.GetComponent<Character>();
-            if (ch.name == name) return chgo;
-        }
+    public GameObject getCharacter_GameObject(string name, int team) {
+        if (team == 1)
+            foreach (GameObject chgo in heroesPrefabs_team1) {
+                Character ch = chgo.GetComponent<Character>();
+                if (ch.name == name) return chgo;
+            } else if (team == 2)
+            foreach (GameObject chgo in heroesPrefabs_team2) {
+                Character ch = chgo.GetComponent<Character>();
+                if (ch.name == name) return chgo;
+            }
         return null;
     }
 

@@ -47,22 +47,31 @@ public class SelectionContainer : MonoBehaviour {
         HeroesLibrary lib = GetComponent<HeroesLibrary>();
         for (int i = 0; i < numberOfHeroes; i++) {
             CharacterInfo ci_temp = lib.getCharacter_Info(PlayerPrefs.GetString("TEAM_ALPHA_" + i));
-            if (ci_temp == null) Debug.LogError("Failed for chInfo " + PlayerPrefs.GetString("TEAM_ALPHA_" + i));
             teamACharacters.Add(ci_temp);
             ci_temp = lib.getCharacter_Info(PlayerPrefs.GetString("TEAM_BETA_" + i));
-            if (ci_temp == null) Debug.LogError("Failed for chInfo " + PlayerPrefs.GetString("TEAM_BETA_" + i));
             teamBCharacters.Add(ci_temp);
         }
+        Debug.Log("ACH = " + teamACharacters.Count);
+        Debug.Log("BCH = " + teamBCharacters.Count);
         for (int i = 0; i < numberOfHeroes; i++) {
-            GameObject ch_temp = lib.getCharacter_GameObject(teamACharacters[i].characterName);
-            if (ch_temp == null) Debug.LogError("Failed for hero " + teamACharacters[i].characterName);
+            GameObject ch_temp = Instantiate(lib.getCharacter_GameObject(teamACharacters[i].characterName, 1));
+            ch_temp.transform.position = new Vector3(100000, 100000, 0);
             ch_temp.GetComponent<Character>().team = 1;
             teamAHeroes.Add(ch_temp);
-            ch_temp = lib.getCharacter_GameObject(teamBCharacters[i].characterName);
-            if (ch_temp == null) Debug.LogError("Failed for hero " + teamACharacters[i].characterName);
+            ch_temp = Instantiate(lib.getCharacter_GameObject(teamBCharacters[i].characterName, 1));
+            ch_temp.transform.position = new Vector3(100000, 100000, 0);
             ch_temp.GetComponent<Character>().team = 2;
             teamBHeroes.Add(ch_temp);
         }
+        foreach(GameObject go in teamAHeroes) {
+            Character c = go.GetComponent<Character>();
+            Debug.Log(c.name + " team " + c.team);
+        }
+        foreach (GameObject go in teamBHeroes) {
+            Character c = go.GetComponent<Character>();
+            Debug.Log(c.name + " team " + c.team);
+        }
+        Debug.LogWarning("ORPH CHECKPOINT");
     }
 
     public List<GameObject> getAll() {

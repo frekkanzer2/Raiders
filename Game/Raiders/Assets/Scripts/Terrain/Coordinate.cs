@@ -17,8 +17,6 @@ public class Coordinate {
         Vector2 row_based = new Vector2(c.row * VERTICAL_DIFF, c.row * HORIZONTAL_DIFF * -1);
         Vector2 col_based = new Vector2(c.column * VERTICAL_DIFF, c.column * HORIZONTAL_DIFF);
         if (Map.Instance == null) return (row_based + col_based);
-        Debug.Log("Arrivatooo");
-        Debug.Log(Map.Instance.getPositionOfParent());
         return (row_based + col_based) + Map.Instance.getPositionOfParent();
     }
     public static int getBlockZindex(Coordinate c) {
