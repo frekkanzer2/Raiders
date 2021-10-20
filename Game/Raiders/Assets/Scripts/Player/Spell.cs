@@ -39,42 +39,14 @@ public class Spell {
     public int executeAfterTurns;
     public int effectDuration;
     public float criticalProbability; // done
-    public bool hasEffect;
-    public bool isEffectOnly;
+    public bool hasEffect; // done -> SEE THE REGION
+    public bool isEffectOnly; // done
     public bool canUseInEmptyCell; // done
     public bool isJumpOrEvocation; // done
 
     public void OnPreviewPressed() {
         Debug.Log("Pressed spell " + name);
         link.displayAttackCells(link, this);
-    }
-
-    public static void executeSpell(Character caster, Block targetBlock, Spell spell) {
-        if (caster == null) Debug.LogError("CASTER NULL");
-        if (targetBlock == null) Debug.LogError("BLOCK NULL");
-        if (spell == null) Debug.LogError("SPELL NULL");
-        if (!canUse(caster, spell)) return;
-        if (targetBlock.linkedObject == null) {
-            // no target
-            if (spell.canUseInEmptyCell) {
-                Debug.Log("Successfully executing " + spell.name);
-                payCost(caster, spell);
-                // Code here - Spells in empty cells
-            } else return;
-        } else {
-            Debug.Log("Successfully executing " + spell.name);
-            payCost(caster, spell);
-            Character target = targetBlock.linkedObject.GetComponent<Character>();
-            // Code here - Spells on target
-            if (spell.damage > 0) {
-                int damageToInflict = calculateDamage(caster, target, spell);
-                int critProb = UnityEngine.Random.Range(1, 100);
-                if (critProb <= spell.criticalProbability) damageToInflict += damageToInflict * 25 / 100;
-                Debug.Log("INFLICT " + damageToInflict + " DMGs");
-                target.inflictDamage(damageToInflict);
-                if (spell.lifeSteal) caster.receiveHeal(damageToInflict / 2);
-            }
-        }
     }
 
     public static void payCost(Character caster, Spell spell) {
@@ -104,5 +76,57 @@ public class Spell {
         int finalDamage = (damage + (damage * bonus_attack / 100)) - (damage * resistance / 100);
         return finalDamage;
     }
+
+    public static void executeSpell(Character caster, Block targetBlock, Spell spell) {
+        if (caster == null) Debug.LogError("CASTER NULL");
+        if (targetBlock == null) Debug.LogError("BLOCK NULL");
+        if (spell == null) Debug.LogError("SPELL NULL");
+        if (!canUse(caster, spell)) return;
+        if (targetBlock.linkedObject == null) {
+            // no target
+            if (spell.canUseInEmptyCell) {
+                Debug.Log("Successfully executing " + spell.name);
+                payCost(caster, spell);
+                // Code here - Spells in empty cells
+            } else return;
+        } else {
+            if (spell.canUseInEmptyCell)
+                return;
+            Debug.Log("Successfully executing " + spell.name);
+            payCost(caster, spell);
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            // Code here - Spells on target
+            if (!spell.isEffectOnly && spell.damage > 0) {
+                int damageToInflict = calculateDamage(caster, target, spell);
+                int critProb = UnityEngine.Random.Range(1, 100);
+                if (critProb <= spell.criticalProbability) damageToInflict += damageToInflict * 25 / 100;
+                Debug.Log("INFLICT " + damageToInflict + " DMGs");
+                target.inflictDamage(damageToInflict);
+                if (spell.lifeSteal) caster.receiveHeal(damageToInflict / 2);
+            }
+        }
+        if (spell.hasEffect) {
+            // SPECIALIZATIONS HERE
+            SPELL_SPECIALIZATION(caster, targetBlock, spell);
+        }
+    }
+
+    #region SPELL SPECIALIZATIONS
+
+    public static void SPELL_SPECIALIZATION(Character caster, Block targetBlock, Spell spell) {
+        if (spell.name == "Jump") EXECUTE_JUMP(caster, targetBlock);
+        // ADD HERE ELSE IF (...) ...
+        else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
+    }
+
+    public static void EXECUTE_JUMP(Character caster, Block targetBlock) {
+        caster.connectedCell.GetComponent<Block>().linkedObject = null;
+        caster.connectedCell = targetBlock.gameObject;
+        targetBlock.linkedObject = caster.gameObject;
+        Vector2 newPosition = Coordinate.getPosition(targetBlock.coordinate);
+        caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
+    }
+
+    #endregion
 
 }

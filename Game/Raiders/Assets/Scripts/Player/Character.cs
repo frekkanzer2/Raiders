@@ -40,7 +40,9 @@ public class Character : MonoBehaviour
     private List<Block> followPath = new List<Block>();
     private Block followingBlock = null;
     private int movement_speed = 0;
+    [HideInInspector]
     public Spell spellToUse;
+    private EventSystem esystem;
 
     public void setSpellToUse(Spell s) {
         this.spellToUse = s;
@@ -91,6 +93,7 @@ public class Character : MonoBehaviour
         foreach (Spell s in spells) {
             s.link = this;
         }
+        esystem = GetComponent<EventSystem>();
     }
 
     // Update is called once per frame
@@ -213,6 +216,7 @@ public class Character : MonoBehaviour
 
     public void turnPassed() {
         removeSpellToUse();
+        esystem.OnEndTurn();
         actual_pm = pm;
         actual_pa = pa;
     }
@@ -220,6 +224,7 @@ public class Character : MonoBehaviour
     public void newTurn() {
         resetBufferedCells();
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -20);
+        esystem.OnStartTurn();
     }
 
     void resetBufferedCells() {

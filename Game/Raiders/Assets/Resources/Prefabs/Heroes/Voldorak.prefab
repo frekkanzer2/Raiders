@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 557098361630938698}
   - component: {fileID: 557098361630938740}
   - component: {fileID: 8528018890230597465}
+  - component: {fileID: 8914096617352650622}
   m_Layer: 0
   m_Name: Voldorak
   m_TagString: Player
@@ -144,9 +145,9 @@ MonoBehaviour:
     name: Burning Arrow
     icon: {fileID: 21300000, guid: 7c92e22a3939a2245ba25bc35f0cf440, type: 3}
     element: 1
-    damage: 32
+    damage: 36
     lifeSteal: 0
-    minRange: 3
+    minRange: 2
     maxRange: 4
     distanceType: 1
     overObstacles: 0
@@ -165,7 +166,7 @@ MonoBehaviour:
     name: Explosive Arrow
     icon: {fileID: 21300000, guid: b74716bed6e9f6a49a6c81efa201dedd, type: 3}
     element: 1
-    damage: 40
+    damage: 42
     lifeSteal: 0
     minRange: 6
     maxRange: 8
@@ -200,6 +201,7 @@ MonoBehaviour:
   actual_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
+  numberPrefab: {fileID: 0}
   spellToUse:
     link: {fileID: 0}
     name: 
@@ -249,3 +251,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.6251364, y: 2.2981646}
   m_EdgeRadius: 0
+--- !u!114 &8914096617352650622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37eaf0e54d6ae8429f8dc7475bb845e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connected: {fileID: 0}

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 557098361630938698}
   - component: {fileID: 557098361630938740}
   - component: {fileID: 8528018890230597465}
+  - component: {fileID: 7431538387122325177}
   m_Layer: 0
   m_Name: Arc Piven
   m_TagString: Player
@@ -102,7 +103,7 @@ MonoBehaviour:
     name: Plaguing Arrow
     icon: {fileID: 21300000, guid: f05402af1a4158b40bd232d7e755e292, type: 3}
     element: 2
-    damage: 14
+    damage: 18
     lifeSteal: 0
     minRange: 1
     maxRange: 4
@@ -123,7 +124,7 @@ MonoBehaviour:
     name: Absorptive Arrow
     icon: {fileID: 21300000, guid: 4f3bb6d7ee799fc41b9a06f6d740e8e4, type: 3}
     element: 2
-    damage: 42
+    damage: 38
     lifeSteal: 1
     minRange: 6
     maxRange: 7
@@ -144,7 +145,7 @@ MonoBehaviour:
     name: Slow Down Arrow
     icon: {fileID: 21300000, guid: d95ba6838832b9f4b8f5bc2f3484ef33, type: 3}
     element: 3
-    damage: 38
+    damage: 46
     lifeSteal: 0
     minRange: 1
     maxRange: 8
@@ -165,7 +166,7 @@ MonoBehaviour:
     name: Atonement Arrow
     icon: {fileID: 21300000, guid: fb17fe56678145948abf84a735bc11f1, type: 3}
     element: 3
-    damage: 38
+    damage: 35
     lifeSteal: 0
     minRange: 9
     maxRange: 12
@@ -200,6 +201,7 @@ MonoBehaviour:
   actual_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
+  numberPrefab: {fileID: 0}
   spellToUse:
     link: {fileID: 0}
     name: 
@@ -249,3 +251,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.6251364, y: 2.2981646}
   m_EdgeRadius: 0
+--- !u!114 &7431538387122325177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37eaf0e54d6ae8429f8dc7475bb845e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connected: {fileID: 0}
