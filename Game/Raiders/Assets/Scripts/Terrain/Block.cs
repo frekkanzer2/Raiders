@@ -10,6 +10,11 @@ public class Block : MonoBehaviour {
     private bool isSpawnable = false;
     private int spawnableTeam = -1;
 
+    [HideInInspector]
+    public bool canMoveHere = false;
+    [HideInInspector]
+    public bool canAttackHere = false;
+
     public bool canSpawnHero() {
         return isSpawnable;
     }
@@ -50,10 +55,26 @@ public class Block : MonoBehaviour {
 
     public void setMovementColor() {
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(175f/255f, 1, 175f/255f, 1);
+        canMoveHere = true;
+        canAttackHere = false;
+    }
+
+    public void setAttackColor() {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(217f / 255f, 93f/255f, 95f / 255f, 1);
+        canAttackHere = true;
+        canMoveHere = false;
+    }
+
+    public void setCantAttackColor() {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(100f / 255f, 150f / 255f, 200f / 255f, 1);
+        canAttackHere = false;
+        canMoveHere = false;
     }
 
     public void resetColor() {
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        canMoveHere = false;
+        canAttackHere = false;
     }
 
     public bool equalsTo(Block other) {

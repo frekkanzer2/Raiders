@@ -164,7 +164,7 @@ MonoBehaviour:
     element: 0
     damage: 32
     lifeSteal: 0
-    minRange: 4
+    minRange: 5
     maxRange: 8
     distanceType: 0
     overObstacles: 0

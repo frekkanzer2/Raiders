@@ -22,6 +22,7 @@ public class TurnsManager : MonoBehaviour
     public GameObject betaSpace;
     public GameObject prefabPreviewCardAlpha;
     public GameObject prefabPreviewCardBeta;
+    public GameObject injectToChar_prefabNumberDisplayer;
 
     private float timeLeft = 3f;
 
@@ -99,6 +100,7 @@ public class TurnsManager : MonoBehaviour
     public void OnStartGame() {
         isGameStarted = true;
         foreach (Character c in turns) {
+            c.numberPrefab = injectToChar_prefabNumberDisplayer;
             if (c.team == 1) {
                 GameObject card = Instantiate(prefabPreviewCardAlpha);
                 c.connectedPreview = card;
@@ -112,6 +114,7 @@ public class TurnsManager : MonoBehaviour
                 card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
                      GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
             }
+
         }
         active = turns[0];
         StartActiveCharTurn(false);

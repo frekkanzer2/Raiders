@@ -30,16 +30,47 @@ public class Character : MonoBehaviour
     public int actual_pm;
     [HideInInspector]
     public GameObject connectedPreview = null;
-
+    [HideInInspector]
     public GameObject connectedCell;
+    [HideInInspector]
+    public GameObject numberPrefab;
 
     public static List<Block> bufferColored = new List<Block>();
     private bool isMoving = false;
     private List<Block> followPath = new List<Block>();
     private Block followingBlock = null;
     private int movement_speed = 0;
+    public Spell spellToUse;
+
+    public void setSpellToUse(Spell s) {
+        this.spellToUse = s;
+    }
+
+    public void removeSpellToUse() {
+        this.spellToUse = null;
+    }
 
     public bool isDebugEnabled = false;
+
+    #region FIGHT FUNCTIONS
+
+    public void inflictDamage(int damage) {
+        if (this.actual_hp - damage < 0) actual_hp = 0;
+        else this.actual_hp -= damage;
+        // Execute here effects and other...
+        GameObject np = Instantiate(numberPrefab);
+        np.GetComponent<NumbersDisplayer>().init(NumbersDisplayer.Type.Damage, damage, new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 3.8f));
+    }
+
+    public void receiveHeal(int heal) {
+        if (this.actual_hp + heal > this.hp) actual_hp = hp;
+        else this.actual_hp += heal;
+        // Execute here effects and other...
+        GameObject np = Instantiate(numberPrefab);
+        np.GetComponent<NumbersDisplayer>().init(NumbersDisplayer.Type.Heal, heal, new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 3.8f));
+    }
+
+    #endregion
 
     void Start()
     {
@@ -63,9 +94,9 @@ public class Character : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
 
+        // Setting lifebar on preview cards
         if (TurnsManager.isGameStarted && this.connectedPreview != null) {
             Slider s = this.connectedPreview.transform.GetChild(2).gameObject.GetComponent<Slider>();
             s.maxValue = this.hp;
@@ -73,6 +104,12 @@ public class Character : MonoBehaviour
             s.value = this.actual_hp;
         }
 
+        // Don't execute following code if you are not the active player!
+        if (TurnsManager.isGameStarted)
+            if (this.name != TurnsManager.active.name || this.team != TurnsManager.active.team)
+                return;
+
+        // Snippet that moves the hero in the selected cell
         if (isMoving) {
             transform.position = Vector3.MoveTowards(
                 transform.position, 
@@ -100,43 +137,64 @@ public class Character : MonoBehaviour
             }
         }
 
+        // While playing...
         if (Input.GetMouseButtonDown(0) && !isMoving && TurnsManager.isGameStarted) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
             if (hit.collider != null) {
+                // ...pressed an hero to display the cells
                 if (hit.collider.gameObject.CompareTag("Player")) {
-                    resetBufferedCells();
                     Character charPressed = hit.collider.gameObject.GetComponent<Character>();
-                    if (charPressed.Equals(TurnsManager.active)) {
-                        if (charPressed.actual_pm > 0) {
-                            displayMovementCells(TurnsManager.active);
-                        }
+                    bool isAtt = false;
+                    if (charPressed.connectedCell.GetComponent<Block>().canAttackHere && spellToUse != null) {
+                        isAtt = true;
+                        Spell.executeSpell(TurnsManager.active, charPressed.connectedCell.GetComponent<Block>(), TurnsManager.active.spellToUse);
                     }
+                    resetBufferedCells();
+                    if (!isAtt)
+                        if (charPressed.Equals(TurnsManager.active)) {
+                            if (charPressed.actual_pm > 0) {
+                                displayMovementCells(TurnsManager.active);
+                            }
+                        }
+                    isAtt = false;
+                    // ...pressed a block...
                 } else if (hit.collider.gameObject.CompareTag("Block")) {
                     Block selected = hit.collider.gameObject.GetComponent<Block>();
-                    if (this.Equals(TurnsManager.active)) {
-                        Block dest = null;
-                        foreach (Block b in bufferColored)
-                            if (selected.equalsTo(b)) {
-                                dest = b;
-                                break;
+                    // ...where the hero can moves
+                    if (selected.canMoveHere) {
+                        if (this.Equals(TurnsManager.active)) {
+                            Block dest = null;
+                            foreach (Block b in bufferColored)
+                                if (selected.equalsTo(b)) {
+                                    dest = b;
+                                    break;
+                                }
+                            resetBufferedCells();
+                            if (dest != null) {
+                                followPath = ai_getDestinationPath(TurnsManager.active.connectedCell.GetComponent<Block>(), dest, 100);
+                                actual_pm -= followPath.Count - 1;
+                                followingBlock = followPath[0];
+                                followPath.RemoveAt(0);
+                                isMoving = true;
                             }
-                        resetBufferedCells();
-                        if (dest != null) {
-                            followPath = ai_getDestinationPath(TurnsManager.active.connectedCell.GetComponent<Block>(), dest, 100);
-                            actual_pm -= followPath.Count - 1;
-                            followingBlock = followPath[0];
-                            followPath.RemoveAt(0);
-                            isMoving = true;
                         }
+                        // ...where the hero can attack
+                    } else if (selected.canAttackHere) {
+                        Spell.executeSpell(TurnsManager.active, selected, TurnsManager.active.spellToUse);
+                        resetBufferedCells();
+                    } else {
+                        // ...where there's nothing
+                        resetBufferedCells();
                     }
                 }
+                // nothing clicked
             } else {
                 resetBufferedCells();
             }
+            // clicked a character while choosing phase to remove it from the field
         } else if (Input.GetMouseButtonDown(0) && !isMoving && !TurnsManager.isGameStarted && CameraDragDrop.canMove) {
-            // Clicked positioned preview
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
             if (hit.collider != null) {
@@ -147,16 +205,6 @@ public class Character : MonoBehaviour
             }
         }
 
-        if (isDebugEnabled) {
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                Debug.LogWarning("DEBUG > Pressed SPACE key: new turn started");
-                TurnsManager.active = this;
-                this.connectedCell.GetComponent<Block>().linkedObject = this.gameObject;
-                turnPassed();
-                newTurn();
-            }
-        }
-
     }
 
     public void setZIndex(Block toRegolate) {
@@ -164,6 +212,7 @@ public class Character : MonoBehaviour
     }
 
     public void turnPassed() {
+        removeSpellToUse();
         actual_pm = pm;
         actual_pa = pa;
     }
@@ -178,15 +227,29 @@ public class Character : MonoBehaviour
             b.resetColor();
         }
         bufferColored.Clear();
+        TurnsManager.active.removeSpellToUse();
     }
 
     void displayMovementCells(Character origin) {
-
+        if (origin.isMoving) return;
         ai_pmComposer(origin);
         foreach (Block b in bufferColored) {
             b.setMovementColor();
         }
+    }
 
+    public void displayAttackCells(Character origin, Spell selected) {
+        resetBufferedCells();
+        if (origin.isMoving) return;
+        List<Block> cantAttackHere = ai_attackComposer(origin, selected);
+        foreach (Block b in bufferColored) {
+            b.setAttackColor();
+        }
+        foreach (Block b in cantAttackHere) {
+            b.setCantAttackColor();
+        }
+        bufferColored.AddRange(cantAttackHere);
+        TurnsManager.active.setSpellToUse(selected);
     }
 
     public bool Equals(Character c) {
@@ -389,7 +452,7 @@ public class Character : MonoBehaviour
             }
             up--; down++; counter++;
         }
-
+        
         // Remove unreachable blocks
         List<Block> toRemove = new List<Block>();
         foreach(Block b in bufferColored) {
@@ -403,9 +466,133 @@ public class Character : MonoBehaviour
 
     }
 
+    private List<Block> ai_attackComposer(Character origin, Spell selected) {
+
+        int range_start = selected.minRange;
+        int range_end = selected.maxRange;
+        
+        int up = range_end, down = 0 - range_end;
+        int limit_up = range_start, limit_down = 0 - range_start;
+
+        int highCounter = 0, loseCounter = 0;
+        int i = 0, j = 0;
+
+        Block actual = origin.connectedCell.GetComponent<Block>();
+        Block _temp;
+
+        while (up > 0 || down < 0) {
+            if (highCounter == 0) {
+                _temp = Map.Instance.getBlock(new Coordinate(actual.coordinate.row + up, actual.coordinate.column));
+                if (_temp != null) bufferColored.Add(_temp); // upper limit block
+                _temp = Map.Instance.getBlock(new Coordinate(actual.coordinate.row + down, actual.coordinate.column));
+                if (_temp != null) bufferColored.Add(_temp); // down limit block
+            } else {
+                if (up >= limit_up || down <= limit_down) {
+                    i = 0 - highCounter;
+                    j = highCounter;
+                    while (i < 0 || j > 0) {
+                        _temp = Map.Instance.getBlock(new Coordinate(actual.coordinate.row + up, actual.coordinate.column + i));
+                        if (_temp != null) bufferColored.Add(_temp);
+                        _temp = Map.Instance.getBlock(new Coordinate(actual.coordinate.row + up, actual.coordinate.column + j));
+                        if (_temp != null) bufferColored.Add(_temp);
+                        _temp = Map.Instance.getBlock(new Coordinate(actual.coordinate.row + down, actual.coordinate.column + i));
+                        if (_temp != null) bufferColored.Add(_temp);
+                        _temp = Map.Instance.getBlock(new Coordinate(actual.coordinate.row + down, actual.coordinate.column + j));
+                        if (_temp != null) bufferColored.Add(_temp);
+                        i++; j--;
+                    }
+                    _temp = Map.Instance.getBlock(new Coordinate(actual.coordinate.row + up, actual.coordinate.column));
+                    if (_temp != null) bufferColored.Add(_temp); // upper limit block
+                    _temp = Map.Instance.getBlock(new Coordinate(actual.coordinate.row + down, actual.coordinate.column));
+                    if (_temp != null) bufferColored.Add(_temp); // down limit block
+                }
+                else {
+                    loseCounter++;
+                    i = 0 - highCounter;
+                    j = highCounter;
+                    while (i <= 0-loseCounter || j >= loseCounter) {
+                        _temp = Map.Instance.getBlock(new Coordinate(actual.coordinate.row + up, actual.coordinate.column + i));
+                        if (_temp != null) bufferColored.Add(_temp);
+                        _temp = Map.Instance.getBlock(new Coordinate(actual.coordinate.row + up, actual.coordinate.column + j));
+                        if (_temp != null) bufferColored.Add(_temp);
+                        _temp = Map.Instance.getBlock(new Coordinate(actual.coordinate.row + down, actual.coordinate.column + i));
+                        if (_temp != null) bufferColored.Add(_temp);
+                        _temp = Map.Instance.getBlock(new Coordinate(actual.coordinate.row + down, actual.coordinate.column + j));
+                        if (_temp != null) bufferColored.Add(_temp);
+                        i++; j--;
+                    }
+                }
+            }
+            up--; down++; highCounter++;
+        }
+
+        int minv = range_start;
+        int maxv = range_end;
+        while (minv <= maxv) {
+            _temp = Map.Instance.getBlock(new Coordinate(actual.coordinate.row, actual.coordinate.column + minv));
+            if (_temp != null) bufferColored.Add(_temp);
+            _temp = Map.Instance.getBlock(new Coordinate(actual.coordinate.row, actual.coordinate.column + (0-minv)));
+            if (_temp != null) bufferColored.Add(_temp);
+            minv++;
+        }
+
+        List<Block> toRemove = new List<Block>();
+        // Removing cells if the spell is in line range
+        if (selected.distanceType == Spell.DistanceType.Line) {
+            foreach (Block b in bufferColored) {
+                if (b.coordinate.row != origin.connectedCell.GetComponent<Block>().coordinate.row &&
+                    b.coordinate.column != origin.connectedCell.GetComponent<Block>().coordinate.column) {
+                    toRemove.Add(b);
+                }
+            }
+            foreach (Block b in toRemove)
+                bufferColored.Remove(b);
+            toRemove.Clear();
+        }
+
+        // Delete blocks where there's an hero
+        if (selected.isJumpOrEvocation) {
+            foreach (Block b in bufferColored) {
+                if (b.linkedObject != null) {
+                    toRemove.Add(b);
+                }
+            }
+            foreach (Block b in toRemove)
+                bufferColored.Remove(b);
+            toRemove.Clear();
+        }
+
+        // LEAVE THIS SECTION OF CODE AS LAST
+        // Removing cells if the spell doesn't hit behind obstacles
+        if (!selected.overObstacles) {
+            foreach (Block b in bufferColored) {
+                Debug.DrawLine(origin.connectedCell.GetComponent<Block>().transform.position, b.gameObject.transform.position);
+                RaycastHit2D[] hits = Physics2D.LinecastAll(origin.connectedCell.GetComponent<Block>().transform.position, b.gameObject.transform.position);
+                foreach (RaycastHit2D hit in hits) {
+                    GameObject collided = hit.collider.gameObject;
+                    Block retrieved = collided.GetComponent<Block>();
+                    if (retrieved != null) {
+                        if (retrieved.coordinate.equalsTo(b.coordinate)) {
+                            continue;
+                        } else if (retrieved.coordinate.equalsTo(origin.connectedCell.GetComponent<Block>().coordinate)) {
+                            continue;
+                        } else if (retrieved.linkedObject != null) {
+                            toRemove.Add(b);
+                            break;
+                        }
+                    }
+                }
+            }
+            foreach (Block b in toRemove)
+                bufferColored.Remove(b);
+        }
+        return toRemove; // This blocks will be colored with another colour
+
+    }
+
     #endregion
 
-    #region ai-heuristics
+    #region IA-HEURISTICS
 
     private int h_euclidian(Coordinate start, Coordinate destination, int weight = 1) {
         float dx = Mathf.Abs(start.column - destination.column);

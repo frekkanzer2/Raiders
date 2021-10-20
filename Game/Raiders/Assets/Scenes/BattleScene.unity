@@ -582,6 +582,7 @@ MonoBehaviour:
   betaSpace: {fileID: 342804176}
   prefabPreviewCardAlpha: {fileID: 2035762556530054412, guid: 3dceee1c6adfb0b49af187603ae3d67b, type: 3}
   prefabPreviewCardBeta: {fileID: 7414472896879890752, guid: 15175c187862257469d68ab2bb7c1c9c, type: 3}
+  injectToChar_prefabNumberDisplayer: {fileID: 4911972111712406541, guid: a74061bd17b354b4ab54af57e8e3ba6c, type: 3}
 --- !u!114 &93772478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,7 +628,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93772475}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.933968, y: 5.1827955, z: -16.367569}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1924,6 +1925,8 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  canUse: 1
 --- !u!1 &264503570
 GameObject:
   m_ObjectHideFlags: 0
@@ -2972,6 +2975,8 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  canUse: 1
 --- !u!114 &338244177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3941,6 +3946,8 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  canUse: 1
 --- !u!1 &463930723
 GameObject:
   m_ObjectHideFlags: 0
@@ -4364,6 +4371,8 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  canUse: 1
 --- !u!114 &519592745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6011,6 +6020,8 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  canUse: 1
 --- !u!114 &725304971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9483,7 +9494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335533667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.2, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10413,6 +10424,8 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  canUse: 1
 --- !u!1 &1492057883
 GameObject:
   m_ObjectHideFlags: 0
@@ -12625,6 +12638,8 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  canUse: 1
 --- !u!114 &1887313305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13196,6 +13211,8 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  canUse: 1
 --- !u!1 &1964594708
 GameObject:
   m_ObjectHideFlags: 0

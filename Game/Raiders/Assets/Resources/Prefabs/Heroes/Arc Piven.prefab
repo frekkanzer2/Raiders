@@ -102,10 +102,10 @@ MonoBehaviour:
     name: Plaguing Arrow
     icon: {fileID: 21300000, guid: f05402af1a4158b40bd232d7e755e292, type: 3}
     element: 2
-    damage: 15
+    damage: 14
     lifeSteal: 0
     minRange: 1
-    maxRange: 7
+    maxRange: 4
     distanceType: 0
     overObstacles: 1
     hpCost: 0
@@ -118,6 +118,7 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
   - link: {fileID: 0}
     name: Absorptive Arrow
     icon: {fileID: 21300000, guid: 4f3bb6d7ee799fc41b9a06f6d740e8e4, type: 3}
@@ -125,11 +126,11 @@ MonoBehaviour:
     damage: 42
     lifeSteal: 1
     minRange: 6
-    maxRange: 8
+    maxRange: 7
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 4
+    paCost: 5
     pmCost: 0
     maxTimesInTurn: 2
     executeAfterTurns: 0
@@ -138,6 +139,7 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
   - link: {fileID: 0}
     name: Slow Down Arrow
     icon: {fileID: 21300000, guid: d95ba6838832b9f4b8f5bc2f3484ef33, type: 3}
@@ -158,14 +160,15 @@ MonoBehaviour:
     hasEffect: 1
     isEffectOnly: 0
     canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
   - link: {fileID: 0}
     name: Atonement Arrow
     icon: {fileID: 21300000, guid: fb17fe56678145948abf84a735bc11f1, type: 3}
     element: 3
     damage: 38
     lifeSteal: 0
-    minRange: 6
-    maxRange: 10
+    minRange: 9
+    maxRange: 12
     distanceType: 0
     overObstacles: 0
     hpCost: 0
@@ -178,6 +181,7 @@ MonoBehaviour:
     hasEffect: 1
     isEffectOnly: 0
     canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
   team: 1
   hp: 970
   pa: 6
@@ -196,6 +200,28 @@ MonoBehaviour:
   actual_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
+  spellToUse:
+    link: {fileID: 0}
+    name: 
+    icon: {fileID: 0}
+    element: 0
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 0
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 0
+    pmCost: 0
+    maxTimesInTurn: 0
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
   isDebugEnabled: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:

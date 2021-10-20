@@ -7,6 +7,7 @@ public class SpellSlot : MonoBehaviour
 {
 
     public Spell connectedSpell;
+    public bool canUse = true;
 
     public void setSpell(Spell s) {
         this.connectedSpell = s;
@@ -14,7 +15,8 @@ public class SpellSlot : MonoBehaviour
     }
 
     public void OnClickSpellPreview() {
-        connectedSpell.OnPreviewPressed();
+        if (canUse)
+            connectedSpell.OnPreviewPressed();
     }
 
 }

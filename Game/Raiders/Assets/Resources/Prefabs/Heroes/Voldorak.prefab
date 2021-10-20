@@ -118,6 +118,7 @@ MonoBehaviour:
     hasEffect: 1
     isEffectOnly: 1
     canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
   - link: {fileID: 0}
     name: Bow Skill
     icon: {fileID: 21300000, guid: e94c58159a1bf1c4390dad3e4be6c855, type: 3}
@@ -138,14 +139,15 @@ MonoBehaviour:
     hasEffect: 1
     isEffectOnly: 1
     canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
   - link: {fileID: 0}
     name: Burning Arrow
     icon: {fileID: 21300000, guid: 7c92e22a3939a2245ba25bc35f0cf440, type: 3}
     element: 1
-    damage: 35
+    damage: 32
     lifeSteal: 0
-    minRange: 1
-    maxRange: 3
+    minRange: 3
+    maxRange: 4
     distanceType: 1
     overObstacles: 0
     hpCost: 0
@@ -158,11 +160,12 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
   - link: {fileID: 0}
     name: Explosive Arrow
     icon: {fileID: 21300000, guid: b74716bed6e9f6a49a6c81efa201dedd, type: 3}
     element: 1
-    damage: 36
+    damage: 40
     lifeSteal: 0
     minRange: 6
     maxRange: 8
@@ -178,6 +181,7 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
   team: 1
   hp: 1175
   pa: 7
@@ -196,6 +200,28 @@ MonoBehaviour:
   actual_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
+  spellToUse:
+    link: {fileID: 0}
+    name: 
+    icon: {fileID: 0}
+    element: 0
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 0
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 0
+    pmCost: 0
+    maxTimesInTurn: 0
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
   isDebugEnabled: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:

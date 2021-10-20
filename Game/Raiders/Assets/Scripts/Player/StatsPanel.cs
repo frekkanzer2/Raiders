@@ -28,6 +28,10 @@ public class StatsPanel : MonoBehaviour
     public GameObject spell2;
     public GameObject spell3;
     public GameObject spell4;
+    private bool canUse1;
+    private bool canUse2;
+    private bool canUse3;
+    private bool canUse4;
 
     private int stats_att_def_0_1 = 0;
 
@@ -54,6 +58,34 @@ public class StatsPanel : MonoBehaviour
             spell2.GetComponent<SpellSlot>().setSpell(toSync.spells[1]);
             spell3.GetComponent<SpellSlot>().setSpell(toSync.spells[2]);
             spell4.GetComponent<SpellSlot>().setSpell(toSync.spells[3]);
+            if (!Spell.canUse(toSync, toSync.spells[0])) {
+                spell1.GetComponent<Image>().color = new Color(80f / 255f, 80f / 255f, 80f / 255f, 1);
+                spell1.GetComponent<SpellSlot>().canUse = false;
+            } else {
+                spell1.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                spell1.GetComponent<SpellSlot>().canUse = true;
+            }
+            if (!Spell.canUse(toSync, toSync.spells[1])) {
+                spell2.GetComponent<Image>().color = new Color(80f / 255f, 80f / 255f, 80f / 255f, 1);
+                spell2.GetComponent<SpellSlot>().canUse = false;
+            } else {
+                spell2.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                spell2.GetComponent<SpellSlot>().canUse = true;
+            }
+            if (!Spell.canUse(toSync, toSync.spells[2])) {
+                spell3.GetComponent<Image>().color = new Color(80f / 255f, 80f / 255f, 80f / 255f, 1);
+                spell3.GetComponent<SpellSlot>().canUse = false;
+            } else {
+                spell3.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                spell3.GetComponent<SpellSlot>().canUse = true;
+            }
+            if (!Spell.canUse(toSync, toSync.spells[3])) {
+                spell4.GetComponent<Image>().color = new Color(80f / 255f, 80f / 255f, 80f / 255f, 1);
+                spell4.GetComponent<SpellSlot>().canUse = false;
+            } else {
+                spell4.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                spell4.GetComponent<SpellSlot>().canUse = true;
+            }
         }
     }
 
