@@ -24,6 +24,10 @@ public class StatsPanel : MonoBehaviour
     public GameObject pmGui;
     public GameObject btnPanelAttDef;
     public GameObject panelAttDef;
+    public GameObject spell1;
+    public GameObject spell2;
+    public GameObject spell3;
+    public GameObject spell4;
 
     private int stats_att_def_0_1 = 0;
 
@@ -46,6 +50,10 @@ public class StatsPanel : MonoBehaviour
             att_fir.GetComponent<TextMeshProUGUI>().text = "" + toSync.att_f + "%";
             att_air.GetComponent<TextMeshProUGUI>().text = "" + toSync.att_a + "%";
             att_wat.GetComponent<TextMeshProUGUI>().text = "" + toSync.att_w + "%";
+            spell1.GetComponent<SpellSlot>().setSpell(toSync.spells[0]);
+            spell2.GetComponent<SpellSlot>().setSpell(toSync.spells[1]);
+            spell3.GetComponent<SpellSlot>().setSpell(toSync.spells[2]);
+            spell4.GetComponent<SpellSlot>().setSpell(toSync.spells[3]);
         }
     }
 

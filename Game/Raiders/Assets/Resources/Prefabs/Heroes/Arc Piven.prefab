@@ -97,13 +97,106 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Arc Piven
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Plaguing Arrow
+    icon: {fileID: 21300000, guid: f05402af1a4158b40bd232d7e755e292, type: 3}
+    element: 2
+    damage: 15
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 7
+    distanceType: 0
+    overObstacles: 1
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 30
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+  - link: {fileID: 0}
+    name: Absorptive Arrow
+    icon: {fileID: 21300000, guid: 4f3bb6d7ee799fc41b9a06f6d740e8e4, type: 3}
+    element: 2
+    damage: 42
+    lifeSteal: 1
+    minRange: 6
+    maxRange: 8
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 30
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+  - link: {fileID: 0}
+    name: Slow Down Arrow
+    icon: {fileID: 21300000, guid: d95ba6838832b9f4b8f5bc2f3484ef33, type: 3}
+    element: 3
+    damage: 38
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 8
+    distanceType: 1
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 1
+    criticalProbability: 30
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+  - link: {fileID: 0}
+    name: Atonement Arrow
+    icon: {fileID: 21300000, guid: fb17fe56678145948abf84a735bc11f1, type: 3}
+    element: 3
+    damage: 38
+    lifeSteal: 0
+    minRange: 6
+    maxRange: 10
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 3
+    effectDuration: 4
+    criticalProbability: 30
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
   team: 1
   hp: 970
   pa: 6
   pm: 3
   ini: 140
+  res_e: -5
+  res_f: -10
+  res_a: 5
+  res_w: 5
+  att_e: 0
+  att_f: 0
+  att_a: 10
+  att_w: 10
+  actual_hp: 0
+  actual_pa: 0
+  actual_pm: 0
+  connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
+  isDebugEnabled: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

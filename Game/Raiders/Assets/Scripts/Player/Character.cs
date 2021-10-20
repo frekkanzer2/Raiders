@@ -57,6 +57,9 @@ public class Character : MonoBehaviour
         else if (pm <= 8)
             movement_speed = 25;
         else movement_speed = 30;
+        foreach (Spell s in spells) {
+            s.link = this;
+        }
     }
 
     // Update is called once per frame
