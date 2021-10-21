@@ -40,13 +40,15 @@ public class EventSystem : MonoBehaviour
         foreach (ParentEvent pe in activeEvents) {
             pe.OnTurnEnds();
         }
+        removeZeroEvents();
     }
 
-    public bool hasEvent(string name) {
+    public List<ParentEvent> getEvents(string name) {
+        List<ParentEvent> pel = new List<ParentEvent>();
         foreach (ParentEvent pe in activeEvents) {
-            if (pe.isName(name)) return true;
+            if (pe.isName(name)) pel.Add(pe);
         }
-        return false;
+        return pel;
     }
 
 }

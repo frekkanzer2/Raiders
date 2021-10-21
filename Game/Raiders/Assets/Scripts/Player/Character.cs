@@ -29,6 +29,8 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public int actual_pm;
     [HideInInspector]
+    public int backup_pm;
+    [HideInInspector]
     public GameObject connectedPreview = null;
     [HideInInspector]
     public GameObject connectedCell;
@@ -44,8 +46,16 @@ public class Character : MonoBehaviour
     public Spell spellToUse;
     private EventSystem esystem;
 
+    public void addEvent(ParentEvent pe) {
+        esystem.addEvent(pe);
+    }
+
     public void setSpellToUse(Spell s) {
         this.spellToUse = s;
+    }
+
+    public EventSystem getEventSystem() {
+        return this.esystem;
     }
 
     public void removeSpellToUse() {
@@ -81,6 +91,7 @@ public class Character : MonoBehaviour
         actual_hp = hp;
         actual_pa = pa;
         actual_pm = pm;
+        backup_pm = pm;
         if (pm <= 2)
             movement_speed = 10;
         else if (pm <= 4)
@@ -108,9 +119,13 @@ public class Character : MonoBehaviour
         }
 
         // Don't execute following code if you are not the active player!
-        if (TurnsManager.isGameStarted)
-            if (this.name != TurnsManager.active.name || this.team != TurnsManager.active.team)
+        if (TurnsManager.isGameStarted) {
+            if (this.name != TurnsManager.active.name || this.team != TurnsManager.active.team) {
                 return;
+            }
+            if (this.connectedCell != null)
+                this.setZIndex(this.connectedCell.GetComponent<Block>());
+        }
 
         // Snippet that moves the hero in the selected cell
         if (isMoving) {
@@ -604,6 +619,13 @@ public class Character : MonoBehaviour
         float dy = Mathf.Abs(start.row - destination.row);
         return (int) (weight * Mathf.Sqrt(dx * dx + dy * dy));
     }
+
+    #endregion
+
+    #region SPECIAL STATS
+
+    [HideInInspector]
+    public int accumulationCounter = 0;
 
     #endregion
 

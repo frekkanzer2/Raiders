@@ -8,6 +8,9 @@ using TMPro;
 public class TurnsManager : MonoBehaviour
 {
 
+    private static TurnsManager _instance;
+    public static TurnsManager Instance { get { return _instance; } }
+
     public static bool isGameStarted = false;
     public static Character active;
     [HideInInspector]
@@ -25,6 +28,10 @@ public class TurnsManager : MonoBehaviour
     public GameObject injectToChar_prefabNumberDisplayer;
 
     private float timeLeft = 3f;
+
+    private void Start() {
+        if (TurnsManager.Instance == null) TurnsManager._instance = this;
+    }
 
     private void Update() {
         if (isGameStarted) {
