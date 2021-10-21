@@ -98,18 +98,102 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Lana Tal
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Curative Palm
+    icon: {fileID: 21300000, guid: 34c052be365be75499d7c75f89807313, type: 3}
+    element: 4
+    damage: 25
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 2
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 0
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  - link: {fileID: 0}
+    name: Virus
+    icon: {fileID: 21300000, guid: 17745f07d2fb8a243ab77ecf75ffc5d3, type: 3}
+    element: 1
+    damage: 46
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 4
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 15
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  - link: {fileID: 0}
+    name: Offence
+    icon: {fileID: 21300000, guid: e5bf3f0f1540ef142a9ea669b4230598, type: 3}
+    element: 1
+    damage: 42
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 7
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 0
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 10
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  - link: {fileID: 0}
+    name: Wakfu Ray
+    icon: {fileID: 21300000, guid: bb525d1deb6dfbe4e968b508a60fa8ed, type: 3}
+    element: 1
+    damage: 34
+    lifeSteal: 1
+    minRange: 2
+    maxRange: 5
+    distanceType: 1
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 10
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
   team: 1
   hp: 1070
   pa: 6
   pm: 4
   ini: 140
   res_e: 0
-  res_f: 0
+  res_f: 10
   res_a: 0
-  res_w: 0
+  res_w: -10
   att_e: 0
-  att_f: 0
+  att_f: 10
   att_a: 0
   att_w: 0
   actual_hp: 0
@@ -179,3 +263,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37eaf0e54d6ae8429f8dc7475bb845e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connected: {fileID: 0}

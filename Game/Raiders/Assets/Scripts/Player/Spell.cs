@@ -101,7 +101,9 @@ public class Spell {
                 int critProb = UnityEngine.Random.Range(1, 100);
                 if (critProb <= spell.criticalProbability) damageToInflict += damageToInflict * 25 / 100;
                 Debug.Log("INFLICT " + damageToInflict + " DMGs");
-                target.inflictDamage(damageToInflict);
+                if (spell.element != Element.Heal)
+                    target.inflictDamage(damageToInflict);
+                else target.receiveHeal(damageToInflict);
                 if (spell.lifeSteal) caster.receiveHeal(damageToInflict / 2);
             }
         }
