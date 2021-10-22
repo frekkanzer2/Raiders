@@ -29,8 +29,6 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public int actual_pm;
     [HideInInspector]
-    public int backup_pm;
-    [HideInInspector]
     public GameObject connectedPreview = null;
     [HideInInspector]
     public GameObject connectedCell;
@@ -39,12 +37,20 @@ public class Character : MonoBehaviour
 
     public static List<Block> bufferColored = new List<Block>();
     private bool isMoving = false;
+    private bool isForcedMoving = false;
     private List<Block> followPath = new List<Block>();
     private Block followingBlock = null;
     private int movement_speed = 0;
     [HideInInspector]
     public Spell spellToUse;
     private EventSystem esystem;
+
+    public void setPath(List<Block> path) {
+        followPath = path;
+        followingBlock = path[0];
+        followPath.RemoveAt(0);
+        isForcedMoving = true;
+    }
 
     public void addEvent(ParentEvent pe) {
         esystem.addEvent(pe);
@@ -91,7 +97,6 @@ public class Character : MonoBehaviour
         actual_hp = hp;
         actual_pa = pa;
         actual_pm = pm;
-        backup_pm = pm;
         if (pm <= 2)
             movement_speed = 10;
         else if (pm <= 4)
@@ -116,6 +121,33 @@ public class Character : MonoBehaviour
             s.maxValue = this.hp;
             s.minValue = 0;
             s.value = this.actual_hp;
+        }
+
+        if (isForcedMoving) {
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                new Vector3(
+                    Coordinate.getPosition(followingBlock.coordinate).x,
+                    Coordinate.getPosition(followingBlock.coordinate).y,
+                    -20
+                ),
+                24 * Time.deltaTime // Speed
+            );
+            if (new Vector2(transform.position.x, transform.position.y) == Coordinate.getPosition(followingBlock.coordinate)) {
+                // I'm on a new cell
+                GameObject previous_link = this.connectedCell;
+                previous_link.GetComponent<Block>().linkedObject = null;
+                this.connectedCell = followingBlock.gameObject;
+                followingBlock.GetComponent<Block>().linkedObject = this.gameObject;
+                setZIndex(followingBlock);
+                if (followPath.Count > 0) {
+                    followingBlock = followPath[0];
+                    followPath.RemoveAt(0);
+                } else {
+                    followingBlock = null;
+                    isForcedMoving = false;
+                }
+            }
         }
 
         // Don't execute following code if you are not the active player!
