@@ -102,7 +102,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Sentinel
     icon: {fileID: 21300000, guid: 06bac2f429c7d9945850baaec93ebcee, type: 3}
-    description: +30% dmgs
+    description: +40% dmgs
     element: 5
     damage: 0
     lifeSteal: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
     damage: 0
     lifeSteal: 0
     minRange: 0
-    maxRange: 2
+    maxRange: 3
     distanceType: 0
     overObstacles: 0
     hpCost: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Barricade Shot
     icon: {fileID: 21300000, guid: eea94d51037587a4fa332564c0cf33f2, type: 3}
-    description: 'if target is in line: repels the target of 1 cells'
+    description: 'if target is in line: -1 pm (100% prob)'
     element: 0
     damage: 40
     lifeSteal: 0
@@ -181,8 +181,8 @@ MonoBehaviour:
     pmCost: 0
     maxTimesInTurn: 2
     executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 10
+    effectDuration: 1
+    criticalProbability: 12
     hasEffect: 1
     isEffectOnly: 0
     canUseInEmptyCell: 0
@@ -230,6 +230,8 @@ MonoBehaviour:
     canUseInEmptyCell: 0
     isJumpOrEvocation: 0
   isDebugEnabled: 0
+  accumulationCounter: 0
+  criticShooting: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

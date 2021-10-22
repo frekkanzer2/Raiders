@@ -658,6 +658,8 @@ public class Character : MonoBehaviour
 
     [HideInInspector]
     public int accumulationCounter = 0;
+    [HideInInspector]
+    public bool criticShooting = false;
 
     #endregion
 

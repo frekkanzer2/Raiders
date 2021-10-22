@@ -105,7 +105,13 @@ public class Spell {
             if (!spell.isEffectOnly && spell.damage > 0) {
                 int damageToInflict = calculateDamage(caster, target, spell);
                 int critProb = UnityEngine.Random.Range(1, 101);
-                if (critProb <= spell.criticalProbability) damageToInflict += damageToInflict * 25 / 100;
+                if (!caster.criticShooting) {
+                    if (critProb <= spell.criticalProbability)
+                        damageToInflict += damageToInflict * 25 / 100;
+                } else {
+                    if (critProb <= spell.criticalProbability + 14)
+                        damageToInflict += damageToInflict * 25 / 100;
+                }
                 Debug.Log("INFLICT " + damageToInflict + " DMGs");
                 if (spell.element != Element.Heal)
                     target.inflictDamage(damageToInflict);
@@ -137,6 +143,9 @@ public class Spell {
         else if (spell.name == "Slow Down Arrow") EXECUTE_SLOW_DOWN_ARROW(targetBlock, spell);
         else if (spell.name == "Atonement Arrow") EXECUTE_ATONEMENT_ARROW(caster, spell);
         else if (spell.name == "Retreat Arrow") EXECUTE_RETREAT_ARROW(caster, targetBlock);
+        else if (spell.name == "Barricade Shot") EXECUTE_BARRICADE_SHOT(caster, targetBlock, spell);
+        else if (spell.name == "Sentinel") EXECUTE_SENTINEL(caster, spell);
+        else if (spell.name == "Critical Shooting") EXECUTE_CRITICAL_SHOOTING(targetBlock, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -292,6 +301,29 @@ public class Spell {
             }
             targetBlock.linkedObject.GetComponent<Character>().setPath(path); // move the enemy
         }
+    }
+
+    public static void EXECUTE_BARRICADE_SHOT(Character caster, Block targetBlock, Spell s) {
+        Coordinate casterCoord = caster.connectedCell.GetComponent<Block>().coordinate;
+        Coordinate targetCoord = targetBlock.coordinate;
+        if (casterCoord.column == targetCoord.column || casterCoord.row == targetCoord.row) {
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            target.addEvent(new BarricadeEvent("Barricade Shot", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        }
+    }
+
+    public static void EXECUTE_SENTINEL(Character caster, Spell s) {
+        SentinelEvent sentinelEvent = new SentinelEvent("Sentinel", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        caster.addEvent(sentinelEvent);
+        sentinelEvent.useIstantanely();
+    }
+
+    public static void EXECUTE_CRITICAL_SHOOTING(Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        CriticalShootingEvent cs = new CriticalShootingEvent("Critical Shooting", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        target.addEvent(cs);
+        if (target.name == s.link.name && target.team == s.link.team)
+            cs.useIstantanely();
     }
 
     #endregion
