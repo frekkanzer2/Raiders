@@ -57,10 +57,10 @@ public class Spell {
     }
 
     public static bool canUse(Character caster, Spell spell) {
-        if (caster.pm > 0) {
-            if (spell.paCost > caster.actual_pa || spell.pmCost > caster.actual_pm || spell.hpCost > caster.actual_hp) return false;
-        } else {
+        if (caster.actual_pm < 0) {
             if (spell.paCost > caster.actual_pa || spell.pmCost != 0 || spell.hpCost > caster.actual_hp) return false;
+        } else {
+            if (spell.paCost > caster.actual_pa || spell.pmCost > caster.actual_pm || spell.hpCost > caster.actual_hp) return false;
         }
         return true;
     }
@@ -146,6 +146,10 @@ public class Spell {
         else if (spell.name == "Barricade Shot") EXECUTE_BARRICADE_SHOT(caster, targetBlock, spell);
         else if (spell.name == "Sentinel") EXECUTE_SENTINEL(caster, spell);
         else if (spell.name == "Critical Shooting") EXECUTE_CRITICAL_SHOOTING(targetBlock, spell);
+        else if (spell.name == "Exodus") EXECUTE_EXODUS(caster, targetBlock, spell);
+        else if (spell.name == "Convulsion") EXECUTE_CONVULSION(caster, targetBlock);
+        else if (spell.name == "Therapy") EXECUTE_THERAPY(caster, targetBlock);
+        else if (spell.name == "Odyssey") EXECUTE_ODYSSEY(caster);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -324,6 +328,184 @@ public class Spell {
         target.addEvent(cs);
         if (target.name == s.link.name && target.team == s.link.team)
             cs.useIstantanely();
+    }
+
+    public static void EXECUTE_EXODUS(Character caster, Block targetBlock, Spell s) {
+        Coordinate casterCoord = caster.connectedCell.GetComponent<Block>().coordinate;
+        Coordinate targetCoord = targetBlock.coordinate;
+        if (casterCoord.row == targetCoord.row && casterCoord.column < targetCoord.column) {
+            // jump to the right
+            caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row, targetCoord.column + 1));
+            if (toJump == null) return;
+            if (toJump.linkedObject != null) return;
+            caster.connectedCell = toJump.gameObject;
+            toJump.linkedObject = caster.gameObject;
+            Vector2 newPosition = Coordinate.getPosition(toJump.coordinate);
+            caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
+        } else if (casterCoord.row == targetCoord.row && casterCoord.column > targetCoord.column) {
+            // jump to the left
+            caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row, targetCoord.column - 1));
+            if (toJump == null) return;
+            if (toJump.linkedObject != null) return;
+            caster.connectedCell = toJump.gameObject;
+            toJump.linkedObject = caster.gameObject;
+            Vector2 newPosition = Coordinate.getPosition(toJump.coordinate);
+            caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
+        } else if (casterCoord.column == targetCoord.column && casterCoord.row > targetCoord.row) {
+            // upper jump
+            caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row - 1, targetCoord.column));
+            if (toJump == null) return;
+            if (toJump.linkedObject != null) return;
+            caster.connectedCell = toJump.gameObject;
+            toJump.linkedObject = caster.gameObject;
+            Vector2 newPosition = Coordinate.getPosition(toJump.coordinate);
+            caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
+        } else if (casterCoord.column == targetCoord.column && casterCoord.row < targetCoord.row) {
+            // down jump
+            caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row + 1, targetCoord.column));
+            if (toJump == null) return;
+            if (toJump.linkedObject != null) return;
+            caster.connectedCell = toJump.gameObject;
+            toJump.linkedObject = caster.gameObject;
+            Vector2 newPosition = Coordinate.getPosition(toJump.coordinate);
+            caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
+        }
+    }
+
+    public static void EXECUTE_CONVULSION(Character caster, Block targetBlock) {
+        int numberOfCellsToMove = 1;
+        List<Block> path = new List<Block>();
+        Coordinate casterPosition = caster.connectedCell.GetComponent<Block>().coordinate;
+        Coordinate targetPosition = targetBlock.coordinate;
+        Debug.Log("Coordinate hit: " + targetPosition.display());
+        if (targetPosition.row > casterPosition.row) {
+            Debug.Log("Target is down");
+            // target is down
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row + i, targetPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.row < casterPosition.row) {
+            Debug.Log("Target is up");
+            // target is up
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row - i, targetPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column > casterPosition.column) {
+            Debug.Log("Target is on the right");
+            // target is on the right
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row, targetPosition.column + i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column < casterPosition.column) {
+            Debug.Log("Target is on the left");
+            // target is on the left
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row, targetPosition.column - i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else {
+            Debug.LogError("RETREAT ARROW error case");
+        }
+        if (path.Count > 0) {
+            Debug.LogWarning("*** PATH ***");
+            foreach (Block b in path) {
+                Debug.LogWarning(b.coordinate.display());
+            }
+            targetBlock.linkedObject.GetComponent<Character>().setPath(path); // move the enemy
+        }
+    }
+
+    public static void EXECUTE_THERAPY(Character caster, Block targetBlock) {
+        int numberOfCellsToMove = 2;
+        List<Block> path = new List<Block>();
+        Coordinate casterPosition = caster.connectedCell.GetComponent<Block>().coordinate;
+        Coordinate targetPosition = targetBlock.coordinate;
+        Debug.Log("Coordinate hit: " + targetPosition.display());
+        if (targetPosition.row > casterPosition.row) {
+            Debug.Log("Target is down");
+            // target is down
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row - i, targetPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.row < casterPosition.row) {
+            Debug.Log("Target is up");
+            // target is up
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row + i, targetPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column > casterPosition.column) {
+            Debug.Log("Target is on the right");
+            // target is on the right
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row, targetPosition.column - i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column < casterPosition.column) {
+            Debug.Log("Target is on the left");
+            // target is on the left
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row, targetPosition.column + i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else {
+            Debug.LogError("Error case");
+        }
+        if (path.Count > 0) {
+            Debug.LogWarning("*** PATH ***");
+            foreach (Block b in path) {
+                Debug.LogWarning(b.coordinate.display());
+            }
+            targetBlock.linkedObject.GetComponent<Character>().setPath(path); // move the enemy
+        }
+    }
+
+    public static void EXECUTE_ODYSSEY(Character caster) {
+        Block actual = caster.connectedCell.GetComponent<Block>();
+        Coordinate start = actual.coordinate;
+        List<Block> toValuate = new List<Block>();
+        for (int i = -5; i <= 5; i++) {
+            for (int j = -5; j <= 5; j++) {
+                if (i == 0 && j == 0) continue; // start position
+                Block temp = Map.Instance.getBlock(new Coordinate(start.row + i, start.column + j));
+                if (temp == null) continue;
+                if (temp.linkedObject != null) continue;
+                toValuate.Add(temp);
+            }
+        }
+        if (toValuate.Count > 0) {
+            int index_chosen = UnityEngine.Random.Range(0, toValuate.Count);
+            Block chosen = toValuate[index_chosen];
+            caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            caster.connectedCell = chosen.gameObject;
+            chosen.linkedObject = caster.gameObject;
+            Vector2 newPosition = Coordinate.getPosition(chosen.coordinate);
+            caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
+        }
     }
 
     #endregion

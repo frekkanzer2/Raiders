@@ -102,19 +102,19 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Odyssey
     icon: {fileID: 21300000, guid: 751c971984d94e5468502e5de69a7d85, type: 3}
-    description: repels target of 1 cell and come closer of 1 cell
+    description: teleport on a random cell from the actual position
     element: 5
     damage: 0
     lifeSteal: 0
-    minRange: 1
-    maxRange: 1
+    minRange: 0
+    maxRange: 0
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 2
+    paCost: 4
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 0
+    executeAfterTurns: 5
     effectDuration: 0
     criticalProbability: 0
     hasEffect: 1
@@ -129,8 +129,8 @@ MonoBehaviour:
     damage: 0
     lifeSteal: 0
     minRange: 1
-    maxRange: 1
-    distanceType: 0
+    maxRange: 2
+    distanceType: 1
     overObstacles: 0
     hpCost: 0
     paCost: 2
@@ -142,11 +142,11 @@ MonoBehaviour:
     hasEffect: 1
     isEffectOnly: 1
     canUseInEmptyCell: 0
-    isJumpOrEvocation: 1
+    isJumpOrEvocation: 0
   - link: {fileID: 0}
     name: Convulsion
     icon: {fileID: 21300000, guid: 01060ee29f1e99549921a87dcb7eb0ef, type: 3}
-    description: repels the target of 2 cells
+    description: repels the target of 1 cell
     element: 0
     damage: 26
     lifeSteal: 0
@@ -194,8 +194,8 @@ MonoBehaviour:
   ini: 80
   res_e: 8
   res_f: -12
-  res_a: 5
-  res_w: 4
+  res_a: 4
+  res_w: 5
   att_e: 12
   att_f: 0
   att_a: 0
@@ -230,6 +230,8 @@ MonoBehaviour:
     canUseInEmptyCell: 0
     isJumpOrEvocation: 0
   isDebugEnabled: 0
+  accumulationCounter: 0
+  criticShooting: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

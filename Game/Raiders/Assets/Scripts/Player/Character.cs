@@ -124,6 +124,11 @@ public class Character : MonoBehaviour
         }
 
         if (isForcedMoving) {
+            if (this.transform.position.z > -20) this.transform.position = new Vector3(
+                    this.transform.position.x,
+                    this.transform.position.y,
+                    -20
+                );
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 new Vector3(

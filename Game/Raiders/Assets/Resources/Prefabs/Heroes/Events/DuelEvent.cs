@@ -9,14 +9,11 @@ public class DuelEvent : ParentEvent
 
     override public void execute() {
         base.execute();
-        connected.pm -= 100;
         connected.actual_pm -= 100;
     }
 
     override public void restoreCharacter() {
         base.restoreCharacter();
-        connected.pm += 100;
-        connected.actual_pm += 100;
     }
 
 }
