@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -113,13 +113,15 @@ public class TurnsManager : MonoBehaviour
                 c.connectedPreview = card;
                 card.transform.SetParent(turnsListContainer.transform);
                 card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite = 
-                    GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
+	                GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
+	            card.GetComponent<RectTransform>().localScale = new Vector3(0.2f,0.2f,0.2f);
             } else if (c.team == 2) {
                 GameObject card = Instantiate(prefabPreviewCardBeta);
                 c.connectedPreview = card;
                 card.transform.SetParent(turnsListContainer.transform);
                 card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
-                     GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
+	                GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
+	            card.GetComponent<RectTransform>().localScale = new Vector3(0.2f,0.2f,0.2f);
             }
 
         }

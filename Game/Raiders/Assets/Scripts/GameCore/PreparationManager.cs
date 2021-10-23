@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -87,11 +87,13 @@ public class PreparationManager : MonoBehaviour
             if (c.team == 1) {
                 GameObject spawned = Instantiate(cellContentAlphaPrefab);
                 spawned.transform.SetParent(contentAlpha.transform);
-                spawned.GetComponent<CellHeroChooser>().initialize(retrievedInfo, this, 1);
+	            spawned.GetComponent<CellHeroChooser>().initialize(retrievedInfo, this, 1);
+	            spawned.GetComponent<RectTransform>().localScale = new Vector3(1f,1f,1f);
             } else if (c.team == 2) {
                 GameObject spawned = Instantiate(cellContentBetaPrefab);
                 spawned.transform.SetParent(contentBeta.transform);
-                spawned.GetComponent<CellHeroChooser>().initialize(retrievedInfo, this, 2);
+	            spawned.GetComponent<CellHeroChooser>().initialize(retrievedInfo, this, 2);
+	            spawned.GetComponent<RectTransform>().localScale = new Vector3(1f,1f,1f);
             }
         }
     }
