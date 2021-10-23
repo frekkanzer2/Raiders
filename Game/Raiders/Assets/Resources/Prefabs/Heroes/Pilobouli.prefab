@@ -98,7 +98,95 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Pilobouli
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Sacrifice
+    icon: {fileID: 21300000, guid: 38112bc65cd959644b44e22d3573153e, type: 3}
+    description: Get inflicted damages from an ally
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 5
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 3
+    effectDuration: 3
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  - link: {fileID: 0}
+    name: Transfusion
+    icon: {fileID: 21300000, guid: aa76d98de4d54ac408f39986e55de520, type: 3}
+    description: heal all allies in 6 cells distance of 100 hp
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 0
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 200
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 3
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  - link: {fileID: 0}
+    name: Assault
+    icon: {fileID: 21300000, guid: 67b9b33c50e794e4c996f5ee5b5fea90, type: 3}
+    description: Switch position
+    element: 2
+    damage: 20
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 3
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 5
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  - link: {fileID: 0}
+    name: Decimation
+    icon: {fileID: 21300000, guid: 8d06db43bdf023244bcb0eaf73ce05a1, type: 3}
+    description: +48 base dmgs if the caster launched sacrifice and has hp < 30%
+    element: 0
+    damage: 30
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 3
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 15
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
   team: 1
   hp: 1630
   pa: 5
@@ -108,10 +196,10 @@ MonoBehaviour:
   res_f: 0
   res_a: 0
   res_w: 0
-  att_e: 0
-  att_f: 0
-  att_a: 0
-  att_w: 0
+  att_e: 5
+  att_f: 5
+  att_a: 5
+  att_w: 5
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
@@ -122,6 +210,7 @@ MonoBehaviour:
     link: {fileID: 0}
     name: 
     icon: {fileID: 0}
+    description: 
     element: 0
     damage: 0
     lifeSteal: 0
@@ -141,6 +230,10 @@ MonoBehaviour:
     canUseInEmptyCell: 0
     isJumpOrEvocation: 0
   isDebugEnabled: 0
+  accumulationCounter: 0
+  criticShooting: 0
+  connectedSacrifice: {fileID: 0}
+  hasActivedSacrifice: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179,3 +272,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37eaf0e54d6ae8429f8dc7475bb845e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connected: {fileID: 0}

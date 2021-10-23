@@ -170,7 +170,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: eea94d51037587a4fa332564c0cf33f2, type: 3}
     description: 'if target is in line: -1 pm (100% prob)'
     element: 0
-    damage: 40
+    damage: 35
     lifeSteal: 0
     minRange: 5
     maxRange: 8
@@ -232,6 +232,8 @@ MonoBehaviour:
   isDebugEnabled: 0
   accumulationCounter: 0
   criticShooting: 0
+  connectedSacrifice: {fileID: 0}
+  hasActivedSacrifice: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

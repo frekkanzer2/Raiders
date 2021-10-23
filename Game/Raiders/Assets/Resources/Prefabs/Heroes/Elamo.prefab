@@ -112,7 +112,7 @@ MonoBehaviour:
     overObstacles: 0
     hpCost: 0
     paCost: 4
-    pmCost: 0
+    pmCost: 2
     maxTimesInTurn: 1
     executeAfterTurns: 5
     effectDuration: 0
@@ -232,6 +232,8 @@ MonoBehaviour:
   isDebugEnabled: 0
   accumulationCounter: 0
   criticShooting: 0
+  connectedSacrifice: {fileID: 0}
+  hasActivedSacrifice: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

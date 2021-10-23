@@ -98,7 +98,95 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Globula
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Transposition
+    icon: {fileID: 21300000, guid: cd7efa7f27f62f946b6a9002ddcd8463, type: 3}
+    description: change position with a target
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 8
+    distanceType: 0
+    overObstacles: 1
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 3
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  - link: {fileID: 0}
+    name: Attraction
+    icon: {fileID: 21300000, guid: f35d53d71b6aecb4f8b19f8a9c8ec947, type: 3}
+    description: attract a target of 6 cells
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 2
+    maxRange: 10
+    distanceType: 1
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 1
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  - link: {fileID: 0}
+    name: Gash
+    icon: {fileID: 21300000, guid: 78e5448e8e2a421448a877d196ea273d, type: 3}
+    description: 
+    element: 0
+    damage: 80
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 60
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 25
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  - link: {fileID: 0}
+    name: Desolation
+    icon: {fileID: 21300000, guid: d24c8ebb08fbe6945b20f42233fa7edb, type: 3}
+    description: -3 pm (25% prob)
+    element: 2
+    damage: 36
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 3
+    distanceType: 1
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 1
+    criticalProbability: 25
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
   team: 1
   hp: 1560
   pa: 5
@@ -108,9 +196,9 @@ MonoBehaviour:
   res_f: 0
   res_a: 0
   res_w: 0
-  att_e: 0
+  att_e: 16
   att_f: 0
-  att_a: 0
+  att_a: 14
   att_w: 0
   actual_hp: 0
   actual_pa: 0
@@ -122,6 +210,7 @@ MonoBehaviour:
     link: {fileID: 0}
     name: 
     icon: {fileID: 0}
+    description: 
     element: 0
     damage: 0
     lifeSteal: 0
@@ -141,6 +230,10 @@ MonoBehaviour:
     canUseInEmptyCell: 0
     isJumpOrEvocation: 0
   isDebugEnabled: 0
+  accumulationCounter: 0
+  criticShooting: 0
+  connectedSacrifice: {fileID: 0}
+  hasActivedSacrifice: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179,3 +272,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37eaf0e54d6ae8429f8dc7475bb845e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connected: {fileID: 0}

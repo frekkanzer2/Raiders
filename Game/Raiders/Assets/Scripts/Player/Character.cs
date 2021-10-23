@@ -136,7 +136,7 @@ public class Character : MonoBehaviour
                     Coordinate.getPosition(followingBlock.coordinate).y,
                     -20
                 ),
-                24 * Time.deltaTime // Speed
+                30 * Time.deltaTime // Speed
             );
             if (new Vector2(transform.position.x, transform.position.y) == Coordinate.getPosition(followingBlock.coordinate)) {
                 // I'm on a new cell
@@ -665,6 +665,10 @@ public class Character : MonoBehaviour
     public int accumulationCounter = 0;
     [HideInInspector]
     public bool criticShooting = false;
+    [HideInInspector]
+    public Character connectedSacrifice = null;
+    [HideInInspector]
+    public bool hasActivedSacrifice = false;
 
     #endregion
 

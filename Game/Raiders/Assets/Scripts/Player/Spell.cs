@@ -113,9 +113,11 @@ public class Spell {
                         damageToInflict += damageToInflict * 25 / 100;
                 }
                 Debug.Log("INFLICT " + damageToInflict + " DMGs");
-                if (spell.element != Element.Heal)
-                    target.inflictDamage(damageToInflict);
-                else target.receiveHeal(damageToInflict);
+                if (spell.element != Element.Heal) {
+                    if (target.connectedSacrifice == null)
+                        target.inflictDamage(damageToInflict);
+                    else target.connectedSacrifice.inflictDamage(damageToInflict);
+                } else target.receiveHeal(damageToInflict);
                 if (spell.lifeSteal) caster.receiveHeal(damageToInflict / 2);
             }
         }
@@ -150,6 +152,14 @@ public class Spell {
         else if (spell.name == "Convulsion") EXECUTE_CONVULSION(caster, targetBlock);
         else if (spell.name == "Therapy") EXECUTE_THERAPY(caster, targetBlock);
         else if (spell.name == "Odyssey") EXECUTE_ODYSSEY(caster);
+        else if (spell.name == "Transposition" || spell.name == "Assault") EXECUTE_TRANSPOSITION(caster, targetBlock);
+        else if (spell.name == "Attraction") EXECUTE_ATTRACTION(caster, targetBlock);
+        else if (spell.name == "Desolation") EXECUTE_DESOLATION(targetBlock, spell);
+        else if (spell.name == "Mutilation") EXECUTE_MUTILATION(caster, spell);
+        else if (spell.name == "Berserk") EXECUTE_BERSERK(caster, spell);
+        else if (spell.name == "Influx") EXECUTE_INFLUX(caster, targetBlock);
+        else if (spell.name == "Sacrifice") EXECUTE_SACRIFICE(caster, targetBlock, spell);
+        else if (spell.name == "Transfusion") EXECUTE_TRANSFUSION(caster, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -508,6 +518,171 @@ public class Spell {
         }
     }
 
+    public static void EXECUTE_TRANSPOSITION(Character caster, Block targetBlock) {
+        Block casterBlock = caster.connectedCell.GetComponent<Block>();
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        casterBlock.linkedObject = null;
+        targetBlock.linkedObject = null;
+        caster.connectedCell = targetBlock.gameObject;
+        target.connectedCell = casterBlock.gameObject;
+        casterBlock.linkedObject = target.gameObject;
+        targetBlock.linkedObject = caster.gameObject;
+        Vector2 targetNewPosition = Coordinate.getPosition(targetBlock.coordinate);
+        Vector2 casterNewPosition = Coordinate.getPosition(casterBlock.coordinate);
+        caster.transform.position = new Vector3(targetNewPosition.x, targetNewPosition.y, -20);
+        target.transform.position = new Vector3(casterNewPosition.x, casterNewPosition.y, -20);
+    }
+
+    public static void EXECUTE_ATTRACTION(Character caster, Block targetBlock) {
+        int numberOfCellsToMove = 8;
+        List<Block> path = new List<Block>();
+        Coordinate casterPosition = caster.connectedCell.GetComponent<Block>().coordinate;
+        Coordinate targetPosition = targetBlock.coordinate;
+        Debug.Log("Coordinate hit: " + targetPosition.display());
+        if (targetPosition.row > casterPosition.row) {
+            Debug.Log("Target is down");
+            // target is down
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row - i, targetPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.row < casterPosition.row) {
+            Debug.Log("Target is up");
+            // target is up
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row + i, targetPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column > casterPosition.column) {
+            Debug.Log("Target is on the right");
+            // target is on the right
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row, targetPosition.column - i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column < casterPosition.column) {
+            Debug.Log("Target is on the left");
+            // target is on the left
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row, targetPosition.column + i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else {
+            Debug.LogError("Error case");
+        }
+        if (path.Count > 0) {
+            Debug.LogWarning("*** PATH ***");
+            foreach (Block b in path) {
+                Debug.LogWarning(b.coordinate.display());
+            }
+            targetBlock.linkedObject.GetComponent<Character>().setPath(path); // move the enemy
+        }
+    }
+
+    public static void EXECUTE_DESOLATION(Block targetBlock, Spell s) {
+        int prob = UnityEngine.Random.Range(1, 101);
+        Debug.Log("Spell " + s.name + " prob: " + prob);
+        if (prob <= 25) {
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            target.addEvent(new DesolationEvent("Desolation", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        }
+    }
+
+    public static void EXECUTE_BERSERK(Character caster, Spell s) {
+        BerserkEvent se = new BerserkEvent("Berserk", caster, s.effectDuration, ParentEvent.Mode.PermanentAndEachTurn, s.icon);
+        se.useIstantanely();
+        caster.addEvent(se);
+    }
+
+    public static void EXECUTE_MUTILATION(Character caster, Spell s) {
+        MutilationEvent mut = new MutilationEvent("Mutilation", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        caster.addEvent(mut);
+        if (caster.name == s.link.name && caster.team == s.link.team)
+            mut.useIstantanely();
+    }
+
+    public static void EXECUTE_INFLUX(Character caster, Block targetBlock) {
+        int numberOfCellsToMove = 2;
+        List<Block> path = new List<Block>();
+        Coordinate casterPosition = caster.connectedCell.GetComponent<Block>().coordinate;
+        Coordinate targetPosition = targetBlock.coordinate;
+        Debug.Log("Coordinate hit: " + targetPosition.display());
+        if (targetPosition.row > casterPosition.row) {
+            Debug.Log("Target is down");
+            // target is down
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row - i, targetPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.row < casterPosition.row) {
+            Debug.Log("Target is up");
+            // target is up
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row + i, targetPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column > casterPosition.column) {
+            Debug.Log("Target is on the right");
+            // target is on the right
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row, targetPosition.column - i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column < casterPosition.column) {
+            Debug.Log("Target is on the left");
+            // target is on the left
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row, targetPosition.column + i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else {
+            Debug.LogError("Error case");
+        }
+        if (path.Count > 0) {
+            Debug.LogWarning("*** PATH ***");
+            foreach (Block b in path) {
+                Debug.LogWarning(b.coordinate.display());
+            }
+            targetBlock.linkedObject.GetComponent<Character>().setPath(path); // move the enemy
+        }
+    }
+
+    public static void EXECUTE_TRANSFUSION(Character caster, Spell s) {
+        Coordinate a = caster.connectedCell.GetComponent<Block>().coordinate;
+        foreach (Character ch in TurnsManager.Instance.turns) {
+            if (ch.team == caster.team && ch.name != caster.name) {
+                Coordinate b = ch.connectedCell.GetComponent<Block>().coordinate;
+                int dist_row = Mathf.Abs(a.row - b.row);
+                int dist_col = Mathf.Abs(a.column - b.column);
+                if (dist_row + dist_col <= 6) {
+                    ch.receiveHeal(100);
+                }
+            }
+        }
+    }
+
+    public static void EXECUTE_SACRIFICE(Character caster, Block targetBlock, Spell s) {
+        SacrificeEvent se = new SacrificeEvent("Sacrifice", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon, targetBlock.linkedObject.GetComponent<Character>());
+        caster.addEvent(se);
+        se.useIstantanely();
+    }
+
     #endregion
 
     #region EVENT BONUSES
@@ -516,6 +691,7 @@ public class Spell {
     public static int BONUS_WRATH = 120;
     public static int BONUS_BOW_SKILL = 12;
     public static int BONUS_ATONEMENT_ARROW = 36;
+    public static int BONUS_DECIMATION = 48;
 
     public static int EVENT_BONUS_BASE_DAMAGE(Character caster, Spell s) {
         if (caster.name == "Missiz Frizz" && s.name == "Accumulation") {
@@ -530,6 +706,11 @@ public class Spell {
         } else if (caster.name == "Arc Piven" && s.name == "Atonement Arrow") {
             List<ParentEvent> bslist = caster.getEventSystem().getEvents("Atonement Arrow");
             return BONUS_ATONEMENT_ARROW * bslist.Count;
+        } else if (caster.name == "Pilobouli" && s.name == "Decimation") {
+            if (caster.hasActivedSacrifice && caster.hp * 30 / 100 > caster.actual_hp) {
+                Debug.Log("Bonus decimation!");
+                return BONUS_DECIMATION;
+            } else return 0;
         } else return 0;
     }
 
