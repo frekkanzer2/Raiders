@@ -774,13 +774,16 @@ public class Spell {
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         Coordinate a = targetBlock.coordinate;
         foreach (Character c in TurnsManager.Instance.turns) {
-            if (c.team != target.team && c.name != target.name) {
+            if ((c.team != target.team) || (c.team == target.team && c.name != target.name)) {
                 Coordinate b = c.connectedCell.GetComponent<Block>().coordinate;
                 int dist_row = Mathf.Abs(a.row - b.row);
                 int dist_col = Mathf.Abs(a.column - b.column);
                 if (dist_row + dist_col <= 3) {
-                    if (UnityEngine.Random.Range(1, 3) == 1)
+                    int v = UnityEngine.Random.Range(1, 3);
+                    Debug.Log("Value " + v);
+                    if (v == 1)
                         target.receiveHeal(50);
+                    else Debug.Log("Feline sense failed");
                 }
             }
         }

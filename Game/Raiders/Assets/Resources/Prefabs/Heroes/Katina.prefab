@@ -141,8 +141,8 @@ MonoBehaviour:
     criticalProbability: 0
     hasEffect: 1
     isEffectOnly: 1
-    canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+    canUseInEmptyCell: 1
+    isJumpOrEvocation: 1
   - link: {fileID: 0}
     name: Playful Claw
     icon: {fileID: 21300000, guid: 32880b6cd944ff843ac7716c99260762, type: 3}
