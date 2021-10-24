@@ -98,20 +98,109 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Rabiote
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Smell
+    icon: {fileID: 21300000, guid: e2602c14bbd0a0e46a9a851148254757, type: 3}
+    description: +2 pm OR pa AND -25% all res
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 2
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 5
+    effectDuration: 3
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  - link: {fileID: 0}
+    name: Heads or Tails
+    icon: {fileID: 21300000, guid: cfe99a3a215041d4893ec64f47f365f2, type: 3}
+    description: 50% prob to heal the enemy of 40 hp in his next turn
+    element: 0
+    damage: 60
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 5
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 1
+    criticalProbability: 5
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  - link: {fileID: 0}
+    name: All or Nothing
+    icon: {fileID: 21300000, guid: dfb27cbc58e6a684cb0c4e1ca18afca6, type: 3}
+    description: if the enemy is still alive in the next turn, it will heal of 200
+      hp
+    element: 3
+    damage: 100
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 2
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 3
+    effectDuration: 1
+    criticalProbability: 15
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  - link: {fileID: 0}
+    name: Bluff
+    icon: {fileID: 21300000, guid: 5426dbbad99d7ba4db34418ce7fe08a4, type: 3}
+    description: damage bonus based on dice
+    element: 3
+    damage: 15
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 4
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 15
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
   team: 1
   hp: 1240
   pa: 6
   pm: 3
   ini: 80
-  res_e: 0
-  res_f: 0
-  res_a: 0
-  res_w: 0
-  att_e: 0
+  res_e: 10
+  res_f: 5
+  res_a: 12
+  res_w: 5
+  att_e: 8
   att_f: 0
   att_a: 0
-  att_w: 0
+  att_w: 10
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
@@ -122,6 +211,7 @@ MonoBehaviour:
     link: {fileID: 0}
     name: 
     icon: {fileID: 0}
+    description: 
     element: 0
     damage: 0
     lifeSteal: 0
@@ -141,6 +231,10 @@ MonoBehaviour:
     canUseInEmptyCell: 0
     isJumpOrEvocation: 0
   isDebugEnabled: 0
+  accumulationCounter: 0
+  criticShooting: 0
+  connectedSacrifice: {fileID: 0}
+  hasActivedSacrifice: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179,3 +273,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37eaf0e54d6ae8429f8dc7475bb845e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connected: {fileID: 0}

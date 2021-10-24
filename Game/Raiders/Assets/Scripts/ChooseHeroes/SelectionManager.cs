@@ -93,6 +93,8 @@ public class SelectionManager : MonoBehaviour
             GameObject instanceBeta = GameObject.Instantiate(prefabCharacter);
             instanceAlpha.transform.SetParent(teamAreferenceToCharSlider.transform);
             instanceBeta.transform.SetParent(teamBreferenceToCharSlider.transform);
+            instanceAlpha.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            instanceBeta.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             ChButtonData alphaChData = instanceAlpha.GetComponent<ChButtonData>();
             ChButtonData betaChData = instanceBeta.GetComponent<ChButtonData>();
             alphaChData.initialize(ci, 1, this);
@@ -101,8 +103,10 @@ public class SelectionManager : MonoBehaviour
         for (int i = 0; i < 5; i++) {
             GameObject abutton = GameObject.Instantiate(prefabButtonAlpha);
             abutton.transform.SetParent(teamAreferenceToPreviewBtnSlider.transform);
+            abutton.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             GameObject bbutton = GameObject.Instantiate(prefabButtonBeta);
             bbutton.transform.SetParent(teamBreferenceToPreviewBtnSlider.transform);
+            bbutton.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             abutton.GetComponent<ButtonPreview>().team = 1;
             bbutton.GetComponent<ButtonPreview>().team = 2;
             listPreviewsAlpha.Add(abutton.GetComponent<ButtonPreview>());
@@ -110,8 +114,10 @@ public class SelectionManager : MonoBehaviour
         }
         GameObject acbutton = GameObject.Instantiate(prefabConfirmButtonAlpha);
         acbutton.transform.SetParent(teamAreferenceToPreviewBtnSlider.transform);
+        acbutton.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         GameObject bcbutton = GameObject.Instantiate(prefabConfirmButtonBeta);
         bcbutton.transform.SetParent(teamBreferenceToPreviewBtnSlider.transform);
+        bcbutton.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         specialButtonA = acbutton.GetComponent<ConfirmButton>();
         specialButtonA.sm = this;
         specialButtonA.team = 1;

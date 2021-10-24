@@ -130,7 +130,7 @@ public class Spell {
     #region SPELL SPECIALIZATIONS
 
     public static void SPELL_SPECIALIZATION(Character caster, Block targetBlock, Spell spell) {
-        if (spell.name == "Jump" || spell.name == "Portal") EXECUTE_JUMP(caster, targetBlock);
+        if (spell.name == "Jump" || spell.name == "Portal" || spell.name == "Catnip") EXECUTE_JUMP(caster, targetBlock);
         else if (spell.name == "Pounding") EXECUTE_POUNDING(targetBlock, spell);
         else if (spell.name == "Agitation") EXECUTE_AGITATION(targetBlock, spell);
         else if (spell.name == "Accumulation") EXECUTE_ACCUMULATION(caster, spell);
@@ -148,7 +148,7 @@ public class Spell {
         else if (spell.name == "Barricade Shot") EXECUTE_BARRICADE_SHOT(caster, targetBlock, spell);
         else if (spell.name == "Sentinel") EXECUTE_SENTINEL(caster, spell);
         else if (spell.name == "Critical Shooting") EXECUTE_CRITICAL_SHOOTING(targetBlock, spell);
-        else if (spell.name == "Exodus") EXECUTE_EXODUS(caster, targetBlock, spell);
+        else if (spell.name == "Exodus" || spell.name == "Feline Spirit") EXECUTE_EXODUS(caster, targetBlock, spell);
         else if (spell.name == "Convulsion") EXECUTE_CONVULSION(caster, targetBlock);
         else if (spell.name == "Therapy") EXECUTE_THERAPY(caster, targetBlock);
         else if (spell.name == "Odyssey") EXECUTE_ODYSSEY(caster);
@@ -160,6 +160,13 @@ public class Spell {
         else if (spell.name == "Influx") EXECUTE_INFLUX(caster, targetBlock);
         else if (spell.name == "Sacrifice") EXECUTE_SACRIFICE(caster, targetBlock, spell);
         else if (spell.name == "Transfusion") EXECUTE_TRANSFUSION(caster, spell);
+        else if (spell.name == "Smell") EXECUTE_SMELL(targetBlock, spell);
+        else if (spell.name == "Heads or Tails") EXECUTE_HEADS_OR_TAILS(targetBlock, spell);
+        else if (spell.name == "All or Nothing") EXECUTE_ALL_OR_NOTHING(targetBlock, spell);
+        else if (spell.name == "Claw of Ceangal") EXECUTE_CLAW_OF_CEANGAL(caster, targetBlock);
+        else if (spell.name == "Godsend") EXECUTE_GODSEND(targetBlock, spell);
+        else if (spell.name == "Feline Sense") EXECUTE_FELINE_SENSE(targetBlock, spell);
+        else if (spell.name == "Roulette") EXECUTE_ROULETTE(caster, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -225,7 +232,9 @@ public class Spell {
         Debug.Log("Spell " + s.name + " prob: " + prob);
         if (prob <= 50) {
             Character target = targetBlock.linkedObject.GetComponent<Character>();
-            target.addEvent(new ComposureEvent("Composure", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
+            ComposureEvent ce = new ComposureEvent("Composure", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+            ce.useIstantanely();
+            target.addEvent(ce);
         }
     }
 
@@ -247,7 +256,9 @@ public class Spell {
     }
 
     public static void EXECUTE_BOW_SKILL(Character caster, Spell s) {
-        caster.addEvent(new BowSkill("Bow Skill", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
+        BowSkill bs = new BowSkill("Bow Skill", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        caster.addEvent(bs);
+        bs.useIstantanely();
     }
 
     public static void EXECUTE_SLOW_DOWN_ARROW(Block targetBlock, Spell s) {
@@ -683,6 +694,118 @@ public class Spell {
         se.useIstantanely();
     }
 
+    public static void EXECUTE_SMELL(Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        SmellEvent se = new SmellEvent("Smell", target, s.effectDuration, ParentEvent.Mode.PermanentAndEachTurn, s.icon);
+        target.addEvent(se);
+        if (target.name == s.link.name && target.team == s.link.team)
+            se.useIstantanely();
+    }
+
+    public static void EXECUTE_HEADS_OR_TAILS(Block targetBlock, Spell s) {
+        targetBlock.linkedObject.GetComponent<Character>().addEvent(new HeadOrTailEvent("Heads or Tails", targetBlock.linkedObject.GetComponent<Character>(), s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_ALL_OR_NOTHING(Block targetBlock, Spell s) {
+        targetBlock.linkedObject.GetComponent<Character>().addEvent(new AllOrNothingEvent("All or Nothing", targetBlock.linkedObject.GetComponent<Character>(), s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_CLAW_OF_CEANGAL(Character caster, Block targetBlock) {
+        int numberOfCellsToMove = 2;
+        List<Block> path = new List<Block>();
+        Coordinate casterPosition = caster.connectedCell.GetComponent<Block>().coordinate;
+        Coordinate targetPosition = targetBlock.coordinate;
+        Debug.Log("Coordinate hit: " + targetPosition.display());
+        if (targetPosition.row > casterPosition.row) {
+            Debug.Log("Target is down");
+            // target is down
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row + i, targetPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.row < casterPosition.row) {
+            Debug.Log("Target is up");
+            // target is up
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row - i, targetPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column > casterPosition.column) {
+            Debug.Log("Target is on the right");
+            // target is on the right
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row, targetPosition.column + i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column < casterPosition.column) {
+            Debug.Log("Target is on the left");
+            // target is on the left
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row, targetPosition.column - i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else {
+            Debug.LogError("RETREAT ARROW error case");
+        }
+        if (path.Count > 0) {
+            Debug.LogWarning("*** PATH ***");
+            foreach (Block b in path) {
+                Debug.LogWarning(b.coordinate.display());
+            }
+            targetBlock.linkedObject.GetComponent<Character>().setPath(path); // move the enemy
+        }
+    }
+
+    public static void EXECUTE_GODSEND(Block targetBlock, Spell s) {
+        GodsendEvent ge = new GodsendEvent("Godsend", targetBlock.linkedObject.GetComponent<Character>(), s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        targetBlock.linkedObject.GetComponent<Character>().addEvent(ge);
+        ge.useIstantanely();
+    }
+
+    public static void EXECUTE_FELINE_SENSE(Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        Coordinate a = targetBlock.coordinate;
+        foreach (Character c in TurnsManager.Instance.turns) {
+            if (c.team != target.team && c.name != target.name) {
+                Coordinate b = c.connectedCell.GetComponent<Block>().coordinate;
+                int dist_row = Mathf.Abs(a.row - b.row);
+                int dist_col = Mathf.Abs(a.column - b.column);
+                if (dist_row + dist_col <= 3) {
+                    if (UnityEngine.Random.Range(1, 3) == 1)
+                        target.receiveHeal(50);
+                }
+            }
+        }
+    }
+
+    public static void EXECUTE_ROULETTE(Character caster, Spell s) {
+        int chosenRandomId = UnityEngine.Random.Range(1, 16); // 1 to 15
+        List<RouletteEvent> rouletteEvents = new List<RouletteEvent>();
+        foreach (Character ch in TurnsManager.Instance.turns) {
+            if (ch.team == caster.team && ch.name != caster.name) {
+                RouletteEvent re = new RouletteEvent("Roulette", ch, s.effectDuration, ParentEvent.Mode.PermanentAndEachTurn, s.icon, chosenRandomId);
+                ch.addEvent(re);
+                if (chosenRandomId == 5 || chosenRandomId == 6 || chosenRandomId == 7 || chosenRandomId == 8 || chosenRandomId == 9 || chosenRandomId == 10 ||
+                    chosenRandomId == 11 || chosenRandomId == 12 || chosenRandomId == 13 || chosenRandomId == 14)
+                    re.useIstantanely();
+            } else if (ch.team == caster.team && ch.name == caster.name) {
+                RouletteEvent re = new RouletteEvent("Roulette", ch, s.effectDuration+1, ParentEvent.Mode.PermanentAndEachTurn, s.icon, chosenRandomId);
+                ch.addEvent(re);
+                if (chosenRandomId == 5 || chosenRandomId == 6 || chosenRandomId == 7 || chosenRandomId == 8 || chosenRandomId == 9 || chosenRandomId == 10 ||
+                    chosenRandomId == 11 || chosenRandomId == 12 || chosenRandomId == 13 || chosenRandomId == 14)
+                    re.useIstantanely();
+            }
+        }
+    }
+
     #endregion
 
     #region EVENT BONUSES
@@ -711,6 +834,15 @@ public class Spell {
                 Debug.Log("Bonus decimation!");
                 return BONUS_DECIMATION;
             } else return 0;
+        } else if (caster.name == "Rabiote" && s.name == "Bluff") {
+            int diceResult = UnityEngine.Random.Range(1, 7);
+            if (diceResult == 1) return 5;
+            if (diceResult == 2) return 15;
+            if (diceResult == 3) return 25;
+            if (diceResult == 4) return 30;
+            if (diceResult == 5) return 35;
+            if (diceResult == 6) return 45;
+            else return 0;
         } else return 0;
     }
 
