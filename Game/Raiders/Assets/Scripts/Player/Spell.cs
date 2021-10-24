@@ -78,7 +78,7 @@ public class Spell {
         else if (element == Spell.Element.Air) bonus_attack = caster.att_a;
         else if (element == Spell.Element.Water) bonus_attack = caster.att_w;
         int damage = spell.damage;
-        damage += EVENT_BONUS_BASE_DAMAGE(caster, spell);
+        damage += EVENT_BONUS_BASE_DAMAGE(caster, target, spell);
         int finalDamage = (damage + (damage * bonus_attack / 100)) - (damage * resistance / 100);
         return finalDamage;
     }
@@ -167,6 +167,15 @@ public class Spell {
         else if (spell.name == "Godsend") EXECUTE_GODSEND(targetBlock, spell);
         else if (spell.name == "Feline Sense") EXECUTE_FELINE_SENSE(targetBlock, spell);
         else if (spell.name == "Roulette") EXECUTE_ROULETTE(caster, spell);
+        else if (spell.name == "Time Rift") EXECUTE_TIME_RIFT(caster, targetBlock, spell);
+        else if (spell.name == "Sandglass") EXECUTE_SANDGLASS(targetBlock, spell);
+        else if (spell.name == "Rewind") EXECUTE_REWIND(targetBlock, spell);
+        else if (spell.name == "Clock") EXECUTE_CLOCK(targetBlock, spell);
+        else if (spell.name == "Time Theft") EXECUTE_TIME_THEFT(caster, targetBlock, spell);
+        else if (spell.name == "Haziness") EXECUTE_HAZINESS(targetBlock, spell);
+        else if (spell.name == "Slow Down") EXECUTE_SLOW_DOWN(targetBlock, spell);
+        else if (spell.name == "Gear") EXECUTE_GEAR(targetBlock, spell);
+        else if (spell.name == "Restart") EXECUTE_RESTART(spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -799,13 +808,70 @@ public class Spell {
                 if (chosenRandomId == 5 || chosenRandomId == 6 || chosenRandomId == 7 || chosenRandomId == 8 || chosenRandomId == 9 || chosenRandomId == 10 ||
                     chosenRandomId == 11 || chosenRandomId == 12 || chosenRandomId == 13 || chosenRandomId == 14)
                     re.useIstantanely();
-            } else if (ch.team == caster.team && ch.name == caster.name) {
-                RouletteEvent re = new RouletteEvent("Roulette", ch, s.effectDuration+1, ParentEvent.Mode.PermanentAndEachTurn, s.icon, chosenRandomId);
-                ch.addEvent(re);
-                if (chosenRandomId == 5 || chosenRandomId == 6 || chosenRandomId == 7 || chosenRandomId == 8 || chosenRandomId == 9 || chosenRandomId == 10 ||
-                    chosenRandomId == 11 || chosenRandomId == 12 || chosenRandomId == 13 || chosenRandomId == 14)
-                    re.useIstantanely();
             }
+        }
+    }
+
+    public static void EXECUTE_TIME_RIFT(Character caster, Block targetBlock, Spell s) {
+        List<Character> lc = TurnsManager.Instance.turns;
+        List<Character> allies = new List<Character>();
+        foreach(Character c in lc) {
+            if (c.team == caster.team && c.name != caster.name) {
+                allies.Add(c);
+            }
+        }
+        if (allies.Count > 0) {
+            Character toTeleport = allies[UnityEngine.Random.Range(0, allies.Count)];
+            EXECUTE_JUMP(toTeleport, targetBlock);
+        }
+    }
+
+    public static void EXECUTE_SANDGLASS(Block targetBlock, Spell s) {
+        int prob = UnityEngine.Random.Range(1, 101);
+        Debug.Log("Spell " + s.name + " prob: " + prob);
+        if (prob <= 90) {
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            target.addEvent(new SandglassEvent("Sandglass", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        }
+    }
+
+    public static void EXECUTE_REWIND(Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new RewindEvent("Rewind", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_CLOCK(Block targetBlock, Spell s) {
+        int prob = UnityEngine.Random.Range(1, 101);
+        Debug.Log("Spell " + s.name + " prob: " + prob);
+        if (prob <= 20) {
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            target.addEvent(new ClockEvent("Clock", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        }
+    }
+
+    public static void EXECUTE_TIME_THEFT(Character caster, Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new TimeTheftEvent("Time Theft", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, caster));
+    }
+
+    public static void EXECUTE_HAZINESS(Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new HazinessEvent("Haziness", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_SLOW_DOWN(Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new SlowDownEvent("Slow Down", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_GEAR(Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new GearEvent("Gear", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_RESTART(Spell s) {
+        foreach(Tuple<Character, Block> t in TurnsManager.spawnPositions) {
+            EXECUTE_JUMP(t.Item1, t.Item2);
         }
     }
 
@@ -818,8 +884,9 @@ public class Spell {
     public static int BONUS_BOW_SKILL = 12;
     public static int BONUS_ATONEMENT_ARROW = 36;
     public static int BONUS_DECIMATION = 48;
+    public static int BONUS_SHADOWYBEAM = 13;
 
-    public static int EVENT_BONUS_BASE_DAMAGE(Character caster, Spell s) {
+    public static int EVENT_BONUS_BASE_DAMAGE(Character caster, Character targetch, Spell s) {
         if (caster.name == "Missiz Frizz" && s.name == "Accumulation") {
             List<ParentEvent> acclist = caster.getEventSystem().getEvents("Accumulation");
             return BONUS_ACCUMULATION * acclist.Count;
@@ -845,6 +912,12 @@ public class Spell {
             if (diceResult == 4) return 30;
             if (diceResult == 5) return 35;
             if (diceResult == 6) return 45;
+            else return 0;
+        } else if (caster.name == "Chrona" && s.name == "Shadowy Beam") {
+            Coordinate target = targetch.connectedCell.GetComponent<Block>().coordinate;
+            if (Map.Instance.getBlock(new Coordinate(target.row, target.column + 1)) != null || Map.Instance.getBlock(new Coordinate(target.row, target.column - 1)) != null ||
+                Map.Instance.getBlock(new Coordinate(target.row + 1, target.column)) != null || Map.Instance.getBlock(new Coordinate(target.row - 1, target.column)) != null)
+                return BONUS_SHADOWYBEAM;
             else return 0;
         } else return 0;
     }

@@ -98,20 +98,110 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Quadranpa
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Rewind
+    icon: {fileID: 21300000, guid: 8c6c73317852c074fafb426e0ea01df4, type: 3}
+    description: At the end of the turn, teleports the target back where he started
+      the turn
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 2
+    distanceType: 0
+    overObstacles: 1
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 3
+    effectDuration: 1
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  - link: {fileID: 0}
+    name: Clock
+    icon: {fileID: 21300000, guid: 1d4b1387e3f50494a87e8f9c0dc56cd1, type: 3}
+    description: -2 pa to the target (20% prob)
+    element: 3
+    damage: 47
+    lifeSteal: 1
+    minRange: 1
+    maxRange: 4
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 1
+    criticalProbability: 25
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  - link: {fileID: 0}
+    name: Shrivelling
+    icon: {fileID: 21300000, guid: b054f707eb2936f4baf1def59edfa1bc, type: 3}
+    description: 
+    element: 2
+    damage: 29
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 8
+    distanceType: 1
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 3
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 40
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
+  - link: {fileID: 0}
+    name: Time Theft
+    icon: {fileID: 21300000, guid: c5d62d39746192343b95b3491af0799c, type: 3}
+    description: -2 pa | launcher gains 1 pa for the next turn (80%) and another
+      one (25%)
+    element: 3
+    damage: 34
+    lifeSteal: 0
+    minRange: 5
+    maxRange: 5
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 5
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 0
+    effectDuration: 1
+    criticalProbability: 15
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJumpOrEvocation: 0
   team: 1
   hp: 960
   pa: 7
   pm: 3
   ini: 70
-  res_e: 0
-  res_f: 0
-  res_a: 0
-  res_w: 0
+  res_e: -13
+  res_f: -4
+  res_a: 14
+  res_w: 10
   att_e: 0
   att_f: 0
-  att_a: 0
-  att_w: 0
+  att_a: 12
+  att_w: 16
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
@@ -122,6 +212,7 @@ MonoBehaviour:
     link: {fileID: 0}
     name: 
     icon: {fileID: 0}
+    description: 
     element: 0
     damage: 0
     lifeSteal: 0
@@ -141,6 +232,10 @@ MonoBehaviour:
     canUseInEmptyCell: 0
     isJumpOrEvocation: 0
   isDebugEnabled: 0
+  accumulationCounter: 0
+  criticShooting: 0
+  connectedSacrifice: {fileID: 0}
+  hasActivedSacrifice: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179,3 +274,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37eaf0e54d6ae8429f8dc7475bb845e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connected: {fileID: 0}

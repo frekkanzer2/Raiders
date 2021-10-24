@@ -17,6 +17,8 @@ public class TurnsManager : MonoBehaviour
     public List<Character> turns = new List<Character>();
     [HideInInspector]
     public List<Tuple<GameObject, Character, CharacterInfo>> relations = new List<Tuple<GameObject, Character, CharacterInfo>>();
+	[HideInInspector]
+	public static List<Tuple<Character, Block>> spawnPositions = new List<Tuple<Character, Block>>();
 
     public GameObject nextTurnButton;
     public GameObject newTurnAnnouncer;
@@ -123,7 +125,7 @@ public class TurnsManager : MonoBehaviour
 	                GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
 	            card.GetComponent<RectTransform>().localScale = new Vector3(0.2f,0.2f,0.2f);
             }
-
+	        spawnPositions.Add(new Tuple<Character, Block>(c, c.connectedCell.GetComponent<Block>()));
         }
         active = turns[0];
         StartActiveCharTurn(false);
