@@ -102,7 +102,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Curative Palm
     icon: {fileID: 21300000, guid: 34c052be365be75499d7c75f89807313, type: 3}
-    description: 
+    description: Heals the target
     element: 4
     damage: 25
     lifeSteal: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Virus
     icon: {fileID: 21300000, guid: 17745f07d2fb8a243ab77ecf75ffc5d3, type: 3}
-    description: heal all other allies of dmgs/2 (not the caster)
+    description: Allies are healed of 50% of the damage inflicted on the target
     element: 1
     damage: 46
     lifeSteal: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Offence
     icon: {fileID: 21300000, guid: e5bf3f0f1540ef142a9ea669b4230598, type: 3}
-    description: 
+    description: Inflicts Fire damage
     element: 1
     damage: 42
     lifeSteal: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Wakfu Ray
     icon: {fileID: 21300000, guid: bb525d1deb6dfbe4e968b508a60fa8ed, type: 3}
-    description: 
+    description: Steals HP in the Fire element
     element: 1
     damage: 34
     lifeSteal: 1
@@ -230,6 +230,10 @@ MonoBehaviour:
     canUseInEmptyCell: 0
     isJumpOrEvocation: 0
   isDebugEnabled: 0
+  accumulationCounter: 0
+  criticShooting: 0
+  connectedSacrifice: {fileID: 0}
+  hasActivedSacrifice: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

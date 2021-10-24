@@ -102,7 +102,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Portal
     icon: {fileID: 21300000, guid: 68d458cbef50a3e458f97316c629d159, type: 3}
-    description: jump on the selected cell
+    description: Teleports to the targeted cell
     element: 5
     damage: 0
     lifeSteal: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Stretching
     icon: {fileID: 21300000, guid: 3ed032d44afd84e4b8618d7ef23450ee, type: 3}
-    description: +1 pm and -10% all res
+    description: Adds 1 PM and decreases the target resistances of 10% for 3 turns
     element: 5
     damage: 0
     lifeSteal: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Composure
     icon: {fileID: 21300000, guid: a7eb3b7dce5e61b4c889d37986575f58, type: 3}
-    description: -6% res water
+    description: Decreases the target Water resistance of 6% for 2 turns (50% chance)
     element: 3
     damage: 48
     lifeSteal: 0
@@ -203,7 +203,6 @@ MonoBehaviour:
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
-  backup_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
   numberPrefab: {fileID: 0}
@@ -232,6 +231,9 @@ MonoBehaviour:
     isJumpOrEvocation: 0
   isDebugEnabled: 0
   accumulationCounter: 0
+  criticShooting: 0
+  connectedSacrifice: {fileID: 0}
+  hasActivedSacrifice: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

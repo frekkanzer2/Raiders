@@ -28,6 +28,7 @@ public class TurnsManager : MonoBehaviour
     public GameObject prefabPreviewCardAlpha;
     public GameObject prefabPreviewCardBeta;
     public GameObject injectToChar_prefabNumberDisplayer;
+    public GameObject popupSpell;
 
     private float timeLeft = 3f;
 

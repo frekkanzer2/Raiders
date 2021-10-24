@@ -17,6 +17,7 @@ public class SpellSlot : MonoBehaviour
     public void OnClickSpellPreview() {
         if (canUse)
             connectedSpell.OnPreviewPressed();
+        TurnsManager.Instance.popupSpell.GetComponent<SpellPopup>().OnSpellPressed(connectedSpell);
     }
 
 }

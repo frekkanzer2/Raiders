@@ -102,7 +102,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Plaguing Arrow
     icon: {fileID: 21300000, guid: f05402af1a4158b40bd232d7e755e292, type: 3}
-    description: 
+    description: Inflicts Air damage
     element: 2
     damage: 18
     lifeSteal: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Absorptive Arrow
     icon: {fileID: 21300000, guid: 4f3bb6d7ee799fc41b9a06f6d740e8e4, type: 3}
-    description: 
+    description: Steals HP in the Air element
     element: 2
     damage: 38
     lifeSteal: 1
@@ -146,7 +146,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Slow Down Arrow
     icon: {fileID: 21300000, guid: d95ba6838832b9f4b8f5bc2f3484ef33, type: 3}
-    description: -2 PA
+    description: Removes 2 PA to the target (60% chance)
     element: 3
     damage: 46
     lifeSteal: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Atonement Arrow
     icon: {fileID: 21300000, guid: fb17fe56678145948abf84a735bc11f1, type: 3}
-    description: +30 dmgs on next atonement arrow
+    description: Increases the spell's damage of 30 for 4 turns
     element: 3
     damage: 35
     lifeSteal: 0
@@ -230,6 +230,10 @@ MonoBehaviour:
     canUseInEmptyCell: 0
     isJumpOrEvocation: 0
   isDebugEnabled: 0
+  accumulationCounter: 0
+  criticShooting: 0
+  connectedSacrifice: {fileID: 0}
+  hasActivedSacrifice: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

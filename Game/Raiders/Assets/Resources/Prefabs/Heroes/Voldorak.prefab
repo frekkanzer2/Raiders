@@ -102,7 +102,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Powerful Shooting
     icon: {fileID: 21300000, guid: 1f6107271f83dbb4dbd27b807db1baa2, type: 3}
-    description: +80% dmgs
+    description: Increases spells' complessive damage of 80% for 3 turn
     element: 5
     damage: 0
     lifeSteal: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
     pmCost: 0
     maxTimesInTurn: 1
     executeAfterTurns: 6
-    effectDuration: 2
+    effectDuration: 3
     criticalProbability: 0
     hasEffect: 1
     isEffectOnly: 1
@@ -124,7 +124,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Bow Skill
     icon: {fileID: 21300000, guid: e94c58159a1bf1c4390dad3e4be6c855, type: 3}
-    description: +12 dmgs
+    description: Increases spells' damage of 12 for 3 turns
     element: 5
     damage: 0
     lifeSteal: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
     pmCost: 0
     maxTimesInTurn: 1
     executeAfterTurns: 5
-    effectDuration: 2
+    effectDuration: 3
     criticalProbability: 0
     hasEffect: 1
     isEffectOnly: 1
@@ -146,7 +146,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Burning Arrow
     icon: {fileID: 21300000, guid: 7c92e22a3939a2245ba25bc35f0cf440, type: 3}
-    description: 
+    description: Inflicts Fire damage
     element: 1
     damage: 36
     lifeSteal: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Explosive Arrow
     icon: {fileID: 21300000, guid: b74716bed6e9f6a49a6c81efa201dedd, type: 3}
-    description: 
+    description: Inflicts Fire damage
     element: 1
     damage: 42
     lifeSteal: 0
@@ -203,7 +203,6 @@ MonoBehaviour:
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
-  backup_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
   numberPrefab: {fileID: 0}
@@ -232,6 +231,9 @@ MonoBehaviour:
     isJumpOrEvocation: 0
   isDebugEnabled: 0
   accumulationCounter: 0
+  criticShooting: 0
+  connectedSacrifice: {fileID: 0}
+  hasActivedSacrifice: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

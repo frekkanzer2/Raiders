@@ -1,0 +1,51 @@
+Semplice danno
+
+	Inflicts Air damage
+
+Semplice danno ruba vita
+
+	Steals HP in the Air element
+
+PA/PM removal
+
+	Removes 2 PA to the target (60% chance)
+
+PA/PM removal con condizione
+
+	Removes 1 PM to the target if it's in the same line of the caster
+
+PA/PM add
+
+	Adds 2 PM to the target
+
+Incremento danno BASE per uno specifico spell
+
+	Increases the spell's damage of 30 for 4 turns
+
+Incremento danno PERCENTUALE per qualsiasi spell
+
+	Increases spells' complessive damage of 80% for 3 turns
+
+Allontana nemico
+
+	Repels the target of 3 cells
+
+Attrazione nemico
+
+	Attracts the target of 2 cells
+
+Salto
+	
+	Teleports to the targeted cell
+
+Decremento resistenze
+
+	Decreases the target resistances of 10% for 3 turns
+
+Cura
+
+	Heals the target
+
+Switch delle posizioni
+
+	Switch position with the target

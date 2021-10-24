@@ -102,7 +102,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Feline Sense
     icon: {fileID: 21300000, guid: 09ee9e3cfe0d5aa439d7c96753f7d9b0, type: 3}
-    description: per ogni eroe in 3 po, 50% prob. di curarsi di 50hp
+    description: Heals the target of 50 HP for each nearby ally or enemy up to 6
+      cells (50% chance for each of them)
     element: 5
     damage: 0
     lifeSteal: 0
@@ -124,7 +125,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Roulette
     icon: {fileID: 21300000, guid: c21a349b5d565024aa26c0beed7c4a77, type: 3}
-    description: prob to get a random bonus for all allies
+    description: 'Allies will obtain a random bonus '
     element: 5
     damage: 0
     lifeSteal: 0
@@ -146,7 +147,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Feline Spirit
     icon: {fileID: 21300000, guid: 58326c6164f5e9b4b92c718e9a2e609c, type: 3}
-    description: teleports behind the enemy
+    description: Teleports behind the target
     element: 0
     damage: 34
     lifeSteal: 0
@@ -168,7 +169,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Topkaj
     icon: {fileID: 21300000, guid: 30c3712b3486fd2419ed83856fdef864, type: 3}
-    description: 
+    description: Inflicts Fire damage
     element: 1
     damage: 36
     lifeSteal: 0

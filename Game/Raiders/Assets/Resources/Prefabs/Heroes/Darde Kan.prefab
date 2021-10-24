@@ -102,7 +102,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Mutilation
     icon: {fileID: 21300000, guid: bb8514b74e69f1d4fb986c6e653db630, type: 3}
-    description: +50% dmgs | double bonus if hp < 50%
+    description: Increases spells' complessive damage of 50% for 3 turns. Double
+      the bonus if the caster has less than 50% of total HP
     element: 5
     damage: 0
     lifeSteal: 0
@@ -124,7 +125,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Berserk
     icon: {fileID: 21300000, guid: 58a5240eff237a24490591667ce7bd50, type: 3}
-    description: +2 pa and +%dmg of life lose
+    description: Adds 2 PA and increases spells' complessive damage of the HP lost
+      percentage for 5 turns
     element: 5
     damage: 0
     lifeSteal: 0
@@ -146,7 +148,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Hostility
     icon: {fileID: 21300000, guid: aa70233cfd657cf4983c0f5d4c12801c, type: 3}
-    description: 
+    description: Inflicts Fire damage
     element: 1
     damage: 32
     lifeSteal: 0
@@ -168,7 +170,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Influx
     icon: {fileID: 21300000, guid: 23a2a852a8dbf1f44b991cd2b88c92f5, type: 3}
-    description: attract of 2 cells
+    description: Attracts the target of 2 cells
     element: 0
     damage: 18
     lifeSteal: 0

@@ -102,7 +102,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Sacrifice
     icon: {fileID: 21300000, guid: 38112bc65cd959644b44e22d3573153e, type: 3}
-    description: Get inflicted damages from an ally
+    description: The caster suffers damage instead of target
     element: 5
     damage: 0
     lifeSteal: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Transfusion
     icon: {fileID: 21300000, guid: aa76d98de4d54ac408f39986e55de520, type: 3}
-    description: heal all allies in 6 cells distance of 100 hp
+    description: Nearby allies up to 6 cells are healed of 100 HP
     element: 5
     damage: 0
     lifeSteal: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Assault
     icon: {fileID: 21300000, guid: 67b9b33c50e794e4c996f5ee5b5fea90, type: 3}
-    description: Switch position
+    description: Switch position with the target
     element: 2
     damage: 20
     lifeSteal: 0
@@ -168,7 +168,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Decimation
     icon: {fileID: 21300000, guid: 8d06db43bdf023244bcb0eaf73ce05a1, type: 3}
-    description: +48 base dmgs if the caster launched sacrifice and has hp < 30%
+    description: Increases the spell's damage of 48 if the caster has less than 30%
+      of total HP
     element: 0
     damage: 30
     lifeSteal: 0

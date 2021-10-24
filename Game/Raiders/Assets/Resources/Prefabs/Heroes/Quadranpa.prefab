@@ -102,8 +102,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Rewind
     icon: {fileID: 21300000, guid: 8c6c73317852c074fafb426e0ea01df4, type: 3}
-    description: At the end of the turn, teleports the target back where he started
-      the turn
+    description: The target returns to its previous position at the end of it's turn
     element: 5
     damage: 0
     lifeSteal: 0
@@ -125,7 +124,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Clock
     icon: {fileID: 21300000, guid: 1d4b1387e3f50494a87e8f9c0dc56cd1, type: 3}
-    description: -2 pa to the target (20% prob)
+    description: Steals HP in the Water element and removes 2 PA to the target (20%
+      chance)
     element: 3
     damage: 47
     lifeSteal: 1
@@ -147,7 +147,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Shrivelling
     icon: {fileID: 21300000, guid: b054f707eb2936f4baf1def59edfa1bc, type: 3}
-    description: 
+    description: Inflicts Air damage
     element: 2
     damage: 29
     lifeSteal: 0
@@ -169,8 +169,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Time Theft
     icon: {fileID: 21300000, guid: c5d62d39746192343b95b3491af0799c, type: 3}
-    description: -2 pa | launcher gains 1 pa for the next turn (80%) and another
-      one (25%)
+    description: Removes 2 PA to the target and adds 1 PA to the caster (80% chance)
+      + 1 additional PA (20% chance)
     element: 3
     damage: 34
     lifeSteal: 0

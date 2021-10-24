@@ -65,6 +65,7 @@ public class Character : MonoBehaviour
     }
 
     public void removeSpellToUse() {
+        TurnsManager.Instance.popupSpell.GetComponent<SpellPopup>().OnExit();
         this.spellToUse = null;
     }
 
@@ -92,7 +93,6 @@ public class Character : MonoBehaviour
 
     void Start()
     {
-        if (isDebugEnabled) Debug.LogWarning("DEBUG > Connect manually the hero to the cell and start by pressing SPACE key");
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -20);
         actual_hp = hp;
         actual_pa = pa;

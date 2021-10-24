@@ -102,7 +102,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Smell
     icon: {fileID: 21300000, guid: e2602c14bbd0a0e46a9a851148254757, type: 3}
-    description: +2 pm OR pa AND -25% all res
+    description: Adds 2 PA or PM to the target and decreases the target resistances
+      of 25% for 3 turns
     element: 5
     damage: 0
     lifeSteal: 0
@@ -124,7 +125,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Heads or Tails
     icon: {fileID: 21300000, guid: cfe99a3a215041d4893ec64f47f365f2, type: 3}
-    description: 50% prob to heal the enemy of 40 hp in his next turn
+    description: Heals the target of 40 HP in it's next turn (50% chance)
     element: 0
     damage: 60
     lifeSteal: 0
@@ -146,10 +147,9 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: All or Nothing
     icon: {fileID: 21300000, guid: dfb27cbc58e6a684cb0c4e1ca18afca6, type: 3}
-    description: if the enemy is still alive in the next turn, it will heal of 200
-      hp
+    description: Heals the target of 200 HP in it's next turn
     element: 3
-    damage: 100
+    damage: 125
     lifeSteal: 0
     minRange: 1
     maxRange: 2
@@ -169,7 +169,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Bluff
     icon: {fileID: 21300000, guid: 5426dbbad99d7ba4db34418ce7fe08a4, type: 3}
-    description: damage bonus based on dice
+    description: Increases the spell's damage based on the roll of a dice
     element: 3
     damage: 15
     lifeSteal: 0
