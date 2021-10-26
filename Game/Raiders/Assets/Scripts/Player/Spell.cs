@@ -80,6 +80,15 @@ public class Spell {
         int damage = spell.damage;
         damage += EVENT_BONUS_BASE_DAMAGE(caster, target, spell);
         int finalDamage = (damage + (damage * bonus_attack / 100)) - (damage * resistance / 100);
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+        int critProb = UnityEngine.Random.Range(1, 101);
+        if (!caster.criticShooting) {
+            if (critProb <= spell.criticalProbability)
+                finalDamage += finalDamage * 25 / 100;
+        } else {
+            if (critProb <= spell.criticalProbability + 14)
+                finalDamage += finalDamage * 25 / 100;
+        }
         return finalDamage;
     }
 
@@ -104,15 +113,6 @@ public class Spell {
             // Code here - Spells on target
             if (!spell.isEffectOnly && spell.damage > 0) {
                 int damageToInflict = calculateDamage(caster, target, spell);
-                UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
-                int critProb = UnityEngine.Random.Range(1, 101);
-                if (!caster.criticShooting) {
-                    if (critProb <= spell.criticalProbability)
-                        damageToInflict += damageToInflict * 25 / 100;
-                } else {
-                    if (critProb <= spell.criticalProbability + 14)
-                        damageToInflict += damageToInflict * 25 / 100;
-                }
                 Debug.Log("INFLICT " + damageToInflict + " DMGs");
                 if (spell.element != Element.Heal) {
                     if (target.connectedSacrifice == null)
@@ -177,6 +177,9 @@ public class Spell {
         else if (spell.name == "Slow Down") EXECUTE_SLOW_DOWN(targetBlock, spell);
         else if (spell.name == "Gear") EXECUTE_GEAR(targetBlock, spell);
         else if (spell.name == "Restart") EXECUTE_RESTART(spell);
+        else if (spell.name == "Stampede") EXECUTE_STAMPEDE(caster, targetBlock, spell);
+        else if (spell.name == "Capering") EXECUTE_CAPERING(caster, targetBlock, spell);
+        else if (spell.name == "Coward Mask") SWITCH_COWARD_MASK(caster, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -882,6 +885,46 @@ public class Spell {
     public static void EXECUTE_RESTART(Spell s) {
         foreach(Tuple<Character, Block> t in TurnsManager.spawnPositions) {
             EXECUTE_JUMP(t.Item1, t.Item2);
+        }
+    }
+
+    public static void EXECUTE_STAMPEDE(Character caster, Block targetBlock, Spell s) {
+        EXECUTE_JUMP(caster, targetBlock);
+        StampedeEvent se = new StampedeEvent("Stampede", caster, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon);
+        caster.addEvent(se);
+        se.useIstantanely();
+    }
+
+    public static void EXECUTE_CAPERING(Character caster, Block targetBlock, Spell s) {
+        EXECUTE_JUMP(caster, targetBlock);
+        Coordinate c = targetBlock.coordinate;
+        Block adjacent = Map.Instance.getBlock(new Coordinate(c.row, c.column + 1));
+        if (adjacent != null)
+            if (adjacent.linkedObject != null)
+                adjacent.linkedObject.GetComponent<Character>().inflictDamage(calculateDamage(caster, adjacent.linkedObject.GetComponent<Character>(), s));
+        adjacent = Map.Instance.getBlock(new Coordinate(c.row, c.column - 1));
+        if (adjacent != null)
+            if (adjacent.linkedObject != null)
+                adjacent.linkedObject.GetComponent<Character>().inflictDamage(calculateDamage(caster, adjacent.linkedObject.GetComponent<Character>(), s));
+        adjacent = Map.Instance.getBlock(new Coordinate(c.row + 1, c.column));
+        if (adjacent != null)
+            if (adjacent.linkedObject != null)
+                adjacent.linkedObject.GetComponent<Character>().inflictDamage(calculateDamage(caster, adjacent.linkedObject.GetComponent<Character>(), s));
+        adjacent = Map.Instance.getBlock(new Coordinate(c.row - 1, c.column));
+        if (adjacent != null)
+            if (adjacent.linkedObject != null)
+                adjacent.linkedObject.GetComponent<Character>().inflictDamage(calculateDamage(caster, adjacent.linkedObject.GetComponent<Character>(), s));
+    }
+
+    public static void SWITCH_COWARD_MASK(Character caster, Spell s) {
+        if (caster.getEventSystem().getEvents("Coward Mask").Count == 0) {
+            // Activate
+            CowardMask cm = new CowardMask("Coward Mask", caster, s.effectDuration, ParentEvent.Mode.PermanentAndEachTurn, s.icon);
+            caster.addEvent(cm);
+            cm.useIstantanely();
+        } else {
+            // Deactivate
+            caster.getEventSystem().removeEvents("Coward Mask");
         }
     }
 

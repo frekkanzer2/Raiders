@@ -51,4 +51,15 @@ public class EventSystem : MonoBehaviour
         return pel;
     }
 
+    public void removeEvents(string name) {
+        List<ParentEvent> pel = new List<ParentEvent>();
+        foreach (ParentEvent pe in activeEvents) {
+            if (pe.isName(name)) pel.Add(pe);
+        }
+        foreach (ParentEvent pe in pel) {
+            pe.restoreCharacter();
+            activeEvents.Remove(pe);
+        }
+    }
+
 }

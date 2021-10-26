@@ -1387,6 +1387,15 @@ MonoBehaviour:
   - characterName: Lana Tal
     characterFullSprite: {fileID: 21300000, guid: 69712cfcb0298e441a4605792b009660, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 899128ebae1401347ae14131b8a071a9, type: 3}
+  - characterName: Wondo
+    characterFullSprite: {fileID: 21300000, guid: 1b98e96b69117514fa1c33ef25f1201c, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 08c965cebd63a2e4b96e08ff51a6321c, type: 3}
+  - characterName: Acarina
+    characterFullSprite: {fileID: 21300000, guid: c4ac8199f619ac74681a48fbf274a340, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: a8f155970ce17ac48b62395aebaa2b6a, type: 3}
+  - characterName: Balade Mou
+    characterFullSprite: {fileID: 21300000, guid: 5a1bcc12f1020884e951454318c058ed, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 752e6144e04e8ad48afb9779ba495848, type: 3}
 --- !u!114 &1295197767
 MonoBehaviour:
   m_ObjectHideFlags: 0
