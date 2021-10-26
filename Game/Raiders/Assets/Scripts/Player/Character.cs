@@ -71,6 +71,52 @@ public class Character : MonoBehaviour
 
     public bool isDebugEnabled = false;
 
+    // STATS FUNCTIONS
+
+    public int getActualHP() {
+        return this.actual_hp;
+    }
+
+    public int getTotalHP() {
+        return this.hp;
+    }
+
+    public int getActualPA() {
+        return this.actual_pa;
+    }
+
+    public void incrementPA(int value) {
+        this.actual_pa += value;
+    }
+
+    public void decrementPA(int value) {
+        this.actual_pa -= value;
+    }
+
+    public int getActualPM() {
+        return this.actual_pm;
+    }
+
+    public void incrementPM(int value) {
+        this.actual_pm += value;
+    }
+
+    public void decrementPM(int value) {
+        this.actual_pm -= value;
+    }
+
+    public void decrementHP_withoutEffect(int value) {
+        this.actual_hp -= value;
+    }
+
+    public void decrementPA_withoutEffect(int value) {
+        this.actual_pa -= value;
+    }
+
+    public void decrementPM_withoutEffect(int value) {
+        this.actual_pm -= value;
+    }
+
     #region FIGHT FUNCTIONS
 
     public void inflictDamage(int damage) {

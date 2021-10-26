@@ -17,7 +17,7 @@ public class StretchingEvent : ParentEvent
     
     override public void both_newTurnExecute() {
         base.both_newTurnExecute();
-        connected.actual_pm += 1;
+        connected.decrementPM(1);
     }
 
     public override void restoreCharacter() {

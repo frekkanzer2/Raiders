@@ -11,7 +11,7 @@ public class BerserkEvent : ParentEvent
     
     override public void both_firstExecute() {
         base.both_firstExecute();
-        this.percBonus = 100 - (connected.actual_hp * 100 / connected.hp);
+        this.percBonus = 100 - (connected.getActualHP() * 100 / connected.getTotalHP());
         connected.att_a += percBonus;
         connected.att_e += percBonus;
         connected.att_w += percBonus;
@@ -20,7 +20,7 @@ public class BerserkEvent : ParentEvent
     
     override public void both_newTurnExecute() {
         base.both_newTurnExecute();
-        connected.actual_pa += 2;
+        connected.incrementPA(2);
     }
 
     public override void restoreCharacter() {

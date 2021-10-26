@@ -10,10 +10,10 @@ public class HazinessEvent : ParentEvent
     override public void execute() {
         base.execute();
         if (remainingTurns == 2)
-            connected.actual_pa -= 2;
+            connected.decrementPA(2);
         if (remainingTurns == 1) {
-            connected.actual_pa += 2;
-            connected.actual_pm += 1;
+            connected.incrementPA(2);
+            connected.incrementPM(1);
         }
     }
 

@@ -11,7 +11,7 @@ public class MutilationEvent : ParentEvent
 
     override public void execute() {
         base.execute();
-        if (connected.actual_hp < connected.hp / 2) gain *= 2;
+        if (connected.getActualHP() < connected.getTotalHP() / 2) gain *= 2;
         connected.att_a += gain;
         connected.att_e += gain;
         connected.att_w += gain;

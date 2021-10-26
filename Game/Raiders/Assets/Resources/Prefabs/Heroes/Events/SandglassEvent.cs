@@ -9,7 +9,7 @@ public class SandglassEvent : ParentEvent
 
     override public void execute() {
         base.execute();
-        connected.actual_pa -= 1;
+        connected.decrementPA(1);
     }
 
     override public void restoreCharacter() {

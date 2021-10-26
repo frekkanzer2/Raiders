@@ -9,7 +9,7 @@ public class PoundingEvent : ParentEvent
 
     override public void execute() {
         base.execute();
-        connected.actual_pm -= 3;
+        connected.decrementPM(3);
     }
 
     override public void restoreCharacter() {

@@ -51,16 +51,16 @@ public class Spell {
     }
 
     public static void payCost(Character caster, Spell spell) {
-        caster.actual_hp -= spell.hpCost;
-        caster.actual_pa -= spell.paCost;
-        caster.actual_pm -= spell.pmCost;
+        caster.decrementHP_withoutEffect(spell.hpCost);
+        caster.decrementPA_withoutEffect(spell.paCost);
+        caster.decrementPM_withoutEffect(spell.pmCost);
     }
 
     public static bool canUse(Character caster, Spell spell) {
-        if (caster.actual_pm < 0) {
-            if (spell.paCost > caster.actual_pa || spell.pmCost != 0 || spell.hpCost > caster.actual_hp) return false;
+        if (caster.getActualPM() < 0) {
+            if (spell.paCost > caster.getActualPA() || spell.pmCost != 0 || spell.hpCost > caster.getActualHP()) return false;
         } else {
-            if (spell.paCost > caster.actual_pa || spell.pmCost > caster.actual_pm || spell.hpCost > caster.actual_hp) return false;
+            if (spell.paCost > caster.getActualPA() || spell.pmCost > caster.getActualPM() || spell.hpCost > caster.getActualHP()) return false;
         }
         return true;
     }
@@ -900,7 +900,7 @@ public class Spell {
             List<ParentEvent> bslist = caster.getEventSystem().getEvents("Atonement Arrow");
             return BONUS_ATONEMENT_ARROW * bslist.Count;
         } else if (caster.name == "Pilobouli" && s.name == "Decimation") {
-            if (caster.hasActivedSacrifice && caster.hp * 30 / 100 > caster.actual_hp) {
+            if (caster.hasActivedSacrifice && caster.getTotalHP() * 30 / 100 > caster.getActualHP()) {
                 Debug.Log("Bonus decimation!");
                 return BONUS_DECIMATION;
             } else return 0;

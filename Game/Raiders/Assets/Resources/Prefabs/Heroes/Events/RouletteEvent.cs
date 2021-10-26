@@ -50,10 +50,10 @@ public class RouletteEvent : ParentEvent
     
     override public void both_newTurnExecute() {
         base.both_newTurnExecute();
-        if (bonusId == 1) connected.actual_pa += 1;
-        if (bonusId == 2) connected.actual_pm += 1;
-        if (bonusId == 3) connected.actual_pa += 2;
-        if (bonusId == 4) connected.actual_pm += 2;
+        if (bonusId == 1) connected.incrementPA(1);
+        if (bonusId == 2) connected.incrementPM(1);
+        if (bonusId == 3) connected.incrementPA(2);
+        if (bonusId == 4) connected.incrementPM(2);
         if (bonusId == 15) connected.receiveHeal(100);
     }
 

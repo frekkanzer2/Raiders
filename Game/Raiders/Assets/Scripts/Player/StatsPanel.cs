@@ -40,12 +40,16 @@ public class StatsPanel : MonoBehaviour
         this.cl = cl;
     }
 
+    private void Start() {
+        Debug.Log("Created spell panel");
+    }
+
     private void Update() {
         if (toSync != null) {
             characterPreview.GetComponent<Image>().sprite = cl.getCharacterInfoByName(toSync.name).characterMidSprite;
-            hpGui.GetComponent<TextMeshProUGUI>().text = "" + toSync.actual_hp;
-            paGui.GetComponent<TextMeshProUGUI>().text = "" + toSync.actual_pa;
-            pmGui.GetComponent<TextMeshProUGUI>().text = "" + toSync.actual_pm;
+            hpGui.GetComponent<TextMeshProUGUI>().text = "" + toSync.getActualHP();
+            paGui.GetComponent<TextMeshProUGUI>().text = "" + toSync.getActualPA();
+            pmGui.GetComponent<TextMeshProUGUI>().text = "" + toSync.getActualPM();
             res_ear.GetComponent<TextMeshProUGUI>().text = "" + toSync.res_e + "%";
             res_fir.GetComponent<TextMeshProUGUI>().text = "" + toSync.res_f + "%";
             res_air.GetComponent<TextMeshProUGUI>().text = "" + toSync.res_a + "%";

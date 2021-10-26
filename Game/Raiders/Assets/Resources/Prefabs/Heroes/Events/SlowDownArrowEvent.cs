@@ -9,7 +9,7 @@ public class SlowDownArrowEvent : ParentEvent
 
     override public void execute() {
         base.execute();
-        connected.actual_pa -= 2;
+        connected.decrementPA(2);
     }
 
     override public void restoreCharacter() {

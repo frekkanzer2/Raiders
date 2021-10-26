@@ -11,12 +11,12 @@ public class TimeTheftEvent : ParentEvent
 
     override public void execute() {
         base.execute();
-        connected.actual_pa -= 2;
+        connected.decrementPA(2);
         if (UnityEngine.Random.Range(1, 101) <= 80) {
-            caster.actual_pa += 1;
+            caster.incrementPA(1);
         }
         if (UnityEngine.Random.Range(1, 101) <= 25) {
-            caster.actual_pa += 1;
+            caster.incrementPA(1);
         }
     }
 

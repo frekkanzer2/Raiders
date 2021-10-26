@@ -9,7 +9,7 @@ public class AgitationEvent : ParentEvent
 
     override public void execute() {
         base.execute();
-        connected.actual_pm += 2;
+        connected.incrementPM(2);
     }
 
     override public void restoreCharacter() {

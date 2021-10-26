@@ -18,8 +18,8 @@ public class SmellEvent : ParentEvent
     override public void both_newTurnExecute() {
         base.both_newTurnExecute();
         if (UnityEngine.Random.Range(1, 3) == 1)
-            connected.actual_pa += 2;
-        else connected.actual_pm += 2;
+            connected.incrementPA(2);
+        else connected.incrementPM(2);
     }
 
     public override void restoreCharacter() {
