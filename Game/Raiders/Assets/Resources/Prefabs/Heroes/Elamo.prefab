@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 557098361630938740}
   - component: {fileID: 8528018890230597465}
   - component: {fileID: -4488740185624750116}
+  - component: {fileID: 2830387497238958323}
   m_Layer: 0
   m_Name: Elamo
   m_TagString: Player
@@ -205,7 +206,6 @@ MonoBehaviour:
   actual_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
-  numberPrefab: {fileID: 0}
   spellToUse:
     link: {fileID: 0}
     name: 
@@ -273,3 +273,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connected: {fileID: 0}
+--- !u!114 &2830387497238958323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f77455afa650f49a81c28b9edfaff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

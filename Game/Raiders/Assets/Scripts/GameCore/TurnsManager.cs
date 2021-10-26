@@ -110,7 +110,7 @@ public class TurnsManager : MonoBehaviour
     public void OnStartGame() {
         isGameStarted = true;
         foreach (Character c in turns) {
-            c.numberPrefab = injectToChar_prefabNumberDisplayer;
+            c.setupSOS(injectToChar_prefabNumberDisplayer);
             if (c.team == 1) {
                 GameObject card = Instantiate(prefabPreviewCardAlpha);
                 c.connectedPreview = card;
@@ -129,6 +129,7 @@ public class TurnsManager : MonoBehaviour
 	        spawnPositions.Add(new Tuple<Character, Block>(c, c.connectedCell.GetComponent<Block>()));
         }
         active = turns[0];
+        Debug.Log(active);
         StartActiveCharTurn(false);
     }
 

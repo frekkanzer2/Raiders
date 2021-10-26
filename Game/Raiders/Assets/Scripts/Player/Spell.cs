@@ -104,6 +104,7 @@ public class Spell {
             // Code here - Spells on target
             if (!spell.isEffectOnly && spell.damage > 0) {
                 int damageToInflict = calculateDamage(caster, target, spell);
+                UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
                 int critProb = UnityEngine.Random.Range(1, 101);
                 if (!caster.criticShooting) {
                     if (critProb <= spell.criticalProbability)
@@ -189,6 +190,7 @@ public class Spell {
     }
 
     public static void EXECUTE_POUNDING(Block targetBlock, Spell s) {
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
         int prob = UnityEngine.Random.Range(1, 101);
         Debug.Log("Spell " + s.name + " prob: " + prob);
         if (prob <= 30) {
@@ -237,6 +239,7 @@ public class Spell {
     }
 
     public static void EXECUTE_COMPOSURE(Block targetBlock, Spell s) {
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
         int prob = UnityEngine.Random.Range(1, 101);
         Debug.Log("Spell " + s.name + " prob: " + prob);
         if (prob <= 50) {
@@ -271,6 +274,7 @@ public class Spell {
     }
 
     public static void EXECUTE_SLOW_DOWN_ARROW(Block targetBlock, Spell s) {
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
         int prob = UnityEngine.Random.Range(1, 101);
         Debug.Log("Spell " + s.name + " prob: " + prob);
         if (prob <= 60) {
@@ -528,6 +532,7 @@ public class Spell {
             }
         }
         if (toValuate.Count > 0) {
+            UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
             int index_chosen = UnityEngine.Random.Range(0, toValuate.Count);
             Block chosen = toValuate[index_chosen];
             caster.connectedCell.GetComponent<Block>().linkedObject = null;
@@ -608,6 +613,7 @@ public class Spell {
     }
 
     public static void EXECUTE_DESOLATION(Block targetBlock, Spell s) {
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
         int prob = UnityEngine.Random.Range(1, 101);
         Debug.Log("Spell " + s.name + " prob: " + prob);
         if (prob <= 25) {
@@ -788,6 +794,7 @@ public class Spell {
                 int dist_row = Mathf.Abs(a.row - b.row);
                 int dist_col = Mathf.Abs(a.column - b.column);
                 if (dist_row + dist_col <= 3) {
+                    UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
                     int v = UnityEngine.Random.Range(1, 3);
                     Debug.Log("Value " + v);
                     if (v == 1)
@@ -799,6 +806,7 @@ public class Spell {
     }
 
     public static void EXECUTE_ROULETTE(Character caster, Spell s) {
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
         int chosenRandomId = UnityEngine.Random.Range(1, 16); // 1 to 15
         List<RouletteEvent> rouletteEvents = new List<RouletteEvent>();
         foreach (Character ch in TurnsManager.Instance.turns) {
@@ -827,6 +835,7 @@ public class Spell {
     }
 
     public static void EXECUTE_SANDGLASS(Block targetBlock, Spell s) {
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
         int prob = UnityEngine.Random.Range(1, 101);
         Debug.Log("Spell " + s.name + " prob: " + prob);
         if (prob <= 90) {
@@ -841,6 +850,7 @@ public class Spell {
     }
 
     public static void EXECUTE_CLOCK(Block targetBlock, Spell s) {
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
         int prob = UnityEngine.Random.Range(1, 101);
         Debug.Log("Spell " + s.name + " prob: " + prob);
         if (prob <= 20) {
@@ -905,6 +915,7 @@ public class Spell {
                 return BONUS_DECIMATION;
             } else return 0;
         } else if (caster.name == "Rabiote" && s.name == "Bluff") {
+            UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
             int diceResult = UnityEngine.Random.Range(1, 7);
             if (diceResult == 1) return 5;
             if (diceResult == 2) return 15;

@@ -32,8 +32,8 @@ public class Character : MonoBehaviour
     public GameObject connectedPreview = null;
     [HideInInspector]
     public GameObject connectedCell;
-    [HideInInspector]
-    public GameObject numberPrefab;
+
+    private StatsOutputSystem sos;
 
     public static List<Block> bufferColored = new List<Block>();
     private bool isMoving = false;
@@ -71,71 +71,7 @@ public class Character : MonoBehaviour
 
     public bool isDebugEnabled = false;
 
-    // STATS FUNCTIONS
-
-    public int getActualHP() {
-        return this.actual_hp;
-    }
-
-    public int getTotalHP() {
-        return this.hp;
-    }
-
-    public int getActualPA() {
-        return this.actual_pa;
-    }
-
-    public void incrementPA(int value) {
-        this.actual_pa += value;
-    }
-
-    public void decrementPA(int value) {
-        this.actual_pa -= value;
-    }
-
-    public int getActualPM() {
-        return this.actual_pm;
-    }
-
-    public void incrementPM(int value) {
-        this.actual_pm += value;
-    }
-
-    public void decrementPM(int value) {
-        this.actual_pm -= value;
-    }
-
-    public void decrementHP_withoutEffect(int value) {
-        this.actual_hp -= value;
-    }
-
-    public void decrementPA_withoutEffect(int value) {
-        this.actual_pa -= value;
-    }
-
-    public void decrementPM_withoutEffect(int value) {
-        this.actual_pm -= value;
-    }
-
-    #region FIGHT FUNCTIONS
-
-    public void inflictDamage(int damage) {
-        if (this.actual_hp - damage < 0) actual_hp = 0;
-        else this.actual_hp -= damage;
-        // Execute here effects and other...
-        GameObject np = Instantiate(numberPrefab);
-        np.GetComponent<NumbersDisplayer>().init(NumbersDisplayer.Type.Damage, damage, new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 3.8f));
-    }
-
-    public void receiveHeal(int heal) {
-        if (this.actual_hp + heal > this.hp) actual_hp = hp;
-        else this.actual_hp += heal;
-        // Execute here effects and other...
-        GameObject np = Instantiate(numberPrefab);
-        np.GetComponent<NumbersDisplayer>().init(NumbersDisplayer.Type.Heal, heal, new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 3.8f));
-    }
-
-    #endregion
+    
 
     void Start()
     {
@@ -358,6 +294,75 @@ public class Character : MonoBehaviour
     public bool Equals(Character c) {
         return this.name == c.name && this.team == c.team;
     }
+
+    #region FIGHT FUNCTIONS
+
+    public void setupSOS(GameObject prefabToSpawn) {
+        sos = GetComponent<StatsOutputSystem>();
+        sos.setup(prefabToSpawn);
+    }
+
+    public void inflictDamage(int damage) {
+        if (this.actual_hp - damage < 0) actual_hp = 0;
+        else this.actual_hp -= damage;
+        sos.addEffect_DMG_Heal(StatsOutputSystem.Effect.HP, damage);
+    }
+
+    public void receiveHeal(int heal) {
+        if (this.actual_hp + heal > this.hp) actual_hp = hp;
+        else this.actual_hp += heal;
+        sos.addEffect_DMG_Heal(StatsOutputSystem.Effect.Heal, heal);
+    }
+
+    public int getActualHP() {
+        return this.actual_hp;
+    }
+
+    public int getTotalHP() {
+        return this.hp;
+    }
+
+    public int getActualPA() {
+        return this.actual_pa;
+    }
+
+    public void incrementPA(int value) {
+        this.actual_pa += value;
+        sos.addEffect_PA_PM(StatsOutputSystem.Effect.PA, "+" + value);
+    }
+
+    public void decrementPA(int value) {
+        this.actual_pa -= value;
+        sos.addEffect_PA_PM(StatsOutputSystem.Effect.PA, "-" + value);
+    }
+
+    public int getActualPM() {
+        return this.actual_pm;
+    }
+
+    public void incrementPM(int value) {
+        this.actual_pm += value;
+        sos.addEffect_PA_PM(StatsOutputSystem.Effect.PM, "+" + value);
+    }
+
+    public void decrementPM(int value) {
+        this.actual_pm -= value;
+        sos.addEffect_PA_PM(StatsOutputSystem.Effect.PM, "-" + value);
+    }
+
+    public void decrementHP_withoutEffect(int value) {
+        this.actual_hp -= value;
+    }
+
+    public void decrementPA_withoutEffect(int value) {
+        this.actual_pa -= value;
+    }
+
+    public void decrementPM_withoutEffect(int value) {
+        this.actual_pm -= value;
+    }
+
+    #endregion
 
     #region IA-ALGORITHMS
 

@@ -8,24 +8,20 @@ public class NumbersDisplayer : MonoBehaviour
 
     public GameObject txt;
 
-    public enum Type {
-        Damage,
-        Heal,
-        PA,
-        PM
-    }
-    
-    public void init(Type t, int number, Vector2 startingPosition) {
-        if (number >= 100) this.gameObject.transform.localScale = new Vector3(0.22f, 0.22f, 0.22f);
-        this.gameObject.transform.position = startingPosition;
-        Color c = new Color(0, 0, 0, 0);
-        if (t == Type.Damage) c = new Color(1, 0, 0, 1);
-        else if (t == Type.Heal) c = new Color(234f / 255f, 149f / 255f, 232f / 255f, 1);
-        else if (t == Type.PA) c = new Color(1, 130f / 255f, 0, 1);
-        else if (t == Type.PM) c = new Color(0, 176f / 255f, 16f / 255f, 1);
+    public void init(Color c, int value, Vector2 positionSpawn) {
+        if (value >= 100) this.gameObject.transform.localScale = new Vector3(0.22f, 0.22f, 0.22f);
+        this.gameObject.transform.position = positionSpawn;
         TextMeshProUGUI tmp = txt.GetComponent<TextMeshProUGUI>();
         tmp.color = c;
-        tmp.text = "" + number;
+        tmp.text = "" + value;
+        StartCoroutine(vanish());
+    }
+
+    public void init(Color c, string text, Vector2 positionSpawn) {
+        this.gameObject.transform.position = positionSpawn;
+        TextMeshProUGUI tmp = txt.GetComponent<TextMeshProUGUI>();
+        tmp.color = c;
+        tmp.text = text;
         StartCoroutine(vanish());
     }
 

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,8 +16,9 @@ public class SmellEvent : ParentEvent
     }
     
     override public void both_newTurnExecute() {
-        base.both_newTurnExecute();
-        if (UnityEngine.Random.Range(1, 3) == 1)
+	    base.both_newTurnExecute();
+	    UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+	    if (UnityEngine.Random.Range(1, 101) <= 50)
             connected.incrementPA(2);
         else connected.incrementPM(2);
     }

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +9,8 @@ public class HeadOrTailEvent : ParentEvent
 
     override public void execute() {
         base.execute();
-        if (UnityEngine.Random.Range(1, 3) == 1)
+        Random.InitState((int)System.DateTime.Now.Ticks);
+	    if (UnityEngine.Random.Range(1, 101) <= 50)
             connected.receiveHeal(40);
     }
 
