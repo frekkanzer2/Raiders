@@ -126,7 +126,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Furia
     icon: {fileID: 21300000, guid: 802d14db64d672941a5ec521ad5b2c89, type: 3}
-    description: Inflicts Earth damage
+    description: Caster comes close of 2 cells
     element: 0
     damage: 42
     lifeSteal: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 25
-    hasEffect: 0
+    hasEffect: 1
     isEffectOnly: 0
     canUseInEmptyCell: 0
     isJumpOrEvocation: 0
@@ -152,8 +152,8 @@ MonoBehaviour:
     element: 5
     damage: 0
     lifeSteal: 0
-    minRange: 2
-    maxRange: 6
+    minRange: 3
+    maxRange: 5
     distanceType: 1
     overObstacles: 0
     hpCost: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 66ca9f2d87fa91e449187f24da25be91, type: 3}
     description: Repels the target of 2 cells
     element: 1
-    damage: 31
+    damage: 30
     lifeSteal: 0
     minRange: 2
     maxRange: 5
@@ -207,6 +207,9 @@ MonoBehaviour:
   actual_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
+  actual_shield: 0
+  isMoving: 0
+  isForcedMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 

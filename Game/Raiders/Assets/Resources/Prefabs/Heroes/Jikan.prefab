@@ -150,7 +150,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: c39aea3a79cc3c5458e5c63b228fdd93, type: 3}
     description: Removes 1 PA to the target
     element: 3
-    damage: 22
+    damage: 26
     lifeSteal: 0
     minRange: 3
     maxRange: 8
@@ -172,7 +172,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 4831e4732dafd994cb5ed5a5d26b42ba, type: 3}
     description: Teleports the target to a random cell at the start of it's turn
     element: 0
-    damage: 48
+    damage: 58
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -207,6 +207,9 @@ MonoBehaviour:
   actual_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
+  actual_shield: 0
+  isMoving: 0
+  isForcedMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 

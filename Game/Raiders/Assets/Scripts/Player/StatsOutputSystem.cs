@@ -11,7 +11,8 @@ public class StatsOutputSystem : MonoBehaviour {
     private Color HP_color = new Color(1, 0, 0, 1);
     private Color PA_color = new Color(1, 130f / 255f, 0, 1);
     private Color PM_color = new Color(0, 176f / 255f, 16f / 255f, 1);
-    private Color Heal_color = new Color(234f / 255f, 149f / 255f, 232f / 255f, 1);
+    private Color Heal_color = new Color(255f / 255f, 150f / 255f, 196f / 255f, 1);
+    private Color Shield_color = new Color(86f / 255f, 64f / 255f, 128f / 255f, 1);
 
     private List<EffectToExecute> toDisplay = new List<EffectToExecute>();
 
@@ -54,7 +55,8 @@ public class StatsOutputSystem : MonoBehaviour {
         HP,
         PA,
         PM,
-        Heal
+        Heal,
+        Shield
     }
     
     private Color getColorByEffect(Effect e) {
@@ -62,6 +64,7 @@ public class StatsOutputSystem : MonoBehaviour {
         if (e == Effect.HP) return HP_color;
         if (e == Effect.PA) return PA_color;
         if (e == Effect.PM) return PM_color;
+        if (e == Effect.Shield) return Shield_color;
         return new Color(0, 0, 0, 1);
     }
 
@@ -80,7 +83,13 @@ public class StatsOutputSystem : MonoBehaviour {
         toDisplay.Add(ete);
         execute();
     }
-    
+
+    public void addEffect_Shield(Effect type, string text) {
+        EffectToExecute ete = new EffectToExecute(this.numberPrefab, getColorByEffect(type), text, getSpawnPosition());
+        toDisplay.Add(ete);
+        execute();
+    }
+
     public void setup(GameObject pref) {
         numberPrefab = pref;
     }

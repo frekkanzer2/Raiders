@@ -134,6 +134,7 @@ public class TurnsManager : MonoBehaviour
     }
 
     public void OnNextTurnPressed() {
+        if (active.isMoving || active.isForcedMoving) return;
         Character endTurnCh = turns[0];
         turns.Remove(endTurnCh);
         endTurnCh.turnPassed();

@@ -180,6 +180,13 @@ public class Spell {
         else if (spell.name == "Stampede") EXECUTE_STAMPEDE(caster, targetBlock, spell);
         else if (spell.name == "Capering") EXECUTE_CAPERING(caster, targetBlock, spell);
         else if (spell.name == "Coward Mask") SWITCH_COWARD_MASK(caster, spell);
+        else if (spell.name == "Psychopath Mask") SWITCH_PSYCHOPATH_MASK(caster, spell);
+        else if (spell.name == "Tireless Mask") SWITCH_TIRELESS_MASK(caster, spell);
+        else if (spell.name == "Tortuga") EXECUTE_TORTUGA(targetBlock, spell);
+        else if (spell.name == "Apathy") EXECUTE_APATHY(targetBlock, spell);
+        else if (spell.name == "Furia") EXECUTE_FURIA(caster, targetBlock);
+        else if (spell.name == "Comedy") EXECUTE_COMEDY(caster, targetBlock);
+        else if (spell.name == "Apostasy") EXECUTE_APOSTASY(caster, targetBlock);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -190,6 +197,7 @@ public class Spell {
         targetBlock.linkedObject = caster.gameObject;
         Vector2 newPosition = Coordinate.getPosition(targetBlock.coordinate);
         caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
+        caster.setZIndex(targetBlock);
     }
 
     public static void EXECUTE_POUNDING(Block targetBlock, Spell s) {
@@ -552,7 +560,9 @@ public class Spell {
         casterBlock.linkedObject = null;
         targetBlock.linkedObject = null;
         caster.connectedCell = targetBlock.gameObject;
+        caster.setZIndex(targetBlock);
         target.connectedCell = casterBlock.gameObject;
+        target.setZIndex(casterBlock);
         casterBlock.linkedObject = target.gameObject;
         targetBlock.linkedObject = caster.gameObject;
         Vector2 targetNewPosition = Coordinate.getPosition(targetBlock.coordinate);
@@ -925,6 +935,262 @@ public class Spell {
         } else {
             // Deactivate
             caster.getEventSystem().removeEvents("Coward Mask");
+        }
+    }
+
+    public static void SWITCH_PSYCHOPATH_MASK(Character caster, Spell s) {
+        if (caster.getEventSystem().getEvents("Psychopath Mask").Count == 0) {
+            // Activate
+            PsychopathMask cm = new PsychopathMask("Psychopath Mask", caster, s.effectDuration, ParentEvent.Mode.PermanentAndEachTurn, s.icon);
+            caster.addEvent(cm);
+            cm.useIstantanely();
+        } else {
+            // Deactivate
+            caster.getEventSystem().removeEvents("Psychopath Mask");
+        }
+    }
+
+    public static void SWITCH_TIRELESS_MASK(Character caster, Spell s) {
+        if (caster.getEventSystem().getEvents("Tireless Mask").Count == 0) {
+            // Activate
+            TirelessMask cm = new TirelessMask("Tireless Mask", caster, s.effectDuration, ParentEvent.Mode.PermanentAndEachTurn, s.icon);
+            caster.addEvent(cm);
+            cm.useIstantanely();
+        } else {
+            // Deactivate
+            caster.getEventSystem().removeEvents("Tireless Mask");
+        }
+    }
+
+    public static void EXECUTE_APATHY(Block targetBlock, Spell s) {
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+        int prob = UnityEngine.Random.Range(1, 101);
+        Debug.Log("Spell " + s.name + " prob: " + prob);
+        if (prob <= 35) {
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            target.addEvent(new ApathyEvent("Apathy", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        }
+    }
+
+    public static void EXECUTE_TORTUGA(Block targetBlock, Spell s) {
+        Character c = targetBlock.linkedObject.GetComponent<Character>();
+        TortugaEvent se = new TortugaEvent("Tortuga", c, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        c.addEvent(se);
+        se.useIstantanely();
+    }
+
+    public static void EXECUTE_FURIA(Character caster, Block targetBlock) {
+        int numberOfCellsToMove = 2;
+        List<Block> path = new List<Block>();
+        Coordinate casterPosition = caster.connectedCell.GetComponent<Block>().coordinate;
+        Coordinate targetPosition = targetBlock.coordinate;
+        Debug.Log("Coordinate hit: " + targetPosition.display());
+        if (targetPosition.row > casterPosition.row) {
+            Debug.Log("Target is down");
+            // target is down
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(casterPosition.row + i, casterPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.row < casterPosition.row) {
+            Debug.Log("Target is up");
+            // target is up
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(casterPosition.row - i, casterPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column > casterPosition.column) {
+            Debug.Log("Target is on the right");
+            // target is on the right
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(casterPosition.row, casterPosition.column + i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column < casterPosition.column) {
+            Debug.Log("Target is on the left");
+            // target is on the left
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(casterPosition.row, casterPosition.column - i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else {
+            Debug.LogError("Error case");
+        }
+        if (path.Count > 0) {
+            Debug.LogWarning("*** PATH ***");
+            foreach (Block b in path) {
+                Debug.LogWarning(b.coordinate.display());
+            }
+            caster.setPath(path); // move the character
+        }
+    }
+
+    public static void EXECUTE_COMEDY(Character caster, Block targetBlock) {
+        int numberOfCellsToMove = 2;
+        List<Block> path = new List<Block>();
+        Coordinate casterPosition = caster.connectedCell.GetComponent<Block>().coordinate;
+        Coordinate targetPosition = targetBlock.coordinate;
+        Debug.Log("Coordinate hit: " + targetPosition.display());
+        if (targetPosition.row > casterPosition.row) {
+            Debug.Log("Target is down");
+            // target is down
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(casterPosition.row + i, casterPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.row < casterPosition.row) {
+            Debug.Log("Target is up");
+            // target is up
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(casterPosition.row - i, casterPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column > casterPosition.column) {
+            Debug.Log("Target is on the right");
+            // target is on the right
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(casterPosition.row, casterPosition.column + i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column < casterPosition.column) {
+            Debug.Log("Target is on the left");
+            // target is on the left
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(casterPosition.row, casterPosition.column - i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else {
+            Debug.LogError("Error case");
+        }
+        if (path.Count > 0) {
+            Debug.LogWarning("*** PATH ***");
+            foreach (Block b in path) {
+                Debug.LogWarning(b.coordinate.display());
+            }
+            caster.setPath(path); // move the character
+        }
+
+        // Retreat attack snippet
+        numberOfCellsToMove = 4;
+        path = new List<Block>();
+        casterPosition = caster.connectedCell.GetComponent<Block>().coordinate;
+        targetPosition = targetBlock.coordinate;
+        Debug.Log("Coordinate hit: " + targetPosition.display());
+        if (targetPosition.row > casterPosition.row) {
+            Debug.Log("Target is down");
+            // target is down
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row + i, targetPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.row < casterPosition.row) {
+            Debug.Log("Target is up");
+            // target is up
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row - i, targetPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column > casterPosition.column) {
+            Debug.Log("Target is on the right");
+            // target is on the right
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row, targetPosition.column + i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column < casterPosition.column) {
+            Debug.Log("Target is on the left");
+            // target is on the left
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row, targetPosition.column - i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else {
+            Debug.LogError("COMEDY error case");
+        }
+        if (path.Count > 0) {
+            Debug.LogWarning("*** PATH ***");
+            foreach (Block b in path) {
+                Debug.LogWarning(b.coordinate.display());
+            }
+            targetBlock.linkedObject.GetComponent<Character>().setPath(path); // move the enemy
+        }
+    }
+
+    public static void EXECUTE_APOSTASY(Character caster, Block targetBlock) {
+        int numberOfCellsToMove = 2;
+        List<Block> path = new List<Block>();
+        Coordinate casterPosition = caster.connectedCell.GetComponent<Block>().coordinate;
+        Coordinate targetPosition = targetBlock.coordinate;
+        Debug.Log("Coordinate hit: " + targetPosition.display());
+        if (targetPosition.row > casterPosition.row) {
+            Debug.Log("Target is down");
+            // target is down
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row + i, targetPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.row < casterPosition.row) {
+            Debug.Log("Target is up");
+            // target is up
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row - i, targetPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column > casterPosition.column) {
+            Debug.Log("Target is on the right");
+            // target is on the right
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row, targetPosition.column + i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column < casterPosition.column) {
+            Debug.Log("Target is on the left");
+            // target is on the left
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row, targetPosition.column - i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else {
+            Debug.LogError("APOSTASY error case");
+        }
+        if (path.Count > 0) {
+            Debug.LogWarning("*** PATH ***");
+            foreach (Block b in path) {
+                Debug.LogWarning(b.coordinate.display());
+            }
+            targetBlock.linkedObject.GetComponent<Character>().setPath(path); // move the enemy
         }
     }
 

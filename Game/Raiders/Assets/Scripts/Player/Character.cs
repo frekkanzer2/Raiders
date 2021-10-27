@@ -32,12 +32,16 @@ public class Character : MonoBehaviour
     public GameObject connectedPreview = null;
     [HideInInspector]
     public GameObject connectedCell;
+    [HideInInspector]
+    public int actual_shield = 0;
 
     private StatsOutputSystem sos;
 
     public static List<Block> bufferColored = new List<Block>();
-    private bool isMoving = false;
-    private bool isForcedMoving = false;
+    [HideInInspector]
+    public bool isMoving = false;
+    [HideInInspector]
+    public bool isForcedMoving = false;
     private List<Block> followPath = new List<Block>();
     private Block followingBlock = null;
     private int movement_speed = 0;
@@ -210,7 +214,7 @@ public class Character : MonoBehaviour
                                 }
                             resetBufferedCells();
                             if (dest != null) {
-                                followPath = ai_getDestinationPath(TurnsManager.active.connectedCell.GetComponent<Block>(), dest, 100);
+                                followPath = ai_getDestinationPath(TurnsManager.active.connectedCell.GetComponent<Block>(), dest, 500);
                                 actual_pm -= followPath.Count - 1;
                                 followingBlock = followPath[0];
                                 followPath.RemoveAt(0);
@@ -303,6 +307,21 @@ public class Character : MonoBehaviour
     }
 
     public void inflictDamage(int damage) {
+        if (actual_shield > 0) {
+            int prev_sh = actual_shield; // 80
+            actual_shield -= damage; // 40
+            if (actual_shield <= 0) {
+                damage = actual_shield * -1;
+                actual_shield = 0;
+            }
+            if (actual_shield <= 0)
+                sos.addEffect_Shield(StatsOutputSystem.Effect.Shield, "-" + prev_sh);
+            else {
+                sos.addEffect_Shield(StatsOutputSystem.Effect.Shield, "-" + damage);
+                damage = 0;
+            }
+        }
+        if (damage == 0) return;
         if (this.actual_hp - damage < 0) actual_hp = 0;
         else this.actual_hp -= damage;
         sos.addEffect_DMG_Heal(StatsOutputSystem.Effect.HP, damage);
@@ -312,6 +331,22 @@ public class Character : MonoBehaviour
         if (this.actual_hp + heal > this.hp) actual_hp = hp;
         else this.actual_hp += heal;
         sos.addEffect_DMG_Heal(StatsOutputSystem.Effect.Heal, heal);
+    }
+
+    public void receiveShield(int sh) {
+        this.actual_shield += sh;
+        sos.addEffect_Shield(StatsOutputSystem.Effect.Shield, "+" + sh);
+    }
+
+    public void removeShield(int sh) {
+        if (this.actual_shield == 0) return;
+        int prev_sh = actual_shield;
+        this.actual_shield -= sh;
+        if (this.actual_shield <= 0) {
+            actual_shield = 0;
+            sos.addEffect_Shield(StatsOutputSystem.Effect.Shield, "-" + prev_sh);
+        } else
+            sos.addEffect_Shield(StatsOutputSystem.Effect.Shield, "-" + sh);
     }
 
     public int getActualHP() {
@@ -565,7 +600,7 @@ public class Character : MonoBehaviour
         List<Block> toRemove = new List<Block>();
         foreach(Block b in bufferColored) {
             List<Block> path = null;
-            path = ai_getDestinationPath(origin.connectedCell.GetComponent<Block>(), b, 100);
+            path = ai_getDestinationPath(origin.connectedCell.GetComponent<Block>(), b, 500);
             if (path == null) toRemove.Add(b);
             else if (path.Count > origin.actual_pm + 1) toRemove.Add(b);
         }

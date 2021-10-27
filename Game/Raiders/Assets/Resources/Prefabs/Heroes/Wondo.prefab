@@ -128,7 +128,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: b5a62369911a5c248966856198e1d4d9, type: 3}
     description: Steals HP in the Earth element
     element: 5
-    damage: 35
+    damage: 38
     lifeSteal: 1
     minRange: 1
     maxRange: 2
@@ -148,9 +148,9 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Tortuga
     icon: {fileID: 21300000, guid: 193f2c143c712d745a2a1aeb55e2844f, type: 3}
-    description: Gives 80 HP on shield to the target for 2 turns
+    description: Gives 80 shield to the target for 2 turns
     element: 5
-    damage: 80
+    damage: 0
     lifeSteal: 0
     minRange: 4
     maxRange: 6
@@ -164,7 +164,7 @@ MonoBehaviour:
     effectDuration: 2
     criticalProbability: 0
     hasEffect: 1
-    isEffectOnly: 0
+    isEffectOnly: 1
     canUseInEmptyCell: 0
     isJumpOrEvocation: 0
   - link: {fileID: 0}
@@ -207,6 +207,9 @@ MonoBehaviour:
   actual_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
+  actual_shield: 0
+  isMoving: 0
+  isForcedMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 
