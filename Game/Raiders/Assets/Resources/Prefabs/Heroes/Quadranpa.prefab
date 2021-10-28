@@ -150,7 +150,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: b054f707eb2936f4baf1def59edfa1bc, type: 3}
     description: Inflicts Air damage
     element: 2
-    damage: 29
+    damage: 34
     lifeSteal: 0
     minRange: 1
     maxRange: 8
@@ -173,7 +173,7 @@ MonoBehaviour:
     description: Removes 2 PA to the target and adds 1 PA to the caster (80% chance)
       + 1 additional PA (20% chance)
     element: 3
-    damage: 34
+    damage: 41
     lifeSteal: 0
     minRange: 5
     maxRange: 5
@@ -208,6 +208,10 @@ MonoBehaviour:
   actual_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
+  actual_shield: 0
+  isDead: 0
+  isMoving: 0
+  isForcedMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 

@@ -127,7 +127,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 4f3bb6d7ee799fc41b9a06f6d740e8e4, type: 3}
     description: Steals HP in the Air element
     element: 2
-    damage: 38
+    damage: 37
     lifeSteal: 1
     minRange: 6
     maxRange: 7
@@ -171,7 +171,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: fb17fe56678145948abf84a735bc11f1, type: 3}
     description: Increases the spell's damage of 30 for 4 turns
     element: 3
-    damage: 35
+    damage: 24
     lifeSteal: 0
     minRange: 9
     maxRange: 12
@@ -206,6 +206,10 @@ MonoBehaviour:
   actual_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
+  actual_shield: 0
+  isDead: 0
+  isMoving: 0
+  isForcedMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 

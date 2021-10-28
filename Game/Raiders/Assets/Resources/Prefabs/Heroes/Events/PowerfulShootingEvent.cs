@@ -9,18 +9,18 @@ public class PowerfulShooting : ParentEvent
 
     override public void execute() {
         base.execute();
-        connected.att_a += 80;
-        connected.att_e += 80;
-        connected.att_w += 80;
-        connected.att_f += 80;
+        connected.att_a += 150;
+        connected.att_e += 150;
+        connected.att_w += 150;
+        connected.att_f += 150;
     }
 
     override public void restoreCharacter() {
         base.restoreCharacter();
-        connected.att_a -= 80;
-        connected.att_e -= 80;
-        connected.att_w -= 80;
-        connected.att_f -= 80;
+        connected.att_a -= 150;
+        connected.att_e -= 150;
+        connected.att_w -= 150;
+        connected.att_f -= 150;
     }
 
 }

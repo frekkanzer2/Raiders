@@ -150,7 +150,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 58326c6164f5e9b4b92c718e9a2e609c, type: 3}
     description: Teleports behind the target
     element: 0
-    damage: 34
+    damage: 41
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -207,6 +207,10 @@ MonoBehaviour:
   actual_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
+  actual_shield: 0
+  isDead: 0
+  isMoving: 0
+  isForcedMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 

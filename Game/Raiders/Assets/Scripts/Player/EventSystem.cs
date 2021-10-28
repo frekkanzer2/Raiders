@@ -62,4 +62,8 @@ public class EventSystem : MonoBehaviour
         }
     }
 
+    public void removeAllEvents() {
+        activeEvents.Clear();
+    }
+
 }

@@ -24,6 +24,7 @@ public class StatsOutputSystem : MonoBehaviour {
         private int value = -1;
         private Vector2 whereToSpawn;
         private bool hasExecuted = false;
+        private Sprite icon = null;
 
         public EffectToExecute(GameObject prefabToSpawn, Color color, string text, Vector2 pos) {
             pref = prefabToSpawn;
@@ -39,6 +40,13 @@ public class StatsOutputSystem : MonoBehaviour {
             whereToSpawn = pos;
         }
 
+        public EffectToExecute(GameObject prefabToSpawn, Color color, Sprite i, Vector2 pos) {
+            pref = prefabToSpawn;
+            c = color;
+            this.icon = i;
+            whereToSpawn = pos;
+        }
+
         public void execute() {
             if (hasExecuted) return;
             else hasExecuted = true;
@@ -46,7 +54,8 @@ public class StatsOutputSystem : MonoBehaviour {
             if (output != null) // display string
                 np.GetComponent<NumbersDisplayer>().init(c, output, whereToSpawn);
             // else display by numeric value
-            else np.GetComponent<NumbersDisplayer>().init(c, value, whereToSpawn);
+            else if (value > 0) np.GetComponent<NumbersDisplayer>().init(c, value, whereToSpawn);
+            else np.GetComponent<NumbersDisplayer>().init(c, icon, whereToSpawn);
         }
 
     }
@@ -56,7 +65,8 @@ public class StatsOutputSystem : MonoBehaviour {
         PA,
         PM,
         Heal,
-        Shield
+        Shield,
+        Icon
     }
     
     private Color getColorByEffect(Effect e) {
@@ -70,6 +80,12 @@ public class StatsOutputSystem : MonoBehaviour {
 
     private Vector2 getSpawnPosition() {
         return new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 3.8f);
+    }
+
+    public void addEffect_Icon(Effect type, Sprite icon) {
+        EffectToExecute ete = new EffectToExecute(this.numberPrefab, getColorByEffect(type), icon, getSpawnPosition());
+        toDisplay.Add(ete);
+        execute();
     }
 
     public void addEffect_PA_PM(Effect type, string text) {

@@ -128,7 +128,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 802d14db64d672941a5ec521ad5b2c89, type: 3}
     description: Caster comes close of 2 cells
     element: 0
-    damage: 42
+    damage: 47
     lifeSteal: 0
     minRange: 1
     maxRange: 3
@@ -172,7 +172,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 66ca9f2d87fa91e449187f24da25be91, type: 3}
     description: Repels the target of 2 cells
     element: 1
-    damage: 30
+    damage: 31
     lifeSteal: 0
     minRange: 2
     maxRange: 5
@@ -208,6 +208,7 @@ MonoBehaviour:
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
   actual_shield: 0
+  isDead: 0
   isMoving: 0
   isForcedMoving: 0
   spellToUse:

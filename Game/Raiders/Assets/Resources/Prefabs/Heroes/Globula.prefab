@@ -149,13 +149,13 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 78e5448e8e2a421448a877d196ea273d, type: 3}
     description: Inflicts Earth damage
     element: 0
-    damage: 80
+    damage: 61
     lifeSteal: 0
     minRange: 1
     maxRange: 1
     distanceType: 0
     overObstacles: 0
-    hpCost: 60
+    hpCost: 50
     paCost: 4
     pmCost: 0
     maxTimesInTurn: 2
@@ -169,10 +169,11 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Desolation
     icon: {fileID: 21300000, guid: d24c8ebb08fbe6945b20f42233fa7edb, type: 3}
-    description: Removes 3 PM to the target (25% chance)
+    description: Steals HP in the Air element and removes 3 PM to the target (25%
+      chance)
     element: 2
-    damage: 36
-    lifeSteal: 0
+    damage: 30
+    lifeSteal: 1
     minRange: 1
     maxRange: 3
     distanceType: 1
@@ -197,7 +198,7 @@ MonoBehaviour:
   res_f: 0
   res_a: 0
   res_w: 0
-  att_e: 16
+  att_e: 18
   att_f: 0
   att_a: 14
   att_w: 0
@@ -206,6 +207,10 @@ MonoBehaviour:
   actual_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
+  actual_shield: 0
+  isDead: 0
+  isMoving: 0
+  isForcedMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 

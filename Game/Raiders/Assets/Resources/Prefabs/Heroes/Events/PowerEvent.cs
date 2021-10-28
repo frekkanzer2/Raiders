@@ -9,18 +9,18 @@ public class PowerEvent : ParentEvent
 
     override public void execute() {
         base.execute();
-        connected.att_a += 60;
-        connected.att_e += 60;
-        connected.att_w += 60;
-        connected.att_f += 60;
+        connected.att_a += 100;
+        connected.att_e += 100;
+        connected.att_w += 100;
+        connected.att_f += 100;
     }
 
     override public void restoreCharacter() {
         base.restoreCharacter();
-        connected.att_a -= 60;
-        connected.att_e -= 60;
-        connected.att_w -= 60;
-        connected.att_f -= 60;
+        connected.att_a -= 100;
+        connected.att_e -= 100;
+        connected.att_w -= 100;
+        connected.att_f -= 100;
     }
 
 }

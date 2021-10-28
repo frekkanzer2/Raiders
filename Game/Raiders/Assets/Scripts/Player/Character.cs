@@ -34,6 +34,8 @@ public class Character : MonoBehaviour
     public GameObject connectedCell;
     [HideInInspector]
     public int actual_shield = 0;
+    [HideInInspector]
+    public bool isDead = false;
 
     private StatsOutputSystem sos;
 
@@ -50,6 +52,7 @@ public class Character : MonoBehaviour
     private EventSystem esystem;
 
     public void setPath(List<Block> path) {
+        if (isDead) return;
         followPath = path;
         followingBlock = path[0];
         followPath.RemoveAt(0);
@@ -57,10 +60,13 @@ public class Character : MonoBehaviour
     }
 
     public void addEvent(ParentEvent pe) {
+        if (isDead) return;
         esystem.addEvent(pe);
+        sos.addEffect_Icon(StatsOutputSystem.Effect.Icon, pe.sprite);
     }
 
     public void setSpellToUse(Spell s) {
+        if (isDead) return;
         this.spellToUse = s;
     }
 
@@ -69,13 +75,12 @@ public class Character : MonoBehaviour
     }
 
     public void removeSpellToUse() {
+        if (isDead) return;
         TurnsManager.Instance.popupSpell.GetComponent<SpellPopup>().OnExit();
         this.spellToUse = null;
     }
 
     public bool isDebugEnabled = false;
-
-    
 
     void Start()
     {
@@ -102,7 +107,7 @@ public class Character : MonoBehaviour
     void Update() {
 
         // Setting lifebar on preview cards
-        if (TurnsManager.isGameStarted && this.connectedPreview != null) {
+        if (TurnsManager.isGameStarted && this.connectedPreview != null && !this.isDead) {
             Slider s = this.connectedPreview.transform.GetChild(2).gameObject.GetComponent<Slider>();
             s.maxValue = this.hp;
             s.minValue = 0;
@@ -249,6 +254,7 @@ public class Character : MonoBehaviour
     }
 
     public void setZIndex(Block toRegolate) {
+        if (isDead) return;
         this.GetComponent<SpriteRenderer>().sortingOrder = Coordinate.getBlockZindex(toRegolate.coordinate) + 10;
     }
 
@@ -307,6 +313,7 @@ public class Character : MonoBehaviour
     }
 
     public void inflictDamage(int damage) {
+        if (isDead) return;
         if (actual_shield > 0) {
             int prev_sh = actual_shield; // 80
             actual_shield -= damage; // 40
@@ -324,21 +331,25 @@ public class Character : MonoBehaviour
         if (damage == 0) return;
         if (this.actual_hp - damage < 0) actual_hp = 0;
         else this.actual_hp -= damage;
+        if (actual_hp == 0) setDead();
         sos.addEffect_DMG_Heal(StatsOutputSystem.Effect.HP, damage);
     }
 
     public void receiveHeal(int heal) {
+        if (isDead) return;
         if (this.actual_hp + heal > this.hp) actual_hp = hp;
         else this.actual_hp += heal;
         sos.addEffect_DMG_Heal(StatsOutputSystem.Effect.Heal, heal);
     }
 
     public void receiveShield(int sh) {
+        if (isDead) return;
         this.actual_shield += sh;
         sos.addEffect_Shield(StatsOutputSystem.Effect.Shield, "+" + sh);
     }
 
     public void removeShield(int sh) {
+        if (isDead) return;
         if (this.actual_shield == 0) return;
         int prev_sh = actual_shield;
         this.actual_shield -= sh;
@@ -362,11 +373,13 @@ public class Character : MonoBehaviour
     }
 
     public void incrementPA(int value) {
+        if (isDead) return;
         this.actual_pa += value;
         sos.addEffect_PA_PM(StatsOutputSystem.Effect.PA, "+" + value);
     }
 
     public void decrementPA(int value) {
+        if (isDead) return;
         this.actual_pa -= value;
         sos.addEffect_PA_PM(StatsOutputSystem.Effect.PA, "-" + value);
     }
@@ -376,25 +389,52 @@ public class Character : MonoBehaviour
     }
 
     public void incrementPM(int value) {
+        if (isDead) return;
         this.actual_pm += value;
         sos.addEffect_PA_PM(StatsOutputSystem.Effect.PM, "+" + value);
     }
 
     public void decrementPM(int value) {
+        if (isDead) return;
         this.actual_pm -= value;
         sos.addEffect_PA_PM(StatsOutputSystem.Effect.PM, "-" + value);
     }
 
     public void decrementHP_withoutEffect(int value) {
+        if (isDead) return;
         this.actual_hp -= value;
+        if (actual_hp == 0) setDead();
     }
 
     public void decrementPA_withoutEffect(int value) {
+        if (isDead) return;
         this.actual_pa -= value;
     }
 
     public void decrementPM_withoutEffect(int value) {
+        if (isDead) return;
         this.actual_pm -= value;
+    }
+
+    public void setDead() {
+        if (isDead) return;
+        isDead = true;
+        connectedCell.GetComponent<Block>().linkedObject = null;
+        connectedCell = null;
+        esystem.removeAllEvents();
+        StartCoroutine(dead_disappear());
+        Destroy(connectedPreview);
+        TurnsManager.Instance.turns.Remove(this);
+    }
+
+    IEnumerator dead_disappear() {
+        SpriteRenderer sr = this.gameObject.GetComponent<SpriteRenderer>();
+        while (sr.color.a > 0.05f) {
+            sr.color = new Color(sr.color.r, sr.color.b, sr.color.g, sr.color.a - 0.06f);
+            yield return new WaitForSeconds(0.05f);
+        }
+        sr.color = new Color(0, 0, 0, 0);
+        this.transform.position = new Vector3(50000, 50000, 0);
     }
 
     #endregion

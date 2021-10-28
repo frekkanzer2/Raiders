@@ -172,7 +172,7 @@ MonoBehaviour:
     description: Increases the spell's damage of 48 if the caster has less than 30%
       of total HP
     element: 0
-    damage: 30
+    damage: 48
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -207,6 +207,10 @@ MonoBehaviour:
   actual_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
+  actual_shield: 0
+  isDead: 0
+  isMoving: 0
+  isForcedMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 

@@ -150,7 +150,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: dfb27cbc58e6a684cb0c4e1ca18afca6, type: 3}
     description: Heals the target of 200 HP in it's next turn
     element: 3
-    damage: 125
+    damage: 120
     lifeSteal: 0
     minRange: 1
     maxRange: 2
@@ -207,6 +207,10 @@ MonoBehaviour:
   actual_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
+  actual_shield: 0
+  isDead: 0
+  isMoving: 0
+  isForcedMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 

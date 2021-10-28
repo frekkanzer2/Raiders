@@ -127,7 +127,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 3523d3b5d8616464a8a78f7c52ae886a, type: 3}
     description: Removes 3 PM to the target (30% chance)
     element: 2
-    damage: 36
+    damage: 41
     lifeSteal: 0
     minRange: 1
     maxRange: 6
@@ -206,6 +206,10 @@ MonoBehaviour:
   actual_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
+  actual_shield: 0
+  isDead: 0
+  isMoving: 0
+  isForcedMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 

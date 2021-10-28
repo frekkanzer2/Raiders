@@ -151,16 +151,16 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: aa70233cfd657cf4983c0f5d4c12801c, type: 3}
     description: Inflicts Fire damage
     element: 1
-    damage: 32
+    damage: 28
     lifeSteal: 0
     minRange: 1
-    maxRange: 2
+    maxRange: 4
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 4
+    paCost: 2
     pmCost: 0
-    maxTimesInTurn: 2
+    maxTimesInTurn: 3
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 15
@@ -208,6 +208,10 @@ MonoBehaviour:
   actual_pm: 0
   connectedPreview: {fileID: 0}
   connectedCell: {fileID: 0}
+  actual_shield: 0
+  isDead: 0
+  isMoving: 0
+  isForcedMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 
