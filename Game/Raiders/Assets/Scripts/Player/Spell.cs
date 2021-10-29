@@ -206,16 +206,19 @@ public class Spell {
         Debug.Log("Spell " + s.name + " prob: " + prob);
         if (prob <= 30) {
             Character target = targetBlock.linkedObject.GetComponent<Character>();
-            target.addEvent(new PoundingEvent("Pounding", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+            if (target != null)
+                target.addEvent(new PoundingEvent("Pounding", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
         }
     }
 
     public static void EXECUTE_AGITATION(Block targetBlock, Spell s) {
         Character target = targetBlock.linkedObject.GetComponent<Character>();
-        AgitationEvent agitationEvent = new AgitationEvent("Agitation", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon);
-        target.addEvent(agitationEvent);
-        if (target.name == s.link.name && target.team == s.link.team) {
-            agitationEvent.useIstantanely();
+        if (target != null) {
+            AgitationEvent agitationEvent = new AgitationEvent("Agitation", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon);
+            target.addEvent(agitationEvent);
+            if (target.name == s.link.name && target.team == s.link.team) {
+                agitationEvent.useIstantanely();
+            }
         }
     }
 
@@ -236,7 +239,8 @@ public class Spell {
         casterEvent.useIstantanely();
         caster.addEvent(casterEvent);
         Character target = targetBlock.linkedObject.GetComponent<Character>();
-        target.addEvent(new DuelEvent("Duel", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        if (target != null)
+            target.addEvent(new DuelEvent("Duel", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
 
     public static void EXECUTE_IOP_WRATH(Character caster, Spell s) {
@@ -255,9 +259,11 @@ public class Spell {
         Debug.Log("Spell " + s.name + " prob: " + prob);
         if (prob <= 50) {
             Character target = targetBlock.linkedObject.GetComponent<Character>();
-            ComposureEvent ce = new ComposureEvent("Composure", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
-            ce.useIstantanely();
-            target.addEvent(ce);
+            if (target != null) {
+                ComposureEvent ce = new ComposureEvent("Composure", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+                ce.useIstantanely();
+                target.addEvent(ce);
+            }
         }
     }
 

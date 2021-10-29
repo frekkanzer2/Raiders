@@ -33,6 +33,7 @@ public class ChButtonData : MonoBehaviour
             sm.registerCharacterChosen(infoConnected, this, 2);
             this.GetComponent<Image>().color = new Color(150f / 255f, 150f / 255f, 150f / 255f, 0.5f);
         }
+        SoundUi.Instance.playAudio(SoundUi.AudioType.Preview_ChooseHero);
     }
 
     public void resetSprite() {

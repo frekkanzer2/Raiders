@@ -134,6 +134,7 @@ public class TurnsManager : MonoBehaviour
     }
 
     public void OnNextTurnPressed() {
+        SoundUi.Instance.playAudio(SoundUi.AudioType.ButtonPressed_NextTurn);
         if (active.isMoving || active.isForcedMoving) return;
         Character endTurnCh = turns[0];
         turns.Remove(endTurnCh);
@@ -163,6 +164,7 @@ public class TurnsManager : MonoBehaviour
             preview.transform.SetParent(turnsListContainer.transform.parent);
             preview.transform.SetParent(turnsListContainer.transform);
         }
+        SoundUi.Instance.playAudio(SoundUi.AudioType.StartTurn);
         StartCoroutine(displayNewHeroName());
         active.newTurn();
     }

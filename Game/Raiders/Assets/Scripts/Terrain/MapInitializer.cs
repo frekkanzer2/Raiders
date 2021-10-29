@@ -44,6 +44,7 @@ public class MapInitializer : MonoBehaviour
         img_bs.gameObject.transform.parent.gameObject.SetActive(false);
         PreparationManager.isPreparationPhaseActived = true;
         GetComponent<PreparationManager>().initializeChooseCards();
+        SoundUi.Instance.playAudio(SoundUi.AudioType.StartBattle);
     }
 
     IEnumerator appearAndRemoveImageTitle() {

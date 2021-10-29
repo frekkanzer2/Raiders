@@ -49,6 +49,7 @@ public class ButtonPreview : MonoBehaviour
         if (!isSet) return;
         if (team == 1 && sm.isAlphaLocked) sm.specialButtonA.setCanValidate();
         if (team == 2 && sm.isBetaLocked) sm.specialButtonB.setCanValidate();
+        SoundUi.Instance.playAudio(SoundUi.AudioType.Preview_RemoveHero);
         connectedCharacter.resetSprite();
         sm.unregisterCharacterChosen(connectedInfo, team);
         removeCharacter();

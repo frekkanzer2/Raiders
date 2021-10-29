@@ -54,6 +54,7 @@ public class ConfirmButton : MonoBehaviour
                 if (!sm.isBetaLocked) {
                     sm.isAlphaLocked = true;
                     setCanConfirm();
+                    SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm1);
                 } else {
                     SelectionContainer sc = sm.gameObject.GetComponent<SelectionContainer>();
                     if (sc.areSameDimension()) {
@@ -67,6 +68,7 @@ public class ConfirmButton : MonoBehaviour
                 if (!sm.isAlphaLocked) {
                     sm.isBetaLocked = true;
                     setCanConfirm();
+                    SoundUi.Instance.playAudio(SoundUi.AudioType.Preview_ConfirmTeam);
                 } else {
                     SelectionContainer sc = sm.gameObject.GetComponent<SelectionContainer>();
                     if (sc.areSameDimension()) {

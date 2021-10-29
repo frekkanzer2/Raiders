@@ -17,6 +17,7 @@ public class SpellSlot : MonoBehaviour
     public void OnClickSpellPreview() {
         if (canUse)
             connectedSpell.OnPreviewPressed();
+        SoundUi.Instance.playAudio(SoundUi.AudioType.ButtonPressed_Spell);
         TurnsManager.Instance.popupSpell.GetComponent<SpellPopup>().OnSpellPressed(connectedSpell);
     }
 

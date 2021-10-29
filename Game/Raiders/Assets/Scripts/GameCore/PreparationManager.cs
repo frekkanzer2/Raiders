@@ -61,6 +61,8 @@ public class PreparationManager : MonoBehaviour
         if (!isAlphaReady && isPreparationPhaseActived) {
             isAlphaReady = true;
             btnAlpha.GetComponent<Image>().sprite = yellowButton;
+            if (isBetaReady) SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm2);
+            else SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm1);
         } else if (isPreparationPhaseActived) {
             isAlphaReady = false;
             btnAlpha.GetComponent<Image>().sprite = blueButton;
@@ -72,6 +74,8 @@ public class PreparationManager : MonoBehaviour
         if (!isBetaReady && isPreparationPhaseActived) {
             isBetaReady = true;
             btnBeta.GetComponent<Image>().sprite = yellowButton;
+            if (isAlphaReady) SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm2);
+            else SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm1);
         } else if (isPreparationPhaseActived) {
             isBetaReady = false;
             btnBeta.GetComponent<Image>().sprite = redButton;
@@ -113,6 +117,7 @@ public class PreparationManager : MonoBehaviour
             activateReadyButtons();
         tm.addRelation(ch_go, ci);
         Debug.Log("PRECALL");
+        SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_SetHeroInCell);
         closeChooseScreen();
     }
 
