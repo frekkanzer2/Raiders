@@ -180,6 +180,7 @@ public class MapInitializer : MonoBehaviour
         h_toMove = pp.x / 2f;
         v_toMove = pp.y / 2f;
         mapBlocks.moveAllBlocksOf(h_toMove, v_toMove);
+        PlayerPrefs.SetString("CHOSEN_MAP", title); // saving title
     }
 
     private void loadHeroes() {

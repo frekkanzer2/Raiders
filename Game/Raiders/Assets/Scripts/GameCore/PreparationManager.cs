@@ -186,6 +186,7 @@ public class PreparationManager : MonoBehaviour
             }
         if (isAlphaReady && isBetaReady && isPreparationPhaseActived) {
             isPreparationPhaseActived = false;
+            SoundMusic.Instance.play(SoundMusic.Instance.getSoundtrack(PlayerPrefs.GetString("CHOSEN_MAP")));
             StartCoroutine(goToNextPhase());
         }
     }

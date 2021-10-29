@@ -11,7 +11,7 @@ public class NumbersDisplayer : MonoBehaviour
 
     public void init(Color c, int value, Vector2 positionSpawn) {
         if (value >= 100) this.gameObject.transform.localScale = new Vector3(0.22f, 0.22f, 0.22f);
-        this.gameObject.transform.position = positionSpawn;
+        this.gameObject.transform.position = new Vector2(positionSpawn.x, positionSpawn.y);
         TextMeshProUGUI tmp = txt.GetComponent<TextMeshProUGUI>();
         tmp.color = c;
         tmp.text = "" + value;
@@ -19,7 +19,7 @@ public class NumbersDisplayer : MonoBehaviour
     }
 
     public void init(Color c, string text, Vector2 positionSpawn) {
-        this.gameObject.transform.position = positionSpawn;
+        this.gameObject.transform.position = new Vector2(positionSpawn.x, positionSpawn.y);
         TextMeshProUGUI tmp = txt.GetComponent<TextMeshProUGUI>();
         tmp.color = c;
         tmp.text = text;
