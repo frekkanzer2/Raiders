@@ -37,16 +37,16 @@ public class SpellPopup : MonoBehaviour
         } else if (s.element == Spell.Element.Heal) {
             spellType.GetComponent<TextMeshProUGUI>().text = "HEAL SPELL";
             spellType.GetComponent<TextMeshProUGUI>().color = new Color(1, 160f / 255f, 215f/255f, 1);
-        } else if (s.element == Spell.Element.Other) {
+        } else if (s.element == Spell.Element.Earth) {
             spellType.GetComponent<TextMeshProUGUI>().text = "EARTH SPELL";
             spellType.GetComponent<TextMeshProUGUI>().color = new Color(132f/255f, 110f/255f, 82f/255f, 1);
-        } else if (s.element == Spell.Element.Other) {
+        } else if (s.element == Spell.Element.Fire) {
             spellType.GetComponent<TextMeshProUGUI>().text = "FIRE SPELL";
             spellType.GetComponent<TextMeshProUGUI>().color = new Color(224f / 255f, 69f / 255f, 56f / 255f, 1);
-        } else if (s.element == Spell.Element.Other) {
+        } else if (s.element == Spell.Element.Air) {
             spellType.GetComponent<TextMeshProUGUI>().text = "AIR SPELL";
             spellType.GetComponent<TextMeshProUGUI>().color = new Color(138f / 255f, 185f / 255f, 113f / 255f, 1);
-        } else if (s.element == Spell.Element.Other) {
+        } else if (s.element == Spell.Element.Water) {
             spellType.GetComponent<TextMeshProUGUI>().text = "WATER SPELL";
             spellType.GetComponent<TextMeshProUGUI>().color = new Color(130f / 255f, 177f / 255f, 226f / 255f, 1);
         }
