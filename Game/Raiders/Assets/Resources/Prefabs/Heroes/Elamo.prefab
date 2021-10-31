@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8528018890230597465}
   - component: {fileID: -4488740185624750116}
   - component: {fileID: 2830387497238958323}
+  - component: {fileID: -5189071014344878334}
   m_Layer: 0
   m_Name: Elamo
   m_TagString: Player
@@ -171,7 +172,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: ca5540b979241f341993ce3bbf598ab6, type: 3}
     description: Attracts the target of 2 cells
     element: 0
-    damage: 31
+    damage: 36
     lifeSteal: 0
     minRange: 3
     maxRange: 6
@@ -289,3 +290,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f77455afa650f49a81c28b9edfaff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5189071014344878334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 668ba71f629dd4f45ae68320a96d15e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connected: {fileID: 0}

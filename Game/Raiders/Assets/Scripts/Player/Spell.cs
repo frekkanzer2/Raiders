@@ -57,12 +57,24 @@ public class Spell {
     }
 
     public static bool canUse(Character caster, Spell spell) {
+        // Controllo esecuzione incantesimo dopo tot turni
+        if (spell.executeAfterTurns > 0 && caster.getSpellSystem().getNumberOfUses(spell.name) == 1) return false;
+        // Controllo numero di esecuzioni in un turno
+        if (spell.maxTimesInTurn > 0 && spell.maxTimesInTurn == caster.getSpellSystem().getNumberOfUses(spell.name)) return false;
+        // Controllo sulla durata dell'incantesimo
+        //if (spell.effectDuration < -1) return false;
         if (caster.getActualPM() < 0) {
             if (spell.paCost > caster.getActualPA() || spell.pmCost != 0 || spell.hpCost > caster.getActualHP()) return false;
         } else {
             if (spell.paCost > caster.getActualPA() || spell.pmCost > caster.getActualPM() || spell.hpCost > caster.getActualHP()) return false;
         }
         return true;
+    }
+    
+    public static int getRemainingTurns(Character caster, Spell spell) {
+        if (spell.executeAfterTurns > 0 && caster.getSpellSystem().getNumberOfUses(spell.name) == 1)
+            return caster.getSpellSystem().getEvent(spell.name).turnRemains;
+        else return -1; // return
     }
 
     public static int calculateDamage(Character caster, Character target, Spell spell) {
@@ -122,6 +134,7 @@ public class Spell {
                 if (spell.lifeSteal) caster.receiveHeal(damageToInflict / 2);
             }
         }
+        caster.addSpell(spell);
         if (spell.hasEffect) {
             // SPECIALIZATIONS HERE
             SPELL_SPECIALIZATION(caster, targetBlock, spell);
@@ -192,9 +205,12 @@ public class Spell {
     }
 
     public static void EXECUTE_JUMP(Character caster, Block targetBlock) {
+        Debug.Log("Jump for " + caster.name);
         caster.connectedCell.GetComponent<Block>().linkedObject = null;
         caster.connectedCell = targetBlock.gameObject;
+        Debug.Log("Connected cell: " + caster.connectedCell.GetComponent<Block>().coordinate.display());
         targetBlock.linkedObject = caster.gameObject;
+        Debug.Log("Connected player: " + targetBlock.linkedObject.GetComponent<Character>().name);
         Vector2 newPosition = Coordinate.getPosition(targetBlock.coordinate);
         caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
         caster.setZIndex(targetBlock);
@@ -578,7 +594,7 @@ public class Spell {
     }
 
     public static void EXECUTE_ATTRACTION(Character caster, Block targetBlock) {
-        int numberOfCellsToMove = 8;
+        int numberOfCellsToMove = 6;
         List<Block> path = new List<Block>();
         Coordinate casterPosition = caster.connectedCell.GetComponent<Block>().coordinate;
         Coordinate targetPosition = targetBlock.coordinate;

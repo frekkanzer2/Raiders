@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8528018890230597465}
   - component: {fileID: 3679054799960633979}
   - component: {fileID: 9092556062903490969}
+  - component: {fileID: 125093092390699496}
   m_Layer: 0
   m_Name: Ragedala
   m_TagString: Player
@@ -189,7 +190,7 @@ MonoBehaviour:
     canUseInEmptyCell: 0
     isJumpOrEvocation: 0
   team: 1
-  hp: 1545
+  hp: 1645
   pa: 8
   pm: 2
   ini: 20
@@ -289,3 +290,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f77455afa650f49a81c28b9edfaff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &125093092390699496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 668ba71f629dd4f45ae68320a96d15e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connected: {fileID: 0}

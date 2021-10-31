@@ -50,6 +50,7 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public Spell spellToUse;
     private EventSystem esystem;
+    private SpellTurnSystem stsystem;
 
     public void setPath(List<Block> path) {
         if (isDead) return;
@@ -65,6 +66,11 @@ public class Character : MonoBehaviour
         sos.addEffect_Icon(StatsOutputSystem.Effect.Icon, pe.sprite);
     }
 
+    public void addSpell(Spell sp) {
+        if (isDead) return;
+        this.stsystem.addEvent(new ParentActiveSpell(sp));
+    }
+
     public void setSpellToUse(Spell s) {
         if (isDead) return;
         this.spellToUse = s;
@@ -72,6 +78,10 @@ public class Character : MonoBehaviour
 
     public EventSystem getEventSystem() {
         return this.esystem;
+    }
+
+    public SpellTurnSystem getSpellSystem() {
+        return this.stsystem;
     }
 
     public void removeSpellToUse() {
@@ -101,6 +111,7 @@ public class Character : MonoBehaviour
             s.link = this;
         }
         esystem = GetComponent<EventSystem>();
+        stsystem = GetComponent<SpellTurnSystem>();
     }
 
     // Update is called once per frame
@@ -261,6 +272,7 @@ public class Character : MonoBehaviour
     public void turnPassed() {
         removeSpellToUse();
         esystem.OnEndTurn();
+        stsystem.OnEndTurn();
         actual_pm = pm;
         actual_pa = pa;
     }
@@ -422,6 +434,7 @@ public class Character : MonoBehaviour
         connectedCell.GetComponent<Block>().linkedObject = null;
         connectedCell = null;
         esystem.removeAllEvents();
+        stsystem.removeAllSpells();
         StartCoroutine(dead_disappear());
         Destroy(connectedPreview);
         TurnsManager.Instance.turns.Remove(this);

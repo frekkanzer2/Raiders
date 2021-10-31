@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8528018890230597465}
   - component: {fileID: 6084863432038173532}
   - component: {fileID: -7687443211835244728}
+  - component: {fileID: 5439299381003139306}
   m_Layer: 0
   m_Name: Pilobouli
   m_TagString: Player
@@ -290,3 +291,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f77455afa650f49a81c28b9edfaff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5439299381003139306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 668ba71f629dd4f45ae68320a96d15e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connected: {fileID: 0}

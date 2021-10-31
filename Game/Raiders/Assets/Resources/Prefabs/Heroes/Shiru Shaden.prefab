@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8528018890230597465}
   - component: {fileID: -3292594609650432922}
   - component: {fileID: -9002808387986317020}
+  - component: {fileID: 3317473211912026190}
   m_Layer: 0
   m_Name: Shiru Shaden
   m_TagString: Player
@@ -115,7 +116,7 @@ MonoBehaviour:
     paCost: 0
     pmCost: 3
     maxTimesInTurn: 1
-    executeAfterTurns: 3
+    executeAfterTurns: 2
     effectDuration: 1
     criticalProbability: 0
     hasEffect: 1
@@ -289,3 +290,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f77455afa650f49a81c28b9edfaff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3317473211912026190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 668ba71f629dd4f45ae68320a96d15e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connected: {fileID: 0}
