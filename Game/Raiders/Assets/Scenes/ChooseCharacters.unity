@@ -1643,6 +1643,15 @@ MonoBehaviour:
   - characterName: Balade Mou
     characterFullSprite: {fileID: 21300000, guid: 5a1bcc12f1020884e951454318c058ed, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 752e6144e04e8ad48afb9779ba495848, type: 3}
+  - characterName: Leela
+    characterFullSprite: {fileID: 21300000, guid: 8cf314915b024aa4284584bcfdb9237a, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 4dfc141a45675ba499e94b4f8f351880, type: 3}
+  - characterName: Leevern
+    characterFullSprite: {fileID: 21300000, guid: 3913ad5c2222fed4d9b8332b45c72bd7, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: a82548cceefe40e45809e4ef04a54af0, type: 3}
+  - characterName: Fallanster
+    characterFullSprite: {fileID: 21300000, guid: fbe754b45eb221444aeb371a67ac411b, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 0b1de7f6e8d41de40a4b72996cf1c8e1, type: 3}
 --- !u!114 &1295197767
 MonoBehaviour:
   m_ObjectHideFlags: 0
