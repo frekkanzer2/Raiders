@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraDragDrop : MonoBehaviour {
     
@@ -12,15 +13,21 @@ public class CameraDragDrop : MonoBehaviour {
 
     public static bool canMove = true;
 
+    public GameObject sliderZoom;
+    private Slider _sliderZoom;
+
     void Start() {
         ResetCamera = new Vector3(0, 0, -20);
         this.transform.position = ResetCamera;
+        _sliderZoom = sliderZoom.GetComponent<Slider>();
+        _sliderZoom.value = 22;
     }
     void LateUpdate() {
 
         if (canMove) {
+            // Only pc keys
             if (Input.GetKey(KeyCode.UpArrow)) // forward
-        {
+            {
                 if (Camera.main.orthographicSize < 30)
                     Camera.main.orthographicSize += 0.05f;
             }
@@ -29,25 +36,6 @@ public class CameraDragDrop : MonoBehaviour {
                 if (Camera.main.orthographicSize > 10f)
                     Camera.main.orthographicSize -= 0.05f;
             }
-
-            if (Input.touchCount >= 2) {
-                Vector2 touch0, touch1;
-                touch0 = Input.GetTouch(0).position;
-                touch1 = Input.GetTouch(1).position;
-                if (previousDistance == 0)
-                    previousDistance = Mathf.Abs(Vector2.Distance(touch0, touch1));
-                float actualDistance = Vector2.Distance(touch0, touch1);
-                if (actualDistance < 0) actualDistance = 0;
-                if (previousDistance > actualDistance) {
-                    // zooming out
-                    if (Camera.main.orthographicSize > 10f)
-                        Camera.main.orthographicSize -= 0.05f;
-                } else if (previousDistance > actualDistance) {
-                    // zooming in
-                    if (Camera.main.orthographicSize < 30)
-                        Camera.main.orthographicSize += 0.05f;
-                }
-            } else previousDistance = 0;
 
             if (Input.GetMouseButton(0)) {
                 Diference = (Camera.main.ScreenToWorldPoint(Input.mousePosition)) - Camera.main.transform.position;
@@ -66,12 +54,12 @@ public class CameraDragDrop : MonoBehaviour {
                 if (temp.y < -40) temp.y = -40;
                 Camera.main.transform.position = temp;
             }
-            //RESET CAMERA TO STARTING POSITION WITH RIGHT CLICK
-            if (Input.GetMouseButton(1)) {
-                Camera.main.transform.position = ResetCamera;
-            }
         }
         
+    }
+
+    private void Update() {
+        Camera.main.orthographicSize = _sliderZoom.value;
     }
 
 }
