@@ -1046,7 +1046,8 @@ MonoBehaviour:
   - {fileID: 4900000, guid: ecfe8b13db7c1424c95e4690946e9654, type: 3}
   - {fileID: 4900000, guid: 5b670ce533322c24ca61681a00ba8604, type: 3}
   - {fileID: 4900000, guid: ab58e70f908d9c947818c12871dfe262, type: 3}
-  isTestingMap: 1
+  - {fileID: 4900000, guid: ede209f42d044ab46ab83fa9060cf736, type: 3}
+  isTestingMap: 0
   testingMap: {fileID: 4900000, guid: ede209f42d044ab46ab83fa9060cf736, type: 3}
 --- !u!114 &93772481
 MonoBehaviour:
@@ -1082,6 +1083,9 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: 83a2aef24b60c4c48b3d22cce78d6f04, type: 3}
   - {fileID: 557098361630938699, guid: 94b25b926d01faf49937172389f4fc22, type: 3}
   - {fileID: 557098361630938699, guid: f61f52ab56c69044c97d67237089e217, type: 3}
+  - {fileID: 557098361630938699, guid: c81846c30beb79244b2b9be437d4db18, type: 3}
+  - {fileID: 557098361630938699, guid: 7d5f883583704754881136cca1da816c, type: 3}
+  - {fileID: 557098361630938699, guid: 5d8c30c4014c2254f8f69dbed93e378e, type: 3}
   heroesPrefabs_team2:
   - {fileID: 557098361630938699, guid: 3968d5a638ef5994cad63e85612468ac, type: 3}
   - {fileID: 557098361630938699, guid: 2ccb042d5c633dc48854a46bd4a9972e, type: 3}
@@ -1104,6 +1108,9 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: 83a2aef24b60c4c48b3d22cce78d6f04, type: 3}
   - {fileID: 557098361630938699, guid: 94b25b926d01faf49937172389f4fc22, type: 3}
   - {fileID: 557098361630938699, guid: f61f52ab56c69044c97d67237089e217, type: 3}
+  - {fileID: 557098361630938699, guid: c81846c30beb79244b2b9be437d4db18, type: 3}
+  - {fileID: 557098361630938699, guid: 7d5f883583704754881136cca1da816c, type: 3}
+  - {fileID: 557098361630938699, guid: 5d8c30c4014c2254f8f69dbed93e378e, type: 3}
 --- !u!114 &93772482
 MonoBehaviour:
   m_ObjectHideFlags: 0

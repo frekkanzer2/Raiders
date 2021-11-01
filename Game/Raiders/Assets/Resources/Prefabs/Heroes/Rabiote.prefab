@@ -104,7 +104,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Smell
     icon: {fileID: 21300000, guid: e2602c14bbd0a0e46a9a851148254757, type: 3}
-    description: Adds 2 PA or PM to the target and decreases the target resistances
+    description: Adds 2 PA or 2 PM to the target and decreases the target resistances
       of 25% for 3 turns
     element: 5
     damage: 0

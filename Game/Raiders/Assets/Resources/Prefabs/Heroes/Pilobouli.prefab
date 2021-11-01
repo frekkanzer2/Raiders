@@ -170,8 +170,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Decimation
     icon: {fileID: 21300000, guid: 8d06db43bdf023244bcb0eaf73ce05a1, type: 3}
-    description: Increases the spell's damage of 48 if the caster has less than 30%
-      of total HP
+    description: Increases the spell's damage of 48 if the caster has less than 50%
+      of total HP and the sacrifice activated
     element: 0
     damage: 48
     lifeSteal: 0

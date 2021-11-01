@@ -104,9 +104,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Protective Glyph
     icon: {fileID: 21300000, guid: 22d70f6ab08442444ad4c58a5d2391e2, type: 3}
-    description: Increases resistances of 20% to himself and each ally up to 3 cells
-      for 3 turns. Inflicts Earth damage on each enemy up to 3 cells each turn, for
-      3 turns
+    description: Increases resistances of 20% to each ally up to 3 cells for 3 turns.
+      Inflicts Earth damage on each enemy up to 3 cells each turn for 3 turns
     element: 5
     damage: 35
     lifeSteal: 0
@@ -115,10 +114,10 @@ MonoBehaviour:
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 5
+    paCost: 7
     pmCost: 0
     maxTimesInTurn: 0
-    executeAfterTurns: 5
+    executeAfterTurns: 6
     effectDuration: 3
     criticalProbability: 0
     hasEffect: 1
@@ -128,9 +127,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Perception Glyph
     icon: {fileID: 21300000, guid: c01fa676acd06d445842d37b99233326, type: 3}
-    description: Each enemy up to 5 cells will not be able to throw critical hits
-      for 3 turns. Inflicts Fire damage to each enemy up to 5 cells each turn, for
-      3 turns
+    description: Inflicts Fire damage and forbid critical hits to each enemy up to
+      5 cells for 3 turns
     element: 1
     damage: 41
     lifeSteal: 0
@@ -152,7 +150,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Torpor
     icon: {fileID: 21300000, guid: 6fe8790a1c09b9d419fa75f6e2ea4311, type: 3}
-    description: Steals Earth bonus damage element of 8% for 3 turns
+    description: 
     element: 0
     damage: 36
     lifeSteal: 0
@@ -161,13 +159,13 @@ MonoBehaviour:
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 3
+    paCost: 4
     pmCost: 0
     maxTimesInTurn: 2
     executeAfterTurns: 0
-    effectDuration: 3
+    effectDuration: 0
     criticalProbability: 5
-    hasEffect: 1
+    hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
     isJumpOrEvocation: 0

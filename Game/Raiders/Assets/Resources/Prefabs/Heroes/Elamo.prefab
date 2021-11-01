@@ -148,7 +148,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Convulsion
     icon: {fileID: 21300000, guid: 01060ee29f1e99549921a87dcb7eb0ef, type: 3}
-    description: Repels the target of 1 cell
+    description: Repels the target of 2 cell
     element: 0
     damage: 26
     lifeSteal: 0
@@ -170,7 +170,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Therapy
     icon: {fileID: 21300000, guid: ca5540b979241f341993ce3bbf598ab6, type: 3}
-    description: Attracts the target of 2 cells
+    description: Attracts the target of 1 cell
     element: 0
     damage: 36
     lifeSteal: 0

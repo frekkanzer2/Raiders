@@ -104,7 +104,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Repulsion Glyph
     icon: {fileID: 21300000, guid: 6759329cf2851014585d4b76ac9fef94, type: 3}
-    description: Repels each adjacent enemy of 5 cells each turn, for 3 turns
+    description: Repels each adjacent enemy of 5 cells for 3 turns
     element: 5
     damage: 0
     lifeSteal: 0
@@ -125,10 +125,10 @@ MonoBehaviour:
     isJumpOrEvocation: 0
   - link: {fileID: 0}
     name: Burning Glyph
-    icon: {fileID: 21300000, guid: 4254d8b945c793046b0c2a83fd6bb5bd, type: 3}
+    icon: {fileID: 21300000, guid: c0d123f907a3b3a44ae812026edde516, type: 3}
     description: Inflicts Fire damage to each enemy up to 4 cells for 3 turns
     element: 1
-    damage: 50
+    damage: 60
     lifeSteal: 0
     minRange: 0
     maxRange: 0
@@ -148,16 +148,16 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Dazzling
     icon: {fileID: 21300000, guid: acfa5b13ce1d8714e872f41a34c4d0f9, type: 3}
-    description: Removes 1 PA to the target
+    description: Removes 2 PM to the target
     element: 0
     damage: 48
     lifeSteal: 0
-    minRange: 1
-    maxRange: 1
+    minRange: 5
+    maxRange: 5
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 4
+    paCost: 7
     pmCost: 0
     maxTimesInTurn: 1
     executeAfterTurns: 0
@@ -170,7 +170,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Fortification
     icon: {fileID: 21300000, guid: fe8d0510ede582548b8c25057a801d9f, type: 3}
-    description: Remove negative resistances from the target for 3 turns
+    description: Gives 40 shield to the target each turn for 3 turns
     element: 5
     damage: 0
     lifeSteal: 0
@@ -182,7 +182,7 @@ MonoBehaviour:
     paCost: 2
     pmCost: 0
     maxTimesInTurn: 0
-    executeAfterTurns: 5
+    executeAfterTurns: 6
     effectDuration: 3
     criticalProbability: 0
     hasEffect: 1

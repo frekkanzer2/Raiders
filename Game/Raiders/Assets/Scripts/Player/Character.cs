@@ -430,10 +430,14 @@ public class Character : MonoBehaviour
     public void setDead() {
         if (isDead) return;
         isDead = true;
+        if (TurnsManager.active.Equals(this))
+            TurnsManager.Instance.OnNextTurnPressed();
         connectedCell.GetComponent<Block>().linkedObject = null;
         connectedCell = null;
         esystem.removeAllEvents();
         stsystem.removeAllSpells();
+        this.hasActivedSacrifice = false;
+        this.connectedSacrifice = null;
         StartCoroutine(dead_disappear());
         Destroy(connectedPreview);
         TurnsManager.Instance.turns.Remove(this);
