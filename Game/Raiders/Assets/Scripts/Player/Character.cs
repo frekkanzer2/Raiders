@@ -229,7 +229,7 @@ public class Character : MonoBehaviour
                                 }
                             resetBufferedCells();
                             if (dest != null) {
-                                followPath = ai_getDestinationPath(TurnsManager.active.connectedCell.GetComponent<Block>(), dest, 500);
+                                followPath = ai_getDestinationPath(TurnsManager.active.connectedCell.GetComponent<Block>(), dest, 800);
                                 actual_pm -= followPath.Count - 1;
                                 followingBlock = followPath[0];
                                 followPath.RemoveAt(0);
@@ -652,7 +652,7 @@ public class Character : MonoBehaviour
         List<Block> toRemove = new List<Block>();
         foreach(Block b in bufferColored) {
             List<Block> path = null;
-            path = ai_getDestinationPath(origin.connectedCell.GetComponent<Block>(), b, 500);
+            path = ai_getDestinationPath(origin.connectedCell.GetComponent<Block>(), b, 800);
             if (path == null) toRemove.Add(b);
             else if (path.Count > origin.actual_pm + 1) toRemove.Add(b);
         }

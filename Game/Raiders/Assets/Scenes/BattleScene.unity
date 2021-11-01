@@ -997,6 +997,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d40dcfc0158623149a197d28209c61c4, type: 3}
   - {fileID: 21300000, guid: b9e232dac5842e34c9fb73251f9b7d55, type: 3}
   - {fileID: 21300000, guid: a0e4cac622faad1408b68580caf899d8, type: 3}
+  - {fileID: 21300000, guid: 1e749f90568dd71429eda9a39012a95f, type: 3}
+  - {fileID: 21300000, guid: 625d00a0df7f3284aa61e65dfde72564, type: 3}
+  - {fileID: 21300000, guid: 336672decad785e4994856161f691e33, type: 3}
+  - {fileID: 21300000, guid: f91a52463dfbdd14081d854d9b6814b8, type: 3}
+  - {fileID: 21300000, guid: f33c160afc804014d99bb2bcc052a2c4, type: 3}
+  - {fileID: 21300000, guid: 068c4cfb01ea9904db68ae2b03a8823f, type: 3}
+  - {fileID: 21300000, guid: 7ce243306278428418a1f9a70298b74c, type: 3}
+  - {fileID: 21300000, guid: 1843ab2371cbfc14e8e251392d54daf6, type: 3}
+  - {fileID: 21300000, guid: bfad291125330d449ac3b14f5e7271b1, type: 3}
+  - {fileID: 21300000, guid: 1b839e9e592f4b54593c41db10e95dd1, type: 3}
+  - {fileID: 21300000, guid: a1b890900c5922c4dbebb57d5632ec2e, type: 3}
   mapContainer: {fileID: 606105194}
   mapFile: {fileID: 4900000, guid: 151aef5894359a442a1e9e19fc8a95c2, type: 3}
   blackScreen: {fileID: 1198904534}
@@ -1034,6 +1045,9 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 151aef5894359a442a1e9e19fc8a95c2, type: 3}
   - {fileID: 4900000, guid: ecfe8b13db7c1424c95e4690946e9654, type: 3}
   - {fileID: 4900000, guid: 5b670ce533322c24ca61681a00ba8604, type: 3}
+  - {fileID: 4900000, guid: ab58e70f908d9c947818c12871dfe262, type: 3}
+  isTestingMap: 1
+  testingMap: {fileID: 4900000, guid: ede209f42d044ab46ab83fa9060cf736, type: 3}
 --- !u!114 &93772481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2717,7 +2731,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.6811523, y: -10.306641}
+  m_AnchoredPosition: {x: 3.6811523, y: -10.306625}
   m_SizeDelta: {x: 75.092, y: 91.2885}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &283928746
@@ -14740,6 +14754,10 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: 13791e19a868aaa4aadede79ab44942d, type: 3}
   - track_name_maiusc: RUINS OF AMAKNA
     music: {fileID: 8300000, guid: 2801b47221dfe1f4da19c9d21de8e670, type: 3}
+  - track_name_maiusc: VILLAGE OF BONTA
+    music: {fileID: 8300000, guid: ce4a01e59f5dcc54082df36c0e35f140, type: 3}
+  - track_name_maiusc: XELORIUM
+    music: {fileID: 8300000, guid: 1f54b64512187c8458ef513ee1445ff8, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0
@@ -19617,9 +19635,9 @@ RectTransform:
   m_Father: {fileID: 1549157016}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 30.400024, y: 99.8}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 30, y: 0}
   m_SizeDelta: {x: 83.7475, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2008320169
@@ -20437,7 +20455,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.6811523, y: -10.306641}
+  m_AnchoredPosition: {x: 3.6811523, y: -10.306625}
   m_SizeDelta: {x: 75.092, y: 91.2885}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2093372207
