@@ -30,7 +30,6 @@ public class Character : MonoBehaviour
     public int actual_pm;
     [HideInInspector]
     public GameObject connectedPreview = null;
-    [HideInInspector]
     public GameObject connectedCell;
     [HideInInspector]
     public int actual_shield = 0;

@@ -206,7 +206,9 @@ public class Spell {
 
     public static void EXECUTE_JUMP(Character caster, Block targetBlock) {
         Debug.Log("Jump for " + caster.name);
-        caster.connectedCell.GetComponent<Block>().linkedObject = null;
+        if (caster.connectedCell.GetComponent<Block>() != null) {
+            caster.connectedCell.GetComponent<Block>().linkedObject = null;
+        }
         caster.connectedCell = targetBlock.gameObject;
         Debug.Log("Connected cell: " + caster.connectedCell.GetComponent<Block>().coordinate.display());
         targetBlock.linkedObject = caster.gameObject;
@@ -286,6 +288,7 @@ public class Spell {
     public static void EXECUTE_VIRUS(Character caster, Spell s, Block targetBlock) {
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         foreach (Character ch in TurnsManager.Instance.turns) {
+            if (ch.isDead) continue;
             if (ch.team == caster.team && ch.name != caster.name) {
                 ch.receiveHeal(calculateDamage(caster, target, s) / 2);
             }
@@ -402,7 +405,8 @@ public class Spell {
         Coordinate targetCoord = targetBlock.coordinate;
         if (casterCoord.row == targetCoord.row && casterCoord.column < targetCoord.column) {
             // jump to the right
-            caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            if (caster.connectedCell.GetComponent<Block>() != null)
+                caster.connectedCell.GetComponent<Block>().linkedObject = null;
             Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row, targetCoord.column + 1));
             if (toJump == null) return;
             if (toJump.linkedObject != null) return;
@@ -412,7 +416,8 @@ public class Spell {
             caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
         } else if (casterCoord.row == targetCoord.row && casterCoord.column > targetCoord.column) {
             // jump to the left
-            caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            if (caster.connectedCell.GetComponent<Block>() != null)
+                caster.connectedCell.GetComponent<Block>().linkedObject = null;
             Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row, targetCoord.column - 1));
             if (toJump == null) return;
             if (toJump.linkedObject != null) return;
@@ -422,7 +427,8 @@ public class Spell {
             caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
         } else if (casterCoord.column == targetCoord.column && casterCoord.row > targetCoord.row) {
             // upper jump
-            caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            if (caster.connectedCell.GetComponent<Block>() != null)
+                caster.connectedCell.GetComponent<Block>().linkedObject = null;
             Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row - 1, targetCoord.column));
             if (toJump == null) return;
             if (toJump.linkedObject != null) return;
@@ -432,7 +438,8 @@ public class Spell {
             caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
         } else if (casterCoord.column == targetCoord.column && casterCoord.row < targetCoord.row) {
             // down jump
-            caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            if (caster.connectedCell.GetComponent<Block>() != null)
+                caster.connectedCell.GetComponent<Block>().linkedObject = null;
             Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row + 1, targetCoord.column));
             if (toJump == null) return;
             if (toJump.linkedObject != null) return;
@@ -568,7 +575,8 @@ public class Spell {
             UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
             int index_chosen = UnityEngine.Random.Range(0, toValuate.Count);
             Block chosen = toValuate[index_chosen];
-            caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            if (caster.connectedCell.GetComponent<Block>() != null)
+                caster.connectedCell.GetComponent<Block>().linkedObject = null;
             caster.connectedCell = chosen.gameObject;
             chosen.linkedObject = caster.gameObject;
             Vector2 newPosition = Coordinate.getPosition(chosen.coordinate);
@@ -727,6 +735,7 @@ public class Spell {
     public static void EXECUTE_TRANSFUSION(Character caster, Spell s) {
         Coordinate a = caster.connectedCell.GetComponent<Block>().coordinate;
         foreach (Character ch in TurnsManager.Instance.turns) {
+            if (ch.isDead) continue;
             if (ch.team == caster.team && ch.name != caster.name) {
                 Coordinate b = ch.connectedCell.GetComponent<Block>().coordinate;
                 int dist_row = Mathf.Abs(a.row - b.row);
@@ -824,6 +833,7 @@ public class Spell {
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         Coordinate a = targetBlock.coordinate;
         foreach (Character c in TurnsManager.Instance.turns) {
+            if (c.isDead) continue;
             if ((c.team != target.team) || (c.team == target.team && c.name != target.name)) {
                 Coordinate b = c.connectedCell.GetComponent<Block>().coordinate;
                 int dist_row = Mathf.Abs(a.row - b.row);
@@ -845,6 +855,7 @@ public class Spell {
         int chosenRandomId = UnityEngine.Random.Range(1, 16); // 1 to 15
         List<RouletteEvent> rouletteEvents = new List<RouletteEvent>();
         foreach (Character ch in TurnsManager.Instance.turns) {
+            if (ch.isDead) continue;
             if (ch.team == caster.team && ch.name != caster.name) {
                 RouletteEvent re = new RouletteEvent("Roulette", ch, s.effectDuration, ParentEvent.Mode.PermanentAndEachTurn, s.icon, chosenRandomId);
                 ch.addEvent(re);
@@ -859,6 +870,7 @@ public class Spell {
         List<Character> lc = TurnsManager.Instance.turns;
         List<Character> allies = new List<Character>();
         foreach(Character c in lc) {
+            if (c.isDead) continue;
             if (c.team == caster.team && c.name != caster.name) {
                 allies.Add(c);
             }
@@ -916,6 +928,7 @@ public class Spell {
 
     public static void EXECUTE_RESTART(Spell s) {
         foreach(Tuple<Character, Block> t in TurnsManager.spawnPositions) {
+            if (t.Item1.isDead) continue;
             EXECUTE_JUMP(t.Item1, t.Item2);
         }
     }
