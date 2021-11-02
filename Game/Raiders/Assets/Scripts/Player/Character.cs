@@ -811,6 +811,10 @@ public class Character : MonoBehaviour
     public Character connectedSacrifice = null;
     [HideInInspector]
     public bool hasActivedSacrifice = false;
+    [HideInInspector]
+    public bool canCritical = true;
+    [HideInInspector]
+    public bool immuneCloseCombat = false;
 
     #endregion
 

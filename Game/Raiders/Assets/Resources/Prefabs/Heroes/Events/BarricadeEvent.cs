@@ -9,11 +9,12 @@ public class BarricadeEvent : ParentEvent
 
     override public void execute() {
         base.execute();
-        connected.decrementPM(1);
+        connected.immuneCloseCombat = true;
     }
 
     override public void restoreCharacter() {
         base.restoreCharacter();
+        connected.immuneCloseCombat = false;
     }
 
 }

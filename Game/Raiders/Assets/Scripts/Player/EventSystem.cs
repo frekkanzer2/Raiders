@@ -32,6 +32,7 @@ public class EventSystem : MonoBehaviour
 
     public void OnStartTurn() {
         foreach(ParentEvent pe in activeEvents) {
+            Debug.LogWarning("Event in list: " + pe.name);
             pe.OnStartTurn();
         }
     }

@@ -192,14 +192,14 @@ MonoBehaviour:
     canUseInEmptyCell: 0
     isJumpOrEvocation: 0
   team: 1
-  hp: 1130
+  hp: 1085
   pa: 7
   pm: 3
   ini: 85
-  res_e: 15
-  res_f: 15
-  res_a: 15
-  res_w: 15
+  res_e: 10
+  res_f: 10
+  res_a: 10
+  res_w: 10
   att_e: 0
   att_f: 0
   att_a: 0
@@ -241,6 +241,8 @@ MonoBehaviour:
   criticShooting: 0
   connectedSacrifice: {fileID: 0}
   hasActivedSacrifice: 0
+  canCritical: 1
+  immuneCloseCombat: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -94,13 +94,17 @@ public class Spell {
         int finalDamage = (damage + (damage * bonus_attack / 100)) - (damage * resistance / 100);
         UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
         int critProb = UnityEngine.Random.Range(1, 101);
-        if (!caster.criticShooting) {
-            if (critProb <= spell.criticalProbability)
-                finalDamage += finalDamage * 25 / 100;
-        } else {
-            if (critProb <= spell.criticalProbability + 14)
-                finalDamage += finalDamage * 25 / 100;
+        if (caster.canCritical) {
+            if (!caster.criticShooting) {
+                if (critProb <= spell.criticalProbability)
+                    finalDamage += finalDamage * 25 / 100;
+            } else {
+                if (critProb <= spell.criticalProbability + 14)
+                    finalDamage += finalDamage * 25 / 100;
+            }
         }
+        if (ut_isNearOf(caster, target, 3) && target.immuneCloseCombat)
+            finalDamage = 0;
         return finalDamage;
     }
 
@@ -203,6 +207,9 @@ public class Spell {
         else if (spell.name == "Lightness") EXECUTE_LIGHTNESS(caster, spell);
         else if (spell.name == "Puddle Glyph") EXECUTE_PUDDLE_GLYPH(caster, spell);
         else if (spell.name == "Aggressive Glyph") EXECUTE_AGGRESSIVE_GLYPH(caster, spell);
+        else if (spell.name == "Protective Glyph") EXECUTE_PROTECTIVE_GLYPH(caster, spell);
+        else if (spell.name == "Perception Glyph") EXECUTE_PERCEPTION_GLYPH(caster, spell);
+        else if (spell.name == "Barricade") EXECUTE_BARRICADE(targetBlock, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -332,7 +339,7 @@ public class Spell {
         Coordinate targetCoord = targetBlock.coordinate;
         if (casterCoord.column == targetCoord.column || casterCoord.row == targetCoord.row) {
             Character target = targetBlock.linkedObject.GetComponent<Character>();
-            target.addEvent(new BarricadeEvent("Barricade Shot", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+            target.addEvent(new BarricadeShotEvent("Barricade Shot", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
         }
     }
 
@@ -738,6 +745,31 @@ public class Spell {
                 } else c.addEvent(new LightnessEvent("Lightness", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
             }
         }
+    }
+
+    public static void EXECUTE_PROTECTIVE_GLYPH(Character caster, Spell s) {
+        foreach(Character c in ut_getAllies(caster))
+            if (ut_isNearOf(c, caster, 3)) {
+                ProtectiveGlyphEvent pg = new ProtectiveGlyphEvent("Protective Glyph", c, s.effectDuration, ParentEvent.Mode.Permanent, s.icon, 0, caster, s);
+                c.addEvent(pg);
+                pg.useIstantanely();
+            }
+        foreach (Character c in ut_getEnemies(caster))
+            if (ut_isNearOf(c, caster, 3))
+                c.addEvent(new ProtectiveGlyphEvent("Protective Glyph", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, 1, caster, s));
+    }
+
+    public static void EXECUTE_PERCEPTION_GLYPH(Character caster, Spell s) {
+        foreach (Character c in ut_getEnemies(caster))
+            if (ut_isNearOf(c, caster, 5))
+                c.addEvent(new PerceptionGlyphEvent("Perception Glyph", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, caster, s));
+    }
+
+    public static void EXECUTE_BARRICADE(Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        BarricadeEvent be = new BarricadeEvent("Barricade", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        target.addEvent(be);
+        be.useIstantanely();
     }
 
     #endregion
