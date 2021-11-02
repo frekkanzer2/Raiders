@@ -107,7 +107,7 @@ MonoBehaviour:
     description: Increases resistances of 20% to each ally up to 3 cells for 3 turns.
       Inflicts Earth damage on each enemy up to 3 cells each turn for 3 turns
     element: 5
-    damage: 35
+    damage: 24
     lifeSteal: 0
     minRange: 0
     maxRange: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
     description: Inflicts Fire damage and forbid critical hits to each enemy up to
       5 cells for 3 turns
     element: 1
-    damage: 41
+    damage: 20
     lifeSteal: 0
     minRange: 0
     maxRange: 0

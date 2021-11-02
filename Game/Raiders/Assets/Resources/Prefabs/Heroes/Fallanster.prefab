@@ -128,7 +128,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: c0d123f907a3b3a44ae812026edde516, type: 3}
     description: Inflicts Fire damage to each enemy up to 4 cells for 3 turns
     element: 1
-    damage: 60
+    damage: 40
     lifeSteal: 0
     minRange: 0
     maxRange: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: acfa5b13ce1d8714e872f41a34c4d0f9, type: 3}
     description: Removes 2 PM to the target
     element: 0
-    damage: 48
+    damage: 30
     lifeSteal: 0
     minRange: 5
     maxRange: 5

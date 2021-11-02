@@ -107,7 +107,7 @@ MonoBehaviour:
     description: Inflict Water damage each turn and removes 2 PM to each enemy up
       to 4 cells for 3 turns
     element: 3
-    damage: 34
+    damage: 28
     lifeSteal: 0
     minRange: 0
     maxRange: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
     description: Inflict Earth damage each turn and removes 1 PA to each enemy up
       to 3 cells for 3 turns
     element: 0
-    damage: 28
+    damage: 20
     lifeSteal: 0
     minRange: 0
     maxRange: 0
