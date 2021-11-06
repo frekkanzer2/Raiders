@@ -20,7 +20,7 @@ public class Coordinate {
         return (row_based + col_based) + Map.Instance.getPositionOfParent();
     }
     public static int getBlockZindex(Coordinate c) {
-        return c.row + (c.column * -1);
+        return c.row + (c.column * -1) -10000;
     }
 
     public bool equalsTo(Coordinate c) {

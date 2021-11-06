@@ -265,7 +265,7 @@ public class Character : MonoBehaviour
 
     public void setZIndex(Block toRegolate) {
         if (isDead) return;
-        this.GetComponent<SpriteRenderer>().sortingOrder = Coordinate.getBlockZindex(toRegolate.coordinate) + 10;
+        this.GetComponent<SpriteRenderer>().sortingOrder = Coordinate.getBlockZindex(toRegolate.coordinate) + 5000;
     }
 
     public void turnPassed() {

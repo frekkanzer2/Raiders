@@ -29,8 +29,10 @@ public class PreparationManager : MonoBehaviour
     public Sprite yellowButton;
     public GameObject btnAlpha;
     public GameObject btnBeta;
+    public GameObject prefab_BlueStand;
+    public GameObject prefab_RedStand;
 
-    // int => team; Character => connected generated character; CharacterInfo => connected info; CellHeroChooser => connected cell chooser button
+    // int => team; Character => connected generated character; CharacterInfo => connected info; CellHeroChooser => connected cell chooser button; GameObject => hero gameobject
     private List<Tuple<int, Character, CharacterInfo, CellHeroChooser, GameObject>> registeredCells = new List<Tuple<int, Character, CharacterInfo, CellHeroChooser, GameObject>>();
 
     [HideInInspector]
@@ -151,6 +153,17 @@ public class PreparationManager : MonoBehaviour
         btnBeta.SetActive(false);
         yield return new WaitForSeconds(1);
         TurnsManager tm = GetComponent<TurnsManager>();
+        // ADD HERE STANDS
+        foreach(Tuple<int, Character, CharacterInfo, CellHeroChooser, GameObject> t in registeredCells) {
+            GameObject heroGo = t.Item5;
+            int team = t.Item1;
+            GameObject stand = null;
+            if (team == 1)
+                stand = Instantiate(prefab_BlueStand);
+            else
+                stand = Instantiate(prefab_RedStand);
+            stand.transform.SetParent(heroGo.transform);
+        }
         tm.OnStartGame();
     }
 

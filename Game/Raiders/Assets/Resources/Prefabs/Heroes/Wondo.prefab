@@ -240,6 +240,8 @@ MonoBehaviour:
   criticShooting: 0
   connectedSacrifice: {fileID: 0}
   hasActivedSacrifice: 0
+  canCritical: 1
+  immuneCloseCombat: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

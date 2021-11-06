@@ -1237,6 +1237,8 @@ MonoBehaviour:
   yellowButton: {fileID: 21300000, guid: 804461bef59b141dba258fc997c8ca15, type: 3}
   btnAlpha: {fileID: 555795007}
   btnBeta: {fileID: 1964594708}
+  prefab_BlueStand: {fileID: 7342986293604104102, guid: f494ff320655fc74ea88b86cbc32d120, type: 3}
+  prefab_RedStand: {fileID: 7342986293604104102, guid: 6542b42a738a6d74baa3a2933e4b35e3, type: 3}
 --- !u!1 &135470372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2740,7 +2742,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.6811523, y: -10.306641}
+  m_AnchoredPosition: {x: 3.6811523, y: -10.306625}
   m_SizeDelta: {x: 75.092, y: 91.2885}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &283928746
@@ -15411,7 +15413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1563470543
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20466,7 +20468,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.6811523, y: -10.306641}
+  m_AnchoredPosition: {x: 3.6811523, y: -10.306625}
   m_SizeDelta: {x: 75.092, y: 91.2885}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2093372207
