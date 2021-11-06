@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,9 +18,17 @@ public class SpellPopup : MonoBehaviour
     public GameObject spellCC;
     public GameObject spellUT;
     public GameObject spellOverObstacles;
+    public GameObject spellRecastTurns;
     public GameObject spellEffect;
 
     public void OnSpellPressed(Spell s) {
+        if (s.executeAfterTurns > 0) {
+            spellOverObstacles.transform.parent.gameObject.SetActive(false);
+            spellRecastTurns.transform.parent.gameObject.SetActive(true);
+        } else {
+            spellOverObstacles.transform.parent.gameObject.SetActive(true);
+            spellRecastTurns.transform.parent.gameObject.SetActive(false);
+        }
         spellName.GetComponent<TextMeshProUGUI>().text = s.name;
         spellIcon.GetComponent<Image>().sprite = s.icon;
         spellReqLife.GetComponent<TextMeshProUGUI>().text = ""+s.hpCost;
@@ -29,8 +37,14 @@ public class SpellPopup : MonoBehaviour
         spellReqPO.GetComponent<TextMeshProUGUI>().text = s.minRange+"-"+s.maxRange;
         spellDMG.GetComponent<TextMeshProUGUI>().text = "" + s.damage;
         spellCC.GetComponent<TextMeshProUGUI>().text = "" + s.criticalProbability+"%";
-        spellUT.GetComponent<TextMeshProUGUI>().text = "" + s.maxTimesInTurn;
-        spellEffect.GetComponent<TextMeshProUGUI>().text = s.description;
+	    spellUT.GetComponent<TextMeshProUGUI>().text = "" + s.maxTimesInTurn;
+	    spellRecastTurns.GetComponent<TextMeshProUGUI>().text = "" + s.executeAfterTurns + " turns";
+	    if (s.effectDuration >= 1 && s.name != "Haziness" && s.name != "Gear" && s.name != "Rewind" && s.name != "Heads or Tails" && s.name != "All or Nothing") {
+	    	string ph = "";
+	    	if (s.effectDuration == 1) ph = " for 1 turn";
+	    	else ph = " for " + s.effectDuration + " turns";
+		    spellEffect.GetComponent<TextMeshProUGUI>().text = s.description + ph;
+	    } else spellEffect.GetComponent<TextMeshProUGUI>().text = s.description;
         if (s.element == Spell.Element.Other) {
             spellType.GetComponent<TextMeshProUGUI>().text = "SKILL SPELL";
             spellType.GetComponent<TextMeshProUGUI>().color = new Color(1, 158f/255f, 0, 1);
