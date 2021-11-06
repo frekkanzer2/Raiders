@@ -210,6 +210,10 @@ public class Spell {
         else if (spell.name == "Protective Glyph") EXECUTE_PROTECTIVE_GLYPH(caster, spell);
         else if (spell.name == "Perception Glyph") EXECUTE_PERCEPTION_GLYPH(caster, spell);
         else if (spell.name == "Barricade") EXECUTE_BARRICADE(targetBlock, spell);
+        else if (spell.name == "Fortification") EXECUTE_FORTIFICATION(targetBlock, spell);
+        else if (spell.name == "Burning Glyph") EXECUTE_BURNING_GLYPH(caster, spell);
+        else if (spell.name == "Repulsion Glyph") EXECUTE_REPULSION_GLYPH(caster, spell);
+        else if (spell.name == "Dazzling") EXECUTE_DAZZLING(targetBlock, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -633,22 +637,9 @@ public class Spell {
     public static void EXECUTE_CAPERING(Character caster, Block targetBlock, Spell s) {
         EXECUTE_JUMP(caster, targetBlock);
         Coordinate c = targetBlock.coordinate;
-        Block adjacent = Map.Instance.getBlock(new Coordinate(c.row, c.column + 1));
-        if (adjacent != null)
-            if (adjacent.linkedObject != null)
-                adjacent.linkedObject.GetComponent<Character>().inflictDamage(calculateDamage(caster, adjacent.linkedObject.GetComponent<Character>(), s));
-        adjacent = Map.Instance.getBlock(new Coordinate(c.row, c.column - 1));
-        if (adjacent != null)
-            if (adjacent.linkedObject != null)
-                adjacent.linkedObject.GetComponent<Character>().inflictDamage(calculateDamage(caster, adjacent.linkedObject.GetComponent<Character>(), s));
-        adjacent = Map.Instance.getBlock(new Coordinate(c.row + 1, c.column));
-        if (adjacent != null)
-            if (adjacent.linkedObject != null)
-                adjacent.linkedObject.GetComponent<Character>().inflictDamage(calculateDamage(caster, adjacent.linkedObject.GetComponent<Character>(), s));
-        adjacent = Map.Instance.getBlock(new Coordinate(c.row - 1, c.column));
-        if (adjacent != null)
-            if (adjacent.linkedObject != null)
-                adjacent.linkedObject.GetComponent<Character>().inflictDamage(calculateDamage(caster, adjacent.linkedObject.GetComponent<Character>(), s));
+        List<Character> adj_heroes = ut_getAdjacentHeroes(c);
+        foreach(Character adj in adj_heroes)
+            adj.inflictDamage(calculateDamage(caster, adj, s));
     }
 
     public static void SWITCH_COWARD_MASK(Character caster, Spell s) {
@@ -719,19 +710,15 @@ public class Spell {
 
     public static void EXECUTE_PUDDLE_GLYPH(Character caster, Spell s) {
         foreach(Character c in ut_getEnemies(caster)) {
-            if (ut_isNearOf(caster, c, 4)) {
-                int damage = calculateDamage(caster, c, s);
+            if (ut_isNearOf(caster, c, 4))
                 c.addEvent(new PuddleGlyphEvent("Puddle Glyph", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, caster, s));
-            }
         }
     }
 
     public static void EXECUTE_AGGRESSIVE_GLYPH(Character caster, Spell s) {
         foreach (Character c in ut_getEnemies(caster)) {
-            if (ut_isNearOf(caster, c, 3)) {
-                int damage = calculateDamage(caster, c, s);
+            if (ut_isNearOf(caster, c, 3))
                 c.addEvent(new AggressiveGlyphEvent("Aggressive Glyph", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, caster, s));
-            }
         }
     }
 
@@ -770,6 +757,33 @@ public class Spell {
         BarricadeEvent be = new BarricadeEvent("Barricade", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
         target.addEvent(be);
         be.useIstantanely();
+    }
+
+    public static void EXECUTE_REPULSION_GLYPH(Character caster, Spell s) {
+        caster.addEvent(new RepulsionGlyphEvent("Repulsion Glyph", caster, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_BURNING_GLYPH(Character caster, Spell s) {
+        foreach (Character c in ut_getEnemies(caster)) {
+            if (ut_isNearOf(caster, c, 4))
+                c.addEvent(new BurningGlyphEvent("Burning Glyph", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, caster, s));
+        }
+    }
+
+    public static void EXECUTE_DAZZLING(Block targetBlock, Spell s) {
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+        int prob = UnityEngine.Random.Range(1, 101);
+        Debug.Log("Spell " + s.name + " prob: " + prob);
+        if (prob <= 15) {
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            if (target != null)
+                target.addEvent(new DazzlingEvent("Dazzling", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
+        }
+    }
+
+    public static void EXECUTE_FORTIFICATION(Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new FortificationEvent("Fortification", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
 
     #endregion
@@ -850,7 +864,7 @@ public class Spell {
         List<Character> toReturn = new List<Character>();
         foreach (Character ch in TurnsManager.Instance.turns) {
             if (ch.isDead) continue;
-            if (ch.team != caster.team) {
+            if (ch.isEnemyOf(caster)) {
                 toReturn.Add(ch);
             }
         }
@@ -1002,6 +1016,27 @@ public class Spell {
         int dist_row = Mathf.Abs(a.row - b.row);
         int dist_col = Mathf.Abs(a.column - b.column);
         return (dist_row + dist_col <= cells);
+    }
+
+    public static List<Character> ut_getAdjacentHeroes(Coordinate c) {
+        Block adjacent = Map.Instance.getBlock(new Coordinate(c.row, c.column + 1));
+        List<Character> toReturn = new List<Character>();
+        if (adjacent != null)
+            if (adjacent.linkedObject != null)
+                toReturn.Add(adjacent.linkedObject.GetComponent<Character>());
+        adjacent = Map.Instance.getBlock(new Coordinate(c.row, c.column - 1));
+        if (adjacent != null)
+            if (adjacent.linkedObject != null)
+                toReturn.Add(adjacent.linkedObject.GetComponent<Character>());
+        adjacent = Map.Instance.getBlock(new Coordinate(c.row + 1, c.column));
+        if (adjacent != null)
+            if (adjacent.linkedObject != null)
+                toReturn.Add(adjacent.linkedObject.GetComponent<Character>());
+        adjacent = Map.Instance.getBlock(new Coordinate(c.row - 1, c.column));
+        if (adjacent != null)
+            if (adjacent.linkedObject != null)
+                toReturn.Add(adjacent.linkedObject.GetComponent<Character>());
+        return toReturn;
     }
 
     #endregion

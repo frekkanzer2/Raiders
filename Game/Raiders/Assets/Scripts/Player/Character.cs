@@ -316,6 +316,10 @@ public class Character : MonoBehaviour
         return this.name == c.name && this.team == c.team;
     }
 
+    public bool isEnemyOf(Character c) {
+        return (c.team != this.team);
+    }
+
     #region FIGHT FUNCTIONS
 
     public void setupSOS(GameObject prefabToSpawn) {
