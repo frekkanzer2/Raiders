@@ -214,6 +214,15 @@ public class Spell {
         else if (spell.name == "Burning Glyph") EXECUTE_BURNING_GLYPH(caster, spell);
         else if (spell.name == "Repulsion Glyph") EXECUTE_REPULSION_GLYPH(caster, spell);
         else if (spell.name == "Dazzling") EXECUTE_DAZZLING(targetBlock, spell);
+        else if (spell.name == "Bontao") EXECUTE_BONTAO(caster, spell);
+        else if (spell.name == "Titanic Hit") EXECUTE_TITANIC_HIT(caster, targetBlock);
+        else if (spell.name == "Telluric Wave") EXECUTE_TELLURIC_WAVE(caster, spell);
+        else if (spell.name == "Polarity") EXECUTE_POLARITY(caster, spell);
+        else if (spell.name == "Stratega") EXECUTE_STRATEGA(caster, targetBlock, spell);
+        else if (spell.name == "Overcharge") EXECUTE_OVERCHARGE(caster, spell);
+        else if (spell.name == "Striking Meteor") EXECUTE_STRIKING_METEOR(caster, targetBlock, spell);
+        else if (spell.name == "Aerial Wave") EXECUTE_AERIAL_WAVE(caster, targetBlock);
+
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -786,6 +795,63 @@ public class Spell {
         target.addEvent(new FortificationEvent("Fortification", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
 
+    public static void EXECUTE_BONTAO(Character caster, Spell s) {
+        foreach (Character c in ut_getAllies(caster)) {
+            c.receiveHeal(s.damage);
+        }
+    }
+
+    public static void EXECUTE_TITANIC_HIT(Character caster, Block targetBlock) {
+        ut_comesCloser(caster, targetBlock, 4);
+    }
+
+    public static void EXECUTE_TELLURIC_WAVE(Character caster, Spell s) {
+        int remaining_pa = caster.getActualPA();
+        if (remaining_pa > 0)
+            caster.decrementPA(remaining_pa);
+        int bonus_damage = remaining_pa * 15;
+        foreach (Character c in ut_getEnemies(caster)) {
+            if (ut_isNearOf(caster, c, 5)) {
+                int damage = Spell.calculateDamage(caster, c, s);
+                damage += bonus_damage;
+                c.inflictDamage(damage);
+            }
+        }
+    }
+
+    public static void EXECUTE_POLARITY(Character caster, Spell s) {
+        PolarityEvent pe = new PolarityEvent("Polarity", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        caster.addEvent(pe);
+        pe.useIstantanely();
+    }
+
+    public static void EXECUTE_STRATEGA(Character caster, Block targetBlock, Spell s) {
+        ut_repelsCaster(caster, targetBlock, 1);
+        targetBlock.linkedObject.GetComponent<Character>().addEvent(
+            new StrategaEvent("Stratega", targetBlock.linkedObject.GetComponent<Character>(), s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon)
+        );
+    }
+
+    public static void EXECUTE_OVERCHARGE(Character caster, Spell s) {
+        int remaining_pa = caster.getActualPA();
+        if (remaining_pa > 0)
+            caster.decrementPA(remaining_pa);
+        int bonus_shield = remaining_pa * 40;
+        caster.receiveShield(s.damage + bonus_shield);
+    }
+
+    public static void EXECUTE_STRIKING_METEOR(Character caster, Block targetBlock, Spell s) {
+        EXECUTE_JUMP(caster, targetBlock);
+        foreach(Character enemy in ut_getEnemies(caster))
+            if (ut_isNearOf(caster, enemy, 3))
+                enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
+    }
+
+    public static void EXECUTE_AERIAL_WAVE(Character caster, Block targetBlock) {
+        ut_repelsCaster(caster, targetBlock, 3);
+        ut_repels(caster, targetBlock, 3);
+    }
+
     #endregion
 
     #region EVENT BONUSES
@@ -910,6 +976,47 @@ public class Spell {
         }
         if (path.Count > 0)
             targetBlock.linkedObject.GetComponent<Character>().setPath(path); // move the enemy
+    }
+
+    public static void ut_repelsCaster(Character caster, Block targetBlock, int numberOfCellsToMove) {
+        List<Block> path = new List<Block>();
+        Coordinate casterPosition = caster.connectedCell.GetComponent<Block>().coordinate;
+        Coordinate targetPosition = targetBlock.coordinate;
+        if (targetPosition.row > casterPosition.row) {
+            // target is down
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(casterPosition.row - i, casterPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.row < casterPosition.row) {
+            // target is up
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(casterPosition.row + i, casterPosition.column));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column > casterPosition.column) {
+            // target is on the right
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(casterPosition.row, casterPosition.column - i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        } else if (targetPosition.column < casterPosition.column) {
+            // target is on the left
+            for (int i = 1; i <= numberOfCellsToMove; i++) {
+                Block pointed = Map.Instance.getBlock(new Coordinate(casterPosition.row, casterPosition.column + i));
+                if (pointed == null) break;
+                if (pointed.linkedObject == null) path.Add(pointed);
+                else break;
+            }
+        }
+        if (path.Count > 0)
+            caster.setPath(path); // move the caster
     }
 
     public static void ut_attracts(Character caster, Block targetBlock, int numberOfCellsToMove) {

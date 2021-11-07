@@ -1167,6 +1167,9 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: c81846c30beb79244b2b9be437d4db18, type: 3}
   - {fileID: 557098361630938699, guid: 7d5f883583704754881136cca1da816c, type: 3}
   - {fileID: 557098361630938699, guid: 5d8c30c4014c2254f8f69dbed93e378e, type: 3}
+  - {fileID: 557098361630938699, guid: 4118996f01b644949ad00664bee35d29, type: 3}
+  - {fileID: 557098361630938699, guid: 38e15a2fa9d63c04ead7861314319a24, type: 3}
+  - {fileID: 557098361630938699, guid: c1ccd2037394c6048ba61c0855cc8ec5, type: 3}
   heroesPrefabs_team2:
   - {fileID: 557098361630938699, guid: 3968d5a638ef5994cad63e85612468ac, type: 3}
   - {fileID: 557098361630938699, guid: 2ccb042d5c633dc48854a46bd4a9972e, type: 3}
@@ -1192,6 +1195,9 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: c81846c30beb79244b2b9be437d4db18, type: 3}
   - {fileID: 557098361630938699, guid: 7d5f883583704754881136cca1da816c, type: 3}
   - {fileID: 557098361630938699, guid: 5d8c30c4014c2254f8f69dbed93e378e, type: 3}
+  - {fileID: 557098361630938699, guid: 4118996f01b644949ad00664bee35d29, type: 3}
+  - {fileID: 557098361630938699, guid: 38e15a2fa9d63c04ead7861314319a24, type: 3}
+  - {fileID: 557098361630938699, guid: c1ccd2037394c6048ba61c0855cc8ec5, type: 3}
 --- !u!114 &93772482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1293,6 +1299,15 @@ MonoBehaviour:
   - characterName: Fallanster
     characterFullSprite: {fileID: 21300000, guid: fbe754b45eb221444aeb371a67ac411b, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 0b1de7f6e8d41de40a4b72996cf1c8e1, type: 3}
+  - characterName: Jahash
+    characterFullSprite: {fileID: 21300000, guid: 75662bc42596e7d47906949b4b73fdf4, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 46a404671a9c7f44aa4cebe2ca93db8f, type: 3}
+  - characterName: Bakara
+    characterFullSprite: {fileID: 21300000, guid: 2c5b6fca4ca1e334198963b2363f03ce, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 74964f46005430345bdcc9a2bbb9d542, type: 3}
+  - characterName: Julith
+    characterFullSprite: {fileID: 21300000, guid: 4a5be25132610fe4abd83511fa674da3, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 840ee6baa190f8f4992217ae5cfc608f, type: 3}
 --- !u!114 &93772484
 MonoBehaviour:
   m_ObjectHideFlags: 0
