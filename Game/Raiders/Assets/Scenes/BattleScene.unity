@@ -1170,6 +1170,9 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: 4118996f01b644949ad00664bee35d29, type: 3}
   - {fileID: 557098361630938699, guid: 38e15a2fa9d63c04ead7861314319a24, type: 3}
   - {fileID: 557098361630938699, guid: c1ccd2037394c6048ba61c0855cc8ec5, type: 3}
+  - {fileID: 557098361630938699, guid: a4ee4d384bad81e44a4b295b04577b5c, type: 3}
+  - {fileID: 557098361630938699, guid: 947e0dca61370164695fe8e700f969c5, type: 3}
+  - {fileID: 557098361630938699, guid: c8082e1e5596b524a820448a5adeb698, type: 3}
   heroesPrefabs_team2:
   - {fileID: 557098361630938699, guid: 3968d5a638ef5994cad63e85612468ac, type: 3}
   - {fileID: 557098361630938699, guid: 2ccb042d5c633dc48854a46bd4a9972e, type: 3}
@@ -1198,6 +1201,9 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: 4118996f01b644949ad00664bee35d29, type: 3}
   - {fileID: 557098361630938699, guid: 38e15a2fa9d63c04ead7861314319a24, type: 3}
   - {fileID: 557098361630938699, guid: c1ccd2037394c6048ba61c0855cc8ec5, type: 3}
+  - {fileID: 557098361630938699, guid: a4ee4d384bad81e44a4b295b04577b5c, type: 3}
+  - {fileID: 557098361630938699, guid: 947e0dca61370164695fe8e700f969c5, type: 3}
+  - {fileID: 557098361630938699, guid: c8082e1e5596b524a820448a5adeb698, type: 3}
 --- !u!114 &93772482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1308,6 +1314,15 @@ MonoBehaviour:
   - characterName: Julith
     characterFullSprite: {fileID: 21300000, guid: 4a5be25132610fe4abd83511fa674da3, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 840ee6baa190f8f4992217ae5cfc608f, type: 3}
+  - characterName: Beatrix
+    characterFullSprite: {fileID: 21300000, guid: b45ff5cae87c2784abea312fd80a55a9, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 7c5a04ff4ddfb5c4988aef4d9010c682, type: 3}
+  - characterName: Radoyan
+    characterFullSprite: {fileID: 21300000, guid: 5e9523f308d2b634483b317977a7e13c, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 558716cf00dfd5b4c83ed16652bd2c38, type: 3}
+  - characterName: Saskata
+    characterFullSprite: {fileID: 21300000, guid: 99905e4065d91854aa1dad092b1f5070, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 04d7cb01905f3ad40901a63d3369339c, type: 3}
 --- !u!114 &93772484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2970,7 +2985,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.6811523, y: -10.306641}
+  m_AnchoredPosition: {x: 3.6811523, y: -10.306625}
   m_SizeDelta: {x: 75.092, y: 91.2885}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &283928746
@@ -20697,7 +20712,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.6811523, y: -10.306641}
+  m_AnchoredPosition: {x: 3.6811523, y: -10.306625}
   m_SizeDelta: {x: 75.092, y: 91.2885}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2093372207

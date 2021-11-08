@@ -170,7 +170,7 @@ public class Spell {
         else if (spell.name == "Convulsion") EXECUTE_CONVULSION(caster, targetBlock);
         else if (spell.name == "Therapy") EXECUTE_THERAPY(caster, targetBlock);
         else if (spell.name == "Odyssey") EXECUTE_ODYSSEY(caster);
-        else if (spell.name == "Transposition" || spell.name == "Assault") EXECUTE_TRANSPOSITION(caster, targetBlock);
+        else if (spell.name == "Transposition" || spell.name == "Assault" || spell.name == "Lifting Word") EXECUTE_TRANSPOSITION(caster, targetBlock);
         else if (spell.name == "Attraction") EXECUTE_ATTRACTION(caster, targetBlock);
         else if (spell.name == "Desolation") EXECUTE_DESOLATION(targetBlock, spell);
         else if (spell.name == "Mutilation") EXECUTE_MUTILATION(caster, spell);
@@ -222,6 +222,12 @@ public class Spell {
         else if (spell.name == "Overcharge") EXECUTE_OVERCHARGE(caster, spell);
         else if (spell.name == "Striking Meteor") EXECUTE_STRIKING_METEOR(caster, targetBlock, spell);
         else if (spell.name == "Aerial Wave") EXECUTE_AERIAL_WAVE(caster, targetBlock);
+        else if (spell.name == "Selective Word") EXECUTE_SELECTIVE_WORD(caster, targetBlock);
+        else if (spell.name == "Striking Word") EXECUTE_STRIKING_WORD(caster, targetBlock, spell);
+        else if (spell.name == "Recovery Word") EXECUTE_RECOVERY_WORD(targetBlock, spell);
+        else if (spell.name == "Preventing Word") EXECUTE_PREVENTING_WORD(caster, targetBlock, spell);
+        else if (spell.name == "Agonising Word") EXECUTE_AGONISING_WORD(caster, targetBlock);
+        else if (spell.name == "Furious Word") EXECUTE_FURIOUS_WORD(caster, targetBlock, spell);
 
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -806,10 +812,10 @@ public class Spell {
     }
 
     public static void EXECUTE_TELLURIC_WAVE(Character caster, Spell s) {
-        int remaining_pa = caster.getActualPA();
-        if (remaining_pa > 0)
-            caster.decrementPA(remaining_pa);
-        int bonus_damage = remaining_pa * 15;
+        int remaining_pm = caster.getActualPM();
+        if (remaining_pm > 0)
+            caster.decrementPM(remaining_pm);
+        int bonus_damage = remaining_pm * 15;
         foreach (Character c in ut_getEnemies(caster)) {
             if (ut_isNearOf(caster, c, 5)) {
                 int damage = Spell.calculateDamage(caster, c, s);
@@ -850,6 +856,48 @@ public class Spell {
     public static void EXECUTE_AERIAL_WAVE(Character caster, Block targetBlock) {
         ut_repelsCaster(caster, targetBlock, 3);
         ut_repels(caster, targetBlock, 3);
+    }
+
+    public static void EXECUTE_SELECTIVE_WORD(Character caster, Block targetBlock) {
+        List<Character> heroes = ut_getAdjacentHeroes(targetBlock.coordinate);
+        foreach (Character c in heroes)
+            if (!c.isEnemyOf(caster))
+                c.receiveHeal(30);
+    }
+
+    public static void EXECUTE_STRIKING_WORD(Character caster, Block targetBlock, Spell s) {
+        foreach (Character ally in ut_getAllies(caster))
+            if (ut_isNearOf(ally, targetBlock.linkedObject.GetComponent<Character>(), 3))
+                ally.addEvent(new StrikingWordEvent("Striking Word", ally, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_RECOVERY_WORD(Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new RecoveryWordEvent("Recovery Word", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_PREVENTING_WORD(Character caster, Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        PreventingWordEvent pw = new PreventingWordEvent("Preventing Word", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        target.addEvent(pw);
+        if (target.Equals(caster)) pw.useIstantanely();
+    }
+
+    public static void EXECUTE_AGONISING_WORD(Character caster, Block targetBlock) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        List<Character> adjs = ut_getAdjacentHeroes(targetBlock.coordinate);
+        foreach(Character c in adjs) {
+            c.inflictDamage(10);
+            ut_repels(target, c.connectedCell.GetComponent<Block>(), 1);
+        }
+    }
+
+    public static void EXECUTE_FURIOUS_WORD(Character caster, Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new FuriousWordEvent("Furious Word", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
+        List<Character> adjs = ut_getAdjacentHeroes(targetBlock.coordinate);
+        foreach (Character c in adjs)
+            c.inflictDamage(100);
     }
 
     #endregion

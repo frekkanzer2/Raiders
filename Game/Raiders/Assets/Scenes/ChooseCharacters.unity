@@ -1661,6 +1661,15 @@ MonoBehaviour:
   - characterName: Julith
     characterFullSprite: {fileID: 21300000, guid: 4a5be25132610fe4abd83511fa674da3, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 840ee6baa190f8f4992217ae5cfc608f, type: 3}
+  - characterName: Beatrix
+    characterFullSprite: {fileID: 21300000, guid: b45ff5cae87c2784abea312fd80a55a9, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 7c5a04ff4ddfb5c4988aef4d9010c682, type: 3}
+  - characterName: Radoyan
+    characterFullSprite: {fileID: 21300000, guid: 5e9523f308d2b634483b317977a7e13c, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 558716cf00dfd5b4c83ed16652bd2c38, type: 3}
+  - characterName: Saskata
+    characterFullSprite: {fileID: 21300000, guid: 99905e4065d91854aa1dad092b1f5070, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 04d7cb01905f3ad40901a63d3369339c, type: 3}
 --- !u!114 &1295197767
 MonoBehaviour:
   m_ObjectHideFlags: 0

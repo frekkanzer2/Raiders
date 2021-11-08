@@ -150,7 +150,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 517721fcfbe740142b940415be92ca6f, type: 3}
     description: Caster comes close of 4 cells
     element: 1
-    damage: 42
+    damage: 52
     lifeSteal: 0
     minRange: 5
     maxRange: 5
@@ -171,7 +171,7 @@ MonoBehaviour:
     name: Telluric Wave
     icon: {fileID: 21300000, guid: 00a7cd722cc822749a7aab5e5646115b, type: 3}
     description: Inflict Earth damage to each enemy up to 5 cells. The caster uses
-      all remaining PA to deal bonus damage
+      all remaining PM to deal bonus damage
     element: 0
     damage: 10
     lifeSteal: 0

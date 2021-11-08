@@ -129,7 +129,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 4a6f7a8dd3ec2e340bddd7a69b87443a, type: 3}
     description: 'Inflicts Fire damage '
     element: 1
-    damage: 28
+    damage: 32
     lifeSteal: 0
     minRange: 3
     maxRange: 7
@@ -191,7 +191,7 @@ MonoBehaviour:
     canUseInEmptyCell: 0
     isJumpOrEvocation: 0
   team: 1
-  hp: 760
+  hp: 920
   pa: 7
   pm: 3
   ini: 70

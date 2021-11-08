@@ -129,7 +129,7 @@ MonoBehaviour:
     description: Teleports to the targeted cell. Inflict Earth damage to each enemy
       up to 3 cells from the destination cell
     element: 0
-    damage: 34
+    damage: 37
     lifeSteal: 0
     minRange: 5
     maxRange: 7
@@ -137,9 +137,9 @@ MonoBehaviour:
     overObstacles: 1
     hpCost: 0
     paCost: 4
-    pmCost: 3
+    pmCost: 2
     maxTimesInTurn: 1
-    executeAfterTurns: 4
+    executeAfterTurns: 2
     effectDuration: 0
     criticalProbability: 15
     hasEffect: 1
@@ -151,7 +151,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 63cc2bc2c1b51314da828369d25906cb, type: 3}
     description: Inflicts Air damage
     element: 2
-    damage: 40
+    damage: 42
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -183,7 +183,7 @@ MonoBehaviour:
     paCost: 3
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 2
+    executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 5
     hasEffect: 1
