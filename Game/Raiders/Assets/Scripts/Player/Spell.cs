@@ -228,6 +228,9 @@ public class Spell {
         else if (spell.name == "Preventing Word") EXECUTE_PREVENTING_WORD(caster, targetBlock, spell);
         else if (spell.name == "Agonising Word") EXECUTE_AGONISING_WORD(caster, targetBlock);
         else if (spell.name == "Furious Word") EXECUTE_FURIOUS_WORD(caster, targetBlock, spell);
+        else if (spell.name == "Stimulating Word") EXECUTE_STIMULATING_WORD(targetBlock, spell);
+        else if (spell.name == "Paralysing Word") EXECUTE_PARALYSING_WORD(targetBlock, spell);
+        else if (spell.name == "Galvanising Word") EXECUTE_GALVANISING_WORD(caster, spell);
 
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -880,7 +883,7 @@ public class Spell {
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         PreventingWordEvent pw = new PreventingWordEvent("Preventing Word", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
         target.addEvent(pw);
-        if (target.Equals(caster)) pw.useIstantanely();
+        pw.useIstantanely();
     }
 
     public static void EXECUTE_AGONISING_WORD(Character caster, Block targetBlock) {
@@ -897,7 +900,25 @@ public class Spell {
         target.addEvent(new FuriousWordEvent("Furious Word", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
         List<Character> adjs = ut_getAdjacentHeroes(targetBlock.coordinate);
         foreach (Character c in adjs)
-            c.inflictDamage(100);
+            c.inflictDamage(50);
+    }
+
+    public static void EXECUTE_STIMULATING_WORD(Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new StimulatingWordEvent("Stimulating Word", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_GALVANISING_WORD(Character caster, Spell s) {
+        List<Character> all = ut_getAllies(caster);
+        all.AddRange(ut_getEnemies(caster));
+        foreach (Character c in all)
+            if (ut_isNearOf(c, caster, 3))
+                c.addEvent(new GalvanisingWordEvent("Galvanising Word", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_PARALYSING_WORD(Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new ParalysingWordEvent("Paralysing Word", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
 
     #endregion
