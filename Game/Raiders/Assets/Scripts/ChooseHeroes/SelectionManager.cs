@@ -85,9 +85,10 @@ public class SelectionManager : MonoBehaviour
         blackScreen.SetActive(false);
         GetComponent<CharactersLibrary>().init();
         List<CharacterInfo> lib = CharactersLibrary.getLibrary();
-        teamAreferenceToCharSlider.GetComponent<RectTransform>().sizeDelta = new Vector2(70.5352f * lib.Count, teamAreferenceToCharSlider.GetComponent<RectTransform>().sizeDelta.y);
+        teamAreferenceToCharSlider.GetComponent<RectTransform>().sizeDelta = new Vector2(70.5352f * (lib.Count - CharactersLibrary.getNumberOfEvocations()), teamAreferenceToCharSlider.GetComponent<RectTransform>().sizeDelta.y);
         teamBreferenceToCharSlider.GetComponent<RectTransform>().sizeDelta = teamAreferenceToCharSlider.GetComponent<RectTransform>().sizeDelta;
         foreach (CharacterInfo ci in lib) {
+            if (ci.isEvocation) continue;
             // Spawning characters' previews
             GameObject instanceAlpha = GameObject.Instantiate(prefabCharacter);
             GameObject instanceBeta = GameObject.Instantiate(prefabCharacter);

@@ -43,7 +43,8 @@ public class Spell {
     public bool hasEffect; // done -> SEE THE REGION
     public bool isEffectOnly; // done
     public bool canUseInEmptyCell; // done
-    public bool isJumpOrEvocation; // done
+    public bool isJump; // done
+    public bool isSummon;
 
     public void OnPreviewPressed() {
         Debug.Log("Pressed spell " + name);
@@ -63,6 +64,7 @@ public class Spell {
         if (spell.maxTimesInTurn > 0 && spell.maxTimesInTurn == caster.getSpellSystem().getNumberOfUses(spell.name)) return false;
         // Controllo sulla durata dell'incantesimo
         //if (spell.effectDuration < -1) return false;
+        if (spell.isSummon && caster.summons.Count == caster.numberOfSummons) return false;
         if (caster.getActualPM() < 0) {
             if (spell.paCost > caster.getActualPA() || spell.pmCost != 0 || spell.hpCost > caster.getActualHP()) return false;
         } else {
@@ -181,7 +183,7 @@ public class Spell {
         else if (spell.name == "Smell") EXECUTE_SMELL(targetBlock, spell);
         else if (spell.name == "Heads or Tails") EXECUTE_HEADS_OR_TAILS(targetBlock, spell);
         else if (spell.name == "All or Nothing") EXECUTE_ALL_OR_NOTHING(targetBlock, spell);
-        else if (spell.name == "Claw of Ceangal") EXECUTE_CLAW_OF_CEANGAL(caster, targetBlock);
+        else if (spell.name == "Claw of Ceangal" || spell.name == "Haunting Magic") EXECUTE_CLAW_OF_CEANGAL(caster, targetBlock);
         else if (spell.name == "Godsend") EXECUTE_GODSEND(targetBlock, spell);
         else if (spell.name == "Feline Sense") EXECUTE_FELINE_SENSE(targetBlock, spell);
         else if (spell.name == "Roulette") EXECUTE_ROULETTE(caster, spell);
@@ -231,6 +233,18 @@ public class Spell {
         else if (spell.name == "Stimulating Word") EXECUTE_STIMULATING_WORD(targetBlock, spell);
         else if (spell.name == "Paralysing Word") EXECUTE_PARALYSING_WORD(targetBlock, spell);
         else if (spell.name == "Galvanising Word") EXECUTE_GALVANISING_WORD(caster, spell);
+        else if (spell.name == "Call of Bwork Mage") SUMMONS_BWORK_MAGE(caster, targetBlock);
+        else if (spell.name == "Call of Craqueleur") SUMMONS_CRAQUELEUR(caster, targetBlock);
+        else if (spell.name == "Call of Dragonnet") SUMMONS_DRAGONNET(caster, targetBlock);
+        else if (spell.name == "Call of Tofu") SUMMONS_TOFU(caster, targetBlock);
+        else if (spell.name == "Call of Gobball") SUMMONS_GOBBALL(caster, targetBlock);
+        else if (spell.name == "Call of Prespic") SUMMONS_PRESPIC(caster, targetBlock);
+        else if (spell.name == "Sedimentation") EXECUTE_SEDIMENTATION(targetBlock, spell);
+        else if (spell.name == "Sting") EXECUTE_STING(targetBlock, spell);
+        else if (spell.name == "Pleasure") EXECUTE_PLEASURE(targetBlock, spell);
+        else if (spell.name == "Whip") EXECUTE_WHIP(targetBlock, spell);
+        else if (spell.name == "Communion") EXECUTE_COMMUNION(targetBlock, spell);
+        else if (spell.name == "Summoner Fury") EXECUTE_SUMMONER_FURY(targetBlock, spell);
 
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -266,7 +280,7 @@ public class Spell {
         if (target != null) {
             AgitationEvent agitationEvent = new AgitationEvent("Agitation", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon);
             target.addEvent(agitationEvent);
-            if (target.name == s.link.name && target.team == s.link.team) {
+            if (target.Equals(s.link)) {
                 agitationEvent.useIstantanely();
             }
         }
@@ -280,7 +294,7 @@ public class Spell {
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         PowerEvent powerEvent = new PowerEvent("Power", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
         target.addEvent(powerEvent);
-        if (target.name == s.link.name && target.team == s.link.team)
+        if (target.Equals(s.link))
             powerEvent.useIstantanely();
     }
 
@@ -328,7 +342,7 @@ public class Spell {
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         PowerfulShooting powerEvent = new PowerfulShooting("Powerful Shooting", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
         target.addEvent(powerEvent);
-        if (target.name == s.link.name && target.team == s.link.team)
+        if (target.Equals(s.link))
             powerEvent.useIstantanely();
     }
 
@@ -375,7 +389,7 @@ public class Spell {
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         CriticalShootingEvent cs = new CriticalShootingEvent("Critical Shooting", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
         target.addEvent(cs);
-        if (target.name == s.link.name && target.team == s.link.team)
+        if (target.Equals(s.link))
             cs.useIstantanely();
     }
 
@@ -503,7 +517,7 @@ public class Spell {
     public static void EXECUTE_MUTILATION(Character caster, Spell s) {
         MutilationEvent mut = new MutilationEvent("Mutilation", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
         caster.addEvent(mut);
-        if (caster.name == s.link.name && caster.team == s.link.team)
+        if (caster.Equals(s.link))
             mut.useIstantanely();
     }
 
@@ -531,7 +545,7 @@ public class Spell {
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         SmellEvent se = new SmellEvent("Smell", target, s.effectDuration, ParentEvent.Mode.PermanentAndEachTurn, s.icon);
         target.addEvent(se);
-        if (target.name == s.link.name && target.team == s.link.team)
+        if (target.Equals(s.link))
             se.useIstantanely();
     }
 
@@ -572,12 +586,14 @@ public class Spell {
     }
 
     public static void EXECUTE_ROULETTE(Character caster, Spell s) {
+        Debug.Log("ROULETTE CASTER: " + caster.name);
         UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
         int chosenRandomId = UnityEngine.Random.Range(1, 16); // 1 to 15
         List<RouletteEvent> rouletteEvents = new List<RouletteEvent>();
         foreach (Character ch in ut_getAllies(caster)) {
             RouletteEvent re = new RouletteEvent("Roulette", ch, s.effectDuration, ParentEvent.Mode.PermanentAndEachTurn, s.icon, chosenRandomId);
             ch.addEvent(re);
+            Debug.Log("Adding event to: " + ch.name);
             if (chosenRandomId == 5 || chosenRandomId == 6 || chosenRandomId == 7 || chosenRandomId == 8 || chosenRandomId == 9 || chosenRandomId == 10 ||
                 chosenRandomId == 11 || chosenRandomId == 12 || chosenRandomId == 13 || chosenRandomId == 14)
                 re.useIstantanely();
@@ -640,7 +656,7 @@ public class Spell {
 
     public static void EXECUTE_RESTART(Spell s) {
         foreach(Tuple<Character, Block> t in TurnsManager.spawnPositions) {
-            if (t.Item1.isDead) continue;
+            if (t.Item1.isDead || t.Item1.isEvocation) continue;
             EXECUTE_JUMP(t.Item1, t.Item2);
         }
     }
@@ -921,6 +937,65 @@ public class Spell {
         target.addEvent(new ParalysingWordEvent("Paralysing Word", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
 
+    public static void SUMMONS_BWORK_MAGE(Character caster, Block targetBlock) {
+        ut_execute_summon(caster, targetBlock, "Bwork_Mage");
+    }
+
+    public static void SUMMONS_CRAQUELEUR(Character caster, Block targetBlock) {
+        ut_execute_summon(caster, targetBlock, "Craqueleur");
+    }
+
+    public static void SUMMONS_GOBBALL(Character caster, Block targetBlock) {
+        ut_execute_summon(caster, targetBlock, "Gobball");
+    }
+
+    public static void SUMMONS_TOFU(Character caster, Block targetBlock) {
+        ut_execute_summon(caster, targetBlock, "Tofu");
+    }
+
+    public static void SUMMONS_PRESPIC(Character caster, Block targetBlock) {
+        ut_execute_summon(caster, targetBlock, "Prespic");
+    }
+
+    public static void SUMMONS_DRAGONNET(Character caster, Block targetBlock) {
+        ut_execute_summon(caster, targetBlock, "Dragonnet");
+    }
+
+    public static void EXECUTE_STING(Block targetBlock, Spell s) {
+        targetBlock.linkedObject.GetComponent<Character>().addEvent(new StingEvent("Sting", targetBlock.linkedObject.GetComponent<Character>(), s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_SEDIMENTATION(Block targetBlock, Spell s) {
+        targetBlock.linkedObject.GetComponent<Character>().addEvent(new SedimentationEvent("Sedimentation", targetBlock.linkedObject.GetComponent<Character>(), s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_PLEASURE(Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation)
+            target.addEvent(new PleasureEvent("Pleasure", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_WHIP(Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation)
+            target.addEvent(new WhipEvent("Whip", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_SUMMONER_FURY(Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation)
+            target.addEvent(new SummonerFuryEvent("Summoner Fury", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
+    }
+
+    public static void EXECUTE_COMMUNION(Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation) {
+            CommunionEvent ce = new CommunionEvent("Communion", (Evocation)target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+            target.addEvent(ce);
+            ce.useIstantanely();
+        }
+    }
+
     #endregion
 
     #region EVENT BONUSES
@@ -973,11 +1048,34 @@ public class Spell {
 
     #region UTILITIES
 
+    public static void ut_execute_summon(Character caster, Block targetBlock, string id) {
+        GameObject summonPrefab = Resources.Load("Prefabs/Heroes/Evocations/" + id) as GameObject;
+        // Creating summon
+        GameObject summon = GameObject.Instantiate(summonPrefab, Coordinate.getPosition(targetBlock.coordinate), Quaternion.identity);
+        // Placing it on field
+        summon.transform.position = new Vector3(summon.transform.position.x, summon.transform.position.y, -20);
+        targetBlock.linkedObject = summon;
+        PreparationManager.Instance.setStandManually(summon, caster.team);
+        // Setting summon parameters
+        Evocation summonScript = summon.GetComponent<Evocation>();
+        summonScript.isEvocation = true;
+        summonScript.id = caster.summonsIdCounter;
+        Debug.Log("NAME: " + summonScript.getCompleteName());
+        caster.summonsIdCounter++;
+        summonScript.team = caster.team;
+        summonScript.connectedSummoner = caster;
+        summonScript.connectedCell = targetBlock.gameObject;
+        summonScript.setZIndex(targetBlock);
+        caster.summons.Add(summonScript);
+        // Setting turns parameters
+        TurnsManager.Instance.injectCharacter(caster, summonScript);
+    }
+
     public static List<Character> ut_getAllies(Character caster) {
         List<Character> toReturn = new List<Character>();
         foreach (Character ch in TurnsManager.Instance.turns) {
             if (ch.isDead) continue;
-            if (ch.team == caster.team && ch.name != caster.name) {
+            if (ch.team == caster.team && !ch.EqualsNames(caster)) {
                 toReturn.Add(ch);
             }
         }

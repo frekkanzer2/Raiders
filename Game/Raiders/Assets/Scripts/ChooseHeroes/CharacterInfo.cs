@@ -8,6 +8,7 @@ public class CharacterInfo {
     public string characterName;
     public Sprite characterFullSprite;
     public Sprite characterMidSprite;
+    public bool isEvocation;
 
     public bool isEqualsTo(CharacterInfo ci) {
         return this.characterName == ci.characterName;

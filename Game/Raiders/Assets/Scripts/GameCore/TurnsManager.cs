@@ -133,6 +133,28 @@ public class TurnsManager : MonoBehaviour
         StartActiveCharTurn(false);
     }
 
+    public void injectCharacter(Character caster, Character c) {
+        c.setupSOS(injectToChar_prefabNumberDisplayer);
+        GameObject card = null;
+        if (c.team == 1) {
+            card = Instantiate(prefabPreviewCardAlpha);
+            c.connectedPreview = card;
+            card.transform.SetParent(turnsListContainer.transform);
+            card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
+                GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
+            card.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        } else if (c.team == 2) {
+            card = Instantiate(prefabPreviewCardBeta);
+            c.connectedPreview = card;
+            card.transform.SetParent(turnsListContainer.transform);
+            card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
+                GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
+            card.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        }
+        turns.Insert(1, c);
+        card.transform.SetSiblingIndex(1);
+    }
+
     public void OnNextTurnPressed() {
         SoundUi.Instance.playAudio(SoundUi.AudioType.ButtonPressed_NextTurn);
         if (active.isMoving || active.isForcedMoving) return;

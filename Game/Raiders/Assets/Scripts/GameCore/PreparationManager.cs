@@ -167,6 +167,15 @@ public class PreparationManager : MonoBehaviour
         tm.OnStartGame();
     }
 
+    public void setStandManually(GameObject hero, int team) {
+        GameObject stand = null;
+        if (team == 1)
+            stand = Instantiate(prefab_BlueStand);
+        else
+            stand = Instantiate(prefab_RedStand);
+        stand.transform.SetParent(hero.transform);
+    }
+
     private void Start() {
         if (PreparationManager.Instance == null) PreparationManager._instance = this;
     }

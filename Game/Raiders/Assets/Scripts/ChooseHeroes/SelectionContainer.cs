@@ -51,8 +51,6 @@ public class SelectionContainer : MonoBehaviour {
             ci_temp = lib.getCharacter_Info(PlayerPrefs.GetString("TEAM_BETA_" + i));
             teamBCharacters.Add(ci_temp);
         }
-        Debug.Log("ACH = " + teamACharacters.Count);
-        Debug.Log("BCH = " + teamBCharacters.Count);
         for (int i = 0; i < numberOfHeroes; i++) {
             GameObject ch_temp = Instantiate(lib.getCharacter_GameObject(teamACharacters[i].characterName, 1));
             ch_temp.transform.position = new Vector3(100000, 100000, 0);
@@ -65,13 +63,10 @@ public class SelectionContainer : MonoBehaviour {
         }
         foreach(GameObject go in teamAHeroes) {
             Character c = go.GetComponent<Character>();
-            Debug.Log(c.name + " team " + c.team);
         }
         foreach (GameObject go in teamBHeroes) {
             Character c = go.GetComponent<Character>();
-            Debug.Log(c.name + " team " + c.team);
         }
-        Debug.LogWarning("ORPH CHECKPOINT");
     }
 
     public List<GameObject> getAll() {
@@ -79,18 +74,6 @@ public class SelectionContainer : MonoBehaviour {
         toSend.AddRange(teamAHeroes);
         toSend.AddRange(teamBHeroes);
         return toSend;
-    }
-
-    public GameObject getHeroFromTeam(Character c) {
-        if (c.team == 1)
-            foreach(GameObject go in teamAHeroes)
-                if (go.GetComponent<Character>().name == c.name)
-                    return go;
-        if (c.team == 2)
-            foreach (GameObject go in teamBHeroes)
-                if (go.GetComponent<Character>().name == c.name)
-                    return go;
-        return null;
     }
 
 }

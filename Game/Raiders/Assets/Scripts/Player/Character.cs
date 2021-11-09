@@ -22,6 +22,8 @@ public class Character : MonoBehaviour
     public int att_f;
     public int att_a;
     public int att_w;
+    public int numberOfSummons;
+    public bool isEvocation;
     [HideInInspector]
     public int actual_hp;
     [HideInInspector]
@@ -50,6 +52,10 @@ public class Character : MonoBehaviour
     public Spell spellToUse;
     private EventSystem esystem;
     private SpellTurnSystem stsystem;
+    [HideInInspector]
+    public List<Evocation> summons;
+    [HideInInspector]
+    public int summonsIdCounter = 0;
 
     public void setPath(List<Block> path) {
         if (isDead) return;
@@ -158,8 +164,15 @@ public class Character : MonoBehaviour
 
         // Don't execute following code if you are not the active player!
         if (TurnsManager.isGameStarted) {
-            if (this.name != TurnsManager.active.name || this.team != TurnsManager.active.team) {
-                return;
+            if (!this.isEvocation)
+                if (this.name != TurnsManager.active.name || this.team != TurnsManager.active.team) {
+                    return;
+                }
+            if (this.isEvocation) {
+                if (!TurnsManager.active.isEvocation) return;
+                if (((Evocation)this).getCompleteName() != ((Evocation)TurnsManager.active).getCompleteName() || this.team != TurnsManager.active.team) {
+                    return;
+                }
             }
             if (this.connectedCell != null)
                 this.setZIndex(this.connectedCell.GetComponent<Block>());
@@ -255,7 +268,7 @@ public class Character : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
             if (hit.collider != null) {
                 GameObject clicked = hit.collider.gameObject;
-                if (clicked.CompareTag("Player") && clicked.GetComponent<Character>().name == this.name && clicked.GetComponent<Character>().team == this.team) {
+                if (clicked.CompareTag("Player") && this.Equals(clicked.GetComponent<Character>())) {
                     PreparationManager.Instance.OnCellAlreadyChosen(this);
                 }
             }
@@ -313,7 +326,23 @@ public class Character : MonoBehaviour
     }
 
     public bool Equals(Character c) {
-        return this.name == c.name && this.team == c.team;
+        String firstName, secondName;
+        if (!this.isEvocation) firstName = this.name;
+        else firstName = ((Evocation)this).getCompleteName();
+        if (!c.isEvocation) secondName = c.name;
+        else secondName = ((Evocation)c).getCompleteName();
+        Debug.Log("NAME 1: " + firstName + " | NAME 2: " + secondName);
+        return firstName == secondName && this.team == c.team;
+    }
+
+    public bool EqualsNames(Character c) {
+        String firstName, secondName;
+        if (!this.isEvocation) firstName = this.name;
+        else firstName = ((Evocation)this).getCompleteName();
+        if (!c.isEvocation) secondName = c.name;
+        else secondName = ((Evocation)c).getCompleteName();
+        Debug.Log("NAME 1: " + firstName + " | NAME 2: " + secondName);
+        return firstName == secondName;
     }
 
     public bool isEnemyOf(Character c) {
@@ -327,7 +356,7 @@ public class Character : MonoBehaviour
         sos.setup(prefabToSpawn);
     }
 
-    public void inflictDamage(int damage) {
+    public virtual void inflictDamage(int damage) {
         if (isDead) return;
         if (actual_shield > 0) {
             int prev_sh = actual_shield; // 80
@@ -431,9 +460,12 @@ public class Character : MonoBehaviour
         this.actual_pm -= value;
     }
 
-    public void setDead() {
+    public virtual void setDead() {
         if (isDead) return;
         isDead = true;
+        if (isEvocation)
+            foreach (Evocation e in summons)
+                e.inflictDamage(5000);
         if (TurnsManager.active.Equals(this))
             TurnsManager.Instance.OnNextTurnPressed();
         connectedCell.GetComponent<Block>().linkedObject = null;
@@ -758,7 +790,7 @@ public class Character : MonoBehaviour
         }
 
         // Delete blocks where there's an hero
-        if (selected.isJumpOrEvocation) {
+        if (selected.isJump || selected.isSummon) {
             foreach (Block b in bufferColored) {
                 if (b.linkedObject != null) {
                     toRemove.Add(b);

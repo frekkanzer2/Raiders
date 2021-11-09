@@ -46,6 +46,7 @@ public class StatsPanel : MonoBehaviour
 
     private void Update() {
         if (toSync != null) {
+
             characterPreview.GetComponent<Image>().sprite = cl.getCharacterInfoByName(toSync.name).characterMidSprite;
             hpGui.GetComponent<TextMeshProUGUI>().text = "" + toSync.getActualHP();
             paGui.GetComponent<TextMeshProUGUI>().text = "" + toSync.getActualPA();
@@ -58,10 +59,23 @@ public class StatsPanel : MonoBehaviour
             att_fir.GetComponent<TextMeshProUGUI>().text = "" + toSync.att_f + "%";
             att_air.GetComponent<TextMeshProUGUI>().text = "" + toSync.att_a + "%";
             att_wat.GetComponent<TextMeshProUGUI>().text = "" + toSync.att_w + "%";
-            spell1.GetComponent<SpellSlot>().setSpell(toSync.spells[0]);
-            spell2.GetComponent<SpellSlot>().setSpell(toSync.spells[1]);
-            spell3.GetComponent<SpellSlot>().setSpell(toSync.spells[2]);
-            spell4.GetComponent<SpellSlot>().setSpell(toSync.spells[3]);
+
+            if (toSync.spells.Count < 4) {
+                spell1.GetComponent<SpellSlot>().removeSpell();
+                spell2.GetComponent<SpellSlot>().removeSpell();
+                spell3.GetComponent<SpellSlot>().removeSpell();
+                spell4.GetComponent<SpellSlot>().removeSpell();
+            }
+            
+            if (toSync.spells.Count >= 1)
+                spell1.GetComponent<SpellSlot>().setSpell(toSync.spells[0]);
+            if (toSync.spells.Count >= 2)
+                spell2.GetComponent<SpellSlot>().setSpell(toSync.spells[1]);
+            if (toSync.spells.Count >= 3)
+                spell3.GetComponent<SpellSlot>().setSpell(toSync.spells[2]);
+            if (toSync.spells.Count == 4)
+                spell4.GetComponent<SpellSlot>().setSpell(toSync.spells[3]);
+
             GameObject panel_turnsWait1 = spell1.transform.GetChild(0).gameObject;
             TextMeshProUGUI text_turnsWait1 = panel_turnsWait1.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
             GameObject panel_turnsWait2 = spell2.transform.GetChild(0).gameObject;
@@ -70,74 +84,89 @@ public class StatsPanel : MonoBehaviour
             TextMeshProUGUI text_turnsWait3 = panel_turnsWait3.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
             GameObject panel_turnsWait4 = spell4.transform.GetChild(0).gameObject;
             TextMeshProUGUI text_turnsWait4 = panel_turnsWait4.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-            if (!Spell.canUse(toSync, toSync.spells[0])) {
-                spell1.GetComponent<Image>().color = new Color(80f / 255f, 80f / 255f, 80f / 255f, 1);
-                spell1.GetComponent<SpellSlot>().canUse = false;
-                int remaining_turns = Spell.getRemainingTurns(toSync, spell1.GetComponent<SpellSlot>().connectedSpell);
-                if (remaining_turns > 0) {
-                    // Active and set text
-                    panel_turnsWait1.SetActive(true);
-                    text_turnsWait1.text = "" + remaining_turns;
+            if (toSync.spells.Count >= 1)
+                if (!Spell.canUse(toSync, toSync.spells[0])) {
+                    spell1.GetComponent<Image>().color = new Color(80f / 255f, 80f / 255f, 80f / 255f, 1);
+                    spell1.GetComponent<SpellSlot>().canUse = false;
+                    int remaining_turns = Spell.getRemainingTurns(toSync, spell1.GetComponent<SpellSlot>().connectedSpell);
+                    if (remaining_turns > 0) {
+                        // Active and set text
+                        panel_turnsWait1.SetActive(true);
+                        text_turnsWait1.text = "" + remaining_turns;
+                    } else {
+                        // Deactive
+                        panel_turnsWait1.SetActive(false);
+                    }
                 } else {
-                    // Deactive
+                    spell1.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                    spell1.GetComponent<SpellSlot>().canUse = true;
                     panel_turnsWait1.SetActive(false);
                 }
-            } else {
-                spell1.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                spell1.GetComponent<SpellSlot>().canUse = true;
+            else
                 panel_turnsWait1.SetActive(false);
-            }
-            if (!Spell.canUse(toSync, toSync.spells[1])) {
-                spell2.GetComponent<Image>().color = new Color(80f / 255f, 80f / 255f, 80f / 255f, 1);
-                spell2.GetComponent<SpellSlot>().canUse = false;
-                int remaining_turns = Spell.getRemainingTurns(toSync, spell2.GetComponent<SpellSlot>().connectedSpell);
-                if (remaining_turns > 0) {
-                    // Active and set text
-                    panel_turnsWait2.SetActive(true);
-                    text_turnsWait2.text = "" + remaining_turns;
+
+            if (toSync.spells.Count >= 2)
+                if (!Spell.canUse(toSync, toSync.spells[1])) {
+                    spell2.GetComponent<Image>().color = new Color(80f / 255f, 80f / 255f, 80f / 255f, 1);
+                    spell2.GetComponent<SpellSlot>().canUse = false;
+                    int remaining_turns = Spell.getRemainingTurns(toSync, spell2.GetComponent<SpellSlot>().connectedSpell);
+                    if (remaining_turns > 0) {
+                        // Active and set text
+                        panel_turnsWait2.SetActive(true);
+                        text_turnsWait2.text = "" + remaining_turns;
+                    } else {
+                        // Deactive
+                        panel_turnsWait2.SetActive(false);
+                    }
                 } else {
-                    // Deactive
+                    spell2.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                    spell2.GetComponent<SpellSlot>().canUse = true;
                     panel_turnsWait2.SetActive(false);
                 }
-            } else {
-                spell2.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                spell2.GetComponent<SpellSlot>().canUse = true;
+            else
                 panel_turnsWait2.SetActive(false);
-            }
-            if (!Spell.canUse(toSync, toSync.spells[2])) {
-                spell3.GetComponent<Image>().color = new Color(80f / 255f, 80f / 255f, 80f / 255f, 1);
-                spell3.GetComponent<SpellSlot>().canUse = false;
-                int remaining_turns = Spell.getRemainingTurns(toSync, spell3.GetComponent<SpellSlot>().connectedSpell);
-                if (remaining_turns > 0) {
-                    // Active and set text
-                    panel_turnsWait3.SetActive(true);
-                    text_turnsWait3.text = "" + remaining_turns;
+
+            if (toSync.spells.Count >= 3)
+                if (!Spell.canUse(toSync, toSync.spells[2])) {
+                    spell3.GetComponent<Image>().color = new Color(80f / 255f, 80f / 255f, 80f / 255f, 1);
+                    spell3.GetComponent<SpellSlot>().canUse = false;
+                    int remaining_turns = Spell.getRemainingTurns(toSync, spell3.GetComponent<SpellSlot>().connectedSpell);
+                    if (remaining_turns > 0) {
+                        // Active and set text
+                        panel_turnsWait3.SetActive(true);
+                        text_turnsWait3.text = "" + remaining_turns;
+                    } else {
+                        // Deactive
+                        panel_turnsWait3.SetActive(false);
+                    }
                 } else {
-                    // Deactive
+                    spell3.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                    spell3.GetComponent<SpellSlot>().canUse = true;
                     panel_turnsWait3.SetActive(false);
-                }
-            } else {
-                spell3.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                spell3.GetComponent<SpellSlot>().canUse = true;
+                } 
+            else
                 panel_turnsWait3.SetActive(false);
-            }
-            if (!Spell.canUse(toSync, toSync.spells[3])) {
-                spell4.GetComponent<Image>().color = new Color(80f / 255f, 80f / 255f, 80f / 255f, 1);
-                spell4.GetComponent<SpellSlot>().canUse = false;
-                int remaining_turns = Spell.getRemainingTurns(toSync, spell4.GetComponent<SpellSlot>().connectedSpell);
-                if (remaining_turns > 0) {
-                    // Active and set text
-                    panel_turnsWait4.SetActive(true);
-                    text_turnsWait4.text = "" + remaining_turns;
+
+            if (toSync.spells.Count == 4)
+                if (!Spell.canUse(toSync, toSync.spells[3])) {
+                    spell4.GetComponent<Image>().color = new Color(80f / 255f, 80f / 255f, 80f / 255f, 1);
+                    spell4.GetComponent<SpellSlot>().canUse = false;
+                    int remaining_turns = Spell.getRemainingTurns(toSync, spell4.GetComponent<SpellSlot>().connectedSpell);
+                    if (remaining_turns > 0) {
+                        // Active and set text
+                        panel_turnsWait4.SetActive(true);
+                        text_turnsWait4.text = "" + remaining_turns;
+                    } else {
+                        // Deactive
+                        panel_turnsWait4.SetActive(false);
+                    }
                 } else {
-                    // Deactive
+                    spell4.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                    spell4.GetComponent<SpellSlot>().canUse = true;
                     panel_turnsWait4.SetActive(false);
                 }
-            } else {
-                spell4.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                spell4.GetComponent<SpellSlot>().canUse = true;
+            else
                 panel_turnsWait4.SetActive(false);
-            }
         }
     }
 

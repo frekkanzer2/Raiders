@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 557098361630938741}
   - component: {fileID: 557098361630938698}
-  - component: {fileID: 557098361630938740}
+  - component: {fileID: 7487564815635278429}
   - component: {fileID: 8528018890230597465}
   - component: {fileID: 8914096617352650622}
   - component: {fileID: -2347270675974649033}
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &557098361630938740
+--- !u!114 &7487564815635278429
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,11 +96,57 @@ MonoBehaviour:
   m_GameObject: {fileID: 557098361630938699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8166a5c395145dc489abd6518c5ac693, type: 3}
+  m_Script: {fileID: 11500000, guid: b47f2c763fdab0b4ba89ee3dc1fc4aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   name: Dragonnet
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Flamethrower
+    icon: {fileID: 21300000, guid: e0f377bccc60e434997a538addd2f9ea, type: 3}
+    description: Inflicts Fire damage
+    element: 1
+    damage: 65
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 6
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 25
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Duster
+    icon: {fileID: 21300000, guid: 4d343e91ae868274cb1d655c52f27783, type: 3}
+    description: Inflicts Air damage
+    element: 2
+    damage: 20
+    lifeSteal: 0
+    minRange: 3
+    maxRange: 4
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 5
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 160
   pa: 6
@@ -111,9 +157,11 @@ MonoBehaviour:
   res_a: 35
   res_w: -35
   att_e: 0
-  att_f: 0
-  att_a: 0
+  att_f: 11
+  att_a: 8
   att_w: 0
+  numberOfSummons: 0
+  isEvocation: 0
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
@@ -145,7 +193,10 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+    isJump: 0
+    isSummon: 0
+  summons: []
+  summonsIdCounter: 0
   isDebugEnabled: 0
   accumulationCounter: 0
   criticShooting: 0
@@ -153,6 +204,9 @@ MonoBehaviour:
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+  connectedSummoner: {fileID: 0}
+  id: 0
+  isCommunionActive: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -169,8 +223,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5977051, y: 0.16144049}
-    oldSize: {x: 3.3333333, y: 3.3333333}
+    pivot: {x: 0.48948538, y: 0.19908191}
+    oldSize: {x: 5.263158, y: 5.263158}
     newSize: {x: 3.3333333, y: 3.3333333}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

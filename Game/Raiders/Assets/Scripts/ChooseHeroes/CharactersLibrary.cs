@@ -27,4 +27,10 @@ public class CharactersLibrary : MonoBehaviour
         return null;
     }
 
+    public static int getNumberOfEvocations() {
+        int counter = 0;
+        foreach (CharacterInfo ci in public_library) if (ci.isEvocation) counter++;
+        return counter;
+    }
+
 }
