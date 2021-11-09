@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 557098361630938698}
   - component: {fileID: 557098361630938740}
   - component: {fileID: 8528018890230597465}
-  - component: {fileID: 3679054799960633979}
-  - component: {fileID: 9092556062903490969}
-  - component: {fileID: 125093092390699496}
+  - component: {fileID: 8914096617352650622}
+  - component: {fileID: -2347270675974649033}
+  - component: {fileID: 5404421346664201683}
   m_Layer: 0
-  m_Name: Julith
+  m_Name: Bwork Mage
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 4a5be25132610fe4abd83511fa674da3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7257503f46d6bb649b081d424a36d925, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,109 +99,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8166a5c395145dc489abd6518c5ac693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Julith
-  spells:
-  - link: {fileID: 0}
-    name: Overcharge
-    icon: {fileID: 21300000, guid: 07c58dd1a3f72764894928b3000868d8, type: 3}
-    description: The caster uses all remaining PA to gain bonus shield
-    element: 5
-    damage: 40
-    lifeSteal: 0
-    minRange: 0
-    maxRange: 0
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 3
-    pmCost: 0
-    maxTimesInTurn: 1
-    executeAfterTurns: 10
-    effectDuration: 0
-    criticalProbability: 0
-    hasEffect: 1
-    isEffectOnly: 1
-    canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
-  - link: {fileID: 0}
-    name: Striking Meteor
-    icon: {fileID: 21300000, guid: 680dbcbd389ac9641b8a1b548af35849, type: 3}
-    description: Teleports to the targeted cell. Inflict Earth damage to each enemy
-      up to 3 cells from the destination cell
-    element: 0
-    damage: 42
-    lifeSteal: 0
-    minRange: 5
-    maxRange: 7
-    distanceType: 1
-    overObstacles: 1
-    hpCost: 0
-    paCost: 4
-    pmCost: 2
-    maxTimesInTurn: 1
-    executeAfterTurns: 2
-    effectDuration: 0
-    criticalProbability: 15
-    hasEffect: 1
-    isEffectOnly: 1
-    canUseInEmptyCell: 1
-    isJumpOrEvocation: 1
-  - link: {fileID: 0}
-    name: Hupperkap
-    icon: {fileID: 21300000, guid: 63cc2bc2c1b51314da828369d25906cb, type: 3}
-    description: Inflicts Air damage
-    element: 2
-    damage: 42
-    lifeSteal: 0
-    minRange: 1
-    maxRange: 1
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 4
-    pmCost: 0
-    maxTimesInTurn: 2
-    executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 15
-    hasEffect: 0
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
-  - link: {fileID: 0}
-    name: Aerial Wave
-    icon: {fileID: 21300000, guid: 1c3f1d1e52f2e134d9cd296441a8a0cb, type: 3}
-    description: Repels the target of 3 cells and repels the caster of 3 cells
-    element: 2
-    damage: 33
-    lifeSteal: 0
-    minRange: 1
-    maxRange: 1
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 3
-    pmCost: 0
-    maxTimesInTurn: 1
-    executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 5
-    hasEffect: 1
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+  name: Bwork Mage
+  spells: []
   team: 1
-  hp: 1320
+  hp: 126
   pa: 7
-  pm: 3
-  ini: 130
-  res_e: 13
-  res_f: 14
-  res_a: -10
-  res_w: -8
-  att_e: 7
+  pm: 5
+  ini: 0
+  res_e: -25
+  res_f: 23
+  res_a: 50
+  res_w: 23
+  att_e: 0
   att_f: 0
-  att_a: 10
+  att_a: 0
   att_w: 0
   actual_hp: 0
   actual_pa: 0
@@ -258,8 +169,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.6013645, y: 0.11013643}
-    oldSize: {x: 3.2894738, y: 4.2763157}
+    pivot: {x: 0.5590775, y: 0.1637127}
+    oldSize: {x: 3.0769231, y: 3.0769231}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -268,7 +179,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.6251364, y: 2.2981646}
   m_EdgeRadius: 0
---- !u!114 &3679054799960633979
+--- !u!114 &8914096617352650622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connected: {fileID: 0}
---- !u!114 &9092556062903490969
+--- !u!114 &-2347270675974649033
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -293,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f77455afa650f49a81c28b9edfaff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &125093092390699496
+--- !u!114 &5404421346664201683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

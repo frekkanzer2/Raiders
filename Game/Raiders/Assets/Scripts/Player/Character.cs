@@ -659,6 +659,10 @@ public class Character : MonoBehaviour
         // Remove unreachable blocks
         List<Block> toRemove = new List<Block>();
         foreach(Block b in bufferColored) {
+            if (b.linkedObject != null) {
+                toRemove.Add(b);
+                continue;
+            }
             List<Block> path = null;
             path = ai_getDestinationPath(origin.connectedCell.GetComponent<Block>(), b, 800);
             if (path == null) toRemove.Add(b);
