@@ -9,12 +9,12 @@ public class PreventingWordEvent : ParentEvent
 
     override public void execute() {
         base.execute();
-        connected.receiveShield(450);
+        connected.receiveShield(500);
     }
 
     override public void restoreCharacter() {
         base.restoreCharacter();
-        connected.removeShield(450);
+        connected.removeShield(500);
     }
 
 }

@@ -1,0 +1,317 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &557098361630938699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 557098361630938741}
+  - component: {fileID: 557098361630938698}
+  - component: {fileID: 557098361630938740}
+  - component: {fileID: 8528018890230597465}
+  - component: {fileID: 8914096617352650622}
+  - component: {fileID: -2347270675974649033}
+  - component: {fileID: -2072592517294728624}
+  m_Layer: 0
+  m_Name: Pandolindo
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &557098361630938741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &557098361630938698
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 21300000, guid: 09b44832a17fd664ea8d636f8c9fe2fe, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 3.2894738, y: 4.2763157}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &557098361630938740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8166a5c395145dc489abd6518c5ac693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Pandolindo
+  spells:
+  - link: {fileID: 0}
+    name: Blow-Out
+    icon: {fileID: 21300000, guid: 8d04999827f265d48b16279bb270d4f1, type: 3}
+    description: Adds 2 PA and removes 1 PM to the target
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 0
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 8
+    effectDuration: 4
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Eviction
+    icon: {fileID: 21300000, guid: 61e77c0920c81cc4186af4d2c5a7c960, type: 3}
+    description: Repels the target of 5 cells if Blow-Out is active
+    element: 0
+    damage: 26
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 3
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 25
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Pandjiu
+    icon: {fileID: 21300000, guid: cd5706e5a75874747929caefab46c335, type: 3}
+    description: Attracts the target of 2 cells if Blow-Out is active
+    element: 1
+    damage: 40
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 6
+    distanceType: 1
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 5
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Explosive Flask
+    icon: {fileID: 21300000, guid: 9e37c0c8650864643bf641c8183ec02a, type: 3}
+    description: Inflict Fire damage to each enemy up to 2 cells from the target
+      if Blow-Out is active
+    element: 1
+    damage: 35
+    lifeSteal: 0
+    minRange: 2
+    maxRange: 5
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 1
+    effectDuration: 0
+    criticalProbability: 25
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  team: 1
+  hp: 1240
+  pa: 6
+  pm: 4
+  ini: 60
+  res_e: 4
+  res_f: 7
+  res_a: -10
+  res_w: 2
+  att_e: 6
+  att_f: 8
+  att_a: 0
+  att_w: 0
+  numberOfSummons: 0
+  isEvocation: 0
+  actual_hp: 0
+  actual_pa: 0
+  actual_pm: 0
+  connectedPreview: {fileID: 0}
+  connectedCell: {fileID: 0}
+  actual_shield: 0
+  isDead: 0
+  isMoving: 0
+  isForcedMoving: 0
+  spellToUse:
+    link: {fileID: 0}
+    name: 
+    icon: {fileID: 0}
+    description: 
+    element: 0
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 0
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 0
+    pmCost: 0
+    maxTimesInTurn: 0
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  summons: []
+  summonsIdCounter: 0
+  isDebugEnabled: 0
+  accumulationCounter: 0
+  criticShooting: 0
+  connectedSacrifice: {fileID: 0}
+  hasActivedSacrifice: 0
+  canCritical: 1
+  immuneCloseCombat: 0
+--- !u!61 &8528018890230597465
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.21601868, y: 0.66759527}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5520094, y: 0.12538637}
+    oldSize: {x: 3.2894738, y: 4.2763157}
+    newSize: {x: 3.2894738, y: 4.2763157}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.6251364, y: 2.2981646}
+  m_EdgeRadius: 0
+--- !u!114 &8914096617352650622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37eaf0e54d6ae8429f8dc7475bb845e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connected: {fileID: 0}
+--- !u!114 &-2347270675974649033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f77455afa650f49a81c28b9edfaff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2072592517294728624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 668ba71f629dd4f45ae68320a96d15e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connected: {fileID: 0}

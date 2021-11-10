@@ -1714,28 +1714,48 @@ MonoBehaviour:
     isEvocation: 0
   - characterName: Bwork Mage
     characterFullSprite: {fileID: 21300000, guid: 7257503f46d6bb649b081d424a36d925, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 7257503f46d6bb649b081d424a36d925, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 5e811d62353706d4481abdf70ce82011, type: 3}
     isEvocation: 1
   - characterName: Craqueleur
     characterFullSprite: {fileID: 21300000, guid: b2c582c3e52bc6b4bb06f898fe2c143c, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: b2c582c3e52bc6b4bb06f898fe2c143c, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 7e8b5d2d84af5d84a8a59c70defdf710, type: 3}
     isEvocation: 1
   - characterName: Dragonnet
     characterFullSprite: {fileID: 21300000, guid: 4620adaac75be4144879357a3588ea7f, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 4620adaac75be4144879357a3588ea7f, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: bcc3e79ca71368d458eecfc1925dcc34, type: 3}
     isEvocation: 1
   - characterName: Gobball
     characterFullSprite: {fileID: 21300000, guid: 3db282a760ef89841ab1e7f890437600, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 3db282a760ef89841ab1e7f890437600, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 9321370cde16ebf47bd2e1df81cccd03, type: 3}
     isEvocation: 1
   - characterName: Prespic
     characterFullSprite: {fileID: 21300000, guid: 1af84b5dee3950444afad488ba72ce30, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 1af84b5dee3950444afad488ba72ce30, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 6c302f1a2b8421b40bea0416556fd5e7, type: 3}
     isEvocation: 1
   - characterName: Tofu
     characterFullSprite: {fileID: 21300000, guid: bac7ed52c78322a46834d277fd986fa7, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: bac7ed52c78322a46834d277fd986fa7, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 70a84c49cf954344aa94099fd0410d50, type: 3}
     isEvocation: 1
+  - characterName: Marty Nee
+    characterFullSprite: {fileID: 21300000, guid: c0ef700775be7a7449dba732faf1fe53, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: c4635fb700f944645bbb1d2194504b54, type: 3}
+    isEvocation: 0
+  - characterName: Pandawasta
+    characterFullSprite: {fileID: 21300000, guid: 4095e4a96d3e20e408d2ab1b00782654, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 7bd5fb8cdbc6ea3428bfb4887aaca831, type: 3}
+    isEvocation: 1
+  - characterName: Bamboo
+    characterFullSprite: {fileID: 21300000, guid: 878381caf65cb174f9cd54dfa29c7818, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 4518b6fc0aba9a3469a8c5d16c5ffbc9, type: 3}
+    isEvocation: 1
+  - characterName: Mali Buh
+    characterFullSprite: {fileID: 21300000, guid: 27baa15e8fdb8684db8f052ef97d05aa, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 015b421830778a645bfc1b755a31a563, type: 3}
+    isEvocation: 0
+  - characterName: Pandolindo
+    characterFullSprite: {fileID: 21300000, guid: 09b44832a17fd664ea8d636f8c9fe2fe, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 43265cb9789859144833612b98b534fa, type: 3}
+    isEvocation: 0
 --- !u!114 &1295197767
 MonoBehaviour:
   m_ObjectHideFlags: 0

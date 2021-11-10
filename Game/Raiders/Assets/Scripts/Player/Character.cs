@@ -7,6 +7,8 @@ using System;
 public class Character : MonoBehaviour
 {
 
+    private int AI_SEARCHPATH_STEPS = 100;
+
     public string name;
     public List<Spell> spells;
     public int team;
@@ -242,7 +244,7 @@ public class Character : MonoBehaviour
                                 }
                             resetBufferedCells();
                             if (dest != null) {
-                                followPath = ai_getDestinationPath(TurnsManager.active.connectedCell.GetComponent<Block>(), dest, 800);
+                                followPath = ai_getDestinationPath(TurnsManager.active.connectedCell.GetComponent<Block>(), dest, AI_SEARCHPATH_STEPS);
                                 actual_pm -= followPath.Count - 1;
                                 followingBlock = followPath[0];
                                 followPath.RemoveAt(0);
@@ -289,7 +291,7 @@ public class Character : MonoBehaviour
         actual_pa = pa;
     }
 
-    public void newTurn() {
+    public virtual void newTurn() {
         resetBufferedCells();
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -20);
         esystem.OnStartTurn();
@@ -691,16 +693,19 @@ public class Character : MonoBehaviour
         // Remove unreachable blocks
         List<Block> toRemove = new List<Block>();
         foreach(Block b in bufferColored) {
-            if (b.linkedObject != null) {
+            if (b.linkedObject != null)
                 toRemove.Add(b);
-                continue;
-            }
+        }
+        foreach(Block b in toRemove)
+            bufferColored.Remove(b);
+        toRemove.Clear();
+        foreach (Block b in bufferColored) {
             List<Block> path = null;
-            path = ai_getDestinationPath(origin.connectedCell.GetComponent<Block>(), b, 800);
+            path = ai_getDestinationPath(origin.connectedCell.GetComponent<Block>(), b, AI_SEARCHPATH_STEPS);
             if (path == null) toRemove.Add(b);
             else if (path.Count > origin.actual_pm + 1) toRemove.Add(b);
         }
-        foreach(Block b in toRemove)
+        foreach (Block b in toRemove)
             bufferColored.Remove(b);
 
     }
@@ -783,6 +788,18 @@ public class Character : MonoBehaviour
                     b.coordinate.column != origin.connectedCell.GetComponent<Block>().coordinate.column) {
                     toRemove.Add(b);
                 }
+            }
+            foreach (Block b in toRemove)
+                bufferColored.Remove(b);
+            toRemove.Clear();
+        }
+
+        // Removing cells if the spell is in diagonal range
+        if (selected.distanceType == Spell.DistanceType.Diagonal) {
+            Block source = origin.connectedCell.GetComponent<Block>();
+            foreach (Block b in bufferColored) {
+                if (Mathf.Abs(source.coordinate.row - b.coordinate.row) != Mathf.Abs(source.coordinate.column - b.coordinate.column))
+                    toRemove.Add(b);
             }
             foreach (Block b in toRemove)
                 bufferColored.Remove(b);

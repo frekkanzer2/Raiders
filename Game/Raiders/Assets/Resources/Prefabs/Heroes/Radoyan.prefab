@@ -106,7 +106,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 992b904e7fe789140baa4c7920424295, type: 3}
     description: Completely heals the target, but removes all PA and all PM
     element: 4
-    damage: 5000
+    damage: 0
     lifeSteal: 0
     minRange: 1
     maxRange: 4
@@ -122,11 +122,12 @@ MonoBehaviour:
     hasEffect: 1
     isEffectOnly: 0
     canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+    isJump: 0
+    isSummon: 0
   - link: {fileID: 0}
     name: Preventing Word
     icon: {fileID: 21300000, guid: e27333e75305fe747b9a65ebf6ede181, type: 3}
-    description: Gives 450 shield to the target
+    description: Gives 500 shield to the target
     element: 5
     damage: 0
     lifeSteal: 0
@@ -139,12 +140,13 @@ MonoBehaviour:
     pmCost: 0
     maxTimesInTurn: 1
     executeAfterTurns: 5
-    effectDuration: 2
+    effectDuration: 3
     criticalProbability: 0
     hasEffect: 1
     isEffectOnly: 1
     canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+    isJump: 0
+    isSummon: 0
   - link: {fileID: 0}
     name: Agonising Word
     icon: {fileID: 21300000, guid: 819ec39737c773a4fba9d96eb30a01f1, type: 3}
@@ -166,7 +168,8 @@ MonoBehaviour:
     hasEffect: 1
     isEffectOnly: 0
     canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+    isJump: 0
+    isSummon: 0
   - link: {fileID: 0}
     name: Furious Word
     icon: {fileID: 21300000, guid: 6d64b705cc465e640bf092b1f82d5312, type: 3}
@@ -189,7 +192,8 @@ MonoBehaviour:
     hasEffect: 1
     isEffectOnly: 0
     canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 1040
   pa: 7
@@ -203,6 +207,8 @@ MonoBehaviour:
   att_f: 0
   att_a: 0
   att_w: 0
+  numberOfSummons: 0
+  isEvocation: 0
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
@@ -234,7 +240,10 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+    isJump: 0
+    isSummon: 0
+  summons: []
+  summonsIdCounter: 0
   isDebugEnabled: 0
   accumulationCounter: 0
   criticShooting: 0

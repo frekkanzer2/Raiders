@@ -13,6 +13,8 @@ public class Evocation : Character {
     [HideInInspector]
     public bool isCommunionActive = false;
 
+    public bool mustSkip;
+
     public override void setDead() {
         connectedSummoner.summons.Remove(this);
         base.setDead();
@@ -28,6 +30,12 @@ public class Evocation : Character {
             connectedSummoner.inflictDamage(damage);
         }
         base.inflictDamage(damage);
+    }
+
+    public override void newTurn() {
+        base.newTurn();
+        if (mustSkip)
+            TurnsManager.Instance.OnSkipTurn();
     }
 
 }

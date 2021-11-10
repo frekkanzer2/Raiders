@@ -17,7 +17,8 @@ public class Spell {
 
     public enum DistanceType {
         Normal,
-        Line
+        Line,
+        Diagonal
     }
     
     [HideInInspector]
@@ -239,12 +240,20 @@ public class Spell {
         else if (spell.name == "Call of Tofu") SUMMONS_TOFU(caster, targetBlock);
         else if (spell.name == "Call of Gobball") SUMMONS_GOBBALL(caster, targetBlock);
         else if (spell.name == "Call of Prespic") SUMMONS_PRESPIC(caster, targetBlock);
+        else if (spell.name == "Call of Pandawasta") SUMMONS_PANDAWASTA(caster, targetBlock);
+        else if (spell.name == "Call of Bamboo") SUMMONS_BAMBOO(caster, targetBlock);
         else if (spell.name == "Sedimentation") EXECUTE_SEDIMENTATION(targetBlock, spell);
         else if (spell.name == "Sting") EXECUTE_STING(targetBlock, spell);
         else if (spell.name == "Pleasure") EXECUTE_PLEASURE(targetBlock, spell);
         else if (spell.name == "Whip") EXECUTE_WHIP(targetBlock, spell);
         else if (spell.name == "Communion") EXECUTE_COMMUNION(targetBlock, spell);
         else if (spell.name == "Summoner Fury") EXECUTE_SUMMONER_FURY(targetBlock, spell);
+        else if (spell.name == "Chamrak") EXECUTE_CHAMRAK(caster, targetBlock, spell);
+        else if (spell.name == "Waterfall") EXECUTE_WATERFALL(caster, targetBlock);
+        else if (spell.name == "Blow-Out") EXECUTE_BLOW_OUT(caster, spell);
+        else if (spell.name == "Eviction") EXECUTE_EVICTION(caster, targetBlock);
+        else if (spell.name == "Pandjiu") EXECUTE_PANDJIU(caster, targetBlock);
+        else if (spell.name == "Explosive Flask") EXECUTE_EXPLOSIVE_FLASK(caster, targetBlock, spell);
 
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -441,6 +450,7 @@ public class Spell {
             Vector2 newPosition = Coordinate.getPosition(toJump.coordinate);
             caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
         }
+        caster.setZIndex(caster.connectedCell.GetComponent<Block>());
     }
 
     public static void EXECUTE_CONVULSION(Character caster, Block targetBlock) {
@@ -893,6 +903,7 @@ public class Spell {
     public static void EXECUTE_RECOVERY_WORD(Block targetBlock, Spell s) {
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         target.addEvent(new RecoveryWordEvent("Recovery Word", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        target.receiveHeal(target.hp - target.actual_hp);
     }
 
     public static void EXECUTE_PREVENTING_WORD(Character caster, Block targetBlock, Spell s) {
@@ -961,6 +972,14 @@ public class Spell {
         ut_execute_summon(caster, targetBlock, "Dragonnet");
     }
 
+    public static void SUMMONS_PANDAWASTA(Character caster, Block targetBlock) {
+        ut_execute_summon(caster, targetBlock, "Pandawasta");
+    }
+
+    public static void SUMMONS_BAMBOO(Character caster, Block targetBlock) {
+        ut_execute_summon(caster, targetBlock, "Bamboo");
+    }
+
     public static void EXECUTE_STING(Block targetBlock, Spell s) {
         targetBlock.linkedObject.GetComponent<Character>().addEvent(new StingEvent("Sting", targetBlock.linkedObject.GetComponent<Character>(), s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
@@ -994,6 +1013,44 @@ public class Spell {
             target.addEvent(ce);
             ce.useIstantanely();
         }
+    }
+
+    public static void EXECUTE_CHAMRAK(Character caster, Block targetBlock, Spell s) {
+        EXECUTE_EXODUS(targetBlock.linkedObject.GetComponent<Character>(), caster.connectedCell.GetComponent<Block>(), s);
+    }
+
+    public static void EXECUTE_WATERFALL(Character caster, Block targetBlock) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        // Manual check to avoid ID check
+        if (target is Evocation && target.name == "Bamboo" && target.team == caster.team) {
+            foreach(Character c in ut_getAllies(caster)) {
+                if (c.name != "Bamboo")
+                    c.receiveHeal(20);
+            }
+        }
+    }
+
+    public static void EXECUTE_BLOW_OUT(Character caster, Spell s) {
+        BlowOutEvent boe = new BlowOutEvent("Blow-Out", caster, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon);
+        caster.addEvent(boe);
+        boe.useIstantanely();
+    }
+
+    public static void EXECUTE_EVICTION(Character caster, Block targetBlock) {
+        if (caster.getEventSystem().getEvents("Blow-Out").Count > 0)
+            ut_repels(caster, targetBlock, 5);
+    }
+
+    public static void EXECUTE_PANDJIU(Character caster, Block targetBlock) {
+        if (caster.getEventSystem().getEvents("Blow-Out").Count > 0)
+            ut_attracts(caster, targetBlock, 2);
+    }
+    public static void EXECUTE_EXPLOSIVE_FLASK(Character caster, Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (caster.getEventSystem().getEvents("Blow-Out").Count > 0)
+            foreach (Character enemy in ut_getAllies(target))
+                if (ut_isNearOf(target, enemy, 2))
+                    enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
     }
 
     #endregion

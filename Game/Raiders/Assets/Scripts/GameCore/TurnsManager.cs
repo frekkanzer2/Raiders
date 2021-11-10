@@ -167,6 +167,16 @@ public class TurnsManager : MonoBehaviour
         StartActiveCharTurn(true);
     }
 
+    public void OnSkipTurn() {
+        Character endTurnCh = turns[0];
+        turns.Remove(endTurnCh);
+        endTurnCh.turnPassed();
+        turns.Add(endTurnCh);
+        Character newTurnCh = turns[0];
+        active = newTurnCh;
+        StartActiveCharTurn(true);
+    }
+
     private void StartActiveCharTurn(bool scrollPreviews) {
         timeLeft = 3f;
         nextTurnButton.SetActive(false);
