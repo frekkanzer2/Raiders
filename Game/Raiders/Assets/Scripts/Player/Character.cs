@@ -659,7 +659,7 @@ public class Character : MonoBehaviour
 
     public void th_work_DestPath(Character caster, Block start, Block destination, SynchronizedCollection<Block> toRemove) {
         List<Block> path = null;
-        path = ai_getDestinationPath(start, destination, AI_SEARCHPATH_STEPS);
+        path = ai_getDestinationPath(start, destination, caster.actual_pm+1);
         if (path == null) toRemove.Add(destination);
         else if (path.Count > caster.actual_pm + 1)
             toRemove.Add(destination);
