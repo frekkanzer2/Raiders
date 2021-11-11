@@ -5,10 +5,19 @@ using UnityEngine;
 public class Block : MonoBehaviour {
     
     public GameObject linkedObject;
+    public GameObject getLinkedObject() {
+        return this.linkedObject;
+    }
     public Coordinate coordinate;
 
     private bool isSpawnable = false;
     private int spawnableTeam = -1;
+    public bool isFree = true;
+
+    private void Update() {
+        if (this.linkedObject == null) isFree = true;
+        else isFree = false;
+    }
 
     [HideInInspector]
     public bool canMoveHere = false;
@@ -84,17 +93,18 @@ public class Block : MonoBehaviour {
     public List<Block> getFreeAdjacentBlocks() {
         List<Block> list = new List<Block>();
         Block adj = Map.Instance.getBlock(new Coordinate(this.coordinate.row, this.coordinate.column+1));
+        Debug.Log("Getting adjacent blocks");
         if (adj != null)
-            if (adj.linkedObject == null) list.Add(adj);
+            if (adj.isFree) list.Add(adj);
         adj = Map.Instance.getBlock(new Coordinate(this.coordinate.row, this.coordinate.column-1));
         if (adj != null)
-            if (adj.linkedObject == null) list.Add(adj);
+            if (adj.isFree) list.Add(adj);
         adj = Map.Instance.getBlock(new Coordinate(this.coordinate.row+1, this.coordinate.column));
         if (adj != null)
-            if (adj.linkedObject == null) list.Add(adj);
+            if (adj.isFree) list.Add(adj);
         adj = Map.Instance.getBlock(new Coordinate(this.coordinate.row-1, this.coordinate.column));
         if (adj != null)
-            if (adj.linkedObject == null) list.Add(adj);
+            if (adj.isFree) list.Add(adj);
         return list;
     }
 

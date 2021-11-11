@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class Character : MonoBehaviour
 {
@@ -535,7 +537,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    private List<Block> ai_getDestinationPath(Block source, Block destination, int iterationLimit) {
+    public List<Block> ai_getDestinationPath(Block source, Block destination, int iterationLimit) {
         List<Node> leafs = new List<Node>();
         List<Node> analyzed = new List<Node>();
         Tree master = new Tree(source);
@@ -545,7 +547,6 @@ public class Character : MonoBehaviour
         int counter = 0;
         while (reached == null && leafs.Count > 0 && counter <= iterationLimit) {
             counter++;
-            Debug.Log("Iteration " + counter);
             List<Node> newLeafs = new List<Node>();
             foreach(Node leaf in leafs) {
                 Block analyzing = leaf.item;
@@ -570,9 +571,8 @@ public class Character : MonoBehaviour
             analyzed.AddRange(leafs);
             leafs.Clear();
             leafs.AddRange(newLeafs);
-            if (leafs.Count < 200)
-                Debug.Log("Leafs new dimension: " + leafs.Count);
-            else Debug.LogError("Leafs new dimension: " + leafs.Count);
+            if (leafs.Count >= 200)
+                Debug.LogError("Leafs new dimension: " + leafs.Count);
             newLeafs.Clear();
             foreach (Node leaf in leafs)
                 if (leaf.item.equalsTo(destination))
@@ -628,25 +628,41 @@ public class Character : MonoBehaviour
             }
             up--; down++; counter++;
         }
-        
+
         // Remove unreachable blocks
-        List<Block> toRemove = new List<Block>();
+        SynchronizedCollection<Block> blocksToRemove = new SynchronizedCollection<Block>();
         foreach(Block b in bufferColored) {
             if (b.linkedObject != null)
-                toRemove.Add(b);
+                blocksToRemove.Add(b);
         }
-        foreach(Block b in toRemove)
+        foreach(Block b in blocksToRemove)
             bufferColored.Remove(b);
-        toRemove.Clear();
-        foreach (Block b in bufferColored) {
-            List<Block> path = null;
-            path = ai_getDestinationPath(origin.connectedCell.GetComponent<Block>(), b, AI_SEARCHPATH_STEPS);
-            if (path == null) toRemove.Add(b);
-            else if (path.Count > origin.actual_pm + 1) toRemove.Add(b);
+        blocksToRemove.Clear();
+        Task[] allTasks = new Task[bufferColored.Count];
+        int taskIndex = 0;
+        Block originBlock = origin.connectedCell.GetComponent<Block>();
+        foreach (Block bufferedBlock in bufferColored) {
+            allTasks[taskIndex] = Task.Factory.StartNew(
+                () => th_work_DestPath(
+                        origin,
+                        originBlock,
+                        bufferedBlock,
+                        blocksToRemove // reference to synchronized list
+                    )
+            );
+            taskIndex++;
         }
-        foreach (Block b in toRemove)
+        Task.WaitAll(allTasks);
+        foreach (Block b in blocksToRemove)
             bufferColored.Remove(b);
+    }
 
+    public void th_work_DestPath(Character caster, Block start, Block destination, SynchronizedCollection<Block> toRemove) {
+        List<Block> path = null;
+        path = ai_getDestinationPath(start, destination, AI_SEARCHPATH_STEPS);
+        if (path == null) toRemove.Add(destination);
+        else if (path.Count > caster.actual_pm + 1)
+            toRemove.Add(destination);
     }
 
     private List<Block> ai_attackComposer(Character origin, Spell selected) {
