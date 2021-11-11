@@ -93,7 +93,6 @@ public class Block : MonoBehaviour {
     public List<Block> getFreeAdjacentBlocks() {
         List<Block> list = new List<Block>();
         Block adj = Map.Instance.getBlock(new Coordinate(this.coordinate.row, this.coordinate.column+1));
-        Debug.Log("Getting adjacent blocks");
         if (adj != null)
             if (adj.isFree) list.Add(adj);
         adj = Map.Instance.getBlock(new Coordinate(this.coordinate.row, this.coordinate.column-1));

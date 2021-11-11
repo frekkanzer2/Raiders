@@ -537,6 +537,48 @@ public class Character : MonoBehaviour
         }
     }
 
+    // iterationLimit = actual_pm
+    public List<Block> ai_getReachableBlocks(Block source, int iterationLimit) {
+        List<Node> leafs = new List<Node>();
+        List<Node> analyzed = new List<Node>();
+        Tree master = new Tree(source);
+        leafs.Add(master.root);
+        List<Block> visitedBlocks = new List<Block>();
+        int counter = 0;
+        while (leafs.Count > 0 && counter <= iterationLimit) {
+            counter++;
+            List<Node> newLeafs = new List<Node>();
+            foreach (Node leaf in leafs) {
+                Block analyzing = leaf.item;
+                List<Block> adjacents = analyzing.getFreeAdjacentBlocks();
+                foreach (Block adjacent in adjacents) {
+                    Node temp = new Node(leaf, adjacent); // Creating a new leaf with the previous one as father
+                    if (leaf.father != null) {
+                        if (!temp.EqualsTo(leaf.father)) {
+                            bool found = false;
+                            foreach (Node alreadyPresent in analyzed)
+                                if (alreadyPresent.EqualsTo(temp)) {
+                                    found = true;
+                                    break;
+                                }
+                            if (!found)
+                                newLeafs.Add(temp);
+                        }
+                    } else
+                        newLeafs.Add(temp);
+                }
+                visitedBlocks.Add(leaf.item);
+            }
+            analyzed.AddRange(leafs);
+            leafs.Clear();
+            leafs.AddRange(newLeafs);
+            if (leafs.Count >= 200)
+                Debug.LogWarning("Leafs new dimension: " + leafs.Count);
+            newLeafs.Clear();
+        }
+        return visitedBlocks;
+    }
+
     public List<Block> ai_getDestinationPath(Block source, Block destination, int iterationLimit) {
         List<Node> leafs = new List<Node>();
         List<Node> analyzed = new List<Node>();
@@ -638,18 +680,23 @@ public class Character : MonoBehaviour
         foreach(Block b in blocksToRemove)
             bufferColored.Remove(b);
         blocksToRemove.Clear();
+        Block originBlock = origin.connectedCell.GetComponent<Block>();
+        // Reachable blocks
+        List<Block> reachables = null;
+        reachables = ai_getReachableBlocks(originBlock, origin.actual_pm);
+        Debug.Log("Found " + reachables.Count + " reachable blocks");
+        // Checking all reachable blocks
         Task[] allTasks = new Task[bufferColored.Count];
         int taskIndex = 0;
-        Block originBlock = origin.connectedCell.GetComponent<Block>();
+        Debug.Log("Searching in " + bufferColored.Count + " blocks");
         foreach (Block bufferedBlock in bufferColored) {
             allTasks[taskIndex] = Task.Factory.StartNew(
-                () => th_work_DestPath(
-                        origin,
-                        originBlock,
-                        bufferedBlock,
-                        blocksToRemove // reference to synchronized list
-                    )
-            );
+                    () => th_work_DestPath(
+                            bufferedBlock,
+                            reachables,
+                            blocksToRemove // reference to synchronized list
+                        )
+                );
             taskIndex++;
         }
         Task.WaitAll(allTasks);
@@ -657,12 +704,15 @@ public class Character : MonoBehaviour
             bufferColored.Remove(b);
     }
 
-    public void th_work_DestPath(Character caster, Block start, Block destination, SynchronizedCollection<Block> toRemove) {
-        List<Block> path = null;
-        path = ai_getDestinationPath(start, destination, caster.actual_pm+1);
-        if (path == null) toRemove.Add(destination);
-        else if (path.Count > caster.actual_pm + 1)
-            toRemove.Add(destination);
+    public void th_work_DestPath(Block toCheck, List<Block> list, SynchronizedCollection<Block> toRemove) {
+        bool found = false;
+        foreach (Block b in list)
+            if (toCheck.equalsTo(b)) {
+                found = true;
+                break;
+            }
+        if (!found)
+            toRemove.Add(toCheck);
     }
 
     private List<Block> ai_attackComposer(Character origin, Spell selected) {
