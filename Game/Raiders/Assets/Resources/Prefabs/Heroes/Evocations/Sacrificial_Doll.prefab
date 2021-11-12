@@ -106,7 +106,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: a3634145b4338c542ade4a99f43eeb22, type: 3}
     description: The caster will kill himself
     element: 1
-    damage: 80
+    damage: 120
     lifeSteal: 0
     minRange: 1
     maxRange: 1

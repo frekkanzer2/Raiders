@@ -242,6 +242,11 @@ public class Spell {
         else if (spell.name == "Call of Prespic") SUMMONS_PRESPIC(caster, targetBlock);
         else if (spell.name == "Call of Pandawasta") SUMMONS_PANDAWASTA(caster, targetBlock);
         else if (spell.name == "Call of Bamboo") SUMMONS_BAMBOO(caster, targetBlock);
+        else if (spell.name == "Call of The Block") SUMMONS_THE_BLOCK(caster, targetBlock);
+        else if (spell.name == "Call of Sacrificial Doll") SUMMONS_SACRIFICIAL(caster, targetBlock);
+        else if (spell.name == "Call of Madoll") SUMMONS_MADOLL(caster, targetBlock);
+        else if (spell.name == "Call of Tree") SUMMONS_TREE(caster, targetBlock);
+        else if (spell.name == "Call of Inflatable") SUMMONS_INFLATABLE(caster, targetBlock);
         else if (spell.name == "Sedimentation") EXECUTE_SEDIMENTATION(targetBlock, spell);
         else if (spell.name == "Sting") EXECUTE_STING(targetBlock, spell);
         else if (spell.name == "Pleasure") EXECUTE_PLEASURE(targetBlock, spell);
@@ -254,6 +259,11 @@ public class Spell {
         else if (spell.name == "Eviction") EXECUTE_EVICTION(caster, targetBlock);
         else if (spell.name == "Pandjiu") EXECUTE_PANDJIU(caster, targetBlock);
         else if (spell.name == "Explosive Flask") EXECUTE_EXPLOSIVE_FLASK(caster, targetBlock, spell);
+        else if (spell.name == "Contagion") EXECUTE_CONTAGION(caster, targetBlock, spell);
+        else if (spell.name == "Nature Poison") EXECUTE_NATURE_POISON(caster, targetBlock, spell);
+        else if (spell.name == "Earthquake") EXECUTE_EARTHQUAKE(caster, spell);
+        else if (spell.name == "Doll Sacrifice") EXECUTE_DOLL_SACRIFICE(caster);
+        else if (spell.name == "Doll Scream") EXECUTE_DOLL_SCREAM(caster, targetBlock, spell);
 
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -980,6 +990,26 @@ public class Spell {
         ut_execute_summon(caster, targetBlock, "Bamboo");
     }
 
+    public static void SUMMONS_MADOLL(Character caster, Block targetBlock) {
+        ut_execute_summon(caster, targetBlock, "Madoll");
+    }
+
+    public static void SUMMONS_INFLATABLE(Character caster, Block targetBlock) {
+        ut_execute_summon(caster, targetBlock, "Inflatable");
+    }
+
+    public static void SUMMONS_SACRIFICIAL(Character caster, Block targetBlock) {
+        ut_execute_summon(caster, targetBlock, "Sacrificial_Doll");
+    }
+
+    public static void SUMMONS_THE_BLOCK(Character caster, Block targetBlock) {
+        ut_execute_summon(caster, targetBlock, "The_Block");
+    }
+
+    public static void SUMMONS_TREE(Character caster, Block targetBlock) {
+        ut_execute_summon(caster, targetBlock, "Tree");
+    }
+
     public static void EXECUTE_STING(Block targetBlock, Spell s) {
         targetBlock.linkedObject.GetComponent<Character>().addEvent(new StingEvent("Sting", targetBlock.linkedObject.GetComponent<Character>(), s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
@@ -1051,6 +1081,29 @@ public class Spell {
             foreach (Character enemy in ut_getAllies(target))
                 if (ut_isNearOf(target, enemy, 2))
                     enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
+    }
+
+    public static void EXECUTE_CONTAGION(Character caster, Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new ContagionEvent("Contagion", target, s.effectDuration, ParentEvent.Mode.ActivationEachEndTurn, s.icon, caster, s));
+    }
+    public static void EXECUTE_NATURE_POISON(Character caster, Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new NaturePoisonEvent("Nature Poison", target, s.effectDuration, ParentEvent.Mode.ActivationEachEndTurn, s.icon, caster, s));
+    }
+
+    public static void EXECUTE_EARTHQUAKE(Character caster, Spell s) {
+        foreach(Character enemy in ut_getEnemies(caster))
+            if (ut_isNearOf(caster, enemy, 6)) {
+                enemy.addEvent(new EarthquakeEvent("Earthquake", enemy, s.effectDuration, ParentEvent.Mode.ActivationEachEndTurn, s.icon, caster, s));
+            }
+    }
+    public static void EXECUTE_DOLL_SACRIFICE(Character caster) {
+        caster.inflictDamage(caster.actual_hp);
+    }
+    public static void EXECUTE_DOLL_SCREAM(Character caster, Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new DollScreamEvent("Doll Scream", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
 
     #endregion

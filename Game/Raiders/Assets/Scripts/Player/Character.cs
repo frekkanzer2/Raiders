@@ -467,9 +467,9 @@ public class Character : MonoBehaviour
     public virtual void setDead() {
         if (isDead) return;
         isDead = true;
-        if (isEvocation)
+        if (!isEvocation)
             foreach (Evocation e in summons)
-                e.inflictDamage(5000);
+                e.inflictDamage(e.actual_hp);
         if (TurnsManager.active.Equals(this))
             TurnsManager.Instance.OnNextTurnPressed();
         connectedCell.GetComponent<Block>().linkedObject = null;

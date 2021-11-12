@@ -1179,6 +1179,9 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: 5de8116086a8d234cbbd582fe9961e4f, type: 3}
   - {fileID: 557098361630938699, guid: ff68af182b5ef6a4d89543c8d49ca0eb, type: 3}
   - {fileID: 557098361630938699, guid: 7feb50ace680fbd48a3c976512377453, type: 3}
+  - {fileID: 557098361630938699, guid: 3f3f201344d10e3459f6deea54fb1902, type: 3}
+  - {fileID: 557098361630938699, guid: c4d9a43805dbcd340b5ad663656918bd, type: 3}
+  - {fileID: 557098361630938699, guid: 10f27d816ffd9e249be667111a671fcc, type: 3}
   heroesPrefabs_team2:
   - {fileID: 557098361630938699, guid: 3968d5a638ef5994cad63e85612468ac, type: 3}
   - {fileID: 557098361630938699, guid: 2ccb042d5c633dc48854a46bd4a9972e, type: 3}
@@ -1216,6 +1219,9 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: 5de8116086a8d234cbbd582fe9961e4f, type: 3}
   - {fileID: 557098361630938699, guid: ff68af182b5ef6a4d89543c8d49ca0eb, type: 3}
   - {fileID: 557098361630938699, guid: 7feb50ace680fbd48a3c976512377453, type: 3}
+  - {fileID: 557098361630938699, guid: 3f3f201344d10e3459f6deea54fb1902, type: 3}
+  - {fileID: 557098361630938699, guid: c4d9a43805dbcd340b5ad663656918bd, type: 3}
+  - {fileID: 557098361630938699, guid: 10f27d816ffd9e249be667111a671fcc, type: 3}
 --- !u!114 &93772482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1421,6 +1427,38 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 09b44832a17fd664ea8d636f8c9fe2fe, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 43265cb9789859144833612b98b534fa, type: 3}
     isEvocation: 0
+  - characterName: Amalia
+    characterFullSprite: {fileID: 21300000, guid: f1fecadfb7e80d44b90b6e3a4f317e7e, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 04a4dc209fe37a04f8555425c1baddc1, type: 3}
+    isEvocation: 0
+  - characterName: Armando
+    characterFullSprite: {fileID: 21300000, guid: 7539454f2315085468edb0bcb09dcc4e, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 35b2f4a1b051cfe4382008f55e45af4f, type: 3}
+    isEvocation: 0
+  - characterName: Sadadi Sama
+    characterFullSprite: {fileID: 21300000, guid: c961e5401e2337246957c6b23135ba2f, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 035511d344b70384f80f78a1118dea0e, type: 3}
+    isEvocation: 0
+  - characterName: The Block
+    characterFullSprite: {fileID: 21300000, guid: 51f2d6e09c6a9dc4f9f710bc6506a34e, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 9926de9abd0e85c4586b2b3bf9cf4903, type: 3}
+    isEvocation: 1
+  - characterName: Sacrificial Doll
+    characterFullSprite: {fileID: 21300000, guid: b2ee59363c7b61240940d9dc9aca1f13, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 0628c0088e42a4a48a215bafe0d08078, type: 3}
+    isEvocation: 1
+  - characterName: Inflatable
+    characterFullSprite: {fileID: 21300000, guid: 38190ca8319dada41b141c595fe6b1db, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: b28aa7483509eb9479498a89b5f8ba48, type: 3}
+    isEvocation: 1
+  - characterName: Madoll
+    characterFullSprite: {fileID: 21300000, guid: 490089de33e3b4f4aa13a20835150cc4, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 09c7153332242f740bf1a898629fb461, type: 3}
+    isEvocation: 1
+  - characterName: Tree
+    characterFullSprite: {fileID: 21300000, guid: cbd6c459f29b1e543ae799a439c094b6, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 44c890f3546045a44839d651d90b837e, type: 3}
+    isEvocation: 1
 --- !u!114 &93772484
 MonoBehaviour:
   m_ObjectHideFlags: 0

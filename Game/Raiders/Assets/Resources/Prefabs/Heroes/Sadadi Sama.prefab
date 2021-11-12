@@ -103,7 +103,7 @@ MonoBehaviour:
   spells:
   - link: {fileID: 0}
     name: Call of The Block
-    icon: {fileID: 21300000, guid: 51f2d6e09c6a9dc4f9f710bc6506a34e, type: 3}
+    icon: {fileID: 21300000, guid: 4788c8918ca0821468f4653589246679, type: 3}
     description: Summons The Block
     element: 5
     damage: 0

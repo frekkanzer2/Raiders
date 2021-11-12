@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +9,7 @@ public class StrikingWordEvent : ParentEvent
 
     override public void execute() {
         base.execute();
-        connected.receiveHeal(25);
+	    connected.receiveHeal(30);
     }
 
     override public void restoreCharacter() {

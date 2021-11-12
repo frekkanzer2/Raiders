@@ -127,7 +127,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Preventing Word
     icon: {fileID: 21300000, guid: e27333e75305fe747b9a65ebf6ede181, type: 3}
-    description: Gives 500 shield to the target
+    description: Gives 200 shield to the target
     element: 5
     damage: 0
     lifeSteal: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
     paCost: 2
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 5
+    executeAfterTurns: 6
     effectDuration: 3
     criticalProbability: 0
     hasEffect: 1
@@ -152,7 +152,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 819ec39737c773a4fba9d96eb30a01f1, type: 3}
     description: Inflicts 10 damages on adjacent heroes and repels them of 1 cell
     element: 0
-    damage: 24
+    damage: 18
     lifeSteal: 0
     minRange: 2
     maxRange: 5
@@ -195,7 +195,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1040
+  hp: 860
   pa: 7
   pm: 3
   ini: 70
