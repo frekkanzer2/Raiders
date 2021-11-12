@@ -207,6 +207,7 @@ MonoBehaviour:
   connectedSummoner: {fileID: 0}
   id: 0
   isCommunionActive: 0
+  mustSkip: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

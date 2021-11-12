@@ -138,7 +138,7 @@ MonoBehaviour:
   att_a: 0
   att_w: 0
   numberOfSummons: 0
-  isEvocation: 0
+  isEvocation: 1
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
@@ -184,6 +184,7 @@ MonoBehaviour:
   connectedSummoner: {fileID: 0}
   id: 0
   isCommunionActive: 0
+  mustSkip: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
