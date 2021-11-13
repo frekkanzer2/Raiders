@@ -129,7 +129,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 174e53a6203ce2643a3b1e54a0d0f7ec, type: 3}
     description: Inflicts Earth damage
     element: 0
-    damage: 25
+    damage: 28
     lifeSteal: 0
     minRange: 1
     maxRange: 8
@@ -152,7 +152,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 66ec2edc212a6e24185790363e295b1b, type: 3}
     description: Inflicts Water damage
     element: 3
-    damage: 30
+    damage: 36
     lifeSteal: 0
     minRange: 1
     maxRange: 4
@@ -207,7 +207,7 @@ MonoBehaviour:
   att_f: 0
   att_a: 0
   att_w: 10
-  numberOfSummons: 1
+  numberOfSummons: 2
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0

@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 557098361630938741}
   - component: {fileID: 557098361630938698}
-  - component: {fileID: 6745393218802890858}
+  - component: {fileID: 557098361630938740}
   - component: {fileID: 8528018890230597465}
   - component: {fileID: 8914096617352650622}
   - component: {fileID: -2347270675974649033}
-  - component: {fileID: 5404421346664201683}
+  - component: {fileID: -2072592517294728624}
   m_Layer: 0
-  m_Name: Bamboo
+  m_Name: Riskal
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 878381caf65cb174f9cd54dfa29c7818, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fce3dc70db4b454b8fde1ab3bf49503, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6745393218802890858
+--- !u!114 &557098361630938740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,26 +96,121 @@ MonoBehaviour:
   m_GameObject: {fileID: 557098361630938699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b47f2c763fdab0b4ba89ee3dc1fc4aa8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8166a5c395145dc489abd6518c5ac693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Bamboo
-  spells: []
+  name: Riskal
+  spells:
+  - link: {fileID: 0}
+    name: Detonator
+    icon: {fileID: 21300000, guid: 8d3abe84900403d468fad7f9b190359e, type: 3}
+    description: If the target is an ally bomb, it will explode; if the target is
+      the caster, every bomb summoned by the caster will explode
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 7
+    distanceType: 0
+    overObstacles: 1
+    hpCost: 0
+    paCost: 1
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 1
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Tornabombe
+    icon: {fileID: 21300000, guid: 84363c047a9945b4bbfe9c0bbd89029a, type: 3}
+    description: Summons a Tornabombe. If the bomb explodes, it will remove 1 PM
+      for 1 turn and inflict damage to each hero up to 2 cells. At the start of each
+      turn, the bomb gains a charge (max 5)
+    element: 5
+    damage: 24
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 4
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 1
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 1
+    isJump: 0
+    isSummon: 1
+  - link: {fileID: 0}
+    name: Bomb Trick
+    icon: {fileID: 21300000, guid: d8042fc238b669449811e5fd39e34ea5, type: 3}
+    description: Switch position with the target bomb
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 8
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 4
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Carbine
+    icon: {fileID: 21300000, guid: e103a6d16a8411b4e975c1dee868ae68, type: 3}
+    description: Inflicts Air damage
+    element: 2
+    damage: 40
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 16
+    distanceType: 2
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 40
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
-  hp: 200
-  pa: 0
-  pm: 0
-  ini: 0
-  res_e: 0
-  res_f: 0
-  res_a: 0
+  hp: 1270
+  pa: 7
+  pm: 4
+  ini: 90
+  res_e: 6
+  res_f: -7
+  res_a: 10
   res_w: 0
   att_e: 0
   att_f: 0
-  att_a: 0
+  att_a: 8
   att_w: 0
-  numberOfSummons: 0
-  isEvocation: 1
+  numberOfSummons: 3
+  isEvocation: 0
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
@@ -158,11 +253,6 @@ MonoBehaviour:
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
-  connectedSummoner: {fileID: 0}
-  id: 0
-  isCommunionActive: 0
-  isBomb: 0
-  mustSkip: 1
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179,8 +269,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.50545555, y: 0.15811972}
-    oldSize: {x: 3.3333333, y: 3.3333333}
+    pivot: {x: 0.5638298, y: 0.10538269}
+    oldSize: {x: 3.2894738, y: 4.2763157}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -214,7 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f77455afa650f49a81c28b9edfaff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5404421346664201683
+--- !u!114 &-2072592517294728624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

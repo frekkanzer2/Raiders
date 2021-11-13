@@ -132,7 +132,7 @@ MonoBehaviour:
     damage: 0
     lifeSteal: 0
     minRange: 1
-    maxRange: 3
+    maxRange: 1
     distanceType: 0
     overObstacles: 0
     hpCost: 0

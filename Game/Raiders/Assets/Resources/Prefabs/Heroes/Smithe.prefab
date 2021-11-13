@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 557098361630938741}
   - component: {fileID: 557098361630938698}
-  - component: {fileID: 6745393218802890858}
+  - component: {fileID: 557098361630938740}
   - component: {fileID: 8528018890230597465}
   - component: {fileID: 8914096617352650622}
   - component: {fileID: -2347270675974649033}
-  - component: {fileID: 5404421346664201683}
+  - component: {fileID: -2072592517294728624}
   m_Layer: 0
-  m_Name: Bamboo
+  m_Name: Smithe
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 878381caf65cb174f9cd54dfa29c7818, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9287dc54bba1f545943fbe933be21dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6745393218802890858
+--- !u!114 &557098361630938740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,26 +96,122 @@ MonoBehaviour:
   m_GameObject: {fileID: 557098361630938699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b47f2c763fdab0b4ba89ee3dc1fc4aa8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8166a5c395145dc489abd6518c5ac693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Bamboo
-  spells: []
+  name: Smithe
+  spells:
+  - link: {fileID: 0}
+    name: Detonator
+    icon: {fileID: 21300000, guid: 8d3abe84900403d468fad7f9b190359e, type: 3}
+    description: If the target is an ally bomb, it will explode; if the target is
+      the caster, every bomb summoned by the caster will explode
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 7
+    distanceType: 0
+    overObstacles: 1
+    hpCost: 0
+    paCost: 1
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 1
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Waterbombe
+    icon: {fileID: 21300000, guid: e793bedfd5cd8e749b92bf68a46afe04, type: 3}
+    description: Summons a Waterbombe. If the bomb explodes, it will remove 1 PA
+      for 1 turn and inflict damage to each hero up to 2 cells. At the start of each
+      turn, the bomb gains a charge (max 5)
+    element: 5
+    damage: 24
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 4
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 1
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 1
+    isJump: 0
+    isSummon: 1
+  - link: {fileID: 0}
+    name: Kickback
+    icon: {fileID: 21300000, guid: a4057ef45124115489db9d9d05c70934, type: 3}
+    description: If the target is a bomb, repels it of 5 cells; if the target is
+      the caster, repels each adjacent bomb of 3 cells
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 1
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Deception
+    icon: {fileID: 21300000, guid: 229fe1b7e17b10a4586f71557e79ad53, type: 3}
+    description: Removes 3 PA to the target (20% chance)
+    element: 3
+    damage: 38
+    lifeSteal: 0
+    minRange: 2
+    maxRange: 3
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 1
+    criticalProbability: 15
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
-  hp: 200
-  pa: 0
-  pm: 0
-  ini: 0
-  res_e: 0
+  hp: 1210
+  pa: 6
+  pm: 4
+  ini: 85
+  res_e: -8
   res_f: 0
-  res_a: 0
-  res_w: 0
+  res_a: -6
+  res_w: 10
   att_e: 0
   att_f: 0
   att_a: 0
-  att_w: 0
-  numberOfSummons: 0
-  isEvocation: 1
+  att_w: 8
+  numberOfSummons: 3
+  isEvocation: 0
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
@@ -158,11 +254,6 @@ MonoBehaviour:
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
-  connectedSummoner: {fileID: 0}
-  id: 0
-  isCommunionActive: 0
-  isBomb: 0
-  mustSkip: 1
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179,8 +270,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.50545555, y: 0.15811972}
-    oldSize: {x: 3.3333333, y: 3.3333333}
+    pivot: {x: 0.5425532, y: 0.09992716}
+    oldSize: {x: 3.2894738, y: 4.2763157}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -214,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f77455afa650f49a81c28b9edfaff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5404421346664201683
+--- !u!114 &-2072592517294728624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

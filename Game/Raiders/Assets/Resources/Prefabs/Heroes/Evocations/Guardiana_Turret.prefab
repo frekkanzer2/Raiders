@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2347270675974649033}
   - component: {fileID: 5404421346664201683}
   m_Layer: 0
-  m_Name: Bamboo
+  m_Name: Guardiana_Turret
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 878381caf65cb174f9cd54dfa29c7818, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65af1f6e88163d146ae00c5031eeafee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,12 +99,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b47f2c763fdab0b4ba89ee3dc1fc4aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Bamboo
-  spells: []
+  name: Guardiana Turret
+  spells:
+  - link: {fileID: 0}
+    name: First Aid
+    icon: {fileID: 21300000, guid: 4889ab677ca6a294aa6e6ee1b17ae364, type: 3}
+    description: Heals the target
+    element: 4
+    damage: 60
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 4
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 5
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 1
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
-  hp: 200
-  pa: 0
-  pm: 0
+  hp: 100
+  pa: 6
+  pm: -100
   ini: 0
   res_e: 0
   res_f: 0
@@ -162,7 +185,7 @@ MonoBehaviour:
   id: 0
   isCommunionActive: 0
   isBomb: 0
-  mustSkip: 1
+  mustSkip: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179,7 +202,7 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.50545555, y: 0.15811972}
+    pivot: {x: 0.5000002, y: 0.30178225}
     oldSize: {x: 3.3333333, y: 3.3333333}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5

@@ -264,6 +264,14 @@ public class Spell {
         else if (spell.name == "Earthquake") EXECUTE_EARTHQUAKE(caster, spell);
         else if (spell.name == "Doll Sacrifice") EXECUTE_DOLL_SACRIFICE(caster);
         else if (spell.name == "Doll Scream") EXECUTE_DOLL_SCREAM(caster, targetBlock, spell);
+        else if (spell.name == "Explobombe") SUMMONS_EXPLOBOMBE(caster, targetBlock, spell);
+        else if (spell.name == "Tornabombe") SUMMONS_TORNABOMBE(caster, targetBlock, spell);
+        else if (spell.name == "Waterbombe") SUMMONS_WATERBOMBE(caster, targetBlock, spell);
+        else if (spell.name == "Detonator") EXECUTE_DETONATOR(caster, targetBlock);
+        else if (spell.name == "Powder") EXECUTE_POWDER(caster, targetBlock);
+        else if (spell.name == "Kickback") EXECUTE_KICKBACK(caster, targetBlock);
+        else if (spell.name == "Bomb Trick") EXECUTE_BOMB_TRICK(caster, targetBlock);
+        else if (spell.name == "Deception") EXECUTE_DECEPTION(targetBlock, spell);
 
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -1106,6 +1114,131 @@ public class Spell {
         target.addEvent(new DollScreamEvent("Doll Scream", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
 
+    public static void SUMMONS_EXPLOBOMBE(Character caster, Block targetBlock, Spell s) {
+        Evocation bomb = ut_execute_summon(caster, targetBlock, "Explobombe");
+        bomb.setBomb(caster, s);
+    }
+
+    public static void SUMMONS_TORNABOMBE(Character caster, Block targetBlock, Spell s) {
+        Evocation bomb = ut_execute_summon(caster, targetBlock, "Tornabombe");
+        bomb.setBomb(caster, s);
+    }
+
+    public static void SUMMONS_WATERBOMBE(Character caster, Block targetBlock, Spell s) {
+        Evocation bomb = ut_execute_summon(caster, targetBlock, "Waterbombe");
+        bomb.setBomb(caster, s);
+    }
+    
+    // This method doesn't kill the bomb -> for security issues, do it manually
+    public static void SUBEXECUTE_EXPLOSION(Evocation bomb, bool isSingleBomb) {
+        List<Character> allHeroes = ut_getEnemies(bomb);
+        allHeroes.AddRange(ut_getAllies(bomb));
+        if (!isSingleBomb)
+            foreach (Character ch in allHeroes) {
+                if (ut_isNearOf(ch, bomb, 2)) {
+                    if (ch is Evocation) {
+                        if (((Evocation)ch).isBomb && !bomb.connectedSummoner.summons.Contains((Evocation)ch)) {
+                            ch.inflictDamage(bomb.getBombDamage(ch));
+                            if (bomb.name == "Tornabombe")
+                                ch.addEvent(new TornabombEvent("Tornabombe", ch, 1, ParentEvent.Mode.ActivationEachTurn, bomb.getBombSpellSprite()));
+                            else if (bomb.name == "Waterbombe")
+                                ch.addEvent(new WaterbombEvent("Waterbombe", ch, 1, ParentEvent.Mode.ActivationEachTurn, bomb.getBombSpellSprite()));
+                        } else if (!((Evocation)ch).isBomb) {
+                            ch.inflictDamage(bomb.getBombDamage(ch));
+                            if (bomb.name == "Tornabombe")
+                                ch.addEvent(new TornabombEvent("Tornabombe", ch, 1, ParentEvent.Mode.ActivationEachTurn, bomb.getBombSpellSprite()));
+                            else if (bomb.name == "Waterbombe")
+                                ch.addEvent(new WaterbombEvent("Waterbombe", ch, 1, ParentEvent.Mode.ActivationEachTurn, bomb.getBombSpellSprite()));
+                        }
+                        // don't execute damage on summoner bombs
+                    } else {
+                        ch.inflictDamage(bomb.getBombDamage(ch));
+                        if (bomb.name == "Tornabombe")
+                            ch.addEvent(new TornabombEvent("Tornabombe", ch, 1, ParentEvent.Mode.ActivationEachTurn, bomb.getBombSpellSprite()));
+                        else if (bomb.name == "Waterbombe")
+                            ch.addEvent(new WaterbombEvent("Waterbombe", ch, 1, ParentEvent.Mode.ActivationEachTurn, bomb.getBombSpellSprite()));
+                    }
+                }
+            }
+        else
+        foreach (Character ch in allHeroes)
+            if (ut_isNearOf(ch, bomb, 2)) {
+                ch.inflictDamage(bomb.getBombDamage(ch));
+                if (bomb.name == "Tornabombe")
+                    ch.addEvent(new TornabombEvent("Tornabombe", ch, 1, ParentEvent.Mode.ActivationEachTurn, bomb.getBombSpellSprite()));
+                else if (bomb.name == "Waterbombe")
+                    ch.addEvent(new WaterbombEvent("Waterbombe", ch, 1, ParentEvent.Mode.ActivationEachTurn, bomb.getBombSpellSprite()));
+            }
+    }
+
+    public static void EXECUTE_DETONATOR(Character caster, Block targetBlock) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation) {
+            Evocation evoTarget = (Evocation)target;
+            if (evoTarget.isBomb && evoTarget.connectedSummoner.team == caster.team) {
+                // the target is a bomb - every rogue ally can explode an ally bomb
+                SUBEXECUTE_EXPLOSION(evoTarget, true);
+                evoTarget.inflictDamage(evoTarget.actual_hp);
+            }
+        } else if (target.Equals(caster)) {
+            // get all bombs from the caster and execute explosion
+            List<Evocation> temp_summons = new List<Evocation>();
+            foreach (Evocation evoTarget in caster.summons) {
+                SUBEXECUTE_EXPLOSION(evoTarget, false);
+                temp_summons.Add(evoTarget);
+            }
+            foreach (Evocation evoTarget in temp_summons) {
+                evoTarget.inflictDamage(evoTarget.actual_hp);
+            }
+        }
+    }
+
+    public static void EXECUTE_POWDER(Character caster, Block targetBlock) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation) {
+            Evocation evoTarget = (Evocation)target;
+            if (evoTarget.isBomb && evoTarget.connectedSummoner.team == caster.team) {
+                evoTarget.setBombChargeToFive();
+            }
+        }
+    }
+
+    public static void EXECUTE_BOMB_TRICK(Character caster, Block targetBlock) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation) {
+            Evocation evoTarget = (Evocation)target;
+            if (evoTarget.isBomb) {
+                EXECUTE_TRANSPOSITION(caster, targetBlock);
+            }
+        }
+    }
+
+    public static void EXECUTE_KICKBACK(Character caster, Block targetBlock) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation) {
+            Evocation evoTarget = (Evocation)target;
+            if (evoTarget.isBomb) {
+                // single target -> bomb
+                ut_repels(caster, targetBlock, 5);
+            }
+        } else if (target.Equals(caster)) {
+            foreach (Character c in ut_getAdjacentHeroes(targetBlock.coordinate))
+                if (c is Evocation)
+                    if (((Evocation)c).isBomb)
+                        ut_repels(caster, c.connectedCell.GetComponent<Block>(), 3);
+        }
+    }
+
+    public static void EXECUTE_DECEPTION(Block targetBlock, Spell s) {
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+        int prob = UnityEngine.Random.Range(1, 101);
+        Debug.Log("Spell " + s.name + " prob: " + prob);
+        if (prob <= 20) {
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            target.addEvent(new DeceptionEvent("Deception", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        }
+    }
+
     #endregion
 
     #region EVENT BONUSES
@@ -1158,7 +1291,7 @@ public class Spell {
 
     #region UTILITIES
 
-    public static void ut_execute_summon(Character caster, Block targetBlock, string id) {
+    public static Evocation ut_execute_summon(Character caster, Block targetBlock, string id) {
         GameObject summonPrefab = Resources.Load("Prefabs/Heroes/Evocations/" + id) as GameObject;
         // Creating summon
         GameObject summon = GameObject.Instantiate(summonPrefab, Coordinate.getPosition(targetBlock.coordinate), Quaternion.identity);
@@ -1179,6 +1312,7 @@ public class Spell {
         caster.summons.Add(summonScript);
         // Setting turns parameters
         TurnsManager.Instance.injectCharacter(caster, summonScript);
+        return summonScript;
     }
 
     public static List<Character> ut_getAllies(Character caster) {

@@ -1788,6 +1788,30 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: cbd6c459f29b1e543ae799a439c094b6, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 44c890f3546045a44839d651d90b837e, type: 3}
     isEvocation: 1
+  - characterName: Rougelard
+    characterFullSprite: {fileID: 21300000, guid: 15b85bbb5fe77384da247dbbe38013e2, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: a279adbbdad4bed43b7479e7de8cb230, type: 3}
+    isEvocation: 0
+  - characterName: Smithe
+    characterFullSprite: {fileID: 21300000, guid: c9287dc54bba1f545943fbe933be21dc, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 203340011f64ee144847217df879e9c2, type: 3}
+    isEvocation: 0
+  - characterName: Riskal
+    characterFullSprite: {fileID: 21300000, guid: 3fce3dc70db4b454b8fde1ab3bf49503, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 97511fb08d516494880dabf8d1371229, type: 3}
+    isEvocation: 0
+  - characterName: Explobombe
+    characterFullSprite: {fileID: 21300000, guid: d50431a0b6189934481a99f7ba1c501c, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 37bea728b188f0846876474896a93e03, type: 3}
+    isEvocation: 1
+  - characterName: Waterbombe
+    characterFullSprite: {fileID: 21300000, guid: 8566d62bbc6056544a96b8083194df90, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: ab327959c55890c43b3a5d792462f744, type: 3}
+    isEvocation: 1
+  - characterName: Tornabombe
+    characterFullSprite: {fileID: 21300000, guid: f463cebb690838f47bd6d9ae2bf27a01, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 34c3d4e1a2d1298478a5ba53fd9b3940, type: 3}
+    isEvocation: 1
 --- !u!114 &1295197767
 MonoBehaviour:
   m_ObjectHideFlags: 0

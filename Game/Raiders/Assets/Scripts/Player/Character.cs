@@ -468,8 +468,13 @@ public class Character : MonoBehaviour
         if (isDead) return;
         isDead = true;
         if (!isEvocation)
-            foreach (Evocation e in summons)
+            // Deleting summons in safe way
+            for (int i = 0; i < summons.Count; i++) {
+                int prev_count = summons.Count;
+                Evocation e = summons[i];
                 e.inflictDamage(e.actual_hp);
+                if (prev_count != summons.Count) i--;
+            }
         if (TurnsManager.active.Equals(this))
             TurnsManager.Instance.OnNextTurnPressed();
         connectedCell.GetComponent<Block>().linkedObject = null;
