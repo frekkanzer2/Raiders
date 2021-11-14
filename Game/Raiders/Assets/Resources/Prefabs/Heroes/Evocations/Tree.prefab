@@ -123,6 +123,7 @@ MonoBehaviour:
   connectedCell: {fileID: 0}
   actual_shield: 0
   isDead: 0
+  canMovedByEffects: 0
   isMoving: 0
   isForcedMoving: 0
   spellToUse:
@@ -161,6 +162,7 @@ MonoBehaviour:
   connectedSummoner: {fileID: 0}
   id: 0
   isCommunionActive: 0
+  isBomb: 0
   mustSkip: 1
 --- !u!61 &8528018890230597465
 BoxCollider2D:

@@ -123,6 +123,7 @@ MonoBehaviour:
   connectedCell: {fileID: 0}
   actual_shield: 0
   isDead: 0
+  canMovedByEffects: 1
   isMoving: 0
   isForcedMoving: 0
   spellToUse:

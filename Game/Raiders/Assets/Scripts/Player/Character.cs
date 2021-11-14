@@ -41,6 +41,7 @@ public class Character : MonoBehaviour
     public int actual_shield = 0;
     [HideInInspector]
     public bool isDead = false;
+    public bool canMovedByEffects;
 
     private StatsOutputSystem sos;
 

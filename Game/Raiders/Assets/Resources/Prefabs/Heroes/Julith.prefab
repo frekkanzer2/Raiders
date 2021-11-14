@@ -122,7 +122,8 @@ MonoBehaviour:
     hasEffect: 1
     isEffectOnly: 1
     canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+    isJump: 0
+    isSummon: 0
   - link: {fileID: 0}
     name: Striking Meteor
     icon: {fileID: 21300000, guid: 680dbcbd389ac9641b8a1b548af35849, type: 3}
@@ -145,7 +146,8 @@ MonoBehaviour:
     hasEffect: 1
     isEffectOnly: 1
     canUseInEmptyCell: 1
-    isJumpOrEvocation: 1
+    isJump: 0
+    isSummon: 0
   - link: {fileID: 0}
     name: Hupperkap
     icon: {fileID: 21300000, guid: 63cc2bc2c1b51314da828369d25906cb, type: 3}
@@ -167,7 +169,8 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+    isJump: 0
+    isSummon: 0
   - link: {fileID: 0}
     name: Aerial Wave
     icon: {fileID: 21300000, guid: 1c3f1d1e52f2e134d9cd296441a8a0cb, type: 3}
@@ -189,7 +192,8 @@ MonoBehaviour:
     hasEffect: 1
     isEffectOnly: 0
     canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 1320
   pa: 7
@@ -203,6 +207,8 @@ MonoBehaviour:
   att_f: 0
   att_a: 10
   att_w: 0
+  numberOfSummons: 0
+  isEvocation: 0
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
@@ -210,6 +216,7 @@ MonoBehaviour:
   connectedCell: {fileID: 0}
   actual_shield: 0
   isDead: 0
+  canMovedByEffects: 1
   isMoving: 0
   isForcedMoving: 0
   spellToUse:
@@ -234,7 +241,10 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+    isJump: 0
+    isSummon: 0
+  summons: []
+  summonsIdCounter: 0
   isDebugEnabled: 0
   accumulationCounter: 0
   criticShooting: 0

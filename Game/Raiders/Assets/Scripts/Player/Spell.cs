@@ -278,6 +278,7 @@ public class Spell {
     }
 
     public static void EXECUTE_JUMP(Character caster, Block targetBlock) {
+        if (!caster.canMovedByEffects) return;
         Debug.Log("Jump for " + caster.name);
         if (caster.connectedCell.GetComponent<Block>() != null) {
             caster.connectedCell.GetComponent<Block>().linkedObject = null;
@@ -421,6 +422,7 @@ public class Spell {
     }
 
     public static void EXECUTE_EXODUS(Character caster, Block targetBlock, Spell s) {
+        if (!caster.canMovedByEffects) return;
         Coordinate casterCoord = caster.connectedCell.GetComponent<Block>().coordinate;
         Coordinate targetCoord = targetBlock.coordinate;
         if (casterCoord.row == targetCoord.row && casterCoord.column < targetCoord.column) {
@@ -506,6 +508,7 @@ public class Spell {
     }
 
     public static void EXECUTE_TRANSPOSITION(Character caster, Block targetBlock) {
+        if (!caster.canMovedByEffects || !targetBlock.linkedObject.GetComponent<Character>().canMovedByEffects) return;
         Block casterBlock = caster.connectedCell.GetComponent<Block>();
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         casterBlock.linkedObject = null;
@@ -1349,6 +1352,7 @@ public class Spell {
     }
 
     public static void ut_repels(Character caster, Block targetBlock, int numberOfCellsToMove) {
+        if (!targetBlock.linkedObject.GetComponent<Character>().canMovedByEffects) return;
         List<Block> path = new List<Block>();
         Coordinate casterPosition = caster.connectedCell.GetComponent<Block>().coordinate;
         Coordinate targetPosition = targetBlock.coordinate;
@@ -1390,6 +1394,7 @@ public class Spell {
     }
 
     public static void ut_repelsCaster(Character caster, Block targetBlock, int numberOfCellsToMove) {
+        if (!caster.canMovedByEffects) return;
         List<Block> path = new List<Block>();
         Coordinate casterPosition = caster.connectedCell.GetComponent<Block>().coordinate;
         Coordinate targetPosition = targetBlock.coordinate;
@@ -1431,6 +1436,7 @@ public class Spell {
     }
 
     public static void ut_attracts(Character caster, Block targetBlock, int numberOfCellsToMove) {
+        if (!targetBlock.linkedObject.GetComponent<Character>().canMovedByEffects) return;
         List<Block> path = new List<Block>();
         Coordinate casterPosition = caster.connectedCell.GetComponent<Block>().coordinate;
         Coordinate targetPosition = targetBlock.coordinate;
@@ -1477,6 +1483,7 @@ public class Spell {
     }
 
     public static void ut_comesCloser(Character caster, Block targetBlock, int numberOfCellsToMove) {
+        if (!caster.canMovedByEffects) return;
         List<Block> path = new List<Block>();
         Coordinate casterPosition = caster.connectedCell.GetComponent<Block>().coordinate;
         Coordinate targetPosition = targetBlock.coordinate;

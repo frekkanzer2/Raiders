@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2347270675974649033}
   - component: {fileID: 5404421346664201683}
   m_Layer: 0
-  m_Name: The Block
+  m_Name: The_Block
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   connectedCell: {fileID: 0}
   actual_shield: 0
   isDead: 0
+  canMovedByEffects: 1
   isMoving: 0
   isForcedMoving: 0
   spellToUse:
@@ -161,6 +162,7 @@ MonoBehaviour:
   connectedSummoner: {fileID: 0}
   id: 0
   isCommunionActive: 0
+  isBomb: 0
   mustSkip: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:

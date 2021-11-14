@@ -122,7 +122,8 @@ MonoBehaviour:
     hasEffect: 1
     isEffectOnly: 1
     canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+    isJump: 0
+    isSummon: 0
   - link: {fileID: 0}
     name: Attraction
     icon: {fileID: 21300000, guid: f35d53d71b6aecb4f8b19f8a9c8ec947, type: 3}
@@ -144,7 +145,8 @@ MonoBehaviour:
     hasEffect: 1
     isEffectOnly: 1
     canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+    isJump: 0
+    isSummon: 0
   - link: {fileID: 0}
     name: Gash
     icon: {fileID: 21300000, guid: 78e5448e8e2a421448a877d196ea273d, type: 3}
@@ -166,7 +168,8 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+    isJump: 0
+    isSummon: 0
   - link: {fileID: 0}
     name: Desolation
     icon: {fileID: 21300000, guid: d24c8ebb08fbe6945b20f42233fa7edb, type: 3}
@@ -189,7 +192,8 @@ MonoBehaviour:
     hasEffect: 1
     isEffectOnly: 0
     canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 1560
   pa: 6
@@ -203,6 +207,8 @@ MonoBehaviour:
   att_f: 0
   att_a: 14
   att_w: 0
+  numberOfSummons: 0
+  isEvocation: 0
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
@@ -210,6 +216,7 @@ MonoBehaviour:
   connectedCell: {fileID: 0}
   actual_shield: 0
   isDead: 0
+  canMovedByEffects: 1
   isMoving: 0
   isForcedMoving: 0
   spellToUse:
@@ -234,12 +241,17 @@ MonoBehaviour:
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
-    isJumpOrEvocation: 0
+    isJump: 0
+    isSummon: 0
+  summons: []
+  summonsIdCounter: 0
   isDebugEnabled: 0
   accumulationCounter: 0
   criticShooting: 0
   connectedSacrifice: {fileID: 0}
   hasActivedSacrifice: 0
+  canCritical: 1
+  immuneCloseCombat: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
