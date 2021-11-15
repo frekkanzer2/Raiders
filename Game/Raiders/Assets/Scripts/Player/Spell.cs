@@ -53,6 +53,11 @@ public class Spell {
     }
 
     public static void payCost(Character caster, Spell spell) {
+        if (caster is Evocation)
+            if (((Evocation)caster).isTurrect && caster.getEventSystem().getEvents("Harpooner Charge").Count > 0) {
+                caster.getEventSystem().removeEvents("Harpooner Charge");
+                return;
+            }
         caster.decrementHP_withoutEffect(spell.hpCost);
         caster.decrementPA_withoutEffect(spell.paCost);
         caster.decrementPM_withoutEffect(spell.pmCost);
@@ -151,130 +156,143 @@ public class Spell {
     #region SPELL SPECIALIZATIONS
 
     public static void SPELL_SPECIALIZATION(Character caster, Block targetBlock, Spell spell) {
-        if (spell.name == "Jump" || spell.name == "Portal" || spell.name == "Catnip") EXECUTE_JUMP(caster, targetBlock);
-        else if (spell.name == "Pounding") EXECUTE_POUNDING(targetBlock, spell);
-        else if (spell.name == "Agitation") EXECUTE_AGITATION(targetBlock, spell);
-        else if (spell.name == "Accumulation") EXECUTE_ACCUMULATION(caster, spell);
-        else if (spell.name == "Power") EXECUTE_POWER(targetBlock, spell);
-        else if (spell.name == "Duel") EXECUTE_DUEL(caster, targetBlock, spell);
-        else if (spell.name == "Iop's Wrath") EXECUTE_IOP_WRATH(caster, spell);
-        else if (spell.name == "Stretching") EXECUTE_STRETCHING(caster, spell);
-        else if (spell.name == "Composure") EXECUTE_COMPOSURE(targetBlock, spell);
-        else if (spell.name == "Virus") EXECUTE_VIRUS(caster, spell, targetBlock);
-        else if (spell.name == "Powerful Shooting") EXECUTE_POWERFUL_SHOOTING(targetBlock, spell);
-        else if (spell.name == "Bow Skill") EXECUTE_BOW_SKILL(caster, spell);
-        else if (spell.name == "Slow Down Arrow") EXECUTE_SLOW_DOWN_ARROW(targetBlock, spell);
-        else if (spell.name == "Atonement Arrow") EXECUTE_ATONEMENT_ARROW(caster, spell);
-        else if (spell.name == "Retreat Arrow") EXECUTE_RETREAT_ARROW(caster, targetBlock);
-        else if (spell.name == "Barricade Shot") EXECUTE_BARRICADE_SHOT(caster, targetBlock, spell);
-        else if (spell.name == "Sentinel") EXECUTE_SENTINEL(caster, spell);
-        else if (spell.name == "Critical Shooting") EXECUTE_CRITICAL_SHOOTING(targetBlock, spell);
-        else if (spell.name == "Exodus" || spell.name == "Feline Spirit") EXECUTE_EXODUS(caster, targetBlock, spell);
-        else if (spell.name == "Convulsion") EXECUTE_CONVULSION(caster, targetBlock);
-        else if (spell.name == "Therapy") EXECUTE_THERAPY(caster, targetBlock);
-        else if (spell.name == "Odyssey") EXECUTE_ODYSSEY(caster);
-        else if (spell.name == "Transposition" || spell.name == "Assault" || spell.name == "Lifting Word") EXECUTE_TRANSPOSITION(caster, targetBlock);
-        else if (spell.name == "Attraction") EXECUTE_ATTRACTION(caster, targetBlock);
-        else if (spell.name == "Desolation") EXECUTE_DESOLATION(targetBlock, spell);
-        else if (spell.name == "Mutilation") EXECUTE_MUTILATION(caster, spell);
-        else if (spell.name == "Berserk") EXECUTE_BERSERK(caster, spell);
-        else if (spell.name == "Influx") EXECUTE_INFLUX(caster, targetBlock);
-        else if (spell.name == "Sacrifice") EXECUTE_SACRIFICE(caster, targetBlock, spell);
-        else if (spell.name == "Transfusion") EXECUTE_TRANSFUSION(caster, spell);
-        else if (spell.name == "Smell") EXECUTE_SMELL(targetBlock, spell);
-        else if (spell.name == "Heads or Tails") EXECUTE_HEADS_OR_TAILS(targetBlock, spell);
-        else if (spell.name == "All or Nothing") EXECUTE_ALL_OR_NOTHING(targetBlock, spell);
-        else if (spell.name == "Claw of Ceangal" || spell.name == "Haunting Magic") EXECUTE_CLAW_OF_CEANGAL(caster, targetBlock);
-        else if (spell.name == "Godsend") EXECUTE_GODSEND(targetBlock, spell);
-        else if (spell.name == "Feline Sense") EXECUTE_FELINE_SENSE(targetBlock, spell);
-        else if (spell.name == "Roulette") EXECUTE_ROULETTE(caster, spell);
-        else if (spell.name == "Time Rift") EXECUTE_TIME_RIFT(caster, targetBlock, spell);
-        else if (spell.name == "Sandglass") EXECUTE_SANDGLASS(targetBlock, spell);
-        else if (spell.name == "Rewind") EXECUTE_REWIND(targetBlock, spell);
-        else if (spell.name == "Clock") EXECUTE_CLOCK(targetBlock, spell);
-        else if (spell.name == "Time Theft") EXECUTE_TIME_THEFT(caster, targetBlock, spell);
-        else if (spell.name == "Haziness") EXECUTE_HAZINESS(targetBlock, spell);
-        else if (spell.name == "Slow Down") EXECUTE_SLOW_DOWN(targetBlock, spell);
-        else if (spell.name == "Gear") EXECUTE_GEAR(targetBlock, spell);
-        else if (spell.name == "Restart") EXECUTE_RESTART(spell);
-        else if (spell.name == "Stampede") EXECUTE_STAMPEDE(caster, targetBlock, spell);
-        else if (spell.name == "Capering") EXECUTE_CAPERING(caster, targetBlock, spell);
-        else if (spell.name == "Coward Mask") SWITCH_COWARD_MASK(caster, spell);
-        else if (spell.name == "Psychopath Mask") SWITCH_PSYCHOPATH_MASK(caster, spell);
-        else if (spell.name == "Tireless Mask") SWITCH_TIRELESS_MASK(caster, spell);
-        else if (spell.name == "Tortuga") EXECUTE_TORTUGA(targetBlock, spell);
-        else if (spell.name == "Apathy") EXECUTE_APATHY(targetBlock, spell);
-        else if (spell.name == "Furia") EXECUTE_FURIA(caster, targetBlock);
-        else if (spell.name == "Comedy") EXECUTE_COMEDY(caster, targetBlock);
-        else if (spell.name == "Apostasy") EXECUTE_APOSTASY(caster, targetBlock);
-        else if (spell.name == "Lightness") EXECUTE_LIGHTNESS(caster, spell);
-        else if (spell.name == "Puddle Glyph") EXECUTE_PUDDLE_GLYPH(caster, spell);
-        else if (spell.name == "Aggressive Glyph") EXECUTE_AGGRESSIVE_GLYPH(caster, spell);
-        else if (spell.name == "Protective Glyph") EXECUTE_PROTECTIVE_GLYPH(caster, spell);
-        else if (spell.name == "Perception Glyph") EXECUTE_PERCEPTION_GLYPH(caster, spell);
-        else if (spell.name == "Barricade") EXECUTE_BARRICADE(targetBlock, spell);
-        else if (spell.name == "Fortification") EXECUTE_FORTIFICATION(targetBlock, spell);
-        else if (spell.name == "Burning Glyph") EXECUTE_BURNING_GLYPH(caster, spell);
-        else if (spell.name == "Repulsion Glyph") EXECUTE_REPULSION_GLYPH(caster, spell);
-        else if (spell.name == "Dazzling") EXECUTE_DAZZLING(targetBlock, spell);
-        else if (spell.name == "Bontao") EXECUTE_BONTAO(caster, spell);
-        else if (spell.name == "Titanic Hit") EXECUTE_TITANIC_HIT(caster, targetBlock);
-        else if (spell.name == "Telluric Wave") EXECUTE_TELLURIC_WAVE(caster, spell);
-        else if (spell.name == "Polarity") EXECUTE_POLARITY(caster, spell);
-        else if (spell.name == "Stratega") EXECUTE_STRATEGA(caster, targetBlock, spell);
-        else if (spell.name == "Overcharge") EXECUTE_OVERCHARGE(caster, spell);
-        else if (spell.name == "Striking Meteor") EXECUTE_STRIKING_METEOR(caster, targetBlock, spell);
-        else if (spell.name == "Aerial Wave") EXECUTE_AERIAL_WAVE(caster, targetBlock);
-        else if (spell.name == "Selective Word") EXECUTE_SELECTIVE_WORD(caster, targetBlock);
-        else if (spell.name == "Striking Word") EXECUTE_STRIKING_WORD(caster, targetBlock, spell);
-        else if (spell.name == "Recovery Word") EXECUTE_RECOVERY_WORD(targetBlock, spell);
-        else if (spell.name == "Preventing Word") EXECUTE_PREVENTING_WORD(caster, targetBlock, spell);
-        else if (spell.name == "Agonising Word") EXECUTE_AGONISING_WORD(caster, targetBlock);
-        else if (spell.name == "Furious Word") EXECUTE_FURIOUS_WORD(caster, targetBlock, spell);
-        else if (spell.name == "Stimulating Word") EXECUTE_STIMULATING_WORD(targetBlock, spell);
-        else if (spell.name == "Paralysing Word") EXECUTE_PARALYSING_WORD(targetBlock, spell);
-        else if (spell.name == "Galvanising Word") EXECUTE_GALVANISING_WORD(caster, spell);
-        else if (spell.name == "Call of Bwork Mage") SUMMONS_BWORK_MAGE(caster, targetBlock);
-        else if (spell.name == "Call of Craqueleur") SUMMONS_CRAQUELEUR(caster, targetBlock);
-        else if (spell.name == "Call of Dragonnet") SUMMONS_DRAGONNET(caster, targetBlock);
-        else if (spell.name == "Call of Tofu") SUMMONS_TOFU(caster, targetBlock);
-        else if (spell.name == "Call of Gobball") SUMMONS_GOBBALL(caster, targetBlock);
-        else if (spell.name == "Call of Prespic") SUMMONS_PRESPIC(caster, targetBlock);
-        else if (spell.name == "Call of Pandawasta") SUMMONS_PANDAWASTA(caster, targetBlock);
-        else if (spell.name == "Call of Bamboo") SUMMONS_BAMBOO(caster, targetBlock);
-        else if (spell.name == "Call of The Block") SUMMONS_THE_BLOCK(caster, targetBlock);
-        else if (spell.name == "Call of Sacrificial Doll") SUMMONS_SACRIFICIAL(caster, targetBlock);
-        else if (spell.name == "Call of Madoll") SUMMONS_MADOLL(caster, targetBlock);
-        else if (spell.name == "Call of Tree") SUMMONS_TREE(caster, targetBlock);
-        else if (spell.name == "Call of Inflatable") SUMMONS_INFLATABLE(caster, targetBlock);
-        else if (spell.name == "Sedimentation") EXECUTE_SEDIMENTATION(targetBlock, spell);
-        else if (spell.name == "Sting") EXECUTE_STING(targetBlock, spell);
-        else if (spell.name == "Pleasure") EXECUTE_PLEASURE(targetBlock, spell);
-        else if (spell.name == "Whip") EXECUTE_WHIP(targetBlock, spell);
-        else if (spell.name == "Communion") EXECUTE_COMMUNION(targetBlock, spell);
-        else if (spell.name == "Summoner Fury") EXECUTE_SUMMONER_FURY(targetBlock, spell);
-        else if (spell.name == "Chamrak") EXECUTE_CHAMRAK(caster, targetBlock, spell);
-        else if (spell.name == "Waterfall") EXECUTE_WATERFALL(caster, targetBlock);
-        else if (spell.name == "Blow-Out") EXECUTE_BLOW_OUT(caster, spell);
-        else if (spell.name == "Eviction") EXECUTE_EVICTION(caster, targetBlock);
-        else if (spell.name == "Pandjiu") EXECUTE_PANDJIU(caster, targetBlock);
-        else if (spell.name == "Explosive Flask") EXECUTE_EXPLOSIVE_FLASK(caster, targetBlock, spell);
-        else if (spell.name == "Contagion") EXECUTE_CONTAGION(caster, targetBlock, spell);
-        else if (spell.name == "Nature Poison") EXECUTE_NATURE_POISON(caster, targetBlock, spell);
-        else if (spell.name == "Earthquake") EXECUTE_EARTHQUAKE(caster, spell);
-        else if (spell.name == "Doll Sacrifice") EXECUTE_DOLL_SACRIFICE(caster);
-        else if (spell.name == "Doll Scream") EXECUTE_DOLL_SCREAM(caster, targetBlock, spell);
-        else if (spell.name == "Explobombe") SUMMONS_EXPLOBOMBE(caster, targetBlock, spell);
-        else if (spell.name == "Tornabombe") SUMMONS_TORNABOMBE(caster, targetBlock, spell);
-        else if (spell.name == "Waterbombe") SUMMONS_WATERBOMBE(caster, targetBlock, spell);
-        else if (spell.name == "Detonator") EXECUTE_DETONATOR(caster, targetBlock);
-        else if (spell.name == "Powder") EXECUTE_POWDER(caster, targetBlock);
-        else if (spell.name == "Kickback") EXECUTE_KICKBACK(caster, targetBlock);
-        else if (spell.name == "Bomb Trick") EXECUTE_BOMB_TRICK(caster, targetBlock);
-        else if (spell.name == "Deception") EXECUTE_DECEPTION(targetBlock, spell);
+        try {
+            if (spell.name == "Jump" || spell.name == "Portal" || spell.name == "Catnip") EXECUTE_JUMP(caster, targetBlock);
+            else if (spell.name == "Pounding") EXECUTE_POUNDING(targetBlock, spell);
+            else if (spell.name == "Agitation") EXECUTE_AGITATION(targetBlock, spell);
+            else if (spell.name == "Accumulation") EXECUTE_ACCUMULATION(caster, spell);
+            else if (spell.name == "Power") EXECUTE_POWER(targetBlock, spell);
+            else if (spell.name == "Duel") EXECUTE_DUEL(caster, targetBlock, spell);
+            else if (spell.name == "Iop's Wrath") EXECUTE_IOP_WRATH(caster, spell);
+            else if (spell.name == "Stretching") EXECUTE_STRETCHING(caster, spell);
+            else if (spell.name == "Composure") EXECUTE_COMPOSURE(targetBlock, spell);
+            else if (spell.name == "Virus") EXECUTE_VIRUS(caster, spell, targetBlock);
+            else if (spell.name == "Powerful Shooting") EXECUTE_POWERFUL_SHOOTING(targetBlock, spell);
+            else if (spell.name == "Bow Skill") EXECUTE_BOW_SKILL(caster, spell);
+            else if (spell.name == "Slow Down Arrow") EXECUTE_SLOW_DOWN_ARROW(targetBlock, spell);
+            else if (spell.name == "Atonement Arrow") EXECUTE_ATONEMENT_ARROW(caster, spell);
+            else if (spell.name == "Retreat Arrow") EXECUTE_RETREAT_ARROW(caster, targetBlock);
+            else if (spell.name == "Barricade Shot") EXECUTE_BARRICADE_SHOT(caster, targetBlock, spell);
+            else if (spell.name == "Sentinel") EXECUTE_SENTINEL(caster, spell);
+            else if (spell.name == "Critical Shooting") EXECUTE_CRITICAL_SHOOTING(targetBlock, spell);
+            else if (spell.name == "Exodus" || spell.name == "Feline Spirit") EXECUTE_EXODUS(caster, targetBlock, spell);
+            else if (spell.name == "Convulsion") EXECUTE_CONVULSION(caster, targetBlock);
+            else if (spell.name == "Therapy") EXECUTE_THERAPY(caster, targetBlock);
+            else if (spell.name == "Odyssey") EXECUTE_ODYSSEY(caster);
+            else if (spell.name == "Transposition" || spell.name == "Assault" || spell.name == "Lifting Word") EXECUTE_TRANSPOSITION(caster, targetBlock);
+            else if (spell.name == "Attraction") EXECUTE_ATTRACTION(caster, targetBlock);
+            else if (spell.name == "Desolation") EXECUTE_DESOLATION(targetBlock, spell);
+            else if (spell.name == "Mutilation") EXECUTE_MUTILATION(caster, spell);
+            else if (spell.name == "Berserk") EXECUTE_BERSERK(caster, spell);
+            else if (spell.name == "Influx") EXECUTE_INFLUX(caster, targetBlock);
+            else if (spell.name == "Sacrifice") EXECUTE_SACRIFICE(caster, targetBlock, spell);
+            else if (spell.name == "Transfusion") EXECUTE_TRANSFUSION(caster, spell);
+            else if (spell.name == "Smell") EXECUTE_SMELL(targetBlock, spell);
+            else if (spell.name == "Heads or Tails") EXECUTE_HEADS_OR_TAILS(targetBlock, spell);
+            else if (spell.name == "All or Nothing") EXECUTE_ALL_OR_NOTHING(targetBlock, spell);
+            else if (spell.name == "Claw of Ceangal" || spell.name == "Haunting Magic") EXECUTE_CLAW_OF_CEANGAL(caster, targetBlock);
+            else if (spell.name == "Godsend") EXECUTE_GODSEND(targetBlock, spell);
+            else if (spell.name == "Feline Sense") EXECUTE_FELINE_SENSE(targetBlock, spell);
+            else if (spell.name == "Roulette") EXECUTE_ROULETTE(caster, spell);
+            else if (spell.name == "Time Rift") EXECUTE_TIME_RIFT(caster, targetBlock, spell);
+            else if (spell.name == "Sandglass") EXECUTE_SANDGLASS(targetBlock, spell);
+            else if (spell.name == "Rewind") EXECUTE_REWIND(targetBlock, spell);
+            else if (spell.name == "Clock") EXECUTE_CLOCK(targetBlock, spell);
+            else if (spell.name == "Time Theft") EXECUTE_TIME_THEFT(caster, targetBlock, spell);
+            else if (spell.name == "Haziness") EXECUTE_HAZINESS(targetBlock, spell);
+            else if (spell.name == "Slow Down") EXECUTE_SLOW_DOWN(targetBlock, spell);
+            else if (spell.name == "Gear") EXECUTE_GEAR(targetBlock, spell);
+            else if (spell.name == "Restart") EXECUTE_RESTART(spell);
+            else if (spell.name == "Stampede") EXECUTE_STAMPEDE(caster, targetBlock, spell);
+            else if (spell.name == "Capering") EXECUTE_CAPERING(caster, targetBlock, spell);
+            else if (spell.name == "Coward Mask") SWITCH_COWARD_MASK(caster, spell);
+            else if (spell.name == "Psychopath Mask") SWITCH_PSYCHOPATH_MASK(caster, spell);
+            else if (spell.name == "Tireless Mask") SWITCH_TIRELESS_MASK(caster, spell);
+            else if (spell.name == "Tortuga") EXECUTE_TORTUGA(targetBlock, spell);
+            else if (spell.name == "Apathy") EXECUTE_APATHY(targetBlock, spell);
+            else if (spell.name == "Furia") EXECUTE_FURIA(caster, targetBlock);
+            else if (spell.name == "Comedy") EXECUTE_COMEDY(caster, targetBlock);
+            else if (spell.name == "Apostasy") EXECUTE_APOSTASY(caster, targetBlock);
+            else if (spell.name == "Lightness") EXECUTE_LIGHTNESS(caster, spell);
+            else if (spell.name == "Puddle Glyph") EXECUTE_PUDDLE_GLYPH(caster, spell);
+            else if (spell.name == "Aggressive Glyph") EXECUTE_AGGRESSIVE_GLYPH(caster, spell);
+            else if (spell.name == "Protective Glyph") EXECUTE_PROTECTIVE_GLYPH(caster, spell);
+            else if (spell.name == "Perception Glyph") EXECUTE_PERCEPTION_GLYPH(caster, spell);
+            else if (spell.name == "Barricade") EXECUTE_BARRICADE(targetBlock, spell);
+            else if (spell.name == "Fortification") EXECUTE_FORTIFICATION(targetBlock, spell);
+            else if (spell.name == "Burning Glyph") EXECUTE_BURNING_GLYPH(caster, spell);
+            else if (spell.name == "Repulsion Glyph") EXECUTE_REPULSION_GLYPH(caster, spell);
+            else if (spell.name == "Dazzling") EXECUTE_DAZZLING(targetBlock, spell);
+            else if (spell.name == "Bontao") EXECUTE_BONTAO(caster, spell);
+            else if (spell.name == "Titanic Hit") EXECUTE_TITANIC_HIT(caster, targetBlock);
+            else if (spell.name == "Telluric Wave") EXECUTE_TELLURIC_WAVE(caster, spell);
+            else if (spell.name == "Polarity") EXECUTE_POLARITY(caster, spell);
+            else if (spell.name == "Stratega") EXECUTE_STRATEGA(caster, targetBlock, spell);
+            else if (spell.name == "Overcharge") EXECUTE_OVERCHARGE(caster, spell);
+            else if (spell.name == "Striking Meteor") EXECUTE_STRIKING_METEOR(caster, targetBlock, spell);
+            else if (spell.name == "Aerial Wave") EXECUTE_AERIAL_WAVE(caster, targetBlock);
+            else if (spell.name == "Selective Word") EXECUTE_SELECTIVE_WORD(caster, targetBlock);
+            else if (spell.name == "Striking Word") EXECUTE_STRIKING_WORD(caster, targetBlock, spell);
+            else if (spell.name == "Recovery Word") EXECUTE_RECOVERY_WORD(targetBlock, spell);
+            else if (spell.name == "Preventing Word") EXECUTE_PREVENTING_WORD(caster, targetBlock, spell);
+            else if (spell.name == "Agonising Word") EXECUTE_AGONISING_WORD(caster, targetBlock);
+            else if (spell.name == "Furious Word") EXECUTE_FURIOUS_WORD(caster, targetBlock, spell);
+            else if (spell.name == "Stimulating Word") EXECUTE_STIMULATING_WORD(targetBlock, spell);
+            else if (spell.name == "Paralysing Word") EXECUTE_PARALYSING_WORD(targetBlock, spell);
+            else if (spell.name == "Galvanising Word") EXECUTE_GALVANISING_WORD(caster, spell);
+            else if (spell.name == "Call of Bwork Mage") SUMMONS_BWORK_MAGE(caster, targetBlock);
+            else if (spell.name == "Call of Craqueleur") SUMMONS_CRAQUELEUR(caster, targetBlock);
+            else if (spell.name == "Call of Dragonnet") SUMMONS_DRAGONNET(caster, targetBlock);
+            else if (spell.name == "Call of Tofu") SUMMONS_TOFU(caster, targetBlock);
+            else if (spell.name == "Call of Gobball") SUMMONS_GOBBALL(caster, targetBlock);
+            else if (spell.name == "Call of Prespic") SUMMONS_PRESPIC(caster, targetBlock);
+            else if (spell.name == "Call of Pandawasta") SUMMONS_PANDAWASTA(caster, targetBlock);
+            else if (spell.name == "Call of Bamboo") SUMMONS_BAMBOO(caster, targetBlock);
+            else if (spell.name == "Call of The Block") SUMMONS_THE_BLOCK(caster, targetBlock);
+            else if (spell.name == "Call of Sacrificial Doll") SUMMONS_SACRIFICIAL(caster, targetBlock);
+            else if (spell.name == "Call of Madoll") SUMMONS_MADOLL(caster, targetBlock);
+            else if (spell.name == "Call of Tree") SUMMONS_TREE(caster, targetBlock);
+            else if (spell.name == "Call of Inflatable") SUMMONS_INFLATABLE(caster, targetBlock);
+            else if (spell.name == "Sedimentation") EXECUTE_SEDIMENTATION(targetBlock, spell);
+            else if (spell.name == "Sting") EXECUTE_STING(targetBlock, spell);
+            else if (spell.name == "Pleasure") EXECUTE_PLEASURE(targetBlock, spell);
+            else if (spell.name == "Whip") EXECUTE_WHIP(targetBlock, spell);
+            else if (spell.name == "Communion") EXECUTE_COMMUNION(targetBlock, spell);
+            else if (spell.name == "Summoner Fury") EXECUTE_SUMMONER_FURY(targetBlock, spell);
+            else if (spell.name == "Chamrak") EXECUTE_CHAMRAK(caster, targetBlock, spell);
+            else if (spell.name == "Waterfall") EXECUTE_WATERFALL(caster, targetBlock);
+            else if (spell.name == "Blow-Out") EXECUTE_BLOW_OUT(caster, spell);
+            else if (spell.name == "Eviction") EXECUTE_EVICTION(caster, targetBlock);
+            else if (spell.name == "Pandjiu") EXECUTE_PANDJIU(caster, targetBlock);
+            else if (spell.name == "Explosive Flask") EXECUTE_EXPLOSIVE_FLASK(caster, targetBlock, spell);
+            else if (spell.name == "Contagion") EXECUTE_CONTAGION(caster, targetBlock, spell);
+            else if (spell.name == "Nature Poison") EXECUTE_NATURE_POISON(caster, targetBlock, spell);
+            else if (spell.name == "Earthquake") EXECUTE_EARTHQUAKE(caster, spell);
+            else if (spell.name == "Doll Sacrifice") EXECUTE_DOLL_SACRIFICE(caster);
+            else if (spell.name == "Doll Scream") EXECUTE_DOLL_SCREAM(caster, targetBlock, spell);
+            else if (spell.name == "Explobombe") SUMMONS_EXPLOBOMBE(caster, targetBlock, spell);
+            else if (spell.name == "Tornabombe") SUMMONS_TORNABOMBE(caster, targetBlock, spell);
+            else if (spell.name == "Waterbombe") SUMMONS_WATERBOMBE(caster, targetBlock, spell);
+            else if (spell.name == "Detonator") EXECUTE_DETONATOR(caster, targetBlock);
+            else if (spell.name == "Powder") EXECUTE_POWDER(caster, targetBlock);
+            else if (spell.name == "Kickback") EXECUTE_KICKBACK(caster, targetBlock);
+            else if (spell.name == "Bomb Trick") EXECUTE_BOMB_TRICK(caster, targetBlock);
+            else if (spell.name == "Deception") EXECUTE_DECEPTION(targetBlock, spell);
+            else if (spell.name == "Trident") EXECUTE_TRIDENT(caster, targetBlock, spell);
+            else if (spell.name == "Torrent") EXECUTE_TORRENT(caster, targetBlock, spell);
+            else if (spell.name == "Assistance") EXECUTE_ASSISTANCE(caster, targetBlock);
+            else if (spell.name == "Compass") EXECUTE_COMPASS(caster, targetBlock);
+            else if (spell.name == "Harpooner Charge") EXECUTE_HARPOONER_CHARGE(caster, spell);
+            else if (spell.name == "Harpooner") SUMMONS_SENTINEL_TURRECT(caster, targetBlock);
+            else if (spell.name == "Tacturrect") SUMMONS_TACTICAL_TURRECT(caster, targetBlock);
+            else if (spell.name == "Lifesaver") SUMMONS_GUARDIANA_TURRECT(caster, targetBlock);
+            else if (spell.name == "Repulsion") EXECUTE_REPULSION(caster, targetBlock);
 
-        // ADD HERE ELSE IF (...) ...
-        else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
+            // ADD HERE ELSE IF (...) ...
+            else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
+        } catch (Exception e) {
+            Debug.LogError("Exception throws: " + e.StackTrace);
+        }
     }
 
     public static void EXECUTE_JUMP(Character caster, Block targetBlock) {
@@ -1240,6 +1258,102 @@ public class Spell {
             Character target = targetBlock.linkedObject.GetComponent<Character>();
             target.addEvent(new DeceptionEvent("Deception", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
         }
+    }
+
+    public static void SUMMONS_SENTINEL_TURRECT(Character caster, Block targetBlock) {
+        Evocation turrect = ut_execute_summon(caster, targetBlock, "Sentinel_Turret");
+        turrect.isTurrect = true;
+    }
+
+    public static void SUMMONS_GUARDIANA_TURRECT(Character caster, Block targetBlock) {
+        Evocation turrect = ut_execute_summon(caster, targetBlock, "Guardiana_Turret");
+        turrect.isTurrect = true;
+    }
+
+    public static void SUMMONS_TACTICAL_TURRECT(Character caster, Block targetBlock) {
+        Evocation turrect = ut_execute_summon(caster, targetBlock, "Tactical_Turret");
+        turrect.isTurrect = true;
+    }
+
+    public static void EXECUTE_HARPOONER_CHARGE(Character caster, Spell s) {
+        foreach (Evocation e in caster.summons)
+            if (e.isTurrect)
+                e.addEvent(new HarpoonerChargeEvent("Harpooner Charge", e, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_COMPASS(Character caster, Block targetBlock) {
+        // No can teleport check
+        Block casterBlock = caster.connectedCell.GetComponent<Block>();
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation) {
+            if (!((Evocation)target).isTurrect) return;
+        } else return;
+        casterBlock.linkedObject = null;
+        targetBlock.linkedObject = null;
+        caster.connectedCell = targetBlock.gameObject;
+        caster.setZIndex(targetBlock);
+        target.connectedCell = casterBlock.gameObject;
+        target.setZIndex(casterBlock);
+        casterBlock.linkedObject = target.gameObject;
+        targetBlock.linkedObject = caster.gameObject;
+        Vector2 targetNewPosition = Coordinate.getPosition(targetBlock.coordinate);
+        Vector2 casterNewPosition = Coordinate.getPosition(casterBlock.coordinate);
+        caster.transform.position = new Vector3(targetNewPosition.x, targetNewPosition.y, -20);
+        target.transform.position = new Vector3(casterNewPosition.x, casterNewPosition.y, -20);
+    }
+
+    public static void EXECUTE_TRIDENT(Character caster, Block targetBlock, Spell s) {
+        Character enemy = targetBlock.linkedObject.GetComponent<Character>();
+        List<Character> otherEnemies = ut_getAllies(enemy);
+        List<Character> toDamage = new List<Character>();
+        if (otherEnemies.Count == 0) return;
+        if (otherEnemies.Count == 1 || otherEnemies.Count == 2) toDamage.AddRange(otherEnemies);
+        else {
+            Debug.Log("Counter > 2");
+            int first_index = -1, second_index = -1;
+            UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+            first_index = UnityEngine.Random.Range(0, otherEnemies.Count);
+            while (second_index == -1 || second_index == first_index) {
+                UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+                second_index = UnityEngine.Random.Range(0, otherEnemies.Count);
+            }
+            Debug.Log("Evaluated " + first_index + " and " + second_index);
+            Debug.Log("List counter: " + otherEnemies.Count);
+            toDamage.Add(otherEnemies[first_index]);
+            toDamage.Add(otherEnemies[second_index]);
+        }
+        Debug.Log("Population OK");
+        if (toDamage.Count == 0) return;
+        Character first = toDamage[0];
+        Debug.Log("First assegnation OK");
+        Character second = null;
+        if (toDamage.Count > 1) {
+            second = toDamage[1];
+            Debug.Log("Second assegnation OK");
+        }
+        first.inflictDamage((calculateDamage(caster, first, s)) / 2);
+        if (second != null)
+            second.inflictDamage((calculateDamage(caster, second, s)) / 2);
+    }
+
+    public static void EXECUTE_TORRENT(Character caster, Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation && target.team == caster.team) {
+            if (!((Evocation)target).isTurrect) return;
+        } else return;
+        target.addEvent(new TorrentEvent("Torrent", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_ASSISTANCE(Character caster, Block targetBlock) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation && target.team == caster.team) {
+            if (!((Evocation)target).isTurrect) return;
+        } else return;
+        target.receiveHeal(target.hp - target.actual_hp);
+    }
+
+    public static void EXECUTE_REPULSION(Character caster, Block targetBlock) {
+        ut_repels(caster, targetBlock, 5);
     }
 
     #endregion

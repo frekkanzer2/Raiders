@@ -18,6 +18,8 @@ public class Evocation : Character {
     public bool isBomb = false;
     private Tuple<Character, Spell> bombConnectedInfo;
     private int bombCharge = 0;
+    [HideInInspector]
+    public bool isTurrect = false;
 
     public bool mustSkip;
 

@@ -1185,6 +1185,9 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: 9c7e58595270b8b468e7dc53e7dfb863, type: 3}
   - {fileID: 557098361630938699, guid: 9028f34705647bd46a72b7104753cb78, type: 3}
   - {fileID: 557098361630938699, guid: 49d9d9c559da16c44826853fe95fb236, type: 3}
+  - {fileID: 557098361630938699, guid: c7204c5b3602c1840b60b21241d5259f, type: 3}
+  - {fileID: 557098361630938699, guid: d5f4f8004c0d1a4489ede2c6ce839691, type: 3}
+  - {fileID: 557098361630938699, guid: 147787984e433b6478d64b804c25cea4, type: 3}
   heroesPrefabs_team2:
   - {fileID: 557098361630938699, guid: 3968d5a638ef5994cad63e85612468ac, type: 3}
   - {fileID: 557098361630938699, guid: 2ccb042d5c633dc48854a46bd4a9972e, type: 3}
@@ -1228,6 +1231,9 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: 9c7e58595270b8b468e7dc53e7dfb863, type: 3}
   - {fileID: 557098361630938699, guid: 9028f34705647bd46a72b7104753cb78, type: 3}
   - {fileID: 557098361630938699, guid: 49d9d9c559da16c44826853fe95fb236, type: 3}
+  - {fileID: 557098361630938699, guid: c7204c5b3602c1840b60b21241d5259f, type: 3}
+  - {fileID: 557098361630938699, guid: d5f4f8004c0d1a4489ede2c6ce839691, type: 3}
+  - {fileID: 557098361630938699, guid: 147787984e433b6478d64b804c25cea4, type: 3}
 --- !u!114 &93772482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1488,6 +1494,30 @@ MonoBehaviour:
   - characterName: Tornabombe
     characterFullSprite: {fileID: 21300000, guid: f463cebb690838f47bd6d9ae2bf27a01, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 34c3d4e1a2d1298478a5ba53fd9b3940, type: 3}
+    isEvocation: 1
+  - characterName: Kya Vistel
+    characterFullSprite: {fileID: 21300000, guid: 16782a9ff1737664a8f1aa69c596af72, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 6b48c05d62ef3b54899ea175e3244678, type: 3}
+    isEvocation: 0
+  - characterName: Steamy Wonder
+    characterFullSprite: {fileID: 21300000, guid: f8c0330cc035e474ba8186513073b71e, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 70a6694489291c8429d5a1b0b31a8da0, type: 3}
+    isEvocation: 0
+  - characterName: Sara Gancha
+    characterFullSprite: {fileID: 21300000, guid: 45e9d9130579d9b4d89bc14d2cff83d7, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: df98b6dbb7564ba4495662fef99a2191, type: 3}
+    isEvocation: 0
+  - characterName: Sentinel Turret
+    characterFullSprite: {fileID: 21300000, guid: 4821bb790d8531848aa35d62c525c6d0, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 5040f54ec77c40841952514f27db0901, type: 3}
+    isEvocation: 1
+  - characterName: Guardiana Turret
+    characterFullSprite: {fileID: 21300000, guid: 65af1f6e88163d146ae00c5031eeafee, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: c96cd25d7301afb4785b069b01697d29, type: 3}
+    isEvocation: 1
+  - characterName: Tactical Turret
+    characterFullSprite: {fileID: 21300000, guid: 6e04fb9ed958e5c4fb07db872bb9d7e3, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 2fe7204471027344fa9475b12be1731b, type: 3}
     isEvocation: 1
 --- !u!114 &93772484
 MonoBehaviour:

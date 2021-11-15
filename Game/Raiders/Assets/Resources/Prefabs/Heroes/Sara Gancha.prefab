@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 557098361630938741}
   - component: {fileID: 557098361630938698}
-  - component: {fileID: 6745393218802890858}
+  - component: {fileID: 557098361630938740}
   - component: {fileID: 8528018890230597465}
   - component: {fileID: 8914096617352650622}
   - component: {fileID: -2347270675974649033}
-  - component: {fileID: 5404421346664201683}
+  - component: {fileID: -2072592517294728624}
   m_Layer: 0
-  m_Name: Sentinel_Turret
+  m_Name: Sara Gancha
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 4821bb790d8531848aa35d62c525c6d0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45e9d9130579d9b4d89bc14d2cff83d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6745393218802890858
+--- !u!114 &557098361630938740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,24 +96,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 557098361630938699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b47f2c763fdab0b4ba89ee3dc1fc4aa8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8166a5c395145dc489abd6518c5ac693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Sentinel Turret
+  name: Sara Gancha
   spells:
   - link: {fileID: 0}
-    name: Harpoon
-    icon: {fileID: 21300000, guid: 6f364e082bec315419531209a6ee569e, type: 3}
-    description: Inflicts Earth damage
-    element: 0
-    damage: 32
+    name: Tacturrect
+    icon: {fileID: 21300000, guid: 782c3b621a019bd41b05e3a7cb5875ee, type: 3}
+    description: Summons a Tactical Turret
+    element: 5
+    damage: 0
     lifeSteal: 0
     minRange: 1
-    maxRange: 7
+    maxRange: 8
+    distanceType: 0
+    overObstacles: 1
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 3
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 1
+    isJump: 0
+    isSummon: 1
+  - link: {fileID: 0}
+    name: Spyglass
+    icon: {fileID: 21300000, guid: 204a84b049153d549ba9b886d7f22d3b, type: 3}
+    description: Inflict Water damage
+    element: 3
+    damage: 42
+    lifeSteal: 0
+    minRange: 5
+    maxRange: 6
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 5
+    paCost: 3
     pmCost: 0
     maxTimesInTurn: 2
     executeAfterTurns: 0
@@ -124,21 +147,67 @@ MonoBehaviour:
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
+  - link: {fileID: 0}
+    name: Vapour
+    icon: {fileID: 21300000, guid: 83cd0bf0a3b8f9544bc9ff4f7078d3b4, type: 3}
+    description: Steals HP in the Fire element
+    element: 1
+    damage: 42
+    lifeSteal: 1
+    minRange: 1
+    maxRange: 10
+    distanceType: 2
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 25
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Compass
+    icon: {fileID: 21300000, guid: 8d5fbfd98639ddf4c931da31ebe1e170, type: 3}
+    description: Switch position with the target turrect
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 7
+    distanceType: 0
+    overObstacles: 1
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 1
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
-  hp: 140
-  pa: 6
-  pm: -100
-  ini: 0
-  res_e: 12
-  res_f: 12
-  res_a: 12
-  res_w: 12
-  att_e: 10
-  att_f: 0
+  hp: 1130
+  pa: 7
+  pm: 3
+  ini: 160
+  res_e: -8
+  res_f: 14
+  res_a: -8
+  res_w: 4
+  att_e: 0
+  att_f: 10
   att_a: 0
-  att_w: 0
-  numberOfSummons: 0
-  isEvocation: 1
+  att_w: 6
+  numberOfSummons: 4
+  isEvocation: 0
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
@@ -146,7 +215,7 @@ MonoBehaviour:
   connectedCell: {fileID: 0}
   actual_shield: 0
   isDead: 0
-  canMovedByEffects: 0
+  canMovedByEffects: 1
   isMoving: 0
   isForcedMoving: 0
   spellToUse:
@@ -182,11 +251,6 @@ MonoBehaviour:
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
-  connectedSummoner: {fileID: 0}
-  id: 0
-  isCommunionActive: 0
-  isBomb: 0
-  mustSkip: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -203,8 +267,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.49454463, y: 0.31814903}
-    oldSize: {x: 2.7027028, y: 2.7027028}
+    pivot: {x: 0.5472813, y: 0.10538269}
+    oldSize: {x: 3.2894738, y: 4.2763157}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -238,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f77455afa650f49a81c28b9edfaff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5404421346664201683
+--- !u!114 &-2072592517294728624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
