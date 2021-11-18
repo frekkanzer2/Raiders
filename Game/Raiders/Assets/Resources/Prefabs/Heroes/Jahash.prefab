@@ -129,7 +129,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 60c1e03e9b7e8f54490c394826fe655e, type: 3}
     description: Inflicts Air damage
     element: 2
-    damage: 35
+    damage: 36
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -152,7 +152,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 517721fcfbe740142b940415be92ca6f, type: 3}
     description: Caster comes close of 4 cells
     element: 1
-    damage: 52
+    damage: 54
     lifeSteal: 0
     minRange: 5
     maxRange: 5
@@ -176,7 +176,7 @@ MonoBehaviour:
     description: Inflict Earth damage to each enemy up to 5 cells. The caster uses
       all remaining PM to deal bonus damage
     element: 0
-    damage: 10
+    damage: 24
     lifeSteal: 0
     minRange: 0
     maxRange: 0

@@ -196,7 +196,7 @@ MonoBehaviour:
   team: 1
   hp: 1275
   pa: 6
-  pm: 3
+  pm: 4
   ini: 80
   res_e: 8
   res_f: -12

@@ -1,0 +1,4 @@
+Evasion: at the start of the turn, Nele gains 1 PM for each enemy in 3 cells distance max
+Cut Throat: Nele gains 100% dmgs when casts this spell for 2 turns
+Toxic Injection: When the target is repelled out, it loses 38 air damage
+Tricky Blow: the enemy is repelles one cell extra for each dead ally

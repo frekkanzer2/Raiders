@@ -186,7 +186,7 @@ MonoBehaviour:
     overObstacles: 0
     hpCost: 0
     paCost: 6
-    pmCost: 1
+    pmCost: 0
     maxTimesInTurn: 1
     executeAfterTurns: 1
     effectDuration: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
   att_f: 10
   att_a: 0
   att_w: 0
-  numberOfSummons: 3
+  numberOfSummons: 4
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0

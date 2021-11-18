@@ -109,14 +109,14 @@ MonoBehaviour:
     damage: 0
     lifeSteal: 0
     minRange: 1
-    maxRange: 2
+    maxRange: 3
     distanceType: 0
     overObstacles: 1
     hpCost: 0
     paCost: 2
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 3
+    executeAfterTurns: 2
     effectDuration: 1
     criticalProbability: 0
     hasEffect: 1

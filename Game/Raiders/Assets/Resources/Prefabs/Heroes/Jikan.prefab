@@ -140,7 +140,7 @@ MonoBehaviour:
     paCost: 2
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 3
+    executeAfterTurns: 2
     effectDuration: 2
     criticalProbability: 0
     hasEffect: 1
@@ -153,7 +153,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: c39aea3a79cc3c5458e5c63b228fdd93, type: 3}
     description: Removes 1 PA to the target
     element: 3
-    damage: 28
+    damage: 24
     lifeSteal: 0
     minRange: 3
     maxRange: 8
@@ -162,7 +162,7 @@ MonoBehaviour:
     hpCost: 0
     paCost: 2
     pmCost: 0
-    maxTimesInTurn: 2
+    maxTimesInTurn: 3
     executeAfterTurns: 0
     effectDuration: 1
     criticalProbability: 5
@@ -196,7 +196,7 @@ MonoBehaviour:
     isSummon: 0
   team: 1
   hp: 840
-  pa: 5
+  pa: 6
   pm: 4
   ini: 140
   res_e: 2

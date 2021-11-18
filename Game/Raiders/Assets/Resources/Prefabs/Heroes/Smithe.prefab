@@ -132,7 +132,7 @@ MonoBehaviour:
       for 1 turn and inflict damage to each hero up to 2 cells. At the start of each
       turn, the bomb gains a charge (max 5)
     element: 5
-    damage: 24
+    damage: 34
     lifeSteal: 0
     minRange: 1
     maxRange: 4
@@ -154,7 +154,7 @@ MonoBehaviour:
     name: Kickback
     icon: {fileID: 21300000, guid: a4057ef45124115489db9d9d05c70934, type: 3}
     description: If the target is a bomb, repels it of 5 cells; if the target is
-      the caster, repels each adjacent bomb of 3 cells
+      the caster, repels each adjacent bomb of 3 cells. The moved bomb gains a charge
     element: 5
     damage: 0
     lifeSteal: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
   att_f: 0
   att_a: 0
   att_w: 8
-  numberOfSummons: 3
+  numberOfSummons: 4
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0

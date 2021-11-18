@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,9 +28,13 @@ public class Evocation : Character {
         bombConnectedInfo = new Tuple<Character, Spell>(summoner, attachedSpell);
     }
 
-    public void setBombChargeToFive() {
-        if (this.isBomb) bombCharge = 5;
-    }
+	public void setBombChargeToFive() {
+		if (this.isBomb) bombCharge = 5;
+	}
+	
+	public void incrementBombCharge() {
+		if (this.isBomb) bombCharge++;
+	}
 
     public int getBombDamage(Character enemy) {
         if (bombConnectedInfo == null) return -1;

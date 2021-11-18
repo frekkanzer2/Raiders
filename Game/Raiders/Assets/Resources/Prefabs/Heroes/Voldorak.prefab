@@ -178,7 +178,7 @@ MonoBehaviour:
     damage: 52
     lifeSteal: 0
     minRange: 6
-    maxRange: 8
+    maxRange: 10
     distanceType: 1
     overObstacles: 0
     hpCost: 0
@@ -194,7 +194,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1175
+  hp: 1135
   pa: 7
   pm: 3
   ini: 80

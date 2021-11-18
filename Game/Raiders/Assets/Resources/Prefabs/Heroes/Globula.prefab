@@ -176,7 +176,7 @@ MonoBehaviour:
     description: Steals HP in the Air element and removes 3 PM to the target (25%
       chance)
     element: 2
-    damage: 30
+    damage: 32
     lifeSteal: 1
     minRange: 1
     maxRange: 3

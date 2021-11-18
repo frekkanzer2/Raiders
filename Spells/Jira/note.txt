@@ -1,0 +1,4 @@
+Chaferfu - invoke a Chafer | invoke a chafer lancier if all allies are dead
+Cruelty - steal 1 PM from the target
+Perquisition - heal all allies around the target (2 cell max) of 20 HP
+Larceny - replicate 60% of damage on k enemies (k = number of dead allies)

@@ -130,7 +130,7 @@ MonoBehaviour:
     description: Teleports to the targeted cell. Inflict Earth damage to each enemy
       up to 3 cells from the destination cell
     element: 0
-    damage: 42
+    damage: 52
     lifeSteal: 0
     minRange: 5
     maxRange: 7

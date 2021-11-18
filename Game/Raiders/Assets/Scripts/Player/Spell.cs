@@ -1229,7 +1229,9 @@ public class Spell {
         if (target is Evocation) {
             Evocation evoTarget = (Evocation)target;
             if (evoTarget.isBomb) {
-                EXECUTE_TRANSPOSITION(caster, targetBlock);
+	            EXECUTE_TRANSPOSITION(caster, targetBlock);
+	            evoTarget.incrementBombCharge();
+	            evoTarget.incrementBombCharge();
             }
         }
     }
@@ -1240,13 +1242,16 @@ public class Spell {
             Evocation evoTarget = (Evocation)target;
             if (evoTarget.isBomb) {
                 // single target -> bomb
-                ut_repels(caster, targetBlock, 5);
+	            ut_repels(caster, targetBlock, 5);
+	            evoTarget.incrementBombCharge();
             }
         } else if (target.Equals(caster)) {
             foreach (Character c in ut_getAdjacentHeroes(targetBlock.coordinate))
                 if (c is Evocation)
-                    if (((Evocation)c).isBomb)
-                        ut_repels(caster, c.connectedCell.GetComponent<Block>(), 3);
+	                if (((Evocation)c).isBomb) {
+		                ut_repels(caster, c.connectedCell.GetComponent<Block>(), 3);
+		                ((Evocation)c).incrementBombCharge();
+	                }
         }
     }
 

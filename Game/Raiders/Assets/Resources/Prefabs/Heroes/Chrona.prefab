@@ -196,7 +196,7 @@ MonoBehaviour:
     isSummon: 0
   team: 1
   hp: 1260
-  pa: 6
+  pa: 7
   pm: 3
   ini: 60
   res_e: 2

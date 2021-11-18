@@ -129,7 +129,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: c0d123f907a3b3a44ae812026edde516, type: 3}
     description: Inflicts Fire damage to each enemy up to 4 cells
     element: 1
-    damage: 40
+    damage: 48
     lifeSteal: 0
     minRange: 0
     maxRange: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: acfa5b13ce1d8714e872f41a34c4d0f9, type: 3}
     description: Decreases a target random resistance of 15% (25% chance)
     element: 0
-    damage: 32
+    damage: 38
     lifeSteal: 0
     minRange: 5
     maxRange: 5
@@ -185,7 +185,7 @@ MonoBehaviour:
     paCost: 2
     pmCost: 0
     maxTimesInTurn: 0
-    executeAfterTurns: 4
+    executeAfterTurns: 3
     effectDuration: 3
     criticalProbability: 0
     hasEffect: 1
