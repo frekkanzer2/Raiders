@@ -1036,6 +1036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turns: []
+  allCharacters: []
   nextTurnButton: {fileID: 157204269}
   newTurnAnnouncer: {fileID: 595455152}
   turnsListContainer: {fileID: 1308747857}
@@ -1088,6 +1089,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1b839e9e592f4b54593c41db10e95dd1, type: 3}
   - {fileID: 21300000, guid: a1b890900c5922c4dbebb57d5632ec2e, type: 3}
   - {fileID: 21300000, guid: e74a8aec75052ea41848a2e0588b6a27, type: 3}
+  - {fileID: 21300000, guid: c554d26caa1948e4e8e86bd092e5f2a2, type: 3}
+  - {fileID: 21300000, guid: a47927b3fa487d1458f8d8e1c500c852, type: 3}
+  - {fileID: 21300000, guid: 9ee4c22d9312bfb41b1744c6063f8083, type: 3}
+  - {fileID: 21300000, guid: a0e4cac622faad1408b68580caf899d8, type: 3}
+  - {fileID: 21300000, guid: 42ea918c7920630479f5d50d9a86f4a9, type: 3}
   mapContainer: {fileID: 606105194}
   mapFile: {fileID: 4900000, guid: 151aef5894359a442a1e9e19fc8a95c2, type: 3}
   blackScreen: {fileID: 1198904534}
@@ -1128,8 +1134,9 @@ MonoBehaviour:
   - {fileID: 4900000, guid: ab58e70f908d9c947818c12871dfe262, type: 3}
   - {fileID: 4900000, guid: ede209f42d044ab46ab83fa9060cf736, type: 3}
   - {fileID: 4900000, guid: e0863dd976d44514995cf7968d068dea, type: 3}
-  isTestingMap: 0
-  testingMap: {fileID: 4900000, guid: 151aef5894359a442a1e9e19fc8a95c2, type: 3}
+  - {fileID: 4900000, guid: aa1a473c52754864faeaf6187512a405, type: 3}
+  isTestingMap: 1
+  testingMap: {fileID: 4900000, guid: aa1a473c52754864faeaf6187512a405, type: 3}
 --- !u!114 &93772481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1188,6 +1195,9 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: c7204c5b3602c1840b60b21241d5259f, type: 3}
   - {fileID: 557098361630938699, guid: d5f4f8004c0d1a4489ede2c6ce839691, type: 3}
   - {fileID: 557098361630938699, guid: 147787984e433b6478d64b804c25cea4, type: 3}
+  - {fileID: 557098361630938699, guid: fcad14010e495664a99f34a1a85d0bab, type: 3}
+  - {fileID: 557098361630938699, guid: fcb2a248a650fe940a8d706d7472c274, type: 3}
+  - {fileID: 557098361630938699, guid: b0f221ab1c1c4db449a5ef586aae5544, type: 3}
   heroesPrefabs_team2:
   - {fileID: 557098361630938699, guid: 3968d5a638ef5994cad63e85612468ac, type: 3}
   - {fileID: 557098361630938699, guid: 2ccb042d5c633dc48854a46bd4a9972e, type: 3}
@@ -1234,6 +1244,9 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: c7204c5b3602c1840b60b21241d5259f, type: 3}
   - {fileID: 557098361630938699, guid: d5f4f8004c0d1a4489ede2c6ce839691, type: 3}
   - {fileID: 557098361630938699, guid: 147787984e433b6478d64b804c25cea4, type: 3}
+  - {fileID: 557098361630938699, guid: fcad14010e495664a99f34a1a85d0bab, type: 3}
+  - {fileID: 557098361630938699, guid: fcb2a248a650fe940a8d706d7472c274, type: 3}
+  - {fileID: 557098361630938699, guid: b0f221ab1c1c4db449a5ef586aae5544, type: 3}
 --- !u!114 &93772482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1518,6 +1531,30 @@ MonoBehaviour:
   - characterName: Tactical Turret
     characterFullSprite: {fileID: 21300000, guid: 6e04fb9ed958e5c4fb07db872bb9d7e3, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 2fe7204471027344fa9475b12be1731b, type: 3}
+    isEvocation: 1
+  - characterName: Etraggy
+    characterFullSprite: {fileID: 21300000, guid: e05880e317d75c94a9b75b270c59177f, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: d98b459260d15864abf735a78376950f, type: 3}
+    isEvocation: 0
+  - characterName: Jira
+    characterFullSprite: {fileID: 21300000, guid: 0908a1ac7e11a0b48b685362e43ecb3e, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 5a4c549abb8aac149ac1ca3e1f758145, type: 3}
+    isEvocation: 0
+  - characterName: Nele
+    characterFullSprite: {fileID: 21300000, guid: a3db8148a0475b9458cc7fea42e89889, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: d804534dca7527b43993934582a2d64d, type: 3}
+    isEvocation: 0
+  - characterName: Chafer
+    characterFullSprite: {fileID: 21300000, guid: 094bf9addef272d4c908fb6d310ae6e9, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 938e6a3ed108b3e449f49b4694b344e6, type: 3}
+    isEvocation: 1
+  - characterName: Chafer Lancer
+    characterFullSprite: {fileID: 21300000, guid: ef13436c371ea984cbf7f39620eaeea4, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: b9d6b372128e64045a410a685b5e3478, type: 3}
+    isEvocation: 1
+  - characterName: Double Etraggy
+    characterFullSprite: {fileID: 21300000, guid: e05880e317d75c94a9b75b270c59177f, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: d98b459260d15864abf735a78376950f, type: 3}
     isEvocation: 1
 --- !u!114 &93772484
 MonoBehaviour:
@@ -15147,6 +15184,8 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: 1f54b64512187c8458ef513ee1445ff8, type: 3}
   - track_name_maiusc: KING HALL
     music: {fileID: 8300000, guid: 446685047c637914081a721091945fdb, type: 3}
+  - track_name_maiusc: GELAGLAX
+    music: {fileID: 8300000, guid: 7ef04ca495ff0034fb9fbbbda8acc2b6, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0

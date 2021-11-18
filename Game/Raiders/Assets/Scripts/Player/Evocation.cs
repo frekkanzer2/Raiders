@@ -20,6 +20,9 @@ public class Evocation : Character {
     private int bombCharge = 0;
     [HideInInspector]
     public bool isTurrect = false;
+    [HideInInspector]
+    public bool isDouble = false;
+    private int doubleCounter = 0;
 
     public bool mustSkip;
 
@@ -86,6 +89,11 @@ public class Evocation : Character {
             bombCharge++;
         if (mustSkip)
             TurnsManager.Instance.OnSkipTurn();
+        if (this.isDouble) {
+            doubleCounter++;
+            if (doubleCounter == 3)
+                this.inflictDamage(this.actual_hp);
+        }
     }
 
 }

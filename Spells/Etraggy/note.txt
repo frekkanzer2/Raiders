@@ -1,3 +1,3 @@
 Mist: -25% res to every enemy up to 3 cells from the caster
-Lethal Attack: 72 DMG bonus if all allies are dead
+Lethal Attack: +24 DMG bonus if all allies are dead
 Double: invoke a double that can use only Gangsterdom and that will die in 3 turns

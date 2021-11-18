@@ -1836,6 +1836,30 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 6e04fb9ed958e5c4fb07db872bb9d7e3, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 2fe7204471027344fa9475b12be1731b, type: 3}
     isEvocation: 1
+  - characterName: Etraggy
+    characterFullSprite: {fileID: 21300000, guid: e05880e317d75c94a9b75b270c59177f, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: d98b459260d15864abf735a78376950f, type: 3}
+    isEvocation: 0
+  - characterName: Jira
+    characterFullSprite: {fileID: 21300000, guid: 0908a1ac7e11a0b48b685362e43ecb3e, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 5a4c549abb8aac149ac1ca3e1f758145, type: 3}
+    isEvocation: 0
+  - characterName: Nele
+    characterFullSprite: {fileID: 21300000, guid: a3db8148a0475b9458cc7fea42e89889, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: d804534dca7527b43993934582a2d64d, type: 3}
+    isEvocation: 0
+  - characterName: Chafer
+    characterFullSprite: {fileID: 21300000, guid: 094bf9addef272d4c908fb6d310ae6e9, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 938e6a3ed108b3e449f49b4694b344e6, type: 3}
+    isEvocation: 1
+  - characterName: Chafer Lancer
+    characterFullSprite: {fileID: 21300000, guid: ef13436c371ea984cbf7f39620eaeea4, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: b9d6b372128e64045a410a685b5e3478, type: 3}
+    isEvocation: 1
+  - characterName: Double Etraggy
+    characterFullSprite: {fileID: 21300000, guid: e05880e317d75c94a9b75b270c59177f, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: d98b459260d15864abf735a78376950f, type: 3}
+    isEvocation: 1
 --- !u!114 &1295197767
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,6 +19,8 @@ public class TurnsManager : MonoBehaviour
     public List<Tuple<GameObject, Character, CharacterInfo>> relations = new List<Tuple<GameObject, Character, CharacterInfo>>();
 	[HideInInspector]
 	public static List<Tuple<Character, Block>> spawnPositions = new List<Tuple<Character, Block>>();
+    [HideInInspector]
+    public List<Character> allCharacters = new List<Character>();
 
     public GameObject nextTurnButton;
     public GameObject newTurnAnnouncer;
@@ -129,6 +131,8 @@ public class TurnsManager : MonoBehaviour
 	        spawnPositions.Add(new Tuple<Character, Block>(c, c.connectedCell.GetComponent<Block>()));
         }
         active = turns[0];
+        foreach (Character c in turns)
+            allCharacters.Add(c);
         Debug.Log(active);
         StartActiveCharTurn(false);
     }

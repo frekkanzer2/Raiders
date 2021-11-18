@@ -152,6 +152,11 @@ public class Character : MonoBehaviour
             );
             if (new Vector2(transform.position.x, transform.position.y) == Coordinate.getPosition(followingBlock.coordinate)) {
                 // I'm on a new cell
+                if (this.getEventSystem().getEvents("Toxic Injection").Count > 0) {
+                    // damage on movement effect
+                    ToxicInjectionEvent tie = (ToxicInjectionEvent)this.getEventSystem().getEvents("Toxic Injection")[0];
+                    this.inflictDamage(Spell.calculateDamage(tie.referencedSpell.link, this, tie.referencedSpell) * this.getEventSystem().getEvents("Toxic Injection").Count);
+                }
                 GameObject previous_link = this.connectedCell;
                 previous_link.GetComponent<Block>().linkedObject = null;
                 this.connectedCell = followingBlock.gameObject;

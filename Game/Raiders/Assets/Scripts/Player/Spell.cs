@@ -171,7 +171,7 @@ public class Spell {
             else if (spell.name == "Bow Skill") EXECUTE_BOW_SKILL(caster, spell);
             else if (spell.name == "Slow Down Arrow") EXECUTE_SLOW_DOWN_ARROW(targetBlock, spell);
             else if (spell.name == "Atonement Arrow") EXECUTE_ATONEMENT_ARROW(caster, spell);
-            else if (spell.name == "Retreat Arrow") EXECUTE_RETREAT_ARROW(caster, targetBlock);
+            else if (spell.name == "Retreat Arrow" || spell.name == "Tricky Blow") EXECUTE_RETREAT_ARROW(caster, targetBlock);
             else if (spell.name == "Barricade Shot") EXECUTE_BARRICADE_SHOT(caster, targetBlock, spell);
             else if (spell.name == "Sentinel") EXECUTE_SENTINEL(caster, spell);
             else if (spell.name == "Critical Shooting") EXECUTE_CRITICAL_SHOOTING(targetBlock, spell);
@@ -287,6 +287,15 @@ public class Spell {
             else if (spell.name == "Tacturrect") SUMMONS_TACTICAL_TURRECT(caster, targetBlock);
             else if (spell.name == "Lifesaver") SUMMONS_GUARDIANA_TURRECT(caster, targetBlock);
             else if (spell.name == "Repulsion") EXECUTE_REPULSION(caster, targetBlock);
+            else if (spell.name == "Mist") EXECUTE_MIST(caster, spell);
+            else if (spell.name == "Double") SUMMONS_DOUBLE(caster, targetBlock);
+            else if (spell.name == "Chaferfu") SUMMONS_CHAFERFU(caster, targetBlock);
+            else if (spell.name == "Cruelty") EXECUTE_CRUELTY(caster, targetBlock, spell);
+            else if (spell.name == "Perquisition") EXECUTE_PERQUISITION(caster, targetBlock, spell);
+            else if (spell.name == "Larceny") EXECUTE_LARCENY(caster, targetBlock, spell);
+            else if (spell.name == "Toxic Injection") EXECUTE_TOXIC_INJECTION(caster, targetBlock, spell);
+            else if (spell.name == "Cut Throat") EXECUTE_CUT_THROAT(caster, spell);
+            else if (spell.name == "Evasion") EXECUTE_EVASION(caster, spell);
 
             // ADD HERE ELSE IF (...) ...
             else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -706,6 +715,7 @@ public class Spell {
     public static void EXECUTE_RESTART(Spell s) {
         foreach(Tuple<Character, Block> t in TurnsManager.spawnPositions) {
             if (t.Item1.isDead || t.Item1.isEvocation) continue;
+            if (t.Item2.linkedObject != null) continue;
             EXECUTE_JUMP(t.Item1, t.Item2);
         }
     }
@@ -1361,6 +1371,87 @@ public class Spell {
         ut_repels(caster, targetBlock, 5);
     }
 
+    public static void SUMMONS_DOUBLE(Character caster, Block targetBlock) {
+        Evocation dd = ut_execute_summon(caster, targetBlock, "Double_" + caster.name);
+        dd.isDouble = true;
+    }
+
+    public static void EXECUTE_MIST(Character caster, Spell s) {
+        foreach(Character enemy in ut_getEnemies(caster))
+            if (ut_isNearOf(enemy, caster, 3))
+                enemy.addEvent(new MistEvent("Mist", enemy, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
+    }
+
+    public static void SUMMONS_CHAFERFU(Character caster, Block targetBlock) {
+        if (ut_getDeadStatsAllies(caster).Item1 > 1)
+            ut_execute_summon(caster, targetBlock, "Chafer");
+        else
+            ut_execute_summon(caster, targetBlock, "Chafer_Lancer");
+    }
+
+    public static void EXECUTE_CRUELTY(Character caster, Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new CrueltyEvent("Cruelty", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, true));
+        CrueltyEvent reservedCE = new CrueltyEvent("Cruelty", caster, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, false);
+        caster.addEvent(reservedCE);
+        reservedCE.useIstantanely();
+    }
+
+    public static void EXECUTE_PERQUISITION(Character caster, Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        foreach (Character c in ut_getAllies(caster))
+            if (ut_isNearOf(c, target, 2))
+                c.receiveHeal(20);
+    }
+
+    public static void EXECUTE_EVASION(Character caster, Spell s) {
+        int incrementPM = 0;
+        foreach (Character enemy in ut_getEnemies(caster))
+            if (ut_isNearOf(enemy, caster, 2))
+                incrementPM += 2;
+        if (incrementPM == 0) return;
+        EvasionEvent evasion = new EvasionEvent("Evasion", caster, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, incrementPM);
+        caster.addEvent(evasion);
+        evasion.useIstantanely();
+    }
+
+    public static void EXECUTE_CUT_THROAT(Character caster, Spell s) {
+        CutThroatEvent cte = new CutThroatEvent("Cut Throat", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        caster.addEvent(cte);
+        cte.useIstantanely();
+    }
+
+    public static void EXECUTE_TOXIC_INJECTION(Character caster, Block targetBlock, Spell s) {
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new ToxicInjectionEvent("Toxic Injection", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon, s));
+    }
+
+    public static void EXECUTE_LARCENY(Character caster, Block targetBlock, Spell s) {
+        Character enemy = targetBlock.linkedObject.GetComponent<Character>();
+        List<Character> otherEnemies = ut_getAllies(enemy);
+        List<Character> toDamage = new List<Character>();
+        if (otherEnemies.Count == 0 || ut_getDeadStatsAllies(caster).Item2 == 0) return;
+        else if (otherEnemies.Count == 1 || otherEnemies.Count < ut_getDeadStatsAllies(caster).Item2) toDamage.AddRange(otherEnemies);
+        else {
+            List<int> chosenIndexes = new List<int>();
+            UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+            int index = UnityEngine.Random.Range(0, otherEnemies.Count);
+            chosenIndexes.Add(index);
+            toDamage.Add(otherEnemies[index]);
+            while (chosenIndexes.Count < ut_getDeadStatsAllies(caster).Item2) {
+                UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+                index = UnityEngine.Random.Range(0, otherEnemies.Count);
+                if (chosenIndexes.Contains(index)) continue;
+                chosenIndexes.Add(index);
+                toDamage.Add(otherEnemies[index]);
+            }
+        }
+        if (toDamage.Count == 0) return;
+        foreach (Character todmg in toDamage) {
+            todmg.inflictDamage((calculateDamage(caster, todmg, s)) * 60 / 100);
+        }
+    }
+
     #endregion
 
     #region EVENT BONUSES
@@ -1371,6 +1462,7 @@ public class Spell {
     public static int BONUS_ATONEMENT_ARROW = 36;
     public static int BONUS_DECIMATION = 48;
     public static int BONUS_SHADOWYBEAM = 13;
+    public static int BONUS_LETHAL_ATTACK = 30;
 
     public static int EVENT_BONUS_BASE_DAMAGE(Character caster, Character targetch, Spell s) {
         if (caster.name == "Missiz Frizz" && s.name == "Accumulation") {
@@ -1406,12 +1498,26 @@ public class Spell {
                 Map.Instance.getBlock(new Coordinate(target.row + 1, target.column)) != null || Map.Instance.getBlock(new Coordinate(target.row - 1, target.column)) != null)
                 return BONUS_SHADOWYBEAM;
             else return 0;
+        } else if (caster.name == "Etraggy" && s.name == "Lethal Attack") {
+            if (ut_getDeadStatsAllies(caster).Item1 == 1) return BONUS_LETHAL_ATTACK;
+            else return 0;
         } else return 0;
     }
 
     #endregion
 
     #region UTILITIES
+
+    // Tuple<ALIVE, DEAD>
+    public static Tuple<int, int> ut_getDeadStatsAllies(Character caster) {
+        int counterDead = 0;
+        int counterAlive = 0;
+        foreach(Character c in TurnsManager.Instance.allCharacters) {
+            if (!c.isEnemyOf(caster) && c.isDead) counterDead++;
+            else if (!c.isEnemyOf(caster) && !c.isDead) counterAlive++;
+        }
+        return new Tuple<int, int>(counterAlive, counterDead);
+    }
 
     public static Evocation ut_execute_summon(Character caster, Block targetBlock, string id) {
         GameObject summonPrefab = Resources.Load("Prefabs/Heroes/Evocations/" + id) as GameObject;

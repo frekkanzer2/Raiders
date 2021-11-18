@@ -163,6 +163,7 @@ MonoBehaviour:
   id: 0
   isCommunionActive: 0
   isBomb: 0
+  isTurrect: 0
   mustSkip: 1
 --- !u!61 &8528018890230597465
 BoxCollider2D:
