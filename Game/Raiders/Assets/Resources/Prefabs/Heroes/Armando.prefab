@@ -173,8 +173,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Nature Poison
     icon: {fileID: 21300000, guid: 970ea7ffef203ca4d98960deb8798bcc, type: 3}
-    description: Inflicts Fire damage at the end of the turn if the target has at
-      least 1 remaining PM
+    description: This spell cannot kill the enemy. Inflicts Fire damage at the end
+      of the turn if the target has at least 1 remaining PM
     element: 5
     damage: 36
     lifeSteal: 0

@@ -12,7 +12,7 @@ public class ContagionEvent : ParentEvent
 
     override public void execute() {
         base.execute();
-        connected.inflictDamage(Spell.calculateDamage(caster, connected, launched));
+        connected.inflictDamage(Spell.calculateDamage(caster, connected, launched), true);
     }
 
     override public void restoreCharacter() {

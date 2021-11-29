@@ -13,7 +13,7 @@ public class NaturePoisonEvent : ParentEvent
     override public void execute() {
         base.execute();
         if (connected.actual_pm > 0)
-            connected.inflictDamage(Spell.calculateDamage(caster, connected, launched));
+            connected.inflictDamage(Spell.calculateDamage(caster, connected, launched), true);
     }
 
     override public void restoreCharacter() {

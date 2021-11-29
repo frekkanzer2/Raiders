@@ -173,7 +173,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Contagion
     icon: {fileID: 21300000, guid: d0bbccb3a645a0d4b8c7cebdd319bb95, type: 3}
-    description: Inflicts Air damage at the end of the turn
+    description: This spell cannot kill the enemy. Inflicts Air damage at the end
+      of the turn
     element: 5
     damage: 20
     lifeSteal: 0

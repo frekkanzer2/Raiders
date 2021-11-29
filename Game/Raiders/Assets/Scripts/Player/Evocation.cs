@@ -75,10 +75,10 @@ public class Evocation : Character {
         return this.name + id;
     }
 
-    public override void inflictDamage(int damage) {
+    public override void inflictDamage(int damage, bool mustSkip = false) {
         if (isCommunionActive) {
             damage /= 2;
-            connectedSummoner.inflictDamage(damage);
+            connectedSummoner.inflictDamage(damage, mustSkip);
         }
         base.inflictDamage(damage);
     }

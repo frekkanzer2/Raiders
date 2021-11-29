@@ -38,10 +38,14 @@ public class EventSystem : MonoBehaviour
     }
 
     public void OnEndTurn() {
-        foreach (ParentEvent pe in activeEvents) {
-            pe.OnTurnEnds();
+        try {
+            foreach (ParentEvent pe in activeEvents) {
+                pe.OnTurnEnds();
+            }
+            removeZeroEvents();
+        } catch (System.Exception e) {
+            Debug.Log("Catched exception while killing character");
         }
-        removeZeroEvents();
     }
 
     public List<ParentEvent> getEvents(string name) {

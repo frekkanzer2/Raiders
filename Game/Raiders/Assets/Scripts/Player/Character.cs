@@ -366,7 +366,7 @@ public class Character : MonoBehaviour
         sos.setup(prefabToSpawn);
     }
 
-    public virtual void inflictDamage(int damage) {
+    public virtual void inflictDamage(int damage, bool mustSkip = false) {
         if (isDead) return;
         if (actual_shield > 0) {
             int prev_sh = actual_shield; // 80
@@ -385,7 +385,8 @@ public class Character : MonoBehaviour
         if (damage == 0) return;
         if (this.actual_hp - damage < 0) actual_hp = 0;
         else this.actual_hp -= damage;
-        if (actual_hp == 0) setDead();
+        if (actual_hp == 0 && !mustSkip) setDead();
+        else if (actual_hp == 0 && mustSkip) actual_hp = 1;
         sos.addEffect_DMG_Heal(StatsOutputSystem.Effect.HP, damage);
     }
 
@@ -487,8 +488,20 @@ public class Character : MonoBehaviour
         connectedCell = null;
         esystem.removeAllEvents();
         stsystem.removeAllSpells();
-        this.hasActivedSacrifice = false;
-        this.connectedSacrifice = null;
+        // dead player is the target of the sacrifice
+        if (this.connectedSacrifice != null) {
+            this.connectedSacrifice = null;
+        }
+        // dead player is the caster of the sacrifice
+        if (this.hasActivedSacrifice) {
+            this.hasActivedSacrifice = false;
+            foreach(Character c in TurnsManager.Instance.turns) {
+                if (c.connectedSacrifice != null)
+                    if (c.connectedSacrifice.Equals(this))
+                        c.connectedSacrifice = null;
+            }
+            this.connectedSacrifice = null;
+        }
         StartCoroutine(dead_disappear());
         Destroy(connectedPreview);
         TurnsManager.Instance.turns.Remove(this);
