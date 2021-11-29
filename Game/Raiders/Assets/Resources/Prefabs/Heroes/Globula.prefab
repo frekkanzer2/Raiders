@@ -109,7 +109,7 @@ MonoBehaviour:
     damage: 0
     lifeSteal: 0
     minRange: 1
-    maxRange: 8
+    maxRange: 6
     distanceType: 0
     overObstacles: 1
     hpCost: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 78e5448e8e2a421448a877d196ea273d, type: 3}
     description: Inflicts Earth damage
     element: 0
-    damage: 61
+    damage: 60
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -176,7 +176,7 @@ MonoBehaviour:
     description: Steals HP in the Air element and removes 3 PM to the target (25%
       chance)
     element: 2
-    damage: 32
+    damage: 38
     lifeSteal: 1
     minRange: 1
     maxRange: 3
@@ -195,7 +195,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1560
+  hp: 1540
   pa: 6
   pm: 3
   ini: 120

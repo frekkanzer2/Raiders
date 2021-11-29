@@ -106,7 +106,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: c955a123d2a49ba4bb2e89ce644240c1, type: 3}
     description: Inflicts Air damage
     element: 2
-    damage: 18
+    damage: 12
     lifeSteal: 0
     minRange: 6
     maxRange: 20
@@ -148,7 +148,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 126
+  hp: 54
   pa: 7
   pm: 5
   ini: 0
@@ -209,6 +209,8 @@ MonoBehaviour:
   id: 0
   isCommunionActive: 0
   isBomb: 0
+  isTurrect: 0
+  isDouble: 0
   mustSkip: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:

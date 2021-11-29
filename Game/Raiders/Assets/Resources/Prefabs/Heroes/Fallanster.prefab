@@ -152,7 +152,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: acfa5b13ce1d8714e872f41a34c4d0f9, type: 3}
     description: Decreases a target random resistance of 15% (25% chance)
     element: 0
-    damage: 38
+    damage: 47
     lifeSteal: 0
     minRange: 5
     maxRange: 5
@@ -194,7 +194,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1200
+  hp: 1360
   pa: 7
   pm: 3
   ini: 70

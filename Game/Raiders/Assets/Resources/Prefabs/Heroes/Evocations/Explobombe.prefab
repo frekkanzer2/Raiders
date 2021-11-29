@@ -102,7 +102,7 @@ MonoBehaviour:
   name: Explobombe
   spells: []
   team: 1
-  hp: 60
+  hp: 80
   pa: 0
   pm: 0
   ini: 0
@@ -163,6 +163,8 @@ MonoBehaviour:
   id: 0
   isCommunionActive: 0
   isBomb: 0
+  isTurrect: 0
+  isDouble: 0
   mustSkip: 1
 --- !u!61 &8528018890230597465
 BoxCollider2D:

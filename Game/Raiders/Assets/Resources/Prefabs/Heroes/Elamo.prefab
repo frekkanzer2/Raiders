@@ -132,7 +132,7 @@ MonoBehaviour:
     damage: 0
     lifeSteal: 0
     minRange: 1
-    maxRange: 3
+    maxRange: 5
     distanceType: 1
     overObstacles: 0
     hpCost: 0
@@ -150,9 +150,9 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Convulsion
     icon: {fileID: 21300000, guid: 01060ee29f1e99549921a87dcb7eb0ef, type: 3}
-    description: Repels the target of 2 cell
+    description: Repels the target of 2 cells
     element: 0
-    damage: 28
+    damage: 38
     lifeSteal: 0
     minRange: 2
     maxRange: 5
@@ -175,7 +175,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: ca5540b979241f341993ce3bbf598ab6, type: 3}
     description: Attracts the target of 1 cell
     element: 0
-    damage: 36
+    damage: 46
     lifeSteal: 0
     minRange: 3
     maxRange: 6

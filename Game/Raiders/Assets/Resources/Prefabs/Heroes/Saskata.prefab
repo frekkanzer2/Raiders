@@ -153,7 +153,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 07a0858f2e0418e4f82d449adeb8728e, type: 3}
     description: Removes 5 PM to the target
     element: 4
-    damage: 100
+    damage: 140
     lifeSteal: 0
     minRange: 1
     maxRange: 8
@@ -176,7 +176,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 4d379419916033a42bb54c518af6d705, type: 3}
     description: Inflicts Water damage
     element: 3
-    damage: 46
+    damage: 47
     lifeSteal: 0
     minRange: 1
     maxRange: 6

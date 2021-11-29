@@ -152,7 +152,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: cd5706e5a75874747929caefab46c335, type: 3}
     description: Attracts the target of 2 cells if Blow-Out is active
     element: 1
-    damage: 40
+    damage: 38
     lifeSteal: 0
     minRange: 1
     maxRange: 6
@@ -176,7 +176,7 @@ MonoBehaviour:
     description: Inflict Fire damage to each enemy up to 2 cells from the target
       if Blow-Out is active
     element: 1
-    damage: 35
+    damage: 52
     lifeSteal: 0
     minRange: 2
     maxRange: 5
@@ -195,7 +195,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1240
+  hp: 1475
   pa: 6
   pm: 4
   ini: 60

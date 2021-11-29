@@ -130,7 +130,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: d179e680cd19d8e48a8e013fa4744933, type: 3}
     description: Inflicts Air damage
     element: 2
-    damage: 33
+    damage: 36
     lifeSteal: 0
     minRange: 2
     maxRange: 6
@@ -177,7 +177,7 @@ MonoBehaviour:
     description: Teleports to the targeted cell. Inflicts Air damage to adjacent
       enemies to the targeted cell
     element: 2
-    damage: 42
+    damage: 52
     lifeSteal: 0
     minRange: 2
     maxRange: 2
@@ -196,7 +196,7 @@ MonoBehaviour:
     isJump: 1
     isSummon: 0
   team: 1
-  hp: 1200
+  hp: 1075
   pa: 7
   pm: 4
   ini: 115

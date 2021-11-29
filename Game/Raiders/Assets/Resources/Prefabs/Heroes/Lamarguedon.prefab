@@ -152,7 +152,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: bd98b535e84247647b931196cccb2d0c, type: 3}
     description: Steals HP in the Water element
     element: 3
-    damage: 34
+    damage: 38
     lifeSteal: 1
     minRange: 3
     maxRange: 3
@@ -175,7 +175,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 5194b64ba2df91e40a36f8762b898f0c, type: 3}
     description: Inflicts Air damage
     element: 2
-    damage: 56
+    damage: 68
     lifeSteal: 0
     minRange: 4
     maxRange: 4
@@ -194,7 +194,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1380
+  hp: 1420
   pa: 7
   pm: 3
   ini: 60

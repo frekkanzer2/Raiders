@@ -198,7 +198,7 @@ MonoBehaviour:
   hp: 940
   pa: 7
   pm: 3
-  ini: 130
+  ini: 40
   res_e: 0
   res_f: 10
   res_a: 4

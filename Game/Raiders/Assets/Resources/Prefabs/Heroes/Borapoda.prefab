@@ -153,7 +153,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 58326c6164f5e9b4b92c718e9a2e609c, type: 3}
     description: Teleports behind the target
     element: 0
-    damage: 41
+    damage: 46
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -176,7 +176,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 30c3712b3486fd2419ed83856fdef864, type: 3}
     description: Inflicts Fire damage
     element: 1
-    damage: 36
+    damage: 38
     lifeSteal: 0
     minRange: 1
     maxRange: 5
@@ -195,7 +195,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1050
+  hp: 1280
   pa: 7
   pm: 3
   ini: 100

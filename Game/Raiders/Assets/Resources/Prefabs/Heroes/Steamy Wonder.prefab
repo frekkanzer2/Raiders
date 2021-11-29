@@ -129,7 +129,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: f7c083faca510ea49a36b06642c78eaa, type: 3}
     description: Inflict 50% spell damage on two other random enemies
     element: 0
-    damage: 42
+    damage: 46
     lifeSteal: 0
     minRange: 4
     maxRange: 6
@@ -194,7 +194,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 970
+  hp: 980
   pa: 8
   pm: 3
   ini: 30

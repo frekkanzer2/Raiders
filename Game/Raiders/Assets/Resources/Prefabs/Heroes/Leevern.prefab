@@ -131,7 +131,7 @@ MonoBehaviour:
     description: Inflicts Fire damage and forbid critical hits to each enemy up to
       5 cells
     element: 1
-    damage: 20
+    damage: 28
     lifeSteal: 0
     minRange: 0
     maxRange: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 6fe8790a1c09b9d419fa75f6e2ea4311, type: 3}
     description: Inflicts Earth damage
     element: 0
-    damage: 36
+    damage: 42
     lifeSteal: 0
     minRange: 1
     maxRange: 4
@@ -196,7 +196,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1000
+  hp: 1135
   pa: 7
   pm: 3
   ini: 125

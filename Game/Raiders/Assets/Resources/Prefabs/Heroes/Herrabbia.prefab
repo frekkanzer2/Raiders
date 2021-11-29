@@ -139,7 +139,7 @@ MonoBehaviour:
     paCost: 4
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 4
+    executeAfterTurns: 3
     effectDuration: 0
     criticalProbability: 0
     hasEffect: 1
@@ -162,7 +162,7 @@ MonoBehaviour:
     paCost: 4
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 6
+    executeAfterTurns: 5
     effectDuration: 0
     criticalProbability: 0
     hasEffect: 1
@@ -185,7 +185,7 @@ MonoBehaviour:
     paCost: 3
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 4
+    executeAfterTurns: 3
     effectDuration: 3
     criticalProbability: 0
     hasEffect: 1
@@ -194,7 +194,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1240
+  hp: 1095
   pa: 7
   pm: 3
   ini: 70

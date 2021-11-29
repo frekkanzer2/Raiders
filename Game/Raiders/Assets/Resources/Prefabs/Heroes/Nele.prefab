@@ -175,14 +175,14 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 373e5c531e17ff54b81822b491d6a9db, type: 3}
     description: Inflicts Air damage when the target is repelled of a cell
     element: 2
-    damage: 18
+    damage: 21
     lifeSteal: 0
     minRange: 1
     maxRange: 5
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 5
+    paCost: 4
     pmCost: 0
     maxTimesInTurn: 1
     executeAfterTurns: 8

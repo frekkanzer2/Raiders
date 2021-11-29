@@ -175,7 +175,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: fb17fe56678145948abf84a735bc11f1, type: 3}
     description: Increases the spell's damage of 30
     element: 3
-    damage: 24
+    damage: 36
     lifeSteal: 0
     minRange: 9
     maxRange: 12

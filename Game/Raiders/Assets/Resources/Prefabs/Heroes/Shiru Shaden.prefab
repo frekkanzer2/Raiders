@@ -129,7 +129,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: b8161c4de31ae734f98063d78b83f888, type: 3}
     description: Repels the target of 3 cells
     element: 2
-    damage: 34
+    damage: 42
     lifeSteal: 0
     minRange: 1
     maxRange: 4
@@ -175,7 +175,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: eea94d51037587a4fa332564c0cf33f2, type: 3}
     description: Removes 1 PM to the target if it's in the same line of the caster
     element: 0
-    damage: 35
+    damage: 38
     lifeSteal: 0
     minRange: 5
     maxRange: 8

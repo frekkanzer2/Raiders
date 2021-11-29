@@ -152,7 +152,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 6c27c637c93974b4fa8263d833771e24, type: 3}
     description: Inflicts Fire damage
     element: 1
-    damage: 12
+    damage: 14
     lifeSteal: 0
     minRange: 3
     maxRange: 7

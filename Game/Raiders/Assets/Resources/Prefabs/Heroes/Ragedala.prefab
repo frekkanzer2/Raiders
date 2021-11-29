@@ -152,7 +152,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: d3fcf65bdcb7dd641b85396b9fce4962, type: 3}
     description: Inflicts Earth damage
     element: 0
-    damage: 34
+    damage: 36
     lifeSteal: 0
     minRange: 1
     maxRange: 3
@@ -194,7 +194,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1645
+  hp: 1740
   pa: 8
   pm: 2
   ini: 20

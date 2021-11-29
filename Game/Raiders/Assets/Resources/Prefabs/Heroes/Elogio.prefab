@@ -175,7 +175,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: e20b54a4884ff834f87d47c8c37f85a3, type: 3}
     description: Inflicts Fire damage
     element: 1
-    damage: 47
+    damage: 50
     lifeSteal: 0
     minRange: 1
     maxRange: 3
@@ -194,7 +194,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1050
+  hp: 970
   pa: 6
   pm: 3
   ini: 85

@@ -152,7 +152,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 32880b6cd944ff843ac7716c99260762, type: 3}
     description: Inflicts Water damage
     element: 3
-    damage: 53
+    damage: 52
     lifeSteal: 0
     minRange: 2
     maxRange: 4

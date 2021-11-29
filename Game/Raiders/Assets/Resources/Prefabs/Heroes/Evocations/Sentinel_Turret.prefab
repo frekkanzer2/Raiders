@@ -186,6 +186,8 @@ MonoBehaviour:
   id: 0
   isCommunionActive: 0
   isBomb: 0
+  isTurrect: 0
+  isDouble: 0
   mustSkip: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
@@ -204,7 +206,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.49454463, y: 0.31814903}
-    oldSize: {x: 2.7027028, y: 2.7027028}
+    oldSize: {x: 3.0769231, y: 3.0769231}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

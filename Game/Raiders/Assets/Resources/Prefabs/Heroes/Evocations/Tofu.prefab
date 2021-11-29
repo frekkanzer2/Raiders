@@ -106,7 +106,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 9c169c8e1e3ce464ba618c16bd2a727a, type: 3}
     description: Inflicts Air damage
     element: 2
-    damage: 24
+    damage: 28
     lifeSteal: 0
     minRange: 1
     maxRange: 2
@@ -186,6 +186,8 @@ MonoBehaviour:
   id: 0
   isCommunionActive: 0
   isBomb: 0
+  isTurrect: 0
+  isDouble: 0
   mustSkip: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:

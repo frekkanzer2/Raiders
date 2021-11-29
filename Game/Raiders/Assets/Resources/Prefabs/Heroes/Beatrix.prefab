@@ -106,7 +106,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: f7535054b6591bb41845e61def1deccf, type: 3}
     description: Switch position with the target
     element: 4
-    damage: 80
+    damage: 150
     lifeSteal: 0
     minRange: 1
     maxRange: 4
@@ -116,7 +116,7 @@ MonoBehaviour:
     paCost: 4
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 3
+    executeAfterTurns: 5
     effectDuration: 0
     criticalProbability: 0
     hasEffect: 1
@@ -132,7 +132,7 @@ MonoBehaviour:
     damage: 40
     lifeSteal: 0
     minRange: 1
-    maxRange: 4
+    maxRange: 3
     distanceType: 0
     overObstacles: 0
     hpCost: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 7398700732e95d949b9056f80af4838e, type: 3}
     description: Heals each ally up to 3 cells from the target of 30 HP on each turn
     element: 1
-    damage: 41
+    damage: 46
     lifeSteal: 0
     minRange: 1
     maxRange: 5

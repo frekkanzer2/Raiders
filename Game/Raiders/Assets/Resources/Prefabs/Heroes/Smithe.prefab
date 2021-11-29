@@ -179,7 +179,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 229fe1b7e17b10a4586f71557e79ad53, type: 3}
     description: Removes 3 PA to the target (20% chance)
     element: 3
-    damage: 38
+    damage: 40
     lifeSteal: 0
     minRange: 2
     maxRange: 3
@@ -198,7 +198,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1210
+  hp: 1200
   pa: 6
   pm: 4
   ini: 85

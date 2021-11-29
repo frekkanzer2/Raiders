@@ -129,7 +129,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: ccd8826f8fe90dd46aa136044fcd89ef, type: 3}
     description: Inflicts Earth damage
     element: 0
-    damage: 27
+    damage: 34
     lifeSteal: 0
     minRange: 1
     maxRange: 3
@@ -152,7 +152,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 9c7e292bedf57ce4b84e80705c235b5e, type: 3}
     description: Inflicts Air damage
     element: 2
-    damage: 38
+    damage: 42
     lifeSteal: 0
     minRange: 1
     maxRange: 7

@@ -152,7 +152,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 67b9b33c50e794e4c996f5ee5b5fea90, type: 3}
     description: Switch position with the target
     element: 2
-    damage: 24
+    damage: 28
     lifeSteal: 0
     minRange: 1
     maxRange: 3
@@ -195,7 +195,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1630
+  hp: 1680
   pa: 5
   pm: 3
   ini: 100

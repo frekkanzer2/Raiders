@@ -153,7 +153,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: f49cd93b03fd0a444a14d4b3158b7553, type: 3}
     description: Heals each ally up to 2 cells from the target of 20 HP
     element: 3
-    damage: 31
+    damage: 34
     lifeSteal: 0
     minRange: 1
     maxRange: 6
@@ -177,7 +177,7 @@ MonoBehaviour:
     description: Inflict 60% spell damage on K other random enemies, where K is the
       number of dead allies
     element: 3
-    damage: 50
+    damage: 54
     lifeSteal: 0
     minRange: 1
     maxRange: 2
@@ -196,7 +196,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1215
+  hp: 1320
   pa: 7
   pm: 3
   ini: 40

@@ -129,7 +129,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 17745f07d2fb8a243ab77ecf75ffc5d3, type: 3}
     description: Allies are healed of 50% of the damage inflicted on the target
     element: 1
-    damage: 46
+    damage: 52
     lifeSteal: 0
     minRange: 1
     maxRange: 4
@@ -152,7 +152,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: e5bf3f0f1540ef142a9ea669b4230598, type: 3}
     description: Inflicts Fire damage
     element: 1
-    damage: 40
+    damage: 46
     lifeSteal: 0
     minRange: 1
     maxRange: 7
@@ -194,7 +194,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1070
+  hp: 1030
   pa: 7
   pm: 4
   ini: 140

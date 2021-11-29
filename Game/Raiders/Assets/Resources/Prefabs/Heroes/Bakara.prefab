@@ -130,7 +130,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 4a6f7a8dd3ec2e340bddd7a69b87443a, type: 3}
     description: 'Inflicts Fire damage '
     element: 1
-    damage: 32
+    damage: 34
     lifeSteal: 0
     minRange: 3
     maxRange: 7
@@ -142,7 +142,7 @@ MonoBehaviour:
     maxTimesInTurn: 2
     executeAfterTurns: 0
     effectDuration: 0
-    criticalProbability: 15
+    criticalProbability: 25
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 23208ca80fe77474c8a6b3834d859f1e, type: 3}
     description: Repels the caster of 1 cell and removes 1 PM to the target
     element: 1
-    damage: 26
+    damage: 24
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -195,7 +195,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 920
+  hp: 1150
   pa: 7
   pm: 3
   ini: 70

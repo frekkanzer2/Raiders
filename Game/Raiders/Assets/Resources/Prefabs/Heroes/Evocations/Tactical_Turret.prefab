@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2347270675974649033}
   - component: {fileID: 5404421346664201683}
   m_Layer: 0
-  m_Name: Tactical Turret
+  m_Name: Tactical_Turret
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 120
+  hp: 80
   pa: 6
   pm: -100
   ini: 0
@@ -186,6 +186,8 @@ MonoBehaviour:
   id: 0
   isCommunionActive: 0
   isBomb: 0
+  isTurrect: 0
+  isDouble: 0
   mustSkip: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:

@@ -130,7 +130,7 @@ MonoBehaviour:
     description: Immediately increases the spell's damage of 13 if an ally is adiacent
       to the target
     element: 0
-    damage: 23
+    damage: 28
     lifeSteal: 0
     minRange: 1
     maxRange: 5
@@ -153,7 +153,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 6d8a8345ae886bf428d421bb58dab1a3, type: 3}
     description: Inflicts Fire damage
     element: 1
-    damage: 28
+    damage: 38
     lifeSteal: 0
     minRange: 1
     maxRange: 7
@@ -176,7 +176,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: be09cf84401e410498404d783bf6ace3, type: 3}
     description: Removes 1 PA to the target (90% chance)
     element: 1
-    damage: 20
+    damage: 18
     lifeSteal: 0
     minRange: 4
     maxRange: 5
@@ -195,7 +195,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1260
+  hp: 1270
   pa: 7
   pm: 3
   ini: 60

@@ -116,7 +116,7 @@ MonoBehaviour:
     paCost: 3
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 4
+    executeAfterTurns: 3
     effectDuration: 0
     criticalProbability: 0
     hasEffect: 1
@@ -129,7 +129,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: b5a60dfc13d0267448d8af2bf997b5a7, type: 3}
     description: Steals HP in the Water element
     element: 3
-    damage: 32
+    damage: 38
     lifeSteal: 1
     minRange: 1
     maxRange: 4
@@ -152,7 +152,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: a4dda85473556b946a04f399f7a60e45, type: 3}
     description: Inflicts Water damage
     element: 3
-    damage: 50
+    damage: 56
     lifeSteal: 0
     minRange: 3
     maxRange: 6
@@ -195,7 +195,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 950
+  hp: 1220
   pa: 8
   pm: 4
   ini: 140

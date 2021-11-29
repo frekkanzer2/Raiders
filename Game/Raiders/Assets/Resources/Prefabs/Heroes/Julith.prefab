@@ -130,7 +130,7 @@ MonoBehaviour:
     description: Teleports to the targeted cell. Inflict Earth damage to each enemy
       up to 3 cells from the destination cell
     element: 0
-    damage: 52
+    damage: 76
     lifeSteal: 0
     minRange: 5
     maxRange: 7
@@ -176,7 +176,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 1c3f1d1e52f2e134d9cd296441a8a0cb, type: 3}
     description: Repels the target of 3 cells and repels the caster of 3 cells
     element: 2
-    damage: 33
+    damage: 32
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -195,7 +195,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1320
+  hp: 1275
   pa: 7
   pm: 3
   ini: 130

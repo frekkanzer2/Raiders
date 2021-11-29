@@ -153,7 +153,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: c39aea3a79cc3c5458e5c63b228fdd93, type: 3}
     description: Removes 1 PA to the target
     element: 3
-    damage: 24
+    damage: 25
     lifeSteal: 0
     minRange: 3
     maxRange: 8
@@ -184,7 +184,7 @@ MonoBehaviour:
     overObstacles: 0
     hpCost: 0
     paCost: 5
-    pmCost: 1
+    pmCost: 0
     maxTimesInTurn: 1
     executeAfterTurns: 3
     effectDuration: 1

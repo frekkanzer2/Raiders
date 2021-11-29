@@ -130,7 +130,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: b5a62369911a5c248966856198e1d4d9, type: 3}
     description: Steals HP in the Earth element
     element: 0
-    damage: 40
+    damage: 45
     lifeSteal: 1
     minRange: 1
     maxRange: 3
@@ -176,7 +176,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: fbe399b1657da014182b8fce75a7376c, type: 3}
     description: Removes 3 PM to the target (35% chance)
     element: 0
-    damage: 35
+    damage: 36
     lifeSteal: 0
     minRange: 2
     maxRange: 8
