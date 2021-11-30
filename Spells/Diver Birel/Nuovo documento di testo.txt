@@ -1,0 +1,12 @@
+Money Collection - usa i rimanenti PA per convertirli in KAMA
+Power Unlocker - 
+	se Diver possiede almeno 10 KAMA, diventa un Talpotto;
+	se Diver possiede almeno 30 KAMA, diventa un Tapoken;
+	altrimenti fallisce.
+	La trasformazione dura 5 turni.
+	-
+		Se diventa un Talpotto, -25% danni a sè stesso e +1PM ad inizio turno agli alleati adiacenti;
+		Se diventa un Talpoken, +25% danni a sè stesso e +1PA ad inizio turno agli alleati adiacenti.
+Shovelbrained - danni aria a buona distanza (3-6)
+Kama Throwing - range altissimo (1-12) con danni bassissimi (18 - max 3 volte in un turno):
+	se Diver possiede almeno un KAMA, lo usa per infliggere 10 danni addizionali

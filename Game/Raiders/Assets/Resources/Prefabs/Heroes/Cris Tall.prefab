@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 557098361630938741}
   - component: {fileID: 557098361630938698}
-  - component: {fileID: 6745393218802890858}
+  - component: {fileID: 557098361630938740}
   - component: {fileID: 8528018890230597465}
   - component: {fileID: 8914096617352650622}
   - component: {fileID: -2347270675974649033}
   - component: {fileID: 5404421346664201683}
   m_Layer: 0
-  m_Name: Inflatable
+  m_Name: Cris Tall
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 38190ca8319dada41b141c595fe6b1db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2f06fbdf4868ccd44befbd72bf28fdbe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6745393218802890858
+--- !u!114 &557098361630938740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,49 +96,119 @@ MonoBehaviour:
   m_GameObject: {fileID: 557098361630938699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b47f2c763fdab0b4ba89ee3dc1fc4aa8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8166a5c395145dc489abd6518c5ac693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Inflatable
+  name: Cris Tall
   spells:
   - link: {fileID: 0}
-    name: Natural Gift
-    icon: {fileID: 21300000, guid: 4a74a48c6242cab4fa02bc1dd0732c54, type: 3}
-    description: Heals the target
-    element: 4
-    damage: 30
+    name: Spade Throw
+    icon: {fileID: 21300000, guid: 85d7b9321ceaab14db329cff2957e3d6, type: 3}
+    description: Inflicts Earth damage
+    element: 0
+    damage: 72
     lifeSteal: 0
     minRange: 1
-    maxRange: 6
+    maxRange: 4
     distanceType: 0
     overObstacles: 0
+    hpCost: 0
+    paCost: 6
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 1
+    effectDuration: 0
+    criticalProbability: 15
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Ghostly Shovel
+    icon: {fileID: 21300000, guid: f38e2fa852e58144f855a7d9adadec46, type: 3}
+    description: Inflicts Fire damage
+    element: 1
+    damage: 26
+    lifeSteal: 0
+    minRange: 3
+    maxRange: 6
+    distanceType: 0
+    overObstacles: 1
     hpCost: 0
     paCost: 3
     pmCost: 0
     maxTimesInTurn: 3
     executeAfterTurns: 0
     effectDuration: 0
-    criticalProbability: 0
+    criticalProbability: 25
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
+  - link: {fileID: 0}
+    name: Fortune
+    icon: {fileID: 21300000, guid: 0c40ba851c649e445b5d42e4dbf58521, type: 3}
+    description: 'Applies a double effect: in the first turn, increases target spells''
+      complessive damage of 200%; in the second turn, removes 100 PA to the target'
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 6
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 4
+    effectDuration: 2
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Living Shovel
+    icon: {fileID: 21300000, guid: a28bcb3cf44f50c498221dbef3e5792c, type: 3}
+    description: Summons a Living Shovel
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 4
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 5
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 1
+    isJump: 0
+    isSummon: 1
   team: 1
-  hp: 120
+  hp: 1180
   pa: 6
-  pm: 3
-  ini: 0
-  res_e: 47
-  res_f: 34
-  res_a: 25
-  res_w: 38
-  att_e: 0
-  att_f: 0
+  pm: 4
+  ini: 20
+  res_e: 6
+  res_f: 8
+  res_a: -10
+  res_w: -7
+  att_e: 6
+  att_f: 10
   att_a: 0
   att_w: 0
-  numberOfSummons: 0
-  isEvocation: 1
+  numberOfSummons: 1
+  isEvocation: 0
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
@@ -182,13 +252,6 @@ MonoBehaviour:
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
-  connectedSummoner: {fileID: 0}
-  id: 0
-  isCommunionActive: 0
-  isBomb: 0
-  isTurrect: 0
-  isDouble: 0
-  mustSkip: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -205,8 +268,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5727407, y: 0.2090383}
-    oldSize: {x: 2.5, y: 2.5}
+    pivot: {x: 0.54964536, y: 0.101745665}
+    oldSize: {x: 3.2894738, y: 4.2763157}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

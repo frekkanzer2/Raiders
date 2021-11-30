@@ -1,0 +1,4 @@
+Tunneling - infligge danni ai nemici adiacenti alla casella bersaglio in cui persepolo salta
+Toolbox - +3 PA ad un alleato, ma -100 PM per 1 turno; se l'alleato ha delle evocazioni, si itera su di loro
+Pull Out - -100 PM a tutti i nemici per un turno; nel prossimo turno, Persepolo perde 100 PM per un turno
+Obsolescence - danni terra ravvicinati e -1 PM per un turno

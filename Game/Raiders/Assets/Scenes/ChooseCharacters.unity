@@ -1860,6 +1860,22 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: e05880e317d75c94a9b75b270c59177f, type: 3}
     characterMidSprite: {fileID: 21300000, guid: d98b459260d15864abf735a78376950f, type: 3}
     isEvocation: 1
+  - characterName: Persepolo
+    characterFullSprite: {fileID: 21300000, guid: eae90f8be5dc9d14e808a8eefbf01ff7, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: dcd360b0adbb4c94f962625a34f237ca, type: 3}
+    isEvocation: 0
+  - characterName: Diver Birel
+    characterFullSprite: {fileID: 21300000, guid: e05645cae910c15439580fb47073a7ad, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 18f24b4cf033d0c48997ed32391408da, type: 3}
+    isEvocation: 0
+  - characterName: Cris Tall
+    characterFullSprite: {fileID: 21300000, guid: 2f06fbdf4868ccd44befbd72bf28fdbe, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 020f7c07747920040bb7f40eca176185, type: 3}
+    isEvocation: 0
+  - characterName: Living Shovel
+    characterFullSprite: {fileID: 21300000, guid: de640ad8a2bb0b144af13580cb0054dc, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 65155a9d199557f4381b54a13771b601, type: 3}
+    isEvocation: 1
 --- !u!114 &1295197767
 MonoBehaviour:
   m_ObjectHideFlags: 0

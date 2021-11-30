@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 557098361630938741}
   - component: {fileID: 557098361630938698}
-  - component: {fileID: 6745393218802890858}
+  - component: {fileID: 557098361630938740}
   - component: {fileID: 8528018890230597465}
   - component: {fileID: 8914096617352650622}
   - component: {fileID: -2347270675974649033}
   - component: {fileID: 5404421346664201683}
   m_Layer: 0
-  m_Name: Inflatable
+  m_Name: Persepolo
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 38190ca8319dada41b141c595fe6b1db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eae90f8be5dc9d14e808a8eefbf01ff7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6745393218802890858
+--- !u!114 &557098361630938740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,49 +96,121 @@ MonoBehaviour:
   m_GameObject: {fileID: 557098361630938699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b47f2c763fdab0b4ba89ee3dc1fc4aa8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8166a5c395145dc489abd6518c5ac693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Inflatable
+  name: Persepolo
   spells:
   - link: {fileID: 0}
-    name: Natural Gift
-    icon: {fileID: 21300000, guid: 4a74a48c6242cab4fa02bc1dd0732c54, type: 3}
-    description: Heals the target
-    element: 4
-    damage: 30
+    name: Pull Out
+    icon: {fileID: 21300000, guid: dfcc402c5b03f55428dad5ebabe6b90b, type: 3}
+    description: 'Applies a double effect: in the first turn, removes 100 PM to every
+      enemy; in the second turn, removes 100 PM to the caster'
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 0
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 7
+    effectDuration: 2
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Toolbox
+    icon: {fileID: 21300000, guid: edb88dd291f49a34dbafd1d0bd725667, type: 3}
+    description: Adds 3 PA and removes 100 PM to the target for 1 turn. Execute the
+      same effect on target summons
+    element: 5
+    damage: 0
     lifeSteal: 0
     minRange: 1
-    maxRange: 6
+    maxRange: 3
     distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 3
+    effectDuration: 1
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Tunneling
+    icon: {fileID: 21300000, guid: 2e8464bfe64c7d74da12cf5c247b455d, type: 3}
+    description: Teleports to the targeted cell. Inflict Earth damage to each adjacent
+      enemy
+    element: 0
+    damage: 42
+    lifeSteal: 0
+    minRange: 2
+    maxRange: 5
+    distanceType: 1
     overObstacles: 0
     hpCost: 0
     paCost: 3
     pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 1
+    effectDuration: 0
+    criticalProbability: 25
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 1
+    isJump: 1
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Obsolescence
+    icon: {fileID: 21300000, guid: fda8e49a63d65ea4790a55dc6073c167, type: 3}
+    description: Removes 1 PM to the target
+    element: 0
+    damage: 26
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 4
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
     maxTimesInTurn: 3
     executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 0
-    hasEffect: 0
+    effectDuration: 1
+    criticalProbability: 25
+    hasEffect: 1
     isEffectOnly: 0
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 120
-  pa: 6
+  hp: 1070
+  pa: 5
   pm: 3
-  ini: 0
-  res_e: 47
-  res_f: 34
-  res_a: 25
-  res_w: 38
-  att_e: 0
+  ini: 70
+  res_e: 20
+  res_f: 12
+  res_a: -17
+  res_w: 10
+  att_e: 13
   att_f: 0
   att_a: 0
   att_w: 0
   numberOfSummons: 0
-  isEvocation: 1
+  isEvocation: 0
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
@@ -182,13 +254,6 @@ MonoBehaviour:
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
-  connectedSummoner: {fileID: 0}
-  id: 0
-  isCommunionActive: 0
-  isBomb: 0
-  isTurrect: 0
-  isDouble: 0
-  mustSkip: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -205,8 +270,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5727407, y: 0.2090383}
-    oldSize: {x: 2.5, y: 2.5}
+    pivot: {x: 0.53782505, y: 0.09447162}
+    oldSize: {x: 3.2894738, y: 4.2763157}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

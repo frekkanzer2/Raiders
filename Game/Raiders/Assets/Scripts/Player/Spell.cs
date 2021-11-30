@@ -273,6 +273,7 @@ public class Spell {
             else if (spell.name == "Explobombe") SUMMONS_EXPLOBOMBE(caster, targetBlock, spell);
             else if (spell.name == "Tornabombe") SUMMONS_TORNABOMBE(caster, targetBlock, spell);
             else if (spell.name == "Waterbombe") SUMMONS_WATERBOMBE(caster, targetBlock, spell);
+            else if (spell.name == "Living Shovel") SUMMONS_LIVING_SHOVEL(caster, targetBlock);
             else if (spell.name == "Detonator") EXECUTE_DETONATOR(caster, targetBlock);
             else if (spell.name == "Powder") EXECUTE_POWDER(caster, targetBlock);
             else if (spell.name == "Kickback") EXECUTE_KICKBACK(caster, targetBlock);
@@ -287,6 +288,7 @@ public class Spell {
             else if (spell.name == "Tacturrect") SUMMONS_TACTICAL_TURRECT(caster, targetBlock);
             else if (spell.name == "Lifesaver") SUMMONS_GUARDIANA_TURRECT(caster, targetBlock);
             else if (spell.name == "Repulsion") EXECUTE_REPULSION(caster, targetBlock);
+            else if (spell.name == "Vivacity") EXECUTE_VIVACITY(caster, targetBlock);
             else if (spell.name == "Mist") EXECUTE_MIST(caster, spell);
             else if (spell.name == "Double") SUMMONS_DOUBLE(caster, targetBlock);
             else if (spell.name == "Chaferfu") SUMMONS_CHAFERFU(caster, targetBlock);
@@ -296,6 +298,11 @@ public class Spell {
             else if (spell.name == "Toxic Injection") EXECUTE_TOXIC_INJECTION(caster, targetBlock, spell);
             else if (spell.name == "Cut Throat") EXECUTE_CUT_THROAT(caster, spell);
             else if (spell.name == "Evasion") EXECUTE_EVASION(caster, spell);
+            else if (spell.name == "Pull Out") EXECUTE_PULL_OUT(caster, spell);
+            else if (spell.name == "Toolbox") EXECUTE_TOOLBOX(targetBlock, spell);
+            else if (spell.name == "Tunneling") EXECUTE_TUNNELING(caster, targetBlock, spell);
+            else if (spell.name == "Obsolescence") EXECUTE_OBSOLESCENCE(targetBlock, spell);
+            else if (spell.name == "Fortune") EXECUTE_FORTUNE(targetBlock, spell);
 
             // ADD HERE ELSE IF (...) ...
             else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -1159,7 +1166,11 @@ public class Spell {
         Evocation bomb = ut_execute_summon(caster, targetBlock, "Waterbombe");
         bomb.setBomb(caster, s);
     }
-    
+
+    public static void SUMMONS_LIVING_SHOVEL(Character caster, Block targetBlock) {
+        ut_execute_summon(caster, targetBlock, "Living Shovel");
+    }
+
     // This method doesn't kill the bomb -> for security issues, do it manually
     public static void SUBEXECUTE_EXPLOSION(Evocation bomb, bool isSingleBomb) {
         List<Character> allHeroes = ut_getEnemies(bomb);
@@ -1324,7 +1335,6 @@ public class Spell {
         if (otherEnemies.Count == 0) return;
         if (otherEnemies.Count == 1 || otherEnemies.Count == 2) toDamage.AddRange(otherEnemies);
         else {
-            Debug.Log("Counter > 2");
             int first_index = -1, second_index = -1;
             UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
             first_index = UnityEngine.Random.Range(0, otherEnemies.Count);
@@ -1332,19 +1342,14 @@ public class Spell {
                 UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
                 second_index = UnityEngine.Random.Range(0, otherEnemies.Count);
             }
-            Debug.Log("Evaluated " + first_index + " and " + second_index);
-            Debug.Log("List counter: " + otherEnemies.Count);
             toDamage.Add(otherEnemies[first_index]);
             toDamage.Add(otherEnemies[second_index]);
         }
-        Debug.Log("Population OK");
         if (toDamage.Count == 0) return;
         Character first = toDamage[0];
-        Debug.Log("First assegnation OK");
         Character second = null;
         if (toDamage.Count > 1) {
             second = toDamage[1];
-            Debug.Log("Second assegnation OK");
         }
         first.inflictDamage((calculateDamage(caster, first, s)) / 2);
         if (second != null)
@@ -1369,6 +1374,10 @@ public class Spell {
 
     public static void EXECUTE_REPULSION(Character caster, Block targetBlock) {
         ut_repels(caster, targetBlock, 5);
+    }
+
+    public static void EXECUTE_VIVACITY(Character caster, Block targetBlock) {
+        ut_repels(caster, targetBlock, 3);
     }
 
     public static void SUMMONS_DOUBLE(Character caster, Block targetBlock) {
@@ -1450,6 +1459,36 @@ public class Spell {
         foreach (Character todmg in toDamage) {
             todmg.inflictDamage((calculateDamage(caster, todmg, s)) * 60 / 100);
         }
+    }
+
+    public static void EXECUTE_PULL_OUT(Character caster, Spell s) {
+        PullOutEvent poe = new PullOutEvent("Pull Out", caster, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon);
+        caster.addEvent(poe);
+        poe.useIstantanely();
+    }
+
+    public static void EXECUTE_TOOLBOX(Block targetBlock, Spell s) {
+        Character c = targetBlock.linkedObject.GetComponent<Character>();
+        c.addEvent(new ToolboxEvent("Toolbox", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        foreach(Evocation e in c.summons)
+            e.addEvent(new ToolboxEvent("Toolbox", e, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_TUNNELING(Character caster, Block targetBlock, Spell s) {
+        EXECUTE_JUMP(caster, targetBlock);
+        foreach (Character enemy in ut_getAdjacentHeroes(targetBlock.coordinate))
+            if (caster.isEnemyOf(enemy))
+                enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
+    }
+
+    public static void EXECUTE_OBSOLESCENCE(Block targetBlock, Spell s) {
+        Character c = targetBlock.linkedObject.GetComponent<Character>();
+        c.addEvent(new ObsolescenceEvent("Obsolescence", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_FORTUNE(Block targetBlock, Spell s) {
+        Character c = targetBlock.linkedObject.GetComponent<Character>();
+        c.addEvent(new FortuneEvent("Fortune", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
 
     #endregion

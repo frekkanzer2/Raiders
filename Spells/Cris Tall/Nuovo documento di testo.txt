@@ -1,0 +1,4 @@
+Spade Throw - massicci danni ravvicinati, ma costa tutti i PA
+Ghostly Shovel - danni da dietro gli ostacoli
+Living Shovel - invoca una pala con molti PM (es. 5 o 6) che spinge i nemici
+Fortune - +200% danni ad un alleato ravvicinato, ma nel turno dopo perde il bonus e ottiene -100% resistenza per un turno

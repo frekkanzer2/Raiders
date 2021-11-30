@@ -39,7 +39,8 @@ public class SpellPopup : MonoBehaviour
         spellCC.GetComponent<TextMeshProUGUI>().text = "" + s.criticalProbability+"%";
 	    spellUT.GetComponent<TextMeshProUGUI>().text = "" + s.maxTimesInTurn;
 	    spellRecastTurns.GetComponent<TextMeshProUGUI>().text = "" + s.executeAfterTurns + " turns";
-	    if (s.effectDuration >= 1 && s.name != "Haziness" && s.name != "Gear" && s.name != "Rewind" && s.name != "Heads or Tails" && s.name != "All or Nothing") {
+	    if (s.effectDuration >= 1 && s.name != "Haziness" && s.name != "Gear" && s.name != "Rewind" && s.name != "Heads or Tails" && s.name != "All or Nothing" 
+            && s.name != "Pull Out" && s.name != "Toolbox" && s.name != "Fortune") {
 	    	string ph = "";
 	    	if (s.effectDuration == 1) ph = " for 1 turn";
 	    	else ph = " for " + s.effectDuration + " turns";
