@@ -42,6 +42,7 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public bool isDead = false;
     public bool canMovedByEffects;
+    private int kamaCounter = 0;
 
     private StatsOutputSystem sos;
 
@@ -433,10 +434,26 @@ public class Character : MonoBehaviour
         sos.addEffect_PA_PM(StatsOutputSystem.Effect.PA, "+" + value);
     }
 
+    public int getKama() {
+        return this.kamaCounter;
+    }
+
+    public void incrementKama(int value) {
+        if (isDead) return;
+        this.kamaCounter += value;
+        sos.addEffect_PA_PM(StatsOutputSystem.Effect.Kama, "+" + value + "K");
+    }
+
     public void decrementPA(int value) {
         if (isDead) return;
         this.actual_pa -= value;
         sos.addEffect_PA_PM(StatsOutputSystem.Effect.PA, "-" + value);
+    }
+
+    public void decrementKama(int value) {
+        if (isDead) return;
+        this.kamaCounter -= value;
+        sos.addEffect_PA_PM(StatsOutputSystem.Effect.Kama, "-" + value + "K");
     }
 
     public int getActualPM() {

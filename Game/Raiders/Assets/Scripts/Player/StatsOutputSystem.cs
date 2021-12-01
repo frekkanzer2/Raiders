@@ -13,6 +13,7 @@ public class StatsOutputSystem : MonoBehaviour {
     private Color PM_color = new Color(0, 176f / 255f, 16f / 255f, 1);
     private Color Heal_color = new Color(255f / 255f, 150f / 255f, 196f / 255f, 1);
     private Color Shield_color = new Color(86f / 255f, 64f / 255f, 128f / 255f, 1);
+    private Color Kama_color = new Color(255f / 255f, 214f / 255f, 0f / 255f, 1);
 
     private List<EffectToExecute> toDisplay = new List<EffectToExecute>();
 
@@ -66,7 +67,8 @@ public class StatsOutputSystem : MonoBehaviour {
         PM,
         Heal,
         Shield,
-        Icon
+        Icon,
+        Kama
     }
     
     private Color getColorByEffect(Effect e) {
@@ -75,6 +77,7 @@ public class StatsOutputSystem : MonoBehaviour {
         if (e == Effect.PA) return PA_color;
         if (e == Effect.PM) return PM_color;
         if (e == Effect.Shield) return Shield_color;
+        if (e == Effect.Kama) return Kama_color;
         return new Color(0, 0, 0, 1);
     }
 

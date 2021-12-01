@@ -102,10 +102,10 @@ MonoBehaviour:
   name: Diver Birel
   spells:
   - link: {fileID: 0}
-    name: 
-    icon: {fileID: 0}
-    description: 
-    element: 0
+    name: Money Collection
+    icon: {fileID: 21300000, guid: 72676bf0009dc5b41a6a6d8564fb7022, type: 3}
+    description: Gain a Kama for each remaining PA. Lose all remaining PA
+    element: 5
     damage: 0
     lifeSteal: 0
     minRange: 0
@@ -115,86 +115,87 @@ MonoBehaviour:
     hpCost: 0
     paCost: 0
     pmCost: 0
-    maxTimesInTurn: 0
-    executeAfterTurns: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 1
     effectDuration: 0
     criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Power Unlocker
+    icon: {fileID: 21300000, guid: 1dbfde88ea61c9d4c9494229b56d95d7, type: 3}
+    description: Transform the target to a mystic creature based on stored Kamas
+      (at least 10 Kamas are requested)
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 0
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 6
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 7
+    effectDuration: 4
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Kama Throwing
+    icon: {fileID: 21300000, guid: ed03d78cba26cae48a83382b3cf708d8, type: 3}
+    description: Inflicts Water damage based on stored Kamas
+    element: 3
+    damage: 12
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 12
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 3
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 5
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
   - link: {fileID: 0}
-    name: 
-    icon: {fileID: 0}
-    description: 
-    element: 0
-    damage: 0
+    name: Shovelbrained
+    icon: {fileID: 21300000, guid: a4539c0419c45474eaf3543e1c4d2279, type: 3}
+    description: Inflicts Air damage
+    element: 2
+    damage: 52
     lifeSteal: 0
-    minRange: 0
-    maxRange: 0
+    minRange: 3
+    maxRange: 5
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 0
+    paCost: 4
     pmCost: 0
-    maxTimesInTurn: 0
+    maxTimesInTurn: 3
     executeAfterTurns: 0
     effectDuration: 0
-    criticalProbability: 0
-    hasEffect: 0
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  - link: {fileID: 0}
-    name: 
-    icon: {fileID: 0}
-    description: 
-    element: 0
-    damage: 0
-    lifeSteal: 0
-    minRange: 0
-    maxRange: 0
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 0
-    pmCost: 0
-    maxTimesInTurn: 0
-    executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 0
-    hasEffect: 0
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  - link: {fileID: 0}
-    name: 
-    icon: {fileID: 0}
-    description: 
-    element: 0
-    damage: 0
-    lifeSteal: 0
-    minRange: 0
-    maxRange: 0
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 0
-    pmCost: 0
-    maxTimesInTurn: 0
-    executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 0
+    criticalProbability: 15
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1420
+  hp: 1350
   pa: 6
   pm: 3
   ini: 60
@@ -267,8 +268,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5, y: 3.25}
+    pivot: {x: 0.535461, y: 0.09992716}
+    oldSize: {x: 3.2894738, y: 4.2763157}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

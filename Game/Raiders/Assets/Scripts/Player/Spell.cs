@@ -303,6 +303,8 @@ public class Spell {
             else if (spell.name == "Tunneling") EXECUTE_TUNNELING(caster, targetBlock, spell);
             else if (spell.name == "Obsolescence") EXECUTE_OBSOLESCENCE(targetBlock, spell);
             else if (spell.name == "Fortune") EXECUTE_FORTUNE(targetBlock, spell);
+            else if (spell.name == "Money Collection") EXECUTE_MONEY_COLLECTION(caster);
+            else if (spell.name == "Power Unlocker") EXECUTE_POWER_UNLOCKER(caster, spell);
 
             // ADD HERE ELSE IF (...) ...
             else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -375,8 +377,8 @@ public class Spell {
 
     public static void EXECUTE_STRETCHING(Character caster, Spell s) {
         StretchingEvent se = new StretchingEvent("Stretching", caster, s.effectDuration, ParentEvent.Mode.PermanentAndEachTurn, s.icon);
-        se.useIstantanely();
         caster.addEvent(se);
+        se.useIstantanely();
     }
 
     public static void EXECUTE_COMPOSURE(Block targetBlock, Spell s) {
@@ -1491,6 +1493,25 @@ public class Spell {
         c.addEvent(new FortuneEvent("Fortune", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
 
+    public static void EXECUTE_MONEY_COLLECTION(Character caster) {
+        caster.incrementKama(caster.actual_pa);
+        caster.decrementPA(caster.actual_pa);
+    }
+
+    public static void EXECUTE_POWER_UNLOCKER(Character caster, Spell s) {
+        if (caster.getKama() < 10) return;
+        PowerUnlockerEvent pue = null;
+        if (caster.getKama() < 30) {
+            pue = new PowerUnlockerEvent("Power Unlocker", caster, s.effectDuration, ParentEvent.Mode.PermanentAndEachTurn, s.icon, 1);
+            caster.decrementKama(10);
+        } else {
+            pue = new PowerUnlockerEvent("Power Unlocker", caster, s.effectDuration, ParentEvent.Mode.PermanentAndEachTurn, s.icon, 2);
+            caster.decrementKama(30);
+        }
+        caster.addEvent(pue);
+        pue.useIstantanely();
+    }
+
     #endregion
 
     #region EVENT BONUSES
@@ -1502,6 +1523,7 @@ public class Spell {
     public static int BONUS_DECIMATION = 48;
     public static int BONUS_SHADOWYBEAM = 13;
     public static int BONUS_LETHAL_ATTACK = 30;
+    public static int BONUS_KAMA_THROWING = 18;
 
     public static int EVENT_BONUS_BASE_DAMAGE(Character caster, Character targetch, Spell s) {
         if (caster.name == "Missiz Frizz" && s.name == "Accumulation") {
@@ -1540,6 +1562,11 @@ public class Spell {
         } else if (caster.name == "Etraggy" && s.name == "Lethal Attack") {
             if (ut_getDeadStatsAllies(caster).Item1 == 1) return BONUS_LETHAL_ATTACK;
             else return 0;
+        } else if (caster.name == "Diver Birel" && s.name == "Kama Throwing") {
+            if (caster.getKama() > 0) {
+                caster.decrementKama(1);
+                return BONUS_KAMA_THROWING;
+            } else return 0;
         } else return 0;
     }
 

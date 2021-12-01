@@ -5,8 +5,14 @@ Power Unlocker -
 	altrimenti fallisce.
 	La trasformazione dura 5 turni.
 	-
-		Se diventa un Talpotto, -25% danni a sè stesso e +1PM ad inizio turno agli alleati adiacenti;
-		Se diventa un Talpoken, +25% danni a sè stesso e +1PA ad inizio turno agli alleati adiacenti.
-Shovelbrained - danni aria a buona distanza (3-6)
-Kama Throwing - range altissimo (1-12) con danni bassissimi (18 - max 3 volte in un turno):
-	se Diver possiede almeno un KAMA, lo usa per infliggere 10 danni addizionali
+		Se diventa un Talpotto:
+			+15% danni a sè stesso
+			+10% armatura a sè stesso
+		Se diventa un Talpoken:
+			+25% danni a sè stesso
+			+2 PA a sè stesso
+			-1 PM a sè stesso
+			+1 PA ad inizio turno agli alleati adiacenti.
+Shovelbrained - danni aria a buona distanza (3-5)
+Kama Throwing - range altissimo (1-12) con danni bassissimi (12 - max 3 volte in un turno):
+	se Diver possiede almeno un KAMA, lo usa per infliggere 18 danni addizionali
