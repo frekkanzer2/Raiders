@@ -18,6 +18,12 @@ public class ChButtonData : MonoBehaviour
         this.sm = sm;
     }
 
+    public void initialize(CharacterInfo ci, int team) {
+        this.infoConnected = ci;
+        this.team = team;
+        this.GetComponent<Image>().sprite = ci.characterFullSprite;
+    }
+
     public void onPlayerPressed() {
         if (SelectionManager.definitiveLock == true) return;
         if (team == 1 && !sm.canAlphaChoose) return;

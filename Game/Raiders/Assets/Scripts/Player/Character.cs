@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 using System.Threading;
@@ -522,6 +523,26 @@ public class Character : MonoBehaviour
         StartCoroutine(dead_disappear());
         Destroy(connectedPreview);
         TurnsManager.Instance.turns.Remove(this);
+        bool matchEnded = true;
+        foreach(Character c in TurnsManager.Instance.turns) {
+            if (!c.isEvocation)
+                if (!c.isEnemyOf(this)) {
+                    matchEnded = false;
+                    break;
+                }
+        }
+        if (matchEnded) {
+            if (this.team == 1)
+                PlayerPrefs.SetInt("TEAM_WINNER", 2);
+            else
+                PlayerPrefs.SetInt("TEAM_WINNER", 1);
+            StartCoroutine(endMatch());
+        }
+    }
+
+    IEnumerator endMatch() {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("FightResultScene", LoadSceneMode.Single);
     }
 
     IEnumerator dead_disappear() {
