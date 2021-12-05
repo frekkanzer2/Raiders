@@ -186,7 +186,7 @@ public class MapInitializer : MonoBehaviour
 
     private void loadHeroes() {
         SelectionContainer sc = GetComponent<SelectionContainer>();
-        sc.loadSavedTeams();
+        sc.loadSavedTeams(2);
         TMInjector tmi = GetComponent<TMInjector>();
         tmi.InjectIntoTurnsManager();
     }
