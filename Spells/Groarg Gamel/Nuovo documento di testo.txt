@@ -1,0 +1,4 @@
+Cerberus: increase next Cerberus attack damage
+Beaten: switch position with enemy
+Bark: +80%dmg e +2 PM
+Pursuit: +2 PM to allies in 3 cell distance for 1 turn

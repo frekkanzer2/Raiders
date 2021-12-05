@@ -1,0 +1,5 @@
+This character uses a rage counter (max 5 points)
+Tetanisation: fire dmg and +1 rage
+Jaw: fire dmg and caster goes to the target
+Appeasement: heal an ally spending a rage point
+Pawerful: spends all rage points to gain 
