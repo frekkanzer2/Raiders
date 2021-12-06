@@ -30,21 +30,15 @@ public class ChButtonData : MonoBehaviour
         if (team == 2 && !sm.canBetaChoose) return;
         if (isSet) return;
         isSet = true;
-        Debug.Log("OK");
         if (team == 1 && sm.canAlphaChoose) {
-            Debug.Log("OK");
             sm.isAlphaLocked = false;
-            Debug.Log("OK");
             sm.registerCharacterChosen(infoConnected, this, 1);
-            Debug.Log("OK");
             this.GetComponent<Image>().color = new Color(150f / 255f, 150f / 255f, 150f / 255f, 0.5f);
-            Debug.Log("OK");
         } else if (team == 2 && sm.canBetaChoose) {
             sm.isBetaLocked = false;
             sm.registerCharacterChosen(infoConnected, this, 2);
             this.GetComponent<Image>().color = new Color(150f / 255f, 150f / 255f, 150f / 255f, 0.5f);
         }
-        Debug.Log("OK");
         SoundUi.Instance.playAudio(SoundUi.AudioType.Preview_ChooseHero);
     }
 

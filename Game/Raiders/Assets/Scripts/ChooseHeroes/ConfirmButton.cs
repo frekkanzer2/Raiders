@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ConfirmButton : MonoBehaviour
@@ -12,7 +13,7 @@ public class ConfirmButton : MonoBehaviour
     public GameObject img;
     private Image cimg;
 
-    public SelectionManager sm;
+    public SelectionManagerGeneric sm;
     public int team;
 
     [HideInInspector]
@@ -45,38 +46,54 @@ public class ConfirmButton : MonoBehaviour
     }
 
     public void OnClick() {
-        if (state == 0) {
-            // Deny state, do nothing
-            return;
-        } else if (state == 1) {
-            // Deny state, you are clicking to validate
-            if (team == 1) {
-                if (!sm.isBetaLocked) {
+        if (SceneManager.GetActiveScene().name == "DungeonChooseCharacters") {
+            if (state == 0) {
+                // Deny state, do nothing
+                return;
+            } else if (state == 1) {
+                // Deny state, you are clicking to validate
+                if (team == 1) {
+                    SoundUi.Instance.playAudio(SoundUi.AudioType.Preview_ConfirmTeam);
+                    SelectionContainer sc = sm.gameObject.GetComponent<SelectionContainer>();
                     sm.isAlphaLocked = true;
                     setCanConfirm();
-                    SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm1);
-                } else {
-                    SoundUi.Instance.playAudio(SoundUi.AudioType.Preview_ConfirmTeam);
-                    SelectionContainer sc = sm.gameObject.GetComponent<SelectionContainer>();
-                    if (sc.areSameDimension()) {
-                        sm.isAlphaLocked = true;
-                        setCanConfirm();
-                        sm.setDefinitiveLock();
-                    }
+                    sm.setDefinitiveLock();
                 }
             }
-            if (team == 2) {
-                if (!sm.isAlphaLocked) {
-                    sm.isBetaLocked = true;
-                    setCanConfirm();
-                    SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm1);
-                } else {
-                    SoundUi.Instance.playAudio(SoundUi.AudioType.Preview_ConfirmTeam);
-                    SelectionContainer sc = sm.gameObject.GetComponent<SelectionContainer>();
-                    if (sc.areSameDimension()) {
+        } else if (SceneManager.GetActiveScene().name == "ChooseCharacters") {
+            if (state == 0) {
+                // Deny state, do nothing
+                return;
+            } else if (state == 1) {
+                // Deny state, you are clicking to validate
+                if (team == 1) {
+                    if (!sm.isBetaLocked) {
+                        sm.isAlphaLocked = true;
+                        setCanConfirm();
+                        SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm1);
+                    } else {
+                        SoundUi.Instance.playAudio(SoundUi.AudioType.Preview_ConfirmTeam);
+                        SelectionContainer sc = sm.gameObject.GetComponent<SelectionContainer>();
+                        if (sc.areSameDimension()) {
+                            sm.isAlphaLocked = true;
+                            setCanConfirm();
+                            sm.setDefinitiveLock();
+                        }
+                    }
+                }
+                if (team == 2) {
+                    if (!sm.isAlphaLocked) {
                         sm.isBetaLocked = true;
                         setCanConfirm();
-                        sm.setDefinitiveLock();
+                        SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm1);
+                    } else {
+                        SoundUi.Instance.playAudio(SoundUi.AudioType.Preview_ConfirmTeam);
+                        SelectionContainer sc = sm.gameObject.GetComponent<SelectionContainer>();
+                        if (sc.areSameDimension()) {
+                            sm.isBetaLocked = true;
+                            setCanConfirm();
+                            sm.setDefinitiveLock();
+                        }
                     }
                 }
             }

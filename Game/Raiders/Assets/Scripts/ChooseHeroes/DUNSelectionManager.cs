@@ -32,22 +32,18 @@ public class DUNSelectionManager : SelectionManager
     IEnumerator changeRoom() {
         yield return new WaitForSeconds(1f);
         List<CharacterInfo> la = GetComponent<SelectionContainer>().teamACharacters;
-        List<CharacterInfo> lb = GetComponent<SelectionContainer>().teamBCharacters;
         PlayerPrefs.SetInt("TEAM_DIMENSION", la.Count);
         int index = 0;
         foreach(CharacterInfo ci in la) {
             Debug.Log(ci.characterName + " TEAM " + 1);
             PlayerPrefs.SetString("TEAM_ALPHA_" + index, ci.characterName);
+            PlayerPrefs.DeleteKey("TEAM_BETA_" + index);
             index++;
         }
         index = 0;
-        foreach (CharacterInfo ci in lb) {
-            Debug.Log(ci.characterName + " TEAM " + 2);
-            PlayerPrefs.SetString("TEAM_BETA_" + index, ci.characterName);
-            index++;
-        }
         Debug.LogWarning("GAMMA CHECKPOINT");
-        SceneManager.LoadScene("BattleScene", LoadSceneMode.Single);
+        PlayerPrefs.SetInt("DUNGEON_ROOM", 1);
+        SceneManager.LoadScene("DungeonBattleScene", LoadSceneMode.Single);
     }
 
     private void Start() {
