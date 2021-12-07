@@ -88,19 +88,34 @@ public class PreparationManager : MonoBehaviour
         TurnsManager tm = GetComponent<TurnsManager>();
         List<Character> charsInTurn = tm.turns;
         CharactersLibrary cl = GetComponent<CharactersLibrary>();
-        foreach (Character c in charsInTurn) {
-            CharacterInfo retrievedInfo = cl.getCharacterInfoByName(c.name);
-            if (c.team == 1) {
-                GameObject spawned = Instantiate(cellContentAlphaPrefab);
-                spawned.transform.SetParent(contentAlpha.transform);
-	            spawned.GetComponent<CellHeroChooser>().initialize(retrievedInfo, this, 1);
-	            spawned.GetComponent<RectTransform>().localScale = new Vector3(1f,1f,1f);
-            } else if (c.team == 2) {
-                GameObject spawned = Instantiate(cellContentBetaPrefab);
-                spawned.transform.SetParent(contentBeta.transform);
-	            spawned.GetComponent<CellHeroChooser>().initialize(retrievedInfo, this, 2);
-	            spawned.GetComponent<RectTransform>().localScale = new Vector3(1f,1f,1f);
+        // Not bot case
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo == null)
+            foreach (Character c in charsInTurn) {
+                CharacterInfo retrievedInfo = cl.getCharacterInfoByName(c.name);
+                if (c.team == 1) {
+                    GameObject spawned = Instantiate(cellContentAlphaPrefab);
+                    spawned.transform.SetParent(contentAlpha.transform);
+                    spawned.GetComponent<CellHeroChooser>().initialize(retrievedInfo, this, 1);
+                    spawned.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+                } else if (c.team == 2) {
+                    GameObject spawned = Instantiate(cellContentBetaPrefab);
+                    spawned.transform.SetParent(contentBeta.transform);
+                    spawned.GetComponent<CellHeroChooser>().initialize(retrievedInfo, this, 2);
+                    spawned.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+                }
             }
+        else { // Bot case
+            foreach (Character c in charsInTurn) {
+                if (c.team == 1) {
+                    CharacterInfo retrievedInfo = cl.getCharacterInfoByName(c.name);
+                    GameObject spawned = Instantiate(cellContentAlphaPrefab);
+                    spawned.transform.SetParent(contentAlpha.transform);
+                    spawned.GetComponent<CellHeroChooser>().initialize(retrievedInfo, this, 1);
+                    spawned.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+                }
+            }
+            Debug.LogError("NOT IMPLEMENTED FOR DUNGEON VERSION - CONTINUE HERE!");
+            // Enemies must spawn on the map - set their spawn cells!
         }
     }
 

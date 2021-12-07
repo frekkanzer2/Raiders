@@ -14,6 +14,8 @@ public class SelectionContainer : MonoBehaviour {
     [HideInInspector]
     public List<GameObject> teamBHeroes = new List<GameObject>();
 
+    public static List<CharacterInfo> DUNGEON_MonsterCharactersInfo = null;
+
     public void removeCharacter(CharacterInfo ci, int team) {
         if (team == 1) {
             CharacterInfo toDelete = null;
@@ -43,6 +45,7 @@ public class SelectionContainer : MonoBehaviour {
     public void loadSavedTeams(int numberOfTeams) {
         teamACharacters.Clear();
         teamBCharacters.Clear();
+        DUNGEON_MonsterCharactersInfo = null;
         if (numberOfTeams == 2) {
             int numberOfHeroes = PlayerPrefs.GetInt("TEAM_DIMENSION");
             GetComponent<CharactersLibrary>().init();
@@ -96,10 +99,12 @@ public class SelectionContainer : MonoBehaviour {
             DungeonUtils chosenDungeon = allDungeons[dj_index];
             DungeonUtils.RoomMonsters selectedRoom = chosenDungeon.rooms[dj_room_index];
             int monster_id_index = 0;
+            SelectionContainer.DUNGEON_MonsterCharactersInfo = new List<CharacterInfo>();
             foreach(DungeonUtils.RoomTuple rt in selectedRoom.monstersAndQuantity) {
                 // Generating CharacterInfo for each monster type
                 Debug.LogWarning("Must change preview sprite for monster " + chosenDungeon.monsters[rt.monsterID].name);
                 CharacterInfo generated = CharacterInfo.generate(chosenDungeon.monsters[rt.monsterID].name, chosenDungeon.monsters[rt.monsterID].sprite, chosenDungeon.monsters[rt.monsterID].sprite, false);
+                SelectionContainer.DUNGEON_MonsterCharactersInfo.Add(generated);
                 teamBCharacters.Add(generated);
                 // Generating all monster instances, based on quantity
                 for (int i = 0; i < rt.quantity; i++) {

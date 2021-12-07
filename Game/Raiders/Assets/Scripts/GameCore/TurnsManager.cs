@@ -78,9 +78,10 @@ public class TurnsManager : MonoBehaviour
     public void initialize() {
         if (hasInitialized) return;
         hasInitialized = true;
+        Debug.Log("TURNS INITIALIZATION");
         List<Character> first = new List<Character>();
         List<Character> second = new List<Character>();
-        Debug.Log("init with n chars in total: " + turns.Count);
+        Debug.Log("Initialization with n chars in total: n = " + turns.Count);
         foreach (Character c in turns) {
             if (c.team == 1) first.Add(c);
             if (c.team == 2) second.Add(c);
@@ -92,6 +93,8 @@ public class TurnsManager : MonoBehaviour
         int first_ini = 0, second_ini = 0;
         for (int i = 0; i < first.Count; i++) {
             first_ini += first[i].GetComponent<Character>().ini;
+        }
+        for (int i = 0; i < second.Count; i++) {
             second_ini += second[i].GetComponent<Character>().ini;
         }
         turns.Clear();
@@ -100,16 +103,23 @@ public class TurnsManager : MonoBehaviour
             if (choise == 0) first_ini++;
             else second_ini++;
         }
-        if (first_ini > second_ini)
+        if (first_ini > second_ini) {
             for (int i = 0; i < first.Count; i++) {
                 turns.Add(first[i]);
                 turns.Add(second[i]);
             }
-        else
+        } else {
             for (int i = 0; i < first.Count; i++) {
                 turns.Add(second[i]);
                 turns.Add(first[i]);
             }
+        }
+        if (first.Count < second.Count) {
+            // Monster version
+            for (int i = first.Count; i < second.Count; i++) {
+                turns.Add(second[i]);
+            }
+        }
     }
 
     public void OnStartGame() {
