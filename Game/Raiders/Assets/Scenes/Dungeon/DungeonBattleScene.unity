@@ -1060,7 +1060,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockPrefab: {fileID: 3851626079097106947, guid: 052739d26eea4e547adb0c9978db4851, type: 3}
   availableSprites:
-  - {fileID: 21300000, guid: f9a19e0567d08704c9e9c8f7fda3946e, type: 3}
+  - {fileID: 21300000, guid: 1e749f90568dd71429eda9a39012a95f, type: 3}
+  - {fileID: 21300000, guid: 42ea918c7920630479f5d50d9a86f4a9, type: 3}
+  - {fileID: 21300000, guid: f91a52463dfbdd14081d854d9b6814b8, type: 3}
   mapContainer: {fileID: 606105194}
   mapFile: {fileID: 4900000, guid: 151aef5894359a442a1e9e19fc8a95c2, type: 3}
   blackScreen: {fileID: 1198904534}
@@ -1090,13 +1092,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 93772475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f157bf1607e4d3e41b3b8f780ecf3278, type: 3}
+  m_Script: {fileID: 11500000, guid: 62f66905dc764b449a34de0b524d2b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mapFiles:
-  - {fileID: 0}
-  isTestingMap: 1
-  testingMap: {fileID: 4900000, guid: 9f5c9149f9149c741b0f78f0f19e3ef2, type: 3}
+  - {fileID: 4900000, guid: 5b6fc301f47f44747beb123ebddae9ef, type: 3}
+  - {fileID: 4900000, guid: f8740290cd1a00644bd01b9bea8a8e11, type: 3}
+  - {fileID: 4900000, guid: 7c6f93e5d6e277d4987bdf101889a1a1, type: 3}
+  - {fileID: 4900000, guid: b43c3f271f293134195b2a0453b59eb4, type: 3}
+  - {fileID: 4900000, guid: d7c22ec48dc7f1d468fba7b3c814f4a6, type: 3}
+  isTestingMap: 0
+  testingMap: {fileID: 0}
 --- !u!114 &93772481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20060,7 +20066,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -115, y: -28.8}
+  m_AnchoredPosition: {x: -115, y: -28.800049}
   m_SizeDelta: {x: 125.2136, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2008320169

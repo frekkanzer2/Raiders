@@ -17,8 +17,8 @@ public class MapChooser : MonoBehaviour
             TextAsset currentMap = null;
             int chosenIndex = Random.Range(0, mapFiles.Count);
             currentMap = mapFiles[chosenIndex];
-            GetComponent<MapInitializer>().initialize(currentMap);
-        } else GetComponent<MapInitializer>().initialize(testingMap);
+            GetComponent<MapInitializer>().initialize(currentMap, 2);
+        } else GetComponent<MapInitializer>().initialize(testingMap, 2);
     }
 
 }

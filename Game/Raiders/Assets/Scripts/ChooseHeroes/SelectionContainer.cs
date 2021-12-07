@@ -78,6 +78,7 @@ public class SelectionContainer : MonoBehaviour {
                 ci_temp = lib.getCharacter_Info(PlayerPrefs.GetString("TEAM_ALPHA_" + i));
                 teamACharacters.Add(ci_temp);
             }
+            // Here i'm creating instances of heroes
             for (int i = 0; i < numberOfHeroes; i++) {
                 GameObject ch_temp = Instantiate(lib.getCharacter_GameObject(teamACharacters[i].characterName, 1));
                 ch_temp.transform.position = new Vector3(100000, 100000, 0);
@@ -87,6 +88,31 @@ public class SelectionContainer : MonoBehaviour {
             foreach (GameObject go in teamAHeroes) {
                 Character c = go.GetComponent<Character>();
             }
+            // Monsters setup
+            DungeonSave ds = new DungeonSave();
+            int dj_index = ds.getChosenDungeon();
+            int dj_room_index = ds.getDungeonRoom();
+            List<DungeonUtils> allDungeons = DungeonSave.getAllDungeons();
+            DungeonUtils chosenDungeon = allDungeons[dj_index];
+            DungeonUtils.RoomMonsters selectedRoom = chosenDungeon.rooms[dj_room_index];
+            int monster_id_index = 0;
+            foreach(DungeonUtils.RoomTuple rt in selectedRoom.monstersAndQuantity) {
+                // Generating CharacterInfo for each monster type
+                Debug.LogWarning("Must change preview sprite for monster " + chosenDungeon.monsters[rt.monsterID].name);
+                CharacterInfo generated = CharacterInfo.generate(chosenDungeon.monsters[rt.monsterID].name, chosenDungeon.monsters[rt.monsterID].sprite, chosenDungeon.monsters[rt.monsterID].sprite, false);
+                teamBCharacters.Add(generated);
+                // Generating all monster instances, based on quantity
+                for (int i = 0; i < rt.quantity; i++) {
+                    GameObject ch_temp = Instantiate(chosenDungeon.getMonsterPrefab(chosenDungeon.monsters[rt.monsterID].name));
+                    ch_temp.transform.position = new Vector3(100000, 100000, 0);
+                    ch_temp.GetComponent<Character>().team = 2;
+                    ch_temp.GetComponent<Monster>().id = monster_id_index;
+                    teamBHeroes.Add(ch_temp);
+                    Character c = ch_temp.GetComponent<Character>();
+                    monster_id_index++;
+                }
+            }
+            Debug.Log("Generated all monsters successfully");
         }
         
     }

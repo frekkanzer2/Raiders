@@ -74,11 +74,11 @@ public class MapInitializer : MonoBehaviour
         img_title.gameObject.SetActive(false);
     }
 
-    public void initialize(TextAsset chosenMap) {
+    public void initialize(TextAsset chosenMap, int numberOfTeams) {
         mapFile = chosenMap;
         generate();
         if (!isDebugEnabled)
-            loadHeroes();
+            loadHeroes(numberOfTeams);
     }
 
     private void generate() {
@@ -184,9 +184,9 @@ public class MapInitializer : MonoBehaviour
         PlayerPrefs.SetString("CHOSEN_MAP", title); // saving title
     }
 
-    private void loadHeroes() {
+    private void loadHeroes(int numberOfTeams) {
         SelectionContainer sc = GetComponent<SelectionContainer>();
-        sc.loadSavedTeams(2);
+        sc.loadSavedTeams(numberOfTeams);
         TMInjector tmi = GetComponent<TMInjector>();
         tmi.InjectIntoTurnsManager();
     }

@@ -27,7 +27,8 @@ public class HeroesLibrary : MonoBehaviour
             foreach (GameObject chgo in heroesPrefabs_team1) {
                 Character ch = chgo.GetComponent<Character>();
                 if (ch.name == name) return chgo;
-            } else if (team == 2)
+            } 
+        else if (team == 2)
             foreach (GameObject chgo in heroesPrefabs_team2) {
                 Character ch = chgo.GetComponent<Character>();
                 if (ch.name == name) return chgo;

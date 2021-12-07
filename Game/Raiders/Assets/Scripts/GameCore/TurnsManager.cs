@@ -8,8 +8,15 @@ using TMPro;
 public class TurnsManager : MonoBehaviour
 {
 
+    // private static variable that contains the first-time created object
     private static TurnsManager _instance;
+    // static getter that returns the private instance
     public static TurnsManager Instance { get { return _instance; } }
+
+    // init function - if the static instance is null, set the private instance as the instantiated object
+    private void Start() {
+        if (TurnsManager.Instance == null) TurnsManager._instance = this;
+    }
 
     public static bool isGameStarted = false;
     public static Character active;
@@ -17,8 +24,8 @@ public class TurnsManager : MonoBehaviour
     public List<Character> turns = new List<Character>();
     [HideInInspector]
     public List<Tuple<GameObject, Character, CharacterInfo>> relations = new List<Tuple<GameObject, Character, CharacterInfo>>();
-	[HideInInspector]
-	public static List<Tuple<Character, Block>> spawnPositions = new List<Tuple<Character, Block>>();
+    [HideInInspector]
+    public static List<Tuple<Character, Block>> spawnPositions = new List<Tuple<Character, Block>>();
     [HideInInspector]
     public List<Character> allCharacters = new List<Character>();
 
@@ -33,10 +40,6 @@ public class TurnsManager : MonoBehaviour
     public GameObject popupSpell;
 
     private float timeLeft = 3f;
-
-    private void Start() {
-        if (TurnsManager.Instance == null) TurnsManager._instance = this;
-    }
 
     private void Update() {
         if (isGameStarted) {

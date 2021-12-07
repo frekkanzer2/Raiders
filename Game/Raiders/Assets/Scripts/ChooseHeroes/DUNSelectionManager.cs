@@ -42,7 +42,9 @@ public class DUNSelectionManager : SelectionManager
         }
         index = 0;
         Debug.LogWarning("GAMMA CHECKPOINT");
-        PlayerPrefs.SetInt("DUNGEON_ROOM", 1);
+        DungeonSave ds = new DungeonSave();
+        ds.saveChosenDungeon(GetComponent<DungeonChoosePanel>().getSelectedDungeonID());
+        ds.saveDungeonRoom(1);
         SceneManager.LoadScene("DungeonBattleScene", LoadSceneMode.Single);
     }
 
