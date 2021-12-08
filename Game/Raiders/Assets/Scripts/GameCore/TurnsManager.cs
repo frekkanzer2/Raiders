@@ -124,24 +124,52 @@ public class TurnsManager : MonoBehaviour
 
     public void OnStartGame() {
         isGameStarted = true;
-        foreach (Character c in turns) {
-            c.setupSOS(injectToChar_prefabNumberDisplayer);
-            if (c.team == 1) {
-                GameObject card = Instantiate(prefabPreviewCardAlpha);
-                c.connectedPreview = card;
-                card.transform.SetParent(turnsListContainer.transform);
-                card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite = 
-	                GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
-	            card.GetComponent<RectTransform>().localScale = new Vector3(0.2f,0.2f,0.2f);
-            } else if (c.team == 2) {
-                GameObject card = Instantiate(prefabPreviewCardBeta);
-                c.connectedPreview = card;
-                card.transform.SetParent(turnsListContainer.transform);
-                card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
-	                GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
-	            card.GetComponent<RectTransform>().localScale = new Vector3(0.2f,0.2f,0.2f);
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo == null) {
+            foreach (Character c in turns) {
+                c.setupSOS(injectToChar_prefabNumberDisplayer);
+                if (c.team == 1) {
+                    GameObject card = Instantiate(prefabPreviewCardAlpha);
+                    c.connectedPreview = card;
+                    card.transform.SetParent(turnsListContainer.transform);
+                    card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
+                        GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
+                    card.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                } else if (c.team == 2) {
+                    GameObject card = Instantiate(prefabPreviewCardBeta);
+                    c.connectedPreview = card;
+                    card.transform.SetParent(turnsListContainer.transform);
+                    card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
+                        GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
+                    card.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                }
+                spawnPositions.Add(new Tuple<Character, Block>(c, c.connectedCell.GetComponent<Block>()));
             }
-	        spawnPositions.Add(new Tuple<Character, Block>(c, c.connectedCell.GetComponent<Block>()));
+        } else {
+            foreach (Character c in turns) {
+                c.setupSOS(injectToChar_prefabNumberDisplayer);
+                if (c.team == 1) {
+                    GameObject card = Instantiate(prefabPreviewCardAlpha);
+                    c.connectedPreview = card;
+                    card.transform.SetParent(turnsListContainer.transform);
+                    card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
+                        GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
+                    card.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                } else if (c.team == 2) {
+                    CharacterInfo relatedInfo = null;
+                    foreach(CharacterInfo ci in SelectionContainer.DUNGEON_MonsterCharactersInfo) {
+                        if (ci.characterName == c.name) {
+                            relatedInfo = ci;
+                            break;
+                        }
+                    }
+                    GameObject card = Instantiate(prefabPreviewCardBeta);
+                    c.connectedPreview = card;
+                    card.transform.SetParent(turnsListContainer.transform);
+                    card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite = relatedInfo.characterMidSprite;
+                    card.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                }
+                spawnPositions.Add(new Tuple<Character, Block>(c, c.connectedCell.GetComponent<Block>()));
+            }
         }
         active = turns[0];
         foreach (Character c in turns)

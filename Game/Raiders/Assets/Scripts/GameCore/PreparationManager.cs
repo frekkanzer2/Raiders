@@ -49,25 +49,47 @@ public class PreparationManager : MonoBehaviour
     }
 
     public void activateReadyButtons() {
-        if (!isPreparationPhaseActived) return;
-        btnAlpha.GetComponent<Image>().sprite = blueButton;
-        btnBeta.GetComponent<Image>().sprite = redButton;
-        btnAlpha.SetActive(true);
-        btnBeta.SetActive(true);
-        isAlphaReady = false;
-        isBetaReady = false;
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo == null) {
+            // classic mode
+            if (!isPreparationPhaseActived) return;
+            btnAlpha.GetComponent<Image>().sprite = blueButton;
+            btnBeta.GetComponent<Image>().sprite = redButton;
+            btnAlpha.SetActive(true);
+            btnBeta.SetActive(true);
+            isAlphaReady = false;
+            isBetaReady = false;
+        } else {
+            if (!isPreparationPhaseActived) return;
+            btnAlpha.GetComponent<Image>().sprite = blueButton;
+            btnAlpha.SetActive(true);
+            isAlphaReady = false;
+            isBetaReady = true;
+        }
     }
 
     public void OnAlphaReady() {
-        if (registeredCells.Count != PlayerPrefs.GetInt("TEAM_DIMENSION")*2) return;
-        if (!isAlphaReady && isPreparationPhaseActived) {
-            isAlphaReady = true;
-            btnAlpha.GetComponent<Image>().sprite = yellowButton;
-            if (isBetaReady) SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm2);
-            else SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm1);
-        } else if (isPreparationPhaseActived) {
-            isAlphaReady = false;
-            btnAlpha.GetComponent<Image>().sprite = blueButton;
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo == null) {
+            if (registeredCells.Count != PlayerPrefs.GetInt("TEAM_DIMENSION") * 2) return;
+            if (!isAlphaReady && isPreparationPhaseActived) {
+                isAlphaReady = true;
+                btnAlpha.GetComponent<Image>().sprite = yellowButton;
+                if (isBetaReady) SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm2);
+                else SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm1);
+            } else if (isPreparationPhaseActived) {
+                isAlphaReady = false;
+                btnAlpha.GetComponent<Image>().sprite = blueButton;
+            }
+        } else {
+            if (registeredCells.Count != PlayerPrefs.GetInt("TEAM_DIMENSION")) return;
+            if (!isAlphaReady && isPreparationPhaseActived) {
+                isAlphaReady = true;
+                btnAlpha.GetComponent<Image>().sprite = yellowButton;
+                if (isBetaReady) SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm2);
+                else SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm1);
+            } else if (isPreparationPhaseActived) {
+                isAlphaReady = false;
+                btnAlpha.GetComponent<Image>().sprite = blueButton;
+            }
         }
     }
 
@@ -114,7 +136,6 @@ public class PreparationManager : MonoBehaviour
                     spawned.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
                 }
             }
-            Debug.LogError("NOT IMPLEMENTED FOR DUNGEON VERSION - CONTINUE HERE!");
             SelectionContainer smanager = GetComponent<SelectionContainer>();
             DungeonSave ds = new DungeonSave();
             int dj_index = ds.getChosenDungeon();
@@ -165,8 +186,13 @@ public class PreparationManager : MonoBehaviour
         consideredBlock.linkedObject = ch_go;
         ch.setZIndex(ch.connectedCell.GetComponent<Block>());
         registeredCells.Add(new Tuple<int, Character, CharacterInfo, CellHeroChooser, GameObject>(team, ch, ci, chc, ch_go));
-        if (registeredCells.Count == PlayerPrefs.GetInt("TEAM_DIMENSION")*2)
-            activateReadyButtons();
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo == null) {
+            if (registeredCells.Count == PlayerPrefs.GetInt("TEAM_DIMENSION") * 2)
+                activateReadyButtons();
+        } else {
+            if (registeredCells.Count == PlayerPrefs.GetInt("TEAM_DIMENSION"))
+                activateReadyButtons();
+        }
         tm.addRelation(ch_go, ci);
         Debug.Log("PRECALL");
         SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_SetHeroInCell);
@@ -262,9 +288,21 @@ public class PreparationManager : MonoBehaviour
                 }
             }
         if (isAlphaReady && isBetaReady && isPreparationPhaseActived) {
-            isPreparationPhaseActived = false;
-            SoundMusic.Instance.play(SoundMusic.Instance.getSoundtrack(PlayerPrefs.GetString("CHOSEN_MAP")));
-            StartCoroutine(goToNextPhase());
+            if (SelectionContainer.DUNGEON_MonsterCharactersInfo == null) {
+                isPreparationPhaseActived = false;
+                SoundMusic.Instance.play(SoundMusic.Instance.getSoundtrack(PlayerPrefs.GetString("CHOSEN_MAP")));
+                StartCoroutine(goToNextPhase());
+            } else {
+                isPreparationPhaseActived = false;
+                // Getting actual dungeon name
+                DungeonSave ds = new DungeonSave();
+                int dj_index = ds.getChosenDungeon();
+                int dj_room_index = ds.getDungeonRoom();
+                List<DungeonUtils> allDungeons = DungeonSave.getAllDungeons();
+                DungeonUtils chosenDungeon = allDungeons[dj_index];
+                SoundMusic.Instance.play(SoundMusic.Instance.getSoundtrack(chosenDungeon.name.ToUpper() + " "));
+                StartCoroutine(goToNextPhase());
+            }
         }
     }
 

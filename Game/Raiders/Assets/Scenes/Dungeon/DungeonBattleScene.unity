@@ -15106,7 +15106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c091a638ab13174d98f64b76de5472b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundtracks: []
+  soundtracks:
+  - track_name_maiusc: GOBBALL DUNGEON
+    music: {fileID: 8300000, guid: 7dad1814d1223e14ca5ded64cc53f012, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0

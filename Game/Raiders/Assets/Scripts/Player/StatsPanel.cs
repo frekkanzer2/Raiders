@@ -47,7 +47,10 @@ public class StatsPanel : MonoBehaviour
     private void Update() {
         if (toSync != null) {
 
-            characterPreview.GetComponent<Image>().sprite = cl.getCharacterInfoByName(toSync.name).characterMidSprite;
+            if (!(toSync is Monster))
+                characterPreview.GetComponent<Image>().sprite = cl.getCharacterInfoByName(toSync.name).characterMidSprite;
+            else
+                characterPreview.GetComponent<Image>().sprite = cl.getCharacterInfoMonster((Monster) toSync).characterMidSprite;
             hpGui.GetComponent<TextMeshProUGUI>().text = "" + toSync.getActualHP();
             paGui.GetComponent<TextMeshProUGUI>().text = "" + toSync.getActualPA();
             pmGui.GetComponent<TextMeshProUGUI>().text = "" + toSync.getActualPM();
