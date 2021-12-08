@@ -44,7 +44,7 @@ public class DUNSelectionManager : SelectionManager
         Debug.LogWarning("GAMMA CHECKPOINT");
         DungeonSave ds = new DungeonSave();
         ds.saveChosenDungeon(GetComponent<DungeonChoosePanel>().getSelectedDungeonID());
-        ds.saveDungeonRoom(1);
+        ds.saveDungeonRoom(0);
         SceneManager.LoadScene("DungeonBattleScene", LoadSceneMode.Single);
     }
 

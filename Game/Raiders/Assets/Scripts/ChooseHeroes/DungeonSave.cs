@@ -96,7 +96,7 @@ public class DungeonSave {
         int room = getDungeonRoom();
         int dungeonid = getChosenDungeon();
         Debug.Log("Room ID: " + room + " | Dungeon ID: " + dungeonid);
-        return (dungeonid * 5 + room) - 1;
+        return dungeonid * 5 + room;
     }
 
 }

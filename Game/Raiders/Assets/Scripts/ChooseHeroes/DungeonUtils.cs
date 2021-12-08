@@ -23,6 +23,8 @@ public class DungeonUtils {
         [Header("Monster ID is the index of the monster in the prefab array")]
         public int monsterID;
         public int quantity;
+        [Header("List size must be same as quantity parameter")]
+        public List<Coordinate> spawnCoordinates;
     }
 
     public string name;

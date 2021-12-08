@@ -115,7 +115,42 @@ public class PreparationManager : MonoBehaviour
                 }
             }
             Debug.LogError("NOT IMPLEMENTED FOR DUNGEON VERSION - CONTINUE HERE!");
-            // Enemies must spawn on the map - set their spawn cells!
+            SelectionContainer smanager = GetComponent<SelectionContainer>();
+            DungeonSave ds = new DungeonSave();
+            int dj_index = ds.getChosenDungeon();
+            int dj_room_index = ds.getDungeonRoom();
+            List<DungeonUtils> allDungeons = DungeonSave.getAllDungeons();
+            DungeonUtils chosenDungeon = allDungeons[dj_index];
+            DungeonUtils.RoomMonsters selectedRoom = chosenDungeon.rooms[dj_room_index];
+            List<Monster> temp_monsterInstances = new List<Monster>();
+            foreach (GameObject obj in smanager.teamBHeroes) {
+                temp_monsterInstances.Add(obj.GetComponent<Monster>());
+            }
+            while(temp_monsterInstances.Count > 0) {
+                Monster instance = temp_monsterInstances[0];
+                temp_monsterInstances.RemoveAt(0);
+                foreach (DungeonUtils.RoomTuple rt in selectedRoom.monstersAndQuantity) {
+                    int monsterIndexInTuple = rt.monsterID;
+                    DungeonUtils.MonsterPrefab temp_monster_prefab = chosenDungeon.monsters[monsterIndexInTuple];
+                    if (temp_monster_prefab == null) Debug.LogError("NO PREFAB RETRIEVED WHILE INSTANTIATING MONTERS ON MAP");
+                    Debug.Log("Prefab name retrieved: " + temp_monster_prefab.name);
+                    try {
+                        Debug.Log("Instance name: " + instance.name);
+                    } catch (Exception e) {
+                        Debug.LogWarning("Instance name is null. Displaying instance GO name: " + instance.gameObject.name);
+                    }
+                    string monsterName = temp_monster_prefab.name;
+                    if (!monsterName.Equals(instance.name)) continue;
+                    Coordinate whereToSpawn = rt.spawnCoordinates[0];
+                    rt.spawnCoordinates.RemoveAt(0);
+                    instance.gameObject.transform.position = Coordinate.getPosition(whereToSpawn);
+                    Block blockPosition = Map.Instance.getBlock(whereToSpawn);
+                    instance.connectedCell = blockPosition.gameObject;
+                    blockPosition.linkedObject = instance.gameObject;
+                    instance.setZIndex(instance.connectedCell.GetComponent<Block>());
+                }
+                Debug.Log("Cell assignment done for " + instance.getCompleteName());
+            }
         }
     }
 

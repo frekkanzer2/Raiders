@@ -280,7 +280,7 @@ public class Character : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
             if (hit.collider != null) {
                 GameObject clicked = hit.collider.gameObject;
-                if (clicked.CompareTag("Player") && this.Equals(clicked.GetComponent<Character>())) {
+                if (clicked.CompareTag("Player") && !(clicked.GetComponent<Character>() is Monster) && this.Equals(clicked.GetComponent<Character>())) {
                     PreparationManager.Instance.OnCellAlreadyChosen(this);
                 }
             }
@@ -339,22 +339,26 @@ public class Character : MonoBehaviour
 
     public bool Equals(Character c) {
         String firstName, secondName;
-        if (!this.isEvocation) firstName = this.name;
-        else firstName = ((Evocation)this).getCompleteName();
-        if (!c.isEvocation) secondName = c.name;
-        else secondName = ((Evocation)c).getCompleteName();
+        if (this is Evocation) firstName = ((Evocation)this).getCompleteName();
+        else if (this is Monster) firstName = ((Monster)this).getCompleteName();
+        else firstName = this.name;
+        if (c is Evocation) secondName = ((Evocation)c).getCompleteName();
+        else if (c is Monster) secondName = ((Monster)c).getCompleteName();
+        else secondName = c.name;
         Debug.Log("NAME 1: " + firstName + " | NAME 2: " + secondName);
-        return firstName == secondName && this.team == c.team;
+        return firstName.Equals(secondName) && this.team == c.team;
     }
 
     public bool EqualsNames(Character c) {
         String firstName, secondName;
-        if (!this.isEvocation) firstName = this.name;
-        else firstName = ((Evocation)this).getCompleteName();
-        if (!c.isEvocation) secondName = c.name;
-        else secondName = ((Evocation)c).getCompleteName();
+        if (this is Evocation) firstName = ((Evocation)this).getCompleteName();
+        else if (this is Monster) firstName = ((Monster)this).getCompleteName();
+        else firstName = this.name;
+        if (c is Evocation) secondName = ((Evocation)c).getCompleteName();
+        else if (c is Monster) secondName = ((Monster)c).getCompleteName();
+        else secondName = c.name;
         Debug.Log("NAME 1: " + firstName + " | NAME 2: " + secondName);
-        return firstName == secondName;
+        return firstName.Equals(secondName);
     }
 
     public bool isEnemyOf(Character c) {

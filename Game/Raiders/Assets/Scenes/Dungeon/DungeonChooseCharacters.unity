@@ -2013,46 +2013,165 @@ MonoBehaviour:
       monstersAndQuantity:
       - monsterID: 0
         quantity: 2
+        spawnCoordinates:
+        - row: 9
+          column: 12
+        - row: 11
+          column: 12
       - monsterID: 1
         quantity: 3
+        spawnCoordinates:
+        - row: 8
+          column: 12
+        - row: 10
+          column: 12
+        - row: 12
+          column: 12
     - roomNumber: 2
       monstersAndQuantity:
       - monsterID: 3
         quantity: 1
+        spawnCoordinates:
+        - row: 10
+          column: 12
       - monsterID: 1
         quantity: 3
+        spawnCoordinates:
+        - row: 10
+          column: 2
+        - row: 5
+          column: 7
+        - row: 15
+          column: 7
       - monsterID: 0
         quantity: 4
+        spawnCoordinates:
+        - row: 10
+          column: 13
+        - row: 10
+          column: 1
+        - row: 4
+          column: 7
+        - row: 16
+          column: 7
     - roomNumber: 3
       monstersAndQuantity:
       - monsterID: 3
         quantity: 2
+        spawnCoordinates:
+        - row: 10
+          column: 8
+        - row: 10
+          column: 6
       - monsterID: 2
         quantity: 3
+        spawnCoordinates:
+        - row: 10
+          column: 7
+        - row: 9
+          column: 7
+        - row: 11
+          column: 7
       - monsterID: 1
-        quantity: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 7
+        - row: 19
+          column: 7
       - monsterID: 0
         quantity: 4
+        spawnCoordinates:
+        - row: 5
+          column: 5
+        - row: 5
+          column: 15
+        - row: 9
+          column: 5
+        - row: 9
+          column: 15
     - roomNumber: 4
       monstersAndQuantity:
       - monsterID: 3
         quantity: 3
+        spawnCoordinates:
+        - row: 10
+          column: 1
+        - row: 6
+          column: 10
+        - row: 14
+          column: 10
       - monsterID: 2
         quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 12
+        - row: 14
+          column: 12
       - monsterID: 1
         quantity: 6
+        spawnCoordinates:
+        - row: 9
+          column: 1
+        - row: 11
+          column: 1
+        - row: 10
+          column: 7
+        - row: 7
+          column: 11
+        - row: 13
+          column: 11
+        - row: 10
+          column: 5
       - monsterID: 0
-        quantity: 3
+        quantity: 4
+        spawnCoordinates:
+        - row: 1
+          column: 5
+        - row: 1
+          column: 9
+        - row: 19
+          column: 5
+        - row: 19
+          column: 9
     - roomNumber: 5
       monstersAndQuantity:
       - monsterID: 4
         quantity: 1
+        spawnCoordinates:
+        - row: 10
+          column: 7
       - monsterID: 3
         quantity: 2
+        spawnCoordinates:
+        - row: 9
+          column: 7
+        - row: 11
+          column: 7
       - monsterID: 1
         quantity: 3
+        spawnCoordinates:
+        - row: 9
+          column: 1
+        - row: 10
+          column: 1
+        - row: 11
+          column: 1
       - monsterID: 0
-        quantity: 2
+        quantity: 6
+        spawnCoordinates:
+        - row: 7
+          column: 3
+        - row: 7
+          column: 4
+        - row: 7
+          column: 5
+        - row: 13
+          column: 3
+        - row: 13
+          column: 4
+        - row: 13
+          column: 5
   - name: Champs Royale Dungeon
     bossIcon: {fileID: 21300000, guid: 7c8708eb5049e024ca222d4fd2ac2a48, type: 3}
     monsters:
