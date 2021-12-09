@@ -80,7 +80,7 @@ public class Evocation : Character {
             damage /= 2;
             connectedSummoner.inflictDamage(damage, mustSkip);
         }
-        base.inflictDamage(damage);
+        base.inflictDamage(damage, mustSkip);
     }
 
     public override void newTurn() {

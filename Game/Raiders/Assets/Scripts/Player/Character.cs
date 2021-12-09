@@ -137,7 +137,7 @@ public class Character : MonoBehaviour
             s.value = this.actual_hp;
         }
 
-        if (isForcedMoving) {
+        if (isForcedMoving && !this.isDead) {
             if (this.transform.position.z > -20) this.transform.position = new Vector3(
                     this.transform.position.x,
                     this.transform.position.y,
@@ -152,7 +152,7 @@ public class Character : MonoBehaviour
                 ),
                 30 * Time.deltaTime // Speed
             );
-            if (new Vector2(transform.position.x, transform.position.y) == Coordinate.getPosition(followingBlock.coordinate)) {
+            if (new Vector2(transform.position.x, transform.position.y) == Coordinate.getPosition(followingBlock.coordinate) && !this.isDead) {
                 // I'm on a new cell
                 if (this.getEventSystem().getEvents("Toxic Injection").Count > 0) {
                     // damage on movement effect
@@ -504,14 +504,15 @@ public class Character : MonoBehaviour
     public virtual void setDead() {
         if (isDead) return;
         isDead = true;
-        if (!isEvocation)
+        if (!isEvocation) {
             // Deleting summons in safe way
-            for (int i = 0; i < summons.Count; i++) {
-                int prev_count = summons.Count;
-                Evocation e = summons[i];
-                e.inflictDamage(e.actual_hp);
-                if (prev_count != summons.Count) i--;
-            }
+            List<Evocation> evoTemp = new List<Evocation>();
+            evoTemp.AddRange(this.summons);
+            foreach (Evocation e in evoTemp)
+                this.summons.Remove(e);
+            foreach (Evocation e in evoTemp)
+                e.inflictDamage(e.actual_hp, true);
+        }
         if (TurnsManager.active.Equals(this))
             TurnsManager.Instance.OnNextTurnPressed();
         connectedCell.GetComponent<Block>().linkedObject = null;
