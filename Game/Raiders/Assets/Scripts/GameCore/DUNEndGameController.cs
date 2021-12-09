@@ -78,7 +78,8 @@ public class DUNEndGameController : MonoBehaviour
                 ds.saveDungeonRoom(roomID);
                 SceneManager.LoadScene("DungeonBattleScene", LoadSceneMode.Single);
             } else {
-                OnDungeonAchieved(ds, ds.getChosenDungeon());
+                if (ds.getReachedDungeonID() < ds.getChosenDungeon())
+                    OnDungeonAchieved(ds, ds.getChosenDungeon());
                 SceneManager.LoadScene("DungeonChooseCharacters", LoadSceneMode.Single);
             }
         } else {
