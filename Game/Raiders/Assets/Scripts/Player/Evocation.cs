@@ -87,7 +87,7 @@ public class Evocation : Character {
         base.newTurn();
         if (this.isBomb && this.bombCharge < 5 && !this.isDead)
             bombCharge++;
-        if (mustSkip)
+        if (mustSkip && !this.isDead)
             TurnsManager.Instance.OnSkipTurn();
         if (this.isDouble) {
             doubleCounter++;

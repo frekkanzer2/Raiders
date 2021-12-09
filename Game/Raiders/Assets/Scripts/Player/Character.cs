@@ -396,10 +396,8 @@ public class Character : MonoBehaviour
                 damage = 0;
             }
         }
-        if (damage == 0) {
-            Debug.Log("Zero damage received");
+        if (damage == 0)
             return;
-        }
         if (this.actual_hp - damage < 0) actual_hp = 0;
         else this.actual_hp -= damage;
         if (actual_hp == 0 && !mustSkip) setDead();

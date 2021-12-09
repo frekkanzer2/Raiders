@@ -7,6 +7,8 @@ public class EventSystem : MonoBehaviour
     
     public Character connected;
     public List<ParentEvent> activeEvents = new List<ParentEvent>();
+    public bool mustRemoveAsync = false;
+    public bool isExecuting = false;
 
     // Start is called before the first frame update
     void Start()
@@ -31,10 +33,14 @@ public class EventSystem : MonoBehaviour
     }
 
     public void OnStartTurn() {
+        isExecuting = true;
         foreach(ParentEvent pe in activeEvents) {
             Debug.LogWarning("Event in list: " + pe.name);
             pe.OnStartTurn();
         }
+        isExecuting = false;
+        if (mustRemoveAsync)
+            removeAllEvents();
     }
 
     public void OnEndTurn() {
@@ -68,6 +74,10 @@ public class EventSystem : MonoBehaviour
     }
 
     public void removeAllEvents() {
+        if (isExecuting) {
+            mustRemoveAsync = true;
+            return;
+        }
         activeEvents.Clear();
     }
 
