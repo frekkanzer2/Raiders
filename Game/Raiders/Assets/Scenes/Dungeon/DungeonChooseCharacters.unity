@@ -2389,16 +2389,185 @@ MonoBehaviour:
       prefab: {fileID: 557098361630938699, guid: 8cceffdb89823ab4dafbc74a0c4cb065, type: 3}
       sprite: {fileID: 21300000, guid: 7200527f4673aa84690a0fa5b6b5db86, type: 3}
     rooms:
-    - roomNumber: 
-      monstersAndQuantity: []
-    - roomNumber: 
-      monstersAndQuantity: []
-    - roomNumber: 
-      monstersAndQuantity: []
-    - roomNumber: 
-      monstersAndQuantity: []
-    - roomNumber: 
-      monstersAndQuantity: []
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 14
+        - row: 4
+          column: 13
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 10
+          column: 11
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 9
+          column: 15
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 4
+        spawnCoordinates:
+        - row: 11
+          column: 9
+        - row: 11
+          column: 14
+        - row: 3
+          column: 9
+        - row: 5
+          column: 6
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 8
+        - row: 9
+          column: 15
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 4
+          column: 14
+        - row: 7
+          column: 17
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 3
+        spawnCoordinates:
+        - row: 1
+          column: 10
+        - row: 3
+          column: 13
+        - row: 4
+          column: 6
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 10
+          column: 9
+        - row: 8
+          column: 17
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 18
+        - row: 5
+          column: 2
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 8
+          column: 14
+        - row: 8
+          column: 7
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 4
+        spawnCoordinates:
+        - row: 4
+          column: 12
+        - row: 5
+          column: 10
+        - row: 6
+          column: 9
+        - row: 8
+          column: 7
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 12
+        - row: 7
+          column: 14
+      - monsterID: 2
+        quantity: 3
+        spawnCoordinates:
+        - row: 11
+          column: 11
+        - row: 10
+          column: 14
+        - row: 8
+          column: 17
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 14
+        - row: 10
+          column: 8
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 9
+          column: 7
+        - row: 3
+          column: 12
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 6
+        spawnCoordinates:
+        - row: 5
+          column: 0
+        - row: 6
+          column: 0
+        - row: 7
+          column: 0
+        - row: 1
+          column: 9
+        - row: 2
+          column: 10
+        - row: 3
+          column: 9
+      - monsterID: 1
+        quantity: 3
+        spawnCoordinates:
+        - row: 5
+          column: 13
+        - row: 7
+          column: 12
+        - row: 9
+          column: 11
+      - monsterID: 2
+        quantity: 4
+        spawnCoordinates:
+        - row: 3
+          column: 16
+        - row: 4
+          column: 18
+        - row: 6
+          column: 17
+        - row: 9
+          column: 15
+      - monsterID: 3
+        quantity: 3
+        spawnCoordinates:
+        - row: 13
+          column: 11
+        - row: 13
+          column: 12
+        - row: 13
+          column: 13
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 14
+          column: 11
+        - row: 14
+          column: 13
+      - monsterID: 5
+        quantity: 1
+        spawnCoordinates:
+        - row: 14
+          column: 12
   - name: Pichon Dungeon
     bossIcon: {fileID: 21300000, guid: 32f4e71574654f7488f9ea85ed78fdea, type: 3}
     monsters:

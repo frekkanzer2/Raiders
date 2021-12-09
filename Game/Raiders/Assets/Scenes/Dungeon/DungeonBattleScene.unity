@@ -1066,6 +1066,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f4d366d994fa4dc4ab8561db9a98f68b, type: 3}
   - {fileID: 21300000, guid: 5269b9dabe2481c41919f74df8a2549f, type: 3}
   - {fileID: 21300000, guid: 364630bb0d0812349964a529ee49a2fb, type: 3}
+  - {fileID: 21300000, guid: e0866b16d4a470941900010fc61a0eea, type: 3}
+  - {fileID: 21300000, guid: b744f9d7e6bf13844b8ae1590e889b28, type: 3}
+  - {fileID: 21300000, guid: 83671f4ef659d1a428f9118573568b82, type: 3}
+  - {fileID: 21300000, guid: 4237009af56e60844b682dd7009c143f, type: 3}
+  - {fileID: 21300000, guid: 095388240b69e9445a9fae1c801de358, type: 3}
+  - {fileID: 21300000, guid: 9188f366187106f4cbab56116de193dc, type: 3}
+  - {fileID: 21300000, guid: 637cdd8be58b389428d3f795476d14dd, type: 3}
   mapContainer: {fileID: 606105194}
   mapFile: {fileID: 4900000, guid: 151aef5894359a442a1e9e19fc8a95c2, type: 3}
   blackScreen: {fileID: 1198904534}
@@ -1109,6 +1116,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 7c6f93e5d6e277d4987bdf101889a1a1, type: 3}
   - {fileID: 4900000, guid: b43c3f271f293134195b2a0453b59eb4, type: 3}
   - {fileID: 4900000, guid: d7c22ec48dc7f1d468fba7b3c814f4a6, type: 3}
+  - {fileID: 4900000, guid: 381899b175693134487344ff9a9ae69d, type: 3}
+  - {fileID: 4900000, guid: 9780989984bcd624d9730f6e677756f1, type: 3}
+  - {fileID: 4900000, guid: f5091ab535f087244ad2688ba8d0ce72, type: 3}
+  - {fileID: 4900000, guid: d50afbd6905b9a34d856044761ef6e4c, type: 3}
+  - {fileID: 4900000, guid: 308a37b298a0de24a89ee9b0f1b6ed98, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481
@@ -15119,6 +15131,8 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: db986782484b7114ca5d0776d2304475, type: 3}
   - track_name_maiusc: GOBBALL DUNGEON
     music: {fileID: 8300000, guid: 7dad1814d1223e14ca5ded64cc53f012, type: 3}
+  - track_name_maiusc: CHAMPS ROYALE DUNGEON
+    music: {fileID: 8300000, guid: 78bb8dd1333cc634ab4b686cb00fc05c, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0
