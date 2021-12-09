@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dungeon/DungeonBattleScene.unity
     guid: 1f463cf557de46748b7cb6bc490703be
+  - enabled: 1
+    path: Assets/Scenes/Dungeon/DUNFightResultScene.unity
+    guid: a2d9171556a6dec44aa26d9306fd1adf
   m_configObjects: {}

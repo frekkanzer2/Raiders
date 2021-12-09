@@ -166,6 +166,7 @@ public class PreparationManager : MonoBehaviour
                     rt.spawnCoordinates.RemoveAt(0);
                     instance.gameObject.transform.position = Coordinate.getPosition(whereToSpawn);
                     Block blockPosition = Map.Instance.getBlock(whereToSpawn);
+                    if (blockPosition == null) Debug.LogError("Cannot find cell for coordinate " + whereToSpawn.display());
                     instance.connectedCell = blockPosition.gameObject;
                     blockPosition.linkedObject = instance.gameObject;
                     instance.setZIndex(instance.connectedCell.GetComponent<Block>());

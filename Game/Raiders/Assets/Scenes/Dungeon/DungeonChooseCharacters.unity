@@ -2085,11 +2085,11 @@ MonoBehaviour:
         - row: 5
           column: 5
         - row: 5
-          column: 15
-        - row: 9
+          column: 9
+        - row: 15
           column: 5
-        - row: 9
-          column: 15
+        - row: 15
+          column: 9
     - roomNumber: 4
       monstersAndQuantity:
       - monsterID: 3

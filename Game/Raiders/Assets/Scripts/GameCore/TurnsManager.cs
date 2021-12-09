@@ -79,6 +79,9 @@ public class TurnsManager : MonoBehaviour
         if (hasInitialized) return;
         hasInitialized = true;
         Debug.Log("TURNS INITIALIZATION");
+        isGameStarted = false;
+        active = null;
+        spawnPositions.Clear();
         List<Character> first = new List<Character>();
         List<Character> second = new List<Character>();
         Debug.Log("Initialization with n chars in total: n = " + turns.Count);

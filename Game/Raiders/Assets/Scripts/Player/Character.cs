@@ -286,6 +286,14 @@ public class Character : MonoBehaviour
             }
         }
 
+        if (isDebugEnabled && Input.GetKeyDown(KeyCode.D)) {
+            List<Character> tempDmg = new List<Character>();
+            tempDmg.AddRange(TurnsManager.Instance.turns);
+            foreach (Character c in tempDmg)
+                if (c.isEnemyOf(this))
+                    c.inflictDamage(100);
+        }
+
     }
 
     public void setZIndex(Block toRegolate) {
@@ -535,18 +543,24 @@ public class Character : MonoBehaviour
                     break;
                 }
         }
-        if (matchEnded) {
-            if (this.team == 1)
-                PlayerPrefs.SetInt("TEAM_WINNER", 2);
-            else
-                PlayerPrefs.SetInt("TEAM_WINNER", 1);
+        if (this.team == 1)
+            PlayerPrefs.SetInt("TEAM_WINNER", 2);
+        else
+            PlayerPrefs.SetInt("TEAM_WINNER", 1);
+        if (matchEnded && SelectionContainer.DUNGEON_MonsterCharactersInfo == null)
             StartCoroutine(endMatch());
-        }
+        else if (matchEnded && SelectionContainer.DUNGEON_MonsterCharactersInfo != null)
+            StartCoroutine(endMatchMonsters());
     }
 
     IEnumerator endMatch() {
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene("FightResultScene", LoadSceneMode.Single);
+    }
+
+    IEnumerator endMatchMonsters() {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("DUNFightResultScene", LoadSceneMode.Single);
     }
 
     IEnumerator dead_disappear() {
