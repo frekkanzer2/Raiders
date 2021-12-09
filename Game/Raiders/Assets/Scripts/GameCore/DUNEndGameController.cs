@@ -75,10 +75,10 @@ public class DUNEndGameController : MonoBehaviour
             roomID++;
             if (roomID < 5) {
                 Debug.LogWarning("GAMMA CHECKPOINT with room " + roomID);
-                ds.saveDungeonRoom(ds, roomID);
+                ds.saveDungeonRoom(roomID);
                 SceneManager.LoadScene("DungeonBattleScene", LoadSceneMode.Single);
             } else {
-                OnDungeonAchieved(ds.getChosenDungeon());
+                OnDungeonAchieved(ds, ds.getChosenDungeon());
                 SceneManager.LoadScene("DungeonChooseCharacters", LoadSceneMode.Single);
             }
         } else {
