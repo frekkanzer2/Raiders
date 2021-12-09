@@ -11,6 +11,10 @@ public class ChButtonData : MonoBehaviour
     private SelectionManagerGeneric sm;
     private bool isSet = false;
 
+    private void Start() {
+        SelectionManagerGeneric.definitiveLock = false;
+    }
+
     public void initialize(CharacterInfo ci, int team, SelectionManagerGeneric sm) {
         this.infoConnected = ci;
         this.team = team;

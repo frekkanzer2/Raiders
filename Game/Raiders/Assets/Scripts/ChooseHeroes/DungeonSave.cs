@@ -19,7 +19,7 @@ public class DungeonSave {
     }
 
     public int getReachedDungeonID() {
-        if (!PlayerPrefs.HasKey(DUNGEON_PROGRESS_STRING)) return 0;
+        if (!PlayerPrefs.HasKey(DUNGEON_PROGRESS_STRING)) return -1;
         return PlayerPrefs.GetInt(DUNGEON_PROGRESS_STRING);
     }
 
@@ -74,6 +74,10 @@ public class DungeonSave {
 
     public void dungeonPassed() {
         PlayerPrefs.SetInt(DUNGEON_PROGRESS_STRING, getReachedDungeonID() + 1);
+    }
+
+    public void RESET() {
+        PlayerPrefs.SetInt(DUNGEON_PROGRESS_STRING, -1);
     }
 
     public void saveChosenDungeon(int index) {

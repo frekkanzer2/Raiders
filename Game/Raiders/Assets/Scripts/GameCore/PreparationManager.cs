@@ -162,6 +162,7 @@ public class PreparationManager : MonoBehaviour
                     }
                     string monsterName = temp_monster_prefab.name;
                     if (!monsterName.Equals(instance.name)) continue;
+                    else Debug.LogWarning("Executing assignment on cell for monster " + instance.getCompleteName());
                     Coordinate whereToSpawn = rt.spawnCoordinates[0];
                     rt.spawnCoordinates.RemoveAt(0);
                     instance.gameObject.transform.position = Coordinate.getPosition(whereToSpawn);

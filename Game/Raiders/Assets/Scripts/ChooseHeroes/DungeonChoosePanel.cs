@@ -23,7 +23,6 @@ public class DungeonChoosePanel : MonoBehaviour {
     }
 
     private void setDungeonPreview() {
-        Debug.Log(dungeonsList.Count);
         textDungeonName.GetComponent<TextMeshProUGUI>().text = save.getNextDungeonNameByID(dungeonsList);
         imageDungeonKeeper.GetComponent<Image>().sprite = save.getNextDungeonSpriteByID(dungeonsList);
     }

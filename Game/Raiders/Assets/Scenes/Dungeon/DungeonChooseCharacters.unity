@@ -1990,6 +1990,201 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dungeonsList:
+  - name: Astrub Dungeon
+    bossIcon: {fileID: 21300000, guid: c065947705ef4164eafd98c3a4661b32, type: 3}
+    monsters:
+    - name: Red Piwi
+      prefab: {fileID: 557098361630938699, guid: a3e3019227b5c6743862fb04b2481b60, type: 3}
+      sprite: {fileID: 21300000, guid: d26ffbb2643e34f478e8c4ea1dc253c0, type: 3}
+    - name: Blue Piwi
+      prefab: {fileID: 557098361630938699, guid: 4a9d0266b4c573147b33204dd0e05367, type: 3}
+      sprite: {fileID: 21300000, guid: 93e2aafd310d0454eafcf2508aaa6e94, type: 3}
+    - name: Green Piwi
+      prefab: {fileID: 557098361630938699, guid: dd5880df20d69a043a00755c3ca0c57a, type: 3}
+      sprite: {fileID: 21300000, guid: ab3026e01eed56048ab38044188f2cee, type: 3}
+    - name: Yellow Piwi
+      prefab: {fileID: 557098361630938699, guid: 5ff419880fe399c4595c9980ce4515f6, type: 3}
+      sprite: {fileID: 21300000, guid: 14f17be6481368d40b3aac21f0983c36, type: 3}
+    - name: Arachnee
+      prefab: {fileID: 557098361630938699, guid: 709d4221dfb6c2946b4c9f4646141156, type: 3}
+      sprite: {fileID: 21300000, guid: fb4f81b41dbc06d489906f25442fbb9e, type: 3}
+    - name: Aggressive Arachnee
+      prefab: {fileID: 557098361630938699, guid: abd013ec103c116458f4207f07f03cb8, type: 3}
+      sprite: {fileID: 21300000, guid: 3f4e77e35ef8f3d4e8cd840b339e6101, type: 3}
+    - name: Arachnausea
+      prefab: {fileID: 557098361630938699, guid: 048222cb5c0ce684e92f8f58b5e1db6b, type: 3}
+      sprite: {fileID: 21300000, guid: b7c466ac6f5dc8044a193d094f8e4b71, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 2
+          column: 5
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 2
+          column: 6
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 2
+          column: 8
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 2
+          column: 9
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 2
+        - row: 10
+          column: 2
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 3
+        - row: 10
+          column: 3
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 11
+        - row: 10
+          column: 11
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 12
+        - row: 10
+          column: 12
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 2
+        - row: 1
+          column: 3
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 11
+        - row: 1
+          column: 12
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 11
+          column: 2
+        - row: 11
+          column: 3
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 11
+          column: 11
+        - row: 11
+          column: 12
+      - monsterID: 4
+        quantity: 4
+        spawnCoordinates:
+        - row: 5
+          column: 6
+        - row: 7
+          column: 6
+        - row: 5
+          column: 8
+        - row: 7
+          column: 8
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 1
+          column: 1
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 1
+          column: 13
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 11
+          column: 1
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 11
+          column: 13
+      - monsterID: 4
+        quantity: 4
+        spawnCoordinates:
+        - row: 4
+          column: 3
+        - row: 8
+          column: 3
+        - row: 4
+          column: 11
+        - row: 8
+          column: 11
+      - monsterID: 5
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 7
+        - row: 10
+          column: 7
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 4
+        quantity: 6
+        spawnCoordinates:
+        - row: 3
+          column: 4
+        - row: 3
+          column: 5
+        - row: 3
+          column: 6
+        - row: 3
+          column: 8
+        - row: 3
+          column: 9
+        - row: 3
+          column: 10
+      - monsterID: 5
+        quantity: 6
+        spawnCoordinates:
+        - row: 2
+          column: 4
+        - row: 2
+          column: 5
+        - row: 2
+          column: 6
+        - row: 2
+          column: 8
+        - row: 2
+          column: 9
+        - row: 2
+          column: 10
+      - monsterID: 6
+        quantity: 1
+        spawnCoordinates:
+        - row: 1
+          column: 7
   - name: Gobball Dungeon
     bossIcon: {fileID: 21300000, guid: b9d914396b9e44b4c951eccd61339f28, type: 3}
     monsters:
@@ -2271,6 +2466,7 @@ MonoBehaviour:
       monstersAndQuantity: []
     - roomNumber: 
       monstersAndQuantity: []
+  isDebugEnabled: 0
 --- !u!114 &1295197768
 MonoBehaviour:
   m_ObjectHideFlags: 0

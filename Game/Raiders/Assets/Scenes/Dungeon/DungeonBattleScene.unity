@@ -1063,6 +1063,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1e749f90568dd71429eda9a39012a95f, type: 3}
   - {fileID: 21300000, guid: 42ea918c7920630479f5d50d9a86f4a9, type: 3}
   - {fileID: 21300000, guid: f91a52463dfbdd14081d854d9b6814b8, type: 3}
+  - {fileID: 21300000, guid: f4d366d994fa4dc4ab8561db9a98f68b, type: 3}
+  - {fileID: 21300000, guid: 5269b9dabe2481c41919f74df8a2549f, type: 3}
+  - {fileID: 21300000, guid: 364630bb0d0812349964a529ee49a2fb, type: 3}
   mapContainer: {fileID: 606105194}
   mapFile: {fileID: 4900000, guid: 151aef5894359a442a1e9e19fc8a95c2, type: 3}
   blackScreen: {fileID: 1198904534}
@@ -1096,6 +1099,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapFiles:
+  - {fileID: 4900000, guid: 348df09edf6c72b41ba7efbe50807baa, type: 3}
+  - {fileID: 4900000, guid: 140afb04fa77dce4bbe56cba86571bef, type: 3}
+  - {fileID: 4900000, guid: e32daf2fa75adee47a58c135200b5b31, type: 3}
+  - {fileID: 4900000, guid: 3f5d276b69330ce429f744741aa63e42, type: 3}
+  - {fileID: 4900000, guid: a5d713124cf32d44f9f8cae0b1885377, type: 3}
   - {fileID: 4900000, guid: 5b6fc301f47f44747beb123ebddae9ef, type: 3}
   - {fileID: 4900000, guid: f8740290cd1a00644bd01b9bea8a8e11, type: 3}
   - {fileID: 4900000, guid: 7c6f93e5d6e277d4987bdf101889a1a1, type: 3}
@@ -15107,6 +15115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundtracks:
+  - track_name_maiusc: ASTRUB DUNGEON
+    music: {fileID: 8300000, guid: db986782484b7114ca5d0776d2304475, type: 3}
   - track_name_maiusc: GOBBALL DUNGEON
     music: {fileID: 8300000, guid: 7dad1814d1223e14ca5ded64cc53f012, type: 3}
 --- !u!82 &1527921472
