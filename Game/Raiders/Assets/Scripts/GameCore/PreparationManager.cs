@@ -242,6 +242,15 @@ public class PreparationManager : MonoBehaviour
                 stand = Instantiate(prefab_RedStand);
             stand.transform.SetParent(heroGo.transform);
         }
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo != null) {
+            GameObject stand = null;
+            foreach (Character c in TurnsManager.Instance.turns) {
+                if (c is Monster) {
+                    stand = Instantiate(prefab_RedStand);
+                    stand.transform.SetParent(c.transform);
+                }
+            }
+        }
         tm.OnStartGame();
     }
 
