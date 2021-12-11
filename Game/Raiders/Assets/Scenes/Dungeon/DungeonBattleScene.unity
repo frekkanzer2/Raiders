@@ -1073,6 +1073,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 095388240b69e9445a9fae1c801de358, type: 3}
   - {fileID: 21300000, guid: 9188f366187106f4cbab56116de193dc, type: 3}
   - {fileID: 21300000, guid: 637cdd8be58b389428d3f795476d14dd, type: 3}
+  - {fileID: 21300000, guid: fefa7f42c18d0f44584761ae17480608, type: 3}
+  - {fileID: 21300000, guid: 7ce243306278428418a1f9a70298b74c, type: 3}
   mapContainer: {fileID: 606105194}
   mapFile: {fileID: 4900000, guid: 151aef5894359a442a1e9e19fc8a95c2, type: 3}
   blackScreen: {fileID: 1198904534}
@@ -1121,6 +1123,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: f5091ab535f087244ad2688ba8d0ce72, type: 3}
   - {fileID: 4900000, guid: d50afbd6905b9a34d856044761ef6e4c, type: 3}
   - {fileID: 4900000, guid: 308a37b298a0de24a89ee9b0f1b6ed98, type: 3}
+  - {fileID: 4900000, guid: 5187908f05f1b444e871d131e0f3747e, type: 3}
+  - {fileID: 4900000, guid: 8a4d1ae042455c34682881e6f3fd7f7d, type: 3}
+  - {fileID: 4900000, guid: 74491d67485a1ff41baafa9feebaea0e, type: 3}
+  - {fileID: 4900000, guid: 5e545294e4f4b6343967b7a741d05bfb, type: 3}
+  - {fileID: 4900000, guid: afeeeded3d6b33f4d8d62ad73b1fee68, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481
@@ -15133,6 +15140,8 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: 7dad1814d1223e14ca5ded64cc53f012, type: 3}
   - track_name_maiusc: CHAMPS ROYALE DUNGEON
     music: {fileID: 8300000, guid: 78bb8dd1333cc634ab4b686cb00fc05c, type: 3}
+  - track_name_maiusc: BRIKOMORPHS
+    music: {fileID: 8300000, guid: 92ba1b144ea15304d9fde934d4863cd5, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0

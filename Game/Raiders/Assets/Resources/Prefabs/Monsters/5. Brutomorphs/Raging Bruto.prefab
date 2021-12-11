@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2347270675974649033}
   - component: {fileID: 5404421346664201683}
   m_Layer: 0
-  m_Name: Exhilerating Briko
+  m_Name: Raging Bruto
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 4cae9fe451a61b348888982bd580c3a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 724f4a0d80763fa4298c679786ae6f8a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,14 +99,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ced9ac50935ee468f328a59e67782b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Exhilerating Briko
+  name: Raging Bruto
   spells:
   - link: {fileID: 0}
-    name: Briko Shy
+    name: Bruto Shy
     icon: {fileID: 0}
     description: Inflicts Air damage
     element: 2
-    damage: 64
+    damage: 74
     lifeSteal: 0
     minRange: 1
     maxRange: 3
@@ -118,7 +118,7 @@ MonoBehaviour:
     maxTimesInTurn: 2
     executeAfterTurns: 0
     effectDuration: 0
-    criticalProbability: 10
+    criticalProbability: 20
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   ini: 45
   res_e: -3
   res_f: -8
-  res_a: 20
+  res_a: 60
   res_w: -17
   att_e: 0
   att_f: 0
@@ -200,8 +200,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.503637, y: 0.09992731}
-    oldSize: {x: 5, y: 5}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

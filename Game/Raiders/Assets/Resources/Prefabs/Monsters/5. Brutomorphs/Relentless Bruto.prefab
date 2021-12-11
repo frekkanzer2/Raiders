@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2347270675974649033}
   - component: {fileID: 5404421346664201683}
   m_Layer: 0
-  m_Name: Exhilerating Briko
+  m_Name: Relentless Bruto
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 4cae9fe451a61b348888982bd580c3a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6956882a80c7f4c46a8eac6d374a0e3f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,43 +99,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ced9ac50935ee468f328a59e67782b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Exhilerating Briko
+  name: Relentless Bruto
   spells:
   - link: {fileID: 0}
-    name: Briko Shy
+    name: Bruto Assault
     icon: {fileID: 0}
-    description: Inflicts Air damage
+    description: Teleport the caster behind the target
     element: 2
-    damage: 64
+    damage: 56
     lifeSteal: 0
     minRange: 1
-    maxRange: 3
-    distanceType: 0
+    maxRange: 8
+    distanceType: 1
     overObstacles: 0
     hpCost: 0
-    paCost: 6
+    paCost: 3
     pmCost: 0
-    maxTimesInTurn: 2
+    maxTimesInTurn: 1
+    executeAfterTurns: 1
+    effectDuration: 0
+    criticalProbability: 35
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Bruto Chain Punch
+    icon: {fileID: 0}
+    description: Inflicts Earth damage
+    element: 0
+    damage: 60
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 1
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 5
     executeAfterTurns: 0
     effectDuration: 0
-    criticalProbability: 10
+    criticalProbability: 40
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 200
+  hp: 600
   pa: 8
   pm: 4
-  ini: 45
-  res_e: -3
-  res_f: -8
-  res_a: 20
-  res_w: -17
-  att_e: 0
+  ini: 80
+  res_e: 51
+  res_f: 35
+  res_a: 56
+  res_w: 49
+  att_e: 8
   att_f: 0
-  att_a: 10
+  att_a: 15
   att_w: 0
   numberOfSummons: 0
   isEvocation: 0
@@ -200,8 +223,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.503637, y: 0.09992731}
-    oldSize: {x: 5, y: 5}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -286,7 +286,9 @@ public class Character : MonoBehaviour
             }
         }
 
-        if (isDebugEnabled && Input.GetKeyDown(KeyCode.D)) {
+        // DEBUG TO REMOVE
+        if (Input.GetKeyDown(KeyCode.D)) {
+            Debug.LogWarning("Debug cheat command!");
             List<Character> tempDmg = new List<Character>();
             tempDmg.AddRange(TurnsManager.Instance.turns);
             foreach (Character c in tempDmg)

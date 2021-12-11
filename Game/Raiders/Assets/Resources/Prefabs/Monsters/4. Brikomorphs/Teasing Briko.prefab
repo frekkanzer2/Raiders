@@ -129,7 +129,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: Inflicts Earth damage
     element: 0
-    damage: 50
+    damage: 60
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -148,7 +148,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 750
+  hp: 600
   pa: 8
   pm: 4
   ini: 80
@@ -224,7 +224,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.503637, y: 0.09992731}
-    oldSize: {x: 4, y: 4}
+    oldSize: {x: 5, y: 5}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
