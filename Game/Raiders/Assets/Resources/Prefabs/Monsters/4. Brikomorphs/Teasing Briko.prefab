@@ -119,7 +119,7 @@ MonoBehaviour:
     executeAfterTurns: 1
     effectDuration: 0
     criticalProbability: 25
-    hasEffect: 0
+    hasEffect: 1
     isEffectOnly: 0
     canUseInEmptyCell: 0
     isJump: 0

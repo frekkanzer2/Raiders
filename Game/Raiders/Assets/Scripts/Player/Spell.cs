@@ -149,7 +149,10 @@ public class Spell {
         caster.addSpell(spell);
         if (spell.hasEffect) {
             // SPECIALIZATIONS HERE
-            SPELL_SPECIALIZATION(caster, targetBlock, spell);
+            if (!(caster is Monster))
+                SPELL_SPECIALIZATION(caster, targetBlock, spell);
+            else
+                MONSTER_SPELL_SPECIALIZATION(caster, targetBlock, spell);
         }
     }
 
@@ -312,6 +315,23 @@ public class Spell {
             Debug.LogError("Exception throws: " + e.StackTrace);
         }
     }
+
+    public static void MONSTER_SPELL_SPECIALIZATION(Character caster, Block targetBlock, Spell spell) {
+        try {
+            if (spell.name == "Brikocoop") EXECUTE_BRIKOCOOP(caster, spell);
+            else if (spell.name == "Briko Assault") EXECUTE_BRIKOASSAULT(caster, targetBlock, spell);
+            else if (spell.name == "Briko Stimulation") EXECUTE_BRIKO_STIMULATION(caster, spell);
+
+            // ADD HERE ELSE IF (...) ...
+            else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
+        } catch (Exception e) {
+            Debug.LogError("Exception throws: " + e.StackTrace);
+        }
+    }
+
+    #endregion
+
+    #region CHARACTER SPELLS SPECIALIZATION
 
     public static void EXECUTE_JUMP(Character caster, Block targetBlock) {
         if (!caster.canMovedByEffects) return;
@@ -1510,6 +1530,72 @@ public class Spell {
         }
         caster.addEvent(pue);
         pue.useIstantanely();
+    }
+
+    #endregion
+
+    #region MONSTER SPELLS SPECIALIZATION
+
+    public static void EXECUTE_BRIKOCOOP(Character caster, Spell s) {
+        foreach (Character c in ut_getAllies(caster))
+            c.receiveHeal(s.damage);
+    }
+
+    public static void EXECUTE_BRIKOASSAULT(Character caster, Block targetBlock, Spell s) {
+        if (!caster.canMovedByEffects) return;
+        Coordinate casterCoord = caster.connectedCell.GetComponent<Block>().coordinate;
+        Coordinate targetCoord = targetBlock.coordinate;
+        if (casterCoord.row == targetCoord.row && casterCoord.column < targetCoord.column) {
+            // jump to the right
+            Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row, targetCoord.column + 1));
+            if (toJump == null) return;
+            if (toJump.linkedObject != null) return;
+            if (caster.connectedCell.GetComponent<Block>() != null)
+                caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            caster.connectedCell = toJump.gameObject;
+            toJump.linkedObject = caster.gameObject;
+            Vector2 newPosition = Coordinate.getPosition(toJump.coordinate);
+            caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
+        } else if (casterCoord.row == targetCoord.row && casterCoord.column > targetCoord.column) {
+            // jump to the left
+            Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row, targetCoord.column - 1));
+            if (toJump == null) return;
+            if (toJump.linkedObject != null) return;
+            if (caster.connectedCell.GetComponent<Block>() != null)
+                caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            caster.connectedCell = toJump.gameObject;
+            toJump.linkedObject = caster.gameObject;
+            Vector2 newPosition = Coordinate.getPosition(toJump.coordinate);
+            caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
+        } else if (casterCoord.column == targetCoord.column && casterCoord.row > targetCoord.row) {
+            // upper jump
+            Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row - 1, targetCoord.column));
+            if (toJump == null) return;
+            if (toJump.linkedObject != null) return;
+            if (caster.connectedCell.GetComponent<Block>() != null)
+                caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            caster.connectedCell = toJump.gameObject;
+            toJump.linkedObject = caster.gameObject;
+            Vector2 newPosition = Coordinate.getPosition(toJump.coordinate);
+            caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
+        } else if (casterCoord.column == targetCoord.column && casterCoord.row < targetCoord.row) {
+            // down jump
+            Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row + 1, targetCoord.column));
+            if (toJump == null) return;
+            if (toJump.linkedObject != null) return;
+            if (caster.connectedCell.GetComponent<Block>() != null)
+                caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            caster.connectedCell = toJump.gameObject;
+            toJump.linkedObject = caster.gameObject;
+            Vector2 newPosition = Coordinate.getPosition(toJump.coordinate);
+            caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
+        }
+        caster.setZIndex(caster.connectedCell.GetComponent<Block>());
+    }
+
+    public static void EXECUTE_BRIKO_STIMULATION(Character caster, Spell s) {
+        foreach (Character c in ut_getAllies(caster))
+            c.addEvent(new BrikoStimulationEvent("Briko Stimulation", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
 
     #endregion
