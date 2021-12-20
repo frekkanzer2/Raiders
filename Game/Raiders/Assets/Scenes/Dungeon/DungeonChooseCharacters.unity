@@ -2742,6 +2742,46 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 12
           column: 9
+  - name: Brutomorphs
+    bossIcon: {fileID: 21300000, guid: 5344838dabce9744c925d45de7dd6ea6, type: 3}
+    monsters:
+    - name: Raging Bruto
+      prefab: {fileID: 557098361630938699, guid: 10d42dd19db78264784b177ca2b35df6, type: 3}
+      sprite: {fileID: 21300000, guid: 724f4a0d80763fa4298c679786ae6f8a, type: 3}
+    - name: Frenzied Bruto
+      prefab: {fileID: 557098361630938699, guid: 683b28d631535cc4991833d8f7b70c16, type: 3}
+      sprite: {fileID: 21300000, guid: 7ac83b91de50d124eb954875bdfb024c, type: 3}
+    - name: Pernicious Bruto
+      prefab: {fileID: 557098361630938699, guid: 65d7915848ec5fd48947ac6861b5481c, type: 3}
+      sprite: {fileID: 21300000, guid: 88232f37bdafa194fbd98c3f2333dbed, type: 3}
+    - name: Virulent Bruto
+      prefab: {fileID: 557098361630938699, guid: 94813e6d9ae80a44bb8b166a81a07887, type: 3}
+      sprite: {fileID: 21300000, guid: 236bece7d0aa577469b154fe9b19cb26, type: 3}
+    - name: Relentless Bruto
+      prefab: {fileID: 557098361630938699, guid: 785990ce4638c9549a1f7a0c55d7cf24, type: 3}
+      sprite: {fileID: 21300000, guid: 6956882a80c7f4c46a8eac6d374a0e3f, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 4
+        spawnCoordinates:
+        - row: 3
+          column: 7
+        - row: 5
+          column: 4
+        - row: 5
+          column: 7
+        - row: 10
+          column: 4
+    - roomNumber: 2
+      monstersAndQuantity: []
+    - roomNumber: 3
+      monstersAndQuantity: []
+    - roomNumber: 4
+      monstersAndQuantity: []
+    - roomNumber: 5
+      monstersAndQuantity: []
   - name: Pichon Dungeon
     bossIcon: {fileID: 21300000, guid: 32f4e71574654f7488f9ea85ed78fdea, type: 3}
     monsters:

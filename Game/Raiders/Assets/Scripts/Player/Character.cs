@@ -137,6 +137,7 @@ public class Character : MonoBehaviour
             s.value = this.actual_hp;
         }
 
+        // In-game movement when pushed from enemies
         if (isForcedMoving && !this.isDead) {
             if (this.transform.position.z > -20) this.transform.position = new Vector3(
                     this.transform.position.x,
@@ -176,13 +177,19 @@ public class Character : MonoBehaviour
 
         // Don't execute following code if you are not the active player!
         if (TurnsManager.isGameStarted) {
-            if (!this.isEvocation)
+            if (!this.isEvocation && !(this is Monster))
                 if (this.name != TurnsManager.active.name || this.team != TurnsManager.active.team) {
                     return;
                 }
             if (this.isEvocation) {
                 if (!TurnsManager.active.isEvocation) return;
                 if (((Evocation)this).getCompleteName() != ((Evocation)TurnsManager.active).getCompleteName() || this.team != TurnsManager.active.team) {
+                    return;
+                }
+            }
+            if (this is Monster) {
+                if (!(TurnsManager.active is Monster)) return;
+                if (((Monster)this).getCompleteName() != ((Monster)TurnsManager.active).getCompleteName() || this.team != TurnsManager.active.team) {
                     return;
                 }
             }
@@ -217,6 +224,9 @@ public class Character : MonoBehaviour
                 }
             }
         }
+
+        // Following code must be executed if and only if the actual player is not the Monster
+        if (this is Monster) return;
 
         // While playing...
         if (Input.GetMouseButtonDown(0) && !isMoving && TurnsManager.isGameStarted) {
