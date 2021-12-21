@@ -182,6 +182,10 @@ MonoBehaviour:
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+  behaviour:
+    spellsOrderToCheckId: 00000000
+    movementAfterFight: 2
+    movementWhenCannotAttack: 1
   id: 0
   isCommunionActive: 0
 --- !u!61 &8528018890230597465
@@ -201,7 +205,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.6085271, y: 0.1537467}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 2.3529413, y: 2.3529413}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -223,6 +227,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connected: {fileID: 0}
+  mustRemoveAsync: 0
+  isExecuting: 0
 --- !u!114 &-2347270675974649033
 MonoBehaviour:
   m_ObjectHideFlags: 0

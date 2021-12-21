@@ -666,8 +666,6 @@ public class Character : MonoBehaviour
             analyzed.AddRange(leafs);
             leafs.Clear();
             leafs.AddRange(newLeafs);
-            if (leafs.Count >= 200)
-                Debug.LogWarning("Leafs new dimension: " + leafs.Count);
             newLeafs.Clear();
         }
         return visitedBlocks;
