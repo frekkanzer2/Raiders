@@ -107,4 +107,21 @@ public class Block : MonoBehaviour {
         return list;
     }
 
+    public List<Block> getFreeAdjacentBlocksWithEnemy(int teamToSearch) {
+        List<Block> list = new List<Block>();
+        Block adj = Map.Instance.getBlock(new Coordinate(this.coordinate.row, this.coordinate.column + 1));
+        if (adj != null)
+            if (adj.isFree || adj.linkedObject.GetComponent<Character>().team == teamToSearch) list.Add(adj);
+        adj = Map.Instance.getBlock(new Coordinate(this.coordinate.row, this.coordinate.column - 1));
+        if (adj != null)
+            if (adj.isFree || adj.linkedObject.GetComponent<Character>().team == teamToSearch) list.Add(adj);
+        adj = Map.Instance.getBlock(new Coordinate(this.coordinate.row + 1, this.coordinate.column));
+        if (adj != null)
+            if(adj.isFree || adj.linkedObject.GetComponent<Character>().team == teamToSearch) list.Add(adj);
+        adj = Map.Instance.getBlock(new Coordinate(this.coordinate.row - 1, this.coordinate.column));
+        if (adj != null)
+            if (adj.isFree || adj.linkedObject.GetComponent<Character>().team == teamToSearch) list.Add(adj);
+        return list;
+    }
+
 }

@@ -110,15 +110,19 @@ public class Character : MonoBehaviour
         actual_hp = hp;
         actual_pa = pa;
         actual_pm = pm;
-        if (pm <= 2)
-            movement_speed = 10;
-        else if (pm <= 4)
-            movement_speed = 16;
-        else if (pm <= 6)
-            movement_speed = 20;
-        else if (pm <= 8)
+        if (!(this is Monster)) {
+            if (pm <= 2)
+                movement_speed = 10;
+            else if (pm <= 4)
+                movement_speed = 16;
+            else if (pm <= 6)
+                movement_speed = 20;
+            else if (pm <= 8)
+                movement_speed = 25;
+            else movement_speed = 30;
+        } else {
             movement_speed = 25;
-        else movement_speed = 30;
+        }
         foreach (Spell s in spells) {
             s.link = this;
         }
@@ -365,7 +369,6 @@ public class Character : MonoBehaviour
         if (c is Evocation) secondName = ((Evocation)c).getCompleteName();
         else if (c is Monster) secondName = ((Monster)c).getCompleteName();
         else secondName = c.name;
-        Debug.Log("NAME 1: " + firstName + " | NAME 2: " + secondName);
         return firstName.Equals(secondName) && this.team == c.team;
     }
 
@@ -377,7 +380,6 @@ public class Character : MonoBehaviour
         if (c is Evocation) secondName = ((Evocation)c).getCompleteName();
         else if (c is Monster) secondName = ((Monster)c).getCompleteName();
         else secondName = c.name;
-        Debug.Log("NAME 1: " + firstName + " | NAME 2: " + secondName);
         return firstName.Equals(secondName);
     }
 
@@ -591,14 +593,14 @@ public class Character : MonoBehaviour
 
     #region IA-ALGORITHMS
 
-    private class Tree {
+    protected class Tree {
         public Node root;
         public Tree(Block start) {
             root = new Node(start);
         }
     }
 
-    private class Node {
+    protected class Node {
         public Node father;
         public Block item;
         public List<Node> childrens;
@@ -628,6 +630,9 @@ public class Character : MonoBehaviour
         public bool EqualsTo(Node n) {
             if (n.item.equalsTo(this.item)) return true;
             else return false;
+        }
+        public override bool Equals(object obj) {
+            return EqualsTo((Node)obj);
         }
     }
 
@@ -705,8 +710,6 @@ public class Character : MonoBehaviour
             analyzed.AddRange(leafs);
             leafs.Clear();
             leafs.AddRange(newLeafs);
-            if (leafs.Count >= 200)
-                Debug.LogError("Leafs new dimension: " + leafs.Count);
             newLeafs.Clear();
             foreach (Node leaf in leafs)
                 if (leaf.item.equalsTo(destination))
@@ -776,11 +779,9 @@ public class Character : MonoBehaviour
         // Reachable blocks
         List<Block> reachables = null;
         reachables = ai_getReachableBlocks(originBlock, origin.actual_pm);
-        Debug.Log("Found " + reachables.Count + " reachable blocks");
         // Checking all reachable blocks
         Task[] allTasks = new Task[bufferColored.Count];
         int taskIndex = 0;
-        Debug.Log("Searching in " + bufferColored.Count + " blocks");
         foreach (Block bufferedBlock in bufferColored) {
             allTasks[taskIndex] = Task.Factory.StartNew(
                     () => th_work_DestPath(
@@ -941,16 +942,6 @@ public class Character : MonoBehaviour
         }
         return toRemove; // This blocks will be colored with another colour
 
-    }
-
-    #endregion
-
-    #region IA-HEURISTICS
-
-    private int h_euclidian(Coordinate start, Coordinate destination, int weight = 1) {
-        float dx = Mathf.Abs(start.column - destination.column);
-        float dy = Mathf.Abs(start.row - destination.row);
-        return (int) (weight * Mathf.Sqrt(dx * dx + dy * dy));
     }
 
     #endregion

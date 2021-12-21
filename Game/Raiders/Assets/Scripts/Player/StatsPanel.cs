@@ -41,7 +41,7 @@ public class StatsPanel : MonoBehaviour
     }
 
     private void Start() {
-        Debug.Log("Created spell panel");
+
     }
 
     private void Update() {

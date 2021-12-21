@@ -40,7 +40,7 @@ public class Monster : Character {
 
     public override void newTurn() {
         base.newTurn();
-        StartCoroutine(executeMinMax(1f, true));
+        StartCoroutine(executeMinMax(0.5f, true));
     }
 
     public override bool Equals(object obj) {
@@ -131,8 +131,13 @@ public class Monster : Character {
                         Block retrieved = collided.GetComponent<Block>();
                         if (retrieved != null) {
                            if (retrieved.linkedObject != null) {
-                                canHit = false;
-                                break;
+                                Debug.Log("Considered object " + retrieved.linkedObject);
+                                if (retrieved.linkedObject.GetComponent<Monster>() != null) {
+                                    if (retrieved.linkedObject.GetComponent<Monster>().getCompleteName() != this.getCompleteName()) {
+                                        canHit = false;
+                                        break;
+                                    }
+                                }
                            }
                         }
                     }
@@ -161,12 +166,14 @@ public class Monster : Character {
     }
 
     IEnumerator executeMinMax(float timing, bool debugEnabled) {
+        float newTurnToWait = 3.5f;
         bool canExecute = true;
         bool hasAttacked = false;
         List<Block> whereToMove = null; // set to null after movement
         while (canExecute) {
             // Wait when a decision is made
             yield return new WaitForSeconds(timing);
+            newTurnToWait -= timing;
             whereToMove = null;
             List<Spell> validSpells = getCanExecuteSpells();
             Tuple<Spell, Character> toExecute = null;
@@ -178,8 +185,17 @@ public class Monster : Character {
             // If cannot execute spell, go ahead the character
             if (toExecute == null && this.getActualPM() > 0) {
                 Character close = getClosestEnemy();
-                if (getDistanceFromTarget(close) == 1) close = null;
+                if (!hasAttacked) {
+                    if (behaviour.movementWhenCannotAttack == MovementType.GoAhead &&
+                        getDistanceFromTarget(close) == 1)
+                        close = null;
+                } else {
+                    if (behaviour.movementAfterFight == MovementType.GoAhead &&
+                        getDistanceFromTarget(close) == 1)
+                        close = null;
+                }
                 if (close != null) {
+                    Debug.LogWarning("TARGET MOVE: " + close.name);
                     toMove = close.connectedCell.GetComponent<Block>();
                     if (toMove.getFreeAdjacentBlocks().Count == 0) toMove = null;
                 }
@@ -204,7 +220,12 @@ public class Monster : Character {
                 }
                 List<Block> path = null;
                 if (mt == MovementType.GoAhead) {
-                    path = ai_astarpath(this.connectedCell.GetComponent<Block>(), toMove, AI_SEARCHPATH_STEPS);
+                    int limit = this.getActualPM();
+                    if (limit >= 10) limit *= 2;
+                    else if (limit >= 8) limit = (int)(limit * 2.5f);
+                    else if (limit >= 5) limit *= 3;
+                    else limit *= 5;
+                    path = ai_reachEnemy(this.connectedCell.GetComponent<Block>(), toMove, limit);
                     if (path.Count >= 2) {
                         path.RemoveRange(2, path.Count - 2);
                         whereToMove = path;
@@ -240,7 +261,10 @@ public class Monster : Character {
                 } else if (mt == MovementType.Rest) {
                     whereToMove = null;
                 }
-                if (whereToMove != null) {
+	            if (whereToMove != null) {
+		            foreach(Block b in whereToMove) {
+		            	Debug.LogWarning(b.coordinate.display());
+		            }
                     this.setPath(whereToMove); // walk
                     this.decrementPM_withoutEffect(1);
                     if (debugEnabled) Debug.LogWarning("Enemy " + this.getCompleteName() + " is moving of 1 cell");
@@ -251,6 +275,13 @@ public class Monster : Character {
             }
         }
         if (debugEnabled) Debug.LogWarning("Enemy " + this.getCompleteName() + " will pass the turn now");
+        if (newTurnToWait <= 0f)
+            TurnsManager.Instance.OnNextTurnPressed();
+        else StartCoroutine(passTurnWithDelay(newTurnToWait));
+    }
+
+    IEnumerator passTurnWithDelay(float time) {
+        yield return new WaitForSeconds(time);
         TurnsManager.Instance.OnNextTurnPressed();
     }
 
@@ -258,171 +289,65 @@ public class Monster : Character {
 
     #region IA-ALGORITHMS
 
-    private int AI_SEARCHPATH_STEPS = 30;
-
-    private List<Block> ai_astarpath(Block source, Block destination, int iterationLimit) {
-        List<Block> BACKUP_PATH = null;
-        List<Block> resultPath = null;
-        List<Tuple<List<Block>, float>> queue = new List<Tuple<List<Block>, float>>();
-        List<Block> inject = new List<Block>();
-        inject.Add(source.GetComponent<Block>());
-        Tuple<List<Block>, float> start = new Tuple<List<Block>, float>(inject, h_euclidian(source.GetComponent<Block>().coordinate, destination.coordinate, 2));
-        queue.Add(start);
+    private List<Block> ai_reachEnemy(Block source, Block destination, int iterationLimit) {
+        List<Node> leafs = new List<Node>();
+        List<Node> analyzed = new List<Node>();
+        Tree master = new Tree(source);
+        leafs.Add(master.root);
+        List<Block> path = null;
+        Node reached = null;
         int counter = 0;
-        while (counter < iterationLimit && queue.Count > 0) {
+        while (reached == null && leafs.Count > 0 && counter <= iterationLimit) {
             counter++;
-            List<Tuple<List<Block>, float>> toDelete = new List<Tuple<List<Block>, float>>();
-            List<Tuple<List<Block>, float>> toAdd = new List<Tuple<List<Block>, float>>();
-            Tuple<List<Block>, float> record = queue[0];
-            bool addedToDelete = false;
-            List<Block> tracking = record.Item1; // getting path
-            BACKUP_PATH = new List<Block>();
-            BACKUP_PATH.AddRange(tracking); // Saving actual tracking path
-            Block lastNode = tracking[tracking.Count - 1]; // actual node where we're working on
-            // GETTING ADIACENT BLOCKS
-            Block _tmp = Map.Instance.getBlock(new Coordinate(lastNode.coordinate.row, lastNode.coordinate.column + 1));
-            if (_tmp != null)
-                if (_tmp.linkedObject)
-                    _tmp = null;
-            float _tmp_h = -1;
-            bool hasFound = false;
-            if (_tmp != null) {
-                foreach (Block b in tracking) { // checking if block was already in the path
-                    if (b.equalsTo(_tmp)) {
-                        hasFound = true;
-                        break;
+            List<Node> newLeafs = new List<Node>();
+            foreach (Node leaf in leafs) {
+                Block analyzing = leaf.item;
+                List<Block> adjacents = analyzing.getFreeAdjacentBlocksWithEnemy(destination.linkedObject.GetComponent<Character>().team);
+                foreach (Block adjacent in adjacents) {
+                    Node temp = new Node(leaf, adjacent); // Creating a new leaf with the previous one as father
+                    if (leaf.father != null) {
+                        if (!temp.EqualsTo(leaf.father)) {
+                            bool found = false;
+                            foreach (Node alreadyPresent in analyzed)
+                                if (alreadyPresent.EqualsTo(temp)) {
+                                    found = true;
+                                    break;
+                                }
+                            if (!found) {
+                                newLeafs.Add(temp);
+                            }
+                        }
+                    } else {
+                        newLeafs.Add(temp);
                     }
                 }
-                if (!hasFound) {
-                    // replace old path with new path
-                    if (!addedToDelete) toDelete.Add(record);
-                    addedToDelete = true;
-                    _tmp_h = h_euclidian(_tmp.coordinate, destination.coordinate, 2);
-                    List<Block> newTracking = new List<Block>(tracking);
-                    newTracking.Add(_tmp);
-                    if (_tmp.equalsTo(destination)) resultPath = newTracking;
-                    toAdd.Add(new Tuple<List<Block>, float>(newTracking, _tmp_h));
-                } else {
-                    // if the new node is already in the path, it's a cycle!
-                    // so the path is not good, we'll delete it
-                    if (!addedToDelete) toDelete.Add(record);
-                    addedToDelete = true;
-                }
             }
-            _tmp = Map.Instance.getBlock(new Coordinate(lastNode.coordinate.row, lastNode.coordinate.column - 1));
-            if (_tmp != null)
-                if (_tmp.linkedObject)
-                    _tmp = null;
-            _tmp_h = -1;
-            hasFound = false;
-            if (_tmp != null) {
-                foreach (Block b in tracking) { // checking if block was already in the path
-                    if (b.equalsTo(_tmp)) {
-                        hasFound = true;
-                        break;
-                    }
-                }
-                if (!hasFound) {
-                    // replace old path with new path
-                    if (!addedToDelete) toDelete.Add(record);
-                    addedToDelete = true;
-                    _tmp_h = h_euclidian(_tmp.coordinate, destination.coordinate, 2);
-                    List<Block> newTracking = new List<Block>(tracking);
-                    newTracking.Add(_tmp);
-                    if (_tmp.equalsTo(destination)) resultPath = newTracking;
-                    toAdd.Add(new Tuple<List<Block>, float>(newTracking, _tmp_h));
-                } else {
-                    // if the new node is already in the path, it's a cycle!
-                    // so the path is not good, we'll delete it
-                    if (!addedToDelete) toDelete.Add(record);
-                    addedToDelete = true;
-                }
+            analyzed.AddRange(leafs);
+            leafs.Clear();
+            leafs.AddRange(newLeafs);
+            newLeafs.Clear();
+            foreach (Node leaf in leafs) {
+                if (leaf.item.equalsTo(destination))
+                    reached = leaf;
             }
-            _tmp = Map.Instance.getBlock(new Coordinate(lastNode.coordinate.row + 1, lastNode.coordinate.column));
-            if (_tmp != null)
-                if (_tmp.linkedObject)
-                    _tmp = null;
-            _tmp_h = -1;
-            hasFound = false;
-            if (_tmp != null) {
-                foreach (Block b in tracking) { // checking if block was already in the path
-                    if (b.equalsTo(_tmp)) {
-                        hasFound = true;
-                        break;
-                    }
-                }
-                if (!hasFound) {
-                    // replace old path with new path
-                    if (!addedToDelete) toDelete.Add(record);
-                    addedToDelete = true;
-                    _tmp_h = h_euclidian(_tmp.coordinate, destination.coordinate, 2);
-                    List<Block> newTracking = new List<Block>(tracking);
-                    newTracking.Add(_tmp);
-                    if (_tmp.equalsTo(destination)) resultPath = newTracking;
-                    toAdd.Add(new Tuple<List<Block>, float>(newTracking, _tmp_h));
-                } else {
-                    // if the new node is already in the path, it's a cycle!
-                    // so the path is not good, we'll delete it
-                    if (!addedToDelete) toDelete.Add(record);
-                    addedToDelete = true;
-                }
-            }
-            _tmp = Map.Instance.getBlock(new Coordinate(lastNode.coordinate.row - 1, lastNode.coordinate.column));
-            if (_tmp != null)
-                if (_tmp.linkedObject) {
-                    _tmp = null;
-                }
-            _tmp_h = -1;
-            hasFound = false;
-            if (_tmp != null) {
-                foreach (Block b in tracking) { // checking if block was already in the path
-                    if (b.equalsTo(_tmp)) {
-                        hasFound = true;
-                        break;
-                    }
-                }
-                if (!hasFound) {
-                    // replace old path with new path
-                    if (!addedToDelete) toDelete.Add(record);
-                    addedToDelete = true;
-                    _tmp_h = h_euclidian(_tmp.coordinate, destination.coordinate, 2);
-                    List<Block> newTracking = new List<Block>(tracking);
-                    newTracking.Add(_tmp);
-                    if (_tmp.equalsTo(destination)) resultPath = newTracking;
-                    toAdd.Add(new Tuple<List<Block>, float>(newTracking, _tmp_h));
-                } else {
-                    // if the new node is already in the path, it's a cycle!
-                    // so the path is not good, we'll delete it
-                    if (!addedToDelete) toDelete.Add(record);
-                    addedToDelete = true;
-                }
-            }
-            if (resultPath == null) {
-                // Apply recorded edits
-                foreach (Tuple<List<Block>, float> r in toDelete) {
-                    queue.Remove(r);
-                }
-                foreach (Tuple<List<Block>, float> r in toAdd) {
-                    queue.Add(r);
-                }
-                // Sorting list
-                AStarTupleComparer astc = new AStarTupleComparer();
-                queue.Sort(astc);
-            } else break;
         }
-        if (resultPath == null)
-            resultPath = BACKUP_PATH;
-        return resultPath;
-    }
-
-    #endregion
-
-    #region IA-HEURISTICS
-
-    private int h_euclidian(Coordinate start, Coordinate destination, int weight = 1) {
-        float dx = Mathf.Abs(start.column - destination.column);
-        float dy = Mathf.Abs(start.row - destination.row);
-        return (int)(weight * Mathf.Sqrt(dx * dx + dy * dy));
+        if (reached != null) {
+            path = reached.getPathItemsToRoot();
+        } else {
+            // creating a backup path
+            Tuple<Node, int> minDistance = null;
+            foreach (Node n in leafs) {
+                Block considered = n.item;
+                int dist = getDistance(considered.coordinate, destination.coordinate);
+                if (minDistance == null) {
+                    minDistance = new Tuple<Node, int>(n, dist);
+                } else if (dist < minDistance.Item2) {
+                    minDistance = new Tuple<Node, int>(n, dist);
+                }
+            }
+            path = minDistance.Item1.getPathItemsToRoot();
+        }
+        return path;
     }
 
     #endregion

@@ -188,7 +188,6 @@ public class TurnsManager : MonoBehaviour
         active = turns[0];
         foreach (Character c in turns)
             allCharacters.Add(c);
-        Debug.Log(active);
         StartActiveCharTurn(false);
     }
 

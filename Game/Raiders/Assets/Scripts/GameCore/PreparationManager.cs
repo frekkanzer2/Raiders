@@ -182,7 +182,6 @@ public class PreparationManager : MonoBehaviour
         TurnsManager tm = GetComponent<TurnsManager>();
         Character ch = tm.getCharacterInTurns(ci.characterName, team);
         GameObject ch_go = ch.gameObject;
-        Debug.LogWarning("CONSIDERED BLOCK: " + consideredBlock.coordinate.display());
         ch_go.transform.position = Coordinate.getPosition(consideredBlock.coordinate);
         ch.connectedCell = consideredBlock.gameObject;
         consideredBlock.linkedObject = ch_go;
@@ -196,7 +195,6 @@ public class PreparationManager : MonoBehaviour
                 activateReadyButtons();
         }
         tm.addRelation(ch_go, ci);
-        Debug.Log("PRECALL");
         SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_SetHeroInCell);
         closeChooseScreen();
     }
@@ -318,7 +316,6 @@ public class PreparationManager : MonoBehaviour
     }
 
     public void closeChooseScreen() {
-        Debug.LogWarning("Closed screen here");
         panelChooseAlpha.SetActive(false);
         panelChooseBeta.SetActive(false);
         CameraDragDrop.canMove = true;
