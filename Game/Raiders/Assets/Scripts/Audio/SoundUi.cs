@@ -36,7 +36,6 @@ public class SoundUi : MonoBehaviour {
     }
 
     public void playAudio(AudioType type) {
-        Debug.Log("Play UI audio call");
         if (type == AudioType.Preview_ChooseHero)
             play(preview_chooseHero, 1);
         else if (type == AudioType.Preview_RemoveHero)
@@ -63,7 +62,6 @@ public class SoundUi : MonoBehaviour {
 
     private void play(AudioClip ac, int channel) {
         channel--;
-        Debug.LogWarning("Asking to play " + ac.name);
         AudioSource[] asources = this.gameObject.GetComponents<AudioSource>(); // returns 0 and 1 AudioSources
         AudioSource asource = asources[channel];
         asource.clip = ac;
