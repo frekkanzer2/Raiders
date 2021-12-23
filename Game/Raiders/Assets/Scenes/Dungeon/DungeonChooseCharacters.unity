@@ -2775,7 +2775,27 @@ MonoBehaviour:
         - row: 10
           column: 4
     - roomNumber: 2
-      monstersAndQuantity: []
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 4
+        spawnCoordinates:
+        - row: 0
+          column: 0
+        - row: 0
+          column: 0
+        - row: 0
+          column: 0
+        - row: 0
+          column: 0
+      - monsterID: 1
+        quantity: 3
+        spawnCoordinates:
+        - row: 0
+          column: 0
+        - row: 0
+          column: 0
+        - row: 0
+          column: 0
     - roomNumber: 3
       monstersAndQuantity: []
     - roomNumber: 4

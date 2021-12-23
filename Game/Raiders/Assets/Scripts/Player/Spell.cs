@@ -158,6 +158,10 @@ public class Spell {
         }
     }
 
+    public bool isOffensiveSpell() {
+        return (this.element == Element.Air || this.element == Element.Fire || this.element == Element.Earth || this.element == Element.Water);
+    }
+
     #region SPELL SPECIALIZATIONS
 
     public static void SPELL_SPECIALIZATION(Character caster, Block targetBlock, Spell spell) {
@@ -1821,7 +1825,7 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
-        foreach (Character c in ut_getAllies(caster)) {
+        foreach (Character c in ut_getAllies(target)) {
             if (ut_isNearOf(target, c, 2)) {
                 c.inflictDamage(Spell.calculateDamage(caster, c, s));
             }

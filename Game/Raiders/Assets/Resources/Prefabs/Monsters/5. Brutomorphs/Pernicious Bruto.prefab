@@ -148,7 +148,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 200
+  hp: 125
   pa: 8
   pm: 4
   ini: 50
@@ -172,6 +172,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   isMoving: 0
   isForcedMoving: 0
+  isBotMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 
@@ -205,6 +206,10 @@ MonoBehaviour:
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+  behaviour:
+    spellsOrderToCheckId: 
+    movementAfterFight: 0
+    movementWhenCannotAttack: 0
   id: 0
   isCommunionActive: 0
 --- !u!61 &8528018890230597465
@@ -223,8 +228,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.5327332, y: 0.09447178}
+    oldSize: {x: 6.6666665, y: 6.6666665}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

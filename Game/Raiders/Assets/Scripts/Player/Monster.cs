@@ -65,7 +65,10 @@ public class Monster : Character {
     private Tuple<Spell, Character> chooseSpellToExecute(List<Spell> executables) {
         Tuple<Spell, Character> toReturn = null;
         foreach (Spell executable in executables) {
-            Character target = getTargetableEnemy(executable);
+            Character target = null;
+            if (executable.isOffensiveSpell())
+                target = getTargetableEnemy(executable);
+            else target = getTargetableAlly(executable);
             if (target != null) {
                 toReturn = new Tuple<Spell, Character>(executable, target);
                 Debug.Log("FOUND SPELL " + toReturn.Item1.name + " TO CAST ON " + toReturn.Item2.name);
@@ -137,8 +140,10 @@ public class Monster : Character {
         Character origin = this;
         Tuple<Character, int> tupleTargetable = new Tuple<Character, int>(null, -1);
         // checking can be target on each enemy
+        Debug.LogWarning("Getting targetable enemy for spell " + s.name);
         foreach (Character c in TurnsManager.Instance.turns) {
             if (!c.isDead && c.isEnemyOf(this) && getDistanceFromTarget(c) >= minRange && getDistanceFromTarget(c) <= maxRange) {
+                Debug.Log("CONSIDERING: " + c.name);
                 // Checking if there's an obstacle between caster and target
                 bool canHit = true;
                 if (!s.overObstacles) {
@@ -149,11 +154,15 @@ public class Monster : Character {
                         Block retrieved = collided.GetComponent<Block>();
                         if (retrieved != null) {
                            if (retrieved.linkedObject != null) {
+                                Debug.Log(retrieved.linkedObject.name);
                                 if (retrieved.linkedObject.GetComponent<Monster>() != null) {
                                     if (retrieved.linkedObject.GetComponent<Monster>().getCompleteName() != this.getCompleteName()) {
                                         canHit = false;
                                         break;
                                     }
+                                } else if (retrieved.linkedObject.GetComponent<Character>() != null && !retrieved.linkedObject.GetComponent<Character>().Equals(c)) {
+                                    canHit = false;
+                                    break;
                                 }
                            }
                         }
@@ -166,6 +175,48 @@ public class Monster : Character {
                 } else {
                     if (c.getActualHP() < tupleTargetable.Item2) tupleTargetable = new Tuple<Character, int>(c, c.getActualHP());
                     else if (c.getActualHP() == tupleTargetable.Item2 && getDistanceFromTarget(c) < getDistanceFromTarget(tupleTargetable.Item1)) tupleTargetable = new Tuple<Character, int>(c, c.getActualHP());
+                }
+            }
+        }
+        return tupleTargetable.Item1;
+    }
+
+    // CAN RETURN NULL
+    private Character getTargetableAlly(Spell s) {
+        // init
+        int minRange = s.minRange, maxRange = s.maxRange;
+        Character origin = this;
+        Tuple<Character, int> tupleTargetable = new Tuple<Character, int>(null, -1);
+        // checking can be target on each enemy
+        foreach (Character c in TurnsManager.Instance.turns) {
+            if (!c.isDead && !c.isEnemyOf(this) && getDistanceFromTarget(c) >= minRange && getDistanceFromTarget(c) <= maxRange) {
+                // Checking if there's an obstacle between caster and target
+                bool canHit = true;
+                if (!s.overObstacles) {
+                    Debug.DrawLine(origin.connectedCell.GetComponent<Block>().transform.position, c.gameObject.transform.position);
+                    RaycastHit2D[] hits = Physics2D.LinecastAll(origin.connectedCell.GetComponent<Block>().transform.position, c.gameObject.transform.position);
+                    foreach (RaycastHit2D hit in hits) {
+                        GameObject collided = hit.collider.gameObject;
+                        Block retrieved = collided.GetComponent<Block>();
+                        if (retrieved != null) {
+                            if (retrieved.linkedObject != null) {
+                                if (retrieved.linkedObject.GetComponent<Monster>() != null) {
+                                    if (retrieved.linkedObject.GetComponent<Monster>().getCompleteName() != this.getCompleteName()) {
+                                        canHit = false;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if (!canHit) continue; // next enemy
+                // Assignment
+                if (tupleTargetable.Item1 == null) {
+                    tupleTargetable = new Tuple<Character, int>(c, c.getActualHP());
+                } else {
+                    if (c.getActualHP() > tupleTargetable.Item2) tupleTargetable = new Tuple<Character, int>(c, c.getActualHP());
+                    else if (c.getActualHP() == tupleTargetable.Item2 && getDistanceFromTarget(c) > getDistanceFromTarget(tupleTargetable.Item1)) tupleTargetable = new Tuple<Character, int>(c, c.getActualHP());
                 }
             }
         }
