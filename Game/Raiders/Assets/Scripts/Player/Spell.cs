@@ -321,6 +321,9 @@ public class Spell {
             if (spell.name == "Brikocoop") EXECUTE_BRIKOCOOP(caster, spell);
             else if (spell.name == "Briko Assault") EXECUTE_BRIKOASSAULT(caster, targetBlock, spell);
             else if (spell.name == "Briko Stimulation") EXECUTE_BRIKO_STIMULATION(caster, spell);
+            else if (spell.name == "Sting") EXECUTE_STING(targetBlock, spell);
+            else if (spell.name == "Wild Lash") EXECUTE_RETREAT_ARROW(caster, targetBlock);
+            else if (spell.name == "Manifold Bramble") EXECUTE_MANIFOLD_BRAMBLE(caster, targetBlock, spell);
 
             // ADD HERE ELSE IF (...) ...
             else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -1812,6 +1815,17 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         foreach (Character c in ut_getAllies(caster))
             c.addEvent(new BrikoStimulationEvent("Briko Stimulation", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_MANIFOLD_BRAMBLE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        foreach (Character c in ut_getAllies(caster)) {
+            if (ut_isNearOf(target, c, 2)) {
+                c.inflictDamage(Spell.calculateDamage(caster, c, s));
+            }
+        }
     }
 
     #endregion
