@@ -52,6 +52,8 @@ public class Character : MonoBehaviour
     public bool isMoving = false;
     [HideInInspector]
     public bool isForcedMoving = false;
+    [HideInInspector]
+    public bool isBotMoving = false;
     private List<Block> followPath = new List<Block>();
     private Block followingBlock = null;
     private int movement_speed = 0;
@@ -70,6 +72,14 @@ public class Character : MonoBehaviour
         followingBlock = path[0];
         followPath.RemoveAt(0);
         isForcedMoving = true;
+    }
+
+    public void setMonsterPath(List<Block> path) {
+        if (isDead) return;
+        followPath = path;
+        followingBlock = path[0];
+        followPath.RemoveAt(0);
+        isBotMoving = true;
     }
 
     public void addEvent(ParentEvent pe) {
@@ -121,7 +131,7 @@ public class Character : MonoBehaviour
                 movement_speed = 25;
             else movement_speed = 30;
         } else {
-            movement_speed = 25;
+            movement_speed = 35;
         }
         foreach (Spell s in spells) {
             s.link = this;
@@ -164,17 +174,55 @@ public class Character : MonoBehaviour
                     ToxicInjectionEvent tie = (ToxicInjectionEvent)this.getEventSystem().getEvents("Toxic Injection")[0];
                     this.inflictDamage(Spell.calculateDamage(tie.referencedSpell.link, this, tie.referencedSpell) * this.getEventSystem().getEvents("Toxic Injection").Count);
                 }
-                GameObject previous_link = this.connectedCell;
-                previous_link.GetComponent<Block>().linkedObject = null;
-                this.connectedCell = followingBlock.gameObject;
-                followingBlock.GetComponent<Block>().linkedObject = this.gameObject;
-                setZIndex(followingBlock);
-                if (followPath.Count > 0) {
-                    followingBlock = followPath[0];
-                    followPath.RemoveAt(0);
-                } else {
-                    followingBlock = null;
-                    isForcedMoving = false;
+                if (!this.isDead) {
+                    GameObject previous_link = this.connectedCell;
+                    previous_link.GetComponent<Block>().linkedObject = null;
+                    this.connectedCell = followingBlock.gameObject;
+                    followingBlock.GetComponent<Block>().linkedObject = this.gameObject;
+                    setZIndex(followingBlock);
+                    if (followPath.Count > 0) {
+                        followingBlock = followPath[0];
+                        followPath.RemoveAt(0);
+                    } else {
+                        followingBlock = null;
+                        isForcedMoving = false;
+                    }
+                }
+            }
+        }
+
+        // In-game movement when pushed from enemies
+        if (isBotMoving && !this.isDead && this is Monster) {
+            if (this.transform.position.z > -20) this.transform.position = new Vector3(
+                    this.transform.position.x,
+                    this.transform.position.y,
+                    -20
+                );
+            if (followingBlock.isFree) {
+                transform.position = Vector3.MoveTowards(
+                    transform.position,
+                    new Vector3(
+                        Coordinate.getPosition(followingBlock.coordinate).x,
+                        Coordinate.getPosition(followingBlock.coordinate).y,
+                        -20
+                    ),
+                    30 * Time.deltaTime // Speed
+                );
+            }
+            if (new Vector2(transform.position.x, transform.position.y) == Coordinate.getPosition(followingBlock.coordinate) && !this.isDead) {
+                if (!this.isDead) {
+                    GameObject previous_link = this.connectedCell;
+                    previous_link.GetComponent<Block>().linkedObject = null;
+                    this.connectedCell = followingBlock.gameObject;
+                    followingBlock.GetComponent<Block>().linkedObject = this.gameObject;
+                    setZIndex(followingBlock);
+                    if (followPath.Count > 0) {
+                        followingBlock = followPath[0];
+                        followPath.RemoveAt(0);
+                    } else {
+                        followingBlock = null;
+                        isBotMoving = false;
+                    }
                 }
             }
         }
@@ -395,7 +443,10 @@ public class Character : MonoBehaviour
     }
 
     public virtual void inflictDamage(int damage, bool mustSkip = false) {
-        if (isDead) return;
+        if (isDead)
+            return;
+        if (mustSkip && damage >= getActualHP() + actual_shield)
+            damage = (getActualHP() + actual_shield) - 1;
         if (actual_shield > 0) {
             int prev_sh = actual_shield; // 80
             actual_shield -= damage; // 40
@@ -414,8 +465,7 @@ public class Character : MonoBehaviour
             return;
         if (this.actual_hp - damage < 0) actual_hp = 0;
         else this.actual_hp -= damage;
-        if (actual_hp == 0 && !mustSkip) setDead();
-        else if (actual_hp == 0 && mustSkip) actual_hp = 1;
+        if (actual_hp == 0) setDead();
         sos.addEffect_DMG_Heal(StatsOutputSystem.Effect.HP, damage);
     }
 

@@ -78,13 +78,11 @@ public class TurnsManager : MonoBehaviour
     public void initialize() {
         if (hasInitialized) return;
         hasInitialized = true;
-        Debug.Log("TURNS INITIALIZATION");
         isGameStarted = false;
         active = null;
         spawnPositions.Clear();
         List<Character> first = new List<Character>();
         List<Character> second = new List<Character>();
-        Debug.Log("Initialization with n chars in total: n = " + turns.Count);
         foreach (Character c in turns) {
             if (c.team == 1) first.Add(c);
             if (c.team == 2) second.Add(c);
@@ -92,7 +90,6 @@ public class TurnsManager : MonoBehaviour
         IniComparer ic = new IniComparer();
         first.Sort(ic);
         second.Sort(ic);
-        Debug.LogWarning("Ended A");
         // sum of ini
         int first_ini = 0, second_ini = 0;
         for (int i = 0; i < first.Count; i++) {
@@ -102,38 +99,30 @@ public class TurnsManager : MonoBehaviour
             second_ini += second[i].GetComponent<Character>().ini;
         }
         turns.Clear();
-        Debug.LogWarning("Ended B");
         if (first_ini == second_ini) {
             int choise = UnityEngine.Random.Range(0, 2);
             if (choise == 0) first_ini++;
             else second_ini++;
         }
-        Debug.LogWarning("Ended C");
         if (first_ini > second_ini) {
-            Debug.LogWarning("AAA");
             for (int i = 0; i < first.Count; i++) {
-                Debug.LogWarning("COUNT " + i);
                 turns.Add(first[i]);
                 if (i < second.Count)
                     turns.Add(second[i]);
             }
         } else {
-            Debug.LogWarning("BBB");
             for (int i = 0; i < first.Count; i++) {
-                Debug.LogWarning("COUNT " + i);
                 if (i < second.Count)
                     turns.Add(second[i]);
                 turns.Add(first[i]);
             }
         }
-        Debug.LogWarning("Ended D");
         if (first.Count < second.Count) {
             // Monster version
             for (int i = first.Count; i < second.Count; i++) {
                 turns.Add(second[i]);
             }
         }
-        Debug.LogWarning("Ended E");
     }
 
     public void OnStartGame() {

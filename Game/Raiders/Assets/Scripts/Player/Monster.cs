@@ -35,7 +35,7 @@ public class Monster : Character {
     }
 
     public override void inflictDamage(int damage, bool mustSkip = false) {
-        base.inflictDamage(damage);
+        base.inflictDamage(damage, mustSkip);
     }
 
     public override void newTurn() {
@@ -107,6 +107,30 @@ public class Monster : Character {
     }
 
     // CAN RETURN NULL
+    private Character getClosestEnemy(List<Character> ignore) {
+        Tuple<Character, int> tupleClosest = new Tuple<Character, int>(null, -1);
+        foreach (Character c in TurnsManager.Instance.turns) {
+            if (!c.isDead && c.isEnemyOf(this)) {
+                bool canConsider = true;
+                foreach(Character i in ignore) {
+                    if (c.Equals(i)) {
+                        canConsider = false;
+                        break;
+                    }
+                }
+                if (!canConsider) continue;
+                if (tupleClosest.Item1 == null) tupleClosest = new Tuple<Character, int>(c, getDistanceFromTarget(c));
+                else {
+                    int distance = getDistanceFromTarget(c);
+                    if (distance < tupleClosest.Item2) tupleClosest = new Tuple<Character, int>(c, getDistanceFromTarget(c));
+                    else if (distance == tupleClosest.Item2 && c.getActualHP() < tupleClosest.Item1.getActualHP()) tupleClosest = new Tuple<Character, int>(c, getDistanceFromTarget(c));
+                }
+            }
+        }
+        return tupleClosest.Item1;
+    }
+
+    // CAN RETURN NULL
     private Character getTargetableEnemy(Spell s) {
         // init
         int minRange = s.minRange, maxRange = s.maxRange;
@@ -115,12 +139,6 @@ public class Monster : Character {
         // checking can be target on each enemy
         foreach (Character c in TurnsManager.Instance.turns) {
             if (!c.isDead && c.isEnemyOf(this) && getDistanceFromTarget(c) >= minRange && getDistanceFromTarget(c) <= maxRange) {
-                Debug.LogError("Found " + c.name);
-                if (c.name == "Katina") { // DEBUG
-                    Debug.LogWarning("DISTANCE FROM " + c.name + ": " + getDistanceFromTarget(c));
-                    Debug.Log("Katina coords: " + c.connectedCell.GetComponent<Block>().coordinate.display());
-                    Debug.Log(this.getCompleteName() + " coords: " + this.connectedCell.GetComponent<Block>().coordinate.display());
-                }
                 // Checking if there's an obstacle between caster and target
                 bool canHit = true;
                 if (!s.overObstacles) {
@@ -131,7 +149,6 @@ public class Monster : Character {
                         Block retrieved = collided.GetComponent<Block>();
                         if (retrieved != null) {
                            if (retrieved.linkedObject != null) {
-                                Debug.Log("Considered object " + retrieved.linkedObject);
                                 if (retrieved.linkedObject.GetComponent<Monster>() != null) {
                                     if (retrieved.linkedObject.GetComponent<Monster>().getCompleteName() != this.getCompleteName()) {
                                         canHit = false;
@@ -143,23 +160,13 @@ public class Monster : Character {
                     }
                 }
                 if (!canHit) continue; // next enemy
-                Debug.Log("Can hit enemy " + c.name + " because there are no obstacles");
                 // Assignment
                 if (tupleTargetable.Item1 == null) {
-                    Debug.Log("NULL CASE - ASSIGNING FOR FIRST TIME " + c.name);
                     tupleTargetable = new Tuple<Character, int>(c, c.getActualHP());
                 } else {
                     if (c.getActualHP() < tupleTargetable.Item2) tupleTargetable = new Tuple<Character, int>(c, c.getActualHP());
                     else if (c.getActualHP() == tupleTargetable.Item2 && getDistanceFromTarget(c) < getDistanceFromTarget(tupleTargetable.Item1)) tupleTargetable = new Tuple<Character, int>(c, c.getActualHP());
-                    Debug.Log("MINOR CASE - ASSIGNING " + c.name);
                 }
-            } else {
-                if (c.isEnemyOf(this))
-                    if (c.name == "Katina") { // DEBUG
-                        Debug.LogWarning("DISTANCE FROM " + c.name + ": " + getDistanceFromTarget(c));
-                        Debug.Log("Katina coords: " + c.connectedCell.GetComponent<Block>().coordinate.display());
-                        Debug.Log(this.getCompleteName() + " coords: " + this.connectedCell.GetComponent<Block>().coordinate.display());
-                    }
             }
         }
         return tupleTargetable.Item1;
@@ -170,9 +177,10 @@ public class Monster : Character {
         bool canExecute = true;
         bool hasAttacked = false;
         List<Block> whereToMove = null; // set to null after movement
-        while (canExecute) {
+        while (canExecute && !this.isDead) {
             // Wait when a decision is made
             yield return new WaitForSeconds(timing);
+            
             newTurnToWait -= timing;
             whereToMove = null;
             List<Spell> validSpells = getCanExecuteSpells();
@@ -195,10 +203,10 @@ public class Monster : Character {
                         close = null;
                 }
                 if (close != null) {
-                    Debug.LogWarning("TARGET MOVE: " + close.name);
                     toMove = close.connectedCell.GetComponent<Block>();
                     if (toMove.getFreeAdjacentBlocks().Count == 0) toMove = null;
                 }
+                
             }
             // Execute the action
             if (toExecute == null && toMove == null) {
@@ -206,10 +214,12 @@ public class Monster : Character {
                 canExecute = false;
                 if (debugEnabled) Debug.LogWarning("Enemy " + this.getCompleteName() + " cannot do any action!");
             } else if (toExecute != null) {
+                // EXECUTE SPELL
                 Spell.executeSpell(TurnsManager.active, toExecute.Item2.connectedCell.GetComponent<Block>(), toExecute.Item1);
                 hasAttacked = true;
                 if (debugEnabled) Debug.LogWarning("Enemy " + this.getCompleteName() + " will attack with spell " + toExecute.Item1.name);
             } else if (toMove != null) {
+                // EXECUTE MOVEMENT
                 MovementType mt;
                 if (hasAttacked) {
                     // move after attack
@@ -261,11 +271,11 @@ public class Monster : Character {
                 } else if (mt == MovementType.Rest) {
                     whereToMove = null;
                 }
-	            if (whereToMove != null) {
-		            foreach(Block b in whereToMove) {
-		            	Debug.LogWarning(b.coordinate.display());
-		            }
-                    this.setPath(whereToMove); // walk
+                if (whereToMove != null) {
+                    foreach (Block b in whereToMove) {
+                        Debug.LogWarning(b.coordinate.display());
+                    }
+                    this.setMonsterPath(whereToMove); // walk
                     this.decrementPM_withoutEffect(1);
                     if (debugEnabled) Debug.LogWarning("Enemy " + this.getCompleteName() + " is moving of 1 cell");
                 } else {
@@ -275,9 +285,12 @@ public class Monster : Character {
             }
         }
         if (debugEnabled) Debug.LogWarning("Enemy " + this.getCompleteName() + " will pass the turn now");
-        if (newTurnToWait <= 0f)
-            TurnsManager.Instance.OnNextTurnPressed();
-        else StartCoroutine(passTurnWithDelay(newTurnToWait));
+        if (this.Equals(TurnsManager.active) && !this.isDead) {
+            // The turn may be changed for poison effects
+            if (newTurnToWait <= 0f)
+                TurnsManager.Instance.OnNextTurnPressed();
+            else StartCoroutine(passTurnWithDelay(newTurnToWait));
+        }
     }
 
     IEnumerator passTurnWithDelay(float time) {
