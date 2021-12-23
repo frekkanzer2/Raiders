@@ -198,7 +198,7 @@ public class Character : MonoBehaviour
                     this.transform.position.y,
                     -20
                 );
-            if (followingBlock.isFree) {
+            if (followingBlock == this.connectedCell.GetComponent<Block>() || followingBlock.isFree) {
                 transform.position = Vector3.MoveTowards(
                     transform.position,
                     new Vector3(
@@ -208,22 +208,25 @@ public class Character : MonoBehaviour
                     ),
                     30 * Time.deltaTime // Speed
                 );
-            }
-            if (new Vector2(transform.position.x, transform.position.y) == Coordinate.getPosition(followingBlock.coordinate) && !this.isDead) {
-                if (!this.isDead) {
-                    GameObject previous_link = this.connectedCell;
-                    previous_link.GetComponent<Block>().linkedObject = null;
-                    this.connectedCell = followingBlock.gameObject;
-                    followingBlock.GetComponent<Block>().linkedObject = this.gameObject;
-                    setZIndex(followingBlock);
-                    if (followPath.Count > 0) {
-                        followingBlock = followPath[0];
-                        followPath.RemoveAt(0);
-                    } else {
-                        followingBlock = null;
-                        isBotMoving = false;
+                if (new Vector2(transform.position.x, transform.position.y) == Coordinate.getPosition(followingBlock.coordinate) && !this.isDead) {
+                    if (!this.isDead) {
+                        GameObject previous_link = this.connectedCell;
+                        previous_link.GetComponent<Block>().linkedObject = null;
+                        this.connectedCell = followingBlock.gameObject;
+                        followingBlock.GetComponent<Block>().linkedObject = this.gameObject;
+                        setZIndex(followingBlock);
+                        if (followPath.Count > 0) {
+                            followingBlock = followPath[0];
+                            followPath.RemoveAt(0);
+                        } else {
+                            followingBlock = null;
+                            isBotMoving = false;
+                        }
                     }
                 }
+            } else {
+                isBotMoving = false;
+                followingBlock = null;
             }
         }
 

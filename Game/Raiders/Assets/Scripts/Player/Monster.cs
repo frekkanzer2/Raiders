@@ -192,7 +192,31 @@ public class Monster : Character {
             }
             // If cannot execute spell, go ahead the character
             if (toExecute == null && this.getActualPM() > 0) {
+                bool mustChangeTarget = false;
+                List<Character> ignored = new List<Character>();
                 Character close = getClosestEnemy();
+                if (close != null) {
+                    ignored.Add(close);
+                    toMove = close.connectedCell.GetComponent<Block>();
+                    if (toMove.getFreeAdjacentBlocks().Count == 0 && getDistanceFromTarget(close) > 1) {
+                        toMove = null;
+                        mustChangeTarget = true;
+                    }
+                }
+                // Cannot move because the target has no free adjacent cells
+                if (mustChangeTarget) {
+                    while(mustChangeTarget) {
+                        close = getClosestEnemy(ignored);
+                        if (close == null) break;
+                        mustChangeTarget = false;
+                        ignored.Add(close);
+                        toMove = close.connectedCell.GetComponent<Block>();
+                        if (toMove.getFreeAdjacentBlocks().Count == 0 && getDistanceFromTarget(close) > 1) {
+                            toMove = null;
+                            mustChangeTarget = true;
+                        } else { mustChangeTarget = false; }
+                    }
+                }
                 if (!hasAttacked) {
                     if (behaviour.movementWhenCannotAttack == MovementType.GoAhead &&
                         getDistanceFromTarget(close) == 1)
@@ -201,10 +225,6 @@ public class Monster : Character {
                     if (behaviour.movementAfterFight == MovementType.GoAhead &&
                         getDistanceFromTarget(close) == 1)
                         close = null;
-                }
-                if (close != null) {
-                    toMove = close.connectedCell.GetComponent<Block>();
-                    if (toMove.getFreeAdjacentBlocks().Count == 0) toMove = null;
                 }
                 
             }
