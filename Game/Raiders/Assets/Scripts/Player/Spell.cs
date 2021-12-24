@@ -326,7 +326,7 @@ public class Spell {
             else if (spell.name == "Briko Assault" || spell.name == "Bruto Assault") EXECUTE_BRIKOASSAULT(caster, targetBlock, spell);
             else if (spell.name == "Briko Stimulation") EXECUTE_BRIKO_STIMULATION(caster, spell);
             else if (spell.name == "Sting") EXECUTE_STING(targetBlock, spell);
-            else if (spell.name == "Wild Lash") EXECUTE_RETREAT_ARROW(caster, targetBlock);
+            else if (spell.name == "Wild Lash" || spell.name == "Breeze") EXECUTE_RETREAT_ARROW(caster, targetBlock);
             else if (spell.name == "Manifold Bramble") EXECUTE_MANIFOLD_BRAMBLE(caster, targetBlock, spell);
             else if (spell.name == "Bruto Stimulation") EXECUTE_BRUTO_STIMULATION(caster, spell);
             // ADD HERE ELSE IF (...) ...

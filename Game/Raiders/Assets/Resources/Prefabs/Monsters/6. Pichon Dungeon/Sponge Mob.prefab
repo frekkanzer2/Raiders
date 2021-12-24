@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 557098361630938741}
   - component: {fileID: 557098361630938698}
   - component: {fileID: 557098361630938740}
+  - component: {fileID: -912323072274804171}
   - component: {fileID: 8528018890230597465}
   - component: {fileID: 8914096617352650622}
   - component: {fileID: -2347270675974649033}
@@ -129,7 +130,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: f080b0c85b662ac498dbbcb1859957c2, type: 3}
     description: Heals the target
     element: 5
-    damage: 100
+    damage: 50
     lifeSteal: 0
     minRange: 0
     maxRange: 0
@@ -139,7 +140,7 @@ MonoBehaviour:
     paCost: 7
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 0
+    executeAfterTurns: 5
     effectDuration: 0
     criticalProbability: 0
     hasEffect: 0
@@ -172,6 +173,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   isMoving: 0
   isForcedMoving: 0
+  isBotMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 
@@ -205,6 +207,131 @@ MonoBehaviour:
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+--- !u!114 &-912323072274804171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ced9ac50935ee468f328a59e67782b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Sponge Mob
+  spells:
+  - link: {fileID: 0}
+    name: Scrub
+    icon: {fileID: 0}
+    description: earth dmg
+    element: 0
+    damage: 80
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 2
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 15
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Regeneration
+    icon: {fileID: 0}
+    description: Heals the target
+    element: 4
+    damage: 50
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 0
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 7
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 5
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  team: 1
+  hp: 1200
+  pa: 7
+  pm: 4
+  ini: 10
+  res_e: 14
+  res_f: -5
+  res_a: -5
+  res_w: 14
+  att_e: 20
+  att_f: 0
+  att_a: 0
+  att_w: 0
+  numberOfSummons: 0
+  isEvocation: 0
+  actual_hp: 0
+  actual_pa: 0
+  actual_pm: 0
+  connectedPreview: {fileID: 0}
+  connectedCell: {fileID: 0}
+  actual_shield: 0
+  isDead: 0
+  canMovedByEffects: 1
+  isMoving: 0
+  isForcedMoving: 0
+  isBotMoving: 0
+  spellToUse:
+    link: {fileID: 0}
+    name: 
+    icon: {fileID: 0}
+    description: 
+    element: 0
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 0
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 0
+    pmCost: 0
+    maxTimesInTurn: 0
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  summons: []
+  summonsIdCounter: 0
+  isDebugEnabled: 0
+  accumulationCounter: 0
+  criticShooting: 0
+  connectedSacrifice: {fileID: 0}
+  hasActivedSacrifice: 0
+  canCritical: 1
+  immuneCloseCombat: 0
+  behaviour:
+    spellsOrderToCheckId: 0100000000000000
+    movementAfterFight: 0
+    movementWhenCannotAttack: 1
+  id: 0
+  isCommunionActive: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -244,6 +371,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connected: {fileID: 0}
+  mustRemoveAsync: 0
+  isExecuting: 0
 --- !u!114 &-2347270675974649033
 MonoBehaviour:
   m_ObjectHideFlags: 0

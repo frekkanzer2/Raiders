@@ -134,17 +134,7 @@ public class Monster : Character {
     }
 
     private bool isLineRespected(Spell s, Coordinate start, Coordinate end) {
-        // on the right
-        if (start.column + s.minRange <= end.column && start.column + s.maxRange >= end.column && start.row == end.row)
-            return true;
-        // on the left
-        if (start.column - s.minRange >= end.column && start.column - s.maxRange <= end.column && start.row == end.row)
-            return true;
-        // on the bottom
-        if (start.row + s.minRange <= end.row && start.row + s.maxRange <= end.row && start.column == end.column)
-            return true;
-        // on the top
-        if (start.row - s.minRange >= end.row && start.row - s.maxRange >= end.row && start.column == end.column)
+        if ((start.column == end.column || start.row == end.row) && getDistance(start, end) >= s.minRange && getDistance(start, end) <= s.maxRange)
             return true;
         return false;
     }

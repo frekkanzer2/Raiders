@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 557098361630938741}
   - component: {fileID: 557098361630938698}
-  - component: {fileID: 557098361630938740}
+  - component: {fileID: -4845039925608274165}
   - component: {fileID: 8528018890230597465}
   - component: {fileID: 8914096617352650622}
   - component: {fileID: -2347270675974649033}
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &557098361630938740
+--- !u!114 &-4845039925608274165
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,17 +96,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 557098361630938699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8166a5c395145dc489abd6518c5ac693, type: 3}
+  m_Script: {fileID: 11500000, guid: 72ced9ac50935ee468f328a59e67782b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   name: Crab
   spells:
   - link: {fileID: 0}
     name: Pincer
-    icon: {fileID: 21300000, guid: f080b0c85b662ac498dbbcb1859957c2, type: 3}
-    description: Inflicts Water damage
+    icon: {fileID: 0}
+    description: water dmg
     element: 3
-    damage: 70
+    damage: 80
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -127,7 +127,7 @@ MonoBehaviour:
   team: 1
   hp: 90
   pa: 5
-  pm: 4
+  pm: 6
   ini: 35
   res_e: 0
   res_f: 0
@@ -149,6 +149,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   isMoving: 0
   isForcedMoving: 0
+  isBotMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 
@@ -182,6 +183,12 @@ MonoBehaviour:
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+  behaviour:
+    spellsOrderToCheckId: 00000000
+    movementAfterFight: 0
+    movementWhenCannotAttack: 1
+  id: 0
+  isCommunionActive: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -198,8 +205,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.55091834, y: 0.3363341}
+    oldSize: {x: 2.5, y: 2.5}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -221,6 +228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connected: {fileID: 0}
+  mustRemoveAsync: 0
+  isExecuting: 0
 --- !u!114 &-2347270675974649033
 MonoBehaviour:
   m_ObjectHideFlags: 0
