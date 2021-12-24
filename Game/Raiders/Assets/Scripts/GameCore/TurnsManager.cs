@@ -8,8 +8,15 @@ using TMPro;
 public class TurnsManager : MonoBehaviour
 {
 
+    // private static variable that contains the first-time created object
     private static TurnsManager _instance;
+    // static getter that returns the private instance
     public static TurnsManager Instance { get { return _instance; } }
+
+    // init function - if the static instance is null, set the private instance as the instantiated object
+    private void Start() {
+        if (TurnsManager.Instance == null) TurnsManager._instance = this;
+    }
 
     public static bool isGameStarted = false;
     public static Character active;
@@ -17,8 +24,8 @@ public class TurnsManager : MonoBehaviour
     public List<Character> turns = new List<Character>();
     [HideInInspector]
     public List<Tuple<GameObject, Character, CharacterInfo>> relations = new List<Tuple<GameObject, Character, CharacterInfo>>();
-	[HideInInspector]
-	public static List<Tuple<Character, Block>> spawnPositions = new List<Tuple<Character, Block>>();
+    [HideInInspector]
+    public static List<Tuple<Character, Block>> spawnPositions = new List<Tuple<Character, Block>>();
     [HideInInspector]
     public List<Character> allCharacters = new List<Character>();
 
@@ -33,10 +40,6 @@ public class TurnsManager : MonoBehaviour
     public GameObject popupSpell;
 
     private float timeLeft = 3f;
-
-    private void Start() {
-        if (TurnsManager.Instance == null) TurnsManager._instance = this;
-    }
 
     private void Update() {
         if (isGameStarted) {
@@ -75,9 +78,11 @@ public class TurnsManager : MonoBehaviour
     public void initialize() {
         if (hasInitialized) return;
         hasInitialized = true;
+        isGameStarted = false;
+        active = null;
+        spawnPositions.Clear();
         List<Character> first = new List<Character>();
         List<Character> second = new List<Character>();
-        Debug.Log("init with n chars in total: " + turns.Count);
         foreach (Character c in turns) {
             if (c.team == 1) first.Add(c);
             if (c.team == 2) second.Add(c);
@@ -89,6 +94,8 @@ public class TurnsManager : MonoBehaviour
         int first_ini = 0, second_ini = 0;
         for (int i = 0; i < first.Count; i++) {
             first_ini += first[i].GetComponent<Character>().ini;
+        }
+        for (int i = 0; i < second.Count; i++) {
             second_ini += second[i].GetComponent<Character>().ini;
         }
         turns.Clear();
@@ -97,43 +104,79 @@ public class TurnsManager : MonoBehaviour
             if (choise == 0) first_ini++;
             else second_ini++;
         }
-        if (first_ini > second_ini)
+        if (first_ini > second_ini) {
             for (int i = 0; i < first.Count; i++) {
                 turns.Add(first[i]);
-                turns.Add(second[i]);
+                if (i < second.Count)
+                    turns.Add(second[i]);
             }
-        else
+        } else {
             for (int i = 0; i < first.Count; i++) {
-                turns.Add(second[i]);
+                if (i < second.Count)
+                    turns.Add(second[i]);
                 turns.Add(first[i]);
             }
+        }
+        if (first.Count < second.Count) {
+            // Monster version
+            for (int i = first.Count; i < second.Count; i++) {
+                turns.Add(second[i]);
+            }
+        }
     }
 
     public void OnStartGame() {
         isGameStarted = true;
-        foreach (Character c in turns) {
-            c.setupSOS(injectToChar_prefabNumberDisplayer);
-            if (c.team == 1) {
-                GameObject card = Instantiate(prefabPreviewCardAlpha);
-                c.connectedPreview = card;
-                card.transform.SetParent(turnsListContainer.transform);
-                card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite = 
-	                GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
-	            card.GetComponent<RectTransform>().localScale = new Vector3(0.2f,0.2f,0.2f);
-            } else if (c.team == 2) {
-                GameObject card = Instantiate(prefabPreviewCardBeta);
-                c.connectedPreview = card;
-                card.transform.SetParent(turnsListContainer.transform);
-                card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
-	                GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
-	            card.GetComponent<RectTransform>().localScale = new Vector3(0.2f,0.2f,0.2f);
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo == null) {
+            foreach (Character c in turns) {
+                c.setupSOS(injectToChar_prefabNumberDisplayer);
+                if (c.team == 1) {
+                    GameObject card = Instantiate(prefabPreviewCardAlpha);
+                    c.connectedPreview = card;
+                    card.transform.SetParent(turnsListContainer.transform);
+                    card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
+                        GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
+                    card.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                } else if (c.team == 2) {
+                    GameObject card = Instantiate(prefabPreviewCardBeta);
+                    c.connectedPreview = card;
+                    card.transform.SetParent(turnsListContainer.transform);
+                    card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
+                        GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
+                    card.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                }
+                spawnPositions.Add(new Tuple<Character, Block>(c, c.connectedCell.GetComponent<Block>()));
             }
-	        spawnPositions.Add(new Tuple<Character, Block>(c, c.connectedCell.GetComponent<Block>()));
+        } else {
+            foreach (Character c in turns) {
+                c.setupSOS(injectToChar_prefabNumberDisplayer);
+                if (c.team == 1) {
+                    GameObject card = Instantiate(prefabPreviewCardAlpha);
+                    c.connectedPreview = card;
+                    card.transform.SetParent(turnsListContainer.transform);
+                    card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
+                        GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
+                    card.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                } else if (c.team == 2) {
+                    CharacterInfo relatedInfo = null;
+                    foreach(CharacterInfo ci in SelectionContainer.DUNGEON_MonsterCharactersInfo) {
+                        if (ci.characterName == c.name) {
+                            relatedInfo = ci;
+                            break;
+                        }
+                    }
+                    GameObject card = Instantiate(prefabPreviewCardBeta);
+                    c.connectedPreview = card;
+                    card.transform.SetParent(turnsListContainer.transform);
+                    card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite = relatedInfo.characterMidSprite;
+                    card.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                }
+                spawnPositions.Add(new Tuple<Character, Block>(c, c.connectedCell.GetComponent<Block>()));
+            }
         }
         active = turns[0];
         foreach (Character c in turns)
             allCharacters.Add(c);
-        Debug.Log(active);
         StartActiveCharTurn(false);
     }
 

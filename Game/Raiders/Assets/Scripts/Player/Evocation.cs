@@ -80,14 +80,14 @@ public class Evocation : Character {
             damage /= 2;
             connectedSummoner.inflictDamage(damage, mustSkip);
         }
-        base.inflictDamage(damage);
+        base.inflictDamage(damage, mustSkip);
     }
 
     public override void newTurn() {
         base.newTurn();
         if (this.isBomb && this.bombCharge < 5 && !this.isDead)
             bombCharge++;
-        if (mustSkip)
+        if (mustSkip && !this.isDead)
             TurnsManager.Instance.OnSkipTurn();
         if (this.isDouble) {
             doubleCounter++;

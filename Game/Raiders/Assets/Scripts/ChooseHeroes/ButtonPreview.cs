@@ -9,7 +9,7 @@ public class ButtonPreview : MonoBehaviour
     public GameObject charImage;
     public GameObject statusImage;
 
-    private SelectionManager sm;
+    private SelectionManagerGeneric sm;
     public CharacterInfo connectedInfo;
     public Sprite noChar;
     public Sprite empty;
@@ -45,7 +45,7 @@ public class ButtonPreview : MonoBehaviour
     }
 
     public void onPreviewPressed() {
-        if (SelectionManager.definitiveLock == true) return;
+        if (SelectionManagerGeneric.definitiveLock == true) return;
         if (!isSet) return;
         if (team == 1 && sm.isAlphaLocked) sm.specialButtonA.setCanValidate();
         if (team == 2 && sm.isBetaLocked) sm.specialButtonB.setCanValidate();

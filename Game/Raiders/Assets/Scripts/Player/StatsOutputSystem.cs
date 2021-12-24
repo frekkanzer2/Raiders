@@ -98,6 +98,8 @@ public class StatsOutputSystem : MonoBehaviour {
     }
 
     public void addEffect_DMG_Heal(Effect type, int value) {
+        Debug.Log("Executing effect with value " + value);
+        if (value == 0) return;
         EffectToExecute ete = new EffectToExecute(this.numberPrefab, getColorByEffect(type), value, getSpawnPosition());
         toDisplay.Add(ete);
         execute();

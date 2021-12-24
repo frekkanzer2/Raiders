@@ -47,6 +47,16 @@ public class Map {
         return all;
     }
 
+    public void RESET() {
+        foreach (Row r in map)
+            r.list.Clear();
+        map.Clear();
+    }
+
+    public void LogBuffer() {
+        Debug.LogWarning("Now there are " + getAllBlocks().Count + " blocks in the buffer");
+    }
+
     public void moveAllBlocksOf(float h, float v) {
         List<Block> all = getAllBlocks();
         GameObject toMove = all[0].gameObject.transform.parent.gameObject;

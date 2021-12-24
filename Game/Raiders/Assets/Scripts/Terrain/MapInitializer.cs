@@ -74,11 +74,11 @@ public class MapInitializer : MonoBehaviour
         img_title.gameObject.SetActive(false);
     }
 
-    public void initialize(TextAsset chosenMap) {
+    public void initialize(TextAsset chosenMap, int numberOfTeams) {
         mapFile = chosenMap;
         generate();
         if (!isDebugEnabled)
-            loadHeroes();
+            loadHeroes(numberOfTeams);
     }
 
     private void generate() {
@@ -117,7 +117,14 @@ public class MapInitializer : MonoBehaviour
         _buffer = "";
 	    int row = 0, col = 0;
 	    int max_col = 0, max_row = 0;
-        mapBlocks = new Map();
+        Debug.Log("Trying to create map");
+        if (Map.Instance == null)
+            mapBlocks = new Map();
+        else {
+            // Reset the map
+            Map.Instance.RESET();
+            Map.Instance.LogBuffer();
+        }
         // SCANNING MAP
         foreach (char c in mapids) {
             if (c == '0') {
@@ -133,7 +140,7 @@ public class MapInitializer : MonoBehaviour
                     if (char.IsDigit(_buffer[0])) {
                         inst = GameObject.Instantiate(blockPrefab);
                         inst.GetComponent<Block>().initialize(availableSprites[spriteIds[int.Parse(""+_buffer[0])-1]], new Coordinate(row, col));
-                        mapBlocks.addBlock(row, col, inst.GetComponent<Block>());
+                        Map.Instance.addBlock(row, col, inst.GetComponent<Block>());
                         inst.transform.SetParent(mapContainer.transform);
                     }
                     if (inst != null && _buffer.Length > 1 && !isDebugEnabled) {
@@ -161,7 +168,7 @@ public class MapInitializer : MonoBehaviour
             if (char.IsDigit(_buffer[0])) {
                 inst = GameObject.Instantiate(blockPrefab);
                 inst.GetComponent<Block>().initialize(availableSprites[spriteIds[int.Parse(""+_buffer[0]) - 1]], new Coordinate(row, col));
-                mapBlocks.addBlock(row, col, inst.GetComponent<Block>());
+                Map.Instance.addBlock(row, col, inst.GetComponent<Block>());
                 inst.transform.SetParent(mapContainer.transform);
             }
             if (inst != null && _buffer.Length > 1 && !isDebugEnabled) {
@@ -180,13 +187,15 @@ public class MapInitializer : MonoBehaviour
         Vector2 pp = Coordinate.getPosition(toMove);
         h_toMove = pp.x / 2f;
         v_toMove = pp.y / 2f;
-        mapBlocks.moveAllBlocksOf(h_toMove, v_toMove);
+        Map.Instance.moveAllBlocksOf(h_toMove, v_toMove);
         PlayerPrefs.SetString("CHOSEN_MAP", title); // saving title
+        Debug.Log("Map created");
+        Map.Instance.LogBuffer();
     }
 
-    private void loadHeroes() {
+    private void loadHeroes(int numberOfTeams) {
         SelectionContainer sc = GetComponent<SelectionContainer>();
-        sc.loadSavedTeams();
+        sc.loadSavedTeams(numberOfTeams);
         TMInjector tmi = GetComponent<TMInjector>();
         tmi.InjectIntoTurnsManager();
     }

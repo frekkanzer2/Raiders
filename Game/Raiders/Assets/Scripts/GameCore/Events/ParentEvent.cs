@@ -27,6 +27,7 @@ public class ParentEvent {
     }
 
     public void OnStartTurn() {
+        if (this.connected.isDead) return;
         if (m == Mode.ActivationEachTurn) {
             execute();
         } else if (m == Mode.Permanent) {
@@ -44,6 +45,7 @@ public class ParentEvent {
     }
 
     public void OnTurnEnds() {
+        if (this.connected.isDead) return;
         if (m == Mode.ActivationEachEndTurn) {
             execute();
         }
@@ -52,21 +54,25 @@ public class ParentEvent {
 
     // TO IMPLEMENT
     virtual public void execute() {
+        if (this.connected.isDead) return;
         if (remainingTurns == 0) return;
     }
 
     // TO IMPLEMENT EVER AND EVER!
     virtual public void restoreCharacter() {
-        
+        if (this.connected.isDead) return;
+
     }
 
     // TO IMPLEMENT - if you are using PermanentAndEachTurn
     virtual public void both_firstExecute() {
+        if (this.connected.isDead) return;
 
     }
 
     // TO IMPLEMENT - if you are using PermanentAndEachTurn
     virtual public void both_newTurnExecute() {
+        if (this.connected.isDead) return;
         if (remainingTurns == 0) return;
 
     }
@@ -76,6 +82,7 @@ public class ParentEvent {
     }
 
     public void useIstantanely() {
+        if (this.connected.isDead) return;
         if (m == Mode.ActivationEachTurn) {
             execute();
         } else if (m == Mode.Permanent) {

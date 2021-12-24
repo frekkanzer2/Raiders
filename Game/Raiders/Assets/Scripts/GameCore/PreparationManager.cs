@@ -49,25 +49,47 @@ public class PreparationManager : MonoBehaviour
     }
 
     public void activateReadyButtons() {
-        if (!isPreparationPhaseActived) return;
-        btnAlpha.GetComponent<Image>().sprite = blueButton;
-        btnBeta.GetComponent<Image>().sprite = redButton;
-        btnAlpha.SetActive(true);
-        btnBeta.SetActive(true);
-        isAlphaReady = false;
-        isBetaReady = false;
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo == null) {
+            // classic mode
+            if (!isPreparationPhaseActived) return;
+            btnAlpha.GetComponent<Image>().sprite = blueButton;
+            btnBeta.GetComponent<Image>().sprite = redButton;
+            btnAlpha.SetActive(true);
+            btnBeta.SetActive(true);
+            isAlphaReady = false;
+            isBetaReady = false;
+        } else {
+            if (!isPreparationPhaseActived) return;
+            btnAlpha.GetComponent<Image>().sprite = blueButton;
+            btnAlpha.SetActive(true);
+            isAlphaReady = false;
+            isBetaReady = true;
+        }
     }
 
     public void OnAlphaReady() {
-        if (registeredCells.Count != PlayerPrefs.GetInt("TEAM_DIMENSION")*2) return;
-        if (!isAlphaReady && isPreparationPhaseActived) {
-            isAlphaReady = true;
-            btnAlpha.GetComponent<Image>().sprite = yellowButton;
-            if (isBetaReady) SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm2);
-            else SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm1);
-        } else if (isPreparationPhaseActived) {
-            isAlphaReady = false;
-            btnAlpha.GetComponent<Image>().sprite = blueButton;
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo == null) {
+            if (registeredCells.Count != PlayerPrefs.GetInt("TEAM_DIMENSION") * 2) return;
+            if (!isAlphaReady && isPreparationPhaseActived) {
+                isAlphaReady = true;
+                btnAlpha.GetComponent<Image>().sprite = yellowButton;
+                if (isBetaReady) SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm2);
+                else SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm1);
+            } else if (isPreparationPhaseActived) {
+                isAlphaReady = false;
+                btnAlpha.GetComponent<Image>().sprite = blueButton;
+            }
+        } else {
+            if (registeredCells.Count != PlayerPrefs.GetInt("TEAM_DIMENSION")) return;
+            if (!isAlphaReady && isPreparationPhaseActived) {
+                isAlphaReady = true;
+                btnAlpha.GetComponent<Image>().sprite = yellowButton;
+                if (isBetaReady) SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm2);
+                else SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_Confirm1);
+            } else if (isPreparationPhaseActived) {
+                isAlphaReady = false;
+                btnAlpha.GetComponent<Image>().sprite = blueButton;
+            }
         }
     }
 
@@ -88,18 +110,69 @@ public class PreparationManager : MonoBehaviour
         TurnsManager tm = GetComponent<TurnsManager>();
         List<Character> charsInTurn = tm.turns;
         CharactersLibrary cl = GetComponent<CharactersLibrary>();
-        foreach (Character c in charsInTurn) {
-            CharacterInfo retrievedInfo = cl.getCharacterInfoByName(c.name);
-            if (c.team == 1) {
-                GameObject spawned = Instantiate(cellContentAlphaPrefab);
-                spawned.transform.SetParent(contentAlpha.transform);
-	            spawned.GetComponent<CellHeroChooser>().initialize(retrievedInfo, this, 1);
-	            spawned.GetComponent<RectTransform>().localScale = new Vector3(1f,1f,1f);
-            } else if (c.team == 2) {
-                GameObject spawned = Instantiate(cellContentBetaPrefab);
-                spawned.transform.SetParent(contentBeta.transform);
-	            spawned.GetComponent<CellHeroChooser>().initialize(retrievedInfo, this, 2);
-	            spawned.GetComponent<RectTransform>().localScale = new Vector3(1f,1f,1f);
+        // Not bot case
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo == null)
+            foreach (Character c in charsInTurn) {
+                CharacterInfo retrievedInfo = cl.getCharacterInfoByName(c.name);
+                if (c.team == 1) {
+                    GameObject spawned = Instantiate(cellContentAlphaPrefab);
+                    spawned.transform.SetParent(contentAlpha.transform);
+                    spawned.GetComponent<CellHeroChooser>().initialize(retrievedInfo, this, 1);
+                    spawned.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+                } else if (c.team == 2) {
+                    GameObject spawned = Instantiate(cellContentBetaPrefab);
+                    spawned.transform.SetParent(contentBeta.transform);
+                    spawned.GetComponent<CellHeroChooser>().initialize(retrievedInfo, this, 2);
+                    spawned.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+                }
+            }
+        else { // Bot case
+            foreach (Character c in charsInTurn) {
+                if (c.team == 1) {
+                    CharacterInfo retrievedInfo = cl.getCharacterInfoByName(c.name);
+                    GameObject spawned = Instantiate(cellContentAlphaPrefab);
+                    spawned.transform.SetParent(contentAlpha.transform);
+                    spawned.GetComponent<CellHeroChooser>().initialize(retrievedInfo, this, 1);
+                    spawned.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+                }
+            }
+            SelectionContainer smanager = GetComponent<SelectionContainer>();
+            DungeonSave ds = new DungeonSave();
+            int dj_index = ds.getChosenDungeon();
+            int dj_room_index = ds.getDungeonRoom();
+            List<DungeonUtils> allDungeons = DungeonSave.getAllDungeons();
+            DungeonUtils chosenDungeon = allDungeons[dj_index];
+            DungeonUtils.RoomMonsters selectedRoom = chosenDungeon.rooms[dj_room_index];
+            List<Monster> temp_monsterInstances = new List<Monster>();
+            foreach (GameObject obj in smanager.teamBHeroes) {
+                temp_monsterInstances.Add(obj.GetComponent<Monster>());
+            }
+            while(temp_monsterInstances.Count > 0) {
+                Monster instance = temp_monsterInstances[0];
+                temp_monsterInstances.RemoveAt(0);
+                foreach (DungeonUtils.RoomTuple rt in selectedRoom.monstersAndQuantity) {
+                    int monsterIndexInTuple = rt.monsterID;
+                    DungeonUtils.MonsterPrefab temp_monster_prefab = chosenDungeon.monsters[monsterIndexInTuple];
+                    if (temp_monster_prefab == null) Debug.LogError("NO PREFAB RETRIEVED WHILE INSTANTIATING MONTERS ON MAP");
+                    Debug.Log("Prefab name retrieved: " + temp_monster_prefab.name);
+                    try {
+                        Debug.Log("Instance name: " + instance.name);
+                    } catch (Exception e) {
+                        Debug.LogWarning("Instance name is null. Displaying instance GO name: " + instance.gameObject.name);
+                    }
+                    string monsterName = temp_monster_prefab.name;
+                    if (!monsterName.Equals(instance.name)) continue;
+                    else Debug.LogWarning("Executing assignment on cell for monster " + instance.getCompleteName());
+                    Coordinate whereToSpawn = rt.spawnCoordinates[0];
+                    rt.spawnCoordinates.RemoveAt(0);
+                    instance.gameObject.transform.position = Coordinate.getPosition(whereToSpawn);
+                    Block blockPosition = Map.Instance.getBlock(whereToSpawn);
+                    if (blockPosition == null) Debug.LogError("Cannot find cell for coordinate " + whereToSpawn.display());
+                    instance.connectedCell = blockPosition.gameObject;
+                    blockPosition.linkedObject = instance.gameObject;
+                    instance.setZIndex(instance.connectedCell.GetComponent<Block>());
+                }
+                Debug.Log("Cell assignment done for " + instance.getCompleteName());
             }
         }
     }
@@ -109,16 +182,19 @@ public class PreparationManager : MonoBehaviour
         TurnsManager tm = GetComponent<TurnsManager>();
         Character ch = tm.getCharacterInTurns(ci.characterName, team);
         GameObject ch_go = ch.gameObject;
-        Debug.LogWarning("CONSIDERED BLOCK: " + consideredBlock.coordinate.display());
         ch_go.transform.position = Coordinate.getPosition(consideredBlock.coordinate);
         ch.connectedCell = consideredBlock.gameObject;
         consideredBlock.linkedObject = ch_go;
         ch.setZIndex(ch.connectedCell.GetComponent<Block>());
         registeredCells.Add(new Tuple<int, Character, CharacterInfo, CellHeroChooser, GameObject>(team, ch, ci, chc, ch_go));
-        if (registeredCells.Count == PlayerPrefs.GetInt("TEAM_DIMENSION")*2)
-            activateReadyButtons();
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo == null) {
+            if (registeredCells.Count == PlayerPrefs.GetInt("TEAM_DIMENSION") * 2)
+                activateReadyButtons();
+        } else {
+            if (registeredCells.Count == PlayerPrefs.GetInt("TEAM_DIMENSION"))
+                activateReadyButtons();
+        }
         tm.addRelation(ch_go, ci);
-        Debug.Log("PRECALL");
         SoundUi.Instance.playAudio(SoundUi.AudioType.HeroChoise_SetHeroInCell);
         closeChooseScreen();
     }
@@ -163,6 +239,15 @@ public class PreparationManager : MonoBehaviour
             else
                 stand = Instantiate(prefab_RedStand);
             stand.transform.SetParent(heroGo.transform);
+        }
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo != null) {
+            GameObject stand = null;
+            foreach (Character c in TurnsManager.Instance.turns) {
+                if (c is Monster) {
+                    stand = Instantiate(prefab_RedStand);
+                    stand.transform.SetParent(c.transform);
+                }
+            }
         }
         tm.OnStartGame();
     }
@@ -212,14 +297,25 @@ public class PreparationManager : MonoBehaviour
                 }
             }
         if (isAlphaReady && isBetaReady && isPreparationPhaseActived) {
-            isPreparationPhaseActived = false;
-            SoundMusic.Instance.play(SoundMusic.Instance.getSoundtrack(PlayerPrefs.GetString("CHOSEN_MAP")));
-            StartCoroutine(goToNextPhase());
+            if (SelectionContainer.DUNGEON_MonsterCharactersInfo == null) {
+                isPreparationPhaseActived = false;
+                SoundMusic.Instance.play(SoundMusic.Instance.getSoundtrack(PlayerPrefs.GetString("CHOSEN_MAP")));
+                StartCoroutine(goToNextPhase());
+            } else {
+                isPreparationPhaseActived = false;
+                // Getting actual dungeon name
+                DungeonSave ds = new DungeonSave();
+                int dj_index = ds.getChosenDungeon();
+                int dj_room_index = ds.getDungeonRoom();
+                List<DungeonUtils> allDungeons = DungeonSave.getAllDungeons();
+                DungeonUtils chosenDungeon = allDungeons[dj_index];
+                SoundMusic.Instance.play(SoundMusic.Instance.getSoundtrack(chosenDungeon.name.ToUpper() + " "));
+                StartCoroutine(goToNextPhase());
+            }
         }
     }
 
     public void closeChooseScreen() {
-        Debug.LogWarning("Closed screen here");
         panelChooseAlpha.SetActive(false);
         panelChooseBeta.SetActive(false);
         CameraDragDrop.canMove = true;

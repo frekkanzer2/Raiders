@@ -26,10 +26,10 @@ public class PowerUnlockerEvent : ParentEvent
             connected.att_f += 15;
         } else {
             transformationSprite = Resources.Load<Sprite>("Prefabs/Heroes/Transformation/Talpoken") as Sprite;
-            connected.att_a += 25;
-            connected.att_e += 25;
-            connected.att_w += 25;
-            connected.att_f += 25;
+            connected.att_a += 50;
+            connected.att_e += 50;
+            connected.att_w += 50;
+            connected.att_f += 50;
         }
         connected.gameObject.GetComponent<SpriteRenderer>().sprite = transformationSprite;
     }
@@ -58,10 +58,10 @@ public class PowerUnlockerEvent : ParentEvent
             connected.att_w -= 15;
             connected.att_f -= 15;
         } else {
-            connected.att_a -= 25;
-            connected.att_e -= 25;
-            connected.att_w -= 25;
-            connected.att_f -= 25;
+            connected.att_a -= 50;
+            connected.att_e -= 50;
+            connected.att_w -= 50;
+            connected.att_f -= 50;
         }
     }
 

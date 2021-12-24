@@ -8,10 +8,14 @@ public class ChButtonData : MonoBehaviour
 
     public CharacterInfo infoConnected;
     public int team;
-    private SelectionManager sm;
+    private SelectionManagerGeneric sm;
     private bool isSet = false;
 
-    public void initialize(CharacterInfo ci, int team, SelectionManager sm) {
+    private void Start() {
+        SelectionManagerGeneric.definitiveLock = false;
+    }
+
+    public void initialize(CharacterInfo ci, int team, SelectionManagerGeneric sm) {
         this.infoConnected = ci;
         this.team = team;
         this.GetComponent<Image>().sprite = ci.characterFullSprite;
@@ -25,7 +29,7 @@ public class ChButtonData : MonoBehaviour
     }
 
     public void onPlayerPressed() {
-        if (SelectionManager.definitiveLock == true) return;
+        if (SelectionManagerGeneric.definitiveLock == true) return;
         if (team == 1 && !sm.canAlphaChoose) return;
         if (team == 2 && !sm.canBetaChoose) return;
         if (isSet) return;

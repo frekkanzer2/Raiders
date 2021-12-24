@@ -14,4 +14,13 @@ public class CharacterInfo {
         return this.characterName == ci.characterName;
     }
 
+    public static CharacterInfo generate(string name, Sprite body, Sprite preview, bool isEvocation) {
+        CharacterInfo ci = new CharacterInfo();
+        ci.characterName = name;
+        ci.characterFullSprite = body;
+        ci.characterMidSprite = preview;
+        ci.isEvocation = isEvocation;
+        return ci;
+    }
+
 }

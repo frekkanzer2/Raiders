@@ -29,7 +29,6 @@ public class SoundMusic : MonoBehaviour
     }
 
     public void play(AudioClip ac) {
-        Debug.LogWarning("Asking to play " + ac.name);
         AudioSource asource = this.gameObject.GetComponent<AudioSource>();
         asource.clip = ac;
         asource.Play();

@@ -23,7 +23,6 @@ public class CellHeroChooser : MonoBehaviour
     }
 
     public void OnPress() {
-        Debug.Log("Pressing " + this.gameObject.name);
         pointer.OnCellChoosePress(team, connectedInfo, this);
         this.gameObject.SetActive(false);
     }

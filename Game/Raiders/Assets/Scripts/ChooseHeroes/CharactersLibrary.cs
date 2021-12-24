@@ -27,6 +27,14 @@ public class CharactersLibrary : MonoBehaviour
         return null;
     }
 
+    public CharacterInfo getCharacterInfoMonster(Monster m) {
+        List<CharacterInfo> cim = SelectionContainer.DUNGEON_MonsterCharactersInfo;
+        foreach (CharacterInfo ci in cim)
+            if (ci.characterName.Equals(m.name))
+                return ci;
+        return null;
+    }
+
     public static int getNumberOfEvocations() {
         int counter = 0;
         foreach (CharacterInfo ci in public_library) if (ci.isEvocation) counter++;

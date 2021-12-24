@@ -4,44 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SelectionManager : MonoBehaviour
+public class SelectionManager : SelectionManagerGeneric
 {
 
-    public GameObject teamAreferenceToCharSlider;
-    public GameObject teamAreferenceToPreviewBtnSlider;
-    public GameObject teamBreferenceToCharSlider;
-    public GameObject teamBreferenceToPreviewBtnSlider;
-
-    public GameObject prefabCharacter;
-    public GameObject prefabButtonAlpha;
-    public GameObject prefabButtonBeta;
-    public GameObject prefabConfirmButtonAlpha;
-    public GameObject prefabConfirmButtonBeta;
+    private Image bscreen;
 
     private List<ButtonPreview> listPreviewsAlpha = new List<ButtonPreview>();
     private List<ButtonPreview> listPreviewsBeta = new List<ButtonPreview>();
 
-    [HideInInspector]
-    public ConfirmButton specialButtonA;
-    [HideInInspector]
-    public ConfirmButton specialButtonB;
-
-    public GameObject blackScreen;
-    private Image bscreen;
-
-    [HideInInspector]
-    public bool canAlphaChoose = true;
-    [HideInInspector]
-    public bool isAlphaLocked = false;
-    [HideInInspector]
-    public bool canBetaChoose = true;
-    [HideInInspector]
-    public bool isBetaLocked = false;
-
-    [HideInInspector]
-    public static bool definitiveLock = false;
-
-    public void setDefinitiveLock() {
+    public override void setDefinitiveLock() {
         SelectionManager.definitiveLock = true;
         blackScreen.SetActive(true);
         StartCoroutine(startBlackScreen());
@@ -127,7 +98,7 @@ public class SelectionManager : MonoBehaviour
         specialButtonB.team = 2;
     }
 
-    public void registerCharacterChosen(CharacterInfo ci, ChButtonData ch, int team) {
+    public override void registerCharacterChosen(CharacterInfo ci, ChButtonData ch, int team) {
         if (team == 1) {
             List<CharacterInfo> l = GetComponent<SelectionContainer>().teamACharacters;
             foreach (ButtonPreview bp in listPreviewsAlpha) {
@@ -157,7 +128,7 @@ public class SelectionManager : MonoBehaviour
         }
     }
 
-    public void unregisterCharacterChosen(CharacterInfo ci, int team) {
+    public override void unregisterCharacterChosen(CharacterInfo ci, int team) {
         if (team == 1) {
             SelectionContainer sc = GetComponent<SelectionContainer>();
             sc.removeCharacter(ci, 1);
