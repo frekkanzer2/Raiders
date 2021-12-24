@@ -154,15 +154,11 @@ public class Monster : Character {
                         Block retrieved = collided.GetComponent<Block>();
                         if (retrieved != null) {
                            if (retrieved.linkedObject != null) {
-                                Debug.Log(retrieved.linkedObject.name);
-                                if (retrieved.linkedObject.GetComponent<Monster>() != null) {
-                                    if (retrieved.linkedObject.GetComponent<Monster>().getCompleteName() != this.getCompleteName()) {
+                                if (retrieved.linkedObject.GetComponent<Character>() != null) {
+                                    if (!retrieved.linkedObject.GetComponent<Character>().Equals(this) && !retrieved.linkedObject.GetComponent<Character>().Equals(c)) {
                                         canHit = false;
                                         break;
                                     }
-                                } else if (retrieved.linkedObject.GetComponent<Character>() != null && !retrieved.linkedObject.GetComponent<Character>().Equals(c)) {
-                                    canHit = false;
-                                    break;
                                 }
                            }
                         }
@@ -224,14 +220,15 @@ public class Monster : Character {
     }
 
     IEnumerator executeMinMax(float timing, bool debugEnabled) {
-        float newTurnToWait = 3.5f;
+        float newTurnToWait = 3.2f;
         bool canExecute = true;
         bool hasAttacked = false;
+        float timeToWait = timing;
         List<Block> whereToMove = null; // set to null after movement
         while (canExecute && !this.isDead) {
             // Wait when a decision is made
-            yield return new WaitForSeconds(timing);
-            
+            yield return new WaitForSeconds(timeToWait);
+            timeToWait = timing;
             newTurnToWait -= timing;
             whereToMove = null;
             List<Spell> validSpells = getCanExecuteSpells();
@@ -281,6 +278,7 @@ public class Monster : Character {
             }
             // Execute the action
             if (toExecute == null && toMove == null) {
+                timeToWait = 0.05f;
                 // DON'T EXECUTE NOTHING
                 canExecute = false;
                 if (debugEnabled) Debug.LogWarning("Enemy " + this.getCompleteName() + " cannot do any action!");
@@ -341,6 +339,7 @@ public class Monster : Character {
                     }
                 } else if (mt == MovementType.Rest) {
                     whereToMove = null;
+                    timeToWait = 0.05f;
                 }
                 if (whereToMove != null) {
                     foreach (Block b in whereToMove) {
@@ -352,6 +351,7 @@ public class Monster : Character {
                 } else {
                     this.decrementPM_withoutEffect(this.getActualPM());
                     if (debugEnabled) Debug.LogWarning("Enemy " + this.getCompleteName() + " cannot move!");
+                    timeToWait = 0.05f;
                 }
             }
         }

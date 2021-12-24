@@ -129,7 +129,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: Heals itself and all allies
     element: 4
-    damage: 25
+    damage: 15
     lifeSteal: 0
     minRange: 0
     maxRange: 0

@@ -119,7 +119,7 @@ MonoBehaviour:
     executeAfterTurns: 1
     effectDuration: 0
     criticalProbability: 35
-    hasEffect: 0
+    hasEffect: 1
     isEffectOnly: 0
     canUseInEmptyCell: 0
     isJump: 0
@@ -172,6 +172,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   isMoving: 0
   isForcedMoving: 0
+  isBotMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 
@@ -205,6 +206,10 @@ MonoBehaviour:
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+  behaviour:
+    spellsOrderToCheckId: 0100000000000000
+    movementAfterFight: 1
+    movementWhenCannotAttack: 1
   id: 0
   isCommunionActive: 0
 --- !u!61 &8528018890230597465

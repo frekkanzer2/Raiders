@@ -35,7 +35,6 @@ public class EventSystem : MonoBehaviour
     public void OnStartTurn() {
         isExecuting = true;
         foreach(ParentEvent pe in activeEvents) {
-            Debug.LogWarning("Event in list: " + pe.name);
             pe.OnStartTurn();
         }
         isExecuting = false;

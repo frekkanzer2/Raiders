@@ -129,7 +129,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: Heals itself and all allies
     element: 4
-    damage: 35
+    damage: 20
     lifeSteal: 0
     minRange: 0
     maxRange: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
     hpCost: 0
     paCost: 4
     pmCost: 0
-    maxTimesInTurn: 2
+    maxTimesInTurn: 4
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 0
@@ -148,9 +148,9 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 125
+  hp: 200
   pa: 8
-  pm: 4
+  pm: 3
   ini: 50
   res_e: -22
   res_f: 35
@@ -207,9 +207,9 @@ MonoBehaviour:
   canCritical: 1
   immuneCloseCombat: 0
   behaviour:
-    spellsOrderToCheckId: 
-    movementAfterFight: 0
-    movementWhenCannotAttack: 0
+    spellsOrderToCheckId: 0000000001000000
+    movementAfterFight: 2
+    movementWhenCannotAttack: 2
   id: 0
   isCommunionActive: 0
 --- !u!61 &8528018890230597465

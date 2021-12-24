@@ -106,7 +106,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: Inflicts Water damage
     element: 3
-    damage: 42
+    damage: 30
     lifeSteal: 0
     minRange: 1
     maxRange: 6
@@ -125,9 +125,9 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 125
+  hp: 200
   pa: 8
-  pm: 4
+  pm: 3
   ini: 55
   res_e: -9
   res_f: -16
@@ -184,9 +184,9 @@ MonoBehaviour:
   canCritical: 1
   immuneCloseCombat: 0
   behaviour:
-    spellsOrderToCheckId: 
-    movementAfterFight: 0
-    movementWhenCannotAttack: 0
+    spellsOrderToCheckId: 00000000
+    movementAfterFight: 2
+    movementWhenCannotAttack: 1
   id: 0
   isCommunionActive: 0
 --- !u!61 &8528018890230597465

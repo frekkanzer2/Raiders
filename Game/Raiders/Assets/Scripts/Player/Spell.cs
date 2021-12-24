@@ -322,13 +322,13 @@ public class Spell {
     public static void MONSTER_SPELL_SPECIALIZATION(Character caster, Block targetBlock, Spell spell) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, spell })) return;
         try {
-            if (spell.name == "Brikocoop") EXECUTE_BRIKOCOOP(caster, spell);
-            else if (spell.name == "Briko Assault") EXECUTE_BRIKOASSAULT(caster, targetBlock, spell);
+            if (spell.name == "Brikocoop" || spell.name == "Brutocoop") EXECUTE_BRIKOCOOP(caster, spell);
+            else if (spell.name == "Briko Assault" || spell.name == "Bruto Assault") EXECUTE_BRIKOASSAULT(caster, targetBlock, spell);
             else if (spell.name == "Briko Stimulation") EXECUTE_BRIKO_STIMULATION(caster, spell);
             else if (spell.name == "Sting") EXECUTE_STING(targetBlock, spell);
             else if (spell.name == "Wild Lash") EXECUTE_RETREAT_ARROW(caster, targetBlock);
             else if (spell.name == "Manifold Bramble") EXECUTE_MANIFOLD_BRAMBLE(caster, targetBlock, spell);
-
+            else if (spell.name == "Bruto Stimulation") EXECUTE_BRUTO_STIMULATION(caster, spell);
             // ADD HERE ELSE IF (...) ...
             else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
         } catch (Exception e) {
@@ -1819,6 +1819,12 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         foreach (Character c in ut_getAllies(caster))
             c.addEvent(new BrikoStimulationEvent("Briko Stimulation", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void EXECUTE_BRUTO_STIMULATION(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character c in ut_getAllies(caster))
+            c.addEvent(new BrutoStimulationEvent("Bruto Stimulation", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
 
     public static void EXECUTE_MANIFOLD_BRAMBLE(Character caster, Block targetBlock, Spell s) {

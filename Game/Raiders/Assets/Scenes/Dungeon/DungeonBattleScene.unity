@@ -1128,6 +1128,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 74491d67485a1ff41baafa9feebaea0e, type: 3}
   - {fileID: 4900000, guid: 5e545294e4f4b6343967b7a741d05bfb, type: 3}
   - {fileID: 4900000, guid: afeeeded3d6b33f4d8d62ad73b1fee68, type: 3}
+  - {fileID: 4900000, guid: 56096b8c95bdeca4fa40b0a119bbbd96, type: 3}
+  - {fileID: 4900000, guid: 1b051f8bb140aad4f8ae267215b6889d, type: 3}
+  - {fileID: 4900000, guid: 99367ec13b03f434db60ba01530c2b3e, type: 3}
+  - {fileID: 4900000, guid: 28214b8e3b9d1ac47b7b164d2312b990, type: 3}
+  - {fileID: 4900000, guid: c7219a28ba99a9c48aacf94e9cd67519, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481
@@ -15142,6 +15147,8 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: 78bb8dd1333cc634ab4b686cb00fc05c, type: 3}
   - track_name_maiusc: BRIKOMORPHS
     music: {fileID: 8300000, guid: 92ba1b144ea15304d9fde934d4863cd5, type: 3}
+  - track_name_maiusc: BRUTOMORPHS
+    music: {fileID: 8300000, guid: dd661e5b5b1de1d469b3a38d1188e5a0, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0
