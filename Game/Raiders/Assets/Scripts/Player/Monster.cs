@@ -133,6 +133,22 @@ public class Monster : Character {
         return tupleClosest.Item1;
     }
 
+    private bool isLineRespected(Spell s, Coordinate start, Coordinate end) {
+        // on the right
+        if (start.column + s.minRange <= end.column && start.column + s.maxRange >= end.column && start.row == end.row)
+            return true;
+        // on the left
+        if (start.column - s.minRange >= end.column && start.column - s.maxRange <= end.column && start.row == end.row)
+            return true;
+        // on the bottom
+        if (start.row + s.minRange <= end.row && start.row + s.maxRange <= end.row && start.column == end.column)
+            return true;
+        // on the top
+        if (start.row - s.minRange >= end.row && start.row - s.maxRange >= end.row && start.column == end.column)
+            return true;
+        return false;
+    }
+
     // CAN RETURN NULL
     private Character getTargetableEnemy(Spell s) {
         // init
@@ -140,13 +156,14 @@ public class Monster : Character {
         Character origin = this;
         Tuple<Character, int> tupleTargetable = new Tuple<Character, int>(null, -1);
         // checking can be target on each enemy
-        Debug.LogWarning("Getting targetable enemy for spell " + s.name);
         foreach (Character c in TurnsManager.Instance.turns) {
             if (!c.isDead && c.isEnemyOf(this) && getDistanceFromTarget(c) >= minRange && getDistanceFromTarget(c) <= maxRange) {
-                Debug.Log("CONSIDERING: " + c.name);
-                // Checking if there's an obstacle between caster and target
                 bool canHit = true;
-                if (!s.overObstacles) {
+                // Checking if range type is in line
+                if (s.distanceType == Spell.DistanceType.Line)
+                    canHit = isLineRespected(s, origin.connectedCell.GetComponent<Block>().coordinate, c.connectedCell.GetComponent<Block>().coordinate);
+                // Checking if there's an obstacle between caster and target
+                if (canHit && !s.overObstacles) {
                     Debug.DrawLine(origin.connectedCell.GetComponent<Block>().transform.position, c.gameObject.transform.position);
                     RaycastHit2D[] hits = Physics2D.LinecastAll(origin.connectedCell.GetComponent<Block>().transform.position, c.gameObject.transform.position);
                     foreach (RaycastHit2D hit in hits) {
