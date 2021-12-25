@@ -604,6 +604,7 @@ public class Character : MonoBehaviour
         StartCoroutine(dead_disappear());
         Destroy(connectedPreview);
         TurnsManager.Instance.turns.Remove(this);
+        if (this.isEvocation) return;
         bool matchEnded = true;
         foreach(Character c in TurnsManager.Instance.turns) {
             if (!c.isEvocation)
