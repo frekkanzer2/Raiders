@@ -321,19 +321,17 @@ public class Spell {
 
     public static void MONSTER_SPELL_SPECIALIZATION(Character caster, Block targetBlock, Spell spell) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, spell })) return;
-        try {
-            if (spell.name == "Brikocoop" || spell.name == "Brutocoop") EXECUTE_BRIKOCOOP(caster, spell);
-            else if (spell.name == "Briko Assault" || spell.name == "Bruto Assault") EXECUTE_BRIKOASSAULT(caster, targetBlock, spell);
-            else if (spell.name == "Briko Stimulation") EXECUTE_BRIKO_STIMULATION(caster, spell);
-            else if (spell.name == "Sting") EXECUTE_STING(targetBlock, spell);
-            else if (spell.name == "Wild Lash" || spell.name == "Breeze") EXECUTE_RETREAT_ARROW(caster, targetBlock);
-            else if (spell.name == "Manifold Bramble") EXECUTE_MANIFOLD_BRAMBLE(caster, targetBlock, spell);
-            else if (spell.name == "Bruto Stimulation") EXECUTE_BRUTO_STIMULATION(caster, spell);
-            // ADD HERE ELSE IF (...) ...
-            else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
-        } catch (Exception e) {
-            Debug.LogError("Exception throws: " + e.StackTrace);
-        }
+        if (spell.name == "Brikocoop" || spell.name == "Brutocoop") EXECUTE_BRIKOCOOP(caster, spell);
+        else if (spell.name == "Briko Assault" || spell.name == "Bruto Assault" || spell.name == "Royal Crushing") EXECUTE_BRIKOASSAULT(caster, targetBlock, spell);
+        else if (spell.name == "Briko Stimulation") EXECUTE_BRIKO_STIMULATION(caster, spell);
+        else if (spell.name == "Sting") EXECUTE_STING(targetBlock, spell);
+        else if (spell.name == "Wild Lash" || spell.name == "Breeze") EXECUTE_RETREAT_ARROW(caster, targetBlock);
+        else if (spell.name == "Manifold Bramble") EXECUTE_MANIFOLD_BRAMBLE(caster, targetBlock, spell);
+        else if (spell.name == "Bruto Stimulation") EXECUTE_BRUTO_STIMULATION(caster, spell);
+        else if (spell.name == "Explosive Egg") EXECUTE_EXPLOSIVE_EGG(caster, targetBlock, spell);
+        else if (spell.name == "My Tofu Childs") EXECUTE_MY_TOFU_CHILDS(caster, targetBlock, spell);
+        // ADD HERE ELSE IF (...) ...
+        else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
 
     #endregion
@@ -1838,6 +1836,25 @@ public class Spell {
         }
     }
 
+    public static void EXECUTE_EXPLOSIVE_EGG(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        foreach (Character c in ut_getAdjacentHeroes(targetBlock.coordinate)) {
+            if (!c.isEnemyOf(target)) {
+                c.inflictDamage(Spell.calculateDamage(caster, c, s));
+            }
+        }
+    }
+
+    public static void EXECUTE_MY_TOFU_CHILDS(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks())) {
+            ut_execute_monsterSummon(caster, free, "Tofu Doll");
+        }
+    }
+
     #endregion
 
     #region EVENT BONUSES
@@ -1931,6 +1948,30 @@ public class Spell {
         summonScript.connectedCell = targetBlock.gameObject;
         summonScript.setZIndex(targetBlock);
         caster.summons.Add(summonScript);
+        // Setting turns parameters
+        TurnsManager.Instance.injectCharacter(caster, summonScript);
+        return summonScript;
+    }
+
+    public static MonsterEvocation ut_execute_monsterSummon(Character caster, Block targetBlock, string id) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return null;
+        GameObject summonPrefab = Resources.Load("Prefabs/Monsters/Evocations/" + id) as GameObject;
+        // Creating summon
+        GameObject summon = GameObject.Instantiate(summonPrefab, Coordinate.getPosition(targetBlock.coordinate), Quaternion.identity);
+        // Placing it on field
+        summon.transform.position = new Vector3(summon.transform.position.x, summon.transform.position.y, -20);
+        targetBlock.linkedObject = summon;
+        PreparationManager.Instance.setStandManually(summon, caster.team);
+        // Setting summon parameters
+        MonsterEvocation summonScript = summon.GetComponent<MonsterEvocation>();
+        summonScript.isEvocation = true;
+        summonScript.id = caster.summonsIdCounter;
+        caster.summonsIdCounter++;
+        summonScript.team = caster.team;
+        summonScript.connectedSummoner = caster;
+        summonScript.connectedCell = targetBlock.gameObject;
+        summonScript.setZIndex(targetBlock);
+        caster.monsterSummons.Add(summonScript);
         // Setting turns parameters
         TurnsManager.Instance.injectCharacter(caster, summonScript);
         return summonScript;

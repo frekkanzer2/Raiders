@@ -64,6 +64,8 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public List<Evocation> summons;
     [HideInInspector]
+    public List<MonsterEvocation> monsterSummons;
+    [HideInInspector]
     public int summonsIdCounter = 0;
 
     public void setPath(List<Block> path) {
@@ -238,8 +240,22 @@ public class Character : MonoBehaviour
                 }
             if (this.isEvocation) {
                 if (!TurnsManager.active.isEvocation) return;
-                if (((Evocation)this).getCompleteName() != ((Evocation)TurnsManager.active).getCompleteName() || this.team != TurnsManager.active.team) {
-                    return;
+                if (this is Evocation && TurnsManager.active is Evocation) {
+                    if (((Evocation)this).getCompleteName() != ((Evocation)TurnsManager.active).getCompleteName() || this.team != TurnsManager.active.team) {
+                        return;
+                    }
+                } else if (this is MonsterEvocation && TurnsManager.active is MonsterEvocation) {
+                    if (((MonsterEvocation)this).getCompleteName() != ((MonsterEvocation)TurnsManager.active).getCompleteName() || this.team != TurnsManager.active.team) {
+                        return;
+                    }
+                } else if (this is MonsterEvocation && TurnsManager.active is Evocation) {
+                    if (((MonsterEvocation)this).getCompleteName() != ((Evocation)TurnsManager.active).getCompleteName() || this.team != TurnsManager.active.team) {
+                        return;
+                    }
+                } else if (this is Evocation && TurnsManager.active is MonsterEvocation) {
+                    if (((Evocation)this).getCompleteName() != ((MonsterEvocation)TurnsManager.active).getCompleteName() || this.team != TurnsManager.active.team) {
+                        return;
+                    }
                 }
             }
             if (this is Monster) {
@@ -572,14 +588,26 @@ public class Character : MonoBehaviour
     public virtual void setDead() {
         if (isDead) return;
         isDead = true;
-        if (!isEvocation) {
-            // Deleting summons in safe way
-            List<Evocation> evoTemp = new List<Evocation>();
-            evoTemp.AddRange(this.summons);
-            foreach (Evocation e in evoTemp)
-                this.summons.Remove(e);
-            foreach (Evocation e in evoTemp)
-                e.inflictDamage(e.actual_hp, true);
+        if (this is Character && !(this is Monster)) {
+            if (!isEvocation) {
+                // Deleting summons in safe way
+                List<Evocation> evoTemp = new List<Evocation>();
+                evoTemp.AddRange(this.summons);
+                foreach (Evocation e in evoTemp)
+                    this.summons.Remove(e);
+                foreach (Evocation e in evoTemp)
+                    e.inflictDamage(e.actual_hp, true);
+            }
+        } else if (this is Monster) {
+            if (!isEvocation) {
+                // Deleting summons in safe way
+                List<MonsterEvocation> evoTemp = new List<MonsterEvocation>();
+                evoTemp.AddRange(this.monsterSummons);
+                foreach (MonsterEvocation e in evoTemp)
+                    this.monsterSummons.Remove(e);
+                foreach (MonsterEvocation e in evoTemp)
+                    e.inflictDamage(e.actual_hp, true);
+            }
         }
         if (TurnsManager.active.Equals(this))
             TurnsManager.Instance.OnNextTurnPressed();

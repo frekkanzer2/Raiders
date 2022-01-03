@@ -183,20 +183,47 @@ public class TurnsManager : MonoBehaviour
     public void injectCharacter(Character caster, Character c) {
         c.setupSOS(injectToChar_prefabNumberDisplayer);
         GameObject card = null;
-        if (c.team == 1) {
-            card = Instantiate(prefabPreviewCardAlpha);
-            c.connectedPreview = card;
-            card.transform.SetParent(turnsListContainer.transform);
-            card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
-                GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
-            card.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
-        } else if (c.team == 2) {
-            card = Instantiate(prefabPreviewCardBeta);
-            c.connectedPreview = card;
-            card.transform.SetParent(turnsListContainer.transform);
-            card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
-                GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
-            card.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo == null) {
+            if (c.team == 1) {
+                card = Instantiate(prefabPreviewCardAlpha);
+                c.connectedPreview = card;
+                card.transform.SetParent(turnsListContainer.transform);
+                card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
+                    GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
+                card.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            } else if (c.team == 2) {
+                card = Instantiate(prefabPreviewCardBeta);
+                c.connectedPreview = card;
+                card.transform.SetParent(turnsListContainer.transform);
+                card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
+                    GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
+                card.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            }
+        }
+        else {
+            if (c.team == 1) {
+                card = Instantiate(prefabPreviewCardAlpha);
+                c.connectedPreview = card;
+                card.transform.SetParent(turnsListContainer.transform);
+                card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
+                    GetComponent<CharactersLibrary>().getCharacterInfoByName(c.name).characterMidSprite;
+                card.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            } else if (c.team == 2) {
+                CharacterInfo relatedInfo = null;
+                foreach (CharacterInfo ci in SelectionContainer.DUNGEON_MonsterCharactersInfo) {
+                    if (ci.characterName == c.name) {
+                        relatedInfo = ci;
+                        break;
+                    } else Debug.Log("ci.characterName: " + ci.characterName + " | c.name: " + c.name);
+                }
+                Debug.Log("Related info: " + relatedInfo);
+                card = Instantiate(prefabPreviewCardBeta);
+                c.connectedPreview = card;
+                card.transform.SetParent(turnsListContainer.transform);
+                card.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Image>().sprite =
+                    relatedInfo.characterMidSprite;
+                card.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            }
         }
         turns.Insert(1, c);
         card.transform.SetSiblingIndex(1);

@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 557098361630938741}
   - component: {fileID: 557098361630938698}
-  - component: {fileID: 332901969463243855}
+  - component: {fileID: -8640234836219462517}
   - component: {fileID: 8528018890230597465}
   - component: {fileID: 8914096617352650622}
   - component: {fileID: -2347270675974649033}
   - component: {fileID: 5404421346664201683}
   m_Layer: 0
-  m_Name: Tofu
+  m_Name: Tofu Doll
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &332901969463243855
+--- !u!114 &-8640234836219462517
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,10 +96,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 557098361630938699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ced9ac50935ee468f328a59e67782b, type: 3}
+  m_Script: {fileID: 11500000, guid: a74ad848812bc304cb1e557ee1071424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Tofu
+  name: Tofu Doll
   spells:
   - link: {fileID: 0}
     name: Pecking
@@ -146,7 +146,7 @@ MonoBehaviour:
   connectedCell: {fileID: 0}
   actual_shield: 0
   isDead: 0
-  canMovedByEffects: 1
+  canMovedByEffects: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0
@@ -175,6 +175,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   summons: []
+  monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
   accumulationCounter: 0
@@ -189,6 +190,8 @@ MonoBehaviour:
     movementWhenCannotAttack: 1
   id: 0
   isCommunionActive: 0
+  connectedSummoner: {fileID: 0}
+  mustSkip: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

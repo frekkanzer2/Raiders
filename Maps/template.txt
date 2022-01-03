@@ -1,9 +1,0 @@
-FIRST ROW
-SECOND ROW
-THIRD ROW
-
-FIRST ROW: map title
-SECOND ROW: blocks mapping - specify initializator sprite ids - each block sprite id will be assigned to map ordered id
-		es. 5-8-10 are sprites ids; 1-2-3 will be map ids with 1=5, 2=8 and 3=10
-THIRD ROW: specify map ids to create the map - go in a new line to create a new map line - separate each id with "-"
-		- use id = 0 to deny block creation in the id position

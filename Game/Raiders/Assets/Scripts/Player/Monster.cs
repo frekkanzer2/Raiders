@@ -436,7 +436,11 @@ public class Monster : Character {
                     minDistance = new Tuple<Node, int>(n, dist);
                 }
             }
-            path = minDistance.Item1.getPathItemsToRoot();
+            try {
+                path = minDistance.Item1.getPathItemsToRoot();
+            } catch (NullReferenceException e) {
+                return new List<Block>();
+            }
         }
         return path;
     }
