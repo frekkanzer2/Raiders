@@ -70,7 +70,12 @@ public class Spell {
         if (spell.maxTimesInTurn > 0 && spell.maxTimesInTurn == caster.getSpellSystem().getNumberOfUses(spell.name)) return false;
         // Controllo sulla durata dell'incantesimo
         //if (spell.effectDuration < -1) return false;
-        if (spell.isSummon && caster.summons.Count == caster.numberOfSummons) return false;
+        if (caster is Character && !(caster is Monster)) {
+            if (spell.isSummon && caster.summons.Count == caster.numberOfSummons) return false;
+        }
+        if (caster is Monster) {
+            if (spell.isSummon && caster.monsterSummons.Count == caster.numberOfSummons) return false;
+        }
         if (caster.getActualPM() < 0) {
             if (spell.paCost > caster.getActualPA() || spell.pmCost != 0 || spell.hpCost > caster.getActualHP()) return false;
         } else {
