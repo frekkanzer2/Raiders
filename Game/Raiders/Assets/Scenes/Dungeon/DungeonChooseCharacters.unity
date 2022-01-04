@@ -3198,26 +3198,23 @@ MonoBehaviour:
         quantity: 0
         spawnCoordinates: []
   - name: Before the Forest
-    bossIcon: {fileID: 21300000, guid: 70faeba9c169f3144ac187fbb9dd1887, type: 3}
+    bossIcon: {fileID: 21300000, guid: b7cb054b2e5da1b438033227fa791e36, type: 3}
     monsters:
-    - name: Squirrel
-      prefab: {fileID: 557098361630938699, guid: 175b0853e15fa86438807465afb79b28, type: 3}
-      sprite: {fileID: 21300000, guid: 75c1f4d8e0983194191ff9c562a2716d, type: 3}
-    - name: Bear
-      prefab: {fileID: 557098361630938699, guid: b5a92586c77df7d44be541dd091716b4, type: 3}
-      sprite: {fileID: 21300000, guid: 7ad98610b653462489a8fa3cb82f306f, type: 3}
-    - name: Bearman
-      prefab: {fileID: 557098361630938699, guid: 93634f648a6d91e44bf7291be0f5623d, type: 3}
-      sprite: {fileID: 21300000, guid: 4f55b64aa43500140a441a8388f5cac5, type: 3}
-    - name: Little Boowolf
-      prefab: {fileID: 557098361630938699, guid: 851a6e7c62aad91438607ca1c6bb9d52, type: 3}
-      sprite: {fileID: 21300000, guid: 6c94f5a86155aae43b2067a89f4ffde6, type: 3}
-    - name: Little Miliboowolf
-      prefab: {fileID: 557098361630938699, guid: 079f61dbe043bf845b78cb066aaf0426, type: 3}
-      sprite: {fileID: 21300000, guid: 01bcedcde7c2e5447accd3ab56860064, type: 3}
-    - name: Little Moowolf
-      prefab: {fileID: 557098361630938699, guid: 99ceaf525679070499cc61fb95b808f7, type: 3}
-      sprite: {fileID: 21300000, guid: a609afa1b488493408268de38fabc6ce, type: 3}
+    - name: Hameres
+      prefab: {fileID: 557098361630938699, guid: 4b07f0702167baa46b8ad92022ffcf87, type: 3}
+      sprite: {fileID: 21300000, guid: e77aa39577dd60b489b62cfe38151796, type: 3}
+    - name: Sherpere
+      prefab: {fileID: 557098361630938699, guid: 391e3f67950a3404aa516c0d86da394b, type: 3}
+      sprite: {fileID: 21300000, guid: 01bf6167e9365334aa319e5cc94e749d, type: 3}
+    - name: Spadere
+      prefab: {fileID: 557098361630938699, guid: 123e0ead7b4f3254dbc55811cb83a996, type: 3}
+      sprite: {fileID: 21300000, guid: 090131b7ba48d854da1fe8bd12294f93, type: 3}
+    - name: Twelve Fingeres
+      prefab: {fileID: 557098361630938699, guid: 0a4385274b76aa141843cc4b865a2ce0, type: 3}
+      sprite: {fileID: 21300000, guid: 7066730a65ac5f84685e7f68d13c2599, type: 3}
+    - name: Karne Rider
+      prefab: {fileID: 557098361630938699, guid: a42502a574dab7c42a6a0d7345418613, type: 3}
+      sprite: {fileID: 21300000, guid: 395bdfec95d037746b01444e7ca60de5, type: 3}
     rooms:
     - roomNumber: 
       monstersAndQuantity: []
@@ -3230,7 +3227,7 @@ MonoBehaviour:
     - roomNumber: 
       monstersAndQuantity: []
   - name: Under the Forest
-    bossIcon: {fileID: 21300000, guid: a609afa1b488493408268de38fabc6ce, type: 3}
+    bossIcon: {fileID: 21300000, guid: 3aa050aee4f8dc0468466733142af886, type: 3}
     monsters:
     - name: Squirrel
       prefab: {fileID: 557098361630938699, guid: 175b0853e15fa86438807465afb79b28, type: 3}
