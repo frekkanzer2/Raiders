@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 557098361630938741}
   - component: {fileID: 557098361630938698}
-  - component: {fileID: 557098361630938740}
+  - component: {fileID: 5861967132389929558}
   - component: {fileID: 8528018890230597465}
   - component: {fileID: 8914096617352650622}
   - component: {fileID: -2347270675974649033}
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &557098361630938740
+--- !u!114 &5861967132389929558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,17 +96,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 557098361630938699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8166a5c395145dc489abd6518c5ac693, type: 3}
+  m_Script: {fileID: 11500000, guid: 72ced9ac50935ee468f328a59e67782b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   name: Obese Tofu Mummy
   spells:
   - link: {fileID: 0}
     name: Explosive Egg
-    icon: {fileID: 21300000, guid: f080b0c85b662ac498dbbcb1859957c2, type: 3}
+    icon: {fileID: 0}
     description: Also hit adjacent allies of the target
     element: 1
-    damage: 42
+    damage: 58
     lifeSteal: 0
     minRange: 1
     maxRange: 6
@@ -125,7 +125,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 310
+  hp: 340
   pa: 4
   pm: 4
   ini: 70
@@ -146,9 +146,10 @@ MonoBehaviour:
   connectedCell: {fileID: 0}
   actual_shield: 0
   isDead: 0
-  canMovedByEffects: 1
+  canMovedByEffects: 0
   isMoving: 0
   isForcedMoving: 0
+  isBotMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 
@@ -174,6 +175,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   summons: []
+  monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
   accumulationCounter: 0
@@ -182,6 +184,12 @@ MonoBehaviour:
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+  behaviour:
+    spellsOrderToCheckId: 00000000
+    movementAfterFight: 2
+    movementWhenCannotAttack: 1
+  id: 0
+  isCommunionActive: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -198,8 +206,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.52182245, y: 0.26723063}
+    oldSize: {x: 3.6363637, y: 3.6363637}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -221,6 +229,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connected: {fileID: 0}
+  mustRemoveAsync: 0
+  isExecuting: 0
 --- !u!114 &-2347270675974649033
 MonoBehaviour:
   m_ObjectHideFlags: 0
