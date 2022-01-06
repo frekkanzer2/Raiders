@@ -306,16 +306,35 @@ public class Monster : Character {
                 }
                 List<Block> path = null;
                 if (mt == MovementType.GoAhead) {
-                    int limit = this.getActualPM();
-                    if (limit >= 10) limit *= 2;
-                    else if (limit >= 8) limit = (int)(limit * 2.5f);
-                    else if (limit >= 5) limit *= 3;
-                    else limit *= 5;
-                    path = ai_reachEnemy(this.connectedCell.GetComponent<Block>(), toMove, limit);
-                    if (path.Count >= 2) {
-                        path.RemoveRange(2, path.Count - 2);
-                        whereToMove = path;
+
+                    Debug.Log("Executing algorithm");
+                    int actualDistance = getDistance(toMove.coordinate, this.connectedCell.GetComponent<Block>().coordinate);
+                    if (actualDistance <= 30) {
+                        Debug.Log("Before: " + System.DateTime.Now.ToString());
+                        path = ai_reachEnemy(this.connectedCell.GetComponent<Block>(), toMove, 30);
+                        Debug.Log("After: " + System.DateTime.Now.ToString());
+                        if (path.Count >= 2) {
+                            path.RemoveRange(2, path.Count - 2);
+                            whereToMove = path;
+                        }
+                    } else {
+                        Debug.LogError("CASE");
+                        List<Block> adjfree = this.connectedCell.GetComponent<Block>().getFreeAdjacentBlocks();
+                        List<Block> allowedDestinations = new List<Block>();
+                        foreach (Block b in adjfree) {
+                            if (getDistance(b.coordinate, toMove.coordinate) <= actualDistance) {
+                                allowedDestinations.Add(b);
+                            }
+                        }
+                        if (allowedDestinations.Count > 0) {
+                            UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+                            int chosenIndex = UnityEngine.Random.Range(0, allowedDestinations.Count);
+                            whereToMove = new List<Block>();
+                            whereToMove.Add(this.connectedCell.GetComponent<Block>());
+                            whereToMove.Add(allowedDestinations[chosenIndex]);
+                        }
                     }
+                    
                 } else if (mt == MovementType.GoAway) {
                     List<Block> allowedDestinations = new List<Block>();
                     Character enemy = getClosestEnemy();
@@ -420,6 +439,24 @@ public class Monster : Character {
             foreach (Node leaf in leafs) {
                 if (leaf.item.equalsTo(destination))
                     reached = leaf;
+            }
+            // removing duplicated leafs
+            List<Node> cycleAnalyzed = new List<Node>();
+            for (int i = 0; i < leafs.Count; i++) {
+                Node n = leafs[i];
+                bool toDelete = false;
+                foreach (Node k in cycleAnalyzed) {
+                    if (n.item.coordinate.equalsTo(k.item.coordinate)) {
+                        toDelete = true;
+                        break;
+                    }
+                }
+                if (toDelete) {
+                    leafs.RemoveAt(i);
+                    i--;
+                } else {
+                    cycleAnalyzed.Add(n);
+                }
             }
         }
         if (reached != null) {
