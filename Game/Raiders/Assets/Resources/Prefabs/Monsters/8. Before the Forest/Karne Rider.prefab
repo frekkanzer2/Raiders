@@ -151,7 +151,7 @@ MonoBehaviour:
   hp: 1200
   pa: 10
   pm: 5
-  ini: 80
+  ini: 10
   res_e: 10
   res_f: 10
   res_a: 10
@@ -209,7 +209,7 @@ MonoBehaviour:
   immuneCloseCombat: 0
   behaviour:
     spellsOrderToCheckId: 00000000
-    movementAfterFight: 1
+    movementAfterFight: 2
     movementWhenCannotAttack: 1
   id: 0
   isCommunionActive: 0
@@ -229,8 +229,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.48908898, y: 0.1544829}
+    oldSize: {x: 5.263158, y: 5.263158}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

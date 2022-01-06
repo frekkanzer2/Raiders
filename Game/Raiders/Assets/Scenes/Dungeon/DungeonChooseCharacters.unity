@@ -3215,17 +3215,154 @@ MonoBehaviour:
     - name: Karne Rider
       prefab: {fileID: 557098361630938699, guid: a42502a574dab7c42a6a0d7345418613, type: 3}
       sprite: {fileID: 21300000, guid: 395bdfec95d037746b01444e7ca60de5, type: 3}
+    - name: Aggressive Arachnee
+      prefab: {fileID: 557098361630938699, guid: abd013ec103c116458f4207f07f03cb8, type: 3}
+      sprite: {fileID: 21300000, guid: 3f4e77e35ef8f3d4e8cd840b339e6101, type: 3}
+    - name: Tofu
+      prefab: {fileID: 557098361630938699, guid: bdd179cf0fd9d694e853eab5564fa18d, type: 3}
+      sprite: {fileID: 21300000, guid: c809a82ef7fec944f9120b29dd96c397, type: 3}
     rooms:
-    - roomNumber: 
-      monstersAndQuantity: []
-    - roomNumber: 
-      monstersAndQuantity: []
-    - roomNumber: 
-      monstersAndQuantity: []
-    - roomNumber: 
-      monstersAndQuantity: []
-    - roomNumber: 
-      monstersAndQuantity: []
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 6
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 10
+        - row: 11
+          column: 10
+      - monsterID: 5
+        quantity: 3
+        spawnCoordinates:
+        - row: 4
+          column: 16
+        - row: 6
+          column: 16
+        - row: 8
+          column: 16
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 5
+          column: 19
+        - row: 7
+          column: 19
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 6
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 20
+        - row: 10
+          column: 20
+      - monsterID: 5
+        quantity: 4
+        spawnCoordinates:
+        - row: 6
+          column: 4
+        - row: 6
+          column: 8
+        - row: 6
+          column: 12
+        - row: 6
+          column: 16
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 12
+        - row: 9
+          column: 12
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 5
+        quantity: 2
+        spawnCoordinates:
+        - row: 4
+          column: 8
+        - row: 8
+          column: 8
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 14
+        - row: 11
+          column: 14
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 5
+          column: 20
+        - row: 7
+          column: 20
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 9
+          column: 8
+        - row: 3
+          column: 15
+      - monsterID: 1
+        quantity: 4
+        spawnCoordinates:
+        - row: 6
+          column: 10
+        - row: 6
+          column: 13
+        - row: 5
+          column: 11
+        - row: 7
+          column: 12
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 9
+          column: 15
+        - row: 3
+          column: 8
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 3
+        spawnCoordinates:
+        - row: 5
+          column: 16
+        - row: 6
+          column: 16
+        - row: 7
+          column: 16
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 19
+        - row: 10
+          column: 19
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 4
+          column: 15
+        - row: 8
+          column: 15
+      - monsterID: 3
+        quantity: 3
+        spawnCoordinates:
+        - row: 5
+          column: 14
+        - row: 6
+          column: 14
+        - row: 7
+          column: 14
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 6
+          column: 20
   - name: Under the Forest
     bossIcon: {fileID: 21300000, guid: 3aa050aee4f8dc0468466733142af886, type: 3}
     monsters:
