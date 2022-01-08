@@ -652,11 +652,13 @@ public class Character : MonoBehaviour
     }
 
     IEnumerator endMatch() {
+        resetBufferedCells();
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene("FightResultScene", LoadSceneMode.Single);
     }
 
     IEnumerator endMatchMonsters() {
+        resetBufferedCells();
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene("DUNFightResultScene", LoadSceneMode.Single);
     }

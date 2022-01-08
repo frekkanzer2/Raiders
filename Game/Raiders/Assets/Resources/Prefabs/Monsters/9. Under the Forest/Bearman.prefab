@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 557098361630938741}
   - component: {fileID: 557098361630938698}
-  - component: {fileID: 557098361630938740}
   - component: {fileID: 8528018890230597465}
   - component: {fileID: 8914096617352650622}
   - component: {fileID: -2347270675974649033}
   - component: {fileID: 5404421346664201683}
+  - component: {fileID: 3507822721501225057}
   m_Layer: 0
   m_Name: Bearman
   m_TagString: Player
@@ -87,101 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &557098361630938740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 557098361630938699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8166a5c395145dc489abd6518c5ac693, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: Bearman
-  spells:
-  - link: {fileID: 0}
-    name: Lashing Claw
-    icon: {fileID: 21300000, guid: f080b0c85b662ac498dbbcb1859957c2, type: 3}
-    description: Inflicts Earth damage
-    element: 0
-    damage: 42
-    lifeSteal: 0
-    minRange: 1
-    maxRange: 1
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 4
-    pmCost: 0
-    maxTimesInTurn: 2
-    executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 20
-    hasEffect: 0
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  team: 1
-  hp: 600
-  pa: 6
-  pm: 3
-  ini: 120
-  res_e: 25
-  res_f: 10
-  res_a: -10
-  res_w: -10
-  att_e: 8
-  att_f: 0
-  att_a: 0
-  att_w: 0
-  numberOfSummons: 0
-  isEvocation: 0
-  actual_hp: 0
-  actual_pa: 0
-  actual_pm: 0
-  connectedPreview: {fileID: 0}
-  connectedCell: {fileID: 0}
-  actual_shield: 0
-  isDead: 0
-  canMovedByEffects: 1
-  isMoving: 0
-  isForcedMoving: 0
-  spellToUse:
-    link: {fileID: 0}
-    name: 
-    icon: {fileID: 0}
-    description: 
-    element: 0
-    damage: 0
-    lifeSteal: 0
-    minRange: 0
-    maxRange: 0
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 0
-    pmCost: 0
-    maxTimesInTurn: 0
-    executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 0
-    hasEffect: 0
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  summons: []
-  summonsIdCounter: 0
-  isDebugEnabled: 0
-  accumulationCounter: 0
-  criticShooting: 0
-  connectedSacrifice: {fileID: 0}
-  hasActivedSacrifice: 0
-  canCritical: 1
-  immuneCloseCombat: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -198,8 +103,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.44726318, y: 0.16721256}
+    oldSize: {x: 4.6511626, y: 4.6511626}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -221,6 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connected: {fileID: 0}
+  mustRemoveAsync: 0
+  isExecuting: 0
 --- !u!114 &-2347270675974649033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,3 +153,129 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connected: {fileID: 0}
+--- !u!114 &3507822721501225057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ced9ac50935ee468f328a59e67782b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Bearman
+  spells:
+  - link: {fileID: 0}
+    name: Lashing Claw
+    icon: {fileID: 0}
+    description: 
+    element: 0
+    damage: 42
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 2
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 20
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Call of the forest
+    icon: {fileID: 0}
+    description: Summons a Bear
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 0
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 6
+    effectDuration: 0
+    criticalProbability: 20
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 1
+  team: 1
+  hp: 500
+  pa: 6
+  pm: 3
+  ini: 50
+  res_e: 25
+  res_f: 10
+  res_a: -10
+  res_w: -10
+  att_e: 8
+  att_f: 0
+  att_a: 0
+  att_w: 0
+  numberOfSummons: 4
+  isEvocation: 0
+  actual_hp: 0
+  actual_pa: 0
+  actual_pm: 0
+  connectedPreview: {fileID: 0}
+  connectedCell: {fileID: 0}
+  actual_shield: 0
+  isDead: 0
+  canMovedByEffects: 1
+  isMoving: 0
+  isForcedMoving: 0
+  isBotMoving: 0
+  spellToUse:
+    link: {fileID: 0}
+    name: 
+    icon: {fileID: 0}
+    description: 
+    element: 0
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 0
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 0
+    pmCost: 0
+    maxTimesInTurn: 0
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  summons: []
+  monsterSummons: []
+  summonsIdCounter: 0
+  isDebugEnabled: 0
+  accumulationCounter: 0
+  criticShooting: 0
+  connectedSacrifice: {fileID: 0}
+  hasActivedSacrifice: 0
+  canCritical: 1
+  immuneCloseCombat: 0
+  behaviour:
+    spellsOrderToCheckId: 0100000000000000
+    movementAfterFight: 2
+    movementWhenCannotAttack: 1
+  id: 0
+  isCommunionActive: 0

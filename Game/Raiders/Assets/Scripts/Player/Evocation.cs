@@ -44,19 +44,19 @@ public class Evocation : Character {
         int base_damage = Spell.calculateDamage(bombConnectedInfo.Item1, enemy, bombConnectedInfo.Item2);
         switch (bombCharge) {
             case 1:
-                base_damage += 10;
-                break;
-            case 2:
                 base_damage += 20;
                 break;
+            case 2:
+                base_damage += 42;
+                break;
             case 3:
-                base_damage += 32;
+                base_damage += 64;
                 break;
             case 4:
-                base_damage += 48;
+                base_damage += 86;
                 break;
             case 5:
-                base_damage += 76;
+                base_damage += 112;
                 break;
         }
         return base_damage;

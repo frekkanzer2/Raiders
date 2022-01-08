@@ -137,7 +137,7 @@ MonoBehaviour:
     maxRange: 0
     distanceType: 0
     overObstacles: 0
-    hpCost: 500
+    hpCost: 250
     paCost: 2
     pmCost: 0
     maxTimesInTurn: 1
@@ -220,6 +220,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   isMoving: 0
   isForcedMoving: 0
+  isBotMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 
@@ -245,6 +246,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   summons: []
+  monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
   accumulationCounter: 0
@@ -292,6 +294,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connected: {fileID: 0}
+  mustRemoveAsync: 0
+  isExecuting: 0
 --- !u!114 &-8777108969782502278
 MonoBehaviour:
   m_ObjectHideFlags: 0
