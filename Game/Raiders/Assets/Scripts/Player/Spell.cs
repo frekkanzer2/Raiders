@@ -335,6 +335,8 @@ public class Spell {
         else if (spell.name == "Bruto Stimulation") EXECUTE_BRUTO_STIMULATION(caster, spell);
         else if (spell.name == "Explosive Egg") EXECUTE_EXPLOSIVE_EGG(caster, targetBlock, spell);
         else if (spell.name == "My Tofu Childs") EXECUTE_MY_TOFU_CHILDS(caster, targetBlock, spell);
+        else if (spell.name == "Call of the forest") EXECUTE_CALL_OF_THE_FOREST(caster, targetBlock, spell);
+        else if (spell.name == "Wolf Cry") EXECUTE_WOLF_CRY(caster, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -1858,6 +1860,37 @@ public class Spell {
         foreach (Block free in (targetBlock.getFreeAdjacentBlocks())) {
             ut_execute_monsterSummon(caster, free, "Tofu Doll");
         }
+    }
+
+    public static void EXECUTE_CALL_OF_THE_FOREST(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Monster casterMonster = (Monster) caster;
+        Character closest = casterMonster.getClosestEnemy();
+        if (closest == null) return;
+        Block closestBlock = closest.connectedCell.GetComponent<Block>();
+        Block toSummonBlock = null;
+        int bestDistance = 10000;
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks())) {
+            int actualDistance = Monster.getDistance(free.coordinate, closestBlock.coordinate);
+            if (actualDistance < bestDistance) {
+                bestDistance = actualDistance;
+                toSummonBlock = free;
+            }
+        }
+        if (toSummonBlock == null) return;
+        ut_execute_monsterSummon(caster, toSummonBlock, "Bear");
+    }
+
+    public static void EXECUTE_WOLF_CRY(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character enemy in ut_getAlliesWithCaster(caster))
+            if (ut_isNearOf(enemy, caster, 3)) {
+                WolfCryEvent wce = new WolfCryEvent("Wolf Cry", enemy, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon);
+                enemy.addEvent(wce);
+                if (enemy.Equals(caster))
+                    wce.useIstantanely();
+            }
     }
 
     #endregion

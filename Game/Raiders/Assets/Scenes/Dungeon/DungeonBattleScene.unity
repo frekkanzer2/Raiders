@@ -1083,9 +1083,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bf19fb30170eb3049988f0b63a0851e0, type: 3}
   - {fileID: 21300000, guid: 96857dfecafd80c499e93940ec78fe10, type: 3}
   - {fileID: 21300000, guid: e74a8aec75052ea41848a2e0588b6a27, type: 3}
-  - {fileID: 21300000, guid: 5a04b94bec84ed9438223959beec2f44, type: 3}
+  - {fileID: 21300000, guid: 83671f4ef659d1a428f9118573568b82, type: 3}
   - {fileID: 21300000, guid: f9a19e0567d08704c9e9c8f7fda3946e, type: 3}
   - {fileID: 21300000, guid: 2c58747b4bd9d3544b1f13825dd7d5b3, type: 3}
+  - {fileID: 21300000, guid: 5a04b94bec84ed9438223959beec2f44, type: 3}
+  - {fileID: 21300000, guid: b9ebd9d1b3790d347948a72af7982054, type: 3}
   mapContainer: {fileID: 606105194}
   mapFile: {fileID: 4900000, guid: 151aef5894359a442a1e9e19fc8a95c2, type: 3}
   blackScreen: {fileID: 1198904534}
@@ -1159,6 +1161,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: c8621ed5bc7b64a4e81779db44152e68, type: 3}
   - {fileID: 4900000, guid: d06ef4cab90580e4ca822e34e922d03f, type: 3}
   - {fileID: 4900000, guid: 831bb061592dd154095b0646f1c493fd, type: 3}
+  - {fileID: 4900000, guid: 1ffe9462a884595459c56e60dda1a6b9, type: 3}
+  - {fileID: 4900000, guid: 79262a42aaefff24189b036e5649241d, type: 3}
+  - {fileID: 4900000, guid: 83f0244f1549a084abb1f0fbbbb1e9f3, type: 3}
+  - {fileID: 4900000, guid: 2e29353170dbb2341a4291a3c84338fa, type: 3}
+  - {fileID: 4900000, guid: 1a289038dbe025b4489ba59fbcc040be, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481
@@ -15181,6 +15188,8 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: c43060633c15b1641a87054ad3d4b19f, type: 3}
   - track_name_maiusc: BEFORE THE FOREST
     music: {fileID: 8300000, guid: 211f4eaa12e592f4eb5d6f063efe7113, type: 3}
+  - track_name_maiusc: UNDER THE FOREST
+    music: {fileID: 8300000, guid: f2797bcfe3b4e9b439b736bf061e11ea, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0

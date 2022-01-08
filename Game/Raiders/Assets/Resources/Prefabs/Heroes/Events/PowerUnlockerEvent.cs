@@ -20,16 +20,16 @@ public class PowerUnlockerEvent : ParentEvent
             connected.res_e += 10;
             connected.res_w += 10;
             connected.res_f += 10;
-            connected.att_a += 15;
-            connected.att_e += 15;
-            connected.att_w += 15;
-            connected.att_f += 15;
+            connected.att_a += 40;
+            connected.att_e += 40;
+            connected.att_w += 40;
+            connected.att_f += 40;
         } else {
             transformationSprite = Resources.Load<Sprite>("Prefabs/Heroes/Transformation/Talpoken") as Sprite;
-            connected.att_a += 50;
-            connected.att_e += 50;
-            connected.att_w += 50;
-            connected.att_f += 50;
+            connected.att_a += 150;
+            connected.att_e += 150;
+            connected.att_w += 150;
+            connected.att_f += 150;
         }
         connected.gameObject.GetComponent<SpriteRenderer>().sprite = transformationSprite;
     }
@@ -38,10 +38,13 @@ public class PowerUnlockerEvent : ParentEvent
         base.both_newTurnExecute();
         if (powerup == 2) {
             connected.incrementPA(2);
-            connected.decrementPM(2);
+            connected.decrementPM(1);
             foreach (Character adj in Spell.ut_getAdjacentHeroes(connected.connectedCell.GetComponent<Block>().coordinate))
                 if (!adj.isEnemyOf(connected))
                     adj.incrementPA(1);
+        }
+        else if (powerup == 1) {
+            connected.incrementPM(1);
         }
     }
 
@@ -53,15 +56,15 @@ public class PowerUnlockerEvent : ParentEvent
             connected.res_e -= 10;
             connected.res_w -= 10;
             connected.res_f -= 10;
-            connected.att_a -= 15;
-            connected.att_e -= 15;
-            connected.att_w -= 15;
-            connected.att_f -= 15;
+            connected.att_a -= 40;
+            connected.att_e -= 40;
+            connected.att_w -= 40;
+            connected.att_f -= 40;
         } else {
-            connected.att_a -= 50;
-            connected.att_e -= 50;
-            connected.att_w -= 50;
-            connected.att_f -= 50;
+            connected.att_a -= 150;
+            connected.att_e -= 150;
+            connected.att_w -= 150;
+            connected.att_f -= 150;
         }
     }
 

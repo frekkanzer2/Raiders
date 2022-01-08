@@ -115,7 +115,7 @@ MonoBehaviour:
     hpCost: 0
     paCost: 3
     pmCost: 0
-    maxTimesInTurn: 1
+    maxTimesInTurn: 2
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 10
@@ -175,6 +175,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   summons: []
+  monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
   accumulationCounter: 0

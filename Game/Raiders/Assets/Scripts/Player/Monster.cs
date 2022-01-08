@@ -87,14 +87,14 @@ public class Monster : Character {
         return dist_row + dist_col;
     }
 
-    private int getDistance(Coordinate start, Coordinate end) {
+    public static int getDistance(Coordinate start, Coordinate end) {
         int dist_row = Mathf.Abs(start.row - end.row);
         int dist_col = Mathf.Abs(start.column - end.column);
         return dist_row + dist_col;
     }
 
     // CAN RETURN NULL
-    private Character getClosestEnemy() {
+    public Character getClosestEnemy() {
         Tuple<Character, int> tupleClosest = new Tuple<Character, int>(null, -1);
         foreach(Character c in TurnsManager.Instance.turns) {
             if (!c.isDead && c.isEnemyOf(this)) {
