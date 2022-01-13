@@ -134,6 +134,8 @@ public class PreparationManager : MonoBehaviour
                     spawned.transform.SetParent(contentAlpha.transform);
                     spawned.GetComponent<CellHeroChooser>().initialize(retrievedInfo, this, 1);
                     spawned.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+                    // injecting powerup
+                    c.injectPowerUp(DUNSelectionManager.UPGRADE);
                 }
             }
             SelectionContainer smanager = GetComponent<SelectionContainer>();

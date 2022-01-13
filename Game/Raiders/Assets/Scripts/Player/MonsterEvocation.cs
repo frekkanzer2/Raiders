@@ -10,6 +10,10 @@ public class MonsterEvocation : Monster
 
     public bool mustSkip;
 
+    public override string getCompleteName() {
+        return ((Monster)this.connectedSummoner).getCompleteName() + "-" + this.name + id;
+    }
+
     public override void newTurn() {
         base.newTurn();
         if (mustSkip && !this.isDead)

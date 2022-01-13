@@ -68,6 +68,28 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public int summonsIdCounter = 0;
 
+    public void injectPowerUp(Upgrade upgrade) {
+        this.hp += upgrade.getHpBonus();
+        this.actual_hp = this.hp;
+        this.actual_shield = upgrade.getShieldBonus();
+        this.pa += upgrade.getPaBonus();
+        this.pm += upgrade.getPmBonus();
+        this.actual_pa = pa;
+        this.actual_pm = pm;
+        this.ini += upgrade.getInitBonus();
+        Tuple<int, int, int, int> dmgBonus = upgrade.getAttackBonus();
+        this.att_e += dmgBonus.Item1;
+        this.att_f += dmgBonus.Item2;
+        this.att_a += dmgBonus.Item3;
+        this.att_w += dmgBonus.Item4;
+        Tuple<int, int, int, int> resBonus = upgrade.getDefenceBonus();
+        this.res_e += resBonus.Item1;
+        this.res_f += resBonus.Item2;
+        this.res_a += resBonus.Item3;
+        this.res_w += resBonus.Item4;
+        numberOfSummons += upgrade.getSummonsBonus();
+    }
+
     public void setPath(List<Block> path) {
         if (isDead) return;
         followPath = path;
@@ -599,16 +621,6 @@ public class Character : MonoBehaviour
                 foreach (Evocation e in evoTemp)
                     e.inflictDamage(e.actual_hp);
             }
-        } else if (this is Monster) {
-            if (!isEvocation) {
-                // Deleting summons in safe way
-                List<MonsterEvocation> evoTemp = new List<MonsterEvocation>();
-                evoTemp.AddRange(this.monsterSummons);
-                foreach (MonsterEvocation e in evoTemp)
-                    this.monsterSummons.Remove(e);
-                foreach (MonsterEvocation e in evoTemp)
-                    e.inflictDamage(e.actual_hp);
-            }
         }
         if (TurnsManager.active.Equals(this))
             TurnsManager.Instance.OnNextTurnPressed();
@@ -633,14 +645,31 @@ public class Character : MonoBehaviour
         StartCoroutine(dead_disappear());
         Destroy(connectedPreview);
         TurnsManager.Instance.turns.Remove(this);
-        if (this.isEvocation) return;
+        if (this.isEvocation && !(this is MonsterEvocation)) return;
         bool matchEnded = true;
-        foreach(Character c in TurnsManager.Instance.turns) {
-            if (!c.isEvocation)
-                if (!c.isEnemyOf(this)) {
-                    matchEnded = false;
-                    break;
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo == null) {
+            foreach (Character c in TurnsManager.Instance.turns) {
+                if (!c.isEvocation)
+                    if (!c.isEnemyOf(this)) {
+                        matchEnded = false;
+                        break;
+                    }
+            }
+        } else {
+            foreach (Character c in TurnsManager.Instance.turns) {
+                if (team == 1) {
+                    if (!c.isEvocation)
+                        if (!c.isEnemyOf(this)) {
+                            matchEnded = false;
+                            break;
+                        }
+                } else {
+                    if (!c.isEnemyOf(this)) {
+                        matchEnded = false;
+                        break;
+                    }
                 }
+            }
         }
         if (this.team == 1)
             PlayerPrefs.SetInt("TEAM_WINNER", 2);

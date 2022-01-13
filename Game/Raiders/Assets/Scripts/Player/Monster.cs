@@ -30,7 +30,7 @@ public class Monster : Character {
         base.setDead();
     }
 
-    public string getCompleteName() {
+    public virtual string getCompleteName() {
         return this.name + id;
     }
 
