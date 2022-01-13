@@ -20,6 +20,7 @@ public class DungeonChoosePanel : MonoBehaviour {
         DungeonSave.setAllDungeons(dungeonsList);
         setDungeonPreview();
         page = save.getNextDungeonID(dungeonsList);
+        setUpgradeStats();
     }
 
     private void setDungeonPreview() {
@@ -40,12 +41,23 @@ public class DungeonChoosePanel : MonoBehaviour {
         if (page == 0) return;
         page--;
         setDungeonPreview(page);
+        setUpgradeStats();
     }
 
     public void OnRightPressed() {
         if (page == save.getNextDungeonID(dungeonsList)) return;
         page++;
         setDungeonPreview(page);
+        setUpgradeStats();
+    }
+
+    private void setUpgradeStats() {
+        int multiplier = getSelectedDungeonID() + 1;
+        int points = multiplier * 5;
+        DUNSelectionManager.UPGRADE = new Upgrade();
+        DUNSelectionManager.UPGRADE.availablePoints = points;
+        GameObject textToEdit = GameObject.Find("POINTS_TEXT");
+        textToEdit.GetComponent<TextMeshProUGUI>().text = "" + points;
     }
 
 }

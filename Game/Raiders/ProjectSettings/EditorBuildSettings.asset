@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Dungeon/DungeonChooseCharacters.unity
+    guid: 19a7fba97602cfe4abe05de3111295c0
+  - enabled: 1
     path: Assets/Scenes/ChooseCharacters.unity
     guid: 941e7425b77efba43b7fe760787282b3
   - enabled: 1
@@ -14,9 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FightResultScene.unity
     guid: e85ffb63a80e02f4fa8ae5768395317f
-  - enabled: 1
-    path: Assets/Scenes/Dungeon/DungeonChooseCharacters.unity
-    guid: 19a7fba97602cfe4abe05de3111295c0
   - enabled: 1
     path: Assets/Scenes/Dungeon/DungeonBattleScene.unity
     guid: 1f463cf557de46748b7cb6bc490703be

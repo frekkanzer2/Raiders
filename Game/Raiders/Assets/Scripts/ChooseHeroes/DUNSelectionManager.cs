@@ -1,19 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Events;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DUNSelectionManager : SelectionManager
 {
 
+    public static Upgrade UPGRADE;
+
     private List<ButtonPreview> listPreviewsAlpha = new List<ButtonPreview>();
     private Image bscreen;
+    public GameObject prefabPowerup;
+
+    public GameObject displayPowerup;
 
     public override void setDefinitiveLock() {
         DUNSelectionManager.definitiveLock = true;
         blackScreen.SetActive(true);
         StartCoroutine(startBlackScreen());
+    }
+
+    public void openPowerupPanel() {
+        if (!DUNSelectionManager.definitiveLock) {
+            UPGRADE.resetLevels();
+            displayPowerup.SetActive(true);
+        }
+    }
+
+    public void closePowerupPanel() {
+        displayPowerup.SetActive(false);
     }
 
     IEnumerator startBlackScreen() {
@@ -72,6 +90,12 @@ public class DUNSelectionManager : SelectionManager
         GameObject acbutton = GameObject.Instantiate(prefabConfirmButtonAlpha);
         acbutton.transform.SetParent(teamAreferenceToPreviewBtnSlider.transform);
         acbutton.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        GameObject powerupBtn = GameObject.Instantiate(prefabPowerup);
+        powerupBtn.transform.SetParent(teamAreferenceToPreviewBtnSlider.transform);
+        powerupBtn.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        Button pbtn = powerupBtn.GetComponent<Button>();
+        UnityEventTools.RemovePersistentListener(pbtn.onClick, 0);
+        UnityEventTools.AddPersistentListener(pbtn.onClick, new UnityAction(openPowerupPanel));
         specialButtonA = acbutton.GetComponent<ConfirmButton>();
         specialButtonA.sm = this;
         specialButtonA.team = 1;

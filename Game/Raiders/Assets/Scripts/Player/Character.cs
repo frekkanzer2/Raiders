@@ -588,6 +588,7 @@ public class Character : MonoBehaviour
     public virtual void setDead() {
         if (isDead) return;
         isDead = true;
+        this.actual_hp = 0;
         if (this is Character && !(this is Monster)) {
             if (!isEvocation) {
                 // Deleting summons in safe way
@@ -596,7 +597,7 @@ public class Character : MonoBehaviour
                 foreach (Evocation e in evoTemp)
                     this.summons.Remove(e);
                 foreach (Evocation e in evoTemp)
-                    e.inflictDamage(e.actual_hp, true);
+                    e.inflictDamage(e.actual_hp);
             }
         } else if (this is Monster) {
             if (!isEvocation) {
@@ -606,7 +607,7 @@ public class Character : MonoBehaviour
                 foreach (MonsterEvocation e in evoTemp)
                     this.monsterSummons.Remove(e);
                 foreach (MonsterEvocation e in evoTemp)
-                    e.inflictDamage(e.actual_hp, true);
+                    e.inflictDamage(e.actual_hp);
             }
         }
         if (TurnsManager.active.Equals(this))
