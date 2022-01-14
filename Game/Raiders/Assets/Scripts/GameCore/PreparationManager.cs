@@ -152,16 +152,12 @@ public class PreparationManager : MonoBehaviour
             while(temp_monsterInstances.Count > 0) {
                 Monster instance = temp_monsterInstances[0];
                 temp_monsterInstances.RemoveAt(0);
+                Debug.LogWarning("Trying to instantiate the following monster: " + instance.name);
                 foreach (DungeonUtils.RoomTuple rt in selectedRoom.monstersAndQuantity) {
                     int monsterIndexInTuple = rt.monsterID;
                     DungeonUtils.MonsterPrefab temp_monster_prefab = chosenDungeon.monsters[monsterIndexInTuple];
                     if (temp_monster_prefab == null) Debug.LogError("NO PREFAB RETRIEVED WHILE INSTANTIATING MONTERS ON MAP");
-                    Debug.Log("Prefab name retrieved: " + temp_monster_prefab.name);
-                    try {
-                        Debug.Log("Instance name: " + instance.name);
-                    } catch (Exception e) {
-                        Debug.LogWarning("Instance name is null. Displaying instance GO name: " + instance.gameObject.name);
-                    }
+                    Debug.Log("Analyzing: " + temp_monster_prefab.name);
                     string monsterName = temp_monster_prefab.name;
                     if (!monsterName.Equals(instance.name)) continue;
                     else Debug.LogWarning("Executing assignment on cell for monster " + instance.getCompleteName());
@@ -174,7 +170,7 @@ public class PreparationManager : MonoBehaviour
                     blockPosition.linkedObject = instance.gameObject;
                     instance.setZIndex(instance.connectedCell.GetComponent<Block>());
                 }
-                Debug.Log("Cell assignment done for " + instance.getCompleteName());
+                Debug.LogError("Cell assignment done for " + instance.getCompleteName());
             }
         }
     }

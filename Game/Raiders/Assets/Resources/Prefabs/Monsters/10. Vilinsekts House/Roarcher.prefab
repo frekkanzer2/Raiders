@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 557098361630938741}
   - component: {fileID: 557098361630938698}
-  - component: {fileID: 557098361630938740}
   - component: {fileID: 8528018890230597465}
-  - component: {fileID: 3679054799960633979}
-  - component: {fileID: 9092556062903490969}
-  - component: {fileID: 125093092390699496}
+  - component: {fileID: -8652852273827976661}
+  - component: {fileID: 8914096617352650622}
+  - component: {fileID: -2347270675974649033}
+  - component: {fileID: 5404421346664201683}
   m_Layer: 0
-  m_Name: Julith
+  m_Name: Roarcher
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 4a5be25132610fe4abd83511fa674da3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2269b024bbbbae54d8b51b5252fcfdb9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,7 +87,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &557098361630938740
+--- !u!61 &8528018890230597465
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.21601868, y: 0.66759527}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.45271865, y: 0.18539757}
+    oldSize: {x: 4.1666665, y: 4.1666665}
+    newSize: {x: 3.2894738, y: 4.2763157}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.6251364, y: 2.2981646}
+  m_EdgeRadius: 0
+--- !u!114 &-8652852273827976661
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,17 +122,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 557098361630938699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8166a5c395145dc489abd6518c5ac693, type: 3}
+  m_Script: {fileID: 11500000, guid: 72ced9ac50935ee468f328a59e67782b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Julith
+  name: Roarcher
   spells:
   - link: {fileID: 0}
-    name: Overcharge
-    icon: {fileID: 21300000, guid: 07c58dd1a3f72764894928b3000868d8, type: 3}
-    description: The caster uses all remaining PA to gain bonus shield
+    name: Toothpick shot
+    icon: {fileID: 0}
+    description: 
+    element: 0
+    damage: 120
+    lifeSteal: 0
+    minRange: 3
+    maxRange: 7
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 30
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Hideout
+    icon: {fileID: 21300000, guid: 2979b6a55627df54abfe8461a098a97f, type: 3}
+    description: +3 PM
     element: 5
-    damage: 40
+    damage: 0
     lifeSteal: 0
     minRange: 0
     maxRange: 0
@@ -116,96 +165,26 @@ MonoBehaviour:
     paCost: 3
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 10
-    effectDuration: 0
+    executeAfterTurns: 2
+    effectDuration: 1
     criticalProbability: 0
     hasEffect: 1
     isEffectOnly: 1
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
-  - link: {fileID: 0}
-    name: Striking Meteor
-    icon: {fileID: 21300000, guid: 680dbcbd389ac9641b8a1b548af35849, type: 3}
-    description: Teleports to the targeted cell. Inflict Earth damage to each enemy
-      up to 3 cells from the destination cell
-    element: 0
-    damage: 76
-    lifeSteal: 0
-    minRange: 5
-    maxRange: 7
-    distanceType: 1
-    overObstacles: 1
-    hpCost: 0
-    paCost: 4
-    pmCost: 2
-    maxTimesInTurn: 1
-    executeAfterTurns: 2
-    effectDuration: 0
-    criticalProbability: 15
-    hasEffect: 1
-    isEffectOnly: 1
-    canUseInEmptyCell: 1
-    isJump: 1
-    isSummon: 0
-  - link: {fileID: 0}
-    name: Hupperkap
-    icon: {fileID: 21300000, guid: 63cc2bc2c1b51314da828369d25906cb, type: 3}
-    description: Inflicts Air damage
-    element: 2
-    damage: 42
-    lifeSteal: 0
-    minRange: 1
-    maxRange: 1
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 4
-    pmCost: 0
-    maxTimesInTurn: 2
-    executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 15
-    hasEffect: 0
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  - link: {fileID: 0}
-    name: Aerial Wave
-    icon: {fileID: 21300000, guid: 1c3f1d1e52f2e134d9cd296441a8a0cb, type: 3}
-    description: Repels the target of 3 cells and repels the caster of 3 cells
-    element: 2
-    damage: 32
-    lifeSteal: 0
-    minRange: 1
-    maxRange: 1
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 3
-    pmCost: 0
-    maxTimesInTurn: 1
-    executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 5
-    hasEffect: 1
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
   team: 1
-  hp: 1275
+  hp: 400
   pa: 7
   pm: 3
-  ini: 130
-  res_e: 13
-  res_f: 14
-  res_a: -10
-  res_w: -8
-  att_e: 7
+  ini: 70
+  res_e: -9
+  res_f: 0
+  res_a: -13
+  res_w: 0
+  att_e: 24
   att_f: 0
-  att_a: 10
+  att_a: 0
   att_w: 0
   numberOfSummons: 0
   isEvocation: 0
@@ -254,33 +233,13 @@ MonoBehaviour:
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
---- !u!61 &8528018890230597465
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 557098361630938699}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.21601868, y: 0.66759527}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.6013645, y: 0.11013643}
-    oldSize: {x: 3.2894738, y: 4.2763157}
-    newSize: {x: 3.2894738, y: 4.2763157}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.6251364, y: 2.2981646}
-  m_EdgeRadius: 0
---- !u!114 &3679054799960633979
+  behaviour:
+    spellsOrderToCheckId: 0000000001000000
+    movementAfterFight: 0
+    movementWhenCannotAttack: 1
+  id: 0
+  isCommunionActive: 0
+--- !u!114 &8914096617352650622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -295,7 +254,7 @@ MonoBehaviour:
   connected: {fileID: 0}
   mustRemoveAsync: 0
   isExecuting: 0
---- !u!114 &9092556062903490969
+--- !u!114 &-2347270675974649033
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -307,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f77455afa650f49a81c28b9edfaff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &125093092390699496
+--- !u!114 &5404421346664201683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

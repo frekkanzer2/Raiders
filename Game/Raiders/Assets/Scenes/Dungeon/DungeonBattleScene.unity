@@ -1088,6 +1088,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2c58747b4bd9d3544b1f13825dd7d5b3, type: 3}
   - {fileID: 21300000, guid: 5a04b94bec84ed9438223959beec2f44, type: 3}
   - {fileID: 21300000, guid: b9ebd9d1b3790d347948a72af7982054, type: 3}
+  - {fileID: 21300000, guid: 4dca83f09e4296f44b4fb8ee501c044d, type: 3}
+  - {fileID: 21300000, guid: b9e232dac5842e34c9fb73251f9b7d55, type: 3}
   mapContainer: {fileID: 606105194}
   mapFile: {fileID: 4900000, guid: 151aef5894359a442a1e9e19fc8a95c2, type: 3}
   blackScreen: {fileID: 1198904534}
@@ -1166,6 +1168,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 83f0244f1549a084abb1f0fbbbb1e9f3, type: 3}
   - {fileID: 4900000, guid: 2e29353170dbb2341a4291a3c84338fa, type: 3}
   - {fileID: 4900000, guid: 1a289038dbe025b4489ba59fbcc040be, type: 3}
+  - {fileID: 4900000, guid: 0142c8bccafe10c49bf448e2e1aeb53f, type: 3}
+  - {fileID: 4900000, guid: a835e2bcaf3816d498a5b61d4a870085, type: 3}
+  - {fileID: 4900000, guid: d354a75cc1b9a5e46a2c328da08b19c1, type: 3}
+  - {fileID: 4900000, guid: a67df4b58e3f6e840845838b058ad022, type: 3}
+  - {fileID: 4900000, guid: e3615294528dc2f4c82481454c04dd8f, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481
@@ -15190,6 +15197,8 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: 211f4eaa12e592f4eb5d6f063efe7113, type: 3}
   - track_name_maiusc: UNDER THE FOREST
     music: {fileID: 8300000, guid: f2797bcfe3b4e9b439b736bf061e11ea, type: 3}
+  - track_name_maiusc: VILINSEKTS HOUSE
+    music: {fileID: 8300000, guid: 8a32e653c1119fe40881919d31b5cb62, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0

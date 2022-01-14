@@ -330,6 +330,14 @@ public class Spell {
         else if (spell.name == "My Tofu Childs") EXECUTE_MY_TOFU_CHILDS(caster, targetBlock, spell);
         else if (spell.name == "Call of the forest") EXECUTE_CALL_OF_THE_FOREST(caster, targetBlock, spell);
         else if (spell.name == "Wolf Cry") EXECUTE_WOLF_CRY(caster, spell);
+        else if (spell.name == "Vilinslash") EXECUTE_VILINSLASH(caster, targetBlock, spell);
+        else if (spell.name == "Wax Shot") EXECUTE_WAX_SHOT(caster, targetBlock, spell);
+        else if (spell.name == "Ninjawax") EXECUTE_NINJAWAX(caster, targetBlock, spell);
+        else if (spell.name == "Kankenswift") EXECUTE_KANKENSWIFT(caster, targetBlock);
+        else if (spell.name == "Kankendust") EXECUTE_KANKENDUST(caster, targetBlock, spell);
+        else if (spell.name == "Insect Cry") EXECUTE_INSECT_CRY(caster, targetBlock, spell);
+        else if (spell.name == "Hideout") EXECUTE_HIDEOUT(caster, spell);
+        else if (spell.name == "Hard Bone") EXECUTE_HARD_BONE(caster, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -1886,6 +1894,79 @@ public class Spell {
             }
     }
 
+    public static void EXECUTE_VILINSLASH(Character caster, Block targetBlock, Spell s) {
+        ut_damageInLine(caster, targetBlock, s, 2);
+    }
+
+    public static void EXECUTE_WAX_SHOT(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        foreach (Character c in ut_getAllies(target)) {
+            if (ut_isNearOf(target, c, 2)) {
+                c.inflictDamage(Spell.calculateDamage(caster, c, s));
+                c.addEvent(new WaxShotEvent("Wax Shot", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+            }
+        }
+    }
+
+    public static void EXECUTE_NINJAWAX(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        foreach (Character c in ut_getAllies(target)) {
+            if (ut_isNearOf(target, c, 3)) {
+                c.inflictDamage(Spell.calculateDamage(caster, c, s));
+            }
+        }
+    }
+
+    public static void EXECUTE_INSECT_CRY(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new InsectCryEvent("Insect Cry", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
+    }
+
+    public static void EXECUTE_HIDEOUT(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        HideoutEvent he = new HideoutEvent("Hideout", caster, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon);
+        caster.addEvent(he);
+        he.useIstantanely();
+    }
+
+    public static void EXECUTE_HARD_BONE(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character c in ut_getAlliesWithCaster(caster)) {
+            if (ut_isNearOf(caster, c, 4)) {
+                HardBoneEvent hbe = new HardBoneEvent("Hard Bone", c, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+                c.addEvent(hbe);
+                hbe.useIstantanely();
+            }
+        }
+    }
+
+    public static void EXECUTE_KANKENSWIFT(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_repels(caster, targetBlock, 1);
+    }
+
+    public static void EXECUTE_KANKENDUST(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Block toSummonBlock = null;
+        int bestDistance = 10000;
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks())) {
+            int actualDistance = Monster.getDistance(free.coordinate, caster.connectedCell.GetComponent<Block>().coordinate);
+            if (actualDistance < bestDistance) {
+                bestDistance = actualDistance;
+                toSummonBlock = free;
+            }
+        }
+        if (toSummonBlock == null) return;
+        ut_execute_monsterSummon(caster, toSummonBlock, "Dustmight");
+    }
+
     #endregion
 
     #region EVENT BONUSES
@@ -1949,6 +2030,43 @@ public class Spell {
     #region UTILITIES
 
     // Tuple<ALIVE, DEAD>
+    public static void ut_damageInLine(Character caster, Block targetBlock, Spell s, int numberOfCells) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        Coordinate casterCoord = caster.connectedCell.GetComponent<Block>().coordinate;
+        Coordinate targetCoord = targetBlock.coordinate;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target == null) return;
+        if (casterCoord.row == targetCoord.row && casterCoord.column < targetCoord.column) {
+            // attacking from left
+            foreach (Character enemy in ut_getAllies(target)) {
+                Block enemyBlock = enemy.connectedCell.GetComponent<Block>();
+                if (enemyBlock.coordinate.row == targetCoord.row && enemyBlock.coordinate.column > targetCoord.column && enemyBlock.coordinate.column <= targetCoord.column + numberOfCells)
+                    enemy.inflictDamage(calculateDamage(caster, enemy, s));
+            }
+        } else if (casterCoord.row == targetCoord.row && casterCoord.column > targetCoord.column) {
+            // attacking from right
+            foreach (Character enemy in ut_getAllies(target)) {
+                Block enemyBlock = enemy.connectedCell.GetComponent<Block>();
+                if (enemyBlock.coordinate.row == targetCoord.row && enemyBlock.coordinate.column < targetCoord.column && enemyBlock.coordinate.column >= targetCoord.column - numberOfCells)
+                    enemy.inflictDamage(calculateDamage(caster, enemy, s));
+            }
+        } else if (casterCoord.column == targetCoord.column && casterCoord.row > targetCoord.row) {
+            // attacking from bottom
+            foreach (Character enemy in ut_getAllies(target)) {
+                Block enemyBlock = enemy.connectedCell.GetComponent<Block>();
+                if (enemyBlock.coordinate.column == targetCoord.column && enemyBlock.coordinate.row < targetCoord.row && enemyBlock.coordinate.row >= targetCoord.row - numberOfCells)
+                    enemy.inflictDamage(calculateDamage(caster, enemy, s));
+            }
+        } else if (casterCoord.column == targetCoord.column && casterCoord.row < targetCoord.row) {
+            // attacking from top
+            foreach (Character enemy in ut_getAllies(target)) {
+                Block enemyBlock = enemy.connectedCell.GetComponent<Block>();
+                if (enemyBlock.coordinate.column == targetCoord.column && enemyBlock.coordinate.row > targetCoord.row && enemyBlock.coordinate.row <= targetCoord.row + numberOfCells)
+                    enemy.inflictDamage(calculateDamage(caster, enemy, s));
+            }
+        }
+    }
+
     public static Tuple<int, int> ut_getDeadStatsAllies(Character caster) {
         if (!put_CheckArguments(new System.Object[] { caster })) return null;
         int counterDead = 0;
