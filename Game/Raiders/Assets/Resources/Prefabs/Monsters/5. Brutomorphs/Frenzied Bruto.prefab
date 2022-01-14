@@ -125,7 +125,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 200
+  hp: 250
   pa: 8
   pm: 3
   ini: 55
@@ -175,6 +175,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   summons: []
+  monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
   accumulationCounter: 0

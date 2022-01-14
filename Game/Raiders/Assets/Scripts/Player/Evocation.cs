@@ -26,6 +26,67 @@ public class Evocation : Character {
 
     public bool mustSkip;
 
+    public void injectPowerUp(Upgrade upgrade, int upLevel) {
+        if (upLevel == 3) {
+            this.hp += upgrade.getHpBonus() * 30 / 100;
+            this.actual_hp = this.hp;
+            Tuple<int, int, int, int> dmgBonus = upgrade.getAttackBonus();
+            this.att_e += dmgBonus.Item1/4;
+            this.att_f += dmgBonus.Item2/4;
+            this.att_a += dmgBonus.Item3/4;
+            this.att_w += dmgBonus.Item4/4;
+            Tuple<int, int, int, int> resBonus = upgrade.getDefenceBonus();
+            this.res_e += resBonus.Item1/5;
+            this.res_f += resBonus.Item2/5;
+            this.res_a += resBonus.Item3/5;
+            this.res_w += resBonus.Item4/5;
+        } else if (upLevel == 2) {
+            this.hp += upgrade.getHpBonus() * 45 / 100;
+            this.actual_hp = this.hp;
+            Tuple<int, int, int, int> dmgBonus = upgrade.getAttackBonus();
+            this.att_e += dmgBonus.Item1 / 3;
+            this.att_f += dmgBonus.Item2 / 3;
+            this.att_a += dmgBonus.Item3 / 3;
+            this.att_w += dmgBonus.Item4 / 3;
+            Tuple<int, int, int, int> resBonus = upgrade.getDefenceBonus();
+            this.res_e += resBonus.Item1 / 4;
+            this.res_f += resBonus.Item2 / 4;
+            this.res_a += resBonus.Item3 / 4;
+            this.res_w += resBonus.Item4 / 4;
+        } else if (upLevel == 1) {
+            this.hp += upgrade.getHpBonus() * 60 / 100;
+            this.actual_hp = this.hp;
+            Tuple<int, int, int, int> dmgBonus = upgrade.getAttackBonus();
+            this.att_e += dmgBonus.Item1 / 2;
+            this.att_f += dmgBonus.Item2 / 2;
+            this.att_a += dmgBonus.Item3 / 2;
+            this.att_w += dmgBonus.Item4 / 2;
+            Tuple<int, int, int, int> resBonus = upgrade.getDefenceBonus();
+            this.res_e += resBonus.Item1 / 3;
+            this.res_f += resBonus.Item2 / 3;
+            this.res_a += resBonus.Item3 / 3;
+            this.res_w += resBonus.Item4 / 3;
+        }
+        int bonusSummons = upgrade.getSummonsBonus();
+        if (bonusSummons == 1) {
+            this.hp += this.hp * 20 / 100;
+            this.att_e += 20;
+            this.att_f += 20;
+            this.att_a += 20;
+            this.att_w += 20;
+            this.actual_hp = this.hp;
+        } else if (bonusSummons == 2) {
+            this.hp += this.hp * 40 / 100;
+            this.att_e += 50;
+            this.att_f += 50;
+            this.att_a += 50;
+            this.att_w += 50;
+            this.pa += 1;
+            this.actual_hp = this.hp;
+            this.actual_pa = this.pa;
+        }
+    }
+
     public void setBomb(Character summoner, Spell attachedSpell) {
         isBomb = true;
         bombConnectedInfo = new Tuple<Character, Spell>(summoner, attachedSpell);
@@ -87,6 +148,8 @@ public class Evocation : Character {
         base.newTurn();
         if (this.isBomb && this.bombCharge < 5 && !this.isDead)
             bombCharge++;
+        if (this.isBomb && !this.isDead)
+            this.receiveHeal(this.hp * 30 / 100);
         if (mustSkip && !this.isDead)
             TurnsManager.Instance.OnSkipTurn();
         if (this.isDouble) {

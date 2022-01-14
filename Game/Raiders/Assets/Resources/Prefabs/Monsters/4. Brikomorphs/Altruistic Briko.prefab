@@ -129,7 +129,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: Heals itself and all allies
     element: 4
-    damage: 15
+    damage: 25
     lifeSteal: 0
     minRange: 0
     maxRange: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 125
+  hp: 200
   pa: 8
   pm: 4
   ini: 50
@@ -198,6 +198,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   summons: []
+  monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
   accumulationCounter: 0

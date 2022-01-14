@@ -172,7 +172,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 0
-    damage: 40
+    damage: 50
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -191,7 +191,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 480
+  hp: 580
   pa: 7
   pm: 5
   ini: 75

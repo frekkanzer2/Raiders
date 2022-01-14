@@ -48,7 +48,6 @@ public class Spell {
     public bool isSummon;
 
     public void OnPreviewPressed() {
-        Debug.Log("Pressed spell " + name);
         link.displayAttackCells(link, this);
     }
 
@@ -124,27 +123,21 @@ public class Spell {
 
     public static void executeSpell(Character caster, Block targetBlock, Spell spell) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, spell })) return;
-        if (caster == null) Debug.LogError("CASTER NULL");
-        if (targetBlock == null) Debug.LogError("BLOCK NULL");
-        if (spell == null) Debug.LogError("SPELL NULL");
         if (!canUse(caster, spell)) return;
         if (targetBlock.linkedObject == null) {
             // no target
             if (spell.canUseInEmptyCell) {
-                Debug.Log("Successfully executing " + spell.name);
                 payCost(caster, spell);
                 // Code here - Spells in empty cells
             } else return;
         } else {
             if (spell.canUseInEmptyCell)
                 return;
-            Debug.Log("Successfully executing " + spell.name);
             payCost(caster, spell);
             Character target = targetBlock.linkedObject.GetComponent<Character>();
             // Code here - Spells on target
             if (!spell.isEffectOnly && spell.damage > 0) {
                 int damageToInflict = calculateDamage(caster, target, spell);
-                Debug.Log("INFLICT " + damageToInflict + " DMGs");
                 if (spell.element != Element.Heal) {
                     if (target.connectedSacrifice == null)
                         target.inflictDamage(damageToInflict);
@@ -1159,67 +1152,67 @@ public class Spell {
 
     public static void SUMMONS_BWORK_MAGE(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        ut_execute_summon(caster, targetBlock, "Bwork_Mage");
+        ut_execute_summon(caster, targetBlock, "Bwork_Mage", 3);
     }
 
     public static void SUMMONS_CRAQUELEUR(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        ut_execute_summon(caster, targetBlock, "Craqueleur");
+        ut_execute_summon(caster, targetBlock, "Craqueleur", 1);
     }
 
     public static void SUMMONS_GOBBALL(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        ut_execute_summon(caster, targetBlock, "Gobball");
+        ut_execute_summon(caster, targetBlock, "Gobball", 1);
     }
 
     public static void SUMMONS_TOFU(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        ut_execute_summon(caster, targetBlock, "Tofu");
+        ut_execute_summon(caster, targetBlock, "Tofu", 3);
     }
 
     public static void SUMMONS_PRESPIC(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        ut_execute_summon(caster, targetBlock, "Prespic");
+        ut_execute_summon(caster, targetBlock, "Prespic", 3);
     }
 
     public static void SUMMONS_DRAGONNET(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        ut_execute_summon(caster, targetBlock, "Dragonnet");
+        ut_execute_summon(caster, targetBlock, "Dragonnet", 2);
     }
 
     public static void SUMMONS_PANDAWASTA(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        ut_execute_summon(caster, targetBlock, "Pandawasta");
+        ut_execute_summon(caster, targetBlock, "Pandawasta", 2);
     }
 
     public static void SUMMONS_BAMBOO(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        ut_execute_summon(caster, targetBlock, "Bamboo");
+        ut_execute_summon(caster, targetBlock, "Bamboo", 3);
     }
 
     public static void SUMMONS_MADOLL(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        ut_execute_summon(caster, targetBlock, "Madoll");
+        ut_execute_summon(caster, targetBlock, "Madoll", 3);
     }
 
     public static void SUMMONS_INFLATABLE(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        ut_execute_summon(caster, targetBlock, "Inflatable");
+        ut_execute_summon(caster, targetBlock, "Inflatable", 2);
     }
 
     public static void SUMMONS_SACRIFICIAL(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        ut_execute_summon(caster, targetBlock, "Sacrificial_Doll");
+        ut_execute_summon(caster, targetBlock, "Sacrificial_Doll", 2);
     }
 
     public static void SUMMONS_THE_BLOCK(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        ut_execute_summon(caster, targetBlock, "The_Block");
+        ut_execute_summon(caster, targetBlock, "The_Block", 1);
     }
 
     public static void SUMMONS_TREE(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        ut_execute_summon(caster, targetBlock, "Tree");
+        ut_execute_summon(caster, targetBlock, "Tree", 1);
     }
 
     public static void EXECUTE_STING(Block targetBlock, Spell s) {
@@ -1349,25 +1342,25 @@ public class Spell {
 
     public static void SUMMONS_EXPLOBOMBE(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
-        Evocation bomb = ut_execute_summon(caster, targetBlock, "Explobombe");
+        Evocation bomb = ut_execute_summon(caster, targetBlock, "Explobombe", 3);
         bomb.setBomb(caster, s);
     }
 
     public static void SUMMONS_TORNABOMBE(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
-        Evocation bomb = ut_execute_summon(caster, targetBlock, "Tornabombe");
+        Evocation bomb = ut_execute_summon(caster, targetBlock, "Tornabombe", 3);
         bomb.setBomb(caster, s);
     }
 
     public static void SUMMONS_WATERBOMBE(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
-        Evocation bomb = ut_execute_summon(caster, targetBlock, "Waterbombe");
+        Evocation bomb = ut_execute_summon(caster, targetBlock, "Waterbombe", 3);
         bomb.setBomb(caster, s);
     }
 
     public static void SUMMONS_LIVING_SHOVEL(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        ut_execute_summon(caster, targetBlock, "Living Shovel");
+        ut_execute_summon(caster, targetBlock, "Living Shovel", 2);
     }
 
     // This method doesn't kill the bomb -> for security issues, do it manually
@@ -1498,19 +1491,19 @@ public class Spell {
 
     public static void SUMMONS_SENTINEL_TURRECT(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        Evocation turrect = ut_execute_summon(caster, targetBlock, "Sentinel_Turret");
+        Evocation turrect = ut_execute_summon(caster, targetBlock, "Sentinel_Turret", 1);
         turrect.isTurrect = true;
     }
 
     public static void SUMMONS_GUARDIANA_TURRECT(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        Evocation turrect = ut_execute_summon(caster, targetBlock, "Guardiana_Turret");
+        Evocation turrect = ut_execute_summon(caster, targetBlock, "Guardiana_Turret", 2);
         turrect.isTurrect = true;
     }
 
     public static void SUMMONS_TACTICAL_TURRECT(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        Evocation turrect = ut_execute_summon(caster, targetBlock, "Tactical_Turret");
+        Evocation turrect = ut_execute_summon(caster, targetBlock, "Tactical_Turret", 3);
         turrect.isTurrect = true;
     }
 
@@ -1606,7 +1599,7 @@ public class Spell {
 
     public static void SUMMONS_DOUBLE(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        Evocation dd = ut_execute_summon(caster, targetBlock, "Double_" + caster.name);
+        Evocation dd = ut_execute_summon(caster, targetBlock, "Double_" + caster.name, 1);
         dd.isDouble = true;
     }
 
@@ -1620,9 +1613,9 @@ public class Spell {
     public static void SUMMONS_CHAFERFU(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         if (ut_getDeadStatsAllies(caster).Item1 > 1)
-            ut_execute_summon(caster, targetBlock, "Chafer");
+            ut_execute_summon(caster, targetBlock, "Chafer", 2);
         else
-            ut_execute_summon(caster, targetBlock, "Chafer_Lancer");
+            ut_execute_summon(caster, targetBlock, "Chafer_Lancer", 1);
     }
 
     public static void EXECUTE_CRUELTY(Character caster, Block targetBlock, Spell s) {
@@ -1967,7 +1960,7 @@ public class Spell {
         return new Tuple<int, int>(counterAlive, counterDead);
     }
 
-    public static Evocation ut_execute_summon(Character caster, Block targetBlock, string id) {
+    public static Evocation ut_execute_summon(Character caster, Block targetBlock, string id, int summonLevel) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return null;
         GameObject summonPrefab = Resources.Load("Prefabs/Heroes/Evocations/" + id) as GameObject;
         // Creating summon
@@ -1985,6 +1978,7 @@ public class Spell {
         summonScript.connectedSummoner = caster;
         summonScript.connectedCell = targetBlock.gameObject;
         summonScript.setZIndex(targetBlock);
+        summonScript.injectPowerUp(DUNSelectionManager.UPGRADE, summonLevel); // summonLevel can be 1 OR 2 OR 3
         caster.summons.Add(summonScript);
         // Setting turns parameters
         TurnsManager.Instance.injectCharacter(caster, summonScript);

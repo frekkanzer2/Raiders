@@ -148,7 +148,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 400
+  hp: 500
   pa: 10
   pm: 3
   ini: 40
@@ -198,6 +198,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   summons: []
+  monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
   accumulationCounter: 0
@@ -228,8 +229,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.49090743, y: 0.23086038}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
