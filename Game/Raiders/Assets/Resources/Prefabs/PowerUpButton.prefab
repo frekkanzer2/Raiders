@@ -297,6 +297,7 @@ GameObject:
   - component: {fileID: 6697091341936279185}
   - component: {fileID: 6697091341936279184}
   - component: {fileID: 6697091341936279191}
+  - component: {fileID: 4029210430097882390}
   m_Layer: 5
   m_Name: PowerUpButton
   m_TagString: Untagged
@@ -407,9 +408,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ButtonPreview, Assembly-CSharp
-        m_MethodName: onPreviewPressed
+      - m_Target: {fileID: 4029210430097882390}
+        m_TargetAssemblyTypeName: UpgradeButton, Assembly-CSharp
+        m_MethodName: OnPressMyself
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -419,3 +420,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4029210430097882390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6697091341936279189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 778a5706eb9d83748995e49a2dcd84dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR 
 using UnityEditor.Events;
+#endif
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -93,9 +94,6 @@ public class DUNSelectionManager : SelectionManager
         GameObject powerupBtn = GameObject.Instantiate(prefabPowerup);
         powerupBtn.transform.SetParent(teamAreferenceToPreviewBtnSlider.transform);
         powerupBtn.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-        Button pbtn = powerupBtn.GetComponent<Button>();
-        UnityEventTools.RemovePersistentListener(pbtn.onClick, 0);
-        UnityEventTools.AddPersistentListener(pbtn.onClick, new UnityAction(openPowerupPanel));
         specialButtonA = acbutton.GetComponent<ConfirmButton>();
         specialButtonA.sm = this;
         specialButtonA.team = 1;
