@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Gobball War Chief
+  heroClass: 18
   spells:
   - link: {fileID: 0}
     name: Bite
@@ -147,8 +148,10 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 1
+  bonusHeal: 0
   isMoving: 0
   isForcedMoving: 0
+  isBotMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 
@@ -174,6 +177,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   summons: []
+  monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
   accumulationCounter: 0

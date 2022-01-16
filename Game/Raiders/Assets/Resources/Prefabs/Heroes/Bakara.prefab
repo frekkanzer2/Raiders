@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Bakara
+  heroClass: 3
   spells:
   - link: {fileID: 0}
     name: Polarity
@@ -217,8 +218,10 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 1
+  bonusHeal: 0
   isMoving: 0
   isForcedMoving: 0
+  isBotMoving: 0
   spellToUse:
     link: {fileID: 0}
     name: 
@@ -244,6 +247,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   summons: []
+  monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
   accumulationCounter: 0
@@ -291,6 +295,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connected: {fileID: 0}
+  mustRemoveAsync: 0
+  isExecuting: 0
 --- !u!114 &9092556062903490969
 MonoBehaviour:
   m_ObjectHideFlags: 0

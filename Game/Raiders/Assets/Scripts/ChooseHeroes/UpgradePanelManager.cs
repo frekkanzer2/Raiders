@@ -24,7 +24,8 @@ public class UpgradePanelManager : MonoBehaviour
     public Sprite[] iconsList;
 
     public void OnEnable() {
-        setPreview("Heart Points Bonus", 0, iconsList[0], "+0 HP", 0);
+        string _bonusval = "+" + DUNSelectionManager.UPGRADE.getHpBonus() + " HP | +" + DUNSelectionManager.UPGRADE.getHealBonus() + " heals";
+        setPreview("Heart Points Bonus", 0, iconsList[0], _bonusval, 0);
         availablePointsText.GetComponent<TextMeshProUGUI>().text = _available_msg + DUNSelectionManager.UPGRADE.pointsToAssign;
         foreach (Transform child in containerButtonsPowerups.transform)
             setCardPoints(child.gameObject, 0);
@@ -80,7 +81,7 @@ public class UpgradePanelManager : MonoBehaviour
     #region OnPress Cards
 
     public void OnPressHP() {
-        string bonusval = "+" + DUNSelectionManager.UPGRADE.getHpBonus() + " HP";
+        string bonusval = "+" + DUNSelectionManager.UPGRADE.getHpBonus() + " HP | +" + DUNSelectionManager.UPGRADE.getHealBonus() + " heals";
         setPreview("Heart Points Bonus", DUNSelectionManager.UPGRADE.hpLevel, iconsList[0], bonusval, 0);
     }
     public void OnPressShield() {

@@ -191,8 +191,10 @@ public class Monster : Character {
         Character origin = this;
         Tuple<Character, int> tupleTargetable = new Tuple<Character, int>(null, -1);
         // checking can be target on each enemy
+        Debug.Log("H: scanning for spell s: " + s.name);
         foreach (Character c in TurnsManager.Instance.turns) {
             if (!c.isDead && !c.isEnemyOf(this) && getDistanceFromTarget(c) >= minRange && getDistanceFromTarget(c) <= maxRange) {
+                Debug.Log("h: " + ((Monster)c).getCompleteName() + " is a valid target");
                 // Checking if there's an obstacle between caster and target
                 bool canHit = true;
                 if (!s.overObstacles) {
@@ -203,8 +205,9 @@ public class Monster : Character {
                         Block retrieved = collided.GetComponent<Block>();
                         if (retrieved != null) {
                             if (retrieved.linkedObject != null) {
-                                if (retrieved.linkedObject.GetComponent<Monster>() != null) {
-                                    if (retrieved.linkedObject.GetComponent<Monster>().getCompleteName() != this.getCompleteName()) {
+                                if (retrieved.linkedObject.GetComponent<Character>() != null) {
+                                    Debug.Log("h: found monster " + ((Monster)c).getCompleteName());
+                                    if (!retrieved.linkedObject.GetComponent<Character>().Equals(this) && !retrieved.linkedObject.GetComponent<Character>().Equals(c)) {
                                         canHit = false;
                                         break;
                                     }
@@ -213,7 +216,9 @@ public class Monster : Character {
                         }
                     }
                 }
-                if (!canHit) continue; // next enemy
+                if (!canHit) {
+                    continue; // next enemy
+                }
                 // Assignment
                 if (tupleTargetable.Item1 == null) {
                     tupleTargetable = new Tuple<Character, int>(c, c.getActualHP());
@@ -306,19 +311,14 @@ public class Monster : Character {
                 }
                 List<Block> path = null;
                 if (mt == MovementType.GoAhead) {
-
-                    Debug.Log("Executing algorithm");
                     int actualDistance = getDistance(toMove.coordinate, this.connectedCell.GetComponent<Block>().coordinate);
                     if (actualDistance <= 30) {
-                        Debug.Log("Before: " + System.DateTime.Now.ToString());
                         path = ai_reachEnemy(this.connectedCell.GetComponent<Block>(), toMove, 30);
-                        Debug.Log("After: " + System.DateTime.Now.ToString());
                         if (path.Count >= 2) {
                             path.RemoveRange(2, path.Count - 2);
                             whereToMove = path;
                         }
                     } else {
-                        Debug.LogError("CASE");
                         List<Block> adjfree = this.connectedCell.GetComponent<Block>().getFreeAdjacentBlocks();
                         List<Block> allowedDestinations = new List<Block>();
                         foreach (Block b in adjfree) {
@@ -368,20 +368,14 @@ public class Monster : Character {
                     timeToWait = 0.05f;
                 }
                 if (whereToMove != null) {
-                    foreach (Block b in whereToMove) {
-                        Debug.LogWarning(b.coordinate.display());
-                    }
                     this.setMonsterPath(whereToMove); // walk
                     this.decrementPM_withoutEffect(1);
-                    if (debugEnabled) Debug.LogWarning("Enemy " + this.getCompleteName() + " is moving of 1 cell");
                 } else {
                     this.decrementPM_withoutEffect(this.getActualPM());
-                    if (debugEnabled) Debug.LogWarning("Enemy " + this.getCompleteName() + " cannot move!");
                     timeToWait = 0.05f;
                 }
             }
         }
-        if (debugEnabled) Debug.LogWarning("Enemy " + this.getCompleteName() + " will pass the turn now");
         if (this.Equals(TurnsManager.active) && !this.isDead) {
             // The turn may be changed for poison effects
             if (newTurnToWait <= 0f)

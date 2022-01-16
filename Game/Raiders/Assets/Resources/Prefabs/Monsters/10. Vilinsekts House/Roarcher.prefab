@@ -126,13 +126,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Roarcher
+  heroClass: 18
   spells:
   - link: {fileID: 0}
     name: Toothpick shot
     icon: {fileID: 0}
     description: 
     element: 0
-    damage: 120
+    damage: 85
     lifeSteal: 0
     minRange: 3
     maxRange: 7
@@ -174,10 +175,10 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 400
+  hp: 300
   pa: 7
   pm: 3
-  ini: 70
+  ini: 10
   res_e: -9
   res_f: 0
   res_a: -13
@@ -196,6 +197,7 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 1
+  bonusHeal: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

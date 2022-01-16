@@ -353,6 +353,10 @@ public class Upgrade
         return hpLevel * 5;
     }
 
+    public int getHealBonus() {
+        return hpLevel / 2;
+    }
+
     public int getInitBonus() {
         return initLevel * 3;
     }

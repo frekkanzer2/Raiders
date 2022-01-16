@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Raul Mops
+  heroClass: 18
   spells:
   - link: {fileID: 0}
     name: Harpooning
@@ -170,6 +171,7 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 1
+  bonusHeal: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Frenzied Bruto
+  heroClass: 18
   spells:
   - link: {fileID: 0}
     name: Bruto Tear
@@ -147,6 +148,7 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 0
+  bonusHeal: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

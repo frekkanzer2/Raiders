@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Pyrasite
+  heroClass: 18
   spells:
   - link: {fileID: 0}
     name: Burning Blow
@@ -174,10 +175,10 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 400
+  hp: 300
   pa: 6
   pm: 3
-  ini: 70
+  ini: 90
   res_e: 0
   res_f: 20
   res_a: 0
@@ -196,6 +197,7 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 1
+  bonusHeal: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

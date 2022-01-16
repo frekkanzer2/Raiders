@@ -126,13 +126,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Kankreblath
+  heroClass: 18
   spells:
   - link: {fileID: 0}
     name: Kankenblast
     icon: {fileID: 0}
     description: 
     element: 1
-    damage: 200
+    damage: 250
     lifeSteal: 0
     minRange: 1
     maxRange: 5
@@ -142,7 +143,7 @@ MonoBehaviour:
     paCost: 4
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 0
+    executeAfterTurns: 3
     effectDuration: 0
     criticalProbability: 15
     hasEffect: 0
@@ -155,7 +156,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: Repels of 1 cell
     element: 3
-    damage: 85
+    damage: 70
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -185,7 +186,7 @@ MonoBehaviour:
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 3
+    paCost: 1
     pmCost: 0
     maxTimesInTurn: 1
     executeAfterTurns: 1
@@ -197,10 +198,10 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1200
+  hp: 820
   pa: 7
   pm: 4
-  ini: 70
+  ini: 30
   res_e: 34
   res_f: 12
   res_a: 18
@@ -208,7 +209,7 @@ MonoBehaviour:
   att_e: 0
   att_f: 24
   att_a: 32
-  att_w: 0
+  att_w: 10
   numberOfSummons: 8
   isEvocation: 0
   actual_hp: 0
@@ -219,6 +220,7 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 0
+  bonusHeal: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

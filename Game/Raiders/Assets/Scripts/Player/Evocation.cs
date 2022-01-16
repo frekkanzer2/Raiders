@@ -29,6 +29,7 @@ public class Evocation : Character {
     public void injectPowerUp(Upgrade upgrade, int upLevel) {
         if (upLevel == 3) {
             this.hp += upgrade.getHpBonus() * 30 / 100;
+            this.bonusHeal += upgrade.getHealBonus() / 3;
             this.actual_hp = this.hp;
             Tuple<int, int, int, int> dmgBonus = upgrade.getAttackBonus();
             this.att_e += dmgBonus.Item1/4;
@@ -42,6 +43,7 @@ public class Evocation : Character {
             this.res_w += resBonus.Item4/5;
         } else if (upLevel == 2) {
             this.hp += upgrade.getHpBonus() * 45 / 100;
+            this.bonusHeal += upgrade.getHealBonus() / 2;
             this.actual_hp = this.hp;
             Tuple<int, int, int, int> dmgBonus = upgrade.getAttackBonus();
             this.att_e += dmgBonus.Item1 / 3;
@@ -55,6 +57,7 @@ public class Evocation : Character {
             this.res_w += resBonus.Item4 / 4;
         } else if (upLevel == 1) {
             this.hp += upgrade.getHpBonus() * 60 / 100;
+            this.bonusHeal += upgrade.getHealBonus();
             this.actual_hp = this.hp;
             Tuple<int, int, int, int> dmgBonus = upgrade.getAttackBonus();
             this.att_e += dmgBonus.Item1 / 2;
@@ -75,6 +78,7 @@ public class Evocation : Character {
             this.att_a += 20;
             this.att_w += 20;
             this.actual_hp = this.hp;
+            this.bonusHeal += bonusHeal * 20 / 100;
         } else if (bonusSummons == 2) {
             this.hp += this.hp * 40 / 100;
             this.att_e += 50;
@@ -84,6 +88,7 @@ public class Evocation : Character {
             this.pa += 1;
             this.actual_hp = this.hp;
             this.actual_pa = this.pa;
+            this.bonusHeal += bonusHeal * 30 / 100;
         }
     }
 

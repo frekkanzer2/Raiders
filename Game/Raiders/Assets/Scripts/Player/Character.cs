@@ -10,9 +10,33 @@ using System.Threading.Tasks;
 public class Character : MonoBehaviour
 {
 
+    public enum HeroClass {
+        Danzal,
+        Sadida,
+        Ocra,
+        Hipermago,
+        Aniripsa,
+        Ecaflip,
+        Yop,
+        Feca,
+        Sacrido,
+        Osamodas,
+        Anutrof,
+        Etram,
+        Xelor,
+        Pandawa,
+        Ladrurbo,
+        Steamer,
+        Elatrop,
+        Uginak,
+        MONSTER,
+        EVOCATION
+    }
+
     private int AI_SEARCHPATH_STEPS = 100;
 
     public string name;
+    public HeroClass heroClass;
     public List<Spell> spells;
     public int team;
     public int hp;
@@ -44,6 +68,8 @@ public class Character : MonoBehaviour
     public bool isDead = false;
     public bool canMovedByEffects;
     private int kamaCounter = 0;
+    [HideInInspector]
+    public int bonusHeal = 0;
 
     private StatsOutputSystem sos;
 
@@ -69,25 +95,45 @@ public class Character : MonoBehaviour
     public int summonsIdCounter = 0;
 
     public void injectPowerUp(Upgrade upgrade) {
-        this.hp += upgrade.getHpBonus();
+        if (this is Monster || this is Evocation || this is MonsterEvocation) return;
+        int hpBonus = upgrade.getHpBonus();
+        if (this.heroClass == HeroClass.Sacrido) hpBonus *= 2;
+        this.hp += hpBonus;
+        this.bonusHeal += upgrade.getHealBonus();
+        if (this.heroClass == HeroClass.Aniripsa) this.bonusHeal += (this.bonusHeal / 2);
         this.actual_hp = this.hp;
         this.actual_shield = upgrade.getShieldBonus();
+        if (this.heroClass == HeroClass.Danzal) this.actual_shield += (this.actual_shield / 2);
         this.pa += upgrade.getPaBonus();
         this.pm += upgrade.getPmBonus();
         this.actual_pa = pa;
         this.actual_pm = pm;
         this.ini += upgrade.getInitBonus();
+        if (this.heroClass == HeroClass.Hipermago) this.ini *= 2;
         Tuple<int, int, int, int> dmgBonus = upgrade.getAttackBonus();
         this.att_e += dmgBonus.Item1;
         this.att_f += dmgBonus.Item2;
         this.att_a += dmgBonus.Item3;
         this.att_w += dmgBonus.Item4;
+        if (this.heroClass == HeroClass.Yop) {
+            this.att_e += dmgBonus.Item1 / 4;
+            this.att_f += dmgBonus.Item2 / 4;
+            this.att_a += dmgBonus.Item3 / 4;
+            this.att_w += dmgBonus.Item4 / 4;
+        }
         Tuple<int, int, int, int> resBonus = upgrade.getDefenceBonus();
         this.res_e += resBonus.Item1;
         this.res_f += resBonus.Item2;
         this.res_a += resBonus.Item3;
         this.res_w += resBonus.Item4;
+        if (this.heroClass == HeroClass.Feca) {
+            this.res_e += resBonus.Item1 / 4;
+            this.res_f += resBonus.Item2 / 4;
+            this.res_a += resBonus.Item3 / 4;
+            this.res_w += resBonus.Item4 / 4;
+        }
         numberOfSummons += upgrade.getSummonsBonus();
+        if (this.heroClass == HeroClass.Osamodas || this.heroClass == HeroClass.Sadida) this.numberOfSummons += (upgrade.getSummonsBonus() / 2);
     }
 
     public void setPath(List<Block> path) {

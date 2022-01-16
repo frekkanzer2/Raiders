@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Sacarid
+  heroClass: 18
   spells:
   - link: {fileID: 0}
     name: Hard Bone
@@ -174,10 +175,10 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 800
+  hp: 500
   pa: 6
   pm: 3
-  ini: 70
+  ini: 100
   res_e: 10
   res_f: 0
   res_a: -2
@@ -196,6 +197,7 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 1
+  bonusHeal: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

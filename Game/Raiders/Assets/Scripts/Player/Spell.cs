@@ -142,7 +142,7 @@ public class Spell {
                     if (target.connectedSacrifice == null)
                         target.inflictDamage(damageToInflict);
                     else target.connectedSacrifice.inflictDamage(damageToInflict);
-                } else target.receiveHeal(damageToInflict);
+                } else target.receiveHeal(damageToInflict + caster.bonusHeal);
                 if (spell.lifeSteal) caster.receiveHeal(damageToInflict / 2);
             }
         }
@@ -199,7 +199,7 @@ public class Spell {
         else if (spell.name == "All or Nothing") EXECUTE_ALL_OR_NOTHING(targetBlock, spell);
         else if (spell.name == "Claw of Ceangal" || spell.name == "Haunting Magic") EXECUTE_CLAW_OF_CEANGAL(caster, targetBlock);
         else if (spell.name == "Godsend") EXECUTE_GODSEND(targetBlock, spell);
-        else if (spell.name == "Feline Sense") EXECUTE_FELINE_SENSE(targetBlock, spell);
+        else if (spell.name == "Feline Sense") EXECUTE_FELINE_SENSE(caster, targetBlock, spell);
         else if (spell.name == "Roulette") EXECUTE_ROULETTE(caster, spell);
         else if (spell.name == "Time Rift") EXECUTE_TIME_RIFT(caster, targetBlock, spell);
         else if (spell.name == "Sandglass") EXECUTE_SANDGLASS(targetBlock, spell);
@@ -445,7 +445,7 @@ public class Spell {
         if (!put_CheckLinkedObject(targetBlock)) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         foreach (Character ch in ut_getAllies(caster)) {
-            ch.receiveHeal(calculateDamage(caster, target, s) / 2);
+            ch.receiveHeal((calculateDamage(caster, target, s) / 2) + caster.bonusHeal);
         }
     }
 
@@ -669,7 +669,7 @@ public class Spell {
         foreach (Character ch in ut_getAllies(caster)) {
             Coordinate b = ch.connectedCell.GetComponent<Block>().coordinate;
             if (ut_isNearOf(a, b, 6)) {
-                ch.receiveHeal(100);
+                ch.receiveHeal(100 + caster.bonusHeal);
             }
         }
     }
@@ -717,7 +717,7 @@ public class Spell {
         ge.useIstantanely();
     }
 
-    public static void EXECUTE_FELINE_SENSE(Block targetBlock, Spell s) {
+    public static void EXECUTE_FELINE_SENSE(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
@@ -731,7 +731,7 @@ public class Spell {
                 int v = UnityEngine.Random.Range(1, 3);
                 Debug.Log("Value " + v);
                 if (v == 1)
-                    target.receiveHeal(50);
+                    target.receiveHeal(50 + caster.bonusHeal);
                 else Debug.Log("Feline sense failed");
             }
         }
@@ -1018,7 +1018,7 @@ public class Spell {
     public static void EXECUTE_BONTAO(Character caster, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         foreach (Character c in ut_getAllies(caster)) {
-            c.receiveHeal(s.damage);
+            c.receiveHeal(s.damage + caster.bonusHeal);
         }
     }
 
@@ -1086,7 +1086,7 @@ public class Spell {
         List<Character> heroes = ut_getAdjacentHeroes(targetBlock.coordinate);
         foreach (Character c in heroes)
             if (!c.isEnemyOf(caster))
-                c.receiveHeal(30);
+                c.receiveHeal(30 + caster.bonusHeal);
     }
 
     public static void EXECUTE_STRIKING_WORD(Character caster, Block targetBlock, Spell s) {
@@ -1284,7 +1284,7 @@ public class Spell {
         if (target is Evocation && target.name == "Bamboo" && target.team == caster.team) {
             foreach(Character c in ut_getAllies(caster)) {
                 if (c.name != "Bamboo")
-                    c.receiveHeal(20);
+                    c.receiveHeal(20 + caster.bonusHeal);
             }
         }
     }
@@ -1642,7 +1642,7 @@ public class Spell {
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         foreach (Character c in ut_getAllies(caster))
             if (ut_isNearOf(c, target, 2))
-                c.receiveHeal(20);
+                c.receiveHeal(20 + caster.bonusHeal);
     }
 
     public static void EXECUTE_EVASION(Character caster, Spell s) {
@@ -1901,7 +1901,9 @@ public class Spell {
     public static void EXECUTE_WAX_SHOT(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
+        if (targetBlock.linkedObject == null) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new WaxShotEvent("Wax Shot", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
         foreach (Character c in ut_getAllies(target)) {
             if (ut_isNearOf(target, c, 2)) {
                 c.inflictDamage(Spell.calculateDamage(caster, c, s));
@@ -1913,6 +1915,7 @@ public class Spell {
     public static void EXECUTE_NINJAWAX(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
+        if (targetBlock.linkedObject == null) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         foreach (Character c in ut_getAllies(target)) {
             if (ut_isNearOf(target, c, 3)) {
@@ -2034,6 +2037,7 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         Coordinate casterCoord = caster.connectedCell.GetComponent<Block>().coordinate;
         Coordinate targetCoord = targetBlock.coordinate;
+        if (targetBlock.linkedObject == null) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         if (target == null) return;
         if (casterCoord.row == targetCoord.row && casterCoord.column < targetCoord.column) {
