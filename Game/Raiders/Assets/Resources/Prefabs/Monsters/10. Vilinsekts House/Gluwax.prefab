@@ -133,7 +133,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 01060ee29f1e99549921a87dcb7eb0ef, type: 3}
     description: Hits also enemies in 2 cells from the target; -1PM
     element: 3
-    damage: 40
+    damage: 30
     lifeSteal: 0
     minRange: 2
     maxRange: 5

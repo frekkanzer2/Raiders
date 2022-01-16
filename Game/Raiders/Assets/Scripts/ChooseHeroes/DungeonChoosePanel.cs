@@ -54,6 +54,17 @@ public class DungeonChoosePanel : MonoBehaviour {
     private void setUpgradeStats() {
         int multiplier = getSelectedDungeonID() + 1;
         int points = multiplier * 5;
+        int bonusPointsLevel = (multiplier - 1) / 10;
+        int bonus = 0;
+        switch (bonusPointsLevel) {
+            case 0: bonus = 0; break;
+            case 1: bonus = 30; break;
+            case 2: bonus = 70; break;
+            case 3: bonus = 125; break;
+            case 4: bonus = 200; break;
+            default: bonus = 200; break;
+        }
+        points += bonus;
         DUNSelectionManager.UPGRADE = new Upgrade();
         DUNSelectionManager.UPGRADE.availablePoints = points;
         GameObject textToEdit = GameObject.Find("POINTS_TEXT");

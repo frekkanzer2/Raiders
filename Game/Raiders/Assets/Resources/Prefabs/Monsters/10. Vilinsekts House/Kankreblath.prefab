@@ -179,7 +179,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: Summons a dustly on a random adjacent cell from the enemy
     element: 2
-    damage: 50
+    damage: 35
     lifeSteal: 0
     minRange: 3
     maxRange: 5

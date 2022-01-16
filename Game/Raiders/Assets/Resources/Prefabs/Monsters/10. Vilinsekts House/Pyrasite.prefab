@@ -133,7 +133,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 1
-    damage: 70
+    damage: 50
     lifeSteal: 0
     minRange: 1
     maxRange: 3
@@ -166,8 +166,8 @@ MonoBehaviour:
     paCost: 3
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 4
-    effectDuration: 5
+    executeAfterTurns: 7
+    effectDuration: 4
     criticalProbability: 0
     hasEffect: 1
     isEffectOnly: 1

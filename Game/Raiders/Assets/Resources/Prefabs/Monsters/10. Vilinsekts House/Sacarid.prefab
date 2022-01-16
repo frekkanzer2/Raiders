@@ -143,8 +143,8 @@ MonoBehaviour:
     paCost: 3
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 4
-    effectDuration: 3
+    executeAfterTurns: 6
+    effectDuration: 2
     criticalProbability: 0
     hasEffect: 1
     isEffectOnly: 1
@@ -156,7 +156,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 0
-    damage: 100
+    damage: 60
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -175,7 +175,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 500
+  hp: 400
   pa: 6
   pm: 3
   ini: 100

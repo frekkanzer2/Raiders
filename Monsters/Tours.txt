@@ -1,5 +1,11 @@
-1. Gobball Dungeon
-2. Champs Royale Dungeon
-3. Pichon Dungeon
-4. Tofu Dungeon
-5. Under Forest - NEW CHARACTER (Astrub Knight)
+To implement:
+1. Golden Scarabugly
+2. Frakacia Leukocytine
+3. Vampire Master
+4. Kardorim
+5. Boostache
+6. Abraknide Dungeon
+7. Blacknide Dungeon
+8. Kwak Dungeon
+9. Junior Bworker Village
+10. Craquerock Mountain
