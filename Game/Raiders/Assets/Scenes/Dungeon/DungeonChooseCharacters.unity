@@ -9981,8 +9981,8 @@ MonoBehaviour:
       - monsterID: 7
         quantity: 0
         spawnCoordinates: []
-  - name: Vilinsekts House
-    bossIcon: {fileID: 21300000, guid: 161d09ce8ff6a8145b018ba361d29735, type: 3}
+  - name: Scarabugly Hole
+    bossIcon: {fileID: 21300000, guid: 5d363372401d5884d893905c7e3560b9, type: 3}
     monsters:
     - name: Aggressive Arachnee
       prefab: {fileID: 557098361630938699, guid: abd013ec103c116458f4207f07f03cb8, type: 3}
