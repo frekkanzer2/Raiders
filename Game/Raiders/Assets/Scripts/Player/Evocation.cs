@@ -27,6 +27,7 @@ public class Evocation : Character {
     public bool mustSkip;
 
     public void injectPowerUp(Upgrade upgrade, int upLevel) {
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo == null) return;
         if (upLevel == 3) {
             this.hp += upgrade.getHpBonus() * 30 / 100;
             this.bonusHeal += upgrade.getHealBonus() / 3;
