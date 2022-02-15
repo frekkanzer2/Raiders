@@ -5,7 +5,7 @@ To implement:
 4. Kardorim
 5. Boostache
 6. Abraknide Dungeon
-7. Blacknide Dungeon
-8. Kwak Dungeon
-9. Junior Bworker Village
-10. Craquerock Mountain
+7. Kwak Dungeon
+8. Junior Bworker Village
+9. Craquerock Mountain
+10. Blacknide Dungeon
