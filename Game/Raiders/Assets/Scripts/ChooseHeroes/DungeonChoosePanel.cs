@@ -62,7 +62,7 @@ public class DungeonChoosePanel : MonoBehaviour {
             case 2: bonus = 70; break;
             case 3: bonus = 125; break;
             case 4: bonus = 200; break;
-            default: bonus = 200; break;
+            default: bonus = 245; break;
         }
         points += bonus;
         DUNSelectionManager.UPGRADE = new Upgrade();
