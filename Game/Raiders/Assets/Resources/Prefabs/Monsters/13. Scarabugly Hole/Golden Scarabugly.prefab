@@ -198,32 +198,9 @@ MonoBehaviour:
     isJump: 0
     isSummon: 1
   - link: {fileID: 0}
-    name: Birth
-    icon: {fileID: 0}
-    description: Summons a Black Scaraleaf
-    element: 5
-    damage: 0
-    lifeSteal: 0
-    minRange: 1
-    maxRange: 1
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 5
-    pmCost: 0
-    maxTimesInTurn: 1
-    executeAfterTurns: 6
-    effectDuration: 0
-    criticalProbability: 0
-    hasEffect: 1
-    isEffectOnly: 1
-    canUseInEmptyCell: 1
-    isJump: 0
-    isSummon: 1
-  - link: {fileID: 0}
     name: Poisoned Fog
     icon: {fileID: 0}
-    description: -2 PA, -2 PA to enemies in 3 cells from the target
+    description: -2 PM, -2 PA to enemies in 3 cells from the target
     element: 2
     damage: 24
     lifeSteal: 0
@@ -236,7 +213,7 @@ MonoBehaviour:
     pmCost: 0
     maxTimesInTurn: 1
     executeAfterTurns: 4
-    effectDuration: 2
+    effectDuration: 3
     criticalProbability: 0
     hasEffect: 1
     isEffectOnly: 1

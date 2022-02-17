@@ -131,7 +131,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Vilinslash
     icon: {fileID: 0}
-    description: Hits in a line of 3 cells
+    description: Hits in a line of 2 cells
     element: 0
     damage: 65
     lifeSteal: 0

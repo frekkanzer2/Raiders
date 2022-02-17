@@ -103,8 +103,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.35633755, y: 0.2272233}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -135,10 +135,10 @@ MonoBehaviour:
     element: 1
     damage: 25
     lifeSteal: 0
-    minRange: 0
-    maxRange: 0
+    minRange: 1
+    maxRange: 150
     distanceType: 0
-    overObstacles: 0
+    overObstacles: 1
     hpCost: 0
     paCost: 5
     pmCost: 0
@@ -154,14 +154,14 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Fate of light
     icon: {fileID: 0}
-    description: 
+    description: damage to every enemy
     element: 1
-    damage: 60
+    damage: 30
     lifeSteal: 0
     minRange: 1
-    maxRange: 6
+    maxRange: 150
     distanceType: 0
-    overObstacles: 0
+    overObstacles: 1
     hpCost: 0
     paCost: 4
     pmCost: 0
@@ -169,8 +169,8 @@ MonoBehaviour:
     executeAfterTurns: 1
     effectDuration: 0
     criticalProbability: 0
-    hasEffect: 0
-    isEffectOnly: 0
+    hasEffect: 1
+    isEffectOnly: 1
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
@@ -179,9 +179,9 @@ MonoBehaviour:
   pa: 6
   pm: 4
   ini: 70
-  res_e: 30
-  res_f: -25
-  res_a: -15
+  res_e: 25
+  res_f: 30
+  res_a: 15
   res_w: 50
   att_e: 0
   att_f: 0

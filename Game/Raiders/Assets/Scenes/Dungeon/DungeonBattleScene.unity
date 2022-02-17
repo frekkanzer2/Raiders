@@ -1090,6 +1090,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b9ebd9d1b3790d347948a72af7982054, type: 3}
   - {fileID: 21300000, guid: 4dca83f09e4296f44b4fb8ee501c044d, type: 3}
   - {fileID: 21300000, guid: b9e232dac5842e34c9fb73251f9b7d55, type: 3}
+  - {fileID: 21300000, guid: 4aebfb77957a91341aedff00edde7ca1, type: 3}
+  - {fileID: 21300000, guid: b9c21468eeae02b44b9d292bdec07918, type: 3}
+  - {fileID: 21300000, guid: 199a0315533e9924caf1c80416d281a3, type: 3}
+  - {fileID: 21300000, guid: 091e913b05b0e0b49866b34cfdba222f, type: 3}
+  - {fileID: 21300000, guid: 42aeee84f75ebcd41b5f32bff24e3702, type: 3}
   mapContainer: {fileID: 606105194}
   mapFile: {fileID: 4900000, guid: 151aef5894359a442a1e9e19fc8a95c2, type: 3}
   blackScreen: {fileID: 1198904534}
@@ -1173,6 +1178,16 @@ MonoBehaviour:
   - {fileID: 4900000, guid: d354a75cc1b9a5e46a2c328da08b19c1, type: 3}
   - {fileID: 4900000, guid: a67df4b58e3f6e840845838b058ad022, type: 3}
   - {fileID: 4900000, guid: e3615294528dc2f4c82481454c04dd8f, type: 3}
+  - {fileID: 4900000, guid: 073b78a3b12e94a4e9ce21e4ce65dbfc, type: 3}
+  - {fileID: 4900000, guid: 9fa893a2350875b47a106aac93ee7a1b, type: 3}
+  - {fileID: 4900000, guid: 7cbbf572942ab754999dbc9d2d42fd79, type: 3}
+  - {fileID: 4900000, guid: fd7f8f55c771c7c4f92ec724c23cc1ab, type: 3}
+  - {fileID: 4900000, guid: f3a2863c351e8a345ae2f6240c44e2e7, type: 3}
+  - {fileID: 4900000, guid: a22d9bb78fe61d54b9e5ef4eeef48636, type: 3}
+  - {fileID: 4900000, guid: 97ef08c8833fe4243af6d1f3e14cc69e, type: 3}
+  - {fileID: 4900000, guid: 377d9318a98175747a5b46414380130e, type: 3}
+  - {fileID: 4900000, guid: 6a25cfe3680650245b1b3ee4a23229dd, type: 3}
+  - {fileID: 4900000, guid: 2abe7c9097c473445b97ed9c1017b575, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481
@@ -15199,6 +15214,10 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: f2797bcfe3b4e9b439b736bf061e11ea, type: 3}
   - track_name_maiusc: VILINSEKTS HOUSE
     music: {fileID: 8300000, guid: 8a32e653c1119fe40881919d31b5cb62, type: 3}
+  - track_name_maiusc: PHANTOM ALPHA
+    music: {fileID: 8300000, guid: 74cf31a50d4b44841a42d5530d95df64, type: 3}
+  - track_name_maiusc: DEADLY FOREST
+    music: {fileID: 8300000, guid: 4520e33b349753748968ad2fc5b31ee0, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0

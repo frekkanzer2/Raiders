@@ -103,8 +103,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.56364805, y: 0.31633034}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 0
-    damage: 70
+    damage: 125
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -145,14 +145,14 @@ MonoBehaviour:
     maxTimesInTurn: 1
     executeAfterTurns: 1
     effectDuration: 0
-    criticalProbability: 5
+    criticalProbability: 10
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 480
+  hp: 380
   pa: 3
   pm: 6
   ini: 80

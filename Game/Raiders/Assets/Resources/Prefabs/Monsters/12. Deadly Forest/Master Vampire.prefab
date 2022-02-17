@@ -103,8 +103,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.60729223, y: 0.20540138}
+    oldSize: {x: 5, y: 5}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ced9ac50935ee468f328a59e67782b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Vampire Master
+  name: Master Vampire
   heroClass: 18
   spells:
   - link: {fileID: 0}
@@ -133,7 +133,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 1
-    damage: 50000
+    damage: 100000
     lifeSteal: 1
     minRange: 1
     maxRange: 1
@@ -145,7 +145,7 @@ MonoBehaviour:
     maxTimesInTurn: 10
     executeAfterTurns: 0
     effectDuration: 0
-    criticalProbability: 0
+    criticalProbability: 5
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
@@ -154,12 +154,12 @@ MonoBehaviour:
   team: 1
   hp: 680
   pa: 7
-  pm: 4
+  pm: 3
   ini: 60
-  res_e: 18
-  res_f: -10
-  res_a: 18
-  res_w: -10
+  res_e: 24
+  res_f: -8
+  res_a: 24
+  res_w: -8
   att_e: 0
   att_f: 0
   att_a: 0

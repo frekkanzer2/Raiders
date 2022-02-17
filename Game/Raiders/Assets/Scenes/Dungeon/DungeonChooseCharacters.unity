@@ -9981,195 +9981,317 @@ MonoBehaviour:
       - monsterID: 7
         quantity: 0
         spawnCoordinates: []
-  - name: Scarabugly Hole
-    bossIcon: {fileID: 21300000, guid: 5d363372401d5884d893905c7e3560b9, type: 3}
+  - name: Phantom Alpha
+    bossIcon: {fileID: 21300000, guid: 1ec7408ea9a74634ca5f8a9da0845a2e, type: 3}
     monsters:
-    - name: Aggressive Arachnee
-      prefab: {fileID: 557098361630938699, guid: abd013ec103c116458f4207f07f03cb8, type: 3}
-      sprite: {fileID: 21300000, guid: 3f4e77e35ef8f3d4e8cd840b339e6101, type: 3}
-    - name: Crooket
-      prefab: {fileID: 557098361630938699, guid: 2161c07977c759d47a4db3d1e6e38fbd, type: 3}
-      sprite: {fileID: 21300000, guid: 75d3821f2a165094d984095aa0dc440f, type: 3}
-    - name: Gluwax
-      prefab: {fileID: 557098361630938699, guid: 369daf17c5180f04e85f484cc918952b, type: 3}
-      sprite: {fileID: 21300000, guid: f4ad6ee37f189714caba9f1a2530b27d, type: 3}
-    - name: Pyrasite
-      prefab: {fileID: 557098361630938699, guid: 14dab13d931b9f046a308f8b73a8f232, type: 3}
-      sprite: {fileID: 21300000, guid: 42a8dd8cc985e234691245155d0a1974, type: 3}
-    - name: Roarcher
-      prefab: {fileID: 557098361630938699, guid: c851284c4e9e037408260af6b23d0262, type: 3}
-      sprite: {fileID: 21300000, guid: 2269b024bbbbae54d8b51b5252fcfdb9, type: 3}
-    - name: Sacarid
-      prefab: {fileID: 557098361630938699, guid: af0d084cf70055d4784855b36a119caa, type: 3}
-      sprite: {fileID: 21300000, guid: 6749fad3834812f4c9679d92cbe191e8, type: 3}
-    - name: Kankreblath
-      prefab: {fileID: 557098361630938699, guid: f4d894fcf2aae6d47ba688cdd04a9e3b, type: 3}
-      sprite: {fileID: 21300000, guid: 27b65c77e29ba50469f9515c1b96ce56, type: 3}
-    - name: Dustmight
-      prefab: {fileID: 557098361630938699, guid: 66bde759763ec9e41a7943f790b4e149, type: 3}
-      sprite: {fileID: 21300000, guid: a562f51b0a2a39840ac92338f2449d29, type: 3}
+    - name: Prepubescent Boostache
+      prefab: {fileID: 557098361630938699, guid: 9dde8696cc7acee4e8392d477edf8100, type: 3}
+      sprite: {fileID: 21300000, guid: ccde438f42ed2db4aa1d6b1270986e4c, type: 3}
+    - name: Apero Ghost
+      prefab: {fileID: 557098361630938699, guid: 6340215ec81c6844fac5ae50c778f1ac, type: 3}
+      sprite: {fileID: 21300000, guid: 116b886466d699f4db77a7564039ead4, type: 3}
+    - name: Bitter Ghost
+      prefab: {fileID: 557098361630938699, guid: 8a34e056ef2df74438e2c017d7796979, type: 3}
+      sprite: {fileID: 21300000, guid: 13b7b087f857c324ab4455511373dcfb, type: 3}
+    - name: Ghost Hicidal
+      prefab: {fileID: 557098361630938699, guid: b532eed28d6a540408b86c7f495b1cc8, type: 3}
+      sprite: {fileID: 21300000, guid: 8c82dbef9e4bcd14e8a6764b4a31f9f3, type: 3}
+    - name: Plated Ghost
+      prefab: {fileID: 557098361630938699, guid: b808b34f43213e04c91279ef59a8c1c9, type: 3}
+      sprite: {fileID: 21300000, guid: 70049e711c27ca94dac213f5f34649fb, type: 3}
+    - name: Boostache
+      prefab: {fileID: 557098361630938699, guid: af9921977d2aaff448697db8403470e3, type: 3}
+      sprite: {fileID: 21300000, guid: adf70073405123e4981245e83e9aa1df, type: 3}
     rooms:
     - roomNumber: 1
       monstersAndQuantity:
       - monsterID: 0
-        quantity: 4
+        quantity: 3
         spawnCoordinates:
-        - row: 2
-          column: 11
+        - row: 4
+          column: 14
         - row: 3
-          column: 11
-        - row: 11
-          column: 11
-        - row: 12
-          column: 11
-      - monsterID: 4
-        quantity: 2
+          column: 10
+        - row: 10
+          column: 3
+      - monsterID: 1
+        quantity: 1
         spawnCoordinates:
-        - row: 3
-          column: 12
-        - row: 11
-          column: 12
+        - row: 5
+          column: 6
     - roomNumber: 2
       monstersAndQuantity:
       - monsterID: 0
         quantity: 2
         spawnCoordinates:
-        - row: 2
+        - row: 8
           column: 11
-        - row: 12
-          column: 11
-      - monsterID: 3
+        - row: 10
+          column: 12
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 6
+          column: 6
+      - monsterID: 2
         quantity: 2
         spawnCoordinates:
+        - row: 1
+          column: 4
         - row: 3
           column: 11
-        - row: 11
-          column: 11
-      - monsterID: 4
-        quantity: 2
-        spawnCoordinates:
-        - row: 2
-          column: 12
-        - row: 12
-          column: 12
     - roomNumber: 3
       monstersAndQuantity:
       - monsterID: 0
         quantity: 2
         spawnCoordinates:
-        - row: 3
-          column: 9
-        - row: 11
-          column: 9
-      - monsterID: 1
+        - row: 2
+          column: 4
+        - row: 2
+          column: 12
+      - monsterID: 2
         quantity: 2
         spawnCoordinates:
         - row: 4
-          column: 9
+          column: 11
+        - row: 4
+          column: 5
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 5
+          column: 8
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 3
+        - row: 2
+          column: 13
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 7
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 5
+          column: 7
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 2
         - row: 10
-          column: 9
+          column: 2
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 3
+        - row: 10
+          column: 3
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 6
+          column: 2
       - monsterID: 3
         quantity: 2
         spawnCoordinates:
-        - row: 6
-          column: 7
-        - row: 8
-          column: 7
+        - row: 2
+          column: 4
+        - row: 10
+          column: 4
       - monsterID: 4
         quantity: 1
         spawnCoordinates:
-        - row: 7
-          column: 9
-      - monsterID: 2
-        quantity: 2
-        spawnCoordinates:
-        - row: 2
-          column: 11
-        - row: 12
-          column: 11
-    - roomNumber: 4
-      monstersAndQuantity:
+        - row: 6
+          column: 3
       - monsterID: 5
         quantity: 1
         spawnCoordinates:
-        - row: 7
-          column: 8
-      - monsterID: 1
-        quantity: 4
-        spawnCoordinates:
-        - row: 2
-          column: 9
-        - row: 3
-          column: 9
-        - row: 11
-          column: 9
-        - row: 12
-          column: 9
-      - monsterID: 2
-        quantity: 2
-        spawnCoordinates:
-        - row: 4
-          column: 11
-        - row: 10
-          column: 11
+        - row: 6
+          column: 0
+  - name: Deadly Forest
+    bossIcon: {fileID: 21300000, guid: 7f977337448d68c4f82967b4f0d23a78, type: 3}
+    monsters:
+    - name: Garglyphe
+      prefab: {fileID: 557098361630938699, guid: 67a34e0e15eb5bf4aaa4c9df233477b3, type: 3}
+      sprite: {fileID: 21300000, guid: c0aaaaa4f9731b04a8a5cd2d1241e307, type: 3}
+    - name: Gargoyla
+      prefab: {fileID: 557098361630938699, guid: 1a58750a3d7d4ed439830ac3fbe4b5c8, type: 3}
+      sprite: {fileID: 21300000, guid: 53c4b496596e7f543ace932158f42ad2, type: 3}
+    - name: Kwoan
+      prefab: {fileID: 557098361630938699, guid: ac776bf763f9b384b99f89568a5208bc, type: 3}
+      sprite: {fileID: 21300000, guid: 44043ef2676bfd14f9caa8df61f60825, type: 3}
+    - name: Ouassingue
+      prefab: {fileID: 557098361630938699, guid: 7b76f9dfed8893e40a7bddfb3544bee0, type: 3}
+      sprite: {fileID: 21300000, guid: 68c68243ebe9ce142940f4242088f793, type: 3}
+    - name: Rib
+      prefab: {fileID: 557098361630938699, guid: 5a3272f4b88e4c64a87e71817c988f6c, type: 3}
+      sprite: {fileID: 21300000, guid: eca6da33838e7c54683e70f8af19cafb, type: 3}
+    - name: Vampire
+      prefab: {fileID: 557098361630938699, guid: 272cb410b56d0f94d9985d1e8df8c00f, type: 3}
+      sprite: {fileID: 21300000, guid: 3b72e4e39e47a31469c549db4619f2d8, type: 3}
+    - name: Master Vampire
+      prefab: {fileID: 557098361630938699, guid: a2890e477446b6c4eafdef9899bd04b7, type: 3}
+      sprite: {fileID: 21300000, guid: 243d58362064afc4da34ad1d14e0c161, type: 3}
+    - name: Spadere
+      prefab: {fileID: 557098361630938699, guid: 123e0ead7b4f3254dbc55811cb83a996, type: 3}
+      sprite: {fileID: 21300000, guid: 090131b7ba48d854da1fe8bd12294f93, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
       - monsterID: 4
         quantity: 2
         spawnCoordinates:
+        - row: 4
+          column: 6
         - row: 6
-          column: 11
-        - row: 8
-          column: 11
-    - roomNumber: 5
-      monstersAndQuantity:
-      - monsterID: 1
-        quantity: 4
+          column: 4
+      - monsterID: 0
+        quantity: 3
         spawnCoordinates:
-        - row: 6
-          column: 6
-        - row: 8
-          column: 6
+        - row: 2
+          column: 7
+        - row: 4
+          column: 3
+        - row: 7
+          column: 1
+      - monsterID: 7
+        quantity: 1
+        spawnCoordinates:
         - row: 5
-          column: 7
-        - row: 9
-          column: 7
-      - monsterID: 2
+          column: 13
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 0
         quantity: 3
         spawnCoordinates:
         - row: 7
-          column: 8
-        - row: 5
-          column: 9
+          column: 13
+        - row: 11
+          column: 6
+        - row: 12
+          column: 11
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 10
+          column: 11
+      - monsterID: 7
+        quantity: 2
+        spawnCoordinates:
+        - row: 4
+          column: 12
         - row: 9
-          column: 9
+          column: 4
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 12
+          column: 8
+      - monsterID: 3
+        quantity: 3
+        spawnCoordinates:
+        - row: 9
+          column: 14
+        - row: 10
+          column: 12
+        - row: 5
+          column: 3
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 9
+          column: 4
+        - row: 10
+          column: 6
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 3
+          column: 10
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 8
+          column: 13
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 4
+          column: 12
+        - row: 6
+          column: 13
       - monsterID: 3
         quantity: 2
         spawnCoordinates:
+        - row: 5
+          column: 3
         - row: 12
           column: 10
-        - row: 2
+      - monsterID: 4
+        quantity: 4
+        spawnCoordinates:
+        - row: 6
+          column: 5
+        - row: 4
+          column: 6
+        - row: 10
+          column: 12
+        - row: 11
+          column: 13
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 3
+          column: 4
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 10
+          column: 13
+        - row: 12
+          column: 11
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 8
+          column: 6
+        - row: 6
           column: 10
       - monsterID: 4
         quantity: 2
         spawnCoordinates:
-        - row: 12
-          column: 12
         - row: 2
-          column: 12
+          column: 6
+        - row: 5
+          column: 2
       - monsterID: 5
         quantity: 2
         spawnCoordinates:
-        - row: 6
-          column: 8
-        - row: 8
-          column: 8
+        - row: 13
+          column: 7
+        - row: 7
+          column: 16
       - monsterID: 6
         quantity: 1
         spawnCoordinates:
-        - row: 7
+        - row: 9
           column: 10
-      - monsterID: 7
-        quantity: 0
-        spawnCoordinates: []
   isDebugEnabled: 0
 --- !u!114 &1295197768
 MonoBehaviour:

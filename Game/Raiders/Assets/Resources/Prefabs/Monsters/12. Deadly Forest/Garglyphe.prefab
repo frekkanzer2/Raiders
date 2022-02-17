@@ -103,8 +103,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.5218224, y: 0.20176418}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 2
-    damage: 35
+    damage: 38
     lifeSteal: 0
     minRange: 1
     maxRange: 6
@@ -157,8 +157,8 @@ MonoBehaviour:
   pm: 4
   ini: 55
   res_e: 10
-  res_f: -15
-  res_a: -5
+  res_f: 15
+  res_a: 5
   res_w: 20
   att_e: 0
   att_f: 0
@@ -213,8 +213,8 @@ MonoBehaviour:
   canCritical: 1
   immuneCloseCombat: 0
   behaviour:
-    spellsOrderToCheckId: 
-    movementAfterFight: 1
+    spellsOrderToCheckId: 00000000
+    movementAfterFight: 2
     movementWhenCannotAttack: 1
   id: 0
   isCommunionActive: 0

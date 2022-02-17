@@ -103,8 +103,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.45999277, y: 0.12902357}
+    oldSize: {x: 6.6666665, y: 6.6666665}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: Inflict same damage on other adjacent enemies from the caster
     element: 2
-    damage: 150
+    damage: 160
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -147,7 +147,7 @@ MonoBehaviour:
     effectDuration: 0
     criticalProbability: 25
     hasEffect: 1
-    isEffectOnly: 0
+    isEffectOnly: 1
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0

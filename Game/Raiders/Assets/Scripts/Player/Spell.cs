@@ -338,6 +338,11 @@ public class Spell {
         else if (spell.name == "Insect Cry") EXECUTE_INSECT_CRY(caster, targetBlock, spell);
         else if (spell.name == "Hideout") EXECUTE_HIDEOUT(caster, spell);
         else if (spell.name == "Hard Bone") EXECUTE_HARD_BONE(caster, spell);
+        else if (spell.name == "Ax of the Valkyrie") EXECUTE_AX_OF_THE_VALKYRIE(caster, targetBlock, spell);
+        else if (spell.name == "Destruction Sword") EXECUTE_DESTRUCTION_SWORD(caster, targetBlock, spell);
+        else if (spell.name == "Fate of light") EXECUTE_FATE_OF_LIGHT(caster, spell);
+        else if (spell.name == "Lights out") EXECUTE_LIGHTS_OUT(caster, spell);
+        else if (spell.name == "Psycho Analysis") EXECUTE_PSYCHO_ANALYSIS(caster, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -1614,8 +1619,11 @@ public class Spell {
     public static void EXECUTE_MIST(Character caster, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         foreach (Character enemy in ut_getEnemies(caster))
-            if (ut_isNearOf(enemy, caster, 3))
-                enemy.addEvent(new MistEvent("Mist", enemy, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
+            if (ut_isNearOf(enemy, caster, 3)) {
+                MistEvent me = new MistEvent("Mist", enemy, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+                enemy.addEvent(me);
+                me.useIstantanely();
+            }
     }
 
     public static void SUMMONS_CHAFERFU(Character caster, Block targetBlock) {
@@ -1968,6 +1976,45 @@ public class Spell {
         }
         if (toSummonBlock == null) return;
         ut_execute_monsterSummon(caster, toSummonBlock, "Dustmight");
+    }
+
+    public static void EXECUTE_AX_OF_THE_VALKYRIE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        foreach (Character c in ut_getAdjacentHeroes(caster.connectedCell.GetComponent<Block>().coordinate)) {
+            if (c.isEnemyOf(caster)) {
+                c.inflictDamage(calculateDamage(caster, c, s));
+            }
+        }
+    }
+
+
+    public static void EXECUTE_DESTRUCTION_SWORD(Character caster, Block targetBlock, Spell s) {
+        ut_damageInLine(caster, targetBlock, s, 2);
+    }
+
+    public static void EXECUTE_FATE_OF_LIGHT(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character c in ut_getEnemies(caster)) {
+            c.inflictDamage(calculateDamage(caster, c, s));
+        }
+    }
+
+    public static void EXECUTE_LIGHTS_OUT(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character enemy in ut_getEnemies(caster)) {
+            LightsOutEvent me = new LightsOutEvent("Lights Out", enemy, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+            enemy.addEvent(me);
+            me.useIstantanely();
+        }
+    }
+
+    public static void EXECUTE_PSYCHO_ANALYSIS(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character enemy in ut_getEnemies(caster)) {
+            enemy.addEvent(new PsychoAnalysisEvent("Psycho Analysis", enemy, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+            enemy.inflictDamage(calculateDamage(caster, enemy, s));
+        }
     }
 
     #endregion

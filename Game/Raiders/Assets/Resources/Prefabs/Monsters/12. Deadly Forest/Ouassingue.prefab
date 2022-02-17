@@ -103,8 +103,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.50545555, y: 0.5054556}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 0
-    damage: 125
+    damage: 175
     lifeSteal: 0
     minRange: 1
     maxRange: 3
@@ -151,13 +151,36 @@ MonoBehaviour:
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
+  - link: {fileID: 0}
+    name: Heal Pool
+    icon: {fileID: 0}
+    description: 
+    element: 4
+    damage: 360
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 0
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 5
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
-  hp: 380
+  hp: 360
   pa: 6
   pm: 4
   ini: 5
   res_e: -5
-  res_f: 20
+  res_f: 30
   res_a: 10
   res_w: -15
   att_e: 0
@@ -213,7 +236,7 @@ MonoBehaviour:
   canCritical: 1
   immuneCloseCombat: 0
   behaviour:
-    spellsOrderToCheckId: 00000000
+    spellsOrderToCheckId: 0100000000000000
     movementAfterFight: 1
     movementWhenCannotAttack: 1
   id: 0
