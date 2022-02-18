@@ -130,10 +130,10 @@ MonoBehaviour:
   pa: 8
   pm: 5
   ini: 0
-  res_e: 25
-  res_f: 25
-  res_a: 25
-  res_w: 25
+  res_e: 40
+  res_f: 40
+  res_a: 40
+  res_w: 40
   att_e: 20
   att_f: 0
   att_a: 0

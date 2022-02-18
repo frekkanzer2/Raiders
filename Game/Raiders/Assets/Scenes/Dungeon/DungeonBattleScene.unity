@@ -1188,6 +1188,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 377d9318a98175747a5b46414380130e, type: 3}
   - {fileID: 4900000, guid: 6a25cfe3680650245b1b3ee4a23229dd, type: 3}
   - {fileID: 4900000, guid: 2abe7c9097c473445b97ed9c1017b575, type: 3}
+  - {fileID: 4900000, guid: c83f162ceca7915458ab82b52423c63c, type: 3}
+  - {fileID: 4900000, guid: 898da4238fa4dbd4eba6d0bccc0006d8, type: 3}
+  - {fileID: 4900000, guid: 3fa99a44398cffc4088d8176ff45a0b6, type: 3}
+  - {fileID: 4900000, guid: 0b8be52a823f0604b8ca74f7b1bc9c73, type: 3}
+  - {fileID: 4900000, guid: bfb4b9ddeb650994c9d592a28f9666e9, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481
@@ -15218,6 +15223,8 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: 74cf31a50d4b44841a42d5530d95df64, type: 3}
   - track_name_maiusc: DEADLY FOREST
     music: {fileID: 8300000, guid: 4520e33b349753748968ad2fc5b31ee0, type: 3}
+  - track_name_maiusc: SCARABUGLY HOLE
+    music: {fileID: 8300000, guid: bb45b635d01af5748817ccb62941b043, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0

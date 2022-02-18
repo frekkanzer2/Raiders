@@ -10292,6 +10292,122 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 9
           column: 10
+  - name: Scarabugly Hole
+    bossIcon: {fileID: 21300000, guid: 5d363372401d5884d893905c7e3560b9, type: 3}
+    monsters:
+    - name: White Scaraleaf
+      prefab: {fileID: 557098361630938699, guid: bde849db4ad6b534990e3f885796ea91, type: 3}
+      sprite: {fileID: 21300000, guid: 7dee1b67217859a42a4fd43c06bbf4e9, type: 3}
+    - name: Green Scaraleaf
+      prefab: {fileID: 557098361630938699, guid: bf98e0b1652ba444fac969ac1cdfa9f1, type: 3}
+      sprite: {fileID: 21300000, guid: d76118a02f7e9f74689fc493163383f5, type: 3}
+    - name: Blue Scaraleaf
+      prefab: {fileID: 557098361630938699, guid: 9aded7784cc3f934995bbe13c427eb10, type: 3}
+      sprite: {fileID: 21300000, guid: f279e3443294f9e4f8585b84fd98ae63, type: 3}
+    - name: Red Scaraleaf
+      prefab: {fileID: 557098361630938699, guid: 1413e6fa8444bbd418d3b10f390ebd14, type: 3}
+      sprite: {fileID: 21300000, guid: 939ee7768740c324b8193099ca4d3e8e, type: 3}
+    - name: Golden Scarabugly
+      prefab: {fileID: 557098361630938699, guid: bea518c2355e8844faa2b7bb9a6b98ee, type: 3}
+      sprite: {fileID: 21300000, guid: 4a4eac3d2b9e1a446b47b112d1b322d6, type: 3}
+    - name: Black Scaraleaf
+      prefab: {fileID: 557098361630938699, guid: 3611432c28febc949b53f748318142d0, type: 3}
+      sprite: {fileID: 21300000, guid: 03876c5cf5bc1134fb7080195e9aceef, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 11
+        - row: 7
+          column: 11
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 4
+          column: 11
+        - row: 6
+          column: 11
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 11
+        - row: 7
+          column: 11
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 4
+          column: 11
+        - row: 6
+          column: 11
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 11
+        - row: 7
+          column: 11
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 4
+          column: 11
+        - row: 6
+          column: 11
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 11
+        - row: 7
+          column: 11
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 4
+          column: 11
+        - row: 6
+          column: 11
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 3
+          column: 11
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 11
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 6
+          column: 11
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 7
+          column: 11
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 5
+          column: 11
+      - monsterID: 5
+        quantity: 0
+        spawnCoordinates: []
   isDebugEnabled: 0
 --- !u!114 &1295197768
 MonoBehaviour:

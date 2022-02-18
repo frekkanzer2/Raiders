@@ -133,7 +133,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 0
-    damage: 65
+    damage: 70
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -142,7 +142,7 @@ MonoBehaviour:
     hpCost: 0
     paCost: 4
     pmCost: 0
-    maxTimesInTurn: 1
+    maxTimesInTurn: 2
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 30
@@ -156,7 +156,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 2
-    damage: 35
+    damage: 40
     lifeSteal: 0
     minRange: 2
     maxRange: 4
@@ -165,7 +165,7 @@ MonoBehaviour:
     hpCost: 0
     paCost: 4
     pmCost: 0
-    maxTimesInTurn: 1
+    maxTimesInTurn: 2
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 25
@@ -175,10 +175,10 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 430
-  pa: 7
-  pm: 4
-  ini: 40
+  hp: 630
+  pa: 10
+  pm: 5
+  ini: 80
   res_e: 100
   res_f: 0
   res_a: -50

@@ -104,20 +104,23 @@ public class Spell {
         else if (element == Spell.Element.Water) bonus_attack = caster.att_w;
         int damage = spell.damage;
         damage += EVENT_BONUS_BASE_DAMAGE(caster, target, spell);
-        int finalDamage = (damage + (damage * bonus_attack / 100)) - (damage * resistance / 100);
+        int finalDamage = (damage + (damage * bonus_attack / 100));
+        finalDamage -= (finalDamage * resistance / 100);
         UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
-        int critProb = UnityEngine.Random.Range(1, 101);
-        if (caster.canCritical) {
-            if (!caster.criticShooting) {
-                if (critProb <= spell.criticalProbability)
-                    finalDamage += finalDamage * 25 / 100;
-            } else {
-                if (critProb <= spell.criticalProbability + 14)
-                    finalDamage += finalDamage * 25 / 100;
-            }
-        }
         if (ut_isNearOf(caster, target, 3) && target.immuneCloseCombat)
             finalDamage = 0;
+        if (finalDamage > 0) {
+            int critProb = UnityEngine.Random.Range(1, 101);
+            if (caster.canCritical) {
+                if (!caster.criticShooting) {
+                    if (critProb <= spell.criticalProbability)
+                        finalDamage += finalDamage * 25 / 100;
+                } else {
+                    if (critProb <= spell.criticalProbability + 14)
+                        finalDamage += finalDamage * 25 / 100;
+                }
+            }
+        }
         return finalDamage;
     }
 
@@ -343,6 +346,8 @@ public class Spell {
         else if (spell.name == "Fate of light") EXECUTE_FATE_OF_LIGHT(caster, spell);
         else if (spell.name == "Lights out") EXECUTE_LIGHTS_OUT(caster, spell);
         else if (spell.name == "Psycho Analysis") EXECUTE_PSYCHO_ANALYSIS(caster, spell);
+        else if (spell.name == "Birth") EXECUTE_BIRTH(caster, targetBlock, spell);
+        else if (spell.name == "Poisoned Fog") EXECUTE_POISONED_FOG(caster, targetBlock, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -2014,6 +2019,40 @@ public class Spell {
         foreach (Character enemy in ut_getEnemies(caster)) {
             enemy.addEvent(new PsychoAnalysisEvent("Psycho Analysis", enemy, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
             enemy.inflictDamage(calculateDamage(caster, enemy, s));
+        }
+    }
+
+    public static void EXECUTE_BIRTH(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Monster casterMonster = (Monster)caster;
+        Character closest = casterMonster.getClosestEnemy();
+        if (closest == null) return;
+        Block closestBlock = closest.connectedCell.GetComponent<Block>();
+        Block toSummonBlock = null;
+        int bestDistance = 10000;
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks())) {
+            int actualDistance = Monster.getDistance(free.coordinate, closestBlock.coordinate);
+            if (actualDistance < bestDistance) {
+                bestDistance = actualDistance;
+                toSummonBlock = free;
+            }
+        }
+        if (toSummonBlock == null) return;
+        ut_execute_monsterSummon(caster, toSummonBlock, "Black Scaraleaf");
+    }
+
+    public static void EXECUTE_POISONED_FOG(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.inflictDamage(calculateDamage(caster, target, s));
+        target.addEvent(new PoisonedFogEvent("Poisoned Fog", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        foreach (Character enemy in ut_getAllies(target)) {
+            if (ut_isNearOf(enemy, target, 3)) {
+                enemy.inflictDamage(calculateDamage(caster, target, s));
+                enemy.addEvent(new PoisonedFogEvent("Poisoned Fog", enemy, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+            }
         }
     }
 
