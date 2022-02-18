@@ -348,6 +348,10 @@ public class Spell {
         else if (spell.name == "Psycho Analysis") EXECUTE_PSYCHO_ANALYSIS(caster, spell);
         else if (spell.name == "Birth") EXECUTE_BIRTH(caster, targetBlock, spell);
         else if (spell.name == "Poisoned Fog") EXECUTE_POISONED_FOG(caster, targetBlock, spell);
+        else if (spell.name == "Holy Chafer Sword") EXECUTE_HOLY_CHAFER_SWORD(caster, targetBlock, spell);
+        else if (spell.name == "Chafer Fireshot") EXECUTE_CHAFER_FIRESHOT(caster, targetBlock, spell);
+        else if (spell.name == "Chafer Windshot") EXECUTE_CHAFER_WINDSHOT(caster, targetBlock);
+        else if (spell.name == "Chafer Lance Explosion") EXECUTE_CHAFER_LANCE_EXPLOSION(caster, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -2054,6 +2058,36 @@ public class Spell {
                 enemy.addEvent(new PoisonedFogEvent("Poisoned Fog", enemy, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
             }
         }
+    }
+
+    public static void EXECUTE_CHAFER_WINDSHOT(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_repels(caster, targetBlock, 5);
+    }
+
+    public static void EXECUTE_CHAFER_LANCE_EXPLOSION(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character enemy in ut_getEnemies(caster)) {
+            if (ut_isNearOf(enemy, caster, 3)) {
+                enemy.inflictDamage(calculateDamage(caster, enemy, s));
+            }
+        }
+    }
+
+    public static void EXECUTE_HOLY_CHAFER_SWORD(Character caster, Block targetBlock, Spell s) {
+        ut_damageInLine(caster, targetBlock, s, 3);
+    }
+
+    public static void EXECUTE_CHAFER_FIRESHOT(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        ChaferFireshotEvent targetevent = new ChaferFireshotEvent("Chafer Fireshot", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon, true);
+        target.addEvent(targetevent);
+        targetevent.useIstantanely();
+        ChaferFireshotEvent casterevent = new ChaferFireshotEvent("Chafer Fireshot", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon, false);
+        caster.addEvent(casterevent);
+        casterevent.useIstantanely();
     }
 
     #endregion

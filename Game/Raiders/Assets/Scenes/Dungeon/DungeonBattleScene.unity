@@ -1193,6 +1193,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 3fa99a44398cffc4088d8176ff45a0b6, type: 3}
   - {fileID: 4900000, guid: 0b8be52a823f0604b8ca74f7b1bc9c73, type: 3}
   - {fileID: 4900000, guid: bfb4b9ddeb650994c9d592a28f9666e9, type: 3}
+  - {fileID: 4900000, guid: 5d73bd9d95b08014897125b0c0d56c8d, type: 3}
+  - {fileID: 4900000, guid: f0610c97ae959a944bde7c0507623367, type: 3}
+  - {fileID: 4900000, guid: b6026235fb2c2bf46a7a0640ff9c06c2, type: 3}
+  - {fileID: 4900000, guid: 7f2c8193baa936c4f8b13aca8501ac18, type: 3}
+  - {fileID: 4900000, guid: d645561801a798d4f9851475b5d99a21, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481
@@ -15225,6 +15230,8 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: 4520e33b349753748968ad2fc5b31ee0, type: 3}
   - track_name_maiusc: SCARABUGLY HOLE
     music: {fileID: 8300000, guid: bb45b635d01af5748817ccb62941b043, type: 3}
+  - track_name_maiusc: CHAFER HOUSE
+    music: {fileID: 8300000, guid: d8813c9118a672842a360bc924a1592d, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0

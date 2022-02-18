@@ -103,8 +103,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.44362614, y: 0.17084941}
+    oldSize: {x: 5, y: 5}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -127,7 +127,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Chafer Archer
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Chafer Fireshot
+    icon: {fileID: 21300000, guid: b74716bed6e9f6a49a6c81efa201dedd, type: 3}
+    description: steal 30% fire dmg on target
+    element: 1
+    damage: 50
+    lifeSteal: 0
+    minRange: 3
+    maxRange: 8
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 5
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 3
+    criticalProbability: 5
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Chafer Windshot
+    icon: {fileID: 0}
+    description: repels of 5 cells
+    element: 2
+    damage: 35
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 5
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 5
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 520
   pa: 7
@@ -138,8 +184,8 @@ MonoBehaviour:
   res_a: 20
   res_w: 10
   att_e: 0
-  att_f: 0
-  att_a: 0
+  att_f: 6
+  att_a: 4
   att_w: 0
   numberOfSummons: 0
   isEvocation: 0
@@ -190,8 +236,8 @@ MonoBehaviour:
   canCritical: 1
   immuneCloseCombat: 0
   behaviour:
-    spellsOrderToCheckId: 
-    movementAfterFight: 1
+    spellsOrderToCheckId: 0100000000000000
+    movementAfterFight: 2
     movementWhenCannotAttack: 1
   id: 0
   isCommunionActive: 0
