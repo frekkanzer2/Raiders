@@ -10465,7 +10465,7 @@ MonoBehaviour:
           column: 6
         - row: 5
           column: 8
-      - monsterID: 2
+      - monsterID: 3
         quantity: 2
         spawnCoordinates:
         - row: 2
@@ -10481,14 +10481,14 @@ MonoBehaviour:
           column: 2
         - row: 6
           column: 12
-      - monsterID: 1
+      - monsterID: 3
         quantity: 2
         spawnCoordinates:
         - row: 2
           column: 2
         - row: 2
           column: 12
-      - monsterID: 3
+      - monsterID: 1
         quantity: 1
         spawnCoordinates:
         - row: 3
