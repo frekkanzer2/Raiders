@@ -133,14 +133,14 @@ MonoBehaviour:
   pa: 10
   pm: 4
   ini: 50
-  res_e: 17
-  res_f: -15
-  res_a: 14
-  res_w: -11
-  att_e: 0
-  att_f: 0
-  att_a: 0
-  att_w: 0
+  res_e: 100
+  res_f: 100
+  res_a: 100
+  res_w: 100
+  att_e: 20
+  att_f: 20
+  att_a: 20
+  att_w: 20
   numberOfSummons: 0
   isEvocation: 0
   actual_hp: 0
