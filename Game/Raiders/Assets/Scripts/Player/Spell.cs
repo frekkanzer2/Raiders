@@ -352,6 +352,8 @@ public class Spell {
         else if (spell.name == "Chafer Fireshot") EXECUTE_CHAFER_FIRESHOT(caster, targetBlock, spell);
         else if (spell.name == "Chafer Windshot") EXECUTE_CHAFER_WINDSHOT(caster, targetBlock);
         else if (spell.name == "Chafer Lance Explosion") EXECUTE_CHAFER_LANCE_EXPLOSION(caster, spell);
+        else if (spell.name == "Kwablow") EXECUTE_REPULSION(caster, targetBlock);
+        else if (spell.name == "Kwasmutation") EXECUTE_KWASMUTATION(caster, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -2088,6 +2090,12 @@ public class Spell {
         ChaferFireshotEvent casterevent = new ChaferFireshotEvent("Chafer Fireshot", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon, false);
         caster.addEvent(casterevent);
         casterevent.useIstantanely();
+    }
+
+    public static void EXECUTE_KWASMUTATION(Character caster, Spell s) {
+        KwasmutationEvent kwe = new KwasmutationEvent("Kwasmutation", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        caster.addEvent(kwe);
+        kwe.useIstantanely();
     }
 
     #endregion

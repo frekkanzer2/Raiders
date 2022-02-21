@@ -10572,6 +10572,130 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 2
           column: 7
+  - name: Kwak Dungeon
+    bossIcon: {fileID: 21300000, guid: 330c05dddb0529f478b07ad3590ea757, type: 3}
+    monsters:
+    - name: Force Kwak
+      prefab: {fileID: 557098361630938699, guid: d12cb84ed6ba0f142b0954a2621972e8, type: 3}
+      sprite: {fileID: 21300000, guid: a70cd00d8529c164c9345591bd754356, type: 3}
+    - name: Agilite Kwak
+      prefab: {fileID: 557098361630938699, guid: 1208507f6bcde5a4e90e97133cd33f21, type: 3}
+      sprite: {fileID: 21300000, guid: fa4840635b2ff764a807877044274663, type: 3}
+    - name: Intelligent Kwak
+      prefab: {fileID: 557098361630938699, guid: 0c0d933385557f740ab36f3d15d3e592, type: 3}
+      sprite: {fileID: 21300000, guid: 7a1b7c46f120ceb48a1ec7eefb0d5b71, type: 3}
+    - name: Sapient Kwak
+      prefab: {fileID: 557098361630938699, guid: 362782b7fcfec4743a5486368b7c7bdf, type: 3}
+      sprite: {fileID: 21300000, guid: 8feba7ff43da8ba49bae01c6e30815ad, type: 3}
+    - name: Kwakao
+      prefab: {fileID: 557098361630938699, guid: 8460cda4c88abb1498b9bda2105740e9, type: 3}
+      sprite: {fileID: 21300000, guid: 748a84cc0adeca34885381ccffeeca55, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 16
+        - row: 5
+          column: 15
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 16
+        - row: 2
+          column: 15
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 16
+        - row: 5
+          column: 15
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 16
+        - row: 2
+          column: 15
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 16
+        - row: 5
+          column: 15
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 16
+        - row: 2
+          column: 15
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 16
+        - row: 4
+          column: 16
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 16
+        - row: 5
+          column: 15
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 16
+        - row: 2
+          column: 15
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 16
+        - row: 4
+          column: 16
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 2
+          column: 15
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 3
+          column: 15
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 15
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 5
+          column: 15
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 3
+          column: 16
   isDebugEnabled: 0
 --- !u!114 &1295197768
 MonoBehaviour:

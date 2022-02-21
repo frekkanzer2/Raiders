@@ -442,7 +442,7 @@ public class Character : MonoBehaviour
             tempDmg.AddRange(TurnsManager.Instance.turns);
             foreach (Character c in tempDmg)
                 if (c.isEnemyOf(this))
-                    c.inflictDamage(100);
+                    c.inflictDamage(10000);
         }
 
     }

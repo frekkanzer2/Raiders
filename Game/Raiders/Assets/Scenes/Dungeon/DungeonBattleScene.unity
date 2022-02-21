@@ -1095,6 +1095,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 199a0315533e9924caf1c80416d281a3, type: 3}
   - {fileID: 21300000, guid: 091e913b05b0e0b49866b34cfdba222f, type: 3}
   - {fileID: 21300000, guid: 42aeee84f75ebcd41b5f32bff24e3702, type: 3}
+  - {fileID: 21300000, guid: 2c58747b4bd9d3544b1f13825dd7d5b3, type: 3}
+  - {fileID: 21300000, guid: 933b69c5358716c459db469a2aec3f81, type: 3}
   mapContainer: {fileID: 606105194}
   mapFile: {fileID: 4900000, guid: 151aef5894359a442a1e9e19fc8a95c2, type: 3}
   blackScreen: {fileID: 1198904534}
@@ -1198,6 +1200,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: b6026235fb2c2bf46a7a0640ff9c06c2, type: 3}
   - {fileID: 4900000, guid: 7f2c8193baa936c4f8b13aca8501ac18, type: 3}
   - {fileID: 4900000, guid: d645561801a798d4f9851475b5d99a21, type: 3}
+  - {fileID: 4900000, guid: 242f3002093dc824a9bd61911334a650, type: 3}
+  - {fileID: 4900000, guid: 4a2f9a5584ffb42448b19534fd4a4af0, type: 3}
+  - {fileID: 4900000, guid: 67681723dea7f924f828e9d6cccdad5b, type: 3}
+  - {fileID: 4900000, guid: 79ec8d82531ed0e4f8021baebc6de5e3, type: 3}
+  - {fileID: 4900000, guid: feef8575d1ed8bb4ca95a731e5b36c1d, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481
@@ -15232,6 +15239,8 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: bb45b635d01af5748817ccb62941b043, type: 3}
   - track_name_maiusc: CHAFER HOUSE
     music: {fileID: 8300000, guid: d8813c9118a672842a360bc924a1592d, type: 3}
+  - track_name_maiusc: KWAK DUNGEON
+    music: {fileID: 8300000, guid: ae0039004ce882a40a0978a704b9da6a, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0

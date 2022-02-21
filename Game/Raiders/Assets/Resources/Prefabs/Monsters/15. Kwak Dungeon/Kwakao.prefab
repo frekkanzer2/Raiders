@@ -103,8 +103,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.4981815, y: 0.1926716}
+    oldSize: {x: 2.857143, y: 2.857143}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -127,20 +127,112 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Kwakao
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Kwasmutation
+    icon: {fileID: 21300000, guid: 3ed032d44afd84e4b8618d7ef23450ee, type: 3}
+    description: -200% res on a random element
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 0
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 0
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 1
+    effectDuration: 2
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Kwasuperhit
+    icon: {fileID: 0}
+    description: 
+    element: 0
+    damage: 400
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 1
+    effectDuration: 0
+    criticalProbability: 10
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Kwadistance
+    icon: {fileID: 0}
+    description: 
+    element: 1
+    damage: 60
+    lifeSteal: 0
+    minRange: 4
+    maxRange: 10
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 35
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Kwablow
+    icon: {fileID: 0}
+    description: repels of 5 cells
+    element: 3
+    damage: 200
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 5
+    distanceType: 1
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 15
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
-  hp: 1100
+  hp: 1260
   pa: 7
   pm: 5
-  ini: 60
-  res_e: 25
-  res_f: 25
-  res_a: 25
-  res_w: 25
-  att_e: 0
-  att_f: 0
-  att_a: 0
-  att_w: 0
+  ini: 5000
+  res_e: 100
+  res_f: 100
+  res_a: 100
+  res_w: 100
+  att_e: 20
+  att_f: 20
+  att_a: 20
+  att_w: 20
   numberOfSummons: 0
   isEvocation: 0
   actual_hp: 0
@@ -190,7 +282,7 @@ MonoBehaviour:
   canCritical: 1
   immuneCloseCombat: 0
   behaviour:
-    spellsOrderToCheckId: 
+    spellsOrderToCheckId: 00000000010000000300000002000000
     movementAfterFight: 1
     movementWhenCannotAttack: 1
   id: 0
