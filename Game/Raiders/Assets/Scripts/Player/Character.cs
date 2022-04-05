@@ -106,6 +106,7 @@ public class Character : MonoBehaviour
         if (this.heroClass == HeroClass.Danzal) this.actual_shield += (this.actual_shield / 2);
         this.pa += upgrade.getPaBonus();
         this.pm += upgrade.getPmBonus();
+        if (this.heroClass == HeroClass.Elatrop) this.pm += (upgrade.getPmBonus() / 2);
         this.actual_pa = pa;
         this.actual_pm = pm;
         this.ini += upgrade.getInitBonus();
@@ -120,6 +121,11 @@ public class Character : MonoBehaviour
             this.att_f += dmgBonus.Item2 / 4;
             this.att_a += dmgBonus.Item3 / 4;
             this.att_w += dmgBonus.Item4 / 4;
+        } else if (this.heroClass == HeroClass.Ocra) {
+            this.att_e += dmgBonus.Item1 / 8;
+            this.att_f += dmgBonus.Item2 / 8;
+            this.att_a += dmgBonus.Item3 / 8;
+            this.att_w += dmgBonus.Item4 / 8;
         }
         Tuple<int, int, int, int> resBonus = upgrade.getDefenceBonus();
         this.res_e += resBonus.Item1;

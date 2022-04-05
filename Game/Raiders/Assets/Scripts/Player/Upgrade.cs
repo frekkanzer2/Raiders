@@ -372,10 +372,10 @@ public class Upgrade
     // Returns Tuple<Earth, Fire, Air, Water>
     public Tuple<int, int, int, int> getAttackBonus() {
         return new Tuple<int, int, int, int>(
-            atkEarthLevel * 2 + allAtkLevel,
-            atkFireLevel * 2 + allAtkLevel,
-            atkAirLevel * 2 + allAtkLevel,
-            atkWaterLevel * 2 + allAtkLevel
+            atkEarthLevel * 2 + allAtkLevel/3*2,
+            atkFireLevel * 2 + allAtkLevel/3*2,
+            atkAirLevel * 2 + allAtkLevel/3*2,
+            atkWaterLevel * 2 + allAtkLevel/3*2
         );
     }
 

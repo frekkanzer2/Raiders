@@ -4894,7 +4894,6 @@ GameObject:
   m_Component:
   - component: {fileID: 810718048}
   - component: {fileID: 810718050}
-  - component: {fileID: 810718049}
   - component: {fileID: 810718051}
   m_Layer: 5
   m_Name: UpgradeSection
@@ -4927,36 +4926,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &810718049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 810718047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 80b78884d0e01ca4f822df78d9a83671, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 2
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 2
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.75
 --- !u!222 &810718050
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10696,6 +10665,161 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 3
           column: 16
+  - name: Bandits Secret Place Hole
+    bossIcon: {fileID: 21300000, guid: fe97fe749e85c434d9e6a163ca0381d3, type: 3}
+    monsters:
+    - name: One Armed Bandit
+      prefab: {fileID: 557098361630938699, guid: aa2b1ada11d3673488cc8beb3f829af8, type: 3}
+      sprite: {fileID: 21300000, guid: bf46fbf5c69734441b4f3b7abce005ec, type: 3}
+    - name: Rogue Clan Bandit
+      prefab: {fileID: 557098361630938699, guid: bcbda8c61b89377468dd0b066e23cd5c, type: 3}
+      sprite: {fileID: 21300000, guid: 9fb2b54e1e3ec314599a8a75f3f81955, type: 3}
+    - name: Dark Smith
+      prefab: {fileID: 557098361630938699, guid: ddf6ab0ba3ff1e94fb947b4a169bcd13, type: 3}
+      sprite: {fileID: 21300000, guid: f411f77f76ed4f7458f590d20c5feeb4, type: 3}
+    - name: Dark Baker
+      prefab: {fileID: 557098361630938699, guid: 963ea6e74f1cdbb4cb7d97dcad7b7237, type: 3}
+      sprite: {fileID: 21300000, guid: 4a930263b67ec2e46994c854264d376f, type: 3}
+    - name: Frakacia Leukocytine
+      prefab: {fileID: 557098361630938699, guid: 20c573b6ad40b3f4298f09e1c29ab7b5, type: 3}
+      sprite: {fileID: 21300000, guid: c46723276b2c2fd41bb02d17245c3b1d, type: 3}
+    - name: Rogue Bomb
+      prefab: {fileID: 557098361630938699, guid: c7300c205b3bdd144993d7656baa1f22, type: 3}
+      sprite: {fileID: 21300000, guid: d68bf107009b9c74a9cfd2485c6014ab, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 1
+        quantity: 4
+        spawnCoordinates:
+        - row: 3
+          column: 20
+        - row: 4
+          column: 20
+        - row: 5
+          column: 20
+        - row: 6
+          column: 20
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 1
+        quantity: 4
+        spawnCoordinates:
+        - row: 3
+          column: 20
+        - row: 4
+          column: 20
+        - row: 5
+          column: 20
+        - row: 6
+          column: 20
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 18
+        - row: 7
+          column: 18
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 4
+          column: 20
+        - row: 5
+          column: 20
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 19
+        - row: 6
+          column: 19
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 18
+        - row: 7
+          column: 18
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 6
+        spawnCoordinates:
+        - row: 3
+          column: 21
+        - row: 4
+          column: 21
+        - row: 5
+          column: 21
+        - row: 6
+          column: 21
+        - row: 4
+          column: 22
+        - row: 5
+          column: 22
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 19
+        - row: 6
+          column: 19
+      - monsterID: 3
+        quantity: 4
+        spawnCoordinates:
+        - row: 4
+          column: 17
+        - row: 5
+          column: 17
+        - row: 3
+          column: 12
+        - row: 6
+          column: 12
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 22
+        - row: 8
+          column: 22
+      - monsterID: 1
+        quantity: 4
+        spawnCoordinates:
+        - row: 1
+          column: 14
+        - row: 8
+          column: 14
+        - row: 2
+          column: 12
+        - row: 7
+          column: 12
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 4
+          column: 18
+        - row: 5
+          column: 18
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 20
+      - monsterID: 5
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 19
+        - row: 6
+          column: 19
   isDebugEnabled: 0
 --- !u!114 &1295197768
 MonoBehaviour:

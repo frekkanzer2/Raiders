@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 4a930263b67ec2e46994c854264d376f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f411f77f76ed4f7458f590d20c5feeb4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,8 +103,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.5472813, y: 0.17812352}
+    oldSize: {x: 5.4054055, y: 5.4054055}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -125,22 +125,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ced9ac50935ee468f328a59e67782b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Dark Baker
+  name: Dark Smith
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Skewering
+    icon: {fileID: 0}
+    description: repels of 5 cells
+    element: 3
+    damage: 12
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 1
+    pmCost: 0
+    maxTimesInTurn: 10
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Magic Power
+    icon: {fileID: 21300000, guid: b31b60f2684efb847bd7fd708e93e809, type: 3}
+    description: +20% dmgs to allies and himself in 3 cells distance
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 0
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 6
+    effectDuration: 3
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
-  hp: 520
+  hp: 700
   pa: 7
   pm: 3
-  ini: 25
-  res_e: 0
-  res_f: 0
-  res_a: 0
-  res_w: 0
+  ini: 60
+  res_e: 21
+  res_f: 21
+  res_a: -10
+  res_w: -10
   att_e: 0
   att_f: 0
   att_a: 0
-  att_w: 0
+  att_w: 5
   numberOfSummons: 0
   isEvocation: 0
   actual_hp: 0
@@ -190,7 +236,7 @@ MonoBehaviour:
   canCritical: 1
   immuneCloseCombat: 0
   behaviour:
-    spellsOrderToCheckId: 
+    spellsOrderToCheckId: 0100000000000000
     movementAfterFight: 1
     movementWhenCannotAttack: 1
   id: 0

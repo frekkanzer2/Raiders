@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 557098361630938741}
   - component: {fileID: 557098361630938698}
+  - component: {fileID: 522039579377509418}
   - component: {fileID: 8528018890230597465}
-  - component: {fileID: -8652852273827976661}
   - component: {fileID: 8914096617352650622}
   - component: {fileID: -2347270675974649033}
   - component: {fileID: 5404421346664201683}
   m_Layer: 0
-  m_Name: Dark Baker
+  m_Name: Rogue Bomb
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 4a930263b67ec2e46994c854264d376f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d68bf107009b9c74a9cfd2485c6014ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,33 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8528018890230597465
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 557098361630938699}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.21601868, y: 0.66759527}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.54546285, y: 0.19812727}
-    oldSize: {x: 5.5555553, y: 5.5555553}
-    newSize: {x: 3.2894738, y: 4.2763157}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.6251364, y: 2.2981646}
-  m_EdgeRadius: 0
---- !u!114 &-8652852273827976661
+--- !u!114 &522039579377509418
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,73 +96,50 @@ MonoBehaviour:
   m_GameObject: {fileID: 557098361630938699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ced9ac50935ee468f328a59e67782b, type: 3}
+  m_Script: {fileID: 11500000, guid: a74ad848812bc304cb1e557ee1071424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Dark Baker
+  name: Rogue Bomb
   heroClass: 18
   spells:
   - link: {fileID: 0}
-    name: Rupture
-    icon: {fileID: 0}
-    description: 
-    element: 1
-    damage: 200
-    lifeSteal: 0
-    minRange: 1
-    maxRange: 1
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 5
-    pmCost: 0
-    maxTimesInTurn: 1
-    executeAfterTurns: 1
-    effectDuration: 0
-    criticalProbability: 10
-    hasEffect: 0
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  - link: {fileID: 0}
-    name: Bread Throwing
+    name: Exp
     icon: {fileID: 0}
     description: 
     element: 0
-    damage: 40
+    damage: 80
     lifeSteal: 0
-    minRange: 2
-    maxRange: 5
+    minRange: 0
+    maxRange: 0
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 3
+    paCost: 100
     pmCost: 0
-    maxTimesInTurn: 2
+    maxTimesInTurn: 0
     executeAfterTurns: 0
     effectDuration: 0
-    criticalProbability: 10
+    criticalProbability: 0
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 620
-  pa: 6
-  pm: 4
-  ini: 30
-  res_e: 12
-  res_f: 17
-  res_a: -8
-  res_w: -4
-  att_e: 7
-  att_f: 4
+  hp: 160
+  pa: 0
+  pm: 0
+  ini: 0
+  res_e: 20
+  res_f: 20
+  res_a: 20
+  res_w: 20
+  att_e: 0
+  att_f: 0
   att_a: 0
   att_w: 0
   numberOfSummons: 0
-  isEvocation: 0
+  isEvocation: 1
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
@@ -236,11 +187,40 @@ MonoBehaviour:
   canCritical: 1
   immuneCloseCombat: 0
   behaviour:
-    spellsOrderToCheckId: 0000000001000000
-    movementAfterFight: 1
-    movementWhenCannotAttack: 1
+    spellsOrderToCheckId: 
+    movementAfterFight: 3
+    movementWhenCannotAttack: 3
   id: 0
   isCommunionActive: 0
+  connectedSummoner: {fileID: 0}
+  mustSkip: 1
+  isBomb: 0
+--- !u!61 &8528018890230597465
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557098361630938699}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.21601868, y: 0.66759527}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5181, y: 0.3199673}
+    oldSize: {x: 3.8461537, y: 3.8461537}
+    newSize: {x: 3.2894738, y: 4.2763157}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.6251364, y: 2.2981646}
+  m_EdgeRadius: 0
 --- !u!114 &8914096617352650622
 MonoBehaviour:
   m_ObjectHideFlags: 0

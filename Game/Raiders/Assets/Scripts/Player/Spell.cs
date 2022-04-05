@@ -352,8 +352,12 @@ public class Spell {
         else if (spell.name == "Chafer Fireshot") EXECUTE_CHAFER_FIRESHOT(caster, targetBlock, spell);
         else if (spell.name == "Chafer Windshot") EXECUTE_CHAFER_WINDSHOT(caster, targetBlock);
         else if (spell.name == "Chafer Lance Explosion") EXECUTE_CHAFER_LANCE_EXPLOSION(caster, spell);
-        else if (spell.name == "Kwablow") EXECUTE_REPULSION(caster, targetBlock);
+        else if (spell.name == "Kwablow" || spell.name == "Skewering") EXECUTE_REPULSION(caster, targetBlock);
         else if (spell.name == "Kwasmutation") EXECUTE_KWASMUTATION(caster, spell);
+        else if (spell.name == "Magic Power") EXECUTE_MAGIC_POWER(caster, spell);
+        else if (spell.name == "Shootem Bombe") SUMMONS_ROGUEBOMB_DISTANCE(caster, targetBlock, spell);
+        else if (spell.name == "Surrounded") SUMMONS_ROGUEBOMB_EVERYFREE(caster, targetBlock, spell);
+        else if (spell.name == "Bomberman") EXECUTE_BOMBERMAN(caster, targetBlock);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -1430,6 +1434,26 @@ public class Spell {
             }
     }
 
+    public static void SUBEXECUTE_EXPLOSION(MonsterEvocation bomb) {
+        if (!put_CheckArguments(new System.Object[] { bomb })) return;
+        List<Character> allHeroes = ut_getEnemies(bomb);
+        allHeroes.AddRange(ut_getAllies(bomb));
+        foreach (Character ch in allHeroes) {
+            if (ut_isNearOf(ch, bomb, 2)) {
+                if (ch is MonsterEvocation) {
+                    if (((MonsterEvocation)ch).isBomb && !bomb.connectedSummoner.monsterSummons.Contains((MonsterEvocation)ch)) {
+                        ch.inflictDamage(bomb.getBombDamage(ch));
+                    } else if (!((MonsterEvocation)ch).isBomb) {
+                        ch.inflictDamage(bomb.getBombDamage(ch));
+                    }
+                    // don't execute damage on summoner bombs
+                } else {
+                    ch.inflictDamage(bomb.getBombDamage(ch));
+                }
+            }
+        }
+    }
+
     public static void EXECUTE_DETONATOR(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
@@ -2096,6 +2120,54 @@ public class Spell {
         KwasmutationEvent kwe = new KwasmutationEvent("Kwasmutation", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
         caster.addEvent(kwe);
         kwe.useIstantanely();
+    }
+
+    public static void EXECUTE_MAGIC_POWER(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character c in ut_getAlliesWithCaster(caster)) {
+            if (ut_isNearOf(caster, c, 3)) {
+                MagicPowerEvent mp = new MagicPowerEvent("Magic Power", c, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+                c.addEvent(mp);
+                mp.useIstantanely();
+            }
+        }
+    }
+
+    public static void SUMMONS_ROGUEBOMB_DISTANCE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Block toSummonBlock = null;
+        List<Block> frees = targetBlock.getFreeAdjacentBlocks();
+        if (frees.Count == 0) return;
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+        int indexResult = UnityEngine.Random.Range(1, frees.Count + 1);
+        toSummonBlock = frees[indexResult - 1];
+        MonsterEvocation bomb = ut_execute_monsterSummon(caster, toSummonBlock, "Rogue Bomb");
+        bomb.setBomb(caster, bomb.spells[0]);
+    }
+
+    public static void SUMMONS_ROGUEBOMB_EVERYFREE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        List<Block> frees = targetBlock.getFreeAdjacentBlocks();
+        foreach (Block free in frees) {
+            MonsterEvocation bomb = ut_execute_monsterSummon(caster, free, "Rogue Bomb");
+            bomb.setBomb(caster, bomb.spells[0]);
+        }
+    }
+
+    public static void EXECUTE_BOMBERMAN(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        // get all bombs from the caster and execute explosion
+        List<MonsterEvocation> temp_summons = new List<MonsterEvocation>();
+        foreach (MonsterEvocation evoTarget in caster.monsterSummons) {
+            SUBEXECUTE_EXPLOSION(evoTarget);
+            temp_summons.Add(evoTarget);
+        }
+        foreach (MonsterEvocation evoTarget in temp_summons) {
+            evoTarget.inflictDamage(evoTarget.actual_hp);
+        }
     }
 
     #endregion
