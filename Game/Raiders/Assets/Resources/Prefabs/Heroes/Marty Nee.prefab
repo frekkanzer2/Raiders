@@ -163,7 +163,7 @@ MonoBehaviour:
     paCost: 4
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 0
+    executeAfterTurns: 1
     effectDuration: 0
     criticalProbability: 15
     hasEffect: 0

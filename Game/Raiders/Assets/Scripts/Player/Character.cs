@@ -69,7 +69,10 @@ public class Character : MonoBehaviour
     public bool canMovedByEffects;
     private int kamaCounter = 0;
     [HideInInspector]
+    public int rageCounter = 0;
+    [HideInInspector]
     public int bonusHeal = 0;
+    private bool bonusXelor = false;
 
     private StatsOutputSystem sos;
 
@@ -96,6 +99,14 @@ public class Character : MonoBehaviour
 
     public void injectPowerUp(Upgrade upgrade) {
         if (this is Monster || this is Evocation || this is MonsterEvocation) return;
+        if (this.heroClass == HeroClass.Uginak) {
+            int uginakCounter = 0;
+            List<Character> allies = Spell.ut_getAllies(this);
+            foreach (Character ally in allies) {
+                if (ally.heroClass == HeroClass.Uginak) uginakCounter++;
+            }
+            this.rageCounter += uginakCounter;
+        }
         int hpBonus = upgrade.getHpBonus();
         if (this.heroClass == HeroClass.Sacrido) hpBonus *= 2;
         this.hp += hpBonus;
@@ -107,6 +118,7 @@ public class Character : MonoBehaviour
         this.pa += upgrade.getPaBonus();
         this.pm += upgrade.getPmBonus();
         if (this.heroClass == HeroClass.Elatrop) this.pm += (upgrade.getPmBonus() / 2);
+        if (this.heroClass == HeroClass.Xelor && upgrade.getPaBonus() == 2) bonusXelor = true;
         this.actual_pa = pa;
         this.actual_pm = pm;
         this.ini += upgrade.getInitBonus();
@@ -464,12 +476,27 @@ public class Character : MonoBehaviour
         stsystem.OnEndTurn();
         actual_pm = pm;
         actual_pa = pa;
+        hasXelorBonus = false;
     }
 
+    [HideInInspector]
+    public bool hasXelorBonus = false;
     public virtual void newTurn() {
         resetBufferedCells();
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -20);
         esystem.OnStartTurn();
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo != null) {
+            if (this.heroClass == HeroClass.Xelor) {
+                if (bonusXelor) {
+                    List<Character> allAllies = Spell.ut_getAlliesWithCaster(this);
+                    foreach (Character ally in allAllies) {
+                        if (!ally.hasXelorBonus)
+                            ally.incrementPA(1);
+                        hasXelorBonus = true;
+                    }
+                }
+            }
+        }
     }
 
     void resetBufferedCells() {
@@ -554,8 +581,9 @@ public class Character : MonoBehaviour
                 damage = 0;
             }
         }
-        if (damage == 0)
+        if (damage <= 0)
             return;
+        else Debug.Log("Last damage: " + damage);
         if (this.actual_hp - damage < 0) actual_hp = 0;
         else this.actual_hp -= damage;
         if (actual_hp == 0) setDead();
@@ -615,6 +643,15 @@ public class Character : MonoBehaviour
         sos.addEffect_PA_PM(StatsOutputSystem.Effect.Kama, "+" + value + "K");
     }
 
+    public void incrementRage(int value) {
+        if (isDead) return;
+        if (this.rageCounter + value > 5) {
+            value = 5 - this.rageCounter;
+        }
+        this.rageCounter += value;
+        sos.addEffect_PA_PM(StatsOutputSystem.Effect.Rage, "+" + value + "RG");
+    }
+
     public void decrementPA(int value) {
         if (isDead) return;
         this.actual_pa -= value;
@@ -625,6 +662,13 @@ public class Character : MonoBehaviour
         if (isDead) return;
         this.kamaCounter -= value;
         sos.addEffect_PA_PM(StatsOutputSystem.Effect.Kama, "-" + value + "K");
+    }
+
+    public void decrementRage(int value) {
+        if (isDead) return;
+        this.rageCounter -= value;
+        if (this.rageCounter < 0) this.rageCounter = 0;
+        sos.addEffect_PA_PM(StatsOutputSystem.Effect.Rage, "-" + value + "RG");
     }
 
     public int getActualPM() {
@@ -1116,6 +1160,8 @@ public class Character : MonoBehaviour
 
     [HideInInspector]
     public int accumulationCounter = 0;
+    [HideInInspector]
+    public int smithereensCounter = 0;
     [HideInInspector]
     public bool criticShooting = false;
     [HideInInspector]

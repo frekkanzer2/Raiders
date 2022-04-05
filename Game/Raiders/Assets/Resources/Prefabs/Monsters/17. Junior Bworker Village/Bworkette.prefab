@@ -137,8 +137,8 @@ MonoBehaviour:
   res_f: 48
   res_a: 28
   res_w: 18
-  att_e: 0
-  att_f: 0
+  att_e: 30
+  att_f: 40
   att_a: 0
   att_w: 0
   numberOfSummons: 0

@@ -14,6 +14,7 @@ public class StatsOutputSystem : MonoBehaviour {
     private Color Heal_color = new Color(255f / 255f, 150f / 255f, 196f / 255f, 1);
     private Color Shield_color = new Color(86f / 255f, 64f / 255f, 128f / 255f, 1);
     private Color Kama_color = new Color(255f / 255f, 214f / 255f, 0f / 255f, 1);
+    private Color Rage_color = new Color(142f / 255f, 33f / 255f, 33f / 255f, 1);
 
     private List<EffectToExecute> toDisplay = new List<EffectToExecute>();
 
@@ -68,7 +69,8 @@ public class StatsOutputSystem : MonoBehaviour {
         Heal,
         Shield,
         Icon,
-        Kama
+        Kama,
+        Rage
     }
     
     private Color getColorByEffect(Effect e) {
@@ -78,6 +80,7 @@ public class StatsOutputSystem : MonoBehaviour {
         if (e == Effect.PM) return PM_color;
         if (e == Effect.Shield) return Shield_color;
         if (e == Effect.Kama) return Kama_color;
+        if (e == Effect.Rage) return Rage_color;
         return new Color(0, 0, 0, 1);
     }
 
@@ -98,7 +101,6 @@ public class StatsOutputSystem : MonoBehaviour {
     }
 
     public void addEffect_DMG_Heal(Effect type, int value) {
-        Debug.Log("Executing effect with value " + value);
         if (value == 0) return;
         EffectToExecute ete = new EffectToExecute(this.numberPrefab, getColorByEffect(type), value, getSpawnPosition());
         toDisplay.Add(ete);

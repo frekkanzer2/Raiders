@@ -139,8 +139,8 @@ MonoBehaviour:
   res_w: 10
   att_e: 0
   att_f: 0
-  att_a: 0
-  att_w: 0
+  att_a: 25
+  att_w: 16
   numberOfSummons: 0
   isEvocation: 0
   actual_hp: 0

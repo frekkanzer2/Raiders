@@ -1276,6 +1276,9 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: 5825eda72ed950d418b50fbdf323ffe2, type: 3}
   - {fileID: 557098361630938699, guid: a8e40073d4e7791458eb01680ee6e01b, type: 3}
   - {fileID: 557098361630938699, guid: 6fcaef2625772aa4e940d066aeaf5b3c, type: 3}
+  - {fileID: 557098361630938699, guid: f2827e5c2c5d0ff48ae997ebe7fa39ba, type: 3}
+  - {fileID: 557098361630938699, guid: 2acf9b2eef542874f966c88391ee1ce7, type: 3}
+  - {fileID: 557098361630938699, guid: f694cb70b2f2ba44c8b770158108c608, type: 3}
   heroesPrefabs_team2: []
 --- !u!114 &93772482
 MonoBehaviour:
@@ -1602,6 +1605,18 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: de640ad8a2bb0b144af13580cb0054dc, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 65155a9d199557f4381b54a13771b601, type: 3}
     isEvocation: 1
+  - characterName: Kofang
+    characterFullSprite: {fileID: 21300000, guid: 822587559d62b0d499a9963cd7667b06, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 98e1d84641194cf42898b3739ffd26ff, type: 3}
+    isEvocation: 0
+  - characterName: Groarg Gamel
+    characterFullSprite: {fileID: 21300000, guid: 5689a909774668a4ea437c6d071649c4, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: ea033e6a6c62bce428f288f958defcfd, type: 3}
+    isEvocation: 0
+  - characterName: Humawolf
+    characterFullSprite: {fileID: 21300000, guid: 8226975a67aa11d4d9ee7d326c015ed1, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: e2759bffcf1390644b193f4bb2263eac, type: 3}
+    isEvocation: 0
 --- !u!114 &93772484
 MonoBehaviour:
   m_ObjectHideFlags: 0

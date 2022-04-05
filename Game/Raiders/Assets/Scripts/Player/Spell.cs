@@ -311,10 +311,20 @@ public class Spell {
         else if (spell.name == "Pull Out") EXECUTE_PULL_OUT(caster, spell);
         else if (spell.name == "Toolbox") EXECUTE_TOOLBOX(targetBlock, spell);
         else if (spell.name == "Tunneling") EXECUTE_TUNNELING(caster, targetBlock, spell);
+        else if (spell.name == "Tailing") EXECUTE_TAILING(caster, targetBlock);
+        else if (spell.name == "Vertebra") EXECUTE_VERTEBRA(caster, targetBlock, spell);
         else if (spell.name == "Obsolescence") EXECUTE_OBSOLESCENCE(targetBlock, spell);
         else if (spell.name == "Fortune") EXECUTE_FORTUNE(targetBlock, spell);
         else if (spell.name == "Money Collection") EXECUTE_MONEY_COLLECTION(caster);
         else if (spell.name == "Power Unlocker") EXECUTE_POWER_UNLOCKER(caster, spell);
+        else if (spell.name == "Smithereens") EXECUTE_SMITHEREENS(caster, spell);
+        else if (spell.name == "Watchdog" || spell.name == "Beaten" || spell.name == "Tetanisation") ADD_RAGE_COUNTER(caster, 1);
+        else if (spell.name == "Pursuit") EXECUTE_PURSUIT(caster, spell);
+        else if (spell.name == "Bark") EXECUTE_BARK(targetBlock, spell);
+        else if (spell.name == "Cerberus") EXECUTE_CERBERUS(caster, targetBlock, spell);
+        else if (spell.name == "Appeasement") EXECUTE_APPEASEMENT(caster, targetBlock, spell);
+        else if (spell.name == "Jaw") EXECUTE_JAW(caster, targetBlock, spell);
+        else if (spell.name == "Pawerful") EXECUTE_PAWERFUL(caster, spell);
 
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -411,6 +421,12 @@ public class Spell {
         caster.addEvent(new AccumulationEvent("Accumulation", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
     }
 
+    public static void EXECUTE_SMITHEREENS(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        DECREASE_RAGE_COUNTER(caster, 2);
+        caster.addEvent(new SmithereensEvent("Smithereens", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
+    }
+
     public static void EXECUTE_POWER(Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
@@ -419,6 +435,24 @@ public class Spell {
         target.addEvent(powerEvent);
         if (target.Equals(s.link))
             powerEvent.useIstantanely();
+    }
+
+    public static void EXECUTE_PAWERFUL(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        caster.decrementRage(caster.rageCounter);
+        PawerfulEvent paw = new PawerfulEvent("Pawerful", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        caster.addEvent(paw);
+        paw.useIstantanely();
+    }
+
+    public static void EXECUTE_APPEASEMENT(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        if (caster.rageCounter >= 2) {
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            target.receiveHeal(target.getTotalHP()*10/100 + caster.bonusHeal);
+        }
+        caster.decrementRage(caster.rageCounter);
     }
 
     public static void EXECUTE_DUEL(Character caster, Block targetBlock, Spell s) {
@@ -516,6 +550,17 @@ public class Spell {
         if (casterCoord.column == targetCoord.column || casterCoord.row == targetCoord.row) {
             Character target = targetBlock.linkedObject.GetComponent<Character>();
             target.addEvent(new BarricadeShotEvent("Barricade Shot", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        }
+    }
+
+    public static void EXECUTE_VERTEBRA(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Coordinate casterCoord = caster.connectedCell.GetComponent<Block>().coordinate;
+        Coordinate targetCoord = targetBlock.coordinate;
+        if (casterCoord.column == targetCoord.column || casterCoord.row == targetCoord.row) {
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            target.addEvent(new VertebraEvent("Vertebra", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
         }
     }
 
@@ -933,6 +978,11 @@ public class Spell {
         ut_comesCloser(caster, targetBlock, 2);
     }
 
+    public static void EXECUTE_TAILING(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_comesCloser(caster, targetBlock, 3);
+    }
+
     public static void EXECUTE_COMEDY(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         ut_comesCloser(caster, targetBlock, 2);
@@ -969,6 +1019,19 @@ public class Spell {
                     caster.addEvent(le);
                     le.useIstantanely();
                 } else c.addEvent(new LightnessEvent("Lightness", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+            }
+        }
+    }
+
+    public static void EXECUTE_PURSUIT(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character c in ut_getAlliesWithCaster(caster)) {
+            if (ut_isNearOf(caster, c, 3)) {
+                if (caster.Equals(c)) {
+                    PursuitEvent le = new PursuitEvent("Pursuit", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon);
+                    caster.addEvent(le);
+                    le.useIstantanely();
+                } else c.addEvent(new PursuitEvent("Pursuit", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
             }
         }
     }
@@ -1294,6 +1357,13 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
         EXECUTE_EXODUS(targetBlock.linkedObject.GetComponent<Character>(), caster.connectedCell.GetComponent<Block>(), s);
+    }
+
+    public static void EXECUTE_JAW(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        if (caster.rageCounter >= 2)
+            EXECUTE_EXODUS(caster, targetBlock, s);
     }
 
     public static void EXECUTE_WATERFALL(Character caster, Block targetBlock) {
@@ -1801,6 +1871,41 @@ public class Spell {
         pue.useIstantanely();
     }
 
+    public static void ADD_RAGE_COUNTER(Character caster, int value) {
+        if (!put_CheckArguments(new System.Object[] { caster })) return;
+        caster.incrementRage(value);
+        if (caster.rageCounter == 5 && caster.getEventSystem().getEvents("Uginak Rage").Count == 0) {
+            UginakRage ur = new UginakRage("Uginak Rage", caster, 3, ParentEvent.Mode.PermanentAndEachTurn, Resources.Load<Sprite>("Prefabs/Heroes/Transformation/Uginak Rage"));
+            caster.addEvent(ur);
+            ur.useIstantanely();
+            caster.decrementRage(5);
+        }
+    }
+
+    public static void DECREASE_RAGE_COUNTER(Character caster, int value) {
+        if (!put_CheckArguments(new System.Object[] { caster })) return;
+        caster.decrementRage(value);
+    }
+
+    public static void EXECUTE_CERBERUS(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        if (caster.rageCounter >= 2) {
+            Character c = targetBlock.linkedObject.GetComponent<Character>();
+            c.addEvent(new CerberusEvent("Cerberus", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        }
+        caster.decrementRage(2);
+    }
+
+    public static void EXECUTE_BARK(Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character c = targetBlock.linkedObject.GetComponent<Character>();
+        BarkEvent be = new BarkEvent("Bark", c, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        c.addEvent(be);
+        be.useIstantanely();
+    }
+
     #endregion
 
     #region MONSTER SPELLS SPECIALIZATION
@@ -2175,6 +2280,7 @@ public class Spell {
     #region EVENT BONUSES
 
     public static int BONUS_ACCUMULATION = 4;
+    public static int BONUS_SMITHEREENS = 18;
     public static int BONUS_WRATH = 120;
     public static int BONUS_BOW_SKILL = 12;
     public static int BONUS_ATONEMENT_ARROW = 36;
@@ -2187,6 +2293,9 @@ public class Spell {
         if (caster.name == "Missiz Frizz" && s.name == "Accumulation") {
             List<ParentEvent> acclist = caster.getEventSystem().getEvents("Accumulation");
             return BONUS_ACCUMULATION * acclist.Count;
+        } else if (caster.name == "Kofang" && s.name == "Smithereens") {
+            List<ParentEvent> acclist = caster.getEventSystem().getEvents("Smithereens");
+            return BONUS_SMITHEREENS * acclist.Count;
         } else if (caster.name == "Ragedala" && s.name == "Iop's Wrath") {
             List<ParentEvent> acclist = caster.getEventSystem().getEvents("Iop's Wrath");
             return BONUS_WRATH * acclist.Count;
