@@ -91,6 +91,12 @@ public class Spell {
 
     public static int calculateDamage(Character caster, Character target, Spell spell) {
         if (!put_CheckArguments(new System.Object[] { caster, target, spell })) return 0;
+        if (spell.name != "Shushu Cut" && caster.name == "Tristepin") {
+            if (caster.getEventSystem().getEvents("Yop God Status").Count == 0) {
+                caster.shushuCounter = 0;
+                Debug.Log("Shushu counter restored");
+            }
+        }
         Spell.Element element = spell.element;
         int resistance = 0;
         if (element == Spell.Element.Earth) resistance = target.res_e;
@@ -325,6 +331,12 @@ public class Spell {
         else if (spell.name == "Appeasement") EXECUTE_APPEASEMENT(caster, targetBlock, spell);
         else if (spell.name == "Jaw") EXECUTE_JAW(caster, targetBlock, spell);
         else if (spell.name == "Pawerful") EXECUTE_PAWERFUL(caster, spell);
+        else if (spell.name == "Fracture") EXECUTE_FRACTURE(caster, targetBlock, spell);
+        else if (spell.name == "Destructive Ring") EXECUTE_DESTRUCTIVE_RING(caster, targetBlock, spell);
+        else if (spell.name == "Wakmeha") EXECUTE_WAKMEHA(caster, targetBlock, spell);
+        else if (spell.name == "Audacious") EXECUTE_AUDACIOUS(caster, targetBlock, spell);
+        else if (spell.name == "Affront") EXECUTE_AFFRONT(caster, targetBlock, spell);
+        else if (spell.name == "Lightning Fist") EXECUTE_LIGHTNING_FIST(caster, targetBlock, spell);
 
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -1906,6 +1918,115 @@ public class Spell {
         be.useIstantanely();
     }
 
+    public static void EXECUTE_FRACTURE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (caster.getEventSystem().getEvents("Yop God Status").Count > 0) {
+            FractureEvent fe = new FractureEvent("Fracture", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+            target.addEvent(fe);
+            fe.useIstantanely();
+        }
+        foreach (Character enemy in ut_getAllies(target))
+            if (ut_isNearOf(target, enemy, 2)) {
+                enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
+                if (caster.getEventSystem().getEvents("Yop God Status").Count > 0) {
+                    FractureEvent fenew = new FractureEvent("Fracture", enemy, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+                    enemy.addEvent(fenew);
+                    fenew.useIstantanely();
+                }
+            }
+    }
+
+    public static void EXECUTE_DESTRUCTIVE_RING(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        List<Character> adjs = ut_getAdjacentHeroes(targetBlock.coordinate);
+        foreach (Character c in adjs) {
+            c.inflictDamage(Spell.calculateDamage(caster, c, s));
+            if (caster.getEventSystem().getEvents("Yop God Status").Count > 0)
+                ut_repels(target, c.connectedCell.GetComponent<Block>(), 1);
+        }
+    }
+
+    public static void EXECUTE_WAKMEHA(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        ut_damageInLine(caster, targetBlock, s, 5);
+        if (caster.getEventSystem().getEvents("Wakfu Raider Status").Count > 0) {
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            if (target.isEvocation) {
+                Evocation e = (Evocation) target;
+                if (e.isWakfuTotem) {
+                    EXECUTE_TRANSPOSITION(caster, targetBlock);
+                }
+            }
+        }
+    }
+
+    public static void EXECUTE_AFFRONT(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+
+        foreach (Character enemy in ut_getEnemies(caster))
+            if (ut_isNearOf(target, enemy, 2) && !target.Equals(enemy))
+                enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
+
+        if (caster.getEventSystem().getEvents("Wakfu Raider Status").Count > 0) {
+            if (target.isEvocation) {
+                Evocation e = (Evocation)target;
+                if (e.isWakfuTotem) {
+                    EXECUTE_TRANSPOSITION(caster, targetBlock);
+                }
+            }
+        }
+    }
+
+    public static void EXECUTE_AUDACIOUS(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        if (caster.getEventSystem().getEvents("Wakfu Raider Status").Count > 0) {
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            if (target.isEvocation) {
+                Evocation e = (Evocation)target;
+                if (e.isWakfuTotem) {
+                    ut_repels(caster, targetBlock, 3);
+                }
+            }
+        }
+    }
+
+    public static void EXECUTE_LIGHTNING_FIST(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        if (caster.getEventSystem().getEvents("Wakfu Raider Status").Count > 0) {
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            if (target.isEvocation) {
+                Evocation e = (Evocation)target;
+                if (e.isWakfuTotem) {
+                    foreach (Character enemy in ut_getEnemies(caster)) {
+                        List<Block> blocks = enemy.connectedCell.GetComponent<Block>().getFreeAdjacentBlocksWithEnemy(caster.team);
+                        foreach (Block b in blocks) {
+                            if (b.linkedObject != null) {
+                                Character c_inBlock = b.linkedObject.GetComponent<Character>();
+                                if (c_inBlock.isEvocation) {
+                                    Evocation e_inBlock = (Evocation)c_inBlock;
+                                    if (e_inBlock.isWakfuTotem) {
+                                        enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
     #endregion
 
     #region MONSTER SPELLS SPECIALIZATION
@@ -2245,8 +2366,8 @@ public class Spell {
         List<Block> frees = targetBlock.getFreeAdjacentBlocks();
         if (frees.Count == 0) return;
         UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
-        int indexResult = UnityEngine.Random.Range(1, frees.Count + 1);
-        toSummonBlock = frees[indexResult - 1];
+        int indexResult = UnityEngine.Random.Range(0, frees.Count);
+        toSummonBlock = frees[indexResult];
         MonsterEvocation bomb = ut_execute_monsterSummon(caster, toSummonBlock, "Rogue Bomb");
         bomb.setBomb(caster, bomb.spells[0]);
     }
@@ -2288,8 +2409,18 @@ public class Spell {
     public static int BONUS_SHADOWYBEAM = 13;
     public static int BONUS_LETHAL_ATTACK = 30;
     public static int BONUS_KAMA_THROWING = 18;
+    public static int BONUS_CONCENTRATION = 21;
+    public static int BONUS_SHUSHU_CUT = 20;
 
     public static int EVENT_BONUS_BASE_DAMAGE(Character caster, Character targetch, Spell s) {
+        if (caster.name == "Tristepin" && s.name == "Concentration" && targetch.isEvocation && caster.getEventSystem().getEvents("Yop God Status").Count > 0) {
+            return BONUS_CONCENTRATION;
+        }
+        if (caster.name == "Tristepin" && s.name == "Shushu Cut") {
+            int toret = BONUS_SHUSHU_CUT * caster.shushuCounter;
+            caster.shushuCounter++;
+            return toret;
+        }
         if (caster.name == "Missiz Frizz" && s.name == "Accumulation") {
             List<ParentEvent> acclist = caster.getEventSystem().getEvents("Accumulation");
             return BONUS_ACCUMULATION * acclist.Count;
@@ -2321,11 +2452,17 @@ public class Spell {
             if (diceResult == 6) return 45;
             else return 0;
         } else if (caster.name == "Chrona" && s.name == "Shadowy Beam") {
-            Coordinate target = targetch.connectedCell.GetComponent<Block>().coordinate;
-            if (Map.Instance.getBlock(new Coordinate(target.row, target.column + 1)) != null || Map.Instance.getBlock(new Coordinate(target.row, target.column - 1)) != null ||
-                Map.Instance.getBlock(new Coordinate(target.row + 1, target.column)) != null || Map.Instance.getBlock(new Coordinate(target.row - 1, target.column)) != null)
-                return BONUS_SHADOWYBEAM;
-            else return 0;
+            List<Block> adj = targetch.connectedCell.GetComponent<Block>().getFreeAdjacentBlocksWithEnemy(caster.team);
+            foreach (Block b in adj) {
+                if (b.linkedObject != null) {
+                    Character _c = b.linkedObject.GetComponent<Character>();
+                    if (_c != null) {
+                        if (_c.team == caster.team)
+                            return BONUS_SHADOWYBEAM;
+                    }
+                }
+            }
+            return 0;
         } else if (caster.name == "Etraggy" && s.name == "Lethal Attack") {
             if (ut_getDeadStatsAllies(caster).Item1 == 1) return BONUS_LETHAL_ATTACK;
             else return 0;

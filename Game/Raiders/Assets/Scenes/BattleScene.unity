@@ -1204,6 +1204,8 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: f2827e5c2c5d0ff48ae997ebe7fa39ba, type: 3}
   - {fileID: 557098361630938699, guid: 2acf9b2eef542874f966c88391ee1ce7, type: 3}
   - {fileID: 557098361630938699, guid: f694cb70b2f2ba44c8b770158108c608, type: 3}
+  - {fileID: 557098361630938699, guid: 76de0beb2016fe846b56b5a3c1a5e4e6, type: 3}
+  - {fileID: 557098361630938699, guid: d78129b5a937c2f4e8d69df2dcb75719, type: 3}
   heroesPrefabs_team2:
   - {fileID: 557098361630938699, guid: 3968d5a638ef5994cad63e85612468ac, type: 3}
   - {fileID: 557098361630938699, guid: 2ccb042d5c633dc48854a46bd4a9972e, type: 3}
@@ -1259,6 +1261,8 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: f2827e5c2c5d0ff48ae997ebe7fa39ba, type: 3}
   - {fileID: 557098361630938699, guid: 2acf9b2eef542874f966c88391ee1ce7, type: 3}
   - {fileID: 557098361630938699, guid: f694cb70b2f2ba44c8b770158108c608, type: 3}
+  - {fileID: 557098361630938699, guid: 76de0beb2016fe846b56b5a3c1a5e4e6, type: 3}
+  - {fileID: 557098361630938699, guid: d78129b5a937c2f4e8d69df2dcb75719, type: 3}
 --- !u!114 &93772482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1596,6 +1600,18 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 8226975a67aa11d4d9ee7d326c015ed1, type: 3}
     characterMidSprite: {fileID: 21300000, guid: e2759bffcf1390644b193f4bb2263eac, type: 3}
     isEvocation: 0
+  - characterName: Yugo
+    characterFullSprite: {fileID: 21300000, guid: d1764fd1fe77b824fb78691452473500, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 2b9ada1710f5e4741bae12ed268ad112, type: 3}
+    isEvocation: 0
+  - characterName: Tristepin
+    characterFullSprite: {fileID: 21300000, guid: 02be5bb6038377349a17b13a5f0148cf, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: a0a0a441ab6776046ab037b6735ccf6b, type: 3}
+    isEvocation: 0
+  - characterName: Wakfu Totem
+    characterFullSprite: {fileID: 21300000, guid: 1eb4e46e680075b4692fdccf95a4cd91, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 147308b09338c3a47b98df2c98747198, type: 3}
+    isEvocation: 1
 --- !u!114 &93772484
 MonoBehaviour:
   m_ObjectHideFlags: 0

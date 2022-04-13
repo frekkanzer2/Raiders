@@ -142,7 +142,7 @@ MonoBehaviour:
     maxTimesInTurn: 2
     executeAfterTurns: 0
     effectDuration: 3
-    criticalProbability: 10
+    criticalProbability: 5
     hasEffect: 1
     isEffectOnly: 0
     canUseInEmptyCell: 0
@@ -217,6 +217,7 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 1
+  rageCounter: 0
   bonusHeal: 0
   isMoving: 0
   isForcedMoving: 0
@@ -249,7 +250,9 @@ MonoBehaviour:
   monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
+  hasXelorBonus: 0
   accumulationCounter: 0
+  smithereensCounter: 0
   criticShooting: 0
   connectedSacrifice: {fileID: 0}
   hasActivedSacrifice: 0

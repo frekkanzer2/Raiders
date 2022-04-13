@@ -1888,6 +1888,18 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 8226975a67aa11d4d9ee7d326c015ed1, type: 3}
     characterMidSprite: {fileID: 21300000, guid: e2759bffcf1390644b193f4bb2263eac, type: 3}
     isEvocation: 0
+  - characterName: Yugo
+    characterFullSprite: {fileID: 21300000, guid: d1764fd1fe77b824fb78691452473500, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 2b9ada1710f5e4741bae12ed268ad112, type: 3}
+    isEvocation: 0
+  - characterName: Tristepin
+    characterFullSprite: {fileID: 21300000, guid: 02be5bb6038377349a17b13a5f0148cf, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: a0a0a441ab6776046ab037b6735ccf6b, type: 3}
+    isEvocation: 0
+  - characterName: Wakfu Totem
+    characterFullSprite: {fileID: 21300000, guid: 1eb4e46e680075b4692fdccf95a4cd91, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 147308b09338c3a47b98df2c98747198, type: 3}
+    isEvocation: 1
 --- !u!114 &1295197767
 MonoBehaviour:
   m_ObjectHideFlags: 0

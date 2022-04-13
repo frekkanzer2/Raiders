@@ -16,6 +16,8 @@ public class Evocation : Character {
 
     [HideInInspector]
     public bool isBomb = false;
+    [HideInInspector]
+    public bool isWakfuTotem = false;
     private Tuple<Character, Spell> bombConnectedInfo;
     private int bombCharge = 0;
     [HideInInspector]

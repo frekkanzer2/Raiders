@@ -481,6 +481,30 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: de640ad8a2bb0b144af13580cb0054dc, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 65155a9d199557f4381b54a13771b601, type: 3}
     isEvocation: 1
+  - characterName: Kofang
+    characterFullSprite: {fileID: 21300000, guid: 822587559d62b0d499a9963cd7667b06, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 98e1d84641194cf42898b3739ffd26ff, type: 3}
+    isEvocation: 0
+  - characterName: Groarg Gamel
+    characterFullSprite: {fileID: 21300000, guid: 5689a909774668a4ea437c6d071649c4, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: ea033e6a6c62bce428f288f958defcfd, type: 3}
+    isEvocation: 0
+  - characterName: Humawolf
+    characterFullSprite: {fileID: 21300000, guid: 8226975a67aa11d4d9ee7d326c015ed1, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: e2759bffcf1390644b193f4bb2263eac, type: 3}
+    isEvocation: 0
+  - characterName: Yugo
+    characterFullSprite: {fileID: 21300000, guid: d1764fd1fe77b824fb78691452473500, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 2b9ada1710f5e4741bae12ed268ad112, type: 3}
+    isEvocation: 0
+  - characterName: Tristepin
+    characterFullSprite: {fileID: 21300000, guid: 02be5bb6038377349a17b13a5f0148cf, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: a0a0a441ab6776046ab037b6735ccf6b, type: 3}
+    isEvocation: 0
+  - characterName: Wakfu Totem
+    characterFullSprite: {fileID: 21300000, guid: 1eb4e46e680075b4692fdccf95a4cd91, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 147308b09338c3a47b98df2c98747198, type: 3}
+    isEvocation: 1
 --- !u!1 &361126710
 GameObject:
   m_ObjectHideFlags: 0

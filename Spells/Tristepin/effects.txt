@@ -1,0 +1,10 @@
+Fracture: area of 2 cells
+Destructive Ring: cross of 1 cell
+Shushu Cut: spell damage is increased after each casting. the damage bonus is lost if the spell is not recast and if the caster is not in Yop God mode
+Concentration
+
+When HP <= 30%: Tristepin goes in Yop God mode for 3 turns = 50% DMG; -20% RES; 1PA.
+Fracture: -13% res for 2 turns
+Destructive Ring: pushes back 1 cell the adjacent enemies from the target
+Shushu Cut: spell damage is increased after each casting
+Concentration: inflict bonus damage on summons

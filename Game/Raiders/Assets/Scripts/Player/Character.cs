@@ -562,6 +562,7 @@ public class Character : MonoBehaviour
         sos.setup(prefabToSpawn);
     }
 
+    bool hasActivatedBonus30 = false;
     public virtual void inflictDamage(int damage, bool mustSkip = false) {
         if (isDead)
             return;
@@ -587,6 +588,18 @@ public class Character : MonoBehaviour
         if (this.actual_hp - damage < 0) actual_hp = 0;
         else this.actual_hp -= damage;
         if (actual_hp == 0) setDead();
+        else if (actual_hp <= hp * 30 / 100 && !hasActivatedBonus30) {
+            if (this.name == "Yugo") {
+                WakfuRaider wr = new WakfuRaider("Wakfu Raider Status", this, 3, ParentEvent.Mode.PermanentAndEachTurn, Resources.Load<Sprite>("Prefabs/Heroes/Transformation/Wakfu Raider"));
+                this.addEvent(wr);
+                wr.useIstantanely();
+            } else if (this.name == "Tristepin") {
+                YopGod yg = new YopGod("Yop God Status", this, 3, ParentEvent.Mode.PermanentAndEachTurn, Resources.Load<Sprite>("Prefabs/Heroes/Transformation/Yop God"));
+                this.addEvent(yg);
+                yg.useIstantanely();
+            }
+            hasActivatedBonus30 = true;
+        }
         sos.addEffect_DMG_Heal(StatsOutputSystem.Effect.HP, damage);
     }
 
@@ -1172,6 +1185,8 @@ public class Character : MonoBehaviour
     public bool canCritical = true;
     [HideInInspector]
     public bool immuneCloseCombat = false;
+    [HideInInspector]
+    public int shushuCounter = 0;
 
     #endregion
 

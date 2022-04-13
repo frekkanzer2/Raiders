@@ -1,0 +1,11 @@
+Wakmeha: line of 5 cells
+Affront: area of 2 cells
+Audacious: no line of sight
+Lightning Fist
+
+When HP <= 30%: spawn a portal on a random cell adjacent to each enemy (portal has -100% RES)
+If a portal is damaged by Yugo, 40% of damage is replicated on 2 cells area
+
+When HP <= 30%: Yugo goes in Wakfu Raider mode for 3 turns = 20% DMG; 10% RES; 1PM.
+Audacious: get all in-line portal closer of 2 cell from the target
+Lightning Fist: inflict bonus damage and teleport the target on a random adjacent cell of a random portal

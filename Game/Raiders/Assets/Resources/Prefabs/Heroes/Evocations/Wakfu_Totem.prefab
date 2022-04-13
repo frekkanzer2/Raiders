@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 557098361630938741}
   - component: {fileID: 557098361630938698}
-  - component: {fileID: 557098361630938740}
+  - component: {fileID: 6745393218802890858}
   - component: {fileID: 8528018890230597465}
   - component: {fileID: 8914096617352650622}
   - component: {fileID: -2347270675974649033}
-  - component: {fileID: -3423732119279418233}
+  - component: {fileID: 5404421346664201683}
   m_Layer: 0
-  m_Name: Humawolf
+  m_Name: Wakfu_Totem
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 8226975a67aa11d4d9ee7d326c015ed1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1eb4e46e680075b4692fdccf95a4cd91, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &557098361630938740
+--- !u!114 &6745393218802890858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,121 +96,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 557098361630938699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8166a5c395145dc489abd6518c5ac693, type: 3}
+  m_Script: {fileID: 11500000, guid: b47f2c763fdab0b4ba89ee3dc1fc4aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Humawolf
-  heroClass: 17
-  spells:
-  - link: {fileID: 0}
-    name: Tetanisation
-    icon: {fileID: 21300000, guid: 3ed479ee0d494d64f8a0f1e1b3dd6d67, type: 3}
-    description: Adds 1 rage charge
-    element: 1
-    damage: 52
-    lifeSteal: 0
-    minRange: 1
-    maxRange: 2
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 4
-    pmCost: 0
-    maxTimesInTurn: 2
-    executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 25
-    hasEffect: 1
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  - link: {fileID: 0}
-    name: Appeasement
-    icon: {fileID: 21300000, guid: 676eaf777b5286e4a983c493acadbb81, type: 3}
-    description: Heals an ally of 10% HP if the caster has at least 2 rage charges.
-      Removes all rage charges
-    element: 5
-    damage: 0
-    lifeSteal: 0
-    minRange: 1
-    maxRange: 3
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 3
-    pmCost: 0
-    maxTimesInTurn: 1
-    executeAfterTurns: 6
-    effectDuration: 0
-    criticalProbability: 0
-    hasEffect: 1
-    isEffectOnly: 1
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  - link: {fileID: 0}
-    name: Jaw
-    icon: {fileID: 21300000, guid: 9d8ced15a092c4e45a81ab119d57cb95, type: 3}
-    description: Teleports behind the target if the caster has at least 2 rage charges
-    element: 1
-    damage: 31
-    lifeSteal: 0
-    minRange: 1
-    maxRange: 5
-    distanceType: 1
-    overObstacles: 0
-    hpCost: 0
-    paCost: 3
-    pmCost: 0
-    maxTimesInTurn: 2
-    executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 5
-    hasEffect: 1
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  - link: {fileID: 0}
-    name: Pawerful
-    icon: {fileID: 21300000, guid: e7f0bd9813cbfee40bbb02d9af85b5f9, type: 3}
-    description: Removes all rage charges. Increases spells' complessive damage of
-      40%
-    element: 5
-    damage: 0
-    lifeSteal: 0
-    minRange: 0
-    maxRange: 0
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 3
-    pmCost: 0
-    maxTimesInTurn: 1
-    executeAfterTurns: 6
-    effectDuration: 3
-    criticalProbability: 0
-    hasEffect: 1
-    isEffectOnly: 1
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
+  name: Wakfu Totem
+  heroClass: 19
+  spells: []
   team: 1
-  hp: 920
-  pa: 7
-  pm: 3
-  ini: 30
-  res_e: -13
-  res_f: 14
-  res_a: 6
-  res_w: -10
+  hp: 1
+  pa: -100
+  pm: -100
+  ini: 0
+  res_e: -100
+  res_f: -100
+  res_a: -100
+  res_w: -100
   att_e: 0
-  att_f: 12
+  att_f: 0
   att_a: 0
   att_w: 0
   numberOfSummons: 0
-  isEvocation: 0
+  isEvocation: 1
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
@@ -261,6 +167,14 @@ MonoBehaviour:
   canCritical: 1
   immuneCloseCombat: 0
   shushuCounter: 0
+  connectedSummoner: {fileID: 0}
+  id: 0
+  isCommunionActive: 0
+  isBomb: 0
+  isWakfuTotem: 0
+  isTurrect: 0
+  isDouble: 0
+  mustSkip: 1
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -277,8 +191,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.52836883, y: 0.10901972}
-    oldSize: {x: 3.2894738, y: 4.2763157}
+    pivot: {x: 0.5200037, y: 0.19085294}
+    oldSize: {x: 4.4444447, y: 4.4444447}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -314,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f77455afa650f49a81c28b9edfaff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3423732119279418233
+--- !u!114 &5404421346664201683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

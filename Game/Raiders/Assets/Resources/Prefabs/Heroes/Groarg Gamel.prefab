@@ -107,7 +107,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 40e9549511a565f49a343338f7d9f162, type: 3}
     description: Adds 1 rage charge
     element: 2
-    damage: 37
+    damage: 46
     lifeSteal: 0
     minRange: 1
     maxRange: 4
@@ -260,6 +260,7 @@ MonoBehaviour:
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+  shushuCounter: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
