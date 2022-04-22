@@ -74,7 +74,7 @@ public class Evocation : Character {
             this.res_w += resBonus.Item4 / 3;
         }
         if (connectedSummoner.heroClass == HeroClass.Steamer) {
-            this.actual_shield += upgrade.getShieldBonus() * 20 / 100;
+            this.actual_shield += upgrade.getShieldBonus() * 50 / 100;
             Tuple<int, int, int, int> dmgBonus = upgrade.getAttackBonus();
             this.att_e += dmgBonus.Item1 / 6;
             this.att_f += dmgBonus.Item2 / 6;
@@ -89,22 +89,30 @@ public class Evocation : Character {
         int bonusSummons = upgrade.getSummonsBonus();
         if (bonusSummons == 1) {
             this.hp += this.hp * 20 / 100;
-            this.att_e += 20;
-            this.att_f += 20;
-            this.att_a += 20;
-            this.att_w += 20;
+            this.att_e += 40;
+            this.att_f += 40;
+            this.att_a += 40;
+            this.att_w += 40;
+            this.res_e += 10;
+            this.res_f += 10;
+            this.res_a += 10;
+            this.res_w += 10;
             this.actual_hp = this.hp;
             this.bonusHeal += bonusHeal * 20 / 100;
         } else if (bonusSummons == 2) {
-            this.hp += this.hp * 40 / 100;
-            this.att_e += 50;
-            this.att_f += 50;
-            this.att_a += 50;
-            this.att_w += 50;
+            this.hp += this.hp * 50 / 100;
+            this.att_e += 100;
+            this.att_f += 100;
+            this.att_a += 100;
+            this.att_w += 100;
+            this.res_e += 20;
+            this.res_f += 20;
+            this.res_a += 20;
+            this.res_w += 20;
             this.pa += 1;
             this.actual_hp = this.hp;
             this.actual_pa = this.pa;
-            this.bonusHeal += bonusHeal * 30 / 100;
+            this.bonusHeal += bonusHeal * 50 / 100;
         }
         if (connectedSummoner.heroClass == HeroClass.Osamodas && bonusSummons > 0) {
             this.hp += ((upgrade.getHpBonus() * 10 / 100) * bonusSummons);
@@ -113,17 +121,17 @@ public class Evocation : Character {
             this.att_f += (10 * bonusSummons);
             this.att_a += (10 * bonusSummons);
             this.att_w += (10 * bonusSummons);
-            this.att_e += ((dmgBonus.Item1 / 10) * bonusSummons);
-            this.att_f += ((dmgBonus.Item2 / 10) * bonusSummons);
-            this.att_a += ((dmgBonus.Item3 / 10) * bonusSummons);
-            this.att_w += ((dmgBonus.Item4 / 10) * bonusSummons);
+            this.att_e += ((dmgBonus.Item1 / 6) * bonusSummons);
+            this.att_f += ((dmgBonus.Item2 / 6) * bonusSummons);
+            this.att_a += ((dmgBonus.Item3 / 6) * bonusSummons);
+            this.att_w += ((dmgBonus.Item4 / 6) * bonusSummons);
         } else if (connectedSummoner.heroClass == HeroClass.Sadida && bonusSummons > 0) {
-            this.hp += ((upgrade.getHpBonus() * 20 / 100) * bonusSummons);
+            this.hp += ((upgrade.getHpBonus() * 30 / 100) * bonusSummons);
             Tuple<int, int, int, int> resBonus = upgrade.getDefenceBonus();
-            this.res_e += ((resBonus.Item1 / 3) * bonusSummons);
-            this.res_f += ((resBonus.Item2 / 3) * bonusSummons);
-            this.res_a += ((resBonus.Item3 / 3) * bonusSummons);
-            this.res_w += ((resBonus.Item4 / 3) * bonusSummons);
+            this.res_e += ((resBonus.Item1 / 2) * bonusSummons);
+            this.res_f += ((resBonus.Item2 / 2) * bonusSummons);
+            this.res_a += ((resBonus.Item3 / 2) * bonusSummons);
+            this.res_w += ((resBonus.Item4 / 2) * bonusSummons);
         } else if (connectedSummoner.heroClass == HeroClass.Ladrurbo && bonusSummons > 0) {
             Tuple<int, int, int, int> resBonus = upgrade.getDefenceBonus();
             this.res_e += (20 * bonusSummons);

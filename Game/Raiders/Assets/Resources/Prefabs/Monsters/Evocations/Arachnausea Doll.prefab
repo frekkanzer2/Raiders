@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 557098361630938741}
   - component: {fileID: 557098361630938698}
-  - component: {fileID: -6561523523679025434}
+  - component: {fileID: -8640234836219462517}
   - component: {fileID: 8528018890230597465}
   - component: {fileID: 8914096617352650622}
   - component: {fileID: -2347270675974649033}
   - component: {fileID: 5404421346664201683}
   m_Layer: 0
-  m_Name: Karne Rider
+  m_Name: Arachnausea Doll
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 395bdfec95d037746b01444e7ca60de5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b7c466ac6f5dc8044a193d094f8e4b71, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-6561523523679025434
+--- !u!114 &-8640234836219462517
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,73 +96,50 @@ MonoBehaviour:
   m_GameObject: {fileID: 557098361630938699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ced9ac50935ee468f328a59e67782b, type: 3}
+  m_Script: {fileID: 11500000, guid: a74ad848812bc304cb1e557ee1071424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Karne Rider
+  name: Arachnausea Doll
   heroClass: 18
   spells:
   - link: {fileID: 0}
-    name: Fossil Spear
+    name: Sharp Teeth
     icon: {fileID: 0}
-    description: Inflicts Air damage
+    description: 
     element: 2
-    damage: 85
-    lifeSteal: 0
-    minRange: 4
-    maxRange: 10
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 4
-    pmCost: 0
-    maxTimesInTurn: 2
-    executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 25
-    hasEffect: 0
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  - link: {fileID: 0}
-    name: Cut
-    icon: {fileID: 0}
-    description: Inflicts Fire damage
-    element: 1
-    damage: 150
+    damage: 36
     lifeSteal: 0
     minRange: 1
     maxRange: 1
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 6
+    paCost: 2
     pmCost: 0
-    maxTimesInTurn: 1
+    maxTimesInTurn: 3
     executeAfterTurns: 0
     effectDuration: 0
-    criticalProbability: 30
+    criticalProbability: 15
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1200
-  pa: 10
-  pm: 5
-  ini: 10
-  res_e: 10
-  res_f: 10
-  res_a: 10
-  res_w: 10
+  hp: 380
+  pa: 2
+  pm: 3
+  ini: 0
+  res_e: 0
+  res_f: 0
+  res_a: 0
+  res_w: 0
   att_e: 0
-  att_f: 20
-  att_a: 10
+  att_f: 0
+  att_a: 0
   att_w: 0
   numberOfSummons: 0
-  isEvocation: 0
+  isEvocation: 1
   actual_hp: 0
   actual_pa: 0
   actual_pm: 0
@@ -170,7 +147,7 @@ MonoBehaviour:
   connectedCell: {fileID: 0}
   actual_shield: 0
   isDead: 0
-  canMovedByEffects: 1
+  canMovedByEffects: 0
   rageCounter: 0
   bonusHeal: 0
   isMoving: 0
@@ -215,10 +192,13 @@ MonoBehaviour:
   shushuCounter: 0
   behaviour:
     spellsOrderToCheckId: 00000000
-    movementAfterFight: 2
+    movementAfterFight: 1
     movementWhenCannotAttack: 1
   id: 0
   isCommunionActive: 0
+  connectedSummoner: {fileID: 0}
+  mustSkip: 0
+  isBomb: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -235,8 +215,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.48908898, y: 0.1544829}
-    oldSize: {x: 5.263158, y: 5.263158}
+    pivot: {x: 0.481815, y: 0.4145302}
+    oldSize: {x: 3.6363637, y: 3.6363637}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

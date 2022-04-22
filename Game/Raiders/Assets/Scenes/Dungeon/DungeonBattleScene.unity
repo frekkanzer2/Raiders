@@ -1210,6 +1210,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: c771339f8fff2554cbbed90a5f3d1467, type: 3}
   - {fileID: 4900000, guid: 7de056f14e158e549af4ccfbcbecc43a, type: 3}
   - {fileID: 4900000, guid: 9a7b721ba26776c418d97bd8e26e1fcf, type: 3}
+  - {fileID: 4900000, guid: dafde609ce840e449908aa99d98d1c5e, type: 3}
+  - {fileID: 4900000, guid: 8be97911fe5bd26418ba1ee9cc5d469a, type: 3}
+  - {fileID: 4900000, guid: 5aad1945abadb5c4e8eb0ca604e40572, type: 3}
+  - {fileID: 4900000, guid: a95eb44302e0f5748859fb457756010e, type: 3}
+  - {fileID: 4900000, guid: f1a6b07f85dcbd74a9b654af7a2f8b06, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481
@@ -15277,6 +15282,8 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: ae0039004ce882a40a0978a704b9da6a, type: 3}
   - track_name_maiusc: BANDITS SECRET PLACE HOLE
     music: {fileID: 8300000, guid: eb2a7198096a50a4da9b0774782c6eeb, type: 3}
+  - track_name_maiusc: JUNIOR BWORKER VILLAGE
+    music: {fileID: 8300000, guid: a4ef40bab7086084eb574fb13322ee91, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0

@@ -107,7 +107,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: Inflicts Earth damage
     element: 0
-    damage: 40
+    damage: 35
     lifeSteal: 0
     minRange: 1
     maxRange: 6
@@ -128,7 +128,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Pebble Trap
     icon: {fileID: 0}
-    description: -3 PM
+    description: 
     element: 0
     damage: 70
     lifeSteal: 0
@@ -171,6 +171,7 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 1
+  rageCounter: 0
   bonusHeal: 0
   isMoving: 0
   isForcedMoving: 0
@@ -203,12 +204,15 @@ MonoBehaviour:
   monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
+  hasXelorBonus: 0
   accumulationCounter: 0
+  smithereensCounter: 0
   criticShooting: 0
   connectedSacrifice: {fileID: 0}
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+  shushuCounter: 0
   behaviour:
     spellsOrderToCheckId: 0100000000000000
     movementAfterFight: 2

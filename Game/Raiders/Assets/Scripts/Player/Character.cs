@@ -590,7 +590,7 @@ public class Character : MonoBehaviour
         if (actual_hp == 0) setDead();
         else if (actual_hp <= hp * 30 / 100 && !hasActivatedBonus30) {
             if (this.name == "Yugo") {
-                WakfuRaider wr = new WakfuRaider("Wakfu Raider Status", this, 3, ParentEvent.Mode.PermanentAndEachTurn, Resources.Load<Sprite>("Prefabs/Heroes/Transformation/Wakfu Raider"));
+                WakfuRaider wr = new WakfuRaider("Wakfu Raider Status", this, 5, ParentEvent.Mode.PermanentAndEachTurn, Resources.Load<Sprite>("Prefabs/Heroes/Transformation/Wakfu Raider"));
                 this.addEvent(wr);
                 wr.useIstantanely();
             } else if (this.name == "Tristepin") {

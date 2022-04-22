@@ -103,8 +103,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.48545194, y: 0.16721234}
+    oldSize: {x: 4.5454545, y: 4.5454545}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -127,20 +127,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Bwork Mage
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Junior Bwork Haunting Lightning
+    icon: {fileID: 0}
+    description: 
+    element: 2
+    damage: 20
+    lifeSteal: 0
+    minRange: 4
+    maxRange: 20
+    distanceType: 0
+    overObstacles: 1
+    hpCost: 0
+    paCost: 2
+    pmCost: 1
+    maxTimesInTurn: 3
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 20
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
-  hp: 650
+  hp: 450
   pa: 7
-  pm: 5
+  pm: 7
   ini: 10
-  res_e: 0
-  res_f: 13
-  res_a: 0
-  res_w: 10
+  res_e: -14
+  res_f: -20
+  res_a: 60
+  res_w: 40
   att_e: 0
   att_f: 0
   att_a: 25
-  att_w: 16
+  att_w: 0
   numberOfSummons: 0
   isEvocation: 0
   actual_hp: 0
@@ -151,6 +174,7 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 1
+  rageCounter: 0
   bonusHeal: 0
   isMoving: 0
   isForcedMoving: 0
@@ -183,16 +207,19 @@ MonoBehaviour:
   monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
+  hasXelorBonus: 0
   accumulationCounter: 0
+  smithereensCounter: 0
   criticShooting: 0
   connectedSacrifice: {fileID: 0}
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+  shushuCounter: 0
   behaviour:
-    spellsOrderToCheckId: 
-    movementAfterFight: 1
-    movementWhenCannotAttack: 1
+    spellsOrderToCheckId: 00000000
+    movementAfterFight: 3
+    movementWhenCannotAttack: 3
   id: 0
   isCommunionActive: 0
 --- !u!114 &8914096617352650622

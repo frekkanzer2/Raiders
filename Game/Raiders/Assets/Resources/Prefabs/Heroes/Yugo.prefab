@@ -132,7 +132,7 @@ MonoBehaviour:
     description: If the caster has the "Wakfu Raider" status and the target is a
       Wakfu Totem, repels it of 3 cells
     element: 3
-    damage: 42
+    damage: 46
     lifeSteal: 0
     minRange: 1
     maxRange: 4

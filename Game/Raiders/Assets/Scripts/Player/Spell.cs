@@ -363,7 +363,7 @@ public class Spell {
         else if (spell.name == "Insect Cry") EXECUTE_INSECT_CRY(caster, targetBlock, spell);
         else if (spell.name == "Hideout") EXECUTE_HIDEOUT(caster, spell);
         else if (spell.name == "Hard Bone") EXECUTE_HARD_BONE(caster, spell);
-        else if (spell.name == "Ax of the Valkyrie") EXECUTE_AX_OF_THE_VALKYRIE(caster, targetBlock, spell);
+        else if (spell.name == "Ax of the Valkyrie" || spell.name == "Ax of Bworkette") EXECUTE_AX_OF_THE_VALKYRIE(caster, targetBlock, spell);
         else if (spell.name == "Destruction Sword") EXECUTE_DESTRUCTION_SWORD(caster, targetBlock, spell);
         else if (spell.name == "Fate of light") EXECUTE_FATE_OF_LIGHT(caster, spell);
         else if (spell.name == "Lights out") EXECUTE_LIGHTS_OUT(caster, spell);
@@ -380,6 +380,8 @@ public class Spell {
         else if (spell.name == "Shootem Bombe") SUMMONS_ROGUEBOMB_DISTANCE(caster, targetBlock, spell);
         else if (spell.name == "Surrounded") SUMMONS_ROGUEBOMB_EVERYFREE(caster, targetBlock, spell);
         else if (spell.name == "Bomberman") EXECUTE_BOMBERMAN(caster, targetBlock);
+        else if (spell.name == "Junior Bwork Distance") EXECUTE_JUNIOR_BWORK_DISTANCE(caster, targetBlock);
+        else if (spell.name == "Arachnee Population") EXECUTE_ARACHNEE_POPULATION(caster, targetBlock, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -2132,6 +2134,14 @@ public class Spell {
         }
     }
 
+    public static void EXECUTE_ARACHNEE_POPULATION(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks())) {
+            ut_execute_monsterSummon(caster, free, "Arachnausea Doll");
+        }
+    }
+
     public static void EXECUTE_CALL_OF_THE_FOREST(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
@@ -2315,6 +2325,11 @@ public class Spell {
     public static void EXECUTE_CHAFER_WINDSHOT(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         ut_repels(caster, targetBlock, 5);
+    }
+
+    public static void EXECUTE_JUNIOR_BWORK_DISTANCE(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_repelsCaster(caster, targetBlock, 5);
     }
 
     public static void EXECUTE_CHAFER_LANCE_EXPLOSION(Character caster, Spell s) {
