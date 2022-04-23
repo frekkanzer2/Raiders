@@ -130,7 +130,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: f442c14b256fc66479853b7b2f0ae2e8, type: 3}
     description: Increases the spell's damage of 4
     element: 0
-    damage: 31
+    damage: 24
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -195,14 +195,14 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1250
+  hp: 1240
   pa: 8
   pm: 3
   ini: 80
-  res_e: 7
-  res_f: 16
-  res_a: -4
-  res_w: -18
+  res_e: 2
+  res_f: 10
+  res_a: -12
+  res_w: -20
   att_e: 8
   att_f: 12
   att_a: 0
@@ -258,6 +258,7 @@ MonoBehaviour:
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+  shushuCounter: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -199,14 +199,14 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 840
+  hp: 1280
   pa: 7
   pm: 4
   ini: 85
   res_e: -8
-  res_f: 6
+  res_f: 8
   res_a: -8
-  res_w: 6
+  res_w: 8
   att_e: 0
   att_f: 4
   att_a: 0

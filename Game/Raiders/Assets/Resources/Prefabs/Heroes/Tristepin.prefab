@@ -205,9 +205,9 @@ MonoBehaviour:
   pa: 7
   pm: 3
   ini: 120
-  res_e: 6
+  res_e: 8
   res_f: -8
-  res_a: 6
+  res_a: 8
   res_w: -8
   att_e: 4
   att_f: 0

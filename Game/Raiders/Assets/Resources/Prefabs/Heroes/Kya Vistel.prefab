@@ -130,7 +130,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: ccd8826f8fe90dd46aa136044fcd89ef, type: 3}
     description: Inflicts Earth damage
     element: 0
-    damage: 34
+    damage: 32
     lifeSteal: 0
     minRange: 1
     maxRange: 3
@@ -153,7 +153,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 9c7e292bedf57ce4b84e80705c235b5e, type: 3}
     description: Inflicts Air damage
     element: 2
-    damage: 42
+    damage: 38
     lifeSteal: 0
     minRange: 1
     maxRange: 7
@@ -218,6 +218,7 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 1
+  rageCounter: 0
   bonusHeal: 0
   isMoving: 0
   isForcedMoving: 0
@@ -250,12 +251,15 @@ MonoBehaviour:
   monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
+  hasXelorBonus: 0
   accumulationCounter: 0
+  smithereensCounter: 0
   criticShooting: 0
   connectedSacrifice: {fileID: 0}
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+  shushuCounter: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -195,7 +195,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 970
+  hp: 1040
   pa: 6
   pm: 3
   ini: 140
@@ -217,6 +217,7 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 1
+  rageCounter: 0
   bonusHeal: 0
   isMoving: 0
   isForcedMoving: 0
@@ -249,12 +250,15 @@ MonoBehaviour:
   monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
+  hasXelorBonus: 0
   accumulationCounter: 0
+  smithereensCounter: 0
   criticShooting: 0
   connectedSacrifice: {fileID: 0}
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+  shushuCounter: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

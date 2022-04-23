@@ -284,7 +284,7 @@ public class Spell {
         else if (spell.name == "Contagion") EXECUTE_CONTAGION(caster, targetBlock, spell);
         else if (spell.name == "Nature Poison") EXECUTE_NATURE_POISON(caster, targetBlock, spell);
         else if (spell.name == "Earthquake") EXECUTE_EARTHQUAKE(caster, spell);
-        else if (spell.name == "Doll Sacrifice") EXECUTE_DOLL_SACRIFICE(caster);
+        else if (spell.name == "Doll Sacrifice") EXECUTE_DOLL_SACRIFICE(caster, targetBlock, spell);
         else if (spell.name == "Doll Scream") EXECUTE_DOLL_SCREAM(caster, targetBlock, spell);
         else if (spell.name == "Explobombe") SUMMONS_EXPLOBOMBE(caster, targetBlock, spell);
         else if (spell.name == "Tornabombe") SUMMONS_TORNABOMBE(caster, targetBlock, spell);
@@ -1441,8 +1441,18 @@ public class Spell {
                 enemy.addEvent(new EarthquakeEvent("Earthquake", enemy, s.effectDuration, ParentEvent.Mode.ActivationEachEndTurn, s.icon, caster, s));
             }
     }
-    public static void EXECUTE_DOLL_SACRIFICE(Character caster) {
-        if (!put_CheckArguments(new System.Object[] { caster })) return;
+    public static void EXECUTE_DOLL_SACRIFICE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        foreach (Character enemy in ut_getEnemies(caster))
+            if (!enemy.EqualsNames(target) && ut_isNearOf(caster, enemy, 2)) {
+                enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
+            }
+        foreach (Character enemy in ut_getAllies(caster))
+            if (!enemy.EqualsNames(target) && ut_isNearOf(caster, enemy, 2)) {
+                enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
+            }
         caster.inflictDamage(caster.actual_hp);
     }
     public static void EXECUTE_DOLL_SCREAM(Character caster, Block targetBlock, Spell s) {
@@ -1454,19 +1464,19 @@ public class Spell {
 
     public static void SUMMONS_EXPLOBOMBE(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
-        Evocation bomb = ut_execute_summon(caster, targetBlock, "Explobombe", 3);
+        Evocation bomb = ut_execute_summon(caster, targetBlock, "Explobombe", 2);
         bomb.setBomb(caster, s);
     }
 
     public static void SUMMONS_TORNABOMBE(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
-        Evocation bomb = ut_execute_summon(caster, targetBlock, "Tornabombe", 3);
+        Evocation bomb = ut_execute_summon(caster, targetBlock, "Tornabombe", 2);
         bomb.setBomb(caster, s);
     }
 
     public static void SUMMONS_WATERBOMBE(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
-        Evocation bomb = ut_execute_summon(caster, targetBlock, "Waterbombe", 3);
+        Evocation bomb = ut_execute_summon(caster, targetBlock, "Waterbombe", 2);
         bomb.setBomb(caster, s);
     }
 

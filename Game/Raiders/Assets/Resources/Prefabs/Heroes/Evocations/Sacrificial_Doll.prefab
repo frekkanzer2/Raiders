@@ -105,14 +105,15 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Doll Sacrifice
     icon: {fileID: 21300000, guid: a3634145b4338c542ade4a99f43eeb22, type: 3}
-    description: The caster will kill himself
+    description: Inflict Fire damage to each enemy up to 2 cells from the target.
+      The caster will die
     element: 1
     damage: 120
     lifeSteal: 0
     minRange: 1
-    maxRange: 1
+    maxRange: 2
     distanceType: 0
-    overObstacles: 0
+    overObstacles: 1
     hpCost: 0
     paCost: 1
     pmCost: 0
@@ -148,6 +149,7 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 1
+  rageCounter: 0
   bonusHeal: 0
   isMoving: 0
   isForcedMoving: 0
@@ -180,16 +182,20 @@ MonoBehaviour:
   monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
+  hasXelorBonus: 0
   accumulationCounter: 0
+  smithereensCounter: 0
   criticShooting: 0
   connectedSacrifice: {fileID: 0}
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+  shushuCounter: 0
   connectedSummoner: {fileID: 0}
   id: 0
   isCommunionActive: 0
   isBomb: 0
+  isWakfuTotem: 0
   isTurrect: 0
   isDouble: 0
   mustSkip: 0
