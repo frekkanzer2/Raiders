@@ -107,22 +107,22 @@ public class Character : MonoBehaviour
             }
             this.rageCounter += uginakCounter;
         }
-        int hpBonus = upgrade.getHpBonus();
-        if (this.heroClass == HeroClass.Sacrido) hpBonus *= 2;
-        this.hp += hpBonus;
+        this.hp += upgrade.getHpBonus();
+        if (this.heroClass == HeroClass.Sacrido) this.hp += upgrade.getHpBonus();
         this.bonusHeal += upgrade.getHealBonus();
         if (this.heroClass == HeroClass.Aniripsa) this.bonusHeal += (this.bonusHeal / 2);
-        this.actual_hp = this.hp;
         this.actual_shield = upgrade.getShieldBonus();
-        if (this.heroClass == HeroClass.Danzal) this.actual_shield += (this.actual_shield / 2);
+        if (this.heroClass == HeroClass.Danzal || this.heroClass == HeroClass.Ladrurbo) this.actual_shield += (this.actual_shield / 2);
+        else if (this.heroClass == HeroClass.Pandawa) this.hp += this.actual_shield;
+        else if (this.heroClass == HeroClass.Uginak) this.hp += upgrade.getInitBonus();
+        this.actual_hp = this.hp;
         this.pa += upgrade.getPaBonus();
         this.pm += upgrade.getPmBonus();
-        if (this.heroClass == HeroClass.Elatrop) this.pm += (upgrade.getPmBonus() / 2);
-        if (this.heroClass == HeroClass.Xelor && upgrade.getPaBonus() == 2) bonusXelor = true;
+        if (this.heroClass == HeroClass.Elatrop && upgrade.getPmBonus() == 2) this.pm += 1;
+        if (this.heroClass == HeroClass.Xelor && upgrade.getPaBonus() >= 1) bonusXelor = true;
         this.actual_pa = pa;
         this.actual_pm = pm;
         this.ini += upgrade.getInitBonus();
-        if (this.heroClass == HeroClass.Hipermago) this.ini *= 2;
         Tuple<int, int, int, int> dmgBonus = upgrade.getAttackBonus();
         this.att_e += dmgBonus.Item1;
         this.att_f += dmgBonus.Item2;
@@ -139,11 +139,33 @@ public class Character : MonoBehaviour
             this.att_a += dmgBonus.Item3 / 8;
             this.att_w += dmgBonus.Item4 / 8;
         }
+        else if (this.heroClass == HeroClass.Sadida)
+        {
+            this.att_e += upgrade.getPaBonus() * 50;
+            this.att_f += upgrade.getPaBonus() * 50;
+            this.att_a += upgrade.getPaBonus() * 50;
+            this.att_w += upgrade.getPaBonus() * 50;
+        }
+        else if (this.heroClass == HeroClass.Hipermago)
+        {
+            this.ini += upgrade.getInitBonus();
+            this.att_e += upgrade.getInitBonus() / 5;
+            this.att_f += upgrade.getInitBonus() / 5;
+            this.att_a += upgrade.getInitBonus() / 5;
+            this.att_w += upgrade.getInitBonus() / 5;
+        }
         Tuple<int, int, int, int> resBonus = upgrade.getDefenceBonus();
         this.res_e += resBonus.Item1;
         this.res_f += resBonus.Item2;
         this.res_a += resBonus.Item3;
         this.res_w += resBonus.Item4;
+        if (this.heroClass == HeroClass.Ocra)
+        {
+            this.res_e += resBonus.Item1 / 10;
+            this.res_f += resBonus.Item2 / 10;
+            this.res_a += resBonus.Item3 / 10;
+            this.res_w += resBonus.Item4 / 10;
+        }
         if (this.heroClass == HeroClass.Feca) {
             this.res_e += resBonus.Item1 / 4;
             this.res_f += resBonus.Item2 / 4;
@@ -151,7 +173,7 @@ public class Character : MonoBehaviour
             this.res_w += resBonus.Item4 / 4;
         }
         numberOfSummons += upgrade.getSummonsBonus();
-        if (this.heroClass == HeroClass.Osamodas || this.heroClass == HeroClass.Sadida) this.numberOfSummons += (upgrade.getSummonsBonus() / 2);
+        if ((this.heroClass == HeroClass.Osamodas || this.heroClass == HeroClass.Sadida) && upgrade.getSummonsBonus() == 2) this.numberOfSummons += 1;
     }
 
     public void setPath(List<Block> path) {
@@ -471,6 +493,15 @@ public class Character : MonoBehaviour
     }
 
     public void turnPassed() {
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo != null)
+        {
+            if (this.heroClass == HeroClass.Ecaflip)
+            {
+                UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+                int prob = UnityEngine.Random.Range(1, 101);
+                if (prob <= 30) this.receiveHeal(this.hp * 2 / 100);
+            }
+        }
         removeSpellToUse();
         esystem.OnEndTurn();
         stsystem.OnEndTurn();
@@ -478,25 +509,41 @@ public class Character : MonoBehaviour
         actual_pa = pa;
         hasXelorBonus = false;
     }
-
+    
     [HideInInspector]
     public bool hasXelorBonus = false;
     public virtual void newTurn() {
-        resetBufferedCells();
-        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -20);
-        esystem.OnStartTurn();
-        if (SelectionContainer.DUNGEON_MonsterCharactersInfo != null) {
-            if (this.heroClass == HeroClass.Xelor) {
-                if (bonusXelor) {
+        if (SelectionContainer.DUNGEON_MonsterCharactersInfo != null)
+        {
+            if (this.heroClass == HeroClass.Xelor)
+            {
+                if (bonusXelor)
+                {
                     List<Character> allAllies = Spell.ut_getAlliesWithCaster(this);
-                    foreach (Character ally in allAllies) {
+                    foreach (Character ally in allAllies)
+                    {
                         if (!ally.hasXelorBonus)
                             ally.incrementPA(1);
                         hasXelorBonus = true;
                     }
                 }
             }
+            else if (this.heroClass == HeroClass.Etram)
+            {
+                if (Spell.ut_getDeadStatsAllies(this).Item1 == 1) receiveShield(this.hp * 3 / 100);
+            }
+            else if (this.heroClass == HeroClass.Anutrof)
+            {
+                if (Spell.ut_getDeadStatsAllies(this).Item1 == 1)
+                {
+                    incrementPA(1);
+                    incrementPM(1);
+                }
+            }
         }
+        resetBufferedCells();
+        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -20);
+        esystem.OnStartTurn();
     }
 
     void resetBufferedCells() {

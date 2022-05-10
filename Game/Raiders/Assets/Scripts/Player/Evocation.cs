@@ -133,7 +133,6 @@ public class Evocation : Character {
             this.res_a += ((resBonus.Item3 / 2) * bonusSummons);
             this.res_w += ((resBonus.Item4 / 2) * bonusSummons);
         } else if (connectedSummoner.heroClass == HeroClass.Ladrurbo && bonusSummons > 0) {
-            Tuple<int, int, int, int> resBonus = upgrade.getDefenceBonus();
             this.res_e += (10 * bonusSummons);
             this.res_f += (10 * bonusSummons);
             this.res_a += (10 * bonusSummons);
