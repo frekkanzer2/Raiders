@@ -169,6 +169,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -506,6 +507,22 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 1eb4e46e680075b4692fdccf95a4cd91, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 147308b09338c3a47b98df2c98747198, type: 3}
     isEvocation: 1
+  - characterName: Gabori
+    characterFullSprite: {fileID: 21300000, guid: 135a84a326a85ce49b27be17f8fc8bd6, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 2a6a92cc9cf4f074ea8ed1eeeb767ec2, type: 3}
+    isEvocation: 0
+  - characterName: Vaseky
+    characterFullSprite: {fileID: 21300000, guid: ec56a38ecbfde9f4b8e9f9e9ab833897, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 76abc7400f8d81a49bd59891453282d0, type: 3}
+    isEvocation: 0
+  - characterName: Sanaster
+    characterFullSprite: {fileID: 21300000, guid: ee7bf82e531bcba438de3febf5c02db3, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: cb9d4579fc650d148bd176ac35249f1a, type: 3}
+    isEvocation: 0
+  - characterName: Nuvolotto
+    characterFullSprite: {fileID: 21300000, guid: fd417dcf0e50857468befed26027f888, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 58c5c2b935acf8e44af0e8c94e869d4f, type: 3}
+    isEvocation: 0
 --- !u!1 &361126710
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +585,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -601,6 +619,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1109313989}
   m_Father: {fileID: 1843842142}
@@ -752,6 +771,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1843842142}
   - {fileID: 1588863562}
@@ -791,6 +811,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 564611710}
   m_RootOrder: 0
@@ -854,6 +875,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1843842142}
   m_RootOrder: 0
@@ -980,6 +1002,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1191,6 +1214,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 828619229}
   m_RootOrder: 1
@@ -1420,6 +1444,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1453,6 +1478,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1260372301}
   - {fileID: 564611710}

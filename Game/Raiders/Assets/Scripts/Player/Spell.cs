@@ -137,16 +137,34 @@ public class Spell {
             // no target
             if (spell.canUseInEmptyCell) {
                 payCost(caster, spell);
+                if (spell.hasEffect)
+                {
+                    // SPECIALIZATIONS HERE
+                    if (!(caster is Monster))
+                        SPELL_SPECIALIZATION(caster, targetBlock, spell);
+                    else
+                        MONSTER_SPELL_SPECIALIZATION(caster, targetBlock, spell);
+                }
                 // Code here - Spells in empty cells
             } else return;
         } else {
             if (spell.canUseInEmptyCell)
                 return;
             payCost(caster, spell);
+            int damageToInflict = 0;
             Character target = targetBlock.linkedObject.GetComponent<Character>();
+            if (spell.damage > 0)
+                damageToInflict = calculateDamage(caster, target, spell);
+            if (spell.hasEffect)
+            {
+                // SPECIALIZATIONS HERE
+                if (!(caster is Monster))
+                    SPELL_SPECIALIZATION(caster, targetBlock, spell);
+                else
+                    MONSTER_SPELL_SPECIALIZATION(caster, targetBlock, spell);
+            }
             // Code here - Spells on target
             if (!spell.isEffectOnly && spell.damage > 0) {
-                int damageToInflict = calculateDamage(caster, target, spell);
                 if (spell.element != Element.Heal) {
                     if (target.connectedSacrifice == null)
                         target.inflictDamage(damageToInflict);
@@ -156,13 +174,6 @@ public class Spell {
             }
         }
         caster.addSpell(spell);
-        if (spell.hasEffect) {
-            // SPECIALIZATIONS HERE
-            if (!(caster is Monster))
-                SPELL_SPECIALIZATION(caster, targetBlock, spell);
-            else
-                MONSTER_SPELL_SPECIALIZATION(caster, targetBlock, spell);
-        }
     }
 
     public bool isOffensiveSpell() {
@@ -178,6 +189,7 @@ public class Spell {
         else if (spell.name == "Agitation") EXECUTE_AGITATION(targetBlock, spell);
         else if (spell.name == "Accumulation") EXECUTE_ACCUMULATION(caster, spell);
         else if (spell.name == "Power") EXECUTE_POWER(targetBlock, spell);
+        else if (spell.name == "Inferno") EXECUTE_INFERNO(caster, targetBlock, spell);
         else if (spell.name == "Duel") EXECUTE_DUEL(caster, targetBlock, spell);
         else if (spell.name == "Iop's Wrath") EXECUTE_IOP_WRATH(caster, spell);
         else if (spell.name == "Stretching") EXECUTE_STRETCHING(caster, spell);
@@ -191,7 +203,7 @@ public class Spell {
         else if (spell.name == "Barricade Shot") EXECUTE_BARRICADE_SHOT(caster, targetBlock, spell);
         else if (spell.name == "Sentinel") EXECUTE_SENTINEL(caster, spell);
         else if (spell.name == "Critical Shooting") EXECUTE_CRITICAL_SHOOTING(targetBlock, spell);
-        else if (spell.name == "Exodus" || spell.name == "Feline Spirit") EXECUTE_EXODUS(caster, targetBlock, spell);
+        else if (spell.name == "Contempt" || spell.name == "Exodus" || spell.name == "Feline Spirit") EXECUTE_EXODUS(caster, targetBlock, spell);
         else if (spell.name == "Convulsion") EXECUTE_CONVULSION(caster, targetBlock);
         else if (spell.name == "Therapy") EXECUTE_THERAPY(caster, targetBlock);
         else if (spell.name == "Odyssey") EXECUTE_ODYSSEY(caster);
@@ -334,9 +346,17 @@ public class Spell {
         else if (spell.name == "Fracture") EXECUTE_FRACTURE(caster, targetBlock, spell);
         else if (spell.name == "Destructive Ring") EXECUTE_DESTRUCTIVE_RING(caster, targetBlock, spell);
         else if (spell.name == "Wakmeha") EXECUTE_WAKMEHA(caster, targetBlock, spell);
+        else if (spell.name == "Redemption Arrow") EXECUTE_REDEMPTION_ARROW(caster, targetBlock, spell);
         else if (spell.name == "Audacious") EXECUTE_AUDACIOUS(caster, targetBlock, spell);
         else if (spell.name == "Affront") EXECUTE_AFFRONT(caster, targetBlock, spell);
         else if (spell.name == "Lightning Fist") EXECUTE_LIGHTNING_FIST(caster, targetBlock, spell);
+        else if (spell.name == "Explosive Arrow") EXECUTE_EXPLOSIVE_ARROW(caster, targetBlock, spell);
+        else if (spell.name == "Sword of Fate") EXECUTE_SWORD_OF_FATE(caster, spell);
+        else if (spell.name == "Violence") EXECUTE_VIOLENCE(caster, targetBlock, spell);
+        else if (spell.name == "Neutral") EXECUTE_NEUTRAL(caster, targetBlock, spell);
+        else if (spell.name == "Reprisal") EXECUTE_REPRISAL(caster, targetBlock);
+        else if (spell.name == "Ronda") EXECUTE_CONTEMPT(caster, targetBlock);
+        else if (spell.name == "Scudo") EXECUTE_SCUDO(caster, spell);
 
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -451,6 +471,16 @@ public class Spell {
             powerEvent.useIstantanely();
     }
 
+    public static void EXECUTE_INFERNO(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        InfernoEvent ie = new InfernoEvent("Inferno", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        caster.addEvent(ie);
+        ie.useIstantanely();
+        Debug.Log("Inferno executed");
+    }
+
     public static void EXECUTE_PAWERFUL(Character caster, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         caster.decrementRage(caster.rageCounter);
@@ -480,9 +510,15 @@ public class Spell {
             target.addEvent(new DuelEvent("Duel", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
 
-    public static void EXECUTE_IOP_WRATH(Character caster, Spell s) {
+    public static void EXECUTE_IOP_WRATH(Character caster, Spell s)
+    {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         caster.addEvent(new IopWrathEvent("Iop's Wrath", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
+    }
+    public static void EXECUTE_SWORD_OF_FATE(Character caster, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        caster.addEvent(new SwordOfFateEvent("Sword of Fate", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
     }
 
     public static void EXECUTE_STRETCHING(Character caster, Spell s) {
@@ -658,6 +694,12 @@ public class Spell {
         ut_attracts(caster, targetBlock, 1);
     }
 
+    public static void EXECUTE_CONTEMPT(Character caster, Block targetBlock)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_attracts(caster, targetBlock, 2);
+    }
+
     public static void EXECUTE_ODYSSEY(Character caster) {
         if (!put_CheckArguments(new System.Object[] { caster })) return;
         Block actual = caster.connectedCell.GetComponent<Block>();
@@ -705,9 +747,16 @@ public class Spell {
         target.transform.position = new Vector3(casterNewPosition.x, casterNewPosition.y, -20);
     }
 
-    public static void EXECUTE_ATTRACTION(Character caster, Block targetBlock) {
+    public static void EXECUTE_ATTRACTION(Character caster, Block targetBlock)
+    {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         ut_attracts(caster, targetBlock, 6);
+    }
+    public static void EXECUTE_REPRISAL(Character caster, Block targetBlock)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        if (targetBlock.linkedObject.GetComponent<Character>().isEnemyOf(caster)) return;
+        ut_attracts(caster, targetBlock, 50);
     }
 
     public static void EXECUTE_DESOLATION(Block targetBlock, Spell s) {
@@ -742,13 +791,29 @@ public class Spell {
         ut_attracts(caster, targetBlock, 2);
     }
 
-    public static void EXECUTE_TRANSFUSION(Character caster, Spell s) {
+    public static void EXECUTE_TRANSFUSION(Character caster, Spell s)
+    {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         Coordinate a = caster.connectedCell.GetComponent<Block>().coordinate;
-        foreach (Character ch in ut_getAllies(caster)) {
+        foreach (Character ch in ut_getAllies(caster))
+        {
             Coordinate b = ch.connectedCell.GetComponent<Block>().coordinate;
-            if (ut_isNearOf(a, b, 6)) {
+            if (ut_isNearOf(a, b, 6))
+            {
                 ch.receiveHeal(100 + caster.bonusHeal);
+            }
+        }
+    }
+    public static void EXECUTE_SCUDO(Character caster, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        Coordinate a = caster.connectedCell.GetComponent<Block>().coordinate;
+        foreach (Character ch in ut_getAlliesWithCaster(caster))
+        {
+            Coordinate b = ch.connectedCell.GetComponent<Block>().coordinate;
+            if (ut_isNearOf(a, b, 2))
+            {
+                ch.receiveShield(100);
             }
         }
     }
@@ -812,6 +877,24 @@ public class Spell {
                 if (v == 1)
                     target.receiveHeal(50 + caster.bonusHeal);
                 else Debug.Log("Feline sense failed");
+            }
+        }
+    }
+
+    public static void EXECUTE_EXPLOSIVE_ARROW(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        Coordinate a = targetBlock.coordinate;
+        List<Character> heroes = ut_getAllies(target);
+        heroes.AddRange(ut_getEnemies(target));
+        foreach (Character c in heroes)
+        {
+            Coordinate b = c.connectedCell.GetComponent<Block>().coordinate;
+            if (ut_isNearOf(a, b, 3))
+            {
+                c.inflictDamage(Spell.calculateDamage(caster, c, s));
             }
         }
     }
@@ -925,6 +1008,22 @@ public class Spell {
         List<Character> adj_heroes = ut_getAdjacentHeroes(c);
         foreach(Character adj in adj_heroes)
             adj.inflictDamage(calculateDamage(caster, adj, s));
+    }
+
+    public static void EXECUTE_VIOLENCE(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        Coordinate c = targetBlock.coordinate;
+        List<Character> adj_heroes = ut_getAdjacentHeroes(c);
+        bool enemyFound = false;
+        foreach (Character adj in adj_heroes)
+            if (adj.isEnemyOf(caster)) enemyFound = true;
+        if (enemyFound)
+        {
+            ViolenceEvent ve = new ViolenceEvent("Violence", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+            caster.addEvent(ve);
+            ve.useIstantanely();
+        }
     }
 
     public static void SWITCH_COWARD_MASK(Character caster, Spell s) {
@@ -1962,19 +2061,29 @@ public class Spell {
         }
     }
 
-    public static void EXECUTE_WAKMEHA(Character caster, Block targetBlock, Spell s) {
+    public static void EXECUTE_WAKMEHA(Character caster, Block targetBlock, Spell s)
+    {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
         ut_damageInLine(caster, targetBlock, s, 5);
-        if (caster.getEventSystem().getEvents("Wakfu Raider Status").Count > 0) {
+        if (caster.getEventSystem().getEvents("Wakfu Raider Status").Count > 0)
+        {
             Character target = targetBlock.linkedObject.GetComponent<Character>();
-            if (target.isEvocation) {
-                Evocation e = (Evocation) target;
-                if (e.isWakfuTotem) {
+            if (target.isEvocation)
+            {
+                Evocation e = (Evocation)target;
+                if (e.isWakfuTotem)
+                {
                     EXECUTE_TRANSPOSITION(caster, targetBlock);
                 }
             }
         }
+    }
+    public static void EXECUTE_REDEMPTION_ARROW(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        ut_damageInLine(caster, targetBlock, s, 6);
     }
 
     public static void EXECUTE_AFFRONT(Character caster, Block targetBlock, Spell s) {
@@ -1994,6 +2103,14 @@ public class Spell {
                 }
             }
         }
+    }
+
+    public static void EXECUTE_NEUTRAL(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target.isEvocation) target.inflictDamage(target.actual_hp);
     }
 
     public static void EXECUTE_AUDACIOUS(Character caster, Block targetBlock, Spell s) {
@@ -2428,10 +2545,13 @@ public class Spell {
     public static int BONUS_ACCUMULATION = 4;
     public static int BONUS_SMITHEREENS = 18;
     public static int BONUS_WRATH = 120;
+    public static int BONUS_FATE = 30;
     public static int BONUS_BOW_SKILL = 12;
+    public static int BONUS_ABOLITION = 14;
     public static int BONUS_ATONEMENT_ARROW = 36;
     public static int BONUS_DECIMATION = 48;
     public static int BONUS_SHADOWYBEAM = 13;
+    public static int BONUS_SHOCK = 33;
     public static int BONUS_LETHAL_ATTACK = 30;
     public static int BONUS_KAMA_THROWING = 18;
     public static int BONUS_CONCENTRATION = 21;
@@ -2452,10 +2572,24 @@ public class Spell {
         } else if (caster.name == "Kofang" && s.name == "Smithereens") {
             List<ParentEvent> acclist = caster.getEventSystem().getEvents("Smithereens");
             return BONUS_SMITHEREENS * acclist.Count;
-        } else if (caster.name == "Ragedala" && s.name == "Iop's Wrath") {
+        }
+        else if (caster.name == "Vaseky" && s.name == "Abolition Arrow")
+        {
+            if (targetch.isEvocation)
+                return BONUS_ABOLITION;
+            else return 0;
+        }
+        else if (caster.name == "Ragedala" && s.name == "Iop's Wrath")
+        {
             List<ParentEvent> acclist = caster.getEventSystem().getEvents("Iop's Wrath");
             return BONUS_WRATH * acclist.Count;
-        } else if (caster.name == "Voldorak" && s.name == "Bow Skill") {
+        }
+        else if (caster.name == "Gabori" && s.name == "Sword of Fate")
+        {
+            List<ParentEvent> acclist = caster.getEventSystem().getEvents("Sword of Fate");
+            return BONUS_FATE * acclist.Count;
+        }
+        else if (caster.name == "Voldorak" && s.name == "Bow Skill") {
             List<ParentEvent> bslist = caster.getEventSystem().getEvents("Bow Skill");
             return BONUS_BOW_SKILL * bslist.Count;
         } else if (caster.name == "Arc Piven" && s.name == "Atonement Arrow") {
@@ -2463,7 +2597,6 @@ public class Spell {
             return BONUS_ATONEMENT_ARROW * bslist.Count;
         } else if (caster.name == "Pilobouli" && s.name == "Decimation") {
             if (caster.hasActivedSacrifice && caster.getTotalHP() * 50 / 100 > caster.getActualHP()) {
-                Debug.Log("Bonus decimation!");
                 return BONUS_DECIMATION;
             } else return 0;
         } else if (caster.name == "Rabiote" && s.name == "Bluff") {
@@ -2476,19 +2609,42 @@ public class Spell {
             if (diceResult == 5) return 35;
             if (diceResult == 6) return 45;
             else return 0;
-        } else if (caster.name == "Chrona" && s.name == "Shadowy Beam") {
+        }
+        else if (caster.name == "Chrona" && s.name == "Shadowy Beam")
+        {
             List<Block> adj = targetch.connectedCell.GetComponent<Block>().getFreeAdjacentBlocksWithEnemy(caster.team);
-            foreach (Block b in adj) {
-                if (b.linkedObject != null) {
+            foreach (Block b in adj)
+            {
+                if (b.linkedObject != null)
+                {
                     Character _c = b.linkedObject.GetComponent<Character>();
-                    if (_c != null) {
+                    if (_c != null)
+                    {
                         if (_c.team == caster.team)
                             return BONUS_SHADOWYBEAM;
                     }
                 }
             }
             return 0;
-        } else if (caster.name == "Etraggy" && s.name == "Lethal Attack") {
+        }
+        else if (caster.name == "Sanaster" && s.name == "Shock")
+        {
+            List<Block> adj = targetch.connectedCell.GetComponent<Block>().getFreeAdjacentBlocksWithEnemy(caster.team);
+            foreach (Block b in adj)
+            {
+                if (b.linkedObject != null)
+                {
+                    Character _c = b.linkedObject.GetComponent<Character>();
+                    if (_c != null)
+                    {
+                        if (_c.team == caster.team)
+                            return BONUS_SHOCK;
+                    }
+                }
+            }
+            return 0;
+        }
+        else if (caster.name == "Etraggy" && s.name == "Lethal Attack") {
             if (ut_getDeadStatsAllies(caster).Item1 == 1) return BONUS_LETHAL_ATTACK;
             else return 0;
         } else if (caster.name == "Diver Birel" && s.name == "Kama Throwing") {
