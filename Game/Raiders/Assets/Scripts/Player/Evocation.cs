@@ -145,7 +145,13 @@ public class Evocation : Character {
         bombConnectedInfo = new Tuple<Character, Spell>(summoner, attachedSpell);
     }
 
-	public void setBombChargeToFive() {
+    public bool isDial = false;
+    public void setDial()
+    {
+        isDial = true;
+    }
+
+    public void setBombChargeToFive() {
 		if (this.isBomb) bombCharge = 5;
 	}
 	
@@ -199,6 +205,12 @@ public class Evocation : Character {
 
     public override void newTurn() {
         base.newTurn();
+        if (this.isDial)
+        {
+            List<Character> adj = Spell.ut_getAdjacentHeroes(this.connectedCell.GetComponent<Block>().coordinate);
+            foreach (Character c in adj)
+                c.incrementPA(1);
+        }
         if (this.isBomb && this.bombCharge < 5 && !this.isDead)
             bombCharge++;
         if (this.isBomb && !this.isDead)

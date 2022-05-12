@@ -272,6 +272,7 @@ public class Spell {
         else if (spell.name == "Call of Craqueleur") SUMMONS_CRAQUELEUR(caster, targetBlock);
         else if (spell.name == "Call of Dragonnet") SUMMONS_DRAGONNET(caster, targetBlock);
         else if (spell.name == "Call of Tofu") SUMMONS_TOFU(caster, targetBlock);
+        else if (spell.name == "Xelor Dial") XELOR_DIAL(caster, targetBlock);
         else if (spell.name == "Call of Gobball") SUMMONS_GOBBALL(caster, targetBlock);
         else if (spell.name == "Call of Prespic") SUMMONS_PRESPIC(caster, targetBlock);
         else if (spell.name == "Call of Pandawasta") SUMMONS_PANDAWASTA(caster, targetBlock);
@@ -297,6 +298,9 @@ public class Spell {
         else if (spell.name == "Nature Poison") EXECUTE_NATURE_POISON(caster, targetBlock, spell);
         else if (spell.name == "Earthquake") EXECUTE_EARTHQUAKE(caster, spell);
         else if (spell.name == "Doll Sacrifice") EXECUTE_DOLL_SACRIFICE(caster, targetBlock, spell);
+        else if (spell.name == "Temporal Paradox") EXECUTE_TEMPORAL_PARADOX(caster, targetBlock, spell);
+        else if (spell.name == "Overclock") EXECUTE_OVERCLOCK(caster, targetBlock, spell);
+        else if (spell.name == "Petrification") EXECUTE_PETRIFICATION(caster, targetBlock, spell);
         else if (spell.name == "Doll Scream") EXECUTE_DOLL_SCREAM(caster, targetBlock, spell);
         else if (spell.name == "Explobombe") SUMMONS_EXPLOBOMBE(caster, targetBlock, spell);
         else if (spell.name == "Tornabombe") SUMMONS_TORNABOMBE(caster, targetBlock, spell);
@@ -357,6 +361,10 @@ public class Spell {
         else if (spell.name == "Reprisal") EXECUTE_REPRISAL(caster, targetBlock);
         else if (spell.name == "Ronda") EXECUTE_CONTEMPT(caster, targetBlock);
         else if (spell.name == "Scudo") EXECUTE_SCUDO(caster, spell);
+        else if (spell.name == "Immobilising Arrow") EXECUTE_IMMOBILISING_ARROW(targetBlock, spell);
+        else if (spell.name == "Destructive Arrow") EXECUTE_DESTRUCTIVE_ARROW(targetBlock, spell);
+        else if (spell.name == "Assailing Arrow") EXECUTE_ASSAILING_ARROW(caster, spell);
+        else if (spell.name == "Punitive Arrow") EXECUTE_PUNITIVE_ARROW(caster, spell);
 
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -519,6 +527,11 @@ public class Spell {
     {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         caster.addEvent(new SwordOfFateEvent("Sword of Fate", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
+    }
+    public static void EXECUTE_PUNITIVE_ARROW(Character caster, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        caster.addEvent(new PunitiveArrowEvent("Punitive Arrow", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
     }
 
     public static void EXECUTE_STRETCHING(Character caster, Spell s) {
@@ -1369,9 +1382,86 @@ public class Spell {
         ut_execute_summon(caster, targetBlock, "Gobball", 1);
     }
 
-    public static void SUMMONS_TOFU(Character caster, Block targetBlock) {
+    public static void SUMMONS_TOFU(Character caster, Block targetBlock)
+    {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         ut_execute_summon(caster, targetBlock, "Tofu", 3);
+    }
+
+    public static void XELOR_DIAL(Character caster, Block targetBlock)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        Evocation dial = ut_execute_summon(caster, targetBlock, "Xelor Dial", 2);
+        dial.setDial();
+    }
+
+    public static void EXECUTE_TEMPORAL_PARADOX(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        EXECUTE_TRANSPOSITION(caster, targetBlock);
+        if (target.isEvocation)
+        {
+            if (((Evocation)target).isDial)
+            {
+                caster.addEvent(new TemporalParadox("Temporal Paradox", caster, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+            }
+        }
+    }
+    public static void EXECUTE_OVERCLOCK(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        List<Character> adjacentChars = ut_getAdjacentHeroes(caster.connectedCell.GetComponent<Block>().coordinate);
+        bool isNear = false;
+        foreach(Character c in adjacentChars)
+        {
+            if (c.isEvocation)
+            {
+                if (((Evocation)c).isDial)
+                {
+                    isNear = true;
+                    break;
+                }
+            }
+        }
+        if (isNear) caster.incrementPA(2);
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+        int prob = UnityEngine.Random.Range(1, 101);
+        Debug.Log("Spell " + s.name + " prob: " + prob);
+        if (prob <= 40)
+        {
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            target.addEvent(new OverclockEvent("Overclock", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        }
+    }
+
+    public static void EXECUTE_PETRIFICATION(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+        int prob = UnityEngine.Random.Range(1, 101);
+        Debug.Log("Spell " + s.name + " prob: " + prob);
+        if (prob <= 80)
+        {
+            int paToLose = 2;
+            List<Character> adjacentChars = ut_getAdjacentHeroes(targetBlock.coordinate);
+            bool isNear = false;
+            foreach (Character c in adjacentChars)
+            {
+                if (c.isEvocation)
+                {
+                    if (((Evocation)c).isDial)
+                    {
+                        isNear = true;
+                        break;
+                    }
+                }
+            }
+            if (isNear) paToLose = 3;
+            Debug.Log("PETRIFICATION ACTING");
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            target.addEvent(new PetrificationEvent("Petrification", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, paToLose));
+        }
     }
 
     public static void SUMMONS_PRESPIC(Character caster, Block targetBlock) {
@@ -1727,6 +1817,34 @@ public class Spell {
         if (prob <= 20) {
             Character target = targetBlock.linkedObject.GetComponent<Character>();
             target.addEvent(new DeceptionEvent("Deception", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        }
+    }
+
+    public static void EXECUTE_DESTRUCTIVE_ARROW(Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+        int prob = UnityEngine.Random.Range(1, 101);
+        Debug.Log("Spell " + s.name + " prob: " + prob);
+        if (prob <= 40)
+        {
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            target.addEvent(new DestructiveArrowEvent("Destructive Arrow", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
+        }
+    }
+
+    public static void EXECUTE_IMMOBILISING_ARROW(Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+        int prob = UnityEngine.Random.Range(1, 101);
+        Debug.Log("Spell " + s.name + " prob: " + prob);
+        if (prob <= 80)
+        {
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            target.addEvent(new ImmobilisingArrowEvent("Immobilising Arrow", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
         }
     }
 
@@ -2501,6 +2619,14 @@ public class Spell {
         }
     }
 
+    public static void EXECUTE_ASSAILING_ARROW(Character caster, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        AssailingArrowEvent mp = new AssailingArrowEvent("Assailing Arrow", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        caster.addEvent(mp);
+        mp.useIstantanely();
+    }
+
     public static void SUMMONS_ROGUEBOMB_DISTANCE(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
@@ -2546,6 +2672,7 @@ public class Spell {
     public static int BONUS_SMITHEREENS = 18;
     public static int BONUS_WRATH = 120;
     public static int BONUS_FATE = 30;
+    public static int BONUS_PUNITIVE_ARROW = 36;
     public static int BONUS_BOW_SKILL = 12;
     public static int BONUS_ABOLITION = 14;
     public static int BONUS_ATONEMENT_ARROW = 36;
@@ -2588,6 +2715,11 @@ public class Spell {
         {
             List<ParentEvent> acclist = caster.getEventSystem().getEvents("Sword of Fate");
             return BONUS_FATE * acclist.Count;
+        }
+        else if (caster.name == "Volpin" && s.name == "Punitive Arrow")
+        {
+            List<ParentEvent> acclist = caster.getEventSystem().getEvents("Punitive Arrow");
+            return BONUS_PUNITIVE_ARROW * acclist.Count;
         }
         else if (caster.name == "Voldorak" && s.name == "Bow Skill") {
             List<ParentEvent> bslist = caster.getEventSystem().getEvents("Bow Skill");

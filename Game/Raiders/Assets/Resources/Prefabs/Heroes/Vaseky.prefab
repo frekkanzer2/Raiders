@@ -197,14 +197,14 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 800
+  hp: 970
   pa: 7
   pm: 3
   ini: 105
-  res_e: -6
-  res_f: -6
-  res_a: 10
-  res_w: 4
+  res_e: -12
+  res_f: 8
+  res_a: 13
+  res_w: 7
   att_e: 0
   att_f: 0
   att_a: 10

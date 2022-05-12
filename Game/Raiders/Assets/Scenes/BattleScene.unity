@@ -1220,6 +1220,8 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: be0bfbb19e455d548af6974777d98935, type: 3}
   - {fileID: 557098361630938699, guid: cb28c09d009fc464a9e86dc458478063, type: 3}
   - {fileID: 557098361630938699, guid: b6fb1719f3b4d0d4ea4ee3e79b439bad, type: 3}
+  - {fileID: 557098361630938699, guid: 24ca598446fbf6f47be5db3fbf82bd32, type: 3}
+  - {fileID: 557098361630938699, guid: a08d39d54698b9740a05064ff6d94dfa, type: 3}
   heroesPrefabs_team2:
   - {fileID: 557098361630938699, guid: 3968d5a638ef5994cad63e85612468ac, type: 3}
   - {fileID: 557098361630938699, guid: 2ccb042d5c633dc48854a46bd4a9972e, type: 3}
@@ -1281,6 +1283,8 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: be0bfbb19e455d548af6974777d98935, type: 3}
   - {fileID: 557098361630938699, guid: cb28c09d009fc464a9e86dc458478063, type: 3}
   - {fileID: 557098361630938699, guid: b6fb1719f3b4d0d4ea4ee3e79b439bad, type: 3}
+  - {fileID: 557098361630938699, guid: 24ca598446fbf6f47be5db3fbf82bd32, type: 3}
+  - {fileID: 557098361630938699, guid: a08d39d54698b9740a05064ff6d94dfa, type: 3}
 --- !u!114 &93772482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1645,6 +1649,18 @@ MonoBehaviour:
   - characterName: Nuvolotto
     characterFullSprite: {fileID: 21300000, guid: fd417dcf0e50857468befed26027f888, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 58c5c2b935acf8e44af0e8c94e869d4f, type: 3}
+    isEvocation: 0
+  - characterName: Xolaro
+    characterFullSprite: {fileID: 21300000, guid: 0f3faa4ec83c8ad4b803bd708fd0f673, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 87682e8efca7b4c4bbc67915028917d3, type: 3}
+    isEvocation: 0
+  - characterName: Xelor Dial
+    characterFullSprite: {fileID: 21300000, guid: 25f20f3e2ca275b4eb0b5e94f831616f, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 9d08db03f1a2c0f428c7f96eb789d5ee, type: 3}
+    isEvocation: 1
+  - characterName: Volpin
+    characterFullSprite: {fileID: 21300000, guid: 7b9b703a1aa954e4798bca821a9cc8af, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: d9398f87fd87ba84682e03463558b059, type: 3}
     isEvocation: 0
 --- !u!114 &93772484
 MonoBehaviour:
