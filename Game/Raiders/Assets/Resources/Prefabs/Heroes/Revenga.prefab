@@ -129,8 +129,8 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   - link: {fileID: 0}
-    name: Con
-    icon: {fileID: 21300000, guid: 831b537dbe5730042b72a3c25574995c, type: 3}
+    name: Death Con
+    icon: {fileID: 21300000, guid: 910d5481b338d3a4db7f5db636f73140, type: 3}
     description: Steal 10% air damage from the target
     element: 2
     damage: 32
@@ -163,7 +163,7 @@ MonoBehaviour:
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 5
+    paCost: 2
     pmCost: 0
     maxTimesInTurn: 1
     executeAfterTurns: 0
@@ -202,15 +202,15 @@ MonoBehaviour:
   pa: 6
   pm: 3
   ini: 65
-  res_e: 4
-  res_f: 0
+  res_e: -4
+  res_f: 7
   res_a: 10
   res_w: -6
   att_e: 6
   att_f: 0
   att_a: 10
   att_w: 0
-  numberOfSummons: 20
+  numberOfSummons: 100
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0

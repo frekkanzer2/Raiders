@@ -120,8 +120,8 @@ MonoBehaviour:
     paCost: 4
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 4
-    effectDuration: 3
+    executeAfterTurns: 3
+    effectDuration: 5
     criticalProbability: 0
     hasEffect: 1
     isEffectOnly: 1
@@ -132,7 +132,7 @@ MonoBehaviour:
     name: Endurance
     icon: {fileID: 21300000, guid: a23034d745139194ca2ac6edd54b23db, type: 3}
     description: Steals HP in the Water element
-    element: 5
+    element: 3
     damage: 36
     lifeSteal: 1
     minRange: 1
@@ -155,7 +155,7 @@ MonoBehaviour:
     name: Sword of Judgement
     icon: {fileID: 21300000, guid: 5b650fb5321c1bb46ba317c24049e29f, type: 3}
     description: Inflicts Water damage
-    element: 5
+    element: 3
     damage: 56
     lifeSteal: 0
     minRange: 1
@@ -178,7 +178,7 @@ MonoBehaviour:
     name: Sword of Fate
     icon: {fileID: 21300000, guid: ad676ca022be09441bf3e7d1b87c79e3, type: 3}
     description: Increases the spell's damage of 30
-    element: 5
+    element: 1
     damage: 40
     lifeSteal: 0
     minRange: 1

@@ -17,6 +17,12 @@ public class Evocation : Character {
     [HideInInspector]
     public bool isBomb = false;
     [HideInInspector]
+    public bool isGuardian = false;
+    [HideInInspector]
+    public bool isRune = false;
+    [HideInInspector]
+    public int RunicPower = 0;
+    [HideInInspector]
     public bool isWakfuTotem = false;
     private Tuple<Character, Spell> bombConnectedInfo;
     private int bombCharge = 0;
@@ -145,6 +151,7 @@ public class Evocation : Character {
         bombConnectedInfo = new Tuple<Character, Spell>(summoner, attachedSpell);
     }
 
+    [HideInInspector]
     public bool isDial = false;
     public void setDial()
     {
@@ -203,6 +210,28 @@ public class Evocation : Character {
         base.inflictDamage(damage, mustSkip);
     }
 
+    public void incrementRunicPower()
+    {
+        this.RunicPower++;
+        sos.addEffect_PA_PM(StatsOutputSystem.Effect.Rage, this.RunicPower + " RP");
+        if (this.RunicPower == 5)
+        {
+            List<Character> all = Spell.ut_getAllies(this);
+            all.AddRange(Spell.ut_getEnemies(this));
+            foreach (Character c in all)
+            {
+                if (c is Evocation)
+                {
+                    if (((Evocation)c).isRune)
+                        continue;
+                }
+                if (Spell.ut_isNearOf(c, this, 3))
+                    c.inflictDamage(Spell.calculateDamage(this, c, this.spells[0]));
+            }
+            this.inflictDamage(this.actual_hp);
+        }
+    }
+
     public override void newTurn() {
         base.newTurn();
         if (this.isDial)
@@ -221,6 +250,20 @@ public class Evocation : Character {
             doubleCounter++;
             if (doubleCounter == 3)
                 this.inflictDamage(this.actual_hp);
+        }
+        if (this.isRune)
+        {
+            List<Character> all = Spell.ut_getAllies(this);
+            all.AddRange(Spell.ut_getEnemies(this));
+            foreach (Character c in all)
+            {
+                if (c is Evocation)
+                {
+                    if (((Evocation)c).isGuardian && Spell.ut_isNearOf(this, c, 2))
+                        c.receiveHeal(25 + this.connectedSummoner.bonusHeal);
+                }
+            }
+            incrementRunicPower();
         }
     }
 

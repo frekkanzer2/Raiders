@@ -118,10 +118,10 @@ MonoBehaviour:
     hpCost: 0
     paCost: 3
     pmCost: 0
-    maxTimesInTurn: 2
+    maxTimesInTurn: 3
     executeAfterTurns: 0
     effectDuration: 0
-    criticalProbability: 25
+    criticalProbability: 15
     hasEffect: 1
     isEffectOnly: 0
     canUseInEmptyCell: 0

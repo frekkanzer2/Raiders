@@ -109,14 +109,14 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 3ed479ee0d494d64f8a0f1e1b3dd6d67, type: 3}
     description: Adds 1 rage charge
     element: 1
-    damage: 22
+    damage: 28
     lifeSteal: 0
     minRange: 1
     maxRange: 2
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 4
+    paCost: 3
     pmCost: 0
     maxTimesInTurn: 2
     executeAfterTurns: 0

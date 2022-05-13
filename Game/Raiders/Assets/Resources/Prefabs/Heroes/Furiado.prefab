@@ -116,7 +116,7 @@ MonoBehaviour:
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 3
+    paCost: 4
     pmCost: 0
     maxTimesInTurn: 1
     executeAfterTurns: 8
@@ -154,7 +154,8 @@ MonoBehaviour:
     name: Bloody Punishment
     icon: {fileID: 21300000, guid: 8f38b6b7b014f0647bc4bf0d2ef6de9f, type: 3}
     description: If the target has more HP than the caster, immediately increases
-      the spell's damage of 72. Caster inflicts 20% of Fire damage to himself
+      the spell's damage of 72. Caster inflicts 100% of base Fire damage (without
+      booster) to himself
     element: 1
     damage: 53
     lifeSteal: 0
@@ -166,7 +167,7 @@ MonoBehaviour:
     paCost: 3
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 1
+    executeAfterTurns: 2
     effectDuration: 0
     criticalProbability: 50
     hasEffect: 1
@@ -179,7 +180,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: c7d205727e8ea894fbe22e4d65153a4b, type: 3}
     description: Inflicts Air damage
     element: 2
-    damage: 31
+    damage: 20
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -188,7 +189,7 @@ MonoBehaviour:
     hpCost: 0
     paCost: 3
     pmCost: 0
-    maxTimesInTurn: 3
+    maxTimesInTurn: 4
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 5
@@ -198,7 +199,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1860
+  hp: 1970
   pa: 6
   pm: 3
   ini: 10
@@ -278,8 +279,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5, y: 3.25}
+    pivot: {x: 0.5714341, y: 0.12103986}
+    oldSize: {x: 3.2894738, y: 4.2763157}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

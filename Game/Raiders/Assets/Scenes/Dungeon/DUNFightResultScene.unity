@@ -523,6 +523,62 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: fd417dcf0e50857468befed26027f888, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 58c5c2b935acf8e44af0e8c94e869d4f, type: 3}
     isEvocation: 0
+  - characterName: Xolaro
+    characterFullSprite: {fileID: 21300000, guid: 0f3faa4ec83c8ad4b803bd708fd0f673, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 87682e8efca7b4c4bbc67915028917d3, type: 3}
+    isEvocation: 0
+  - characterName: Xelor Dial
+    characterFullSprite: {fileID: 21300000, guid: 25f20f3e2ca275b4eb0b5e94f831616f, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 9d08db03f1a2c0f428c7f96eb789d5ee, type: 3}
+    isEvocation: 1
+  - characterName: Volpin
+    characterFullSprite: {fileID: 21300000, guid: 7b9b703a1aa954e4798bca821a9cc8af, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: d9398f87fd87ba84682e03463558b059, type: 3}
+    isEvocation: 0
+  - characterName: Revenga
+    characterFullSprite: {fileID: 21300000, guid: ed7e583c9cda9aa489cbc6ccbe118222, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 2c8c2bbc0fa58b741bf6dcab3fa96f7f, type: 3}
+    isEvocation: 0
+  - characterName: Soul Chafer
+    characterFullSprite: {fileID: 21300000, guid: 6b3bf3c3b20104b409ad3556c8152514, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: f556c922bb8fe8e43b52dcaa536534c4, type: 3}
+    isEvocation: 1
+  - characterName: Remington Smisse
+    characterFullSprite: {fileID: 21300000, guid: 0618a9e67a3f11e45888f8bd002aaabb, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 64be9a3a6b40c154491062bb12c260da, type: 3}
+    isEvocation: 0
+  - characterName: Furiado
+    characterFullSprite: {fileID: 21300000, guid: 72e620bddef4c1e4c8a794dbde50aedb, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 547fca10a25549647ab5658bfe2d374b, type: 3}
+    isEvocation: 0
+  - characterName: Flying Sword
+    characterFullSprite: {fileID: 21300000, guid: 22c82bffa32ab864ca67ba27b15db555, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 97f6ae152aa7369429e18ec632abaf53, type: 3}
+    isEvocation: 1
+  - characterName: Felix
+    characterFullSprite: {fileID: 21300000, guid: 20916f7b4df61914e91c53882f9a7e7e, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 1ae93012b0b954a44bf24a2410f38c2f, type: 3}
+    isEvocation: 0
+  - characterName: Elemental Guardian
+    characterFullSprite: {fileID: 21300000, guid: aec814fd35d0fb044ae0313c19d843fa, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: b89111d9a192b5d4e9ba6be639199fb2, type: 3}
+    isEvocation: 1
+  - characterName: Fire Rune
+    characterFullSprite: {fileID: 21300000, guid: 0567be3e26db9c348ba02c40b36eb3d0, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 0a963636aafac8a45978fc886f2f19a1, type: 3}
+    isEvocation: 1
+  - characterName: Earth Rune
+    characterFullSprite: {fileID: 21300000, guid: 9e91651fe8ae57043bf01f2ef884155c, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: cba576ccab8924542b89ff92b31b8d4a, type: 3}
+    isEvocation: 1
+  - characterName: Air Rune
+    characterFullSprite: {fileID: 21300000, guid: 985d97148233b7046baebf5b1014ac74, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: da6c21cc1fa8969499a16aea5e91a546, type: 3}
+    isEvocation: 1
+  - characterName: Water Rune
+    characterFullSprite: {fileID: 21300000, guid: 9a85078ca19d4bf4682d7f976b27dd09, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 01fa9b7bc2ef55243b2166e5f8dd50f8, type: 3}
+    isEvocation: 1
 --- !u!1 &361126710
 GameObject:
   m_ObjectHideFlags: 0

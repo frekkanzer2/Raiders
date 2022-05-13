@@ -9,18 +9,18 @@ public class DestructiveArrowEvent : ParentEvent
 
     override public void execute() {
         base.execute();
-        connected.att_a += 10;
-        connected.att_e += 10;
-        connected.att_w += 10;
-        connected.att_f += 10;
-    }
-
-    override public void restoreCharacter() {
-        base.restoreCharacter();
         connected.att_a -= 10;
         connected.att_e -= 10;
         connected.att_w -= 10;
         connected.att_f -= 10;
+    }
+
+    override public void restoreCharacter() {
+        base.restoreCharacter();
+        connected.att_a += 10;
+        connected.att_e += 10;
+        connected.att_w += 10;
+        connected.att_f += 10;
     }
 
 }

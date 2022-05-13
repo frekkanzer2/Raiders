@@ -107,7 +107,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Elemental Resurrection
     icon: {fileID: 21300000, guid: 13acf838933d2f84594c60375e82bc53, type: 3}
-    description: Summons an Elemental Guardian
+    description: Summons an Elemental Guardian. The Elemental Guardian can be healed
+      by Runes if they are near to it
     element: 5
     damage: 0
     lifeSteal: 0
@@ -130,7 +131,9 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Creation
     icon: {fileID: 21300000, guid: d29b8f0dcfc7dc34f80380d7e97c85d6, type: 3}
-    description: Summons a random Rune
+    description: 'Summons a random Rune. The Rune will gain 1 Runic Power each turn:
+      when it reaches 5 Runic Power, it will explode. Other Runes are not involved
+      in the explosion'
     element: 5
     damage: 0
     lifeSteal: 0
@@ -153,8 +156,9 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Elemental Drain
     icon: {fileID: 21300000, guid: 070db0c8d419e3d479d3238342d13958, type: 3}
-    description: Inflicts 30% of total hp on every allied summoned Rune. Increases
-      Elemental Guardian spells' complessive damage of 60%
+    description: Inflicts 30% of total hp on every allied summoned Rune. If there
+      is at least one Rune, increases Elemental Guardian spells' complessive damage
+      of 60%
     element: 5
     damage: 0
     lifeSteal: 0
@@ -177,14 +181,14 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Runic Overcharge
     icon: {fileID: 21300000, guid: f9f614a5ce111194aa530bec7285537f, type: 3}
-    description: Increases 1 Runic Power on the target Rune
+    description: Adds 1 Runic Power on the target Rune
     element: 5
     damage: 0
     lifeSteal: 0
     minRange: 1
     maxRange: 6
     distanceType: 0
-    overObstacles: 0
+    overObstacles: 1
     hpCost: 0
     paCost: 3
     pmCost: 0
@@ -198,7 +202,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1270
+  hp: 1030
   pa: 6
   pm: 3
   ini: 30

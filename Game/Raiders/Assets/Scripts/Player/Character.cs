@@ -74,7 +74,7 @@ public class Character : MonoBehaviour
     public int bonusHeal = 0;
     private bool bonusXelor = false;
 
-    private StatsOutputSystem sos;
+    protected StatsOutputSystem sos;
 
     public static List<Block> bufferColored = new List<Block>();
     [HideInInspector]
@@ -178,7 +178,7 @@ public class Character : MonoBehaviour
 
     public void setPath(List<Block> path) {
         if (isDead) return;
-        followPath = path;
+        followPath = new List<Block>(path);
         followingBlock = path[0];
         followPath.RemoveAt(0);
         isForcedMoving = true;

@@ -109,7 +109,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 0
-    damage: 80
+    damage: 120
     lifeSteal: 0
     minRange: 0
     maxRange: 0
@@ -196,10 +196,14 @@ MonoBehaviour:
   id: 0
   isCommunionActive: 0
   isBomb: 0
+  isGuardian: 0
+  isRune: 0
+  RunicPower: 0
   isWakfuTotem: 0
   isTurrect: 0
   isDouble: 0
   mustSkip: 1
+  isDial: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

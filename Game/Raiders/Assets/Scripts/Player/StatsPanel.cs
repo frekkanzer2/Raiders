@@ -76,7 +76,7 @@ public class StatsPanel : MonoBehaviour
                 spell2.GetComponent<SpellSlot>().setSpell(toSync.spells[1]);
             if (toSync.spells.Count >= 3)
                 spell3.GetComponent<SpellSlot>().setSpell(toSync.spells[2]);
-            if (toSync.spells.Count == 4)
+            if (toSync.spells.Count >= 4)
                 spell4.GetComponent<SpellSlot>().setSpell(toSync.spells[3]);
 
             GameObject panel_turnsWait1 = spell1.transform.GetChild(0).gameObject;
@@ -150,7 +150,7 @@ public class StatsPanel : MonoBehaviour
             else
                 panel_turnsWait3.SetActive(false);
 
-            if (toSync.spells.Count == 4)
+            if (toSync.spells.Count >= 4)
                 if (!Spell.canUse(toSync, toSync.spells[3])) {
                     spell4.GetComponent<Image>().color = new Color(80f / 255f, 80f / 255f, 80f / 255f, 1);
                     spell4.GetComponent<SpellSlot>().canUse = false;
