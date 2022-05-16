@@ -11302,6 +11302,10 @@ MonoBehaviour:
       - monsterID: 7
         quantity: 0
         spawnCoordinates: []
+  - name: Craquerock Mountain
+    bossIcon: {fileID: 21300000, guid: 7659e9e239923bd40a222b183871f174, type: 3}
+    monsters: []
+    rooms: []
   isDebugEnabled: 0
 --- !u!114 &1295197768
 MonoBehaviour:
