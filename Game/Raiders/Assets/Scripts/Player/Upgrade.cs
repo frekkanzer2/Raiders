@@ -105,7 +105,7 @@ public class Upgrade
     }
     public bool executePowerup_paLevel(int variation) {
         if (variation > 0) {
-            if (variation + paLevel > 100) return false;
+            if (variation + paLevel > 120) return false;
             // assigning points
             if (variation > pointsToAssign) return false;
             else {

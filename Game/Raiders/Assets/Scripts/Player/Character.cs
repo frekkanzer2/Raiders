@@ -417,9 +417,13 @@ public class Character : MonoBehaviour
                 if (hit.collider.gameObject.CompareTag("Player")) {
                     Character charPressed = hit.collider.gameObject.GetComponent<Character>();
                     bool isAtt = false;
-                    if (charPressed.connectedCell.GetComponent<Block>().canAttackHere && spellToUse != null) {
-                        isAtt = true;
-                        Spell.executeSpell(TurnsManager.active, charPressed.connectedCell.GetComponent<Block>(), TurnsManager.active.spellToUse);
+                    if (charPressed.connectedCell != null)
+                    {
+                        if (charPressed.connectedCell.GetComponent<Block>().canAttackHere && spellToUse != null)
+                        {
+                            isAtt = true;
+                            Spell.executeSpell(TurnsManager.active, charPressed.connectedCell.GetComponent<Block>(), TurnsManager.active.spellToUse);
+                        }
                     }
                     resetBufferedCells();
                     if (!isAtt)

@@ -424,6 +424,11 @@ public class Spell {
         else if (spell.name == "Bomberman") EXECUTE_BOMBERMAN(caster, targetBlock);
         else if (spell.name == "Junior Bwork Distance") EXECUTE_JUNIOR_BWORK_DISTANCE(caster, targetBlock);
         else if (spell.name == "Arachnee Population") EXECUTE_ARACHNEE_POPULATION(caster, targetBlock, spell);
+        else if (spell.name == "Call of Arachnee") EXECUTE_CALL_OF_ARACHNEE(caster, targetBlock, spell);
+        else if (spell.name == "Alpha Teeth") EXECUTE_ALPHA_TEETH(caster, targetBlock, spell);
+        else if (spell.name == "Crobak Shot") SUMMONS_CROBAK_DISTANCE(caster, targetBlock, spell);
+        else if (spell.name == "Crobak Liberation") EXECUTE_MY_CROBAK_CHILDS(caster, targetBlock, spell);
+        else if (spell.name == "High Temperature") EXECUTE_HIGH_TEMPERATURE(caster, targetBlock, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -2616,24 +2621,90 @@ public class Spell {
         }
     }
 
-    public static void EXECUTE_CALL_OF_THE_FOREST(Character caster, Block targetBlock, Spell s) {
+    public static void EXECUTE_CALL_OF_THE_FOREST(Character caster, Block targetBlock, Spell s)
+    {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
-        Monster casterMonster = (Monster) caster;
+        Monster casterMonster = (Monster)caster;
         Character closest = casterMonster.getClosestEnemy();
         if (closest == null) return;
         Block closestBlock = closest.connectedCell.GetComponent<Block>();
         Block toSummonBlock = null;
         int bestDistance = 10000;
-        foreach (Block free in (targetBlock.getFreeAdjacentBlocks())) {
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks()))
+        {
             int actualDistance = Monster.getDistance(free.coordinate, closestBlock.coordinate);
-            if (actualDistance < bestDistance) {
+            if (actualDistance < bestDistance)
+            {
                 bestDistance = actualDistance;
                 toSummonBlock = free;
             }
         }
         if (toSummonBlock == null) return;
         ut_execute_monsterSummon(caster, toSummonBlock, "Bear");
+    }
+    public static void EXECUTE_CALL_OF_ARACHNEE(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Monster casterMonster = (Monster)caster;
+        Character closest = casterMonster.getClosestEnemy();
+        if (closest == null) return;
+        Block closestBlock = closest.connectedCell.GetComponent<Block>();
+        Block toSummonBlock = null;
+        int bestDistance = 10000;
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks()))
+        {
+            int actualDistance = Monster.getDistance(free.coordinate, closestBlock.coordinate);
+            if (actualDistance < bestDistance)
+            {
+                bestDistance = actualDistance;
+                toSummonBlock = free;
+            }
+        }
+        if (toSummonBlock == null) return;
+        ut_execute_monsterSummon(caster, toSummonBlock, "Alpha Arachnee");
+    }
+
+    public static void EXECUTE_ALPHA_TEETH(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        if (targetBlock.linkedObject == null) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new AlphaTeethEvent("Alpha Teeth", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
+    public static void SUMMONS_CROBAK_DISTANCE(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Block toSummonBlock = null;
+        List<Block> frees = targetBlock.getFreeAdjacentBlocks();
+        if (frees.Count == 0) return;
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+        int indexResult = UnityEngine.Random.Range(0, frees.Count);
+        toSummonBlock = frees[indexResult];
+        ut_execute_monsterSummon(caster, toSummonBlock, "Little Crobak");
+    }
+
+    public static void EXECUTE_MY_CROBAK_CHILDS(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks()))
+        {
+            ut_execute_monsterSummon(caster, free, "Little Crobak");
+        }
+    }
+
+    public static void EXECUTE_HIGH_TEMPERATURE(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        if (targetBlock.linkedObject == null) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new HighTemperatureEvent("High Temperature", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, caster, s));
     }
 
     public static void EXECUTE_WOLF_CRY(Character caster, Spell s) {
