@@ -132,7 +132,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 37abe5b028bfa7c4ebca0663b87de594, type: 3}
     description: Removes 2 rage charges. Increases the spell's damage of 18
     element: 0
-    damage: 37
+    damage: 42
     lifeSteal: 0
     minRange: 1
     maxRange: 3
@@ -176,8 +176,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Vertebra
     icon: {fileID: 21300000, guid: 0c444f5817d6c5d459be5ad4ea08fa91, type: 3}
-    description: Removes 2 PA to the target and to the caster if they are in the
-      same line
+    description: Removes 2 PA to the target if it's in the same line of the caster
     element: 3
     damage: 30
     lifeSteal: 0
