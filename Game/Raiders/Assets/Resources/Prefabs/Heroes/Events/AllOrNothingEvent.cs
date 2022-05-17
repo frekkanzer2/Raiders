@@ -5,11 +5,13 @@ using UnityEngine;
 public class AllOrNothingEvent : ParentEvent
 {
 
-    public AllOrNothingEvent(string name, Character c, int duration, Mode mode, Sprite s) : base(name, c, duration, mode, s) { }
+    Character caster;
+
+    public AllOrNothingEvent(string name, Character c, int duration, Mode mode, Sprite s, Character caster) : base(name, c, duration, mode, s) { this.caster = caster; }
 
     override public void execute() {
         base.execute();
-        connected.receiveHeal(200);
+        connected.receiveHeal(200 + caster.bonusHeal);
     }
 
     override public void restoreCharacter() {

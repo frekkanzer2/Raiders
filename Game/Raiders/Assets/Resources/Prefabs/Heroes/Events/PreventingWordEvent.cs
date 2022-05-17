@@ -5,16 +5,18 @@ using UnityEngine;
 public class PreventingWordEvent : ParentEvent
 {
 
-    public PreventingWordEvent(string name, Character c, int duration, Mode mode, Sprite s) : base(name, c, duration, mode, s) { }
+    Character caster;
+
+    public PreventingWordEvent(string name, Character c, int duration, Mode mode, Sprite s, Character caster) : base(name, c, duration, mode, s) { this.caster = caster;  }
 
     override public void execute() {
         base.execute();
-        connected.receiveShield(200);
+        connected.receiveShield(200 + caster.bonusGainShield);
     }
 
     override public void restoreCharacter() {
         base.restoreCharacter();
-        connected.removeShield(200);
+        connected.removeShield(200 + caster.bonusGainShield);
     }
 
 }

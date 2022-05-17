@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 8914096617352650622}
   - component: {fileID: -2347270675974649033}
   - component: {fileID: 5404421346664201683}
-  - component: {fileID: 8455212996724751349}
   m_Layer: 0
   m_Name: Craqueleur
   m_TagString: Player
@@ -106,8 +105,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.51136, y: 0.22732}
+    oldSize: {x: 6.6666665, y: 6.6666665}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -136,16 +135,16 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: e29636455710821459a0e7faf0b31573, type: 3}
     description: Inflicts Earth damage
     element: 0
-    damage: 300
+    damage: 200
     lifeSteal: 0
     minRange: 1
     maxRange: 1
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 5
+    paCost: 4
     pmCost: 0
-    maxTimesInTurn: 2
+    maxTimesInTurn: 1
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 25
@@ -179,13 +178,13 @@ MonoBehaviour:
     isSummon: 0
   team: 1
   hp: 1100
-  pa: 7
+  pa: 8
   pm: 3
   ini: 40
   res_e: 50
-  res_f: -25
-  res_a: -6
-  res_w: 12
+  res_f: 25
+  res_a: -26
+  res_w: -12
   att_e: 12
   att_f: 0
   att_a: 0
@@ -202,6 +201,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   immuneCloseCombat: 0
   shushuCounter: 0
   behaviour:
-    spellsOrderToCheckId: 
+    spellsOrderToCheckId: 0000000001000000
     movementAfterFight: 1
     movementWhenCannotAttack: 1
   id: 0
@@ -288,141 +288,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connected: {fileID: 0}
---- !u!114 &8455212996724751349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 557098361630938699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b47f2c763fdab0b4ba89ee3dc1fc4aa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: Craqueleur
-  heroClass: 19
-  spells:
-  - link: {fileID: 0}
-    name: Hyper Punch
-    icon: {fileID: 21300000, guid: e29636455710821459a0e7faf0b31573, type: 3}
-    description: Inflicts Earth damage
-    element: 0
-    damage: 50
-    lifeSteal: 0
-    minRange: 1
-    maxRange: 1
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 5
-    pmCost: 0
-    maxTimesInTurn: 2
-    executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 25
-    hasEffect: 0
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  - link: {fileID: 0}
-    name: Sedimentation
-    icon: {fileID: 21300000, guid: e1d019f1ba3abba40bb7a63572855760, type: 3}
-    description: Removes 1 PM to the target
-    element: 0
-    damage: 24
-    lifeSteal: 0
-    minRange: 3
-    maxRange: 5
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 4
-    pmCost: 0
-    maxTimesInTurn: 2
-    executeAfterTurns: 0
-    effectDuration: 1
-    criticalProbability: 20
-    hasEffect: 1
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  team: 1
-  hp: 252
-  pa: 7
-  pm: 2
-  ini: 0
-  res_e: 50
-  res_f: -25
-  res_a: -6
-  res_w: 12
-  att_e: 12
-  att_f: 0
-  att_a: 0
-  att_w: 0
-  numberOfSummons: 0
-  isEvocation: 1
-  actual_hp: 0
-  actual_pa: 0
-  actual_pm: 0
-  connectedPreview: {fileID: 0}
-  connectedCell: {fileID: 0}
-  actual_shield: 0
-  isDead: 0
-  canMovedByEffects: 1
-  rageCounter: 0
-  bonusHeal: 0
-  isMoving: 0
-  isForcedMoving: 0
-  isBotMoving: 0
-  spellToUse:
-    link: {fileID: 0}
-    name: 
-    icon: {fileID: 0}
-    description: 
-    element: 0
-    damage: 0
-    lifeSteal: 0
-    minRange: 0
-    maxRange: 0
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 0
-    pmCost: 0
-    maxTimesInTurn: 0
-    executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 0
-    hasEffect: 0
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  summons: []
-  monsterSummons: []
-  summonsIdCounter: 0
-  isDebugEnabled: 0
-  hasXelorBonus: 0
-  accumulationCounter: 0
-  smithereensCounter: 0
-  criticShooting: 0
-  connectedSacrifice: {fileID: 0}
-  hasActivedSacrifice: 0
-  canCritical: 1
-  immuneCloseCombat: 0
-  shushuCounter: 0
-  connectedSummoner: {fileID: 0}
-  id: 0
-  isCommunionActive: 0
-  isBomb: 0
-  isGuardian: 0
-  isRune: 0
-  RunicPower: 0
-  isWakfuTotem: 0
-  isTurrect: 0
-  isDouble: 0
-  mustSkip: 0
-  isDial: 0

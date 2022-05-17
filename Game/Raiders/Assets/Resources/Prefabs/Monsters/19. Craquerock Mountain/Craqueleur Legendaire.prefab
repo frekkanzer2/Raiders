@@ -105,8 +105,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.505, y: 0.21}
+    oldSize: {x: 8.333333, y: 8.333333}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -131,37 +131,14 @@ MonoBehaviour:
   heroClass: 18
   spells:
   - link: {fileID: 0}
-    name: Craqueleur Heart
-    icon: {fileID: 21300000, guid: 152e77e873c28f344ba8183d27db19f1, type: 3}
-    description: +100% dmg, +2 PA to each ally
-    element: 5
-    damage: 0
-    lifeSteal: 0
-    minRange: 0
-    maxRange: 0
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 5
-    pmCost: 0
-    maxTimesInTurn: 1
-    executeAfterTurns: 10
-    effectDuration: 3
-    criticalProbability: 0
-    hasEffect: 1
-    isEffectOnly: 1
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  - link: {fileID: 0}
     name: Rock Shot
     icon: {fileID: 21300000, guid: 152e77e873c28f344ba8183d27db19f1, type: 3}
     description: dmg in a row of 3 cells
     element: 1
-    damage: 260
+    damage: 180
     lifeSteal: 0
     minRange: 1
-    maxRange: 5
+    maxRange: 4
     distanceType: 1
     overObstacles: 0
     hpCost: 0
@@ -181,10 +158,10 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 152e77e873c28f344ba8183d27db19f1, type: 3}
     description: 
     element: 0
-    damage: 180
+    damage: 120
     lifeSteal: 0
     minRange: 2
-    maxRange: 6
+    maxRange: 4
     distanceType: 0
     overObstacles: 0
     hpCost: 0
@@ -204,7 +181,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 152e77e873c28f344ba8183d27db19f1, type: 3}
     description: area of 2 cells
     element: 0
-    damage: 500
+    damage: 400
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -218,7 +195,7 @@ MonoBehaviour:
     effectDuration: 0
     criticalProbability: 20
     hasEffect: 1
-    isEffectOnly: 0
+    isEffectOnly: 1
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
@@ -226,15 +203,15 @@ MonoBehaviour:
   hp: 4600
   pa: 8
   pm: 2
-  ini: 301
-  res_e: 12
-  res_f: 58
+  ini: 30
+  res_e: 58
+  res_f: 12
   res_a: 17
   res_w: 67
-  att_e: 0
-  att_f: 0
-  att_a: 0
-  att_w: 0
+  att_e: 12
+  att_f: 12
+  att_a: 12
+  att_w: 12
   numberOfSummons: 0
   isEvocation: 0
   actual_hp: 0
@@ -247,6 +224,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0
@@ -288,7 +266,7 @@ MonoBehaviour:
   immuneCloseCombat: 0
   shushuCounter: 0
   behaviour:
-    spellsOrderToCheckId: 
+    spellsOrderToCheckId: 020000000000000001000000
     movementAfterFight: 1
     movementWhenCannotAttack: 1
   id: 0

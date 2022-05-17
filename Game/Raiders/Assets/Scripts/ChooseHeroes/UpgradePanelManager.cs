@@ -85,7 +85,7 @@ public class UpgradePanelManager : MonoBehaviour
         setPreview("Heart Points Bonus", DUNSelectionManager.UPGRADE.hpLevel, iconsList[0], bonusval, 0);
     }
     public void OnPressShield() {
-        string bonusval = "+" + DUNSelectionManager.UPGRADE.getShieldBonus() + " Shield";
+        string bonusval = "+" + DUNSelectionManager.UPGRADE.getShieldBonus() + " Shield | +" + DUNSelectionManager.UPGRADE.getGainShieldBonus() + " gains on shield";
         setPreview("Starting Shield Bonus", DUNSelectionManager.UPGRADE.startingShield, iconsList[1], bonusval, 1);
     }
     public void OnPressPA() {

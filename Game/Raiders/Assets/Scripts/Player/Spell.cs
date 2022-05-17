@@ -216,8 +216,8 @@ public class Spell {
         else if (spell.name == "Sacrifice") EXECUTE_SACRIFICE(caster, targetBlock, spell);
         else if (spell.name == "Transfusion") EXECUTE_TRANSFUSION(caster, spell);
         else if (spell.name == "Smell") EXECUTE_SMELL(targetBlock, spell);
-        else if (spell.name == "Heads or Tails") EXECUTE_HEADS_OR_TAILS(targetBlock, spell);
-        else if (spell.name == "All or Nothing") EXECUTE_ALL_OR_NOTHING(targetBlock, spell);
+        else if (spell.name == "Heads or Tails") EXECUTE_HEADS_OR_TAILS(caster, targetBlock, spell);
+        else if (spell.name == "All or Nothing") EXECUTE_ALL_OR_NOTHING(caster, targetBlock, spell);
         else if (spell.name == "Claw of Ceangal" || spell.name == "Haunting Magic") EXECUTE_CLAW_OF_CEANGAL(caster, targetBlock);
         else if (spell.name == "Godsend") EXECUTE_GODSEND(targetBlock, spell);
         else if (spell.name == "Feline Sense") EXECUTE_FELINE_SENSE(caster, targetBlock, spell);
@@ -236,7 +236,7 @@ public class Spell {
         else if (spell.name == "Coward Mask") SWITCH_COWARD_MASK(caster, spell);
         else if (spell.name == "Psychopath Mask") SWITCH_PSYCHOPATH_MASK(caster, spell);
         else if (spell.name == "Tireless Mask") SWITCH_TIRELESS_MASK(caster, spell);
-        else if (spell.name == "Tortuga") EXECUTE_TORTUGA(targetBlock, spell);
+        else if (spell.name == "Tortuga") EXECUTE_TORTUGA(caster, targetBlock, spell);
         else if (spell.name == "Apathy") EXECUTE_APATHY(targetBlock, spell);
         else if (spell.name == "Furia") EXECUTE_FURIA(caster, targetBlock);
         else if (spell.name == "Comedy") EXECUTE_COMEDY(caster, targetBlock);
@@ -247,7 +247,7 @@ public class Spell {
         else if (spell.name == "Protective Glyph") EXECUTE_PROTECTIVE_GLYPH(caster, spell);
         else if (spell.name == "Perception Glyph") EXECUTE_PERCEPTION_GLYPH(caster, spell);
         else if (spell.name == "Barricade") EXECUTE_BARRICADE(targetBlock, spell);
-        else if (spell.name == "Fortification") EXECUTE_FORTIFICATION(targetBlock, spell);
+        else if (spell.name == "Fortification") EXECUTE_FORTIFICATION(caster, targetBlock, spell);
         else if (spell.name == "Burning Glyph") EXECUTE_BURNING_GLYPH(caster, spell);
         else if (spell.name == "Repulsion Glyph") EXECUTE_REPULSION_GLYPH(caster, spell);
         else if (spell.name == "Dazzling") EXECUTE_DAZZLING(targetBlock, spell);
@@ -429,6 +429,9 @@ public class Spell {
         else if (spell.name == "Crobak Shot") SUMMONS_CROBAK_DISTANCE(caster, targetBlock, spell);
         else if (spell.name == "Crobak Liberation") EXECUTE_MY_CROBAK_CHILDS(caster, targetBlock, spell);
         else if (spell.name == "High Temperature") EXECUTE_HIGH_TEMPERATURE(caster, targetBlock, spell);
+        else if (spell.name == "Bottaboule") EXECUTE_BOTTABOULE(caster, targetBlock, spell);
+        else if (spell.name == "Sedimentation") EXECUTE_SEDIMENTATION(targetBlock, spell);
+        else if (spell.name == "Legendaire Punch") EXECUTE_LEGENDAIRE_PUNCH(caster, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -845,7 +848,7 @@ public class Spell {
             Coordinate b = ch.connectedCell.GetComponent<Block>().coordinate;
             if (ut_isNearOf(a, b, 2))
             {
-                ch.receiveShield(100);
+                ch.receiveShield(100 + caster.bonusGainShield);
             }
         }
     }
@@ -868,16 +871,17 @@ public class Spell {
             se.useIstantanely();
     }
 
-    public static void EXECUTE_HEADS_OR_TAILS(Block targetBlock, Spell s) {
-        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+    public static void EXECUTE_HEADS_OR_TAILS(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
-        targetBlock.linkedObject.GetComponent<Character>().addEvent(new HeadOrTailEvent("Heads or Tails", targetBlock.linkedObject.GetComponent<Character>(), s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        targetBlock.linkedObject.GetComponent<Character>().addEvent(new HeadOrTailEvent("Heads or Tails", targetBlock.linkedObject.GetComponent<Character>(), s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, caster));
     }
 
-    public static void EXECUTE_ALL_OR_NOTHING(Block targetBlock, Spell s) {
-        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+    public static void EXECUTE_ALL_OR_NOTHING(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
-        targetBlock.linkedObject.GetComponent<Character>().addEvent(new AllOrNothingEvent("All or Nothing", targetBlock.linkedObject.GetComponent<Character>(), s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        targetBlock.linkedObject.GetComponent<Character>().addEvent(new AllOrNothingEvent("All or Nothing", targetBlock.linkedObject.GetComponent<Character>(), s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, caster));
     }
 
     public static void EXECUTE_CLAW_OF_CEANGAL(Character caster, Block targetBlock) {
@@ -1109,11 +1113,11 @@ public class Spell {
         }
     }
 
-    public static void EXECUTE_TORTUGA(Block targetBlock, Spell s) {
-        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+    public static void EXECUTE_TORTUGA(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
         Character c = targetBlock.linkedObject.GetComponent<Character>();
-        TortugaEvent se = new TortugaEvent("Tortuga", c, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        TortugaEvent se = new TortugaEvent("Tortuga", c, s.effectDuration, ParentEvent.Mode.Permanent, s.icon, caster);
         c.addEvent(se);
         se.useIstantanely();
     }
@@ -1236,11 +1240,11 @@ public class Spell {
         }
     }
 
-    public static void EXECUTE_FORTIFICATION(Block targetBlock, Spell s) {
-        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+    public static void EXECUTE_FORTIFICATION(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
-        target.addEvent(new FortificationEvent("Fortification", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        target.addEvent(new FortificationEvent("Fortification", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, caster));
     }
 
     public static void EXECUTE_BONTAO(Character caster, Spell s) {
@@ -1292,7 +1296,7 @@ public class Spell {
         if (remaining_pa > 0)
             caster.decrementPA(remaining_pa);
         int bonus_shield = remaining_pa * 40;
-        caster.receiveShield(s.damage + bonus_shield);
+        caster.receiveShield(s.damage + bonus_shield + caster.bonusGainShield);
     }
 
     public static void EXECUTE_STRIKING_METEOR(Character caster, Block targetBlock, Spell s) {
@@ -1322,7 +1326,7 @@ public class Spell {
         if (!put_CheckLinkedObject(targetBlock)) return;
         foreach (Character ally in ut_getAllies(caster))
             if (ut_isNearOf(ally, targetBlock.linkedObject.GetComponent<Character>(), 3))
-                ally.addEvent(new StrikingWordEvent("Striking Word", ally, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+                ally.addEvent(new StrikingWordEvent("Striking Word", ally, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, caster));
     }
 
     public static void EXECUTE_RECOVERY_WORD(Block targetBlock, Spell s) {
@@ -1337,7 +1341,7 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
-        PreventingWordEvent pw = new PreventingWordEvent("Preventing Word", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        PreventingWordEvent pw = new PreventingWordEvent("Preventing Word", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon, caster);
         target.addEvent(pw);
         pw.useIstantanely();
     }
@@ -2877,13 +2881,41 @@ public class Spell {
         ut_repelsCaster(caster, targetBlock, 5);
     }
 
-    public static void EXECUTE_CHAFER_LANCE_EXPLOSION(Character caster, Spell s) {
+    public static void EXECUTE_CHAFER_LANCE_EXPLOSION(Character caster, Spell s)
+    {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
-        foreach (Character enemy in ut_getEnemies(caster)) {
-            if (ut_isNearOf(enemy, caster, 3)) {
+        foreach (Character enemy in ut_getEnemies(caster))
+        {
+            if (ut_isNearOf(enemy, caster, 3))
+            {
                 enemy.inflictDamage(calculateDamage(caster, enemy, s));
             }
         }
+    }
+    public static void EXECUTE_LEGENDAIRE_PUNCH(Character caster, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character enemy in ut_getEnemies(caster))
+        {
+            if (ut_isNearOf(enemy, caster, 2))
+            {
+                enemy.inflictDamage(calculateDamage(caster, enemy, s));
+            }
+        }
+    }
+
+    public static void EXECUTE_ROCK_SHOT(Character caster, Block targetBlock, Spell s)
+    {
+        ut_damageInLine(caster, targetBlock, s, 3);
+    }
+
+
+    public static void EXECUTE_BOTTABOULE(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new BottabouleEvent("Bottaboule", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
 
     public static void EXECUTE_HOLY_CHAFER_SWORD(Character caster, Block targetBlock, Spell s) {

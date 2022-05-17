@@ -397,4 +397,10 @@ public class Upgrade
         return startingShield * 8;
     }
 
+
+    public int getGainShieldBonus()
+    {
+        return startingShield * 2;
+    }
+
 }

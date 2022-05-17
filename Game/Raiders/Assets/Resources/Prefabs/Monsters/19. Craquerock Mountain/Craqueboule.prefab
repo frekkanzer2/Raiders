@@ -105,8 +105,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.49, y: 0.22}
+    oldSize: {x: 3.7037036, y: 3.7037036}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   spells:
   - link: {fileID: 0}
     name: Bottaboule
-    icon: {fileID: 21300000, guid: 6f980f512e7c7ff4c90e6e61767175b8, type: 3}
+    icon: {fileID: 21300000, guid: cba65e70b7321b145b9d938e3efc57ba, type: 3}
     description: -1 PA
     element: 0
     damage: 48
@@ -146,7 +146,7 @@ MonoBehaviour:
     pmCost: 0
     maxTimesInTurn: 3
     executeAfterTurns: 0
-    effectDuration: 0
+    effectDuration: 1
     criticalProbability: 20
     hasEffect: 1
     isEffectOnly: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 680
+  hp: 580
   pa: 8
   pm: 4
   ini: 60
@@ -178,6 +178,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0
@@ -219,7 +220,7 @@ MonoBehaviour:
   immuneCloseCombat: 0
   shushuCounter: 0
   behaviour:
-    spellsOrderToCheckId: 
+    spellsOrderToCheckId: 00000000
     movementAfterFight: 1
     movementWhenCannotAttack: 1
   id: 0

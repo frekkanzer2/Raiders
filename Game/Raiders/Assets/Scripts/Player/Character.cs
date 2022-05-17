@@ -72,6 +72,8 @@ public class Character : MonoBehaviour
     public int rageCounter = 0;
     [HideInInspector]
     public int bonusHeal = 0;
+    [HideInInspector]
+    public int bonusGainShield = 0;
     private bool bonusXelor = false;
 
     protected StatsOutputSystem sos;
@@ -110,6 +112,7 @@ public class Character : MonoBehaviour
         this.hp += upgrade.getHpBonus();
         if (this.heroClass == HeroClass.Sacrido) this.hp += upgrade.getHpBonus();
         this.bonusHeal += upgrade.getHealBonus();
+        this.bonusGainShield += upgrade.getGainShieldBonus();
         if (this.heroClass == HeroClass.Aniripsa) this.bonusHeal += (this.bonusHeal / 2);
         this.actual_shield = upgrade.getShieldBonus();
         if (this.heroClass == HeroClass.Danzal || this.heroClass == HeroClass.Ladrurbo) this.actual_shield += (this.actual_shield / 2);

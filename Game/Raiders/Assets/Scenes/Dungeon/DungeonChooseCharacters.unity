@@ -11304,8 +11304,140 @@ MonoBehaviour:
         spawnCoordinates: []
   - name: Craquerock Mountain
     bossIcon: {fileID: 21300000, guid: 7659e9e239923bd40a222b183871f174, type: 3}
-    monsters: []
-    rooms: []
+    monsters:
+    - name: Craqueboule
+      prefab: {fileID: 557098361630938699, guid: 484d525f4be4d86498146df7c871df64, type: 3}
+      sprite: {fileID: 21300000, guid: 457c032d9e591204a998ac59816960b1, type: 3}
+    - name: Craqueleur
+      prefab: {fileID: 557098361630938699, guid: 73dec52e7dffe6f428d39240142e833a, type: 3}
+      sprite: {fileID: 21300000, guid: 84d43d483634e4044a1202986b84883d, type: 3}
+    - name: Craqueleur Legendaire
+      prefab: {fileID: 557098361630938699, guid: cb84af48a3e3ed5449cdda6a0c4af1de, type: 3}
+      sprite: {fileID: 21300000, guid: 36fdcb95cc615024287a40ccb4958e51, type: 3}
+    - name: Spadere
+      prefab: {fileID: 557098361630938699, guid: 123e0ead7b4f3254dbc55811cb83a996, type: 3}
+      sprite: {fileID: 21300000, guid: 090131b7ba48d854da1fe8bd12294f93, type: 3}
+    - name: Twelve Fingeres
+      prefab: {fileID: 557098361630938699, guid: 0a4385274b76aa141843cc4b865a2ce0, type: 3}
+      sprite: {fileID: 21300000, guid: 7066730a65ac5f84685e7f68d13c2599, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 3
+        spawnCoordinates:
+        - row: 10
+          column: 9
+        - row: 13
+          column: 6
+        - row: 13
+          column: 12
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 11
+          column: 11
+        - row: 11
+          column: 7
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 4
+        spawnCoordinates:
+        - row: 11
+          column: 7
+        - row: 11
+          column: 11
+        - row: 12
+          column: 8
+        - row: 12
+          column: 10
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 14
+          column: 4
+        - row: 14
+          column: 14
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 4
+        spawnCoordinates:
+        - row: 13
+          column: 4
+        - row: 13
+          column: 14
+        - row: 12
+          column: 6
+        - row: 12
+          column: 12
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 15
+          column: 9
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 13
+          column: 6
+        - row: 13
+          column: 12
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 12
+          column: 9
+      - monsterID: 3
+        quantity: 4
+        spawnCoordinates:
+        - row: 10
+          column: 2
+        - row: 10
+          column: 16
+        - row: 10
+          column: 5
+        - row: 10
+          column: 13
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 9
+          column: 3
+        - row: 9
+          column: 15
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 6
+        spawnCoordinates:
+        - row: 9
+          column: 2
+        - row: 9
+          column: 16
+        - row: 12
+          column: 4
+        - row: 12
+          column: 14
+        - row: 11
+          column: 7
+        - row: 11
+          column: 11
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 13
+          column: 5
+        - row: 13
+          column: 13
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 15
+          column: 9
   isDebugEnabled: 0
 --- !u!114 &1295197768
 MonoBehaviour:
