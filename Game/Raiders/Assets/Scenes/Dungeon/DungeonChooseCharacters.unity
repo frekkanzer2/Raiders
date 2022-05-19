@@ -11302,6 +11302,97 @@ MonoBehaviour:
       - monsterID: 7
         quantity: 0
         spawnCoordinates: []
+  - name: Wa Wabbit Castle
+    bossIcon: {fileID: 21300000, guid: 11647f602bc25804ca5d5178b83775fc, type: 3}
+    monsters:
+    - name: Tiwabbit
+      prefab: {fileID: 557098361630938699, guid: 48f09b9a71634734c8c4ac12e09d81e4, type: 3}
+      sprite: {fileID: 21300000, guid: 774c1b5cdba72004cbe9e46abafc4ad6, type: 3}
+    - name: Wabbit
+      prefab: {fileID: 557098361630938699, guid: 7d4815ca3f7f63d468d89eca97a34f94, type: 3}
+      sprite: {fileID: 21300000, guid: a08763c5ea5665d4f843f2b61fc613e2, type: 3}
+    - name: Black Tiwabbit
+      prefab: {fileID: 557098361630938699, guid: 5d18bee6990de3e4982b10987650927a, type: 3}
+      sprite: {fileID: 21300000, guid: 547a3f42947e55343b41541d6149895a, type: 3}
+    - name: Black Wabbit
+      prefab: {fileID: 557098361630938699, guid: 6bc4140ff194b9a41997cf7d3bee8940, type: 3}
+      sprite: {fileID: 21300000, guid: de4a9439cfc55b140825febcca54992c, type: 3}
+    - name: Tiwabbit Wosungwee
+      prefab: {fileID: 557098361630938699, guid: d112cd8b0ffbae9418ae3f61054fac70, type: 3}
+      sprite: {fileID: 21300000, guid: 26cf36e6b65220b4c8d1dd5cadf1e0d8, type: 3}
+    - name: Gwandpa Wabbit
+      prefab: {fileID: 557098361630938699, guid: d288bb037d36f454297d5b0582d87326, type: 3}
+      sprite: {fileID: 21300000, guid: ebc0257671f3c1146a879f2c9cf26580, type: 3}
+    - name: Wo Wabbit
+      prefab: {fileID: 557098361630938699, guid: 6f32ce8e4732b884cbbf84b64dddb9c9, type: 3}
+      sprite: {fileID: 21300000, guid: 5b8c37e51dde5b8459550f734ce6dac7, type: 3}
+    - name: Wa Wabbit
+      prefab: {fileID: 557098361630938699, guid: 10492c62afc6fae4984fdc21aa315cc6, type: 3}
+      sprite: {fileID: 21300000, guid: a5e30badc97bcca4d8cf38923c126267, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 10
+          column: 6
+        - row: 10
+          column: 8
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 14
+          column: 5
+        - row: 14
+          column: 9
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 10
+          column: 6
+        - row: 10
+          column: 8
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 14
+          column: 5
+        - row: 14
+          column: 9
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 10
+          column: 6
+        - row: 10
+          column: 8
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 14
+          column: 5
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 14
+          column: 5
+        - row: 14
+          column: 9
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 14
+          column: 5
+      - monsterID: 5
+        quantity: 1
+        spawnCoordinates:
+        - row: 14
+          column: 5
   - name: Craquerock Mountain
     bossIcon: {fileID: 21300000, guid: 7659e9e239923bd40a222b183871f174, type: 3}
     monsters:

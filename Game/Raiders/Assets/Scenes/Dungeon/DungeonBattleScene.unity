@@ -1230,11 +1230,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 80e085b19d4aa554eaeacdb8964d1c89, type: 3}
   - {fileID: 4900000, guid: 2e5cafe4416ba214fbf1aa84207ea36f, type: 3}
   - {fileID: 4900000, guid: 3bcc8111a93abac44859aee998c5cdce, type: 3}
-  - {fileID: 4900000, guid: bc9d6b4c26d02f2429b614dbe2419aac, type: 3}
-  - {fileID: 4900000, guid: f7633185ca394c84389aa88f0f801933, type: 3}
-  - {fileID: 4900000, guid: 37fd18249f970cf4ab5f13c01f855413, type: 3}
-  - {fileID: 4900000, guid: e41f51953483972448dcf0939a2278d6, type: 3}
-  - {fileID: 4900000, guid: 4ebf6f756d6ad374c800c5d9e47d569d, type: 3}
+  - {fileID: 4900000, guid: 06d141f9244814a469fd21c86c02f94d, type: 3}
+  - {fileID: 4900000, guid: 5b97bdb8491972747bfbfb4b04e62564, type: 3}
+  - {fileID: 4900000, guid: 92d73eff247627641a12a2c890c39abd, type: 3}
+  - {fileID: 4900000, guid: aaa50301d8131c642b815e4f41490a0d, type: 3}
+  - {fileID: 4900000, guid: a16bcf28f30bc9b4bb078f822a898726, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481
@@ -15591,6 +15591,8 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: a4ef40bab7086084eb574fb13322ee91, type: 3}
   - track_name_maiusc: ABRAKNIDE DUNGEON
     music: {fileID: 8300000, guid: 5681379dc7eb25b4189423126ba40950, type: 3}
+  - track_name_maiusc: WA WABBIT CASTLE
+    music: {fileID: 8300000, guid: 1429a090d4e61994ab4dffb964bafad0, type: 3}
   - track_name_maiusc: CRAQUEROCK MOUNTAIN
     music: {fileID: 8300000, guid: 080cd27c2bed6d2448a67e9a965f79a2, type: 3}
 --- !u!82 &1527921472
