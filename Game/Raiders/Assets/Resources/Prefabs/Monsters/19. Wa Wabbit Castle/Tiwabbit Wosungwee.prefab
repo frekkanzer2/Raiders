@@ -138,7 +138,7 @@ MonoBehaviour:
     damage: 60
     lifeSteal: 0
     minRange: 2
-    maxRange: 12
+    maxRange: 20
     distanceType: 1
     overObstacles: 0
     hpCost: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   hp: 440
   pa: 6
   pm: 4
-  ini: 70
+  ini: 200
   res_e: 4
   res_f: 0
   res_a: 0
@@ -244,7 +244,7 @@ MonoBehaviour:
   shushuCounter: 0
   behaviour:
     spellsOrderToCheckId: 0100000000000000
-    movementAfterFight: 1
+    movementAfterFight: 2
     movementWhenCannotAttack: 1
   id: 0
   isCommunionActive: 0

@@ -429,9 +429,12 @@ public class Spell {
         else if (spell.name == "Crobak Shot") SUMMONS_CROBAK_DISTANCE(caster, targetBlock, spell);
         else if (spell.name == "Crobak Liberation") EXECUTE_MY_CROBAK_CHILDS(caster, targetBlock, spell);
         else if (spell.name == "High Temperature") EXECUTE_HIGH_TEMPERATURE(caster, targetBlock, spell);
+        else if (spell.name == "Gwandisolation") EXECUTE_GWANDISOLATION(caster, targetBlock);
         else if (spell.name == "Bottaboule") EXECUTE_BOTTABOULE(caster, targetBlock, spell);
+        else if (spell.name == "Gwandhit") EXECUTE_GWANDHIT(caster, targetBlock, spell);
         else if (spell.name == "Sedimentation") EXECUTE_SEDIMENTATION(targetBlock, spell);
         else if (spell.name == "Legendaire Punch") EXECUTE_LEGENDAIRE_PUNCH(caster, spell);
+        else if (spell.name == "Group Wabbheal") EXECUTE_GROUP_WABBHEAL(caster, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -2609,6 +2612,23 @@ public class Spell {
         }
     }
 
+    public static void EXECUTE_GROUP_WABBHEAL(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character ch in ut_getAllies(caster)) {
+            if (ut_isNearOf(ch, caster, 2))
+                ch.receiveHeal(s.damage);
+        }
+    }
+
+    public static void EXECUTE_GWANDHIT(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        foreach (Character c in ut_getAllies(target)) {
+            c.inflictDamage(Spell.calculateDamage(caster, c, s) * 20 / 100);
+        }
+    }
+
     public static void EXECUTE_MY_TOFU_CHILDS(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
@@ -2938,6 +2958,11 @@ public class Spell {
         KwasmutationEvent kwe = new KwasmutationEvent("Kwasmutation", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
         caster.addEvent(kwe);
         kwe.useIstantanely();
+    }
+
+    public static void EXECUTE_GWANDISOLATION(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_attracts(caster, targetBlock, 5);
     }
 
     public static void EXECUTE_MAGIC_POWER(Character caster, Spell s) {

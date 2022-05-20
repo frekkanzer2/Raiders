@@ -171,7 +171,7 @@ MonoBehaviour:
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 30
-    hasEffect: 1
+    hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
     isJump: 0
@@ -244,7 +244,7 @@ MonoBehaviour:
   shushuCounter: 0
   behaviour:
     spellsOrderToCheckId: 0000000001000000
-    movementAfterFight: 1
+    movementAfterFight: 2
     movementWhenCannotAttack: 1
   id: 0
   isCommunionActive: 0

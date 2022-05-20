@@ -158,7 +158,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 0
-    damage: 150
+    damage: 100
     lifeSteal: 0
     minRange: 1
     maxRange: 2
@@ -181,7 +181,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 1
-    damage: 80
+    damage: 70
     lifeSteal: 0
     minRange: 3
     maxRange: 6
@@ -203,7 +203,7 @@ MonoBehaviour:
   hp: 3500
   pa: 10
   pm: 4
-  ini: 200
+  ini: 120
   res_e: 28
   res_f: 18
   res_a: -12

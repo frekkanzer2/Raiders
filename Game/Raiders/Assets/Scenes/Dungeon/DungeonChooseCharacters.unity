@@ -11367,32 +11367,104 @@ MonoBehaviour:
       - monsterID: 0
         quantity: 2
         spawnCoordinates:
-        - row: 10
-          column: 6
-        - row: 10
-          column: 8
+        - row: 13
+          column: 4
+        - row: 13
+          column: 10
       - monsterID: 1
         quantity: 1
         spawnCoordinates:
+        - row: 12
+          column: 6
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 10
+          column: 5
+        - row: 10
+          column: 9
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 12
+          column: 8
+      - monsterID: 5
+        quantity: 1
+        spawnCoordinates:
+        - row: 11
+          column: 7
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 15
+          column: 3
+        - row: 15
+          column: 11
+      - monsterID: 6
+        quantity: 1
+        spawnCoordinates:
+        - row: 13
+          column: 7
+      - monsterID: 5
+        quantity: 2
+        spawnCoordinates:
+        - row: 11
+          column: 1
+        - row: 11
+          column: 13
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 13
+          column: 4
+        - row: 13
+          column: 10
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 7
+        quantity: 1
+        spawnCoordinates:
+        - row: 2
+          column: 7
+      - monsterID: 6
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 4
+        - row: 3
+          column: 10
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 6
+        - row: 1
+          column: 8
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 3
+        - row: 2
+          column: 11
+      - monsterID: 5
+        quantity: 3
+        spawnCoordinates:
+        - row: 15
+          column: 7
+        - row: 14
+          column: 9
         - row: 14
           column: 5
       - monsterID: 2
         quantity: 2
         spawnCoordinates:
-        - row: 14
-          column: 5
-        - row: 14
-          column: 9
-      - monsterID: 3
-        quantity: 1
-        spawnCoordinates:
-        - row: 14
-          column: 5
-      - monsterID: 5
-        quantity: 1
-        spawnCoordinates:
-        - row: 14
-          column: 5
+        - row: 13
+          column: 3
+        - row: 13
+          column: 10
   - name: Craquerock Mountain
     bossIcon: {fileID: 21300000, guid: 7659e9e239923bd40a222b183871f174, type: 3}
     monsters:
