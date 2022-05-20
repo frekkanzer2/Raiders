@@ -135,7 +135,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: Summons a Crobak on an adjacent cell of the target
     element: 2
-    damage: 45
+    damage: 40
     lifeSteal: 0
     minRange: 4
     maxRange: 12
@@ -247,6 +247,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

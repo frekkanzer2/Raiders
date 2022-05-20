@@ -363,6 +363,7 @@ public class Spell {
         else if (spell.name == "Affront") EXECUTE_AFFRONT(caster, targetBlock, spell);
         else if (spell.name == "Lightning Fist") EXECUTE_LIGHTNING_FIST(caster, targetBlock, spell);
         else if (spell.name == "Explosive Arrow") EXECUTE_EXPLOSIVE_ARROW(caster, targetBlock, spell);
+        else if (spell.name == "Celestial Sword") EXECUTE_CELESTIAL_SWORD(caster, targetBlock, spell);
         else if (spell.name == "Musket") EXECUTE_MUSKET(caster, targetBlock, spell);
         else if (spell.name == "Bombard") EXECUTE_BOMBARD(caster, targetBlock, spell);
         else if (spell.name == "Cadence") EXECUTE_CADENCE(caster, targetBlock, spell);
@@ -920,19 +921,30 @@ public class Spell {
         }
     }
 
-    public static void EXECUTE_EXPLOSIVE_ARROW(Character caster, Block targetBlock, Spell s)
-    {
+    public static void EXECUTE_EXPLOSIVE_ARROW(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         Coordinate a = targetBlock.coordinate;
         List<Character> heroes = ut_getAllies(target);
         heroes.AddRange(ut_getEnemies(target));
-        foreach (Character c in heroes)
-        {
+        foreach (Character c in heroes) {
             Coordinate b = c.connectedCell.GetComponent<Block>().coordinate;
-            if (ut_isNearOf(a, b, 3))
-            {
+            if (ut_isNearOf(a, b, 3)) {
+                c.inflictDamage(Spell.calculateDamage(caster, c, s));
+            }
+        }
+    }
+    public static void EXECUTE_CELESTIAL_SWORD(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        Coordinate a = targetBlock.coordinate;
+        List<Character> heroes = ut_getAllies(target);
+        heroes.AddRange(ut_getEnemies(target));
+        foreach (Character c in heroes) {
+            Coordinate b = c.connectedCell.GetComponent<Block>().coordinate;
+            if (ut_isNearOf(a, b, 2)) {
                 c.inflictDamage(Spell.calculateDamage(caster, c, s));
             }
         }

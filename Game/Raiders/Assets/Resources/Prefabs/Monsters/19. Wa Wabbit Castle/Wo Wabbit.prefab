@@ -135,7 +135,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: Also heals each ally in 2 cells
     element: 4
-    damage: 80
+    damage: 25
     lifeSteal: 0
     minRange: 0
     maxRange: 0
@@ -157,8 +157,8 @@ MonoBehaviour:
     name: Wabbhit
     icon: {fileID: 0}
     description: 
-    element: 0
-    damage: 125
+    element: 1
+    damage: 80
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -184,7 +184,7 @@ MonoBehaviour:
   res_e: 26
   res_f: 14
   res_a: 0
-  res_w: -15
+  res_w: -25
   att_e: 8
   att_f: 0
   att_a: 0

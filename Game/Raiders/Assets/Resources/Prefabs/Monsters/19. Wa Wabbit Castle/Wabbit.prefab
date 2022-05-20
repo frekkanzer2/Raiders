@@ -135,7 +135,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 4
-    damage: 120
+    damage: 80
     lifeSteal: 0
     minRange: 1
     maxRange: 5
@@ -158,7 +158,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 1
-    damage: 120
+    damage: 70
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -184,7 +184,7 @@ MonoBehaviour:
   res_e: 9
   res_f: 0
   res_a: 0
-  res_w: -5
+  res_w: -12
   att_e: 0
   att_f: 8
   att_a: 0
