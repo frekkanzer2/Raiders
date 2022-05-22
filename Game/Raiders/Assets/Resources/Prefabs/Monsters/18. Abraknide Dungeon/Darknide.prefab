@@ -158,7 +158,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 0
-    damage: 250
+    damage: 200
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -201,6 +201,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

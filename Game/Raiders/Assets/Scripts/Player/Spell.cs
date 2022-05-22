@@ -432,6 +432,8 @@ public class Spell {
         else if (spell.name == "High Temperature") EXECUTE_HIGH_TEMPERATURE(caster, targetBlock, spell);
         else if (spell.name == "Gwandisolation") EXECUTE_GWANDISOLATION(caster, targetBlock);
         else if (spell.name == "Bottaboule") EXECUTE_BOTTABOULE(caster, targetBlock, spell);
+        else if (spell.name == "Call of Biblop") EXECUTE_CALL_OF_BIBLOP(caster, targetBlock, spell);
+        else if (spell.name == "Bloppy Hungry") EXECUTE_BLOPPY_HUNGRY(caster);
         else if (spell.name == "Gwandhit") EXECUTE_GWANDHIT(caster, targetBlock, spell);
         else if (spell.name == "Sedimentation") EXECUTE_SEDIMENTATION(targetBlock, spell);
         else if (spell.name == "Legendaire Punch") EXECUTE_LEGENDAIRE_PUNCH(caster, spell);
@@ -2700,6 +2702,40 @@ public class Spell {
         }
         if (toSummonBlock == null) return;
         ut_execute_monsterSummon(caster, toSummonBlock, "Alpha Arachnee");
+    }
+
+    public static void EXECUTE_CALL_OF_BIBLOP(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Monster casterMonster = (Monster)caster;
+        Character closest = casterMonster.getClosestEnemy();
+        if (closest == null) return;
+        Block closestBlock = closest.connectedCell.GetComponent<Block>();
+        Block toSummonBlock = null;
+        int bestDistance = 10000;
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks())) {
+            int actualDistance = Monster.getDistance(free.coordinate, closestBlock.coordinate);
+            if (actualDistance < bestDistance) {
+                bestDistance = actualDistance;
+                toSummonBlock = free;
+            }
+        }
+        if (toSummonBlock == null) return;
+        Element e = caster.spells[0].element;
+        if (e == Element.Air)
+            ut_execute_monsterSummon(caster, toSummonBlock, "Biblop Cocco");
+        else if (e == Element.Earth)
+            ut_execute_monsterSummon(caster, toSummonBlock, "Biblop Reginetta");
+        else if (e == Element.Fire)
+            ut_execute_monsterSummon(caster, toSummonBlock, "Biblop Griotte");
+        else if (e == Element.Water)
+            ut_execute_monsterSummon(caster, toSummonBlock, "Biblop Indigo");
+    }
+
+
+    public static void EXECUTE_BLOPPY_HUNGRY(Character caster) {
+        if (!put_CheckArguments(new System.Object[] { caster })) return;
+        caster.incrementPM(2);
     }
 
     public static void EXECUTE_ALPHA_TEETH(Character caster, Block targetBlock, Spell s)

@@ -32,6 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -47,6 +48,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -108,7 +110,7 @@ MonoBehaviour:
     description: Inflict Fire damage to each enemy in a row of 5 cells. If the primary
       target is a Wakfu Totem, switch position with the target
     element: 1
-    damage: 38
+    damage: 40
     lifeSteal: 0
     minRange: 4
     maxRange: 8
@@ -156,7 +158,7 @@ MonoBehaviour:
     description: Inflict Fire damage to each enemy up to 2 cells from the target.
       If the primary target is a Wakfu Totem, switch position with the target
     element: 1
-    damage: 35
+    damage: 36
     lifeSteal: 0
     minRange: 3
     maxRange: 6
@@ -180,7 +182,7 @@ MonoBehaviour:
     description: If the caster has the "Wakfu Raider" status and the target is a
       Wakfu Totem, inflict Water damage to each enemy adjacent to each Wakfu Totem
     element: 3
-    damage: 32
+    damage: 34
     lifeSteal: 0
     minRange: 1
     maxRange: 3
@@ -223,6 +225,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

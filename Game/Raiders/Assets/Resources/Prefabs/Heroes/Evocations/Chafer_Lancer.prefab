@@ -32,6 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -47,6 +48,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -104,7 +106,7 @@ MonoBehaviour:
   spells:
   - link: {fileID: 0}
     name: Chafer Skewer
-    icon: {fileID: 21300000, guid: e23cf8867c952428ab22fda623549eea, type: 3}
+    icon: {fileID: 21300000, guid: d2127d3119e4ed240b6fcec3a621f3f8, type: 3}
     description: Inflicts Earth damage
     element: 0
     damage: 30
@@ -148,7 +150,9 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 1
+  rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0
@@ -180,19 +184,27 @@ MonoBehaviour:
   monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
+  hasXelorBonus: 0
   accumulationCounter: 0
+  smithereensCounter: 0
   criticShooting: 0
   connectedSacrifice: {fileID: 0}
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+  shushuCounter: 0
   connectedSummoner: {fileID: 0}
   id: 0
   isCommunionActive: 0
   isBomb: 0
+  isGuardian: 0
+  isRune: 0
+  RunicPower: 0
+  isWakfuTotem: 0
   isTurrect: 0
   isDouble: 0
   mustSkip: 0
+  isDial: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

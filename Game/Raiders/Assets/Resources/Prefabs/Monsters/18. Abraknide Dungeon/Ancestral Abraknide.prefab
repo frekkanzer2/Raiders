@@ -135,7 +135,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: Summons a Crobak on an adjacent cell of the target
     element: 2
-    damage: 40
+    damage: 30
     lifeSteal: 0
     minRange: 4
     maxRange: 12
@@ -181,7 +181,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 0
-    damage: 500
+    damage: 250
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -204,7 +204,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 1c64e62a4b53ee445b403b38f9cee8be, type: 3}
     description: Target will get damage each turn
     element: 1
-    damage: 60
+    damage: 50
     lifeSteal: 0
     minRange: 2
     maxRange: 3

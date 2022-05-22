@@ -11302,6 +11302,233 @@ MonoBehaviour:
       - monsterID: 7
         quantity: 0
         spawnCoordinates: []
+  - name: Blop Fields
+    bossIcon: {fileID: 21300000, guid: 365b94342cd76ed45b1e352281e7ee9f, type: 3}
+    monsters:
+    - name: Blop Cocco
+      prefab: {fileID: 557098361630938699, guid: ee8b6df1e15f55b4e933a2d26b94d052, type: 3}
+      sprite: {fileID: 21300000, guid: e6170402041e0164bb6435260bff8f85, type: 3}
+    - name: Blop Griotte
+      prefab: {fileID: 557098361630938699, guid: 1836e5e45bd9d7c4392c3db07aff1988, type: 3}
+      sprite: {fileID: 21300000, guid: b6908bdcffc20bd4db2d9d854a111b5e, type: 3}
+    - name: Blop Reginetta
+      prefab: {fileID: 557098361630938699, guid: 41b921a89ee3b704e84c00a23790c0cd, type: 3}
+      sprite: {fileID: 21300000, guid: 2b0c2fd80687a1b4ea8d10afcfcec6d8, type: 3}
+    - name: Blop Indigo
+      prefab: {fileID: 557098361630938699, guid: 915258707f3e8ff439bc56234c5ff2ef, type: 3}
+      sprite: {fileID: 21300000, guid: a1de3dc8a1e735340bfa33387334ce7d, type: 3}
+    - name: Blopshroom
+      prefab: {fileID: 557098361630938699, guid: 6872f28f7bcb43b49b7f531f78c3c373, type: 3}
+      sprite: {fileID: 21300000, guid: 5d1c55b5a85e9994db36953e9b95ee8e, type: 3}
+    - name: Trunkiblop
+      prefab: {fileID: 557098361630938699, guid: 6dd7abdcb11449040bcbd9188e663586, type: 3}
+      sprite: {fileID: 21300000, guid: 99ecce31df8e4bb41b2f821091e43eb6, type: 3}
+    - name: Goutoblop
+      prefab: {fileID: 557098361630938699, guid: cbc0e33cd7881de43950e5a085d8f42f, type: 3}
+      sprite: {fileID: 21300000, guid: 15a20cca39d98a44b924c9639768ba4a, type: 3}
+    - name: Biblop Cocco
+      prefab: {fileID: 557098361630938699, guid: fbef384928b208346851251c04bcf143, type: 3}
+      sprite: {fileID: 21300000, guid: 49d51483caa640540a0b9c254b3b1d14, type: 3}
+    - name: Biblop Griotte
+      prefab: {fileID: 557098361630938699, guid: 4d6d35ae6cbf97e4cab2a8451022c3d9, type: 3}
+      sprite: {fileID: 21300000, guid: f797473b2b824b84eb2804b62076ad5c, type: 3}
+    - name: Biblop Indigo
+      prefab: {fileID: 557098361630938699, guid: e5db5bdcc4562ed4c9365cd18b9dc5df, type: 3}
+      sprite: {fileID: 21300000, guid: ee998a8e3049ce94eb665f75720674aa, type: 3}
+    - name: Biblop Reginetta
+      prefab: {fileID: 557098361630938699, guid: a353be067dfc28f418ec37d0a610ef5d, type: 3}
+      sprite: {fileID: 21300000, guid: fe5c9b518f34d7a469b78d13d38760cc, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 2
+          column: 8
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 3
+          column: 12
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 9
+          column: 7
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 10
+          column: 14
+      - monsterID: 7
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 8
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 9
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 10
+        quantity: 0
+        spawnCoordinates: []
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 2
+          column: 8
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 3
+          column: 12
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 9
+          column: 7
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 10
+          column: 14
+      - monsterID: 7
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 8
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 9
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 10
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 4
+          column: 10
+        - row: 7
+          column: 2
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 4
+          column: 3
+        - row: 7
+          column: 11
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 5
+          column: 1
+        - row: 6
+          column: 9
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 7
+          column: 1
+        - row: 4
+          column: 9
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 3
+        - row: 5
+          column: 11
+      - monsterID: 7
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 8
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 9
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 10
+        quantity: 0
+        spawnCoordinates: []
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 7
+          column: 2
+        - row: 7
+          column: 10
+      - monsterID: 5
+        quantity: 4
+        spawnCoordinates:
+        - row: 10
+          column: 3
+        - row: 10
+          column: 6
+        - row: 10
+          column: 9
+        - row: 10
+          column: 12
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 2
+          column: 3
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 2
+          column: 6
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 3
+          column: 10
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 3
+          column: 13
+      - monsterID: 7
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 8
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 9
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 10
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 4
+          column: 2
+        - row: 4
+          column: 15
+      - monsterID: 5
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 1
+        - row: 1
+          column: 15
+      - monsterID: 6
+        quantity: 1
+        spawnCoordinates:
+        - row: 1
+          column: 12
   - name: Wa Wabbit Castle
     bossIcon: {fileID: 21300000, guid: 11647f602bc25804ca5d5178b83775fc, type: 3}
     monsters:
@@ -11542,14 +11769,14 @@ MonoBehaviour:
           column: 9
     - roomNumber: 4
       monstersAndQuantity:
-      - monsterID: 0
+      - monsterID: 1
         quantity: 2
         spawnCoordinates:
         - row: 13
           column: 6
         - row: 13
           column: 12
-      - monsterID: 1
+      - monsterID: 0
         quantity: 1
         spawnCoordinates:
         - row: 12
