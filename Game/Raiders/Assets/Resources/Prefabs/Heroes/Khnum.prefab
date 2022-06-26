@@ -166,8 +166,8 @@ MonoBehaviour:
     hpCost: 0
     paCost: 4
     pmCost: 0
-    maxTimesInTurn: 1
-    executeAfterTurns: 1
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
     effectDuration: 1
     criticalProbability: 15
     hasEffect: 1

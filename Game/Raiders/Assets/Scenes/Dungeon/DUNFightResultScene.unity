@@ -579,6 +579,26 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 9a85078ca19d4bf4682d7f976b27dd09, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 01fa9b7bc2ef55243b2166e5f8dd50f8, type: 3}
     isEvocation: 1
+  - characterName: Tupamaroos
+    characterFullSprite: {fileID: 21300000, guid: 3d93e85096317ec438389de7a6745bdd, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 666ce1128721c91428c4605e1bebfb2f, type: 3}
+    isEvocation: 0
+  - characterName: Khnum
+    characterFullSprite: {fileID: 21300000, guid: 29ec9c957b440244eaa4c6bc62aaa749, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: a56ab80069ba8ac4da18947e0a1c6871, type: 3}
+    isEvocation: 0
+  - characterName: Hellraiser
+    characterFullSprite: {fileID: 21300000, guid: ac32d5075388e2544a51ee8943f12bea, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 4b0a89b68c03e5847b69fac3775ecd84, type: 3}
+    isEvocation: 0
+  - characterName: Tactical Beacon
+    characterFullSprite: {fileID: 21300000, guid: 03c81e358afd9604fb1377c225ae05d6, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: db60ae0cd4b6e1d4aa605e8d6a5795f2, type: 3}
+    isEvocation: 1
+  - characterName: Robin Blood
+    characterFullSprite: {fileID: 21300000, guid: 61ca9d8d9dc952e46a7eab7dc445e229, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: f835483ab325e1c428a2046154dcf168, type: 3}
+    isEvocation: 0
 --- !u!1 &361126710
 GameObject:
   m_ObjectHideFlags: 0

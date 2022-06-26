@@ -166,7 +166,7 @@ MonoBehaviour:
     paCost: 4
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 0
+    executeAfterTurns: 1
     effectDuration: 0
     criticalProbability: 0
     hasEffect: 1
@@ -192,7 +192,7 @@ MonoBehaviour:
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 5
-    hasEffect: 1
+    hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
     isJump: 0

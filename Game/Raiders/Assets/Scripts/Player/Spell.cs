@@ -245,6 +245,9 @@ public class Spell {
         else if (spell.name == "Gear") EXECUTE_GEAR(targetBlock, spell);
         else if (spell.name == "Restart") EXECUTE_RESTART(spell);
         else if (spell.name == "Stampede") EXECUTE_STAMPEDE(caster, targetBlock, spell);
+        else if (spell.name == "Withdrawal Arrow") EXECUTE_WITHDRAWAL_ARROW(caster, targetBlock, spell);
+        else if (spell.name == "Repulsive Arrow") EXECUTE_REPULSIVE_ARROW(caster, targetBlock, spell);
+        else if (spell.name == "Fulminating Arrow") EXECUTE_FULMINATING_ARROW(caster, targetBlock, spell);
         else if (spell.name == "Capering") EXECUTE_CAPERING(caster, targetBlock, spell);
         else if (spell.name == "Coward Mask") SWITCH_COWARD_MASK(caster, spell);
         else if (spell.name == "Psychopath Mask") SWITCH_PSYCHOPATH_MASK(caster, spell);
@@ -565,6 +568,12 @@ public class Spell {
         caster.decrementRage(caster.rageCounter);
     }
 
+    public static void EXECUTE_WITHDRAWAL_ARROW(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        ut_repelsCaster(caster, targetBlock, 2);
+    }
+
     public static void EXECUTE_DUEL(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
@@ -674,6 +683,16 @@ public class Spell {
         }
     }
 
+    public static void EXECUTE_REPULSIVE_ARROW(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Coordinate casterCoord = caster.connectedCell.GetComponent<Block>().coordinate;
+        Coordinate targetCoord = targetBlock.coordinate;
+        if (casterCoord.column == targetCoord.column || casterCoord.row == targetCoord.row) {
+            ut_repels(caster, targetBlock, 1);
+        }
+    }
+
     public static void EXECUTE_VERTEBRA(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
@@ -700,6 +719,33 @@ public class Spell {
         target.addEvent(cs);
         if (target.Equals(s.link))
             cs.useIstantanely();
+    }
+
+    public static void EXECUTE_FULMINATING_ARROW(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        List<Character> allies = ut_getAllies(target);
+        int distance = 10000;
+        Character toDamage = null;
+        if (allies.Count > 0)
+            foreach(Character c in allies) {
+                int act_dist = Monster.getDistance(target.connectedCell.GetComponent<Block>().coordinate, c.connectedCell.GetComponent<Block>().coordinate);
+                if (act_dist < distance && act_dist != 0) {
+                    distance = act_dist;
+                    toDamage = c;
+                }
+            }
+        if (toDamage != null && distance <= 8) {
+            if (distance == 1) toDamage.inflictDamage(Spell.calculateDamage(caster, toDamage, s) * 90 / 100);
+            if (distance == 2) toDamage.inflictDamage(Spell.calculateDamage(caster, toDamage, s) * 80 / 100);
+            if (distance == 3) toDamage.inflictDamage(Spell.calculateDamage(caster, toDamage, s) * 75 / 100);
+            if (distance == 4) toDamage.inflictDamage(Spell.calculateDamage(caster, toDamage, s) * 60 / 100);
+            if (distance == 5) toDamage.inflictDamage(Spell.calculateDamage(caster, toDamage, s) * 50 / 100);
+            if (distance == 6) toDamage.inflictDamage(Spell.calculateDamage(caster, toDamage, s) * 40 / 100);
+            if (distance == 7) toDamage.inflictDamage(Spell.calculateDamage(caster, toDamage, s) * 20 / 100);
+            if (distance == 8) toDamage.inflictDamage(Spell.calculateDamage(caster, toDamage, s) * 5 / 100);
+        }
     }
 
     public static void EXECUTE_EXODUS(Character caster, Block targetBlock, Spell s) {
@@ -3176,6 +3222,7 @@ public class Spell {
     public static int BONUS_CONCENTRATION = 21;
     public static int BONUS_SHUSHU_CUT = 20;
     public static int BONUS_BLOODY_PUNISHMENT = 72;
+    public static int BONUS_JUDGEMENT_ARROW = 13;
 
     public static int EVENT_BONUS_BASE_DAMAGE(Character caster, Character targetch, Spell s) {
         if (caster.name == "Tristepin" && s.name == "Concentration" && (targetch is Evocation || targetch is MonsterEvocation) && caster.getEventSystem().getEvents("Yop God Status").Count > 0) {
@@ -3198,8 +3245,9 @@ public class Spell {
             if (targetch is Evocation || targetch is MonsterEvocation)
                 return BONUS_ABOLITION;
             else return 0;
-        }
-        else if (caster.name == "Ragedala" && s.name == "Iop's Wrath")
+        } else if (caster.name == "Robin Blood" && s.name == "Arrow of Judgement") {
+            return caster.getActualPM() * BONUS_JUDGEMENT_ARROW;
+        } else if (caster.name == "Ragedala" && s.name == "Iop's Wrath")
         {
             List<ParentEvent> acclist = caster.getEventSystem().getEvents("Iop's Wrath");
             return BONUS_WRATH * acclist.Count;
