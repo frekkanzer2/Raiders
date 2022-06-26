@@ -172,6 +172,13 @@ public class Spell {
                 } else target.receiveHeal(damageToInflict + caster.bonusHeal);
                 if (spell.lifeSteal) caster.receiveHeal(damageToInflict / 2);
             }
+            if (caster.name == "Hellraiser" && target.name == "Tactical Beacon") {
+                List<Character> enemies = Spell.ut_getEnemies(caster);
+                foreach (Character c in enemies) {
+                    if (Spell.ut_isNearOf(c, target, 3))
+                        c.inflictDamage(damageToInflict * 40 / 100);
+                }
+            }
         }
         caster.addSpell(spell);
     }
@@ -192,9 +199,15 @@ public class Spell {
         else if (spell.name == "Inferno") EXECUTE_INFERNO(caster, targetBlock, spell);
         else if (spell.name == "Duel") EXECUTE_DUEL(caster, targetBlock, spell);
         else if (spell.name == "Iop's Wrath") EXECUTE_IOP_WRATH(caster, spell);
+        else if (spell.name == "Devastate") EXECUTE_DEVASTATE(caster, spell);
+        else if (spell.name == "Sentence") EXECUTE_SENTENCE(caster, spell);
+        else if (spell.name == "Fight Back") EXECUTE_FIGHT_BACK(caster, spell);
+        else if (spell.name == "Compulsion") EXECUTE_COMPULSION(targetBlock, spell);
         else if (spell.name == "Stretching") EXECUTE_STRETCHING(caster, spell);
         else if (spell.name == "Composure") EXECUTE_COMPOSURE(targetBlock, spell);
         else if (spell.name == "Virus") EXECUTE_VIRUS(caster, spell, targetBlock);
+        else if (spell.name == "Sword of Yop") EXECUTE_SWORD_OF_YOP(caster, targetBlock, spell);
+        else if (spell.name == "Tumult") EXECUTE_TUMULT(caster, targetBlock, spell);
         else if (spell.name == "Powerful Shooting") EXECUTE_POWERFUL_SHOOTING(targetBlock, spell);
         else if (spell.name == "Bow Skill") EXECUTE_BOW_SKILL(caster, spell);
         else if (spell.name == "Slow Down Arrow") EXECUTE_SLOW_DOWN_ARROW(targetBlock, spell);
@@ -326,6 +339,7 @@ public class Spell {
         else if (spell.name == "Harpooner Charge") EXECUTE_HARPOONER_CHARGE(caster, spell);
         else if (spell.name == "Harpooner") SUMMONS_SENTINEL_TURRECT(caster, targetBlock);
         else if (spell.name == "Tacturrect") SUMMONS_TACTICAL_TURRECT(caster, targetBlock);
+        else if (spell.name == "Tactical Beacon") SUMMONS_TACTICAL_BEACON(caster, targetBlock);
         else if (spell.name == "Lifesaver") SUMMONS_GUARDIANA_TURRECT(caster, targetBlock);
         else if (spell.name == "Repulsion") EXECUTE_REPULSION(caster, targetBlock);
         else if (spell.name == "Vivacity") EXECUTE_VIVACITY(caster, targetBlock);
@@ -502,6 +516,22 @@ public class Spell {
         if (!put_CheckLinkedObject(targetBlock)) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         PowerEvent powerEvent = new PowerEvent("Power", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        target.addEvent(powerEvent);
+        if (target.Equals(s.link))
+            powerEvent.useIstantanely();
+    }
+
+    public static void EXECUTE_FIGHT_BACK(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { s })) return;
+        FightBackEvent fbe = new FightBackEvent("Fight Back", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        caster.addEvent(fbe);
+    }
+
+    public static void EXECUTE_COMPULSION(Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        CompulsionEvent powerEvent = new CompulsionEvent("Compulsion", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
         target.addEvent(powerEvent);
         if (target.Equals(s.link))
             powerEvent.useIstantanely();
@@ -927,16 +957,61 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
-        Coordinate a = targetBlock.coordinate;
         List<Character> heroes = ut_getAllies(target);
         heroes.AddRange(ut_getEnemies(target));
         foreach (Character c in heroes) {
-            Coordinate b = c.connectedCell.GetComponent<Block>().coordinate;
-            if (ut_isNearOf(a, b, 3)) {
+            if (ut_isNearOf(c, target, 3)) {
                 c.inflictDamage(Spell.calculateDamage(caster, c, s));
             }
         }
     }
+    
+    public static void EXECUTE_DEVASTATE(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { s })) return;
+        List<Character> heroes = ut_getAllies(caster);
+        heroes.AddRange(ut_getEnemies(caster));
+        foreach (Character c in heroes) {
+            if (ut_isNearOf(caster, c, 2)) {
+                c.inflictDamage(Spell.calculateDamage(caster, c, s));
+            }
+        }
+    }
+
+    public static void EXECUTE_SWORD_OF_YOP(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        List<Character> heroes = ut_getAlliesWithCaster(caster);
+        heroes.AddRange(ut_getAllies(target));
+        foreach (Character c in heroes) {
+            if (ut_isNearOf(target, c, 2)) {
+                c.inflictDamage(Spell.calculateDamage(caster, c, s));
+            }
+        }
+    }
+
+    public static void EXECUTE_SENTENCE(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { s })) return;
+        List<Character> heroes = ut_getAllies(caster);
+        heroes.AddRange(ut_getEnemies(caster));
+        foreach (Character c in heroes) {
+            if (ut_isNearOf(caster, c, 5)) {
+                int damageToInflict = Spell.calculateDamage(caster, c, s);
+                if (ut_isNearOf(caster, c, 1)) {
+                    damageToInflict = damageToInflict * 100 / 100;
+                } else if (ut_isNearOf(caster, c, 2)) {
+                    damageToInflict = damageToInflict * 80 / 100;
+                } else if(ut_isNearOf(caster, c, 3)) {
+                    damageToInflict = damageToInflict * 65 / 100;
+                } else if (ut_isNearOf(caster, c, 4)) {
+                    damageToInflict = damageToInflict * 50 / 100;
+                } else if(ut_isNearOf(caster, c, 5)) {
+                    damageToInflict = damageToInflict * 30 / 100;
+                }
+                c.inflictDamage(damageToInflict);
+            }
+        }
+    }
+
     public static void EXECUTE_CELESTIAL_SWORD(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
@@ -1799,6 +1874,13 @@ public class Spell {
         target.addEvent(new NaturePoisonEvent("Nature Poison", target, s.effectDuration, ParentEvent.Mode.ActivationEachEndTurn, s.icon, caster, s));
     }
 
+    public static void EXECUTE_TUMULT(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new TumultEvent("Tumult", target, s.effectDuration, ParentEvent.Mode.ActivationEachEndTurn, s.icon, caster, s));
+    }
+
     public static void EXECUTE_EARTHQUAKE(Character caster, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         foreach (Character enemy in ut_getEnemies(caster))
@@ -2119,6 +2201,11 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         Evocation turrect = ut_execute_summon(caster, targetBlock, "Tactical_Turret", 3);
         turrect.isTurrect = true;
+    }
+
+    public static void SUMMONS_TACTICAL_BEACON(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_execute_summon(caster, targetBlock, "Tactical Beacon", 3);
     }
 
     public static void EXECUTE_HARPOONER_CHARGE(Character caster, Spell s) {

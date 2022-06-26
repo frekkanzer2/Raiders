@@ -636,12 +636,18 @@ public class Character : MonoBehaviour
                 damage = 0;
             }
         }
-        if (damage <= 0)
-            return;
-        else Debug.Log("Last damage: " + damage);
+        if (damage <= 0) return;
+        // Checking damage reflection with Fight Back effect
+        if (this.getEventSystem().getEvents("Fight Back").Count > 0) {
+            List<Character> enemies = Spell.ut_getEnemies(this);
+            foreach(Character e in enemies) {
+                e.inflictDamage(damage * 20 / 100);
+            }
+        }
         if (this.actual_hp - damage < 0) actual_hp = 0;
         else this.actual_hp -= damage;
         if (actual_hp == 0) setDead();
+        // Check Yugo and Tristepin transformation
         else if (actual_hp <= hp * 30 / 100 && !hasActivatedBonus30) {
             if (this.name == "Yugo") {
                 WakfuRaider wr = new WakfuRaider("Wakfu Raider Status", this, 5, ParentEvent.Mode.PermanentAndEachTurn, Resources.Load<Sprite>("Prefabs/Heroes/Transformation/Wakfu Raider"));
