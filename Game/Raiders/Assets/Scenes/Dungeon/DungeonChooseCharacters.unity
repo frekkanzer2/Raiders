@@ -11885,8 +11885,38 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 12
           column: 9
-    - roomNumber: 
-      monstersAndQuantity: []
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 12
+          column: 9
+      - monsterID: 2
+        quantity: 4
+        spawnCoordinates:
+        - row: 11
+          column: 3
+        - row: 11
+          column: 16
+        - row: 11
+          column: 8
+        - row: 11
+          column: 11
+      - monsterID: 5
+        quantity: 2
+        spawnCoordinates:
+        - row: 14
+          column: 6
+        - row: 15
+          column: 16
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 9
+          column: 4
+        - row: 9
+          column: 15
     - roomNumber: 
       monstersAndQuantity: []
     - roomNumber: 
