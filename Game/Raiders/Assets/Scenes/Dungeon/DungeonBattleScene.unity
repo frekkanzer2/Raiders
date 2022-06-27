@@ -1110,6 +1110,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a47927b3fa487d1458f8d8e1c500c852, type: 3}
   - {fileID: 21300000, guid: c554d26caa1948e4e8e86bd092e5f2a2, type: 3}
   - {fileID: 21300000, guid: 068c4cfb01ea9904db68ae2b03a8823f, type: 3}
+  - {fileID: 21300000, guid: 384408fe67f07c24fa328bce5025cb38, type: 3}
+  - {fileID: 21300000, guid: 7bc0b04760857db4bab295d941d57785, type: 3}
+  - {fileID: 21300000, guid: 17944ffaf96a6914fb3808e0bc54a9fc, type: 3}
+  - {fileID: 21300000, guid: 64942e9c55720d247b743ca7e008b603, type: 3}
   mapContainer: {fileID: 606105194}
   mapFile: {fileID: 4900000, guid: 151aef5894359a442a1e9e19fc8a95c2, type: 3}
   blackScreen: {fileID: 1198904534}
@@ -1249,6 +1253,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 37fd18249f970cf4ab5f13c01f855413, type: 3}
   - {fileID: 4900000, guid: e41f51953483972448dcf0939a2278d6, type: 3}
   - {fileID: 4900000, guid: 4ebf6f756d6ad374c800c5d9e47d569d, type: 3}
+  - {fileID: 4900000, guid: 5bb17d0181898624eb89a4942bc3677d, type: 3}
+  - {fileID: 4900000, guid: df2c84e301ac9d7448bac68c6add2b32, type: 3}
+  - {fileID: 4900000, guid: bb12cb9c15d194f4cb9f70a665a3ee82, type: 3}
+  - {fileID: 4900000, guid: 9a19c05b84985ff4998a33296ec4833a, type: 3}
+  - {fileID: 4900000, guid: f83ceda23b99e16489d2c24367cd8839, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481

@@ -11824,6 +11824,73 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 15
           column: 9
+  - name: Kannibal Village
+    bossIcon: {fileID: 21300000, guid: adf7d0aa935088a41a824dc95a06dfe3, type: 3}
+    monsters:
+    - name: Cannon Dorf
+      prefab: {fileID: 557098361630938699, guid: e99284d97131a2443aeead585aba4646, type: 3}
+      sprite: {fileID: 21300000, guid: e38375f9e26cf544d87e2ad0096de441, type: 3}
+    - name: Drunken Boomba
+      prefab: {fileID: 557098361630938699, guid: 09de9301c1de41b40bee84800840e343, type: 3}
+      sprite: {fileID: 21300000, guid: 9d8cd80dbd3fe89489d8a3430fd706d4, type: 3}
+    - name: Lonely Hazwonarm
+      prefab: {fileID: 557098361630938699, guid: cfbcf467d4ba5e34eb81d2d7990cd60c, type: 3}
+      sprite: {fileID: 21300000, guid: d6644e8fae1b3de44a965959ab678eb9, type: 3}
+    - name: Kanniboul Sauce
+      prefab: {fileID: 557098361630938699, guid: 645f2e38838fcc04f9f48b1c6cb09550, type: 3}
+      sprite: {fileID: 21300000, guid: 46d4c6c91e027a240b5e962661532c94, type: 3}
+    - name: Kanniboul Marmiton
+      prefab: {fileID: 557098361630938699, guid: b505d44b9c3856b46998e4e4986177b2, type: 3}
+      sprite: {fileID: 21300000, guid: 773a2291afa117143be67ed948c09521, type: 3}
+    - name: Kanniboul Gargotier
+      prefab: {fileID: 557098361630938699, guid: 8915e06586f873a46b69f6e230f8669f, type: 3}
+      sprite: {fileID: 21300000, guid: 3f92874ffbc610f449258ad31e038caa, type: 3}
+    - name: Kanniboul Fricasseur
+      prefab: {fileID: 557098361630938699, guid: 3337f26cbcd2bd542a55df2b0269845c, type: 3}
+      sprite: {fileID: 21300000, guid: 9cae5e154eee2f744b94ef2e1ecc8071, type: 3}
+    - name: Kanniboul Ebil
+      prefab: {fileID: 557098361630938699, guid: 5eb96fb6ff4b1f54aa2d0e71b5d6a7bb, type: 3}
+      sprite: {fileID: 21300000, guid: 66ead397dcc08734793e0dcd91aa2fd5, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 9
+          column: 14
+        - row: 11
+          column: 5
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 14
+          column: 8
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 12
+          column: 16
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 11
+          column: 6
+        - row: 10
+          column: 16
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 12
+          column: 9
+    - roomNumber: 
+      monstersAndQuantity: []
+    - roomNumber: 
+      monstersAndQuantity: []
+    - roomNumber: 
+      monstersAndQuantity: []
   isDebugEnabled: 0
 --- !u!114 &1295197768
 MonoBehaviour:

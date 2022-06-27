@@ -414,6 +414,7 @@ public class Spell {
         else if (spell.name == "Explosive Egg") EXECUTE_EXPLOSIVE_EGG(caster, targetBlock, spell);
         else if (spell.name == "My Tofu Childs") EXECUTE_MY_TOFU_CHILDS(caster, targetBlock, spell);
         else if (spell.name == "Call of the forest") EXECUTE_CALL_OF_THE_FOREST(caster, targetBlock, spell);
+        else if (spell.name == "Kannilance") EXECUTE_KANNILANCE(caster, targetBlock, spell);
         else if (spell.name == "Wolf Cry") EXECUTE_WOLF_CRY(caster, spell);
         else if (spell.name == "Vilinslash") EXECUTE_VILINSLASH(caster, targetBlock, spell);
         else if (spell.name == "Wax Shot") EXECUTE_WAX_SHOT(caster, targetBlock, spell);
@@ -2670,6 +2671,12 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         foreach (Character c in ut_getAllies(caster))
             c.receiveHeal(s.damage);
+    }
+
+    public static void EXECUTE_KANNILANCE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        ut_damageInLine(caster, targetBlock, s, 3);
     }
 
     public static void EXECUTE_BRIKOASSAULT(Character caster, Block targetBlock, Spell s) {
