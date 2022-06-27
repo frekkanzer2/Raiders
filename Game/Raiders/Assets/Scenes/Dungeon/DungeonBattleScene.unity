@@ -1052,7 +1052,7 @@ MonoBehaviour:
   alphaSpace: {fileID: 749150766}
   betaSpace: {fileID: 342804176}
   prefabPreviewCardAlpha: {fileID: 2035762556530054412, guid: 3dceee1c6adfb0b49af187603ae3d67b, type: 3}
-  prefabPreviewCardBeta: {fileID: 7414472896879890752, guid: 15175c187862257469d68ab2bb7c1c9c, type: 3}
+  prefabPreviewCardBeta: {fileID: 7414472896879890752, guid: cd68f71f99bdbad4dbdf830c786b4fed, type: 3}
   injectToChar_prefabNumberDisplayer: {fileID: 4911972111712406541, guid: a74061bd17b354b4ab54af57e8e3ba6c, type: 3}
   popupSpell: {fileID: 40471660}
 --- !u!114 &93772478
