@@ -20,6 +20,7 @@ public class StatsPanel : MonoBehaviour
     public GameObject att_air;
     public GameObject att_wat;
     public GameObject hpGui;
+    public GameObject arGui;
     public GameObject paGui;
     public GameObject pmGui;
     public GameObject btnPanelAttDef;
@@ -41,17 +42,39 @@ public class StatsPanel : MonoBehaviour
     }
 
     private void Start() {
-
+        if (TurnsManager.active is Monster) {
+            spell1.transform.parent.parent.gameObject.SetActive(false);
+            spell3.transform.parent.parent.gameObject.SetActive(false);
+        }
+        if (arGui != null)
+            if (toSync.actual_shield == 0) {
+                arGui.transform.parent.gameObject.SetActive(false);
+            } else {
+                arGui.transform.parent.gameObject.SetActive(true);
+                arGui.GetComponent<TextMeshProUGUI>().text = "" + toSync.actual_shield;
+            }
     }
 
     private void Update() {
         if (toSync != null) {
+
+            if (TurnsManager.active is Monster) {
+                spell1.transform.parent.parent.gameObject.SetActive(false);
+                spell3.transform.parent.parent.gameObject.SetActive(false);
+            }
 
             if (!(toSync is Monster))
                 characterPreview.GetComponent<Image>().sprite = cl.getCharacterInfoByName(toSync.name).characterMidSprite;
             else
                 characterPreview.GetComponent<Image>().sprite = cl.getCharacterInfoMonster((Monster) toSync).characterMidSprite;
             hpGui.GetComponent<TextMeshProUGUI>().text = "" + toSync.getActualHP();
+            if (arGui != null)
+                if (toSync.actual_shield == 0) {
+                    arGui.transform.parent.gameObject.SetActive(false);
+                } else {
+                    arGui.transform.parent.gameObject.SetActive(true);
+                    arGui.GetComponent<TextMeshProUGUI>().text = "" + toSync.actual_shield;
+                }
             paGui.GetComponent<TextMeshProUGUI>().text = "" + toSync.getActualPA();
             pmGui.GetComponent<TextMeshProUGUI>().text = "" + toSync.getActualPM();
             res_ear.GetComponent<TextMeshProUGUI>().text = "" + toSync.res_e + "%";

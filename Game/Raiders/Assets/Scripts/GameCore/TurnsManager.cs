@@ -44,7 +44,7 @@ public class TurnsManager : MonoBehaviour
     private void Update() {
         if (isGameStarted) {
             timeLeft -= Time.deltaTime;
-            if (timeLeft < 0) {
+            if (timeLeft < 0 && !(TurnsManager.active is Monster)) {
                 nextTurnButton.SetActive(true);
             }
         }

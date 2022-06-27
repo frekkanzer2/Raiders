@@ -456,6 +456,8 @@ public class Spell {
         else if (spell.name == "Sedimentation") EXECUTE_SEDIMENTATION(targetBlock, spell);
         else if (spell.name == "Legendaire Punch") EXECUTE_LEGENDAIRE_PUNCH(caster, spell);
         else if (spell.name == "Group Wabbheal") EXECUTE_GROUP_WABBHEAL(caster, spell);
+        else if (spell.name == "Kannidestruction") EXECUTE_KANNIDESTRUCTION(caster, spell);
+        else if (spell.name == "Bomb Throw") EXECUTE_BOMB_THROW(caster, targetBlock, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -2590,7 +2592,7 @@ public class Spell {
     {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
-        ut_damageInLine(caster, targetBlock, s, 6);
+        ut_damageInLine(caster, targetBlock, s, 6, true);
     }
 
     public static void EXECUTE_AFFRONT(Character caster, Block targetBlock, Spell s) {
@@ -3209,6 +3211,24 @@ public class Spell {
         }
     }
 
+    public static void EXECUTE_BOMB_THROW(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        foreach (Character enemy in ut_getAllies(target))
+                if (ut_isNearOf(target, enemy, 2))
+                    enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
+    }
+
+    public static void EXECUTE_KANNIDESTRUCTION(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character enemy in ut_getEnemies(caster)) {
+            if (ut_isNearOf(enemy, caster, 2)) {
+                enemy.inflictDamage(calculateDamage(caster, enemy, s));
+            }
+        }
+    }
+
     #endregion
 
     #region EVENT BONUSES
@@ -3346,37 +3366,39 @@ public class Spell {
     #region UTILITIES
 
     // Tuple<ALIVE, DEAD>
-    public static void ut_damageInLine(Character caster, Block targetBlock, Spell s, int numberOfCells) {
+    public static void ut_damageInLine(Character caster, Block targetBlock, Spell s, int numberOfCells, bool mustShotAllies = false) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         Coordinate casterCoord = caster.connectedCell.GetComponent<Block>().coordinate;
         Coordinate targetCoord = targetBlock.coordinate;
         if (targetBlock.linkedObject == null) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         if (target == null) return;
+        List<Character> toShot = ut_getAllies(target);
+        if (mustShotAllies) toShot.AddRange(ut_getEnemies(target));
         if (casterCoord.row == targetCoord.row && casterCoord.column < targetCoord.column) {
             // attacking from left
-            foreach (Character enemy in ut_getAllies(target)) {
+            foreach (Character enemy in toShot) {
                 Block enemyBlock = enemy.connectedCell.GetComponent<Block>();
                 if (enemyBlock.coordinate.row == targetCoord.row && enemyBlock.coordinate.column > targetCoord.column && enemyBlock.coordinate.column <= targetCoord.column + numberOfCells)
                     enemy.inflictDamage(calculateDamage(caster, enemy, s));
             }
         } else if (casterCoord.row == targetCoord.row && casterCoord.column > targetCoord.column) {
             // attacking from right
-            foreach (Character enemy in ut_getAllies(target)) {
+            foreach (Character enemy in toShot) {
                 Block enemyBlock = enemy.connectedCell.GetComponent<Block>();
                 if (enemyBlock.coordinate.row == targetCoord.row && enemyBlock.coordinate.column < targetCoord.column && enemyBlock.coordinate.column >= targetCoord.column - numberOfCells)
                     enemy.inflictDamage(calculateDamage(caster, enemy, s));
             }
         } else if (casterCoord.column == targetCoord.column && casterCoord.row > targetCoord.row) {
             // attacking from bottom
-            foreach (Character enemy in ut_getAllies(target)) {
+            foreach (Character enemy in toShot) {
                 Block enemyBlock = enemy.connectedCell.GetComponent<Block>();
                 if (enemyBlock.coordinate.column == targetCoord.column && enemyBlock.coordinate.row < targetCoord.row && enemyBlock.coordinate.row >= targetCoord.row - numberOfCells)
                     enemy.inflictDamage(calculateDamage(caster, enemy, s));
             }
         } else if (casterCoord.column == targetCoord.column && casterCoord.row < targetCoord.row) {
             // attacking from top
-            foreach (Character enemy in ut_getAllies(target)) {
+            foreach (Character enemy in toShot) {
                 Block enemyBlock = enemy.connectedCell.GetComponent<Block>();
                 if (enemyBlock.coordinate.column == targetCoord.column && enemyBlock.coordinate.row > targetCoord.row && enemyBlock.coordinate.row <= targetCoord.row + numberOfCells)
                     enemy.inflictDamage(calculateDamage(caster, enemy, s));

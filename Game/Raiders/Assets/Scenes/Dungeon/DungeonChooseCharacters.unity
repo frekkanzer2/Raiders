@@ -11917,10 +11917,83 @@ MonoBehaviour:
           column: 4
         - row: 9
           column: 15
-    - roomNumber: 
-      monstersAndQuantity: []
-    - roomNumber: 
-      monstersAndQuantity: []
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 3
+        spawnCoordinates:
+        - row: 8
+          column: 2
+        - row: 8
+          column: 17
+        - row: 10
+          column: 10
+      - monsterID: 6
+        quantity: 1
+        spawnCoordinates:
+        - row: 9
+          column: 10
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 7
+          column: 2
+        - row: 7
+          column: 17
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 14
+          column: 6
+      - monsterID: 5
+        quantity: 2
+        spawnCoordinates:
+        - row: 15
+          column: 8
+        - row: 16
+          column: 12
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 11
+          column: 5
+        - row: 11
+          column: 14
+      - monsterID: 6
+        quantity: 2
+        spawnCoordinates:
+        - row: 12
+          column: 6
+        - row: 12
+          column: 13
+      - monsterID: 5
+        quantity: 2
+        spawnCoordinates:
+        - row: 13
+          column: 8
+        - row: 11
+          column: 17
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 10
+          column: 17
+        - row: 16
+          column: 13
+      - monsterID: 7
+        quantity: 1
+        spawnCoordinates:
+        - row: 15
+          column: 7
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 17
+          column: 14
+        - row: 12
+          column: 10
   isDebugEnabled: 0
 --- !u!114 &1295197768
 MonoBehaviour:
