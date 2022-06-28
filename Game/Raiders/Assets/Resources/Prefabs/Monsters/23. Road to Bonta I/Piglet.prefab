@@ -129,7 +129,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Piglet
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Pigshot
+    icon: {fileID: 0}
+    description: 
+    element: 2
+    damage: 80
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 14
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 20
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 580
   pa: 7
@@ -141,7 +164,7 @@ MonoBehaviour:
   res_w: -20
   att_e: 0
   att_f: 0
-  att_a: 0
+  att_a: 12
   att_w: 0
   numberOfSummons: 0
   isEvocation: 0
@@ -198,7 +221,7 @@ MonoBehaviour:
   shushuCounter: 0
   behaviour:
     spellsOrderToCheckId: 00000000
-    movementAfterFight: 1
+    movementAfterFight: 3
     movementWhenCannotAttack: 1
   id: 0
   isCommunionActive: 0

@@ -129,7 +129,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Bonta Guardian
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Destruction Ray
+    icon: {fileID: 0}
+    description: 
+    element: 1
+    damage: 10000
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 100
+    distanceType: 1
+    overObstacles: 1
+    hpCost: 0
+    paCost: 1
+    pmCost: 0
+    maxTimesInTurn: 0
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 2600
   pa: 10
@@ -198,7 +221,7 @@ MonoBehaviour:
   shushuCounter: 0
   behaviour:
     spellsOrderToCheckId: 00000000
-    movementAfterFight: 1
+    movementAfterFight: 2
     movementWhenCannotAttack: 1
   id: 0
   isCommunionActive: 0

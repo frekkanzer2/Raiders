@@ -129,7 +129,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Heavy Porkass
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Porkass hit
+    icon: {fileID: 0}
+    description: 
+    element: 0
+    damage: 300
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 3
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 15
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 580
   pa: 6
@@ -139,7 +162,7 @@ MonoBehaviour:
   res_f: 25
   res_a: -15
   res_w: 35
-  att_e: 0
+  att_e: 6
   att_f: 0
   att_a: 0
   att_w: 0
