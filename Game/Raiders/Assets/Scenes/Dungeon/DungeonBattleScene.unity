@@ -1263,6 +1263,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: c03738553791f1147b1c9443c3d16e82, type: 3}
   - {fileID: 4900000, guid: 9c042689ade570749ad37f29423c7e8d, type: 3}
   - {fileID: 4900000, guid: 1ee170e31d1b9be40af8f6be8d300caf, type: 3}
+  - {fileID: 4900000, guid: d71c95361f91e864385242c1f0b3916d, type: 3}
+  - {fileID: 4900000, guid: 8c044e89514ca5948bcb9496b7f9d45c, type: 3}
+  - {fileID: 4900000, guid: c03738553791f1147b1c9443c3d16e82, type: 3}
+  - {fileID: 4900000, guid: 9c042689ade570749ad37f29423c7e8d, type: 3}
+  - {fileID: 4900000, guid: 1ee170e31d1b9be40af8f6be8d300caf, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481
@@ -15869,6 +15874,12 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: 080cd27c2bed6d2448a67e9a965f79a2, type: 3}
   - track_name_maiusc: KANNIBAL VILLAGE
     music: {fileID: 8300000, guid: 7cd456b57de47484888856db66cefa79, type: 3}
+  - track_name_maiusc: ROAD TO BONTA I
+    music: {fileID: 8300000, guid: af865f39ab724fb42bb7bb3b22babe1d, type: 3}
+  - track_name_maiusc: ROAD TO BONTA II
+    music: {fileID: 8300000, guid: be9f36534c9b3eb4f910486dd7736d86, type: 3}
+  - track_name_maiusc: ROAD TO BONTA III
+    music: {fileID: 8300000, guid: 316c393beb805c649be33434d4ce078d, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0

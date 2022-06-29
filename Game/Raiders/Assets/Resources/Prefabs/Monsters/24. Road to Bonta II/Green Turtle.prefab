@@ -129,12 +129,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Green Turtle
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Hyperslash
+    icon: {fileID: 0}
+    description: 
+    element: 0
+    damage: 140
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 5
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 40
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 1580
   pa: 7
-  pm: 5
-  ini: 30
+  pm: 6
+  ini: 20
   res_e: 0
   res_f: 0
   res_a: 40

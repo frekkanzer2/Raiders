@@ -131,7 +131,7 @@ MonoBehaviour:
   heroClass: 18
   spells: []
   team: 1
-  hp: 1000
+  hp: 970
   pa: 8
   pm: 5
   ini: 160

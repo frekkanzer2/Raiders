@@ -129,17 +129,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Michelangela
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Hyperslash
+    icon: {fileID: 0}
+    description: 
+    element: 0
+    damage: 80
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 5
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 25
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 580
   pa: 6
-  pm: 3
+  pm: 4
   ini: 20
   res_e: 30
   res_f: 0
   res_a: 0
   res_w: 0
-  att_e: 0
+  att_e: 10
   att_f: 0
   att_a: 0
   att_w: 0

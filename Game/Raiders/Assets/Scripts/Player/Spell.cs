@@ -456,7 +456,12 @@ public class Spell {
         else if (spell.name == "Sedimentation") EXECUTE_SEDIMENTATION(targetBlock, spell);
         else if (spell.name == "Legendaire Punch") EXECUTE_LEGENDAIRE_PUNCH(caster, spell);
         else if (spell.name == "Group Wabbheal") EXECUTE_GROUP_WABBHEAL(caster, spell);
+        else if (spell.name == "Katana Lunge") EXECUTE_KATANA_LUNGE(caster, targetBlock, spell);
         else if (spell.name == "Kannidestruction") EXECUTE_KANNIDESTRUCTION(caster, spell);
+        else if (spell.name == "Turtle Hypermove") EXECUTE_TURTLE_HYPERMOVE(caster, spell);
+        else if (spell.name == "Turtle Catch") EXECUTE_TURTLE_CATCH(caster, targetBlock);
+        else if (spell.name == "Long Turtle Hit") EXECUTE_LONG_TURTLE_HIT(caster, targetBlock);
+        else if (spell.name == "Long Turtle Teleportation") EXECUTE_LONG_TURTLE_TELEPORTATION(caster, targetBlock, spell);
         else if (spell.name == "Bomb Throw") EXECUTE_BOMB_THROW(caster, targetBlock, spell);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -3229,6 +3234,85 @@ public class Spell {
         }
     }
 
+    public static void EXECUTE_LONG_TURTLE_TELEPORTATION(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!caster.canMovedByEffects) return;
+        Coordinate casterCoord = caster.connectedCell.GetComponent<Block>().coordinate;
+        Coordinate targetCoord = targetBlock.coordinate;
+        if (casterCoord.row == targetCoord.row && casterCoord.column < targetCoord.column) {
+            // jump to the right
+            Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row, targetCoord.column + 1));
+            if (toJump == null) return;
+            if (toJump.linkedObject != null) return;
+            if (caster.connectedCell.GetComponent<Block>() != null)
+                caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            caster.connectedCell = toJump.gameObject;
+            toJump.linkedObject = caster.gameObject;
+            Vector2 newPosition = Coordinate.getPosition(toJump.coordinate);
+            caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
+        } else if (casterCoord.row == targetCoord.row && casterCoord.column > targetCoord.column) {
+            // jump to the left
+            Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row, targetCoord.column - 1));
+            if (toJump == null) return;
+            if (toJump.linkedObject != null) return;
+            if (caster.connectedCell.GetComponent<Block>() != null)
+                caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            caster.connectedCell = toJump.gameObject;
+            toJump.linkedObject = caster.gameObject;
+            Vector2 newPosition = Coordinate.getPosition(toJump.coordinate);
+            caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
+        } else if (casterCoord.column == targetCoord.column && casterCoord.row > targetCoord.row) {
+            // upper jump
+            Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row - 1, targetCoord.column));
+            if (toJump == null) return;
+            if (toJump.linkedObject != null) return;
+            if (caster.connectedCell.GetComponent<Block>() != null)
+                caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            caster.connectedCell = toJump.gameObject;
+            toJump.linkedObject = caster.gameObject;
+            Vector2 newPosition = Coordinate.getPosition(toJump.coordinate);
+            caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
+        } else if (casterCoord.column == targetCoord.column && casterCoord.row < targetCoord.row) {
+            // down jump
+            Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row + 1, targetCoord.column));
+            if (toJump == null) return;
+            if (toJump.linkedObject != null) return;
+            if (caster.connectedCell.GetComponent<Block>() != null)
+                caster.connectedCell.GetComponent<Block>().linkedObject = null;
+            caster.connectedCell = toJump.gameObject;
+            toJump.linkedObject = caster.gameObject;
+            Vector2 newPosition = Coordinate.getPosition(toJump.coordinate);
+            caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
+        }
+        caster.setZIndex(caster.connectedCell.GetComponent<Block>());
+    }
+
+    public static void EXECUTE_LONG_TURTLE_HIT(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_repels(caster, targetBlock, 5);
+    }
+
+    public static void EXECUTE_KATANA_LUNGE(Character caster, Block targetBlock, Spell s) {
+        List<Character> involved = ut_damageInLine(caster, targetBlock, s, 3);
+        foreach (Character c in involved) {
+            c.addEvent(new KatanaLungeEvent("Katana Lunge", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, caster, s));
+        }
+    }
+
+    public static void EXECUTE_TURTLE_CATCH(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_attracts(caster, targetBlock, 5);
+    }
+
+    public static void EXECUTE_TURTLE_HYPERMOVE(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character enemy in ut_getEnemies(caster)) {
+            if (ut_isNearOf(enemy, caster, 3)) {
+                enemy.inflictDamage(calculateDamage(caster, enemy, s));
+            }
+        }
+    }
+
     #endregion
 
     #region EVENT BONUSES
@@ -3366,44 +3450,55 @@ public class Spell {
     #region UTILITIES
 
     // Tuple<ALIVE, DEAD>
-    public static void ut_damageInLine(Character caster, Block targetBlock, Spell s, int numberOfCells, bool mustShotAllies = false) {
-        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+    public static List<Character> ut_damageInLine(Character caster, Block targetBlock, Spell s, int numberOfCells, bool mustShotAllies = false) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return null;
         Coordinate casterCoord = caster.connectedCell.GetComponent<Block>().coordinate;
         Coordinate targetCoord = targetBlock.coordinate;
-        if (targetBlock.linkedObject == null) return;
+        if (targetBlock.linkedObject == null) return null;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
-        if (target == null) return;
+        if (target == null) return null;
         List<Character> toShot = ut_getAllies(target);
+        List<Character> shotted = new List<Character>();
         if (mustShotAllies) toShot.AddRange(ut_getEnemies(target));
         if (casterCoord.row == targetCoord.row && casterCoord.column < targetCoord.column) {
             // attacking from left
             foreach (Character enemy in toShot) {
                 Block enemyBlock = enemy.connectedCell.GetComponent<Block>();
-                if (enemyBlock.coordinate.row == targetCoord.row && enemyBlock.coordinate.column > targetCoord.column && enemyBlock.coordinate.column <= targetCoord.column + numberOfCells)
+                if (enemyBlock.coordinate.row == targetCoord.row && enemyBlock.coordinate.column > targetCoord.column && enemyBlock.coordinate.column <= targetCoord.column + numberOfCells) {
+                    shotted.Add(enemy);
                     enemy.inflictDamage(calculateDamage(caster, enemy, s));
+                }
             }
         } else if (casterCoord.row == targetCoord.row && casterCoord.column > targetCoord.column) {
             // attacking from right
             foreach (Character enemy in toShot) {
                 Block enemyBlock = enemy.connectedCell.GetComponent<Block>();
-                if (enemyBlock.coordinate.row == targetCoord.row && enemyBlock.coordinate.column < targetCoord.column && enemyBlock.coordinate.column >= targetCoord.column - numberOfCells)
+                if (enemyBlock.coordinate.row == targetCoord.row && enemyBlock.coordinate.column < targetCoord.column && enemyBlock.coordinate.column >= targetCoord.column - numberOfCells) {
+                    shotted.Add(enemy);
                     enemy.inflictDamage(calculateDamage(caster, enemy, s));
+                }
             }
         } else if (casterCoord.column == targetCoord.column && casterCoord.row > targetCoord.row) {
             // attacking from bottom
             foreach (Character enemy in toShot) {
                 Block enemyBlock = enemy.connectedCell.GetComponent<Block>();
-                if (enemyBlock.coordinate.column == targetCoord.column && enemyBlock.coordinate.row < targetCoord.row && enemyBlock.coordinate.row >= targetCoord.row - numberOfCells)
+                if (enemyBlock.coordinate.column == targetCoord.column && enemyBlock.coordinate.row < targetCoord.row && enemyBlock.coordinate.row >= targetCoord.row - numberOfCells) {
+                    shotted.Add(enemy);
                     enemy.inflictDamage(calculateDamage(caster, enemy, s));
+                }
             }
         } else if (casterCoord.column == targetCoord.column && casterCoord.row < targetCoord.row) {
             // attacking from top
             foreach (Character enemy in toShot) {
                 Block enemyBlock = enemy.connectedCell.GetComponent<Block>();
-                if (enemyBlock.coordinate.column == targetCoord.column && enemyBlock.coordinate.row > targetCoord.row && enemyBlock.coordinate.row <= targetCoord.row + numberOfCells)
+                if (enemyBlock.coordinate.column == targetCoord.column && enemyBlock.coordinate.row > targetCoord.row && enemyBlock.coordinate.row <= targetCoord.row + numberOfCells) {
+                    shotted.Add(enemy);
                     enemy.inflictDamage(calculateDamage(caster, enemy, s));
+                }
             }
         }
+        shotted.Add(target);
+        return shotted;
     }
 
     public static Tuple<int, int> ut_getDeadStatsAllies(Character caster) {

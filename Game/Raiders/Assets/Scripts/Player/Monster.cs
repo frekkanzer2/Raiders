@@ -80,6 +80,7 @@ public class Monster : Character {
 
     private int getDistanceFromTarget(Character target) {
         Coordinate selfCoord, targetCoord;
+        if (this.connectedCell.GetComponent<Block>() == null || target.connectedCell.GetComponent<Block>() == null) return 0;
         selfCoord = this.connectedCell.GetComponent<Block>().coordinate;
         targetCoord = target.connectedCell.GetComponent<Block>().coordinate;
         int dist_row = Mathf.Abs(selfCoord.row - targetCoord.row);

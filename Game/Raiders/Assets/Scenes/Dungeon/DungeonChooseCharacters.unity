@@ -12142,7 +12142,7 @@ MonoBehaviour:
           column: 22
         - row: 6
           column: 23
-        - row: 5
+        - row: 2
           column: 23
       - monsterID: 3
         quantity: 2
@@ -12156,6 +12156,173 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 2
           column: 20
+        - row: 6
+          column: 20
+  - name: Road to Bonta II
+    bossIcon: {fileID: 21300000, guid: c0e85b60c4902504692521b0e9c3dbf2, type: 3}
+    monsters:
+    - name: Grokoko
+      prefab: {fileID: 557098361630938699, guid: 2a9e56ac1899bf842a2a8797742ce235, type: 3}
+      sprite: {fileID: 21300000, guid: 52d717d527a6492448e90216ec5a89d5, type: 3}
+    - name: Kokoko
+      prefab: {fileID: 557098361630938699, guid: d98c937bb8b22cd4aaead5201f6f64e2, type: 3}
+      sprite: {fileID: 21300000, guid: 47c03669fe04ba24da24b85b76dd4da8, type: 3}
+    - name: Donatella
+      prefab: {fileID: 557098361630938699, guid: 579bb230ad2a276438d9806e988e9010, type: 3}
+      sprite: {fileID: 21300000, guid: 8949cb16c069e9a4ebd260f6b35567e5, type: 3}
+    - name: Leonardawa
+      prefab: {fileID: 557098361630938699, guid: fb22558a5c9a80345abd7d2c6f6233a4, type: 3}
+      sprite: {fileID: 21300000, guid: e5fb1ea009b9a7e40b762e62eb2ea8af, type: 3}
+    - name: Michelangela
+      prefab: {fileID: 557098361630938699, guid: 05d3349647901574e902044008de9c95, type: 3}
+      sprite: {fileID: 21300000, guid: 8ade6665cfcbb9b41b4cb7e60e8d544a, type: 3}
+    - name: Raphaela
+      prefab: {fileID: 557098361630938699, guid: 8eb6ad96913a37947b3ef46a05c2c764, type: 3}
+      sprite: {fileID: 21300000, guid: db942d397f2b62d4cb31a0413be58f06, type: 3}
+    - name: Yellow Turtle
+      prefab: {fileID: 557098361630938699, guid: 351567355e42e244e8e7f4455bd5ef60, type: 3}
+      sprite: {fileID: 21300000, guid: c7104305fb8baa24fac8004ec2cd5e98, type: 3}
+    - name: Red Turtle
+      prefab: {fileID: 557098361630938699, guid: 5fbf0cd90e2d94e44a9133c7f68a31a0, type: 3}
+      sprite: {fileID: 21300000, guid: 5d0e0ef4ba42fa54a9969be791584070, type: 3}
+    - name: Green Turtle
+      prefab: {fileID: 557098361630938699, guid: 846cfd4ac9c809f40971eb31adf432e7, type: 3}
+      sprite: {fileID: 21300000, guid: 45fa04cb995e50c469223071cd8c9b3c, type: 3}
+    - name: Blue Turtle
+      prefab: {fileID: 557098361630938699, guid: 25f76e198fd4cb345ba44a2073ecf5da, type: 3}
+      sprite: {fileID: 21300000, guid: 2736cea16eac1fa41a58f6cab83205bc, type: 3}
+    - name: Cannon Dorf
+      prefab: {fileID: 557098361630938699, guid: e99284d97131a2443aeead585aba4646, type: 3}
+      sprite: {fileID: 21300000, guid: e38375f9e26cf544d87e2ad0096de441, type: 3}
+    - name: Lonely Hazwonarm
+      prefab: {fileID: 557098361630938699, guid: cfbcf467d4ba5e34eb81d2d7990cd60c, type: 3}
+      sprite: {fileID: 21300000, guid: d6644e8fae1b3de44a965959ab678eb9, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 25
+        - row: 6
+          column: 25
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 23
+      - monsterID: 10
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 20
+        - row: 5
+          column: 20
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 18
+        - row: 6
+          column: 18
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 24
+        - row: 6
+          column: 24
+      - monsterID: 11
+        quantity: 4
+        spawnCoordinates:
+        - row: 1
+          column: 20
+        - row: 3
+          column: 20
+        - row: 5
+          column: 20
+        - row: 7
+          column: 20
+      - monsterID: 10
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 22
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 21
+        - row: 5
+          column: 21
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 22
+        - row: 6
+          column: 22
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 21
+      - monsterID: 5
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 20
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 21
+        - row: 5
+          column: 21
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 22
+        - row: 6
+          column: 22
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 21
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 20
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 6
+        quantity: 1
+        spawnCoordinates:
+        - row: 2
+          column: 20
+      - monsterID: 7
+        quantity: 1
+        spawnCoordinates:
+        - row: 3
+          column: 20
+      - monsterID: 8
+        quantity: 1
+        spawnCoordinates:
+        - row: 5
+          column: 20
+      - monsterID: 9
+        quantity: 1
+        spawnCoordinates:
         - row: 6
           column: 20
   isDebugEnabled: 0

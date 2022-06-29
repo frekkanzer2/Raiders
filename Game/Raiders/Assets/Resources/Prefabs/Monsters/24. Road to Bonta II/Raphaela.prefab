@@ -129,12 +129,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Raphaela
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Long Turtle Teleportation
+    icon: {fileID: 0}
+    description: teleport behind the enemy
+    element: 3
+    damage: 120
+    lifeSteal: 0
+    minRange: 3
+    maxRange: 6
+    distanceType: 1
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 1
+    effectDuration: 0
+    criticalProbability: 25
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Long Turtle Hit
+    icon: {fileID: 0}
+    description: repels of 5 cells
+    element: 3
+    damage: 80
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 1
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 3
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 25
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 580
   pa: 6
-  pm: 3
-  ini: 10
+  pm: 4
+  ini: 50
   res_e: 0
   res_f: 0
   res_a: 0
@@ -142,7 +188,7 @@ MonoBehaviour:
   att_e: 0
   att_f: 0
   att_a: 0
-  att_w: 0
+  att_w: 10
   numberOfSummons: 0
   isEvocation: 0
   actual_hp: 0
@@ -197,7 +243,7 @@ MonoBehaviour:
   immuneCloseCombat: 0
   shushuCounter: 0
   behaviour:
-    spellsOrderToCheckId: 00000000
+    spellsOrderToCheckId: 0000000001000000
     movementAfterFight: 1
     movementWhenCannotAttack: 1
   id: 0

@@ -55,10 +55,10 @@ public class Evocation : Character {
             this.bonusHeal += upgrade.getHealBonus() / 2;
             this.actual_hp = this.hp;
             Tuple<int, int, int, int> dmgBonus = upgrade.getAttackBonus();
-            this.att_e += dmgBonus.Item1 / 3;
-            this.att_f += dmgBonus.Item2 / 3;
-            this.att_a += dmgBonus.Item3 / 3;
-            this.att_w += dmgBonus.Item4 / 3;
+            this.att_e += dmgBonus.Item1 / 2;
+            this.att_f += dmgBonus.Item2 / 2;
+            this.att_a += dmgBonus.Item3 / 2;
+            this.att_w += dmgBonus.Item4 / 2;
             Tuple<int, int, int, int> resBonus = upgrade.getDefenceBonus();
             this.res_e += resBonus.Item1 / 4;
             this.res_f += resBonus.Item2 / 4;
@@ -69,68 +69,68 @@ public class Evocation : Character {
             this.bonusHeal += upgrade.getHealBonus();
             this.actual_hp = this.hp;
             Tuple<int, int, int, int> dmgBonus = upgrade.getAttackBonus();
-            this.att_e += dmgBonus.Item1 / 2;
-            this.att_f += dmgBonus.Item2 / 2;
-            this.att_a += dmgBonus.Item3 / 2;
-            this.att_w += dmgBonus.Item4 / 2;
+            this.att_e += dmgBonus.Item1;
+            this.att_f += dmgBonus.Item2;
+            this.att_a += dmgBonus.Item3;
+            this.att_w += dmgBonus.Item4;
+            Tuple<int, int, int, int> resBonus = upgrade.getDefenceBonus();
+            this.res_e += resBonus.Item1 / 2;
+            this.res_f += resBonus.Item2 / 2;
+            this.res_a += resBonus.Item3 / 2;
+            this.res_w += resBonus.Item4 / 2;
+        }
+        if (connectedSummoner.heroClass == HeroClass.Steamer) {
+            this.actual_shield += upgrade.getShieldBonus() * 50 / 100;
+            Tuple<int, int, int, int> dmgBonus = upgrade.getAttackBonus();
+            this.att_e += dmgBonus.Item1 / 5;
+            this.att_f += dmgBonus.Item2 / 5;
+            this.att_a += dmgBonus.Item3 / 5;
+            this.att_w += dmgBonus.Item4 / 5;
             Tuple<int, int, int, int> resBonus = upgrade.getDefenceBonus();
             this.res_e += resBonus.Item1 / 3;
             this.res_f += resBonus.Item2 / 3;
             this.res_a += resBonus.Item3 / 3;
             this.res_w += resBonus.Item4 / 3;
         }
-        if (connectedSummoner.heroClass == HeroClass.Steamer) {
-            this.actual_shield += upgrade.getShieldBonus() * 50 / 100;
-            Tuple<int, int, int, int> dmgBonus = upgrade.getAttackBonus();
-            this.att_e += dmgBonus.Item1 / 6;
-            this.att_f += dmgBonus.Item2 / 6;
-            this.att_a += dmgBonus.Item3 / 6;
-            this.att_w += dmgBonus.Item4 / 6;
-            Tuple<int, int, int, int> resBonus = upgrade.getDefenceBonus();
-            this.res_e += resBonus.Item1 / 6;
-            this.res_f += resBonus.Item2 / 6;
-            this.res_a += resBonus.Item3 / 6;
-            this.res_w += resBonus.Item4 / 6;
-        }
         int bonusSummons = upgrade.getSummonsBonus();
         if (bonusSummons == 1) {
             this.hp += this.hp * 15 / 100;
-            this.att_e += 40;
-            this.att_f += 40;
-            this.att_a += 40;
-            this.att_w += 40;
-            this.res_e += 10;
-            this.res_f += 10;
-            this.res_a += 10;
-            this.res_w += 10;
-            this.actual_hp = this.hp;
-            this.bonusHeal += bonusHeal * 20 / 100;
-        } else if (bonusSummons == 2) {
-            this.hp += this.hp * 30 / 100;
-            this.att_e += 100;
-            this.att_f += 100;
-            this.att_a += 100;
-            this.att_w += 100;
+            this.att_e += 50;
+            this.att_f += 50;
+            this.att_a += 50;
+            this.att_w += 50;
             this.res_e += 20;
             this.res_f += 20;
             this.res_a += 20;
             this.res_w += 20;
+            this.actual_hp = this.hp;
+            this.bonusHeal += bonusHeal * 30 / 100;
+        } else if (bonusSummons == 2) {
+            this.hp += this.hp * 30 / 100;
+            this.att_e += 150;
+            this.att_f += 150;
+            this.att_a += 150;
+            this.att_w += 150;
+            this.res_e += 40;
+            this.res_f += 40;
+            this.res_a += 40;
+            this.res_w += 40;
             this.pa += 1;
             this.actual_hp = this.hp;
             this.actual_pa = this.pa;
-            this.bonusHeal += bonusHeal * 50 / 100;
+            this.bonusHeal += bonusHeal * 60 / 100;
         }
         if (connectedSummoner.heroClass == HeroClass.Osamodas && bonusSummons > 0) {
             this.hp += ((upgrade.getHpBonus() * 10 / 100) * bonusSummons);
             Tuple<int, int, int, int> dmgBonus = upgrade.getAttackBonus();
-            this.att_e += (20 * bonusSummons);
-            this.att_f += (20 * bonusSummons);
-            this.att_a += (20 * bonusSummons);
-            this.att_w += (20 * bonusSummons);
-            this.att_e += ((dmgBonus.Item1 / 8) * bonusSummons);
-            this.att_f += ((dmgBonus.Item2 / 8) * bonusSummons);
-            this.att_a += ((dmgBonus.Item3 / 8) * bonusSummons);
-            this.att_w += ((dmgBonus.Item4 / 8) * bonusSummons);
+            this.att_e += (40 * bonusSummons);
+            this.att_f += (40 * bonusSummons);
+            this.att_a += (40 * bonusSummons);
+            this.att_w += (40 * bonusSummons);
+            this.att_e += ((dmgBonus.Item1 / 6) * bonusSummons);
+            this.att_f += ((dmgBonus.Item2 / 6) * bonusSummons);
+            this.att_a += ((dmgBonus.Item3 / 6) * bonusSummons);
+            this.att_w += ((dmgBonus.Item4 / 6) * bonusSummons);
         } else if (connectedSummoner.heroClass == HeroClass.Sadida && bonusSummons > 0) {
             this.hp += ((upgrade.getHpBonus() * 30 / 100) * bonusSummons);
             Tuple<int, int, int, int> resBonus = upgrade.getDefenceBonus();
