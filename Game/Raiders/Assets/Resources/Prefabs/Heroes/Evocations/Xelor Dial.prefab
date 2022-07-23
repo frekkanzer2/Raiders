@@ -105,7 +105,7 @@ MonoBehaviour:
   heroClass: 19
   spells: []
   team: 1
-  hp: 340
+  hp: 240
   pa: 0
   pm: 0
   ini: 0
@@ -129,6 +129,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0
@@ -173,6 +174,9 @@ MonoBehaviour:
   id: 0
   isCommunionActive: 0
   isBomb: 0
+  isGuardian: 0
+  isRune: 0
+  RunicPower: 0
   isWakfuTotem: 0
   isTurrect: 0
   isDouble: 0

@@ -133,7 +133,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 68ee109f9adff664798f386dc0bbf594, type: 3}
     description: Inflict Earth damage to each hero up to 2 cells from the target
     element: 0
-    damage: 44
+    damage: 48
     lifeSteal: 0
     minRange: 1
     maxRange: 5
@@ -157,7 +157,7 @@ MonoBehaviour:
     description: The effect of this spell cannot kill the enemy. Inflicts additional
       80% of Fire damage at the end of the turn of the target
     element: 1
-    damage: 25
+    damage: 30
     lifeSteal: 0
     minRange: 3
     maxRange: 5

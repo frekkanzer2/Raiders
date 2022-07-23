@@ -216,7 +216,7 @@ public class Spell {
         else if (spell.name == "Barricade Shot") EXECUTE_BARRICADE_SHOT(caster, targetBlock, spell);
         else if (spell.name == "Sentinel") EXECUTE_SENTINEL(caster, spell);
         else if (spell.name == "Critical Shooting") EXECUTE_CRITICAL_SHOOTING(targetBlock, spell);
-        else if (spell.name == "Contempt" || spell.name == "Exodus" || spell.name == "Feline Spirit") EXECUTE_EXODUS(caster, targetBlock, spell);
+        else if (spell.name == "Contempt" || spell.name == "Exodus" || spell.name == "Feline Spirit" || spell.name == "Pivot") EXECUTE_EXODUS(caster, targetBlock, spell);
         else if (spell.name == "Convulsion") EXECUTE_CONVULSION(caster, targetBlock);
         else if (spell.name == "Therapy") EXECUTE_THERAPY(caster, targetBlock);
         else if (spell.name == "Odyssey") EXECUTE_ODYSSEY(caster);
@@ -240,6 +240,9 @@ public class Spell {
         else if (spell.name == "Rewind") EXECUTE_REWIND(targetBlock, spell);
         else if (spell.name == "Clock") EXECUTE_CLOCK(targetBlock, spell);
         else if (spell.name == "Time Theft") EXECUTE_TIME_THEFT(caster, targetBlock, spell);
+        else if (spell.name == "Boliche") EXECUTE_BOLICHE(caster, targetBlock);
+        else if (spell.name == "Trance") EXECUTE_TRANCE(caster, targetBlock);
+        else if (spell.name == "Stunt") EXECUTE_STUNT(caster, targetBlock, spell);
         else if (spell.name == "Haziness") EXECUTE_HAZINESS(targetBlock, spell);
         else if (spell.name == "Slow Down") EXECUTE_SLOW_DOWN(targetBlock, spell);
         else if (spell.name == "Gear") EXECUTE_GEAR(targetBlock, spell);
@@ -397,6 +400,19 @@ public class Spell {
         else if (spell.name == "Destructive Arrow") EXECUTE_DESTRUCTIVE_ARROW(targetBlock, spell);
         else if (spell.name == "Assailing Arrow") EXECUTE_ASSAILING_ARROW(caster, spell);
         else if (spell.name == "Punitive Arrow") EXECUTE_PUNITIVE_ARROW(caster, spell);
+        else if (spell.name == "Friendly Armor") EXECUTE_FRIENDLY_ARMOR(caster, targetBlock, spell);
+        else if (spell.name == "Truce") EXECUTE_TRUCE(caster, targetBlock, spell);
+        else if (spell.name == "Bubble") EXECUTE_BUBBLE(caster, targetBlock, spell);
+        else if (spell.name == "Natural Attraction") EXECUTE_NATURAL_ATTRACTION(caster, targetBlock);
+        else if (spell.name == "Feca Protector") SUMMONS_AEGIS(caster, targetBlock);
+        else if (spell.name == "Aegis Armor") EXECUTE_AEGIS_ARMOR(caster, spell);
+        else if (spell.name == "Team Word") EXECUTE_TEAM_WORD(caster, targetBlock, spell);
+        else if (spell.name == "Helping Word") EXECUTE_HELPING_WORD(caster, targetBlock, spell);
+        else if (spell.name == "Friendship Word") SUMMONS_CUNEY(caster, targetBlock);
+        else if (spell.name == "Frightening Word") EXECUTE_FRIGHTENING_WORD(caster, targetBlock);
+        else if (spell.name == "Cat Soul") EXECUTE_CAT_SOUL(caster, targetBlock, spell);
+        else if (spell.name == "Cat Assault") EXECUTE_CAT_ASSAULT(caster, targetBlock, spell);
+        else if (spell.name == "Summoning Claw") SUMMONS_CLAW(caster, targetBlock);
 
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -508,6 +524,17 @@ public class Spell {
             if (target.Equals(s.link)) {
                 agitationEvent.useIstantanely();
             }
+        }
+    }
+
+    public static void EXECUTE_TRUCE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        EXECUTE_TRANSPOSITION(caster, targetBlock);
+        if (target != null) {
+            TruceEvent te = new TruceEvent("Truce", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon);
+            target.addEvent(te);
         }
     }
 
@@ -1188,8 +1215,20 @@ public class Spell {
         EXECUTE_JUMP(caster, targetBlock);
         Coordinate c = targetBlock.coordinate;
         List<Character> adj_heroes = ut_getAdjacentHeroes(c);
-        foreach(Character adj in adj_heroes)
+        foreach (Character adj in adj_heroes)
             adj.inflictDamage(calculateDamage(caster, adj, s));
+    }
+
+    public static void EXECUTE_STUNT(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        EXECUTE_JUMP(caster, targetBlock);
+        Coordinate c = targetBlock.coordinate;
+        List<Character> adj_heroes = ut_getAdjacentHeroes(c);
+        foreach (Character adj in adj_heroes)
+            adj.inflictDamage(calculateDamage(caster, adj, s));
+        StuntEvent powerEvent = new StuntEvent("Stunt", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        caster.addEvent(powerEvent);
+        powerEvent.useIstantanely();
     }
 
     public static void EXECUTE_VIOLENCE(Character caster, Block targetBlock, Spell s)
@@ -1283,6 +1322,10 @@ public class Spell {
         ut_comesCloser(caster, targetBlock, 2);
         ut_repels(caster, targetBlock, 4);
     }
+    public static void EXECUTE_BOLICHE(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_repels(caster, targetBlock, 5);
+    }
 
     public static void EXECUTE_APOSTASY(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
@@ -1344,6 +1387,24 @@ public class Spell {
                 c.addEvent(new ProtectiveGlyphEvent("Protective Glyph", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, 1, caster, s));
     }
 
+    public static void EXECUTE_AEGIS_ARMOR(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character c in ut_getAllies(caster))
+            if (ut_isNearOf(c, caster, 3)) {
+                AegisArmorEvent pg = new AegisArmorEvent("Aegis Armor", c, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+                c.addEvent(pg);
+                pg.useIstantanely();
+            }
+    }
+
+    public static void EXECUTE_FRIENDLY_ARMOR(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        FriendlyArmorEvent pg = new FriendlyArmorEvent("Friendly Armor", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        target.addEvent(pg);
+        pg.useIstantanely();
+    }
+
     public static void EXECUTE_PERCEPTION_GLYPH(Character caster, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         foreach (Character c in ut_getEnemies(caster))
@@ -1393,6 +1454,14 @@ public class Spell {
         target.addEvent(new FortificationEvent("Fortification", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, caster));
     }
 
+
+    public static void EXECUTE_HELPING_WORD(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new HelpingWordEvent("Helping Word", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, caster));
+    }
+
     public static void EXECUTE_BONTAO(Character caster, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         foreach (Character c in ut_getAllies(caster)) {
@@ -1435,6 +1504,11 @@ public class Spell {
             new StrategaEvent("Stratega", targetBlock.linkedObject.GetComponent<Character>(), s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon)
         );
     }
+    public static void EXECUTE_FRIGHTENING_WORD(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        ut_repels(caster, targetBlock, 1);
+    }
 
     public static void EXECUTE_OVERCHARGE(Character caster, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
@@ -1466,6 +1540,17 @@ public class Spell {
             if (!c.isEnemyOf(caster))
                 c.receiveHeal(30 + caster.bonusHeal);
     }
+    public static void EXECUTE_TRANCE(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        int toDamage = caster.getTotalHP() * 80 / 100;
+        caster.inflictDamage(toDamage);
+        if (caster.isDead) return;
+        List<Character> heroes = ut_getAdjacentHeroes(targetBlock.coordinate);
+        heroes.Add(caster);
+        foreach (Character c in heroes)
+            if (!c.isEnemyOf(caster))
+                c.receiveShield(toDamage / 2 + caster.bonusGainShield);
+    }
 
     public static void EXECUTE_STRIKING_WORD(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
@@ -1473,6 +1558,14 @@ public class Spell {
         foreach (Character ally in ut_getAllies(caster))
             if (ut_isNearOf(ally, targetBlock.linkedObject.GetComponent<Character>(), 3))
                 ally.addEvent(new StrikingWordEvent("Striking Word", ally, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, caster));
+    }
+
+    public static void EXECUTE_TEAM_WORD(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        foreach (Character ally in ut_getAllies(caster))
+            if (ut_isNearOf(ally, caster, 2))
+                ally.receiveHeal(20 + caster.bonusHeal);
     }
 
     public static void EXECUTE_RECOVERY_WORD(Block targetBlock, Spell s) {
@@ -1548,9 +1641,49 @@ public class Spell {
         target.addEvent(new ParalysingWordEvent("Paralysing Word", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
 
+    public static void EXECUTE_CAT_ASSAULT(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (caster.summons.Count > 0) {
+            Evocation cat = caster.summons[0];
+            List<Block> frees = targetBlock.getFreeAdjacentBlocks();
+            if (frees.Count == 0) return;
+            UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+            int indexResult = UnityEngine.Random.Range(0, frees.Count);
+            Block toTeleport = frees[indexResult];
+            EXECUTE_JUMP(cat, toTeleport);
+        }
+    }
+
+    public static void EXECUTE_CAT_SOUL(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (caster.summons.Count > 0) {
+            Evocation cat = caster.summons[0];
+            if (Monster.getDistance(cat.connectedCell.GetComponent<Block>().coordinate, targetBlock.coordinate) == 1)
+                cat.receiveHeal(22 + caster.bonusHeal);
+        }
+    }
+
     public static void SUMMONS_BWORK_MAGE(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         ut_execute_summon(caster, targetBlock, "Bwork_Mage", 3);
+    }
+    public static void SUMMONS_CUNEY(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_execute_summon(caster, targetBlock, "Protective Coney", 2);
+    }
+
+    public static void SUMMONS_AEGIS(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_execute_summon(caster, targetBlock, "Aegis", 1);
+    }
+
+    public static void SUMMONS_CLAW(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_execute_summon(caster, targetBlock, "Chasquatch", 2);
     }
 
     public static void SUMMONS_CRAQUELEUR(Character caster, Block targetBlock) {
@@ -1740,6 +1873,11 @@ public class Spell {
     public static void SUMMONS_DRAGONNET(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         ut_execute_summon(caster, targetBlock, "Dragonnet", 2);
+    }
+    
+    public static void EXECUTE_NATURAL_ATTRACTION(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_attracts(caster, targetBlock, 2);
     }
 
     public static void SUMMONS_PANDAWASTA(Character caster, Block targetBlock) {
@@ -2393,6 +2531,15 @@ public class Spell {
         foreach (Character c in ut_getAllies(caster))
             if (ut_isNearOf(c, target, 2))
                 c.receiveHeal(20 + caster.bonusHeal);
+    }
+
+    public static void EXECUTE_BUBBLE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        foreach (Character c in ut_getAllies(caster))
+            if (ut_isNearOf(c, target, 2))
+                c.receiveShield(Spell.calculateDamage(caster, c, s) / 2);
     }
 
     public static void EXECUTE_EVASION(Character caster, Spell s) {
@@ -3334,10 +3481,19 @@ public class Spell {
     public static int BONUS_SHUSHU_CUT = 20;
     public static int BONUS_BLOODY_PUNISHMENT = 72;
     public static int BONUS_JUDGEMENT_ARROW = 13;
+    public static int BONUS_CAT_RAGE = 26;
 
     public static int EVENT_BONUS_BASE_DAMAGE(Character caster, Character targetch, Spell s) {
         if (caster.name == "Tristepin" && s.name == "Concentration" && (targetch is Evocation || targetch is MonsterEvocation) && caster.getEventSystem().getEvents("Yop God Status").Count > 0) {
             return BONUS_CONCENTRATION;
+        }
+        if (caster.name == "Mary" && s.name == "Cat Rage") {
+            if (caster.summons.Count > 0) {
+                Evocation cat = caster.summons[0];
+                if (Monster.getDistance(cat.connectedCell.GetComponent<Block>().coordinate, targetch.connectedCell.GetComponent<Block>().coordinate) == 1)
+                    return BONUS_CONCENTRATION;
+            }
+            return 0;
         }
         if (caster.name == "Tristepin" && s.name == "Shushu Cut") {
             int toret = BONUS_SHUSHU_CUT * caster.shushuCounter;

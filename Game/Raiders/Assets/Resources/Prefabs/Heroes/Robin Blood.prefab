@@ -184,7 +184,7 @@ MonoBehaviour:
     minRange: 3
     maxRange: 9
     distanceType: 0
-    overObstacles: 1
+    overObstacles: 0
     hpCost: 0
     paCost: 3
     pmCost: 0

@@ -1353,6 +1353,10 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: b20229ae4b7f94849b4e4cc99e5f2195, type: 3}
   - {fileID: 557098361630938699, guid: f823af296e05d3c48b29183138652acb, type: 3}
   - {fileID: 557098361630938699, guid: d7404f058c54231489bf0bbbc2088d06, type: 3}
+  - {fileID: 557098361630938699, guid: fa5d068d4774424419bbe31c6bb5129e, type: 3}
+  - {fileID: 557098361630938699, guid: 3c91d955686b9f74f89a9db9f9384bb1, type: 3}
+  - {fileID: 557098361630938699, guid: 2e5af21b5dcf6f5429f23a3c5c96b28e, type: 3}
+  - {fileID: 557098361630938699, guid: eb6e23ebf1775394ab1cdfc726b8c7c7, type: 3}
   heroesPrefabs_team2:
   - {fileID: 557098361630938699, guid: 3968d5a638ef5994cad63e85612468ac, type: 3}
   - {fileID: 557098361630938699, guid: 2ccb042d5c633dc48854a46bd4a9972e, type: 3}
@@ -1424,6 +1428,10 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: b20229ae4b7f94849b4e4cc99e5f2195, type: 3}
   - {fileID: 557098361630938699, guid: f823af296e05d3c48b29183138652acb, type: 3}
   - {fileID: 557098361630938699, guid: d7404f058c54231489bf0bbbc2088d06, type: 3}
+  - {fileID: 557098361630938699, guid: fa5d068d4774424419bbe31c6bb5129e, type: 3}
+  - {fileID: 557098361630938699, guid: 3c91d955686b9f74f89a9db9f9384bb1, type: 3}
+  - {fileID: 557098361630938699, guid: 2e5af21b5dcf6f5429f23a3c5c96b28e, type: 3}
+  - {fileID: 557098361630938699, guid: eb6e23ebf1775394ab1cdfc726b8c7c7, type: 3}
 --- !u!114 &93772482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1865,6 +1873,34 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 61ca9d8d9dc952e46a7eab7dc445e229, type: 3}
     characterMidSprite: {fileID: 21300000, guid: f835483ab325e1c428a2046154dcf168, type: 3}
     isEvocation: 0
+  - characterName: Dorian
+    characterFullSprite: {fileID: 21300000, guid: 1b6f8bd0b425dbe4cb4b0ca05110e331, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 5534d518586899b47bf3cc11b61fd9b7, type: 3}
+    isEvocation: 0
+  - characterName: Aegis
+    characterFullSprite: {fileID: 21300000, guid: 4cdd2f8a54ec66b4395308f280525041, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 4cdd2f8a54ec66b4395308f280525041, type: 3}
+    isEvocation: 1
+  - characterName: Sparki
+    characterFullSprite: {fileID: 21300000, guid: 38a1a47ba2c1c454c8f1fba091fcd014, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 8aad76fc6cce4c24fb7dc5745f651cfc, type: 3}
+    isEvocation: 0
+  - characterName: Kleera
+    characterFullSprite: {fileID: 21300000, guid: fb57d086baddbbe4b874a6f14fc40673, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 110fec88e6f61c44098800e329097747, type: 3}
+    isEvocation: 0
+  - characterName: Protective Coney
+    characterFullSprite: {fileID: 21300000, guid: 4f6066a8299cc4245b1ba33dc4180329, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 4f6066a8299cc4245b1ba33dc4180329, type: 3}
+    isEvocation: 1
+  - characterName: Mary
+    characterFullSprite: {fileID: 21300000, guid: 7f61d83b8fb939e4499652d72d754962, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: d3a3141fc260829489b9b687507af38e, type: 3}
+    isEvocation: 0
+  - characterName: Chasquatch
+    characterFullSprite: {fileID: 21300000, guid: 69d10d45b52d70f41b0b4c7ed0c4359e, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 69d10d45b52d70f41b0b4c7ed0c4359e, type: 3}
+    isEvocation: 1
 --- !u!114 &93772484
 MonoBehaviour:
   m_ObjectHideFlags: 0
