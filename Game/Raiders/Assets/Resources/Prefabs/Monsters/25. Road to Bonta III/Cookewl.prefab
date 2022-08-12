@@ -129,19 +129,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Cookewl
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Chickahit
+    icon: {fileID: 0}
+    description: 
+    element: 0
+    damage: 50
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 2
+    pmCost: 0
+    maxTimesInTurn: 3
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 20
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Swingewl
+    icon: {fileID: 0}
+    description: Repels of 3 cells
+    element: 2
+    damage: 80
+    lifeSteal: 0
+    minRange: 2
+    maxRange: 6
+    distanceType: 1
+    overObstacles: 1
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 20
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
-  hp: 780
+  hp: 680
   pa: 4
-  pm: 4
+  pm: 7
   ini: 70
   res_e: 34
   res_f: -12
   res_a: 14
   res_w: -26
-  att_e: 0
+  att_e: 14
   att_f: 0
-  att_a: 0
+  att_a: 6
   att_w: 0
   numberOfSummons: 0
   isEvocation: 0
@@ -197,7 +243,7 @@ MonoBehaviour:
   immuneCloseCombat: 0
   shushuCounter: 0
   behaviour:
-    spellsOrderToCheckId: 00000000
+    spellsOrderToCheckId: 0000000001000000
     movementAfterFight: 1
     movementWhenCannotAttack: 1
   id: 0

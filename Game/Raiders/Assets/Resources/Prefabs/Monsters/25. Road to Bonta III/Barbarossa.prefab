@@ -129,11 +129,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Barbarossa
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Double cut
+    icon: {fileID: 0}
+    description: hits every enemy adjacent to the caster
+    element: 3
+    damage: 70
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 40
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 970
   pa: 8
-  pm: 5
+  pm: 4
   ini: 160
   res_e: -22
   res_f: -18
@@ -142,7 +165,7 @@ MonoBehaviour:
   att_e: 0
   att_f: 0
   att_a: 0
-  att_w: 0
+  att_w: 14
   numberOfSummons: 0
   isEvocation: 0
   actual_hp: 0

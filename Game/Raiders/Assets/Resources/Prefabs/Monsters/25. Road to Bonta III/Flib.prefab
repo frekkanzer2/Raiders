@@ -129,7 +129,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Flib
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Double shot
+    icon: {fileID: 0}
+    description: 
+    element: 1
+    damage: 70
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 8
+    distanceType: 1
+    overObstacles: 1
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 40
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 650
   pa: 8
@@ -140,7 +163,7 @@ MonoBehaviour:
   res_a: -30
   res_w: 9
   att_e: 0
-  att_f: 0
+  att_f: 10
   att_a: 0
   att_w: 0
   numberOfSummons: 0
@@ -198,7 +221,7 @@ MonoBehaviour:
   shushuCounter: 0
   behaviour:
     spellsOrderToCheckId: 00000000
-    movementAfterFight: 1
+    movementAfterFight: 2
     movementWhenCannotAttack: 1
   id: 0
   isCommunionActive: 0

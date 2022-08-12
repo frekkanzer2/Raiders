@@ -116,7 +116,7 @@ MonoBehaviour:
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 2
+    paCost: 3
     pmCost: 0
     maxTimesInTurn: 1
     executeAfterTurns: 4
@@ -155,7 +155,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 68cbf422449f1a34087c3fe5034f1d0d, type: 3}
     description: Heals of 22 HP summoned Chasquatch if it's adjacent to the target
     element: 1
-    damage: 27
+    damage: 30
     lifeSteal: 0
     minRange: 1
     maxRange: 6
@@ -164,7 +164,7 @@ MonoBehaviour:
     hpCost: 0
     paCost: 3
     pmCost: 0
-    maxTimesInTurn: 3
+    maxTimesInTurn: 1
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 5
@@ -177,8 +177,9 @@ MonoBehaviour:
     name: Cat Rage
     icon: {fileID: 21300000, guid: 17b531fc27598e245ac77154ec083c5f, type: 3}
     description: Increases the spell's damage of 26 if summoned Chasquatch is adjacent
+      to the target
     element: 1
-    damage: 23
+    damage: 26
     lifeSteal: 0
     minRange: 1
     maxRange: 3
@@ -206,9 +207,9 @@ MonoBehaviour:
   res_a: -13
   res_w: 10
   att_e: 0
-  att_f: 6
+  att_f: 10
   att_a: 0
-  att_w: 10
+  att_w: 17
   numberOfSummons: 1
   isEvocation: 0
   actual_hp: 0

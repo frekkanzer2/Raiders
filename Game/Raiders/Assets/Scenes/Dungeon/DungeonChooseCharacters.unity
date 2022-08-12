@@ -12353,6 +12353,152 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 6
           column: 20
+  - name: Road to Bonta III
+    bossIcon: {fileID: 21300000, guid: a1f35b9f7d99dc94190a77185d5e8721, type: 3}
+    monsters:
+    - name: Cookewl
+      prefab: {fileID: 557098361630938699, guid: d5e43110c6de87344999bd8c0f6fa5f7, type: 3}
+      sprite: {fileID: 21300000, guid: 606c7112791f5554283fe7bcb9939e54, type: 3}
+    - name: Barbarossa
+      prefab: {fileID: 557098361630938699, guid: 966d2cd9a440f554ba16c5a08cb9585b, type: 3}
+      sprite: {fileID: 21300000, guid: be253e4a40bd17e45b529c5d7b5712e6, type: 3}
+    - name: Flib
+      prefab: {fileID: 557098361630938699, guid: 77e61eee14a129141907acc42888f4ae, type: 3}
+      sprite: {fileID: 21300000, guid: 403c99001fc74db48ae0a228e79cd251, type: 3}
+    - name: Sparo
+      prefab: {fileID: 557098361630938699, guid: b89282f07b4a84d44beeba1a8e37c73e, type: 3}
+      sprite: {fileID: 21300000, guid: 7b0f28fb911456343b494dda7e9085bb, type: 3}
+    - name: Gourlo
+      prefab: {fileID: 557098361630938699, guid: 470652cf98678884488d30d7a2cbc447, type: 3}
+      sprite: {fileID: 21300000, guid: 9fd8e4540ce502345ab0e240755a4255, type: 3}
+    - name: Bwork
+      prefab: {fileID: 557098361630938699, guid: 342076a7e3997bd4ab00079e77acef86, type: 3}
+      sprite: {fileID: 21300000, guid: 7a627bacb80c8db4bba7269026161300, type: 3}
+    - name: Drunken Boomba
+      prefab: {fileID: 557098361630938699, guid: 09de9301c1de41b40bee84800840e343, type: 3}
+      sprite: {fileID: 21300000, guid: 9d8cd80dbd3fe89489d8a3430fd706d4, type: 3}
+    - name: Heavy Porkass
+      prefab: {fileID: 557098361630938699, guid: 19f5a9ca9e71c454abd5b7a6969661fc, type: 3}
+      sprite: {fileID: 21300000, guid: 4063bfaa99573674787d60aa81ae0e84, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 6
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 22
+        - row: 6
+          column: 22
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 24
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 7
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 24
+        - row: 6
+          column: 24
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 22
+        - row: 6
+          column: 22
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 23
+        - row: 5
+          column: 23
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 7
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 25
+        - row: 5
+          column: 25
+      - monsterID: 0
+        quantity: 3
+        spawnCoordinates:
+        - row: 2
+          column: 24
+        - row: 4
+          column: 22
+        - row: 6
+          column: 24
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 20
+      - monsterID: 6
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 25
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 24
+        - row: 6
+          column: 24
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 23
+        - row: 5
+          column: 23
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 25
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 22
+      - monsterID: 5
+        quantity: 4
+        spawnCoordinates:
+        - row: 2
+          column: 20
+        - row: 2
+          column: 24
+        - row: 6
+          column: 20
+        - row: 6
+          column: 24
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 4
+          column: 19
+        - row: 4
+          column: 25
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 21
+        - row: 7
+          column: 21
   isDebugEnabled: 0
 --- !u!114 &1295197768
 MonoBehaviour:

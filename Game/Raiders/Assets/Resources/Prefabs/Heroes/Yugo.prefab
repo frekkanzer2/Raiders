@@ -205,14 +205,14 @@ MonoBehaviour:
   pa: 7
   pm: 4
   ini: 85
-  res_e: -8
-  res_f: 8
-  res_a: -8
-  res_w: 8
+  res_e: -10
+  res_f: 10
+  res_a: -10
+  res_w: 0
   att_e: 0
-  att_f: 4
+  att_f: 10
   att_a: 0
-  att_w: 4
+  att_w: 10
   numberOfSummons: 50
   isEvocation: 0
   actual_hp: 0

@@ -129,7 +129,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Sparo
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Sparoboom
+    icon: {fileID: 0}
+    description: The caster deads, but it inflicts damage on every enemy in 2 cells
+    element: 1
+    damage: 500
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 0
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 670
   pa: 8

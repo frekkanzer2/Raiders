@@ -129,18 +129,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Gourlo
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Bomb Throw
+    icon: {fileID: 21300000, guid: cba65e70b7321b145b9d938e3efc57ba, type: 3}
+    description: Area of 2 cells
+    element: 1
+    damage: 140
+    lifeSteal: 0
+    minRange: 3
+    maxRange: 7
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 10
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Kannidestruction
+    icon: {fileID: 21300000, guid: cba65e70b7321b145b9d938e3efc57ba, type: 3}
+    description: damage in 2 cells from the caster
+    element: 0
+    damage: 250
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 2
+    distanceType: 0
+    overObstacles: 1
+    hpCost: 0
+    paCost: 6
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 30
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 2700
   pa: 10
-  pm: 5
+  pm: 3
   ini: 200
-  res_e: 0
-  res_f: 0
-  res_a: 0
-  res_w: 0
-  att_e: 0
-  att_f: 0
+  res_e: 12
+  res_f: 10
+  res_a: -32
+  res_w: 42
+  att_e: 10
+  att_f: 24
   att_a: 0
   att_w: 0
   numberOfSummons: 0
@@ -197,7 +243,7 @@ MonoBehaviour:
   immuneCloseCombat: 0
   shushuCounter: 0
   behaviour:
-    spellsOrderToCheckId: 00000000
+    spellsOrderToCheckId: 0100000000000000
     movementAfterFight: 1
     movementWhenCannotAttack: 1
   id: 0

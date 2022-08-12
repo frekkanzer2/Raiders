@@ -440,7 +440,7 @@ public class Spell {
         else if (spell.name == "Insect Cry") EXECUTE_INSECT_CRY(caster, targetBlock, spell);
         else if (spell.name == "Hideout") EXECUTE_HIDEOUT(caster, spell);
         else if (spell.name == "Hard Bone") EXECUTE_HARD_BONE(caster, spell);
-        else if (spell.name == "Ax of the Valkyrie" || spell.name == "Ax of Bworkette") EXECUTE_AX_OF_THE_VALKYRIE(caster, targetBlock, spell);
+        else if (spell.name == "Ax of the Valkyrie" || spell.name == "Ax of Bworkette" || spell.name == "Double cut") EXECUTE_AX_OF_THE_VALKYRIE(caster, targetBlock, spell);
         else if (spell.name == "Destruction Sword") EXECUTE_DESTRUCTION_SWORD(caster, targetBlock, spell);
         else if (spell.name == "Fate of light") EXECUTE_FATE_OF_LIGHT(caster, spell);
         else if (spell.name == "Lights out") EXECUTE_LIGHTS_OUT(caster, spell);
@@ -479,6 +479,8 @@ public class Spell {
         else if (spell.name == "Long Turtle Hit") EXECUTE_LONG_TURTLE_HIT(caster, targetBlock);
         else if (spell.name == "Long Turtle Teleportation") EXECUTE_LONG_TURTLE_TELEPORTATION(caster, targetBlock, spell);
         else if (spell.name == "Bomb Throw") EXECUTE_BOMB_THROW(caster, targetBlock, spell);
+        else if (spell.name == "Sparoboom") EXECUTE_SPAROBOOM(caster, targetBlock, spell);
+        else if (spell.name == "Swingewl") EXECUTE_SWINGEWL(caster, targetBlock);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -3144,6 +3146,11 @@ public class Spell {
         ut_repels(caster, targetBlock, 1);
     }
 
+    public static void EXECUTE_SWINGEWL(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_repels(caster, targetBlock, 3);
+    }
+
     public static void EXECUTE_KANKENDUST(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
@@ -3170,6 +3177,16 @@ public class Spell {
         }
     }
 
+    public static void EXECUTE_SPAROBOOM(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        foreach (Character enemy in ut_getEnemies(caster))
+            if (ut_isNearOf(caster, enemy, 2)) {
+                enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
+            }
+        caster.inflictDamage(caster.actual_hp);
+    }
 
     public static void EXECUTE_DESTRUCTION_SWORD(Character caster, Block targetBlock, Spell s) {
         ut_damageInLine(caster, targetBlock, s, 2);
