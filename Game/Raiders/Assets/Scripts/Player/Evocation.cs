@@ -202,12 +202,12 @@ public class Evocation : Character {
         return this.name + id;
     }
 
-    public override void inflictDamage(int damage, bool mustSkip = false) {
+    public override void inflictDamage(int damage, bool mustSkip = false, bool shieldSkip = false) {
         if (isCommunionActive) {
             damage /= 2;
-            connectedSummoner.inflictDamage(damage, mustSkip);
+            connectedSummoner.inflictDamage(damage, mustSkip, shieldSkip);
         }
-        base.inflictDamage(damage, mustSkip);
+        base.inflictDamage(damage, mustSkip, shieldSkip);
     }
 
     public void incrementRunicPower()
@@ -249,7 +249,7 @@ public class Evocation : Character {
         if (this.isDouble) {
             doubleCounter++;
             if (doubleCounter == 3)
-                this.inflictDamage(this.actual_hp);
+                this.inflictDamage(this.actual_hp + this.actual_shield);
         }
         if (this.isRune)
         {

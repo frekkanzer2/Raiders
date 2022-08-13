@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2347270675974649033}
   - component: {fileID: 5404421346664201683}
   m_Layer: 0
-  m_Name: Tempered Darknide
+  m_Name: White Rat
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,6 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -47,6 +48,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -76,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: c90c73d883a13f44d9313228bd71217e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: effe48a1fc114b64bbae5eb1bf801a46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,8 +105,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.47, y: 0.17}
+    oldSize: {x: 3.3333333, y: 3.3333333}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -125,19 +127,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ced9ac50935ee468f328a59e67782b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Tempered Darknide
+  name: White Rat
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: White Rat Overhit
+    icon: {fileID: 21300000, guid: 6d64b705cc465e640bf092b1f82d5312, type: 3}
+    description: -40% res to the caster
+    element: 0
+    damage: 300
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 5
+    pmCost: 0
+    maxTimesInTurn: 10
+    executeAfterTurns: 0
+    effectDuration: 3
+    criticalProbability: 5
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
-  hp: 2500
-  pa: 8
-  pm: 5
-  ini: 60
-  res_e: 43
-  res_f: -52
-  res_a: 23
-  res_w: 41
-  att_e: 0
+  hp: 4400
+  pa: 10
+  pm: 6
+  ini: 20
+  res_e: 50
+  res_f: 50
+  res_a: 50
+  res_w: 50
+  att_e: 10
   att_f: 0
   att_a: 0
   att_w: 0
@@ -151,7 +176,9 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 1
+  rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0
@@ -183,14 +210,17 @@ MonoBehaviour:
   monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
+  hasXelorBonus: 0
   accumulationCounter: 0
+  smithereensCounter: 0
   criticShooting: 0
   connectedSacrifice: {fileID: 0}
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+  shushuCounter: 0
   behaviour:
-    spellsOrderToCheckId: 
+    spellsOrderToCheckId: 00000000
     movementAfterFight: 1
     movementWhenCannotAttack: 1
   id: 0

@@ -447,7 +447,7 @@ public class Spell {
         else if (spell.name == "Psycho Analysis") EXECUTE_PSYCHO_ANALYSIS(caster, spell);
         else if (spell.name == "Birth") EXECUTE_BIRTH(caster, targetBlock, spell);
         else if (spell.name == "Poisoned Fog") EXECUTE_POISONED_FOG(caster, targetBlock, spell);
-        else if (spell.name == "Holy Chafer Sword") EXECUTE_HOLY_CHAFER_SWORD(caster, targetBlock, spell);
+        else if (spell.name == "Holy Chafer Sword" || spell.name == "Orat hit") EXECUTE_HOLY_CHAFER_SWORD(caster, targetBlock, spell);
         else if (spell.name == "Chafer Fireshot") EXECUTE_CHAFER_FIRESHOT(caster, targetBlock, spell);
         else if (spell.name == "Chafer Windshot") EXECUTE_CHAFER_WINDSHOT(caster, targetBlock);
         else if (spell.name == "Chafer Lance Explosion") EXECUTE_CHAFER_LANCE_EXPLOSION(caster, spell);
@@ -481,6 +481,8 @@ public class Spell {
         else if (spell.name == "Bomb Throw") EXECUTE_BOMB_THROW(caster, targetBlock, spell);
         else if (spell.name == "Sparoboom") EXECUTE_SPAROBOOM(caster, targetBlock, spell);
         else if (spell.name == "Swingewl") EXECUTE_SWINGEWL(caster, targetBlock);
+        else if (spell.name == "White Rat Overhit") EXECUTE_RAT_ATTACK(caster, spell, 1);
+        else if (spell.name == "Black Rat Overhit") EXECUTE_RAT_ATTACK(caster, spell, 2);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
     }
@@ -1545,7 +1547,7 @@ public class Spell {
     public static void EXECUTE_TRANCE(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         int toDamage = caster.getTotalHP() * 80 / 100;
-        caster.inflictDamage(toDamage);
+        caster.inflictDamage(toDamage, false, true);
         if (caster.isDead) return;
         List<Character> heroes = ut_getAdjacentHeroes(targetBlock.coordinate);
         heroes.Add(caster);
@@ -1628,12 +1630,12 @@ public class Spell {
     {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         int damage = calculateDamage(caster, caster, s);
-        caster.inflictDamage(damage * 30 / 100);
+        caster.inflictDamage(damage * 30 / 100, false, true);
     }
     public static void EXECUTE_BLOODY_PUNISHMENT(Character caster, Spell s)
     {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
-        caster.inflictDamage(calculateDamage(caster, caster, s));
+        caster.inflictDamage(calculateDamage(caster, caster, s), false, true);
     }
 
     public static void EXECUTE_PARALYSING_WORD(Block targetBlock, Spell s) {
@@ -2173,7 +2175,7 @@ public class Spell {
             if (!enemy.EqualsNames(target) && ut_isNearOf(caster, enemy, 2)) {
                 enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
             }
-        caster.inflictDamage(caster.actual_hp);
+        caster.inflictDamage(caster.actual_hp + caster.actual_shield);
     }
     public static void EXECUTE_DOLL_SCREAM(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
@@ -2277,7 +2279,7 @@ public class Spell {
             if (evoTarget.isBomb && evoTarget.connectedSummoner.team == caster.team) {
                 // the target is a bomb - every rogue ally can explode an ally bomb
                 SUBEXECUTE_EXPLOSION(evoTarget, true);
-                evoTarget.inflictDamage(evoTarget.actual_hp);
+                evoTarget.inflictDamage(evoTarget.actual_hp + evoTarget.actual_shield);
             }
         } else if (target.Equals(caster)) {
             // get all bombs from the caster and execute explosion
@@ -2287,7 +2289,7 @@ public class Spell {
                 temp_summons.Add(evoTarget);
             }
             foreach (Evocation evoTarget in temp_summons) {
-                evoTarget.inflictDamage(evoTarget.actual_hp);
+                evoTarget.inflictDamage(evoTarget.actual_hp + evoTarget.actual_shield);
             }
         }
     }
@@ -2773,7 +2775,7 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
-        if (target is Evocation || target is MonsterEvocation) target.inflictDamage(target.actual_hp);
+        if (target is Evocation || target is MonsterEvocation) target.inflictDamage(target.actual_hp + target.actual_shield);
     }
 
     public static void EXECUTE_AUDACIOUS(Character caster, Block targetBlock, Spell s) {
@@ -2827,6 +2829,20 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         foreach (Character c in ut_getAllies(caster))
             c.receiveHeal(s.damage);
+    }
+
+    public static void EXECUTE_RAT_ATTACK(Character caster, Spell s, int type) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        if (type == 1) { // white
+            WhiteRatOverhitEvent wro = new WhiteRatOverhitEvent("White Rat Overhit", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+            caster.addEvent(wro);
+            wro.useIstantanely();
+        }
+        if (type == 2) { // black
+            BlackRatOverhitEvent wro = new BlackRatOverhitEvent("Black Rat Overhit", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+            caster.addEvent(wro);
+            wro.useIstantanely();
+        }
     }
 
     public static void EXECUTE_KANNILANCE(Character caster, Block targetBlock, Spell s) {
@@ -3185,7 +3201,7 @@ public class Spell {
             if (ut_isNearOf(caster, enemy, 2)) {
                 enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
             }
-        caster.inflictDamage(caster.actual_hp);
+        caster.inflictDamage(caster.actual_hp + caster.actual_shield);
     }
 
     public static void EXECUTE_DESTRUCTION_SWORD(Character caster, Block targetBlock, Spell s) {
@@ -3376,7 +3392,7 @@ public class Spell {
             temp_summons.Add(evoTarget);
         }
         foreach (MonsterEvocation evoTarget in temp_summons) {
-            evoTarget.inflictDamage(evoTarget.actual_hp);
+            evoTarget.inflictDamage(evoTarget.actual_hp + evoTarget.actual_shield);
         }
     }
 

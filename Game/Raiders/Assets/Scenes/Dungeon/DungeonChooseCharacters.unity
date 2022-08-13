@@ -12499,6 +12499,159 @@ MonoBehaviour:
           column: 21
         - row: 7
           column: 21
+  - name: Bonta Rat Dungeon
+    bossIcon: {fileID: 21300000, guid: 709fc4e5054b29140bee21b01c4b67f0, type: 3}
+    monsters:
+    - name: Arat
+      prefab: {fileID: 557098361630938699, guid: a55f5c38b41f2c542baf90d4c530dd79, type: 3}
+      sprite: {fileID: 21300000, guid: 230fe11588817a245a61dd0c83e3d971, type: 3}
+    - name: Brat
+      prefab: {fileID: 557098361630938699, guid: 761740b2a64c915439e0a75931b764a1, type: 3}
+      sprite: {fileID: 21300000, guid: 602e886068bb85a42af3efef80af292a, type: 3}
+    - name: Orat Warrior
+      prefab: {fileID: 557098361630938699, guid: 8e134f2f5f900de48bc9c9b0b127a4f1, type: 3}
+      sprite: {fileID: 21300000, guid: dc4916edcbeefd04d8605d5cdcc5efda, type: 3}
+    - name: Raeman
+      prefab: {fileID: 557098361630938699, guid: 0be54cdc59273b6488a62d41b0826eb2, type: 3}
+      sprite: {fileID: 21300000, guid: 59d2af5564307c14f9a1994964c723b0, type: 3}
+    - name: Prat
+      prefab: {fileID: 557098361630938699, guid: 055b1d0588d329c44b40ba6dc6108629, type: 3}
+      sprite: {fileID: 21300000, guid: e461b3e3ba031a14bb37538690ff8372, type: 3}
+    - name: Black Rat
+      prefab: {fileID: 557098361630938699, guid: efdaeff657a3d7c4ca7eee8c583ec75e, type: 3}
+      sprite: {fileID: 21300000, guid: 2bb9ac3a8623ba44d8d88454b64f0c44, type: 3}
+    - name: White Rat
+      prefab: {fileID: 557098361630938699, guid: 423a4dc46e7fcc24fad03c0bb795d74d, type: 3}
+      sprite: {fileID: 21300000, guid: effe48a1fc114b64bbae5eb1bf801a46, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 14
+          column: 8
+        - row: 15
+          column: 11
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 16
+          column: 8
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 16
+          column: 11
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 4
+        spawnCoordinates:
+        - row: 15
+          column: 6
+        - row: 14
+          column: 8
+        - row: 14
+          column: 10
+        - row: 15
+          column: 12
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 11
+          column: 2
+        - row: 12
+          column: 10
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 15
+          column: 9
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 2
+        - row: 7
+          column: 13
+      - monsterID: 1
+        quantity: 3
+        spawnCoordinates:
+        - row: 3
+          column: 10
+        - row: 5
+          column: 7
+        - row: 4
+          column: 3
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 0
+          column: 4
+        - row: 0
+          column: 11
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 8
+          column: 6
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 4
+          column: 9
+        - row: 12
+          column: 9
+      - monsterID: 1
+        quantity: 3
+        spawnCoordinates:
+        - row: 8
+          column: 11
+        - row: 6
+          column: 12
+        - row: 10
+          column: 12
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 8
+          column: 13
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 13
+        - row: 16
+          column: 13
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 15
+          column: 8
+      - monsterID: 5
+        quantity: 1
+        spawnCoordinates:
+        - row: 15
+          column: 6
+      - monsterID: 6
+        quantity: 1
+        spawnCoordinates:
+        - row: 15
+          column: 10
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 16
+          column: 5
+        - row: 16
+          column: 11
   isDebugEnabled: 0
 --- !u!114 &1295197768
 MonoBehaviour:

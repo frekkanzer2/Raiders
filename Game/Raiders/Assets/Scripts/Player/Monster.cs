@@ -34,8 +34,8 @@ public class Monster : Character {
         return this.name + id;
     }
 
-    public override void inflictDamage(int damage, bool mustSkip = false) {
-        base.inflictDamage(damage, mustSkip);
+    public override void inflictDamage(int damage, bool mustSkip = false, bool shieldSkip = false) {
+        base.inflictDamage(damage, mustSkip, shieldSkip);
     }
 
     public override void newTurn() {

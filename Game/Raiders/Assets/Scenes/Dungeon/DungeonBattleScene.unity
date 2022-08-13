@@ -1273,6 +1273,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: c03738553791f1147b1c9443c3d16e82, type: 3}
   - {fileID: 4900000, guid: 9c042689ade570749ad37f29423c7e8d, type: 3}
   - {fileID: 4900000, guid: 1ee170e31d1b9be40af8f6be8d300caf, type: 3}
+  - {fileID: 4900000, guid: e97a87935f6f60140a8e2619c77037b5, type: 3}
+  - {fileID: 4900000, guid: e4f0ba6e42462cf4db96ccacf77e70c3, type: 3}
+  - {fileID: 4900000, guid: a2bb5075d6554274b92e193f60b6a68f, type: 3}
+  - {fileID: 4900000, guid: 918b8647ea9d4f548a163b692a2c3a6f, type: 3}
+  - {fileID: 4900000, guid: 02c7ea8330ca08f4c9b602a92d267036, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481
@@ -15921,6 +15926,8 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: be9f36534c9b3eb4f910486dd7736d86, type: 3}
   - track_name_maiusc: ROAD TO BONTA III
     music: {fileID: 8300000, guid: 316c393beb805c649be33434d4ce078d, type: 3}
+  - track_name_maiusc: BONTA RAT DUNGEON
+    music: {fileID: 8300000, guid: b9bf9c1a701aa4c43b719450badf350b, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0

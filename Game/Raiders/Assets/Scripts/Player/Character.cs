@@ -617,12 +617,12 @@ public class Character : MonoBehaviour
     }
 
     bool hasActivatedBonus30 = false;
-    public virtual void inflictDamage(int damage, bool mustSkip = false) {
+    public virtual void inflictDamage(int damage, bool mustSkip = false, bool skipArmor = false) {
         if (isDead)
             return;
         if (mustSkip && damage >= getActualHP() + actual_shield)
             damage = (getActualHP() + actual_shield) - 1;
-        if (actual_shield > 0) {
+        if (!skipArmor && actual_shield > 0) {
             int prev_sh = actual_shield; // 80
             actual_shield -= damage; // 40
             if (actual_shield <= 0) {
