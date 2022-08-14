@@ -1278,6 +1278,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: a2bb5075d6554274b92e193f60b6a68f, type: 3}
   - {fileID: 4900000, guid: 918b8647ea9d4f548a163b692a2c3a6f, type: 3}
   - {fileID: 4900000, guid: 02c7ea8330ca08f4c9b602a92d267036, type: 3}
+  - {fileID: 4900000, guid: 242f3002093dc824a9bd61911334a650, type: 3}
+  - {fileID: 4900000, guid: 4a2f9a5584ffb42448b19534fd4a4af0, type: 3}
+  - {fileID: 4900000, guid: 67681723dea7f924f828e9d6cccdad5b, type: 3}
+  - {fileID: 4900000, guid: 79ec8d82531ed0e4f8021baebc6de5e3, type: 3}
+  - {fileID: 4900000, guid: feef8575d1ed8bb4ca95a731e5b36c1d, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481
@@ -15928,6 +15933,8 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: 316c393beb805c649be33434d4ce078d, type: 3}
   - track_name_maiusc: BONTA RAT DUNGEON
     music: {fileID: 8300000, guid: b9bf9c1a701aa4c43b719450badf350b, type: 3}
+  - track_name_maiusc: CORRIDOR OF KWAKERS
+    music: {fileID: 8300000, guid: a2831f2e22dfcba4992aa99f70366f73, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0

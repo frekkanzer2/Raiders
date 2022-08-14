@@ -12652,6 +12652,130 @@ MonoBehaviour:
           column: 5
         - row: 16
           column: 11
+  - name: Corridor of Kwakers
+    bossIcon: {fileID: 21300000, guid: 42598f802cb050f45a02b47e548bd34c, type: 3}
+    monsters:
+    - name: Force Kwaker
+      prefab: {fileID: 557098361630938699, guid: 2e4ad776f6a495345bdaa9b572ba1656, type: 3}
+      sprite: {fileID: 21300000, guid: f43192c943223b740b9138adceada758, type: 3}
+    - name: Agilite Kwaker
+      prefab: {fileID: 557098361630938699, guid: a8f4d1f72c96645428f1c7fd645aca27, type: 3}
+      sprite: {fileID: 21300000, guid: 21fe46a0f9ef03e459803b5bd71be150, type: 3}
+    - name: Intelligent Kwaker
+      prefab: {fileID: 557098361630938699, guid: be33c2977027d9a48bc19be8cb817b23, type: 3}
+      sprite: {fileID: 21300000, guid: a8f6eb7de3a01974eb64fa2d3a3465a4, type: 3}
+    - name: Sapient Kwaker
+      prefab: {fileID: 557098361630938699, guid: 9678f64a68667d743a3ca64dccf979aa, type: 3}
+      sprite: {fileID: 21300000, guid: d44a0b4ddee765c4a9e277d9960cf110, type: 3}
+    - name: Kwaker
+      prefab: {fileID: 557098361630938699, guid: 5d8b959b5f7f17a4da26c88fcbcfce8e, type: 3}
+      sprite: {fileID: 21300000, guid: 214bac23fdf6b864aa388c50aa86a236, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 16
+        - row: 5
+          column: 15
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 16
+        - row: 2
+          column: 15
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 16
+        - row: 5
+          column: 15
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 16
+        - row: 2
+          column: 15
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 16
+        - row: 5
+          column: 15
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 16
+        - row: 2
+          column: 15
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 16
+        - row: 4
+          column: 16
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 16
+        - row: 5
+          column: 15
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 16
+        - row: 2
+          column: 15
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 16
+        - row: 4
+          column: 16
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 2
+          column: 15
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 3
+          column: 15
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 15
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 5
+          column: 15
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 3
+          column: 16
   isDebugEnabled: 0
 --- !u!114 &1295197768
 MonoBehaviour:
