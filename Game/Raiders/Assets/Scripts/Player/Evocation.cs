@@ -17,6 +17,8 @@ public class Evocation : Character {
     [HideInInspector]
     public bool isBomb = false;
     [HideInInspector]
+    public bool isPortal = false;
+    [HideInInspector]
     public bool isGuardian = false;
     [HideInInspector]
     public bool isRune = false;

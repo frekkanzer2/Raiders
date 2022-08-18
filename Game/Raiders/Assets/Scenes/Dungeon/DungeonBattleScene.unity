@@ -1916,6 +1916,10 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 69d10d45b52d70f41b0b4c7ed0c4359e, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 69d10d45b52d70f41b0b4c7ed0c4359e, type: 3}
     isEvocation: 1
+  - characterName: Portal
+    characterFullSprite: {fileID: 21300000, guid: be8b2825346938340a02fdb2d0f85c07, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 8a47d8197a8494448a455a7902fe8810, type: 3}
+    isEvocation: 1
 --- !u!114 &93772484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15933,8 +15937,12 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: 316c393beb805c649be33434d4ce078d, type: 3}
   - track_name_maiusc: BONTA RAT DUNGEON
     music: {fileID: 8300000, guid: b9bf9c1a701aa4c43b719450badf350b, type: 3}
+  - track_name_maiusc: NAUSEABONDE DUNGEON
+    music: {fileID: 8300000, guid: fdc93f29ecec2de448f72cd0445e5e62, type: 3}
   - track_name_maiusc: CORRIDOR OF KWAKERS
     music: {fileID: 8300000, guid: a2831f2e22dfcba4992aa99f70366f73, type: 3}
+  - track_name_maiusc: BLACKNIDE DUNGEON
+    music: {fileID: 8300000, guid: b889bc93f18a956438dc2fef16d85636, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0

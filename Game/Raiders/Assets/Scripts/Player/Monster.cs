@@ -407,7 +407,7 @@ public class Monster : Character {
             List<Node> newLeafs = new List<Node>();
             foreach (Node leaf in leafs) {
                 Block analyzing = leaf.item;
-                List<Block> adjacents = analyzing.getFreeAdjacentBlocksWithEnemy(destination.linkedObject.GetComponent<Character>().team);
+                List<Block> adjacents = analyzing.getFreeAdjacentBlocksWithCharacters(destination.linkedObject.GetComponent<Character>().team);
                 foreach (Block adjacent in adjacents) {
                     Node temp = new Node(leaf, adjacent); // Creating a new leaf with the previous one as father
                     if (leaf.father != null) {

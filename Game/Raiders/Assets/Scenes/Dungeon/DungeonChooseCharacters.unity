@@ -8389,6 +8389,10 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 69d10d45b52d70f41b0b4c7ed0c4359e, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 69d10d45b52d70f41b0b4c7ed0c4359e, type: 3}
     isEvocation: 1
+  - characterName: Portal
+    characterFullSprite: {fileID: 21300000, guid: be8b2825346938340a02fdb2d0f85c07, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 8a47d8197a8494448a455a7902fe8810, type: 3}
+    isEvocation: 1
 --- !u!114 &1295197767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12652,6 +12656,10 @@ MonoBehaviour:
           column: 5
         - row: 16
           column: 11
+  - name: Nauseabonde Territory
+    bossIcon: {fileID: 21300000, guid: ec0cd7daef5be844ca9b01ff198078c6, type: 3}
+    monsters: []
+    rooms: []
   - name: Corridor of Kwakers
     bossIcon: {fileID: 21300000, guid: 42598f802cb050f45a02b47e548bd34c, type: 3}
     monsters:
@@ -12776,6 +12784,14 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 3
           column: 16
+  - name: Nelween Lair
+    bossIcon: {fileID: 21300000, guid: 1d3648791f817e44e8f4a73060e6242b, type: 3}
+    monsters: []
+    rooms: []
+  - name: Blacknide Dungeon
+    bossIcon: {fileID: 21300000, guid: c5814d9a01b8c554d8512bd523152e63, type: 3}
+    monsters: []
+    rooms: []
   isDebugEnabled: 0
 --- !u!114 &1295197768
 MonoBehaviour:

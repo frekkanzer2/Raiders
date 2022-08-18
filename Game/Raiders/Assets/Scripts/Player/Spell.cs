@@ -191,7 +191,7 @@ public class Spell {
 
     public static void SPELL_SPECIALIZATION(Character caster, Block targetBlock, Spell spell) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, spell })) return;
-        if (spell.name == "Jump" || spell.name == "Portal" || spell.name == "Catnip") EXECUTE_JUMP(caster, targetBlock);
+        if (spell.name == "Jump" || spell.name == "Catnip") EXECUTE_JUMP(caster, targetBlock);
         else if (spell.name == "Pounding") EXECUTE_POUNDING(targetBlock, spell);
         else if (spell.name == "Agitation") EXECUTE_AGITATION(targetBlock, spell);
         else if (spell.name == "Accumulation") EXECUTE_ACCUMULATION(caster, spell);
@@ -413,6 +413,9 @@ public class Spell {
         else if (spell.name == "Cat Soul") EXECUTE_CAT_SOUL(caster, targetBlock, spell);
         else if (spell.name == "Cat Assault") EXECUTE_CAT_ASSAULT(caster, targetBlock, spell);
         else if (spell.name == "Summoning Claw") SUMMONS_CLAW(caster, targetBlock);
+        else if (spell.name == "Portal") SUMMONS_PORTAL(caster, targetBlock);
+        else if (spell.name == "Offence") EXECUTE_OFFENCE(caster, targetBlock, spell);
+        else if (spell.name == "Portal Interruption") EXECUTE_PORTAL_INTERRUPTION(caster);
 
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -490,6 +493,42 @@ public class Spell {
     #endregion
 
     #region CHARACTER SPELLS SPECIALIZATION
+
+    public static void SUMMONS_PORTAL(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        Evocation p = ut_execute_summon(caster, targetBlock, "Portal", 3);
+        p.isPortal = true;
+    }
+
+    public static void EXECUTE_PORTAL_INTERRUPTION(Character caster) {
+        if (!put_CheckArguments(new System.Object[] { caster })) return;
+        int increment = ut_getAlliedPortals(caster);
+        foreach (Character ally in ut_getAlliesWithCaster(caster)) {
+            if (ally is Evocation) {
+                if (((Evocation)ally).isPortal) {
+                    ally.inflictDamage(ally.getActualHP() + ally.actual_shield);
+                }
+            }
+            if (!ally.isDead) ally.incrementPA(increment);
+        }
+    }
+
+    public static void EXECUTE_OFFENCE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+        int prob = UnityEngine.Random.Range(1, 101);
+        Debug.Log("Spell " + s.name + " prob: " + prob);
+        if (prob <= 25) {
+            Block toSummonBlock = null;
+            List<Block> frees = targetBlock.getFreeAdjacentBlocks();
+            if (frees.Count == 0) return;
+            UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+            int indexResult = UnityEngine.Random.Range(0, frees.Count);
+            toSummonBlock = frees[indexResult];
+            SUMMONS_PORTAL(caster, toSummonBlock);
+        }
+    }
 
     public static void EXECUTE_JUMP(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
@@ -838,6 +877,15 @@ public class Spell {
             caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
         }
         caster.setZIndex(caster.connectedCell.GetComponent<Block>());
+        if (s.name == "Exodus") {
+            // Exodus specialization -> +1PM if the target is a portal
+            Character target = targetBlock.linkedObject.GetComponent<Character>();
+            if (target is Evocation) {
+                Evocation t = (Evocation)target;
+                if (t.isPortal)
+                    caster.incrementPM(1);
+            }
+        }
     }
 
     public static void EXECUTE_CONVULSION(Character caster, Block targetBlock) {
@@ -2775,7 +2823,12 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
-        if (target is Evocation || target is MonsterEvocation) target.inflictDamage(target.actual_hp + target.actual_shield);
+        if (target is Evocation || target is MonsterEvocation) {
+            if (target is Evocation)
+                if (((Evocation)target).isPortal)
+                    caster.incrementPM(2);
+            target.inflictDamage(target.actual_hp + target.actual_shield);
+        }
     }
 
     public static void EXECUTE_AUDACIOUS(Character caster, Block targetBlock, Spell s) {
@@ -2801,7 +2854,7 @@ public class Spell {
                 Evocation e = (Evocation)target;
                 if (e.isWakfuTotem) {
                     foreach (Character enemy in ut_getEnemies(caster)) {
-                        List<Block> blocks = enemy.connectedCell.GetComponent<Block>().getFreeAdjacentBlocksWithEnemy(caster.team);
+                        List<Block> blocks = enemy.connectedCell.GetComponent<Block>().getFreeAdjacentBlocksWithCharacters(caster.team);
                         foreach (Block b in blocks) {
                             if (b.linkedObject != null) {
                                 Character c_inBlock = b.linkedObject.GetComponent<Character>();
@@ -3507,7 +3560,7 @@ public class Spell {
     public static int BONUS_ATONEMENT_ARROW = 36;
     public static int BONUS_DECIMATION = 48;
     public static int BONUS_SHADOWYBEAM = 13;
-    public static int BONUS_SHOCK = 33;
+    public static int BONUS_SHOCK = 43;
     public static int BONUS_LETHAL_ATTACK = 30;
     public static int BONUS_KAMA_THROWING = 18;
     public static int BONUS_CONCENTRATION = 21;
@@ -3585,7 +3638,7 @@ public class Spell {
         }
         else if (caster.name == "Chrona" && s.name == "Shadowy Beam")
         {
-            List<Block> adj = targetch.connectedCell.GetComponent<Block>().getFreeAdjacentBlocksWithEnemy(caster.team);
+            List<Block> adj = targetch.connectedCell.GetComponent<Block>().getFreeAdjacentBlocksWithCharacters(caster.team);
             foreach (Block b in adj)
             {
                 if (b.linkedObject != null)
@@ -3602,7 +3655,7 @@ public class Spell {
         }
         else if (caster.name == "Sanaster" && s.name == "Shock")
         {
-            List<Block> adj = targetch.connectedCell.GetComponent<Block>().getFreeAdjacentBlocksWithEnemy(caster.team);
+            List<Block> adj = targetch.connectedCell.GetComponent<Block>().getAdjacentBlocks();
             foreach (Block b in adj)
             {
                 if (b.linkedObject != null)
@@ -3610,8 +3663,10 @@ public class Spell {
                     Character _c = b.linkedObject.GetComponent<Character>();
                     if (_c != null)
                     {
-                        if (_c.team == caster.team)
-                            return BONUS_SHOCK;
+                        if (_c is Evocation) {
+                            if (((Evocation)_c).isPortal)
+                                return BONUS_SHOCK;
+                        }
                     }
                 }
             }
@@ -4031,6 +4086,18 @@ public class Spell {
     public static bool put_CheckLinkedObject(Block b) {
         if (b.linkedObject == null) return false;
         return true;
+    }
+
+    public static int ut_getAlliedPortals(Character actual) {
+        List<Character> chs = ut_getAllies(actual);
+        int counter = 0;
+        foreach(Character ch in chs) {
+            if (ch is Evocation) {
+                Evocation e = (Evocation)ch;
+                if (e.isPortal) counter++;
+            }
+        }
+        return counter;
     }
 
     #endregion

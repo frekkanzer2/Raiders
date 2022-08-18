@@ -520,6 +520,7 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public bool hasXelorBonus = false;
     public virtual void newTurn() {
+        // only PVM mode
         if (SelectionContainer.DUNGEON_MonsterCharactersInfo != null)
         {
             if (this.heroClass == HeroClass.Xelor)
@@ -548,6 +549,7 @@ public class Character : MonoBehaviour
                 }
             }
         }
+        if (Spell.ut_getAlliedPortals(this) > 0) this.incrementPM(Spell.ut_getAlliedPortals(this)); // Getting PMs from Portals
         resetBufferedCells();
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -20);
         esystem.OnStartTurn();

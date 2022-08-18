@@ -107,7 +107,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Doll Sacrifice
     icon: {fileID: 21300000, guid: a3634145b4338c542ade4a99f43eeb22, type: 3}
-    description: Inflict Fire damage to each hero up to 2 cells from the target.
+    description: Inflict Fire damage to each hero up to 2 cells from the caster.
       The caster will die
     element: 1
     damage: 120
