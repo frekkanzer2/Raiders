@@ -133,7 +133,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 4254d8b945c793046b0c2a83fd6bb5bd, type: 3}
     description: Inflict Earth damage each turn and removes 1 PA to each enemy up
       to 3 cells
-    element: 0
+    element: 2
     damage: 24
     lifeSteal: 0
     minRange: 0
@@ -223,6 +223,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

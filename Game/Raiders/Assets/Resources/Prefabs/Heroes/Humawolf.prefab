@@ -107,7 +107,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Tetanisation
     icon: {fileID: 21300000, guid: 3ed479ee0d494d64f8a0f1e1b3dd6d67, type: 3}
-    description: Adds 1 rage charge
+    description: Adds 1 rage charge. Immediately increases the spell's damage of
+      10 if the target is adjacent to a Yapper
     element: 1
     damage: 28
     lifeSteal: 0
@@ -211,7 +212,7 @@ MonoBehaviour:
   att_f: 12
   att_a: 0
   att_w: 0
-  numberOfSummons: 0
+  numberOfSummons: 1
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0
@@ -223,6 +224,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

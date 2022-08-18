@@ -38,10 +38,12 @@ public class WakfuRaider : ParentEvent
             UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
             int indexResult = UnityEngine.Random.Range(0, freeBlocks.Count);
             Evocation e = Spell.ut_execute_summon(connected, freeBlocks[indexResult], "Wakfu_Totem", -1);
-            pickedBlocks.Add(freeBlocks[indexResult]);
-            e.isWakfuTotem = true;
-            e.hp = connected.hp;
-            e.actual_hp = e.hp;
+            if (e != null) {
+                pickedBlocks.Add(freeBlocks[indexResult]);
+                e.isWakfuTotem = true;
+                e.hp = connected.hp;
+                e.actual_hp = e.hp;
+            }
         }
     }
     

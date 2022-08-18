@@ -175,6 +175,7 @@ MonoBehaviour:
   isCommunionActive: 0
   isBomb: 0
   isPortal: 0
+  isYapper: 0
   isGuardian: 0
   isRune: 0
   RunicPower: 0

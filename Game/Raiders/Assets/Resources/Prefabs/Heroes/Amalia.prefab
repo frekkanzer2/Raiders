@@ -178,7 +178,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: d0bbccb3a645a0d4b8c7cebdd319bb95, type: 3}
     description: This spell cannot kill the enemy. Inflicts Air damage at the end
       of the turn
-    element: 5
+    element: 2
     damage: 20
     lifeSteal: 0
     minRange: 1
@@ -222,6 +222,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

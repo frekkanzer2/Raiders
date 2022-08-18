@@ -131,9 +131,9 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Death Con
     icon: {fileID: 21300000, guid: 910d5481b338d3a4db7f5db636f73140, type: 3}
-    description: Steal 10% air damage from the target
+    description: Steal 10% Air damage from the target
     element: 2
-    damage: 32
+    damage: 38
     lifeSteal: 0
     minRange: 1
     maxRange: 6
@@ -222,6 +222,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

@@ -211,7 +211,7 @@ MonoBehaviour:
   att_f: 0
   att_a: 6
   att_w: 0
-  numberOfSummons: 0
+  numberOfSummons: 1
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0

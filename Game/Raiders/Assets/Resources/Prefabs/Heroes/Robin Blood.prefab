@@ -179,7 +179,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: e317ba1485c588e4c86e6cf7b2063622, type: 3}
     description: Inflict bonus damage based on PM
     element: 0
-    damage: 14
+    damage: 8
     lifeSteal: 0
     minRange: 3
     maxRange: 9

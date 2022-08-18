@@ -19,6 +19,8 @@ public class Evocation : Character {
     [HideInInspector]
     public bool isPortal = false;
     [HideInInspector]
+    public bool isYapper = false;
+    [HideInInspector]
     public bool isGuardian = false;
     [HideInInspector]
     public bool isRune = false;
@@ -201,7 +203,7 @@ public class Evocation : Character {
     }
 
     public string getCompleteName() {
-        return this.name + id;
+        return this.name + this.connectedSummoner.name + id + "-team" + this.team;
     }
 
     public override void inflictDamage(int damage, bool mustSkip = false, bool shieldSkip = false) {

@@ -107,7 +107,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Beaten
     icon: {fileID: 21300000, guid: 40e9549511a565f49a343338f7d9f162, type: 3}
-    description: Adds 1 rage charge
+    description: Adds 1 rage charge. Immediately increases the spell's damage of
+      15 if the target is adjacent to a Yapper
     element: 2
     damage: 23
     lifeSteal: 0
@@ -211,7 +212,7 @@ MonoBehaviour:
   att_f: 0
   att_a: 14
   att_w: 0
-  numberOfSummons: 0
+  numberOfSummons: 1
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0

@@ -107,7 +107,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Watchdog
     icon: {fileID: 21300000, guid: baba833bab2d8a44193f3b24c639d489, type: 3}
-    description: Adds 1 rage charge
+    description: Adds 1 rage charge. Immediately increases the spell's damage of
+      8 if the target is adjacent to a Yapper
     element: 0
     damage: 34
     lifeSteal: 0
@@ -209,7 +210,7 @@ MonoBehaviour:
   att_f: 0
   att_a: 0
   att_w: 10
-  numberOfSummons: 0
+  numberOfSummons: 1
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0
@@ -221,6 +222,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

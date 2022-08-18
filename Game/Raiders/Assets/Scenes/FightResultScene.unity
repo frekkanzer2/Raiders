@@ -210,6 +210,22 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: e60280595e920ef45a34d735537e0cd6, type: 3}
     characterMidSprite: {fileID: 21300000, guid: a2878c383f8d5974782ae64103a38a5e, type: 3}
     isEvocation: 0
+  - characterName: Gabori
+    characterFullSprite: {fileID: 21300000, guid: 135a84a326a85ce49b27be17f8fc8bd6, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 2a6a92cc9cf4f074ea8ed1eeeb767ec2, type: 3}
+    isEvocation: 0
+  - characterName: Tupamaroos
+    characterFullSprite: {fileID: 21300000, guid: 3d93e85096317ec438389de7a6745bdd, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 666ce1128721c91428c4605e1bebfb2f, type: 3}
+    isEvocation: 0
+  - characterName: Khnum
+    characterFullSprite: {fileID: 21300000, guid: 29ec9c957b440244eaa4c6bc62aaa749, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: a56ab80069ba8ac4da18947e0a1c6871, type: 3}
+    isEvocation: 0
+  - characterName: Tristepin
+    characterFullSprite: {fileID: 21300000, guid: 02be5bb6038377349a17b13a5f0148cf, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: a0a0a441ab6776046ab037b6735ccf6b, type: 3}
+    isEvocation: 0
   - characterName: Arc Piven
     characterFullSprite: {fileID: 21300000, guid: 65f2fd0b3d73af7449f115fd58217d41, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 5fb894558cbf3eb49ab0893f79a60f11, type: 3}
@@ -221,6 +237,22 @@ MonoBehaviour:
   - characterName: Shiru Shaden
     characterFullSprite: {fileID: 21300000, guid: fba389113031acc448e1290f84652c63, type: 3}
     characterMidSprite: {fileID: 21300000, guid: d83c5aca64277c74fabc76208893d824, type: 3}
+    isEvocation: 0
+  - characterName: Vaseky
+    characterFullSprite: {fileID: 21300000, guid: ec56a38ecbfde9f4b8e9f9e9ab833897, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 76abc7400f8d81a49bd59891453282d0, type: 3}
+    isEvocation: 0
+  - characterName: Volpin
+    characterFullSprite: {fileID: 21300000, guid: 7b9b703a1aa954e4798bca821a9cc8af, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: d9398f87fd87ba84682e03463558b059, type: 3}
+    isEvocation: 0
+  - characterName: Hellraiser
+    characterFullSprite: {fileID: 21300000, guid: ac32d5075388e2544a51ee8943f12bea, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 4b0a89b68c03e5847b69fac3775ecd84, type: 3}
+    isEvocation: 0
+  - characterName: Robin Blood
+    characterFullSprite: {fileID: 21300000, guid: 61ca9d8d9dc952e46a7eab7dc445e229, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: f835483ab325e1c428a2046154dcf168, type: 3}
     isEvocation: 0
   - characterName: Pilobouli
     characterFullSprite: {fileID: 21300000, guid: 8a08852fa9dd4634694451fb9dd630fd, type: 3}
@@ -234,6 +266,10 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 775d68325f8ff9a49a2ce95aa88e07e0, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 960bc6c92d01e354eab02ec5f894a46a, type: 3}
     isEvocation: 0
+  - characterName: Furiado
+    characterFullSprite: {fileID: 21300000, guid: 72e620bddef4c1e4c8a794dbde50aedb, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 547fca10a25549647ab5658bfe2d374b, type: 3}
+    isEvocation: 0
   - characterName: Jikan
     characterFullSprite: {fileID: 21300000, guid: fcba5ae657eb0e24190b361cad20adb1, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 0b01a1476c4cb5a4a8a6c9212aaa06d3, type: 3}
@@ -245,6 +281,10 @@ MonoBehaviour:
   - characterName: Chrona
     characterFullSprite: {fileID: 21300000, guid: 593da1345154ef94a87cf4600ace5c78, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 544f02b6f2532984eb0dfcea2f0c4c78, type: 3}
+    isEvocation: 0
+  - characterName: Xolaro
+    characterFullSprite: {fileID: 21300000, guid: 0f3faa4ec83c8ad4b803bd708fd0f673, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 87682e8efca7b4c4bbc67915028917d3, type: 3}
     isEvocation: 0
   - characterName: Elayugo
     characterFullSprite: {fileID: 21300000, guid: 883379b9fc32a384e84b23b0c267e15e, type: 3}
@@ -258,6 +298,14 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 69712cfcb0298e441a4605792b009660, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 899128ebae1401347ae14131b8a071a9, type: 3}
     isEvocation: 0
+  - characterName: Sanaster
+    characterFullSprite: {fileID: 21300000, guid: ee7bf82e531bcba438de3febf5c02db3, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: cb9d4579fc650d148bd176ac35249f1a, type: 3}
+    isEvocation: 0
+  - characterName: Yugo
+    characterFullSprite: {fileID: 21300000, guid: d1764fd1fe77b824fb78691452473500, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 2b9ada1710f5e4741bae12ed268ad112, type: 3}
+    isEvocation: 0
   - characterName: Wondo
     characterFullSprite: {fileID: 21300000, guid: 1b98e96b69117514fa1c33ef25f1201c, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 08c965cebd63a2e4b96e08ff51a6321c, type: 3}
@@ -269,6 +317,14 @@ MonoBehaviour:
   - characterName: Balade Mou
     characterFullSprite: {fileID: 21300000, guid: 5a1bcc12f1020884e951454318c058ed, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 752e6144e04e8ad48afb9779ba495848, type: 3}
+    isEvocation: 0
+  - characterName: Nuvolotto
+    characterFullSprite: {fileID: 21300000, guid: fd417dcf0e50857468befed26027f888, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 58c5c2b935acf8e44af0e8c94e869d4f, type: 3}
+    isEvocation: 0
+  - characterName: Sparki
+    characterFullSprite: {fileID: 21300000, guid: 38a1a47ba2c1c454c8f1fba091fcd014, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 8aad76fc6cce4c24fb7dc5745f651cfc, type: 3}
     isEvocation: 0
   - characterName: Leela
     characterFullSprite: {fileID: 21300000, guid: 8cf314915b024aa4284584bcfdb9237a, type: 3}
@@ -282,6 +338,10 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: fbe754b45eb221444aeb371a67ac411b, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 0b1de7f6e8d41de40a4b72996cf1c8e1, type: 3}
     isEvocation: 0
+  - characterName: Dorian
+    characterFullSprite: {fileID: 21300000, guid: 1b6f8bd0b425dbe4cb4b0ca05110e331, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 5534d518586899b47bf3cc11b61fd9b7, type: 3}
+    isEvocation: 0
   - characterName: Jahash
     characterFullSprite: {fileID: 21300000, guid: 75662bc42596e7d47906949b4b73fdf4, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 46a404671a9c7f44aa4cebe2ca93db8f, type: 3}
@@ -293,6 +353,10 @@ MonoBehaviour:
   - characterName: Julith
     characterFullSprite: {fileID: 21300000, guid: 4a5be25132610fe4abd83511fa674da3, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 840ee6baa190f8f4992217ae5cfc608f, type: 3}
+    isEvocation: 0
+  - characterName: Felix
+    characterFullSprite: {fileID: 21300000, guid: 20916f7b4df61914e91c53882f9a7e7e, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 1ae93012b0b954a44bf24a2410f38c2f, type: 3}
     isEvocation: 0
   - characterName: Beatrix
     characterFullSprite: {fileID: 21300000, guid: b45ff5cae87c2784abea312fd80a55a9, type: 3}
@@ -306,6 +370,10 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 99905e4065d91854aa1dad092b1f5070, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 04d7cb01905f3ad40901a63d3369339c, type: 3}
     isEvocation: 0
+  - characterName: Kleera
+    characterFullSprite: {fileID: 21300000, guid: fb57d086baddbbe4b874a6f14fc40673, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 110fec88e6f61c44098800e329097747, type: 3}
+    isEvocation: 0
   - characterName: Elogio
     characterFullSprite: {fileID: 21300000, guid: e5dc69caee7115c4eab9a7f32fdc3504, type: 3}
     characterMidSprite: {fileID: 21300000, guid: bad60bfa9c2755844a7bf5986c789746, type: 3}
@@ -318,42 +386,14 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 4f7bd057733a1b349b80ecb899aedf53, type: 3}
     characterMidSprite: {fileID: 21300000, guid: c5a32e1be8682434a89ba0c2e6e8d9eb, type: 3}
     isEvocation: 0
-  - characterName: Bwork Mage
-    characterFullSprite: {fileID: 21300000, guid: 7257503f46d6bb649b081d424a36d925, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 5e811d62353706d4481abdf70ce82011, type: 3}
-    isEvocation: 1
-  - characterName: Craqueleur
-    characterFullSprite: {fileID: 21300000, guid: b2c582c3e52bc6b4bb06f898fe2c143c, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 7e8b5d2d84af5d84a8a59c70defdf710, type: 3}
-    isEvocation: 1
-  - characterName: Dragonnet
-    characterFullSprite: {fileID: 21300000, guid: 4620adaac75be4144879357a3588ea7f, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: bcc3e79ca71368d458eecfc1925dcc34, type: 3}
-    isEvocation: 1
-  - characterName: Gobball
-    characterFullSprite: {fileID: 21300000, guid: 3db282a760ef89841ab1e7f890437600, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 9321370cde16ebf47bd2e1df81cccd03, type: 3}
-    isEvocation: 1
-  - characterName: Prespic
-    characterFullSprite: {fileID: 21300000, guid: 1af84b5dee3950444afad488ba72ce30, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 6c302f1a2b8421b40bea0416556fd5e7, type: 3}
-    isEvocation: 1
-  - characterName: Tofu
-    characterFullSprite: {fileID: 21300000, guid: bac7ed52c78322a46834d277fd986fa7, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 70a84c49cf954344aa94099fd0410d50, type: 3}
-    isEvocation: 1
+  - characterName: Mary
+    characterFullSprite: {fileID: 21300000, guid: 7f61d83b8fb939e4499652d72d754962, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: d3a3141fc260829489b9b687507af38e, type: 3}
+    isEvocation: 0
   - characterName: Marty Nee
     characterFullSprite: {fileID: 21300000, guid: c0ef700775be7a7449dba732faf1fe53, type: 3}
     characterMidSprite: {fileID: 21300000, guid: c4635fb700f944645bbb1d2194504b54, type: 3}
     isEvocation: 0
-  - characterName: Pandawasta
-    characterFullSprite: {fileID: 21300000, guid: 4095e4a96d3e20e408d2ab1b00782654, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 7bd5fb8cdbc6ea3428bfb4887aaca831, type: 3}
-    isEvocation: 1
-  - characterName: Bamboo
-    characterFullSprite: {fileID: 21300000, guid: 878381caf65cb174f9cd54dfa29c7818, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 4518b6fc0aba9a3469a8c5d16c5ffbc9, type: 3}
-    isEvocation: 1
   - characterName: Mali Buh
     characterFullSprite: {fileID: 21300000, guid: 27baa15e8fdb8684db8f052ef97d05aa, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 015b421830778a645bfc1b755a31a563, type: 3}
@@ -374,26 +414,6 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: c961e5401e2337246957c6b23135ba2f, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 035511d344b70384f80f78a1118dea0e, type: 3}
     isEvocation: 0
-  - characterName: The Block
-    characterFullSprite: {fileID: 21300000, guid: 51f2d6e09c6a9dc4f9f710bc6506a34e, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 9926de9abd0e85c4586b2b3bf9cf4903, type: 3}
-    isEvocation: 1
-  - characterName: Sacrificial Doll
-    characterFullSprite: {fileID: 21300000, guid: b2ee59363c7b61240940d9dc9aca1f13, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 0628c0088e42a4a48a215bafe0d08078, type: 3}
-    isEvocation: 1
-  - characterName: Inflatable
-    characterFullSprite: {fileID: 21300000, guid: 38190ca8319dada41b141c595fe6b1db, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: b28aa7483509eb9479498a89b5f8ba48, type: 3}
-    isEvocation: 1
-  - characterName: Madoll
-    characterFullSprite: {fileID: 21300000, guid: 490089de33e3b4f4aa13a20835150cc4, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 09c7153332242f740bf1a898629fb461, type: 3}
-    isEvocation: 1
-  - characterName: Tree
-    characterFullSprite: {fileID: 21300000, guid: cbd6c459f29b1e543ae799a439c094b6, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 44c890f3546045a44839d651d90b837e, type: 3}
-    isEvocation: 1
   - characterName: Rougelard
     characterFullSprite: {fileID: 21300000, guid: 15b85bbb5fe77384da247dbbe38013e2, type: 3}
     characterMidSprite: {fileID: 21300000, guid: a279adbbdad4bed43b7479e7de8cb230, type: 3}
@@ -406,18 +426,10 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 3fce3dc70db4b454b8fde1ab3bf49503, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 97511fb08d516494880dabf8d1371229, type: 3}
     isEvocation: 0
-  - characterName: Explobombe
-    characterFullSprite: {fileID: 21300000, guid: d50431a0b6189934481a99f7ba1c501c, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 37bea728b188f0846876474896a93e03, type: 3}
-    isEvocation: 1
-  - characterName: Waterbombe
-    characterFullSprite: {fileID: 21300000, guid: 8566d62bbc6056544a96b8083194df90, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: ab327959c55890c43b3a5d792462f744, type: 3}
-    isEvocation: 1
-  - characterName: Tornabombe
-    characterFullSprite: {fileID: 21300000, guid: f463cebb690838f47bd6d9ae2bf27a01, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 34c3d4e1a2d1298478a5ba53fd9b3940, type: 3}
-    isEvocation: 1
+  - characterName: Remington Smisse
+    characterFullSprite: {fileID: 21300000, guid: 0618a9e67a3f11e45888f8bd002aaabb, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 64be9a3a6b40c154491062bb12c260da, type: 3}
+    isEvocation: 0
   - characterName: Kya Vistel
     characterFullSprite: {fileID: 21300000, guid: 16782a9ff1737664a8f1aa69c596af72, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 6b48c05d62ef3b54899ea175e3244678, type: 3}
@@ -430,18 +442,6 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 45e9d9130579d9b4d89bc14d2cff83d7, type: 3}
     characterMidSprite: {fileID: 21300000, guid: df98b6dbb7564ba4495662fef99a2191, type: 3}
     isEvocation: 0
-  - characterName: Sentinel Turret
-    characterFullSprite: {fileID: 21300000, guid: 4821bb790d8531848aa35d62c525c6d0, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 5040f54ec77c40841952514f27db0901, type: 3}
-    isEvocation: 1
-  - characterName: Guardiana Turret
-    characterFullSprite: {fileID: 21300000, guid: 65af1f6e88163d146ae00c5031eeafee, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: c96cd25d7301afb4785b069b01697d29, type: 3}
-    isEvocation: 1
-  - characterName: Tactical Turret
-    characterFullSprite: {fileID: 21300000, guid: 6e04fb9ed958e5c4fb07db872bb9d7e3, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 2fe7204471027344fa9475b12be1731b, type: 3}
-    isEvocation: 1
   - characterName: Etraggy
     characterFullSprite: {fileID: 21300000, guid: e05880e317d75c94a9b75b270c59177f, type: 3}
     characterMidSprite: {fileID: 21300000, guid: d98b459260d15864abf735a78376950f, type: 3}
@@ -454,18 +454,10 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: a3db8148a0475b9458cc7fea42e89889, type: 3}
     characterMidSprite: {fileID: 21300000, guid: d804534dca7527b43993934582a2d64d, type: 3}
     isEvocation: 0
-  - characterName: Chafer
-    characterFullSprite: {fileID: 21300000, guid: 094bf9addef272d4c908fb6d310ae6e9, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 938e6a3ed108b3e449f49b4694b344e6, type: 3}
-    isEvocation: 1
-  - characterName: Chafer Lancer
-    characterFullSprite: {fileID: 21300000, guid: ef13436c371ea984cbf7f39620eaeea4, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: b9d6b372128e64045a410a685b5e3478, type: 3}
-    isEvocation: 1
-  - characterName: Double Etraggy
-    characterFullSprite: {fileID: 21300000, guid: e05880e317d75c94a9b75b270c59177f, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: d98b459260d15864abf735a78376950f, type: 3}
-    isEvocation: 1
+  - characterName: Revenga
+    characterFullSprite: {fileID: 21300000, guid: ed7e583c9cda9aa489cbc6ccbe118222, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 2c8c2bbc0fa58b741bf6dcab3fa96f7f, type: 3}
+    isEvocation: 0
   - characterName: Persepolo
     characterFullSprite: {fileID: 21300000, guid: eae90f8be5dc9d14e808a8eefbf01ff7, type: 3}
     characterMidSprite: {fileID: 21300000, guid: dcd360b0adbb4c94f962625a34f237ca, type: 3}
@@ -478,10 +470,6 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 2f06fbdf4868ccd44befbd72bf28fdbe, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 020f7c07747920040bb7f40eca176185, type: 3}
     isEvocation: 0
-  - characterName: Living Shovel
-    characterFullSprite: {fileID: 21300000, guid: de640ad8a2bb0b144af13580cb0054dc, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 65155a9d199557f4381b54a13771b601, type: 3}
-    isEvocation: 1
   - characterName: Kofang
     characterFullSprite: {fileID: 21300000, guid: 822587559d62b0d499a9963cd7667b06, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 98e1d84641194cf42898b3739ffd26ff, type: 3}
@@ -494,70 +482,26 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 8226975a67aa11d4d9ee7d326c015ed1, type: 3}
     characterMidSprite: {fileID: 21300000, guid: e2759bffcf1390644b193f4bb2263eac, type: 3}
     isEvocation: 0
-  - characterName: Yugo
-    characterFullSprite: {fileID: 21300000, guid: d1764fd1fe77b824fb78691452473500, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 2b9ada1710f5e4741bae12ed268ad112, type: 3}
-    isEvocation: 0
-  - characterName: Tristepin
-    characterFullSprite: {fileID: 21300000, guid: 02be5bb6038377349a17b13a5f0148cf, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: a0a0a441ab6776046ab037b6735ccf6b, type: 3}
+  - characterName: Aki
+    characterFullSprite: {fileID: 21300000, guid: dfa0c873fabb8eb4988e7b4d5e855612, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 9de0c3092bc02344e83b705c4ef4e366, type: 3}
     isEvocation: 0
   - characterName: Wakfu Totem
     characterFullSprite: {fileID: 21300000, guid: 1eb4e46e680075b4692fdccf95a4cd91, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 147308b09338c3a47b98df2c98747198, type: 3}
     isEvocation: 1
-  - characterName: Gabori
-    characterFullSprite: {fileID: 21300000, guid: 135a84a326a85ce49b27be17f8fc8bd6, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 2a6a92cc9cf4f074ea8ed1eeeb767ec2, type: 3}
-    isEvocation: 0
-  - characterName: Vaseky
-    characterFullSprite: {fileID: 21300000, guid: ec56a38ecbfde9f4b8e9f9e9ab833897, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 76abc7400f8d81a49bd59891453282d0, type: 3}
-    isEvocation: 0
-  - characterName: Sanaster
-    characterFullSprite: {fileID: 21300000, guid: ee7bf82e531bcba438de3febf5c02db3, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: cb9d4579fc650d148bd176ac35249f1a, type: 3}
-    isEvocation: 0
-  - characterName: Nuvolotto
-    characterFullSprite: {fileID: 21300000, guid: fd417dcf0e50857468befed26027f888, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 58c5c2b935acf8e44af0e8c94e869d4f, type: 3}
-    isEvocation: 0
-  - characterName: Xolaro
-    characterFullSprite: {fileID: 21300000, guid: 0f3faa4ec83c8ad4b803bd708fd0f673, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 87682e8efca7b4c4bbc67915028917d3, type: 3}
-    isEvocation: 0
   - characterName: Xelor Dial
     characterFullSprite: {fileID: 21300000, guid: 25f20f3e2ca275b4eb0b5e94f831616f, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 9d08db03f1a2c0f428c7f96eb789d5ee, type: 3}
     isEvocation: 1
-  - characterName: Volpin
-    characterFullSprite: {fileID: 21300000, guid: 7b9b703a1aa954e4798bca821a9cc8af, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: d9398f87fd87ba84682e03463558b059, type: 3}
-    isEvocation: 0
-  - characterName: Revenga
-    characterFullSprite: {fileID: 21300000, guid: ed7e583c9cda9aa489cbc6ccbe118222, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 2c8c2bbc0fa58b741bf6dcab3fa96f7f, type: 3}
-    isEvocation: 0
   - characterName: Soul Chafer
     characterFullSprite: {fileID: 21300000, guid: 6b3bf3c3b20104b409ad3556c8152514, type: 3}
     characterMidSprite: {fileID: 21300000, guid: f556c922bb8fe8e43b52dcaa536534c4, type: 3}
     isEvocation: 1
-  - characterName: Remington Smisse
-    characterFullSprite: {fileID: 21300000, guid: 0618a9e67a3f11e45888f8bd002aaabb, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 64be9a3a6b40c154491062bb12c260da, type: 3}
-    isEvocation: 0
-  - characterName: Furiado
-    characterFullSprite: {fileID: 21300000, guid: 72e620bddef4c1e4c8a794dbde50aedb, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 547fca10a25549647ab5658bfe2d374b, type: 3}
-    isEvocation: 0
   - characterName: Flying Sword
     characterFullSprite: {fileID: 21300000, guid: 22c82bffa32ab864ca67ba27b15db555, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 97f6ae152aa7369429e18ec632abaf53, type: 3}
     isEvocation: 1
-  - characterName: Felix
-    characterFullSprite: {fileID: 21300000, guid: 20916f7b4df61914e91c53882f9a7e7e, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 1ae93012b0b954a44bf24a2410f38c2f, type: 3}
-    isEvocation: 0
   - characterName: Elemental Guardian
     characterFullSprite: {fileID: 21300000, guid: aec814fd35d0fb044ae0313c19d843fa, type: 3}
     characterMidSprite: {fileID: 21300000, guid: b89111d9a192b5d4e9ba6be639199fb2, type: 3}
@@ -578,57 +522,121 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 9a85078ca19d4bf4682d7f976b27dd09, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 01fa9b7bc2ef55243b2166e5f8dd50f8, type: 3}
     isEvocation: 1
-  - characterName: Tupamaroos
-    characterFullSprite: {fileID: 21300000, guid: 3d93e85096317ec438389de7a6745bdd, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 666ce1128721c91428c4605e1bebfb2f, type: 3}
-    isEvocation: 0
-  - characterName: Khnum
-    characterFullSprite: {fileID: 21300000, guid: 29ec9c957b440244eaa4c6bc62aaa749, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: a56ab80069ba8ac4da18947e0a1c6871, type: 3}
-    isEvocation: 0
-  - characterName: Hellraiser
-    characterFullSprite: {fileID: 21300000, guid: ac32d5075388e2544a51ee8943f12bea, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 4b0a89b68c03e5847b69fac3775ecd84, type: 3}
-    isEvocation: 0
   - characterName: Tactical Beacon
     characterFullSprite: {fileID: 21300000, guid: 03c81e358afd9604fb1377c225ae05d6, type: 3}
     characterMidSprite: {fileID: 21300000, guid: db60ae0cd4b6e1d4aa605e8d6a5795f2, type: 3}
     isEvocation: 1
-  - characterName: Robin Blood
-    characterFullSprite: {fileID: 21300000, guid: 61ca9d8d9dc952e46a7eab7dc445e229, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: f835483ab325e1c428a2046154dcf168, type: 3}
-    isEvocation: 0
-  - characterName: Dorian
-    characterFullSprite: {fileID: 21300000, guid: 1b6f8bd0b425dbe4cb4b0ca05110e331, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 5534d518586899b47bf3cc11b61fd9b7, type: 3}
-    isEvocation: 0
   - characterName: Aegis
     characterFullSprite: {fileID: 21300000, guid: 4cdd2f8a54ec66b4395308f280525041, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 4cdd2f8a54ec66b4395308f280525041, type: 3}
     isEvocation: 1
-  - characterName: Sparki
-    characterFullSprite: {fileID: 21300000, guid: 38a1a47ba2c1c454c8f1fba091fcd014, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 8aad76fc6cce4c24fb7dc5745f651cfc, type: 3}
-    isEvocation: 0
-  - characterName: Kleera
-    characterFullSprite: {fileID: 21300000, guid: fb57d086baddbbe4b874a6f14fc40673, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 110fec88e6f61c44098800e329097747, type: 3}
-    isEvocation: 0
   - characterName: Protective Coney
     characterFullSprite: {fileID: 21300000, guid: 4f6066a8299cc4245b1ba33dc4180329, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 4f6066a8299cc4245b1ba33dc4180329, type: 3}
     isEvocation: 1
-  - characterName: Mary
-    characterFullSprite: {fileID: 21300000, guid: 7f61d83b8fb939e4499652d72d754962, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: d3a3141fc260829489b9b687507af38e, type: 3}
-    isEvocation: 0
+  - characterName: Chafer
+    characterFullSprite: {fileID: 21300000, guid: 094bf9addef272d4c908fb6d310ae6e9, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 938e6a3ed108b3e449f49b4694b344e6, type: 3}
+    isEvocation: 1
+  - characterName: Chafer Lancer
+    characterFullSprite: {fileID: 21300000, guid: ef13436c371ea984cbf7f39620eaeea4, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: b9d6b372128e64045a410a685b5e3478, type: 3}
+    isEvocation: 1
+  - characterName: Double Etraggy
+    characterFullSprite: {fileID: 21300000, guid: e05880e317d75c94a9b75b270c59177f, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: d98b459260d15864abf735a78376950f, type: 3}
+    isEvocation: 1
+  - characterName: Guardiana Turret
+    characterFullSprite: {fileID: 21300000, guid: 65af1f6e88163d146ae00c5031eeafee, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: c96cd25d7301afb4785b069b01697d29, type: 3}
+    isEvocation: 1
+  - characterName: Tactical Turret
+    characterFullSprite: {fileID: 21300000, guid: 6e04fb9ed958e5c4fb07db872bb9d7e3, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 2fe7204471027344fa9475b12be1731b, type: 3}
+    isEvocation: 1
+  - characterName: Sentinel Turret
+    characterFullSprite: {fileID: 21300000, guid: 4821bb790d8531848aa35d62c525c6d0, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 5040f54ec77c40841952514f27db0901, type: 3}
+    isEvocation: 1
+  - characterName: Tornabombe
+    characterFullSprite: {fileID: 21300000, guid: f463cebb690838f47bd6d9ae2bf27a01, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 34c3d4e1a2d1298478a5ba53fd9b3940, type: 3}
+    isEvocation: 1
+  - characterName: Explobombe
+    characterFullSprite: {fileID: 21300000, guid: d50431a0b6189934481a99f7ba1c501c, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 37bea728b188f0846876474896a93e03, type: 3}
+    isEvocation: 1
+  - characterName: Bamboo
+    characterFullSprite: {fileID: 21300000, guid: 878381caf65cb174f9cd54dfa29c7818, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 4518b6fc0aba9a3469a8c5d16c5ffbc9, type: 3}
+    isEvocation: 1
+  - characterName: Living Shovel
+    characterFullSprite: {fileID: 21300000, guid: de640ad8a2bb0b144af13580cb0054dc, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 65155a9d199557f4381b54a13771b601, type: 3}
+    isEvocation: 1
+  - characterName: Waterbombe
+    characterFullSprite: {fileID: 21300000, guid: 8566d62bbc6056544a96b8083194df90, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: ab327959c55890c43b3a5d792462f744, type: 3}
+    isEvocation: 1
+  - characterName: Madoll
+    characterFullSprite: {fileID: 21300000, guid: 490089de33e3b4f4aa13a20835150cc4, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 09c7153332242f740bf1a898629fb461, type: 3}
+    isEvocation: 1
+  - characterName: Inflatable
+    characterFullSprite: {fileID: 21300000, guid: 38190ca8319dada41b141c595fe6b1db, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: b28aa7483509eb9479498a89b5f8ba48, type: 3}
+    isEvocation: 1
+  - characterName: Bwork Mage
+    characterFullSprite: {fileID: 21300000, guid: 7257503f46d6bb649b081d424a36d925, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 5e811d62353706d4481abdf70ce82011, type: 3}
+    isEvocation: 1
+  - characterName: Sacrificial Doll
+    characterFullSprite: {fileID: 21300000, guid: b2ee59363c7b61240940d9dc9aca1f13, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 0628c0088e42a4a48a215bafe0d08078, type: 3}
+    isEvocation: 1
+  - characterName: The Block
+    characterFullSprite: {fileID: 21300000, guid: 51f2d6e09c6a9dc4f9f710bc6506a34e, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 9926de9abd0e85c4586b2b3bf9cf4903, type: 3}
+    isEvocation: 1
+  - characterName: Tree
+    characterFullSprite: {fileID: 21300000, guid: cbd6c459f29b1e543ae799a439c094b6, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 44c890f3546045a44839d651d90b837e, type: 3}
+    isEvocation: 1
+  - characterName: Prespic
+    characterFullSprite: {fileID: 21300000, guid: 1af84b5dee3950444afad488ba72ce30, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 6c302f1a2b8421b40bea0416556fd5e7, type: 3}
+    isEvocation: 1
+  - characterName: Pandawasta
+    characterFullSprite: {fileID: 21300000, guid: 4095e4a96d3e20e408d2ab1b00782654, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 7bd5fb8cdbc6ea3428bfb4887aaca831, type: 3}
+    isEvocation: 1
   - characterName: Chasquatch
     characterFullSprite: {fileID: 21300000, guid: 69d10d45b52d70f41b0b4c7ed0c4359e, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 69d10d45b52d70f41b0b4c7ed0c4359e, type: 3}
     isEvocation: 1
+  - characterName: Dragonnet
+    characterFullSprite: {fileID: 21300000, guid: 4620adaac75be4144879357a3588ea7f, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: bcc3e79ca71368d458eecfc1925dcc34, type: 3}
+    isEvocation: 1
   - characterName: Portal
     characterFullSprite: {fileID: 21300000, guid: be8b2825346938340a02fdb2d0f85c07, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 8a47d8197a8494448a455a7902fe8810, type: 3}
+    isEvocation: 1
+  - characterName: Yapper
+    characterFullSprite: {fileID: 21300000, guid: b806c52c262da0c42bf2d10645d4e768, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: a8fb1823734c35d41b55c95728d552a9, type: 3}
+    isEvocation: 1
+  - characterName: Tofu
+    characterFullSprite: {fileID: 21300000, guid: bac7ed52c78322a46834d277fd986fa7, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 70a84c49cf954344aa94099fd0410d50, type: 3}
+    isEvocation: 1
+  - characterName: Gobball
+    characterFullSprite: {fileID: 21300000, guid: 3db282a760ef89841ab1e7f890437600, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 9321370cde16ebf47bd2e1df81cccd03, type: 3}
+    isEvocation: 1
+  - characterName: Craqueleur
+    characterFullSprite: {fileID: 21300000, guid: b2c582c3e52bc6b4bb06f898fe2c143c, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 7e8b5d2d84af5d84a8a59c70defdf710, type: 3}
     isEvocation: 1
 --- !u!1 &361126710
 GameObject:

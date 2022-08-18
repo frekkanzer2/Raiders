@@ -267,6 +267,9 @@ public class Spell {
         else if (spell.name == "Perception Glyph") EXECUTE_PERCEPTION_GLYPH(caster, spell);
         else if (spell.name == "Barricade") EXECUTE_BARRICADE(targetBlock, spell);
         else if (spell.name == "Fortification") EXECUTE_FORTIFICATION(caster, targetBlock, spell);
+        else if (spell.name == "Prey") EXECUTE_PREY(targetBlock, spell);
+        else if (spell.name == "Furious Hunting") EXECUTE_FURIOUS_HUNTING(caster, targetBlock, spell);
+        else if (spell.name == "Bloodhound") EXECUTE_BLOODHOUND(caster, targetBlock, spell);
         else if (spell.name == "Burning Glyph") EXECUTE_BURNING_GLYPH(caster, spell);
         else if (spell.name == "Repulsion Glyph") EXECUTE_REPULSION_GLYPH(caster, spell);
         else if (spell.name == "Dazzling") EXECUTE_DAZZLING(targetBlock, spell);
@@ -368,7 +371,7 @@ public class Spell {
         else if (spell.name == "Money Collection") EXECUTE_MONEY_COLLECTION(caster);
         else if (spell.name == "Power Unlocker") EXECUTE_POWER_UNLOCKER(caster, spell);
         else if (spell.name == "Smithereens") EXECUTE_SMITHEREENS(caster, spell);
-        else if (spell.name == "Watchdog" || spell.name == "Beaten" || spell.name == "Tetanisation") ADD_RAGE_COUNTER(caster, 1);
+        else if (spell.name == "Watchdog" || spell.name == "Beaten" || spell.name == "Tetanisation" || spell.name == "Calcaneus") ADD_RAGE_COUNTER(caster, 1);
         else if (spell.name == "Pursuit") EXECUTE_PURSUIT(caster, spell);
         else if (spell.name == "Bark") EXECUTE_BARK(targetBlock, spell);
         else if (spell.name == "Cerberus") EXECUTE_CERBERUS(caster, targetBlock, spell);
@@ -497,7 +500,8 @@ public class Spell {
     public static void SUMMONS_PORTAL(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         Evocation p = ut_execute_summon(caster, targetBlock, "Portal", 3);
-        p.isPortal = true;
+        if (p != null)
+            p.isPortal = true;
     }
 
     public static void EXECUTE_PORTAL_INTERRUPTION(Character caster) {
@@ -1325,6 +1329,31 @@ public class Spell {
         }
     }
 
+    public static void EXECUTE_PREY(Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        PreyEvent he = new PreyEvent("Prey", target, s.effectDuration, ParentEvent.Mode.PermanentAndEachTurn, s.icon);
+        target.addEvent(he);
+        he.useIstantanely();
+    }
+    public static void EXECUTE_FURIOUS_HUNTING(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        FuriousHuntingEvent he = new FuriousHuntingEvent("Furious Hunting", caster, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, target);
+        caster.addEvent(he);
+    }
+    public static void EXECUTE_BLOODHOUND(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        Coordinate tbc = targetBlock.coordinate;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        foreach (Character c in ut_getAllies(caster)) {
+            Coordinate cc = c.connectedCell.GetComponent<Block>().coordinate;
+            if (cc.row == tbc.row || cc.column == tbc.column) {
+                ut_attracts(target, c.connectedCell.GetComponent<Block>(), 2);
+            }
+        }
+    }
+
     public static void SWITCH_TIRELESS_MASK(Character caster, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         if (caster.getEventSystem().getEvents("Tireless Mask").Count == 0) {
@@ -1758,7 +1787,8 @@ public class Spell {
     {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         Evocation e = ut_execute_summon(caster, targetBlock, "Elemental Guardian", 1);
-        e.isGuardian = true;
+        if (e != null)
+            e.isGuardian = true;
     }
     public static void SUMMONS_RUNE(Character caster, Block targetBlock)
     {
@@ -1782,7 +1812,8 @@ public class Spell {
         {
             r = ut_execute_summon(caster, targetBlock, "Water Rune", 2);
         }
-        r.isRune = true;
+        if (r != null)
+            r.isRune = true;
     }
 
     public static void EXECUTE_MASS_GRAVE(Character caster, Block targetBlock) {
@@ -1845,7 +1876,8 @@ public class Spell {
     {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         Evocation dial = ut_execute_summon(caster, targetBlock, "Xelor Dial", 2);
-        dial.setDial();
+        if (dial != null)
+            dial.setDial();
     }
 
     public static void EXECUTE_TEMPORAL_PARADOX(Character caster, Block targetBlock, Spell s)
@@ -2432,19 +2464,22 @@ public class Spell {
     public static void SUMMONS_SENTINEL_TURRECT(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         Evocation turrect = ut_execute_summon(caster, targetBlock, "Sentinel_Turret", 1);
-        turrect.isTurrect = true;
+        if (turrect != null)
+            turrect.isTurrect = true;
     }
 
     public static void SUMMONS_GUARDIANA_TURRECT(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         Evocation turrect = ut_execute_summon(caster, targetBlock, "Guardiana_Turret", 2);
-        turrect.isTurrect = true;
+        if (turrect != null)
+            turrect.isTurrect = true;
     }
 
     public static void SUMMONS_TACTICAL_TURRECT(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         Evocation turrect = ut_execute_summon(caster, targetBlock, "Tactical_Turret", 3);
-        turrect.isTurrect = true;
+        if (turrect != null)
+            turrect.isTurrect = true;
     }
 
     public static void SUMMONS_TACTICAL_BEACON(Character caster, Block targetBlock) {
@@ -2545,7 +2580,7 @@ public class Spell {
     public static void SUMMONS_DOUBLE(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         Evocation dd = ut_execute_summon(caster, targetBlock, "Double_" + caster.name, 1);
-        dd.isDouble = true;
+        if (dd != null) dd.isDouble = true;
     }
 
     public static void EXECUTE_MIST(Character caster, Spell s) {
@@ -2715,6 +2750,15 @@ public class Spell {
             caster.addEvent(ur);
             ur.useIstantanely();
             caster.decrementRage(5);
+            Block toSummonBlock = null;
+            List<Block> frees = caster.connectedCell.GetComponent<Block>().getFreeAdjacentBlocks();
+            if (frees.Count == 0) return;
+            UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+            int indexResult = UnityEngine.Random.Range(0, frees.Count);
+            toSummonBlock = frees[indexResult];
+            Evocation p = ut_execute_summon(caster, toSummonBlock, "Yapper", 2);
+            if (p != null)
+                p.isYapper = true;
         }
     }
 
@@ -3566,8 +3610,11 @@ public class Spell {
     public static int BONUS_CONCENTRATION = 21;
     public static int BONUS_SHUSHU_CUT = 20;
     public static int BONUS_BLOODY_PUNISHMENT = 72;
-    public static int BONUS_JUDGEMENT_ARROW = 13;
+    public static int BONUS_JUDGEMENT_ARROW = 10;
     public static int BONUS_CAT_RAGE = 26;
+    public static int BONUS_WATCHDOG = 8;
+    public static int BONUS_BEATEN = 15;
+    public static int BONUS_TETANISATION = 10;
 
     public static int EVENT_BONUS_BASE_DAMAGE(Character caster, Character targetch, Spell s) {
         if (caster.name == "Tristepin" && s.name == "Concentration" && (targetch is Evocation || targetch is MonsterEvocation) && caster.getEventSystem().getEvents("Yop God Status").Count > 0) {
@@ -3652,17 +3699,13 @@ public class Spell {
                 }
             }
             return 0;
-        }
-        else if (caster.name == "Sanaster" && s.name == "Shock")
-        {
+        } 
+        else if (caster.name == "Sanaster" && s.name == "Shock") {
             List<Block> adj = targetch.connectedCell.GetComponent<Block>().getAdjacentBlocks();
-            foreach (Block b in adj)
-            {
-                if (b.linkedObject != null)
-                {
+            foreach (Block b in adj) {
+                if (b.linkedObject != null) {
                     Character _c = b.linkedObject.GetComponent<Character>();
-                    if (_c != null)
-                    {
+                    if (_c != null) {
                         if (_c is Evocation) {
                             if (((Evocation)_c).isPortal)
                                 return BONUS_SHOCK;
@@ -3671,8 +3714,50 @@ public class Spell {
                 }
             }
             return 0;
-        }
-        else if (caster.name == "Furiado" && s.name == "Bloody Punishment")
+        } 
+        else if (caster.name == "Humawolf" && s.name == "Tetanisation") {
+            List<Block> adj = targetch.connectedCell.GetComponent<Block>().getAdjacentBlocks();
+            foreach (Block b in adj) {
+                if (b.linkedObject != null) {
+                    Character _c = b.linkedObject.GetComponent<Character>();
+                    if (_c != null) {
+                        if (_c is Evocation) {
+                            if (((Evocation)_c).isYapper)
+                                return BONUS_TETANISATION;
+                        }
+                    }
+                }
+            }
+            return 0;
+        } else if (caster.name == "Groarg Gamel" && s.name == "Beaten") {
+            List<Block> adj = targetch.connectedCell.GetComponent<Block>().getAdjacentBlocks();
+            foreach (Block b in adj) {
+                if (b.linkedObject != null) {
+                    Character _c = b.linkedObject.GetComponent<Character>();
+                    if (_c != null) {
+                        if (_c is Evocation) {
+                            if (((Evocation)_c).isYapper)
+                                return BONUS_BEATEN;
+                        }
+                    }
+                }
+            }
+            return 0;
+        } else if (caster.name == "Kofang" && s.name == "Watchdog") {
+            List<Block> adj = targetch.connectedCell.GetComponent<Block>().getAdjacentBlocks();
+            foreach (Block b in adj) {
+                if (b.linkedObject != null) {
+                    Character _c = b.linkedObject.GetComponent<Character>();
+                    if (_c != null) {
+                        if (_c is Evocation) {
+                            if (((Evocation)_c).isYapper)
+                                return BONUS_WATCHDOG;
+                        }
+                    }
+                }
+            }
+            return 0;
+        } else if (caster.name == "Furiado" && s.name == "Bloody Punishment")
         {
             if (caster.actual_hp < targetch.actual_hp)
                 return BONUS_BLOODY_PUNISHMENT;
@@ -3758,6 +3843,7 @@ public class Spell {
 
     public static Evocation ut_execute_summon(Character caster, Block targetBlock, string id, int summonLevel) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return null;
+        if (caster.summons.Count == caster.numberOfSummons) return null;
         GameObject summonPrefab = Resources.Load("Prefabs/Heroes/Evocations/" + id) as GameObject;
         // Creating summon
         GameObject summon = GameObject.Instantiate(summonPrefab, Coordinate.getPosition(targetBlock.coordinate), Quaternion.identity);
