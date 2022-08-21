@@ -78,8 +78,9 @@ public class DUNEndGameController : MonoBehaviour
                 ds.saveDungeonRoom(roomID);
                 SceneManager.LoadScene("DungeonBattleScene", LoadSceneMode.Single);
             } else {
-                if (ds.getReachedDungeonID() < ds.getChosenDungeon())
-                    OnDungeonAchieved(ds, ds.getChosenDungeon());
+                bool isNew = false;
+                if (ds.getReachedDungeonID() < ds.getChosenDungeon()) isNew = true;
+                OnDungeonAchieved(ds, ds.getChosenDungeon(), isNew);
                 SceneManager.LoadScene("DungeonChooseCharacters", LoadSceneMode.Single);
             }
         } else {
@@ -87,8 +88,8 @@ public class DUNEndGameController : MonoBehaviour
         }
     }
 
-    private void OnDungeonAchieved(DungeonSave dsave, int dungeonID) {
-        dsave.dungeonPassed();
+    private void OnDungeonAchieved(DungeonSave dsave, int dungeonID, bool isNewDungeon) {
+        dsave.dungeonPassed(teamDimension, isNewDungeon, dungeonID);
     }
 
 }

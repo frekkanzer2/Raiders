@@ -131,7 +131,7 @@ MonoBehaviour:
   heroClass: 18
   spells:
   - link: {fileID: 0}
-    name: Attractive smell
+    name: Attractive Smell
     icon: {fileID: 0}
     description: Invoke a Moskito on each adjacent cell
     element: 5
@@ -156,9 +156,9 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Mud throw
     icon: {fileID: 0}
-    description: Invoke a Boo on a random adjacent cell from the target
+    description: Invoke a Boo on a target adjacent cell
     element: 3
-    damage: 80
+    damage: 30
     lifeSteal: 0
     minRange: 3
     maxRange: 6
@@ -167,8 +167,8 @@ MonoBehaviour:
     hpCost: 0
     paCost: 3
     pmCost: 0
-    maxTimesInTurn: 1
-    executeAfterTurns: 1
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 10
     hasEffect: 1
@@ -177,11 +177,11 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   - link: {fileID: 0}
-    name: Cooperative Mud
+    name: Mudly Hit
     icon: {fileID: 0}
-    description: Inflict additional damage for each Boo in game
+    description: 
     element: 0
-    damage: 120
+    damage: 50
     lifeSteal: 0
     minRange: 1
     maxRange: 2
@@ -194,7 +194,7 @@ MonoBehaviour:
     executeAfterTurns: 1
     effectDuration: 0
     criticalProbability: 25
-    hasEffect: 1
+    hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0
     isJump: 0
@@ -202,9 +202,9 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Mud shot
     icon: {fileID: 0}
-    description: Repels the caster of 3 cells
+    description: Repels of 3 cells
     element: 3
-    damage: 100
+    damage: 60
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -226,10 +226,10 @@ MonoBehaviour:
   hp: 4400
   pa: 9
   pm: 4
-  ini: 80
-  res_e: 40
+  ini: 20
+  res_e: 30
   res_f: 10
-  res_a: 10
+  res_a: -10
   res_w: -30
   att_e: 12
   att_f: 0

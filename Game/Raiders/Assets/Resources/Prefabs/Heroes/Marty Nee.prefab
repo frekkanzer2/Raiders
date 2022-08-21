@@ -178,7 +178,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 279891ed60a3b5a498f71ef74a1e6f3d, type: 3}
     description: Inflicts Air damage
     element: 2
-    damage: 37
+    damage: 38
     lifeSteal: 0
     minRange: 2
     maxRange: 8

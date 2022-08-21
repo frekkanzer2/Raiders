@@ -3,28 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[System.Serializable]
 public class Upgrade
 {
 
+    [HideInInspector]
     public int availablePoints = 0; // DO NOT EDIT THE VALUE OF THIS VAR!!!
+    [HideInInspector]
     public int pointsToAssign = 0;
 
     public int hpLevel = 0;
     public int initLevel = 0;
     public int pmLevel = 0; // max 2 PM - 100 pts
     public int paLevel = 0; // max 2 PA - 120 pts
-    public int atkEarthLevel = 0;
+    public int atkEarthLevel = 0; // max 3000% - 1500 pts
     public int atkFireLevel = 0;
     public int atkAirLevel = 0;
     public int atkWaterLevel = 0;
-    public int allAtkLevel = 0;
+    public int allAtkLevel = 0; // max 2000% - 3000 pts
     public int defEarthLevel = 0; // max 30 - 30 pts
     public int defFireLevel = 0; // max 30 - 30 pts
     public int defAirLevel = 0; // max 30 - 30 pts
     public int defWaterLevel = 0; // max 30 - 30 pts
     public int allDefLevel = 0; // max 20 - 40 pts
+    [HideInInspector]
     public int evocationLevel = 0; // max 2 SUMMONS - 80 pts
     public int startingShield = 0;
+
+    #region 3 Characters Challenge
+
+    public void cumulateHere(Upgrade u) {
+        this.hpLevel += u.hpLevel;
+        this.initLevel += u.initLevel;
+        this.pmLevel += u.pmLevel;
+        this.paLevel += u.paLevel;
+        this.atkEarthLevel += u.atkEarthLevel;
+        this.atkFireLevel += u.atkFireLevel;
+        this.atkAirLevel += u.atkAirLevel;
+        this.atkWaterLevel += u.atkWaterLevel;
+        this.allAtkLevel += u.allAtkLevel;
+        this.defEarthLevel += u.defEarthLevel;
+        this.defFireLevel += u.defFireLevel;
+        this.defAirLevel += u.defAirLevel;
+        this.defWaterLevel += u.defWaterLevel;
+        this.allDefLevel += u.allDefLevel;
+        this.evocationLevel += u.evocationLevel;
+        this.startingShield += u.startingShield;
+    }
+
+    #endregion
 
     #region Execute Powerups
 
@@ -124,6 +151,7 @@ public class Upgrade
     }
     public bool executePowerup_atkEarthLevel(int variation) {
         if (variation > 0) {
+            if (variation + atkEarthLevel > 1500) return false;
             // assigning points
             if (variation > pointsToAssign) return false;
             else {
@@ -142,6 +170,7 @@ public class Upgrade
     }
     public bool executePowerup_atkFireLevel(int variation) {
         if (variation > 0) {
+            if (variation + atkFireLevel > 1500) return false;
             // assigning points
             if (variation > pointsToAssign) return false;
             else {
@@ -160,6 +189,7 @@ public class Upgrade
     }
     public bool executePowerup_atkAirLevel(int variation) {
         if (variation > 0) {
+            if (variation + atkAirLevel > 1500) return false;
             // assigning points
             if (variation > pointsToAssign) return false;
             else {
@@ -178,6 +208,7 @@ public class Upgrade
     }
     public bool executePowerup_atkWaterLevel(int variation) {
         if (variation > 0) {
+            if (variation + atkWaterLevel > 1500) return false;
             // assigning points
             if (variation > pointsToAssign) return false;
             else {
@@ -196,6 +227,7 @@ public class Upgrade
     }
     public bool executePowerup_allAtkLevel(int variation) {
         if (variation > 0) {
+            if (variation + allAtkLevel > 3000) return false;
             // assigning points
             if (variation > pointsToAssign) return false;
             else {

@@ -109,7 +109,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 1
-    damage: 60
+    damage: 70
     lifeSteal: 1
     minRange: 1
     maxRange: 1

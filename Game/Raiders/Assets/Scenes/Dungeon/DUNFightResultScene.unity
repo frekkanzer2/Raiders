@@ -303,6 +303,10 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: ee7bf82e531bcba438de3febf5c02db3, type: 3}
     characterMidSprite: {fileID: 21300000, guid: cb9d4579fc650d148bd176ac35249f1a, type: 3}
     isEvocation: 0
+  - characterName: Sumen
+    characterFullSprite: {fileID: 21300000, guid: b4e5c10de7c6a3544a519bfcc5a3ae2c, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: a190c975696802849b894d3892d8e691, type: 3}
+    isEvocation: 0
   - characterName: Yugo
     characterFullSprite: {fileID: 21300000, guid: d1764fd1fe77b824fb78691452473500, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 2b9ada1710f5e4741bae12ed268ad112, type: 3}
@@ -403,6 +407,10 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 09b44832a17fd664ea8d636f8c9fe2fe, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 43265cb9789859144833612b98b534fa, type: 3}
     isEvocation: 0
+  - characterName: Coco
+    characterFullSprite: {fileID: 21300000, guid: f6e0fbb0512e9874c81c147c35679ae0, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 6760d4881b3c0b547ab06fb16a59b302, type: 3}
+    isEvocation: 0
   - characterName: Amalia
     characterFullSprite: {fileID: 21300000, guid: f1fecadfb7e80d44b90b6e3a4f317e7e, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 04a4dc209fe37a04f8555425c1baddc1, type: 3}
@@ -443,6 +451,10 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 45e9d9130579d9b4d89bc14d2cff83d7, type: 3}
     characterMidSprite: {fileID: 21300000, guid: df98b6dbb7564ba4495662fef99a2191, type: 3}
     isEvocation: 0
+  - characterName: Terminatot
+    characterFullSprite: {fileID: 21300000, guid: 31622d898682e4c44a438ea9a68f3b35, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: df25cfccaecf30440ba466beae388378, type: 3}
+    isEvocation: 0
   - characterName: Etraggy
     characterFullSprite: {fileID: 21300000, guid: e05880e317d75c94a9b75b270c59177f, type: 3}
     characterMidSprite: {fileID: 21300000, guid: d98b459260d15864abf735a78376950f, type: 3}
@@ -482,6 +494,10 @@ MonoBehaviour:
   - characterName: Humawolf
     characterFullSprite: {fileID: 21300000, guid: 8226975a67aa11d4d9ee7d326c015ed1, type: 3}
     characterMidSprite: {fileID: 21300000, guid: e2759bffcf1390644b193f4bb2263eac, type: 3}
+    isEvocation: 0
+  - characterName: Aki
+    characterFullSprite: {fileID: 21300000, guid: dfa0c873fabb8eb4988e7b4d5e855612, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 9de0c3092bc02344e83b705c4ef4e366, type: 3}
     isEvocation: 0
   - characterName: Wakfu Totem
     characterFullSprite: {fileID: 21300000, guid: 1eb4e46e680075b4692fdccf95a4cd91, type: 3}
@@ -634,6 +650,22 @@ MonoBehaviour:
   - characterName: Craqueleur
     characterFullSprite: {fileID: 21300000, guid: b2c582c3e52bc6b4bb06f898fe2c143c, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 7e8b5d2d84af5d84a8a59c70defdf710, type: 3}
+    isEvocation: 1
+  - characterName: Flexible Portal
+    characterFullSprite: {fileID: 21300000, guid: be8b2825346938340a02fdb2d0f85c07, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 8a47d8197a8494448a455a7902fe8810, type: 3}
+    isEvocation: 1
+  - characterName: Pandawa Pint
+    characterFullSprite: {fileID: 21300000, guid: 057cb591e06dac94d96e0b90f68c4e4b, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 73520db91dd592141a2f2c2c2d30fd0c, type: 3}
+    isEvocation: 1
+  - characterName: Shelly
+    characterFullSprite: {fileID: 21300000, guid: 4196498e17e6c5f40b9c19880bae9ae4, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: dbb2865e982457945a1527b75a84fe73, type: 3}
+    isEvocation: 1
+  - characterName: Scaphander
+    characterFullSprite: {fileID: 21300000, guid: 7bd253126b359a741ba07f0ff25f7406, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: ada3e87a5a4e543478a748fc254c9127, type: 3}
     isEvocation: 1
 --- !u!1 &361126710
 GameObject:

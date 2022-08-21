@@ -107,7 +107,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Odyssey
     icon: {fileID: 21300000, guid: 751c971984d94e5468502e5de69a7d85, type: 3}
-    description: Teleports to a near random cell
+    description: Teleports to a near random cell. Summons a portal to the cell from
+      which the teleportation started
     element: 5
     damage: 0
     lifeSteal: 0
@@ -210,7 +211,7 @@ MonoBehaviour:
   att_f: 0
   att_a: 0
   att_w: 0
-  numberOfSummons: 0
+  numberOfSummons: 2
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0

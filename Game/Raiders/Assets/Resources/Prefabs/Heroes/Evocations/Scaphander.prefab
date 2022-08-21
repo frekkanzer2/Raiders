@@ -128,14 +128,14 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 180
+  hp: 200
   pa: 5
   pm: 2
   ini: 0
-  res_e: 10
-  res_f: 10
-  res_a: 10
-  res_w: 10
+  res_e: 30
+  res_f: 30
+  res_a: 30
+  res_w: 30
   att_e: 0
   att_f: 0
   att_a: 0
@@ -198,6 +198,7 @@ MonoBehaviour:
   isCommunionActive: 0
   isBomb: 0
   isPortal: 0
+  isPint: 0
   isYapper: 0
   isGuardian: 0
   isRune: 0
@@ -223,8 +224,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.52, y: 0.26}
+    oldSize: {x: 6.6666665, y: 6.6666665}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

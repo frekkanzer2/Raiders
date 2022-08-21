@@ -107,8 +107,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Portal
     icon: {fileID: 21300000, guid: 68d458cbef50a3e458f97316c629d159, type: 3}
-    description: Summons a Portal. Each ally gains 1 PM at the start of their turn
-      for each ally Portal in-game for 1 turn
+    description: Summons a Portal. Immediately adds 1 PM to each ally up to 3 cells
+      at the start of their turn
     element: 5
     damage: 0
     lifeSteal: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
   att_f: 0
   att_a: 0
   att_w: 15
-  numberOfSummons: 3
+  numberOfSummons: 4
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0

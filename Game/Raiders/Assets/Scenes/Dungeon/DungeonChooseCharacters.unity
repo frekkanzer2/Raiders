@@ -2279,8 +2279,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015259, y: -85}
-  m_SizeDelta: {x: 2678.3, y: 92.64}
+  m_AnchoredPosition: {x: -0.000015259, y: -97.24}
+  m_SizeDelta: {x: 2678.3, y: 129.73}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &298613270
 MonoBehaviour:
@@ -2302,7 +2302,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Effective bonus: +1 SUMMONS'
+  m_text: 'Effective bonus: +1 SUMMONS
+
+    Effective bonus: +1 SUMMONS'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a2157e1f9c4c4d38841fbb92558f587, type: 2}
   m_sharedMaterial: {fileID: -6360588970910393389, guid: 9a2157e1f9c4c4d38841fbb92558f587, type: 2}
@@ -2337,7 +2339,7 @@ MonoBehaviour:
   m_fontSizeMax: 54
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3277,7 +3279,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -189.8751, y: -49.89999}
+  m_AnchoredPosition: {x: -276, y: -49.89999}
   m_SizeDelta: {x: 109.75, y: 115.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &555427440
@@ -5119,7 +5121,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 99.875, y: -49.899982}
+  m_AnchoredPosition: {x: 186, y: -49.899982}
   m_SizeDelta: {x: 109.75, y: 115.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &823897016
@@ -6074,7 +6076,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 144.875, y: -49.899982}
+  m_AnchoredPosition: {x: 231, y: -49.899982}
   m_SizeDelta: {x: 109.75, y: 115.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1002164385
@@ -7787,7 +7789,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 189.875, y: -49.899982}
+  m_AnchoredPosition: {x: 276, y: -49.899982}
   m_SizeDelta: {x: 109.75, y: 115.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1290170190
@@ -8065,6 +8067,10 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: ee7bf82e531bcba438de3febf5c02db3, type: 3}
     characterMidSprite: {fileID: 21300000, guid: cb9d4579fc650d148bd176ac35249f1a, type: 3}
     isEvocation: 0
+  - characterName: Sumen
+    characterFullSprite: {fileID: 21300000, guid: b4e5c10de7c6a3544a519bfcc5a3ae2c, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: a190c975696802849b894d3892d8e691, type: 3}
+    isEvocation: 0
   - characterName: Yugo
     characterFullSprite: {fileID: 21300000, guid: d1764fd1fe77b824fb78691452473500, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 2b9ada1710f5e4741bae12ed268ad112, type: 3}
@@ -8165,6 +8171,10 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 09b44832a17fd664ea8d636f8c9fe2fe, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 43265cb9789859144833612b98b534fa, type: 3}
     isEvocation: 0
+  - characterName: Coco
+    characterFullSprite: {fileID: 21300000, guid: f6e0fbb0512e9874c81c147c35679ae0, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 6760d4881b3c0b547ab06fb16a59b302, type: 3}
+    isEvocation: 0
   - characterName: Amalia
     characterFullSprite: {fileID: 21300000, guid: f1fecadfb7e80d44b90b6e3a4f317e7e, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 04a4dc209fe37a04f8555425c1baddc1, type: 3}
@@ -8205,6 +8215,10 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 45e9d9130579d9b4d89bc14d2cff83d7, type: 3}
     characterMidSprite: {fileID: 21300000, guid: df98b6dbb7564ba4495662fef99a2191, type: 3}
     isEvocation: 0
+  - characterName: Terminatot
+    characterFullSprite: {fileID: 21300000, guid: 31622d898682e4c44a438ea9a68f3b35, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: df25cfccaecf30440ba466beae388378, type: 3}
+    isEvocation: 0
   - characterName: Etraggy
     characterFullSprite: {fileID: 21300000, guid: e05880e317d75c94a9b75b270c59177f, type: 3}
     characterMidSprite: {fileID: 21300000, guid: d98b459260d15864abf735a78376950f, type: 3}
@@ -8244,6 +8258,10 @@ MonoBehaviour:
   - characterName: Humawolf
     characterFullSprite: {fileID: 21300000, guid: 8226975a67aa11d4d9ee7d326c015ed1, type: 3}
     characterMidSprite: {fileID: 21300000, guid: e2759bffcf1390644b193f4bb2263eac, type: 3}
+    isEvocation: 0
+  - characterName: Aki
+    characterFullSprite: {fileID: 21300000, guid: dfa0c873fabb8eb4988e7b4d5e855612, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 9de0c3092bc02344e83b705c4ef4e366, type: 3}
     isEvocation: 0
   - characterName: Wakfu Totem
     characterFullSprite: {fileID: 21300000, guid: 1eb4e46e680075b4692fdccf95a4cd91, type: 3}
@@ -8396,6 +8414,22 @@ MonoBehaviour:
   - characterName: Craqueleur
     characterFullSprite: {fileID: 21300000, guid: b2c582c3e52bc6b4bb06f898fe2c143c, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 7e8b5d2d84af5d84a8a59c70defdf710, type: 3}
+    isEvocation: 1
+  - characterName: Flexible Portal
+    characterFullSprite: {fileID: 21300000, guid: be8b2825346938340a02fdb2d0f85c07, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 8a47d8197a8494448a455a7902fe8810, type: 3}
+    isEvocation: 1
+  - characterName: Pandawa Pint
+    characterFullSprite: {fileID: 21300000, guid: 057cb591e06dac94d96e0b90f68c4e4b, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 73520db91dd592141a2f2c2c2d30fd0c, type: 3}
+    isEvocation: 1
+  - characterName: Shelly
+    characterFullSprite: {fileID: 21300000, guid: 4196498e17e6c5f40b9c19880bae9ae4, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: dbb2865e982457945a1527b75a84fe73, type: 3}
+    isEvocation: 1
+  - characterName: Scaphander
+    characterFullSprite: {fileID: 21300000, guid: 7bd253126b359a741ba07f0ff25f7406, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: ada3e87a5a4e543478a748fc254c9127, type: 3}
     isEvocation: 1
 --- !u!114 &1295197767
 MonoBehaviour:
@@ -8581,6 +8615,25 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 1
           column: 7
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 2
+      initLevel: 3
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   - name: Gobball Dungeon
     bossIcon: {fileID: 21300000, guid: b9d914396b9e44b4c951eccd61339f28, type: 3}
     monsters:
@@ -8763,6 +8816,25 @@ MonoBehaviour:
           column: 4
         - row: 13
           column: 5
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 3
+      initLevel: 2
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 4
+      atkFireLevel: 0
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 3
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   - name: Champs Royale Dungeon
     bossIcon: {fileID: 21300000, guid: 7c8708eb5049e024ca222d4fd2ac2a48, type: 3}
     monsters:
@@ -8964,6 +9036,25 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 14
           column: 12
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 1
+      initLevel: 5
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 2
+      atkFireLevel: 0
+      atkAirLevel: 2
+      atkWaterLevel: 0
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   - name: Brikomorphs
     bossIcon: {fileID: 21300000, guid: 320913679975d6649b485940461ea1d0, type: 3}
     monsters:
@@ -9138,6 +9229,25 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 12
           column: 9
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 5
+      initLevel: 10
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 12
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   - name: Brutomorphs
     bossIcon: {fileID: 21300000, guid: 5344838dabce9744c925d45de7dd6ea6, type: 3}
     monsters:
@@ -9287,6 +9397,25 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 9
           column: 4
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 3
+      initLevel: 8
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 6
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 2
+      evocationLevel: 0
+      startingShield: 0
   - name: Pichon Dungeon
     bossIcon: {fileID: 21300000, guid: 32f4e71574654f7488f9ea85ed78fdea, type: 3}
     monsters:
@@ -9439,6 +9568,25 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 2
           column: 13
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 2
+      initLevel: 20
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 4
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   - name: Tofu Dungeon
     bossIcon: {fileID: 21300000, guid: 70faeba9c169f3144ac187fbb9dd1887, type: 3}
     monsters:
@@ -9593,6 +9741,25 @@ MonoBehaviour:
       - monsterID: 6
         quantity: 0
         spawnCoordinates: []
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 0
+      initLevel: 5
+      pmLevel: 10
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 6
+      atkWaterLevel: 4
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   - name: Before the Forest
     bossIcon: {fileID: 21300000, guid: b7cb054b2e5da1b438033227fa791e36, type: 3}
     monsters:
@@ -9759,6 +9926,25 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 6
           column: 20
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 6
+      initLevel: 20
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 4
+      evocationLevel: 0
+      startingShield: 0
   - name: Under the Forest
     bossIcon: {fileID: 21300000, guid: 3aa050aee4f8dc0468466733142af886, type: 3}
     monsters:
@@ -9960,6 +10146,25 @@ MonoBehaviour:
       - monsterID: 1
         quantity: 0
         spawnCoordinates: []
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 12
+      initLevel: 6
+      pmLevel: 0
+      paLevel: 5
+      atkEarthLevel: 4
+      atkFireLevel: 2
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   - name: Vilinsekts House
     bossIcon: {fileID: 21300000, guid: 161d09ce8ff6a8145b018ba361d29735, type: 3}
     monsters:
@@ -10149,6 +10354,25 @@ MonoBehaviour:
       - monsterID: 7
         quantity: 0
         spawnCoordinates: []
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 20
+      initLevel: 10
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 6
+      atkAirLevel: 0
+      atkWaterLevel: 4
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 2
   - name: Phantom Alpha
     bossIcon: {fileID: 21300000, guid: 1ec7408ea9a74634ca5f8a9da0845a2e, type: 3}
     monsters:
@@ -10286,6 +10510,25 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 6
           column: 0
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 0
+      initLevel: 20
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 4
+      atkWaterLevel: 6
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   - name: Deadly Forest
     bossIcon: {fileID: 21300000, guid: 7f977337448d68c4f82967b4f0d23a78, type: 3}
     monsters:
@@ -10460,6 +10703,25 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 9
           column: 10
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 0
+      initLevel: 0
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 2
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 8
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 2
+      evocationLevel: 0
+      startingShield: 1
   - name: Scarabugly Hole
     bossIcon: {fileID: 21300000, guid: 5d363372401d5884d893905c7e3560b9, type: 3}
     monsters:
@@ -10576,6 +10838,25 @@ MonoBehaviour:
       - monsterID: 5
         quantity: 0
         spawnCoordinates: []
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 10
+      initLevel: 0
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 6
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   - name: Chafer House
     bossIcon: {fileID: 21300000, guid: 33b83eed85a6a8245852a5f5fc43f0d9, type: 3}
     monsters:
@@ -10740,6 +11021,25 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 2
           column: 7
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 0
+      initLevel: 14
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 6
+      atkFireLevel: 4
+      atkAirLevel: 6
+      atkWaterLevel: 2
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   - name: Kwak Dungeon
     bossIcon: {fileID: 21300000, guid: 330c05dddb0529f478b07ad3590ea757, type: 3}
     monsters:
@@ -10864,6 +11164,25 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 3
           column: 16
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 0
+      initLevel: 2
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 10
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 2
+      evocationLevel: 0
+      startingShield: 6
   - name: Bandits Secret Place Hole
     bossIcon: {fileID: 21300000, guid: fe97fe749e85c434d9e6a163ca0381d3, type: 3}
     monsters:
@@ -11019,6 +11338,25 @@ MonoBehaviour:
           column: 19
         - row: 6
           column: 19
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 3
+      initLevel: 0
+      pmLevel: 10
+      paLevel: 10
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 3
   - name: Junior Bworker Village
     bossIcon: {fileID: 21300000, guid: adce575309cc990419773d16223efd9b, type: 3}
     monsters:
@@ -11188,6 +11526,25 @@ MonoBehaviour:
       - monsterID: 7
         quantity: 0
         spawnCoordinates: []
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 6
+      initLevel: 14
+      pmLevel: 0
+      paLevel: 5
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 10
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 2
   - name: Abraknide Dungeon
     bossIcon: {fileID: 21300000, guid: 617947d7d2d790a40ad0616e4b8ef04c, type: 3}
     monsters:
@@ -11334,6 +11691,25 @@ MonoBehaviour:
       - monsterID: 7
         quantity: 0
         spawnCoordinates: []
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 10
+      initLevel: 3
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 8
+      atkFireLevel: 4
+      atkAirLevel: 2
+      atkWaterLevel: 6
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 2
   - name: Blop Fields
     bossIcon: {fileID: 21300000, guid: 365b94342cd76ed45b1e352281e7ee9f, type: 3}
     monsters:
@@ -11561,6 +11937,25 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 1
           column: 12
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 10
+      initLevel: 10
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 18
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   - name: Wa Wabbit Castle
     bossIcon: {fileID: 21300000, guid: 11647f602bc25804ca5d5178b83775fc, type: 3}
     monsters:
@@ -11724,6 +12119,25 @@ MonoBehaviour:
           column: 4
         - row: 13
           column: 10
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 6
+      initLevel: 8
+      pmLevel: 10
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 4
+      atkAirLevel: 4
+      atkWaterLevel: 2
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 3
   - name: Craquerock Mountain
     bossIcon: {fileID: 21300000, guid: 7659e9e239923bd40a222b183871f174, type: 3}
     monsters:
@@ -11860,6 +12274,25 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 15
           column: 9
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 20
+      initLevel: 0
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 12
+      atkFireLevel: 4
+      atkAirLevel: 2
+      atkWaterLevel: 0
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 12
   - name: Kannibal Village
     bossIcon: {fileID: 21300000, guid: adf7d0aa935088a41a824dc95a06dfe3, type: 3}
     monsters:
@@ -12030,6 +12463,25 @@ MonoBehaviour:
           column: 14
         - row: 12
           column: 10
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 0
+      initLevel: 20
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 20
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   - name: Road to Bonta I
     bossIcon: {fileID: 21300000, guid: 479a62661d2253346bdc39ebe1f00739, type: 3}
     monsters:
@@ -12194,6 +12646,25 @@ MonoBehaviour:
           column: 20
         - row: 6
           column: 20
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 12
+      initLevel: 4
+      pmLevel: 0
+      paLevel: 5
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 8
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 1
   - name: Road to Bonta II
     bossIcon: {fileID: 21300000, guid: c0e85b60c4902504692521b0e9c3dbf2, type: 3}
     monsters:
@@ -12361,6 +12832,25 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 6
           column: 20
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 16
+      initLevel: 8
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 12
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   - name: Road to Bonta III
     bossIcon: {fileID: 21300000, guid: a1f35b9f7d99dc94190a77185d5e8721, type: 3}
     monsters:
@@ -12507,6 +12997,25 @@ MonoBehaviour:
           column: 21
         - row: 7
           column: 21
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 20
+      initLevel: 10
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 16
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 4
   - name: Bonta Rat Dungeon
     bossIcon: {fileID: 21300000, guid: 709fc4e5054b29140bee21b01c4b67f0, type: 3}
     monsters:
@@ -12660,10 +13169,225 @@ MonoBehaviour:
           column: 5
         - row: 16
           column: 11
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 8
+      initLevel: 0
+      pmLevel: 5
+      paLevel: 0
+      atkEarthLevel: 2
+      atkFireLevel: 8
+      atkAirLevel: 6
+      atkWaterLevel: 10
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   - name: Nauseabonde Territory
     bossIcon: {fileID: 21300000, guid: ec0cd7daef5be844ca9b01ff198078c6, type: 3}
-    monsters: []
-    rooms: []
+    monsters:
+    - name: Croc Gland
+      prefab: {fileID: 557098361630938699, guid: 5b971a969e218dd43a4b1ca4e63a8072, type: 3}
+      sprite: {fileID: 21300000, guid: ef8aa4119eea6414b9639222cbd3873a, type: 3}
+    - name: Crocodyl Chief
+      prefab: {fileID: 557098361630938699, guid: bfce1e07ebac9ce42851727d7623ba3f, type: 3}
+      sprite: {fileID: 21300000, guid: ff3393fd2a39c78408e07e31d88d5476, type: 3}
+    - name: Crocodyl
+      prefab: {fileID: 557098361630938699, guid: e0f0322b306368542b0697efd159b36f, type: 3}
+      sprite: {fileID: 21300000, guid: 2f67331f0d465e6489d46cce46120078, type: 3}
+    - name: Djonz
+      prefab: {fileID: 557098361630938699, guid: 2717cec3a6415e94387e0822e05afb83, type: 3}
+      sprite: {fileID: 21300000, guid: 7cab2fb87a22ce94fbcecce526f35be0, type: 3}
+    - name: Gadoo
+      prefab: {fileID: 557098361630938699, guid: 0a057421df452194da1bec2aaf86a753, type: 3}
+      sprite: {fileID: 21300000, guid: 1c28d9b764dd7c148a989264f80d191b, type: 3}
+    - name: Boo
+      prefab: {fileID: 557098361630938699, guid: a46188c58c7e9ed4dbcca8beaa275aba, type: 3}
+      sprite: {fileID: 21300000, guid: 91d803e0771ac6b4ebe6e15eb942f3e1, type: 3}
+    - name: Moskito
+      prefab: {fileID: 557098361630938699, guid: 5dfa3b7b2c7427a41abb3168a8a42dc2, type: 3}
+      sprite: {fileID: 21300000, guid: 20fc147e332659741aae7216db37432a, type: 3}
+    - name: Abrakne
+      prefab: {fileID: 557098361630938699, guid: b564eaef80b92184e8de68ec129068f2, type: 3}
+      sprite: {fileID: 21300000, guid: f5596f8a3978f994195eae03afa9b9c8, type: 3}
+    - name: Bwork Archer
+      prefab: {fileID: 557098361630938699, guid: dbb7a25dbb255c842a17eed19d623030, type: 3}
+      sprite: {fileID: 21300000, guid: 59d2b882d023bbe4592f6c8e7c4933a4, type: 3}
+    - name: Sick Arachnee
+      prefab: {fileID: 557098361630938699, guid: 49818e9b048601d4996c67346a2e07bd, type: 3}
+      sprite: {fileID: 21300000, guid: 354cbefc1c46f5b4daca6c67a2121eda, type: 3}
+    - name: Alpha Arachnee
+      prefab: {fileID: 557098361630938699, guid: e24e132ba570958499a23df370291e79, type: 3}
+      sprite: {fileID: 21300000, guid: d92f5d5263b9b764785c0459b72031ea, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 14
+          column: 4
+        - row: 14
+          column: 12
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 15
+          column: 6
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 17
+          column: 5
+      - monsterID: 8
+        quantity: 1
+        spawnCoordinates:
+        - row: 18
+          column: 9
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 2
+        quantity: 4
+        spawnCoordinates:
+        - row: 13
+          column: 5
+        - row: 13
+          column: 7
+        - row: 15
+          column: 12
+        - row: 17
+          column: 5
+      - monsterID: 7
+        quantity: 2
+        spawnCoordinates:
+        - row: 16
+          column: 5
+        - row: 19
+          column: 12
+      - monsterID: 9
+        quantity: 1
+        spawnCoordinates:
+        - row: 15
+          column: 8
+      - monsterID: 10
+        quantity: 0
+        spawnCoordinates: []
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 7
+          column: 11
+        - row: 18
+          column: 11
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 7
+          column: 10
+        - row: 18
+          column: 10
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 2
+          column: 2
+      - monsterID: 7
+        quantity: 1
+        spawnCoordinates:
+        - row: 19
+          column: 8
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 7
+          column: 10
+        - row: 18
+          column: 10
+      - monsterID: 8
+        quantity: 2
+        spawnCoordinates:
+        - row: 7
+          column: 11
+        - row: 18
+          column: 11
+      - monsterID: 9
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 3
+        - row: 18
+          column: 7
+      - monsterID: 7
+        quantity: 1
+        spawnCoordinates:
+        - row: 12
+          column: 12
+      - monsterID: 10
+        quantity: 0
+        spawnCoordinates: []
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 3
+          column: 6
+      - monsterID: 5
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 6
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 3
+          column: 7
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 5
+          column: 2
+        - row: 5
+          column: 11
+      - monsterID: 9
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 5
+        - row: 6
+          column: 9
+      - monsterID: 10
+        quantity: 0
+        spawnCoordinates: []
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 12
+      initLevel: 24
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 2
+      atkFireLevel: 4
+      atkAirLevel: 12
+      atkWaterLevel: 18
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 4
   - name: Corridor of Kwakers
     bossIcon: {fileID: 21300000, guid: 42598f802cb050f45a02b47e548bd34c, type: 3}
     monsters:
@@ -12788,14 +13512,71 @@ MonoBehaviour:
         spawnCoordinates:
         - row: 3
           column: 16
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 30
+      initLevel: 0
+      pmLevel: 5
+      paLevel: 0
+      atkEarthLevel: 0
+      atkFireLevel: 0
+      atkAirLevel: 0
+      atkWaterLevel: 0
+      allAtkLevel: 20
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   - name: Nelween Lair
     bossIcon: {fileID: 21300000, guid: 1d3648791f817e44e8f4a73060e6242b, type: 3}
     monsters: []
     rooms: []
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 0
+      initLevel: 0
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 6
+      atkFireLevel: 12
+      atkAirLevel: 10
+      atkWaterLevel: 2
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 2
+      evocationLevel: 0
+      startingShield: 10
   - name: Blacknide Dungeon
     bossIcon: {fileID: 21300000, guid: c5814d9a01b8c554d8512bd523152e63, type: 3}
     monsters: []
     rooms: []
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 30
+      initLevel: 25
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 34
+      atkFireLevel: 18
+      atkAirLevel: 20
+      atkWaterLevel: 26
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   isDebugEnabled: 0
 --- !u!114 &1295197768
 MonoBehaviour:
@@ -13799,7 +14580,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -99.87506, y: -49.89999}
+  m_AnchoredPosition: {x: -186, y: -49.89999}
   m_SizeDelta: {x: 109.75, y: 115.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1561289264
@@ -14142,8 +14923,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -172.08}
-  m_SizeDelta: {x: 160.12, y: 49.88}
+  m_AnchoredPosition: {x: 0, y: -172.07}
+  m_SizeDelta: {x: 289.96, y: 49.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1615800094
 MonoBehaviour:
@@ -14165,7 +14946,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000
+  m_text: 1000 + 1000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c2f49fe8c22d94f9a9e6cd06ad490155, type: 2}
   m_sharedMaterial: {fileID: 3074828514974314926, guid: c2f49fe8c22d94f9a9e6cd06ad490155, type: 2}
@@ -14718,7 +15499,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -144.87506, y: -49.89999}
+  m_AnchoredPosition: {x: -231, y: -49.89999}
   m_SizeDelta: {x: 109.75, y: 115.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1704684042

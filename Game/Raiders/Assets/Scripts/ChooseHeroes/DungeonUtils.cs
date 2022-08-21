@@ -31,6 +31,7 @@ public class DungeonUtils {
     public Sprite bossIcon;
     public List<MonsterPrefab> monsters;
     public RoomMonsters[] rooms = new RoomMonsters[5];
+    public Upgrade ThreeCharactersChallenge;
 
     public GameObject getMonsterPrefab(string prefabName) {
         foreach (MonsterPrefab mp in this.monsters)

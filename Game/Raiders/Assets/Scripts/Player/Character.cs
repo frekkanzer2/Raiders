@@ -549,7 +549,7 @@ public class Character : MonoBehaviour
                 }
             }
         }
-        if (Spell.ut_getAlliedPortals(this) > 0) this.incrementPM(Spell.ut_getAlliedPortals(this)); // Getting PMs from Portals
+        if (Spell.ut_getAlliedPortalPMGains(this) > 0) this.incrementPM(Spell.ut_getAlliedPortalPMGains(this)); // Getting PMs from Portals
         resetBufferedCells();
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -20);
         esystem.OnStartTurn();

@@ -106,7 +106,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.57, y: 0.22}
-    oldSize: {x: 2.5, y: 2.5}
+    oldSize: {x: 3.3333333, y: 3.3333333}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 3
-    damage: 180
+    damage: 160
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -155,7 +155,7 @@ MonoBehaviour:
     isSummon: 0
   - link: {fileID: 0}
     name: Crocorage
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 905a1b4831f96f64fb750308b553a19e, type: 3}
     description: +3 PM and +25% DMG for 3 turns
     element: 5
     damage: 0

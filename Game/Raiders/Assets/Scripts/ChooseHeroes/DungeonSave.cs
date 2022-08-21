@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class DungeonSave {
 
-    public string DUNGEON_PROGRESS_STRING = "DUNLASTUNLOCK";
-    public string DUNGEON_CHOSEN_STRING = "DUNGEON_ROOM";
-    public string DUNGEON_ROOM_STRING = "DUNGEON_RNUMBER";
+    public static string DUNGEON_PROGRESS_STRING = "DUNLASTUNLOCK";
+    public static string DUNGEON_CHOSEN_STRING = "DUNGEON_ROOM";
+    public static string DUNGEON_ROOM_STRING = "DUNGEON_RNUMBER";
+    public static string DUNGEON_BONUS_STRING = "DUNGEON_BONUS";
 
     public static List<DungeonUtils> BUFFER_ALL_DUNGEONS = null;
 
@@ -72,8 +74,36 @@ public class DungeonSave {
         return listOfDungeons[id].monsters;
     }
 
-    public void dungeonPassed() {
-        PlayerPrefs.SetInt(DUNGEON_PROGRESS_STRING, getReachedDungeonID() + 1);
+    public void dungeonPassed(int numberOfCharacters, bool isNewDungeon, int dungeonID) {
+        if (isNewDungeon) PlayerPrefs.SetInt(DUNGEON_PROGRESS_STRING, getReachedDungeonID() + 1);
+        if (numberOfCharacters == 3) {
+            if (PlayerPrefs.HasKey(DUNGEON_BONUS_STRING)) {
+                string str = PlayerPrefs.GetString(DUNGEON_BONUS_STRING);
+                Debug.Log("Picked " + str);
+                if (str.Length < DungeonContainer.numberOfDungeons) {
+                    for (int i = str.Length-1; i < DungeonContainer.numberOfDungeons; i++) {
+                        str += "0";
+                    }
+                }
+                str = EditStringThreeProgress(str, dungeonID);
+                PlayerPrefs.SetString(DUNGEON_BONUS_STRING, str);
+                Debug.Log("Saved " + str);
+            } else {
+                string str = "";
+                for (int i = 0; i < DungeonContainer.numberOfDungeons; i++)
+                    str += "0";
+                str = EditStringThreeProgress(str, dungeonID);
+                PlayerPrefs.SetString(DUNGEON_BONUS_STRING, str);
+                Debug.Log("Saved " + str);
+            }
+        }
+    }
+
+    private string EditStringThreeProgress(string str, int index) {
+        StringBuilder sb = new StringBuilder(str);
+        sb[index] = '1';
+        str = sb.ToString();
+        return str;
     }
 
     public void RESET() {

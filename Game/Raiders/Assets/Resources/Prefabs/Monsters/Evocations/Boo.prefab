@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a74ad848812bc304cb1e557ee1071424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Moskito
+  name: Boo
   heroClass: 18
   spells:
   - link: {fileID: 0}
@@ -109,10 +109,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 0
-    damage: 46
+    damage: 40
     lifeSteal: 0
     minRange: 1
-    maxRange: 1
+    maxRange: 2
     distanceType: 0
     overObstacles: 0
     hpCost: 0

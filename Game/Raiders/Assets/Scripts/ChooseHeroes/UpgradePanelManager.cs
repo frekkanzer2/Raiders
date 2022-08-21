@@ -16,26 +16,34 @@ public class UpgradePanelManager : MonoBehaviour
     public GameObject chosen_powerupEffectiveBonus;
     private List<GameObject> powerup_cards;
 
+    private Upgrade up_std, up_3;
+    private Upgrade cumulative;
+
     private string _available_msg = "Available points: ";
     private string _effective_msg = "Effective bonus: ";
+    private string _three_msg = "Challenge bonus: ";
 
     private int chosen_powerupIndex = 0;
 
     public Sprite[] iconsList;
 
     public void OnEnable() {
-        string _bonusval = "+" + DUNSelectionManager.UPGRADE.getHpBonus() + " HP | +" + DUNSelectionManager.UPGRADE.getHealBonus() + " heals";
-        setPreview("Heart Points Bonus", 0, iconsList[0], _bonusval, 0);
+        this.cumulative = new Upgrade();
+        this.up_std = DUNSelectionManager.UPGRADE;
+        this.up_3 = DUNSelectionManager.ADDITIONAL_UPGRADE;
+        this.cumulative.cumulateHere(this.up_std);
+        this.cumulative.cumulateHere(this.up_3);
+        OnPressHP();
         availablePointsText.GetComponent<TextMeshProUGUI>().text = _available_msg + DUNSelectionManager.UPGRADE.pointsToAssign;
         foreach (Transform child in containerButtonsPowerups.transform)
             setCardPoints(child.gameObject, 0);
     }
 
-    private void setPreview(string title, int actualPoints, Sprite image, string effectiveBonus, int id) {
+    private void setPreview(string title, int actualPoints, int bonusPoints, Sprite image, string effectiveBonus, string threebonus, int id) {
         chosen_powerupIndex = id;
         chosen_powerupName.GetComponent<TextMeshProUGUI>().text = title;
-        chosen_powerupLevel.GetComponent<TextMeshProUGUI>().text = "" + actualPoints;
-        chosen_powerupEffectiveBonus.GetComponent<TextMeshProUGUI>().text = _effective_msg + effectiveBonus;
+        chosen_powerupLevel.GetComponent<TextMeshProUGUI>().text = "" + actualPoints + " + " + bonusPoints;
+        chosen_powerupEffectiveBonus.GetComponent<TextMeshProUGUI>().text = _effective_msg + effectiveBonus + System.Environment.NewLine + _three_msg + threebonus;
         chosen_powerupImage.GetComponent<Image>().sprite = image;
         availablePointsText.GetComponent<TextMeshProUGUI>().text = _available_msg + DUNSelectionManager.UPGRADE.pointsToAssign;
         prioritizeCard(id);
@@ -81,79 +89,105 @@ public class UpgradePanelManager : MonoBehaviour
     #region OnPress Cards
 
     public void OnPressHP() {
-        string bonusval = "+" + DUNSelectionManager.UPGRADE.getHpBonus() + " HP | +" + DUNSelectionManager.UPGRADE.getHealBonus() + " heals";
-        setPreview("Heart Points Bonus", DUNSelectionManager.UPGRADE.hpLevel, iconsList[0], bonusval, 0);
+        string bonusval = "+" + cumulative.getHpBonus() + " HP | +" + cumulative.getHealBonus() + " heals";
+        string bonusval2 = "+" + up_std.getHpBonus() + " HP | +" + up_std.getHealBonus() + " heals";
+        setPreview("Heart Points Bonus", up_std.hpLevel, up_3.hpLevel, iconsList[0], bonusval2, bonusval, 0);
     }
     public void OnPressShield() {
-        string bonusval = "+" + DUNSelectionManager.UPGRADE.getShieldBonus() + " Shield | +" + DUNSelectionManager.UPGRADE.getGainShieldBonus() + " gains on shield";
-        setPreview("Starting Shield Bonus", DUNSelectionManager.UPGRADE.startingShield, iconsList[1], bonusval, 1);
+        string bonusval = "+" + cumulative.getShieldBonus() + " Shield | +" + cumulative.getGainShieldBonus() + " gains on shield";
+        string bonusval2 = "+" + up_std.getShieldBonus() + " Shield | +" + up_std.getGainShieldBonus() + " gains on shield";
+        setPreview("Starting Shield Bonus", up_std.startingShield, up_3.startingShield, iconsList[1], bonusval2, bonusval, 1);
     }
     public void OnPressPA() {
-        string bonusval = "+" + DUNSelectionManager.UPGRADE.getPaBonus() + " PA";
-        setPreview("Action Points (PA) Bonus", DUNSelectionManager.UPGRADE.paLevel, iconsList[2], bonusval, 2);
+        string bonusval = "+" + cumulative.getPaBonus() + " PA";
+        string bonusval2 = "+" + up_std.getPaBonus() + " PA";
+        setPreview("Action Points (PA) Bonus", up_std.paLevel, up_3.paLevel, iconsList[2], bonusval2, bonusval, 2);
     }
     public void OnPressPM() {
-        string bonusval = "+" + DUNSelectionManager.UPGRADE.getPmBonus() + " PM";
-        setPreview("Movement Points (PM) Bonus", DUNSelectionManager.UPGRADE.pmLevel, iconsList[3], bonusval, 3);
+        string bonusval = "+" + cumulative.getPmBonus() + " PM";
+        string bonusval2 = "+" + up_std.getPmBonus() + " PM";
+        setPreview("Movement Points (PM) Bonus", up_std.pmLevel, up_3.pmLevel, iconsList[3], bonusval2, bonusval, 3);
     }
     public void OnPressINI() {
-        string bonusval = "+" + DUNSelectionManager.UPGRADE.getInitBonus() + " INI";
-        setPreview("Initiative Bonus", DUNSelectionManager.UPGRADE.initLevel, iconsList[4], bonusval, 4);
+        string bonusval = "+" + cumulative.getInitBonus() + " INI";
+        string bonusval2 = "+" + up_std.getInitBonus() + " INI";
+        setPreview("Initiative Bonus", up_std.initLevel, up_3.initLevel, iconsList[4], bonusval2, bonusval, 4);
     }
     public void OnPressATK() {
-        Tuple<int, int, int, int> t = DUNSelectionManager.UPGRADE.getAttackBonus();
+        Tuple<int, int, int, int> t = cumulative.getAttackBonus();
+        Tuple<int, int, int, int> t2 = up_std.getAttackBonus();
         string bonusval = "+" + t.Item1 + "% Earth damage | +" + t.Item2 + " % Fire damage | +" + t.Item3 + " % Air damage | +" + t.Item4 + " % Water damage";
-        setPreview("Damage Bonus", DUNSelectionManager.UPGRADE.allAtkLevel, iconsList[5], bonusval, 5);
+        string bonusval2 = "+" + t2.Item1 + "% Earth damage | +" + t2.Item2 + " % Fire damage | +" + t2.Item3 + " % Air damage | +" + t2.Item4 + " % Water damage";
+        setPreview("Damage Bonus", up_std.allAtkLevel, up_3.allAtkLevel, iconsList[5], bonusval2, bonusval, 5);
     }
     public void OnPressATK_E() {
-        Tuple<int, int, int, int> t = DUNSelectionManager.UPGRADE.getAttackBonus();
+        Tuple<int, int, int, int> t = cumulative.getAttackBonus();
+        Tuple<int, int, int, int> t2 = up_std.getAttackBonus();
         string bonusval = "+" + t.Item1 + "% Earth damage | +" + t.Item2 + " % Fire damage | +" + t.Item3 + " % Air damage | +" + t.Item4 + " % Water damage";
-        setPreview("Earth Damage Bonus", DUNSelectionManager.UPGRADE.atkEarthLevel, iconsList[5], bonusval, 6);
+        string bonusval2 = "+" + t2.Item1 + "% Earth damage | +" + t2.Item2 + " % Fire damage | +" + t2.Item3 + " % Air damage | +" + t2.Item4 + " % Water damage";
+        setPreview("Earth Damage Bonus", up_std.atkEarthLevel, up_3.atkEarthLevel, iconsList[5], bonusval2, bonusval, 6);
     }
     public void OnPressATK_F() {
-        Tuple<int, int, int, int> t = DUNSelectionManager.UPGRADE.getAttackBonus();
+        Tuple<int, int, int, int> t = cumulative.getAttackBonus();
+        Tuple<int, int, int, int> t2 = up_std.getAttackBonus();
         string bonusval = "+" + t.Item1 + "% Earth damage | +" + t.Item2 + " % Fire damage | +" + t.Item3 + " % Air damage | +" + t.Item4 + " % Water damage";
-        setPreview("Fire Damage Bonus", DUNSelectionManager.UPGRADE.atkFireLevel, iconsList[5], bonusval, 7);
+        string bonusval2 = "+" + t2.Item1 + "% Earth damage | +" + t2.Item2 + " % Fire damage | +" + t2.Item3 + " % Air damage | +" + t2.Item4 + " % Water damage";
+        setPreview("Fire Damage Bonus", up_std.atkFireLevel, up_3.atkFireLevel, iconsList[5], bonusval2, bonusval, 7);
     }
     public void OnPressATK_A() {
-        Tuple<int, int, int, int> t = DUNSelectionManager.UPGRADE.getAttackBonus();
+        Tuple<int, int, int, int> t = cumulative.getAttackBonus();
+        Tuple<int, int, int, int> t2 = up_std.getAttackBonus();
         string bonusval = "+" + t.Item1 + "% Earth damage | +" + t.Item2 + " % Fire damage | +" + t.Item3 + " % Air damage | +" + t.Item4 + " % Water damage";
-        setPreview("Air Damage Bonus", DUNSelectionManager.UPGRADE.atkAirLevel, iconsList[5], bonusval, 8);
+        string bonusval2 = "+" + t2.Item1 + "% Earth damage | +" + t2.Item2 + " % Fire damage | +" + t2.Item3 + " % Air damage | +" + t2.Item4 + " % Water damage";
+        setPreview("Air Damage Bonus", up_std.atkAirLevel, up_3.atkAirLevel, iconsList[5], bonusval2, bonusval, 8);
     }
     public void OnPressATK_W() {
-        Tuple<int, int, int, int> t = DUNSelectionManager.UPGRADE.getAttackBonus();
+        Tuple<int, int, int, int> t = cumulative.getAttackBonus();
+        Tuple<int, int, int, int> t2 = up_std.getAttackBonus();
         string bonusval = "+" + t.Item1 + "% Earth damage | +" + t.Item2 + " % Fire damage | +" + t.Item3 + " % Air damage | +" + t.Item4 + " % Water damage";
-        setPreview("Water Damage Bonus", DUNSelectionManager.UPGRADE.atkWaterLevel, iconsList[5], bonusval, 9);
+        string bonusval2 = "+" + t2.Item1 + "% Earth damage | +" + t2.Item2 + " % Fire damage | +" + t2.Item3 + " % Air damage | +" + t2.Item4 + " % Water damage";
+        setPreview("Water Damage Bonus", up_std.atkWaterLevel, up_3.atkWaterLevel, iconsList[5], bonusval2, bonusval, 9);
     }
     public void OnPressDEF() {
-        Tuple<int, int, int, int> t = DUNSelectionManager.UPGRADE.getDefenceBonus();
+        Tuple<int, int, int, int> t = cumulative.getDefenceBonus();
+        Tuple<int, int, int, int> t2 = up_std.getDefenceBonus();
         string bonusval = "+" + t.Item1 + "% Earth RES | +" + t.Item2 + " % Fire RES | +" + t.Item3 + " % Air RES | +" + t.Item4 + " % Water RES";
-        setPreview("Resistence Bonus", DUNSelectionManager.UPGRADE.allDefLevel, iconsList[6], bonusval, 10);
+        string bonusval2 = "+" + t2.Item1 + "% Earth RES | +" + t2.Item2 + " % Fire RES | +" + t2.Item3 + " % Air RES | +" + t2.Item4 + " % Water RES";
+        setPreview("Resistence Bonus", up_std.allDefLevel, up_3.allDefLevel, iconsList[6], bonusval2, bonusval, 10);
     }
     public void OnPressDEF_E() {
-        Tuple<int, int, int, int> t = DUNSelectionManager.UPGRADE.getDefenceBonus();
+        Tuple<int, int, int, int> t = cumulative.getDefenceBonus();
+        Tuple<int, int, int, int> t2 = up_std.getDefenceBonus();
         string bonusval = "+" + t.Item1 + "% Earth RES | +" + t.Item2 + " % Fire RES | +" + t.Item3 + " % Air RES | +" + t.Item4 + " % Water RES";
-        setPreview("Earth Resistence Bonus", DUNSelectionManager.UPGRADE.defEarthLevel, iconsList[6], bonusval, 11);
+        string bonusval2 = "+" + t2.Item1 + "% Earth RES | +" + t2.Item2 + " % Fire RES | +" + t2.Item3 + " % Air RES | +" + t2.Item4 + " % Water RES";
+        setPreview("Earth Resistence Bonus", up_std.defEarthLevel, up_3.defEarthLevel, iconsList[6], bonusval2, bonusval, 11);
     }
     public void OnPressDEF_F() {
-        Tuple<int, int, int, int> t = DUNSelectionManager.UPGRADE.getDefenceBonus();
+        Tuple<int, int, int, int> t = cumulative.getDefenceBonus();
+        Tuple<int, int, int, int> t2 = up_std.getDefenceBonus();
         string bonusval = "+" + t.Item1 + "% Earth RES | +" + t.Item2 + " % Fire RES | +" + t.Item3 + " % Air RES | +" + t.Item4 + " % Water RES";
-        setPreview("Fire Resistence Bonus", DUNSelectionManager.UPGRADE.defFireLevel, iconsList[6], bonusval, 12);
+        string bonusval2 = "+" + t2.Item1 + "% Earth RES | +" + t2.Item2 + " % Fire RES | +" + t2.Item3 + " % Air RES | +" + t2.Item4 + " % Water RES";
+        setPreview("Fire Resistence Bonus", up_std.defFireLevel, up_3.defFireLevel, iconsList[6], bonusval2, bonusval, 12);
     }
     public void OnPressDEF_A() {
-        Tuple<int, int, int, int> t = DUNSelectionManager.UPGRADE.getDefenceBonus();
+        Tuple<int, int, int, int> t = cumulative.getDefenceBonus();
+        Tuple<int, int, int, int> t2 = up_std.getDefenceBonus();
         string bonusval = "+" + t.Item1 + "% Earth RES | +" + t.Item2 + " % Fire RES | +" + t.Item3 + " % Air RES | +" + t.Item4 + " % Water RES";
-        setPreview("Air Resistence Bonus", DUNSelectionManager.UPGRADE.defAirLevel, iconsList[6], bonusval, 13);
+        string bonusval2 = "+" + t2.Item1 + "% Earth RES | +" + t2.Item2 + " % Fire RES | +" + t2.Item3 + " % Air RES | +" + t2.Item4 + " % Water RES";
+        setPreview("Air Resistence Bonus", up_std.defAirLevel, up_3.defAirLevel, iconsList[6], bonusval2, bonusval, 13);
     }
     public void OnPressDEF_W() {
-        Tuple<int, int, int, int> t = DUNSelectionManager.UPGRADE.getDefenceBonus();
+        Tuple<int, int, int, int> t = cumulative.getDefenceBonus();
+        Tuple<int, int, int, int> t2 = up_std.getDefenceBonus();
         string bonusval = "+" + t.Item1 + "% Earth RES | +" + t.Item2 + " % Fire RES | +" + t.Item3 + " % Air RES | +" + t.Item4 + " % Water RES";
-        setPreview("Water Resistence Bonus", DUNSelectionManager.UPGRADE.defWaterLevel, iconsList[6], bonusval, 14);
+        string bonusval2 = "+" + t2.Item1 + "% Earth RES | +" + t2.Item2 + " % Fire RES | +" + t2.Item3 + " % Air RES | +" + t2.Item4 + " % Water RES";
+        setPreview("Water Resistence Bonus", up_std.defWaterLevel, up_3.defWaterLevel, iconsList[6], bonusval2, bonusval, 14);
     }
 
     public void OnPressSUMMONS() {
-        string bonusval = "+" + DUNSelectionManager.UPGRADE.getSummonsBonus() + " SUMMONS";
-        setPreview("Number of Summons Bonus", DUNSelectionManager.UPGRADE.evocationLevel, iconsList[7], bonusval, 15);
+        string bonusval = "+" + cumulative.getSummonsBonus() + " SUMMONS";
+        string bonusval2 = "+" + up_std.getSummonsBonus() + " SUMMONS";
+        setPreview("Number of Summons Bonus", up_std.evocationLevel, up_3.evocationLevel, iconsList[7], bonusval2, bonusval, 15);
     }
 
     #endregion
@@ -231,6 +265,11 @@ public class UpgradePanelManager : MonoBehaviour
                 break;
         }
         if (result) {
+            this.cumulative = new Upgrade();
+            this.up_std = DUNSelectionManager.UPGRADE;
+            this.up_3 = DUNSelectionManager.ADDITIONAL_UPGRADE;
+            this.cumulative.cumulateHere(this.up_std);
+            this.cumulative.cumulateHere(this.up_3);
             // can update GUI
             switch (chosen_powerupIndex) {
                 case 0:

@@ -11,6 +11,7 @@ public class DUNSelectionManager : SelectionManager
 {
 
     public static Upgrade UPGRADE;
+    public static Upgrade ADDITIONAL_UPGRADE;
 
     private List<ButtonPreview> listPreviewsAlpha = new List<ButtonPreview>();
     private Image bscreen;
@@ -97,6 +98,19 @@ public class DUNSelectionManager : SelectionManager
         specialButtonA = acbutton.GetComponent<ConfirmButton>();
         specialButtonA.sm = this;
         specialButtonA.team = 1;
+        // Cumulative upgrade
+        if (ADDITIONAL_UPGRADE == null)
+            ADDITIONAL_UPGRADE = new Upgrade();
+        ADDITIONAL_UPGRADE.resetLevels();
+        List<DungeonUtils> dungeons = this.gameObject.GetComponent<DungeonContainer>().dungeonsList;
+        if (PlayerPrefs.HasKey(DungeonSave.DUNGEON_BONUS_STRING)) {
+            string strpow = PlayerPrefs.GetString(DungeonSave.DUNGEON_BONUS_STRING);
+            for (int i = 0; i < strpow.Length; i++) {
+                if (strpow[i] == '1') {
+                    ADDITIONAL_UPGRADE.cumulateHere(dungeons[i].ThreeCharactersChallenge);
+                }
+            }
+        }
     }
 
     public override void registerCharacterChosen(CharacterInfo ci, ChButtonData ch, int team) {

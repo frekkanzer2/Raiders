@@ -206,6 +206,7 @@ public class Spell {
         else if (spell.name == "Stretching") EXECUTE_STRETCHING(caster, spell);
         else if (spell.name == "Composure") EXECUTE_COMPOSURE(targetBlock, spell);
         else if (spell.name == "Virus") EXECUTE_VIRUS(caster, spell, targetBlock);
+        else if (spell.name == "Karcham") EXECUTE_KARCHAM(caster, targetBlock, spell);
         else if (spell.name == "Sword of Yop") EXECUTE_SWORD_OF_YOP(caster, targetBlock, spell);
         else if (spell.name == "Tumult") EXECUTE_TUMULT(caster, targetBlock, spell);
         else if (spell.name == "Powerful Shooting") EXECUTE_POWERFUL_SHOOTING(targetBlock, spell);
@@ -248,6 +249,9 @@ public class Spell {
         else if (spell.name == "Gear") EXECUTE_GEAR(targetBlock, spell);
         else if (spell.name == "Restart") EXECUTE_RESTART(spell);
         else if (spell.name == "Stampede") EXECUTE_STAMPEDE(caster, targetBlock, spell);
+        else if (spell.name == "Shelly Placement") SUMMONS_SHELLY(caster, targetBlock);
+        else if (spell.name == "Scaphander") SUMMONS_SCAPHANDER(caster, targetBlock);
+        else if (spell.name == "Sonar") EXECUTE_SONAR(caster, spell);
         else if (spell.name == "Withdrawal Arrow") EXECUTE_WITHDRAWAL_ARROW(caster, targetBlock, spell);
         else if (spell.name == "Repulsive Arrow") EXECUTE_REPULSIVE_ARROW(caster, targetBlock, spell);
         else if (spell.name == "Fulminating Arrow") EXECUTE_FULMINATING_ARROW(caster, targetBlock, spell);
@@ -412,12 +416,16 @@ public class Spell {
         else if (spell.name == "Team Word") EXECUTE_TEAM_WORD(caster, targetBlock, spell);
         else if (spell.name == "Helping Word") EXECUTE_HELPING_WORD(caster, targetBlock, spell);
         else if (spell.name == "Friendship Word") SUMMONS_CUNEY(caster, targetBlock);
+        else if (spell.name == "Pandawa Pint") SUMMONS_PINT(caster, targetBlock);
         else if (spell.name == "Frightening Word") EXECUTE_FRIGHTENING_WORD(caster, targetBlock);
         else if (spell.name == "Cat Soul") EXECUTE_CAT_SOUL(caster, targetBlock, spell);
         else if (spell.name == "Cat Assault") EXECUTE_CAT_ASSAULT(caster, targetBlock, spell);
         else if (spell.name == "Summoning Claw") SUMMONS_CLAW(caster, targetBlock);
-        else if (spell.name == "Portal") SUMMONS_PORTAL(caster, targetBlock);
+        else if (spell.name == "Portal") SUMMONS_PORTAL(caster, targetBlock, false);
+        else if (spell.name == "Flexible Portal") SUMMONS_PORTAL(caster, targetBlock, true);
+        else if (spell.name == "Portal Coalition") EXECUTE_PORTAL_COALITION(caster, targetBlock, spell);
         else if (spell.name == "Offence") EXECUTE_OFFENCE(caster, targetBlock, spell);
+        else if (spell.name == "Sinecure") EXECUTE_SINECURE(caster, targetBlock, spell);
         else if (spell.name == "Portal Interruption") EXECUTE_PORTAL_INTERRUPTION(caster);
 
         // ADD HERE ELSE IF (...) ...
@@ -427,7 +435,7 @@ public class Spell {
     public static void MONSTER_SPELL_SPECIALIZATION(Character caster, Block targetBlock, Spell spell) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, spell })) return;
         if (spell.name == "Brikocoop" || spell.name == "Brutocoop") EXECUTE_BRIKOCOOP(caster, spell);
-        else if (spell.name == "Briko Assault" || spell.name == "Bruto Assault" || spell.name == "Royal Crushing") EXECUTE_BRIKOASSAULT(caster, targetBlock, spell);
+        else if (spell.name == "Briko Assault" || spell.name == "Bruto Assault" || spell.name == "Royal Crushing" || spell.name == "Croc Assault") EXECUTE_BRIKOASSAULT(caster, targetBlock, spell);
         else if (spell.name == "Briko Stimulation") EXECUTE_BRIKO_STIMULATION(caster, spell);
         else if (spell.name == "Sting") EXECUTE_STING(targetBlock, spell);
         else if (spell.name == "Wild Lash" || spell.name == "Breeze") EXECUTE_RETREAT_ARROW(caster, targetBlock);
@@ -435,6 +443,7 @@ public class Spell {
         else if (spell.name == "Bruto Stimulation") EXECUTE_BRUTO_STIMULATION(caster, spell);
         else if (spell.name == "Explosive Egg") EXECUTE_EXPLOSIVE_EGG(caster, targetBlock, spell);
         else if (spell.name == "My Tofu Childs") EXECUTE_MY_TOFU_CHILDS(caster, targetBlock, spell);
+        else if (spell.name == "Attractive Smell") EXECUTE_ATTRACTIVE_SMELL(caster, targetBlock, spell);
         else if (spell.name == "Call of the forest") EXECUTE_CALL_OF_THE_FOREST(caster, targetBlock, spell);
         else if (spell.name == "Kannilance") EXECUTE_KANNILANCE(caster, targetBlock, spell);
         else if (spell.name == "Wolf Cry") EXECUTE_WOLF_CRY(caster, spell);
@@ -443,6 +452,8 @@ public class Spell {
         else if (spell.name == "Ninjawax") EXECUTE_NINJAWAX(caster, targetBlock, spell);
         else if (spell.name == "Kankenswift") EXECUTE_KANKENSWIFT(caster, targetBlock);
         else if (spell.name == "Kankendust") EXECUTE_KANKENDUST(caster, targetBlock, spell);
+        else if (spell.name == "Mud throw") EXECUTE_MUD_THROW(caster, targetBlock, spell);
+        else if (spell.name == "Mud shot") EXECUTE_MUD_SHOT(caster, targetBlock);
         else if (spell.name == "Insect Cry") EXECUTE_INSECT_CRY(caster, targetBlock, spell);
         else if (spell.name == "Hideout") EXECUTE_HIDEOUT(caster, spell);
         else if (spell.name == "Hard Bone") EXECUTE_HARD_BONE(caster, spell);
@@ -488,6 +499,8 @@ public class Spell {
         else if (spell.name == "Sparoboom") EXECUTE_SPAROBOOM(caster, targetBlock, spell);
         else if (spell.name == "Swingewl") EXECUTE_SWINGEWL(caster, targetBlock);
         else if (spell.name == "White Rat Overhit") EXECUTE_RAT_ATTACK(caster, spell, 1);
+        else if (spell.name == "Crocorage") EXECUTE_CROCORAGE(caster, spell);
+        else if (spell.name == "Crocorage Chief") EXECUTE_CHIEF_CROCORAGE(caster, spell);
         else if (spell.name == "Black Rat Overhit") EXECUTE_RAT_ATTACK(caster, spell, 2);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -497,11 +510,17 @@ public class Spell {
 
     #region CHARACTER SPELLS SPECIALIZATION
 
-    public static void SUMMONS_PORTAL(Character caster, Block targetBlock) {
+    public static void SUMMONS_PORTAL(Character caster, Block targetBlock, bool isFlexible) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        Evocation p = ut_execute_summon(caster, targetBlock, "Portal", 3);
-        if (p != null)
-            p.isPortal = true;
+        if (!isFlexible) {
+            Evocation p = ut_execute_summon(caster, targetBlock, "Portal", 3);
+            if (p != null)
+                p.isPortal = true;
+        } else {
+            Evocation p = ut_execute_summon(caster, targetBlock, "Flexible Portal", 3);
+            if (p != null)
+                p.isPortal = true;
+        }
     }
 
     public static void EXECUTE_PORTAL_INTERRUPTION(Character caster) {
@@ -514,6 +533,35 @@ public class Spell {
                 }
             }
             if (!ally.isDead) ally.incrementPA(increment);
+        }
+    }
+
+    public static void EXECUTE_PORTAL_COALITION(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Block toSummonBlock = null;
+        List<Block> frees = targetBlock.getFreeAdjacentBlocks();
+        if (frees.Count == 0) return;
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+        int indexResult = UnityEngine.Random.Range(0, frees.Count);
+        toSummonBlock = frees[indexResult];
+        SUMMONS_PORTAL(caster, toSummonBlock, false);
+    }
+
+    public static void EXECUTE_SINECURE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation) {
+            if (((Evocation)target).isPortal) {
+                List<Character> heroes = ut_getAllies(target);
+                heroes.AddRange(ut_getEnemies(target));
+                foreach (Character c in heroes) {
+                    if (ut_isNearOf(target, c, 2)) {
+                        c.inflictDamage(Spell.calculateDamage(caster, c, s) * 60 / 100);
+                    }
+                }
+            }
         }
     }
 
@@ -530,7 +578,7 @@ public class Spell {
             UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
             int indexResult = UnityEngine.Random.Range(0, frees.Count);
             toSummonBlock = frees[indexResult];
-            SUMMONS_PORTAL(caster, toSummonBlock);
+            SUMMONS_PORTAL(caster, toSummonBlock, false);
         }
     }
 
@@ -932,6 +980,7 @@ public class Spell {
             chosen.linkedObject = caster.gameObject;
             Vector2 newPosition = Coordinate.getPosition(chosen.coordinate);
             caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
+            SUMMONS_PORTAL(caster, actual, false);
         }
     }
 
@@ -1266,6 +1315,16 @@ public class Spell {
         se.useIstantanely();
     }
 
+    public static void EXECUTE_KARCHAM(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        Coordinate c = caster.connectedCell.GetComponent<Block>().coordinate;
+        List<Character> adj_heroes = ut_getAdjacentHeroes(c);
+        if (adj_heroes == null || adj_heroes.Count == 0) return;
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+        Character chosen = adj_heroes[UnityEngine.Random.Range(0, adj_heroes.Count)];
+        EXECUTE_JUMP(chosen, targetBlock);
+    }
+
     public static void EXECUTE_CAPERING(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         EXECUTE_JUMP(caster, targetBlock);
@@ -1346,12 +1405,13 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         Coordinate tbc = targetBlock.coordinate;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
-        foreach (Character c in ut_getAllies(caster)) {
-            Coordinate cc = c.connectedCell.GetComponent<Block>().coordinate;
-            if (cc.row == tbc.row || cc.column == tbc.column) {
-                ut_attracts(target, c.connectedCell.GetComponent<Block>(), 2);
+        if (target.getEventSystem().getEvents("Prey").Count > 0)
+            foreach (Character c in ut_getAllies(caster)) {
+                Coordinate cc = c.connectedCell.GetComponent<Block>().coordinate;
+                if (cc.row == tbc.row || cc.column == tbc.column) {
+                    ut_attracts(target, c.connectedCell.GetComponent<Block>(), 2);
+                }
             }
-        }
     }
 
     public static void SWITCH_TIRELESS_MASK(Character caster, Spell s) {
@@ -1756,6 +1816,11 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         ut_execute_summon(caster, targetBlock, "Protective Coney", 2);
     }
+    public static void SUMMONS_PINT(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        Evocation p = ut_execute_summon(caster, targetBlock, "Pandawa Pint", 2);
+        p.isPint = true;
+    }
 
     public static void SUMMONS_AEGIS(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
@@ -1954,6 +2019,23 @@ public class Spell {
         ut_execute_summon(caster, targetBlock, "Prespic", 3);
     }
 
+    public static void SUMMONS_SHELLY(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        Evocation sh = ut_execute_summon(caster, targetBlock, "Shelly", 3);
+        sh.isShelly = true;
+    }
+
+    public static void SUMMONS_SCAPHANDER(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation) {
+            if (((Evocation)target).isShelly) {
+                target.inflictDamage(target.getActualHP() + target.actual_shield);
+                Evocation sh = ut_execute_summon(caster, targetBlock, "Scaphander", 1);
+            }
+        }
+    }
+
     public static void SUMMONS_DRAGONNET(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         ut_execute_summon(caster, targetBlock, "Dragonnet", 2);
@@ -2019,14 +2101,21 @@ public class Spell {
             target.addEvent(new PleasureEvent("Pleasure", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
 
-    public static void EXECUTE_WHIP(Block targetBlock, Spell s)
-    {
+    public static void EXECUTE_WHIP(Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         if (target is Evocation)
             target.addEvent(new WhipEvent("Whip", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
+
+    public static void EXECUTE_SONAR(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach(Evocation e in caster.summons) {
+            if (e.isShelly) e.addEvent(new SonarEvent("Sonar", e, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
+        }
+    }
+
     public static void EXECUTE_RUNIC_OVERCHARGE(Block targetBlock, Spell s)
     {
         if (!put_CheckArguments(new System.Object[] { targetBlock, s })) return;
@@ -2829,7 +2918,7 @@ public class Spell {
             if (target is Evocation)
             {
                 Evocation e = (Evocation)target;
-                if (e.isWakfuTotem)
+                if (e.isWakfuTotem || e.isPortal)
                 {
                     EXECUTE_TRANSPOSITION(caster, targetBlock);
                 }
@@ -2855,7 +2944,7 @@ public class Spell {
         if (caster.getEventSystem().getEvents("Wakfu Raider Status").Count > 0) {
             if (target is Evocation) {
                 Evocation e = (Evocation)target;
-                if (e.isWakfuTotem) {
+                if (e.isWakfuTotem || e.isPortal) {
                     EXECUTE_TRANSPOSITION(caster, targetBlock);
                 }
             }
@@ -2882,7 +2971,7 @@ public class Spell {
             Character target = targetBlock.linkedObject.GetComponent<Character>();
             if (target is Evocation) {
                 Evocation e = (Evocation)target;
-                if (e.isWakfuTotem) {
+                if (e.isWakfuTotem || e.isPortal) {
                     ut_repels(caster, targetBlock, 3);
                 }
             }
@@ -2896,7 +2985,7 @@ public class Spell {
             Character target = targetBlock.linkedObject.GetComponent<Character>();
             if (target is Evocation) {
                 Evocation e = (Evocation)target;
-                if (e.isWakfuTotem) {
+                if (e.isWakfuTotem || e.isPortal) {
                     foreach (Character enemy in ut_getEnemies(caster)) {
                         List<Block> blocks = enemy.connectedCell.GetComponent<Block>().getFreeAdjacentBlocksWithCharacters(caster.team);
                         foreach (Block b in blocks) {
@@ -2904,7 +2993,7 @@ public class Spell {
                                 Character c_inBlock = b.linkedObject.GetComponent<Character>();
                                 if (c_inBlock is Evocation) {
                                     Evocation e_inBlock = (Evocation)c_inBlock;
-                                    if (e_inBlock.isWakfuTotem) {
+                                    if (e_inBlock.isWakfuTotem || e.isPortal) {
                                         enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
                                         break;
                                     }
@@ -3059,6 +3148,13 @@ public class Spell {
             ut_execute_monsterSummon(caster, free, "Tofu Doll");
         }
     }
+    public static void EXECUTE_ATTRACTIVE_SMELL(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks())) {
+            ut_execute_monsterSummon(caster, free, "Moskito");
+        }
+    }
 
     public static void EXECUTE_ARACHNEE_POPULATION(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
@@ -3199,6 +3295,26 @@ public class Spell {
             }
     }
 
+
+    public static void EXECUTE_CHIEF_CROCORAGE(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character enemy in ut_getAlliesWithCaster(caster))
+            if (ut_isNearOf(enemy, caster, 3)) {
+                CrocorageChiefEvent wce = new CrocorageChiefEvent("Crocorage Chief", enemy, s.effectDuration, ParentEvent.Mode.PermanentAndEachTurn, s.icon);
+                enemy.addEvent(wce);
+                if (enemy.Equals(caster))
+                    wce.useIstantanely();
+            }
+    }
+
+
+    public static void EXECUTE_CROCORAGE(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        CrocorageEvent wce = new CrocorageEvent("Crocorage", caster, s.effectDuration, ParentEvent.Mode.PermanentAndEachTurn, s.icon);
+        caster.addEvent(wce);
+        wce.useIstantanely();
+    }
+
     public static void EXECUTE_VILINSLASH(Character caster, Block targetBlock, Spell s) {
         ut_damageInLine(caster, targetBlock, s, 2);
     }
@@ -3278,6 +3394,22 @@ public class Spell {
         }
         if (toSummonBlock == null) return;
         ut_execute_monsterSummon(caster, toSummonBlock, "Dustmight");
+    }
+
+    public static void EXECUTE_MUD_THROW(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Block toSummonBlock = null;
+        int bestDistance = 10000;
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks())) {
+            int actualDistance = Monster.getDistance(free.coordinate, caster.connectedCell.GetComponent<Block>().coordinate);
+            if (actualDistance < bestDistance) {
+                bestDistance = actualDistance;
+                toSummonBlock = free;
+            }
+        }
+        if (toSummonBlock == null) return;
+        ut_execute_monsterSummon(caster, toSummonBlock, "Boo");
     }
 
     public static void EXECUTE_AX_OF_THE_VALKYRIE(Character caster, Block targetBlock, Spell s) {
@@ -3368,9 +3500,14 @@ public class Spell {
         ut_repels(caster, targetBlock, 5);
     }
 
+    public static void EXECUTE_MUD_SHOT(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_repels(caster, targetBlock, 3);
+    }
+
     public static void EXECUTE_JUNIOR_BWORK_DISTANCE(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
-        ut_repelsCaster(caster, targetBlock, 5);
+        ut_repels(caster, targetBlock, 5);
     }
 
     public static void EXECUTE_CHAFER_LANCE_EXPLOSION(Character caster, Spell s)
@@ -3615,6 +3752,7 @@ public class Spell {
     public static int BONUS_WATCHDOG = 8;
     public static int BONUS_BEATEN = 15;
     public static int BONUS_TETANISATION = 10;
+    public static int BONUS_CALCANEUS = 6;
 
     public static int EVENT_BONUS_BASE_DAMAGE(Character caster, Character targetch, Spell s) {
         if (caster.name == "Tristepin" && s.name == "Concentration" && (targetch is Evocation || targetch is MonsterEvocation) && caster.getEventSystem().getEvents("Yop God Status").Count > 0) {
@@ -3752,6 +3890,20 @@ public class Spell {
                         if (_c is Evocation) {
                             if (((Evocation)_c).isYapper)
                                 return BONUS_WATCHDOG;
+                        }
+                    }
+                }
+            }
+            return 0;
+        } else if (caster.name == "Aki" && s.name == "Calcaneus") {
+            List<Block> adj = targetch.connectedCell.GetComponent<Block>().getAdjacentBlocks();
+            foreach (Block b in adj) {
+                if (b.linkedObject != null) {
+                    Character _c = b.linkedObject.GetComponent<Character>();
+                    if (_c != null) {
+                        if (_c is Evocation) {
+                            if (((Evocation)_c).isYapper)
+                                return BONUS_CALCANEUS;
                         }
                     }
                 }
@@ -4174,13 +4326,30 @@ public class Spell {
         return true;
     }
 
+    public static int ut_getAlliedPortalPMGains(Character actual) {
+        List<Character> chs = ut_getAllies(actual);
+        int counter = 0;
+        foreach (Character ch in chs) {
+            if (ch is Evocation) {
+                Evocation e = (Evocation)ch;
+                if (e.isPortal) {
+                    if (ut_isNearOf(e, actual, 3)) {
+                        counter++;
+                    }
+                }
+            }
+        }
+        return counter;
+    }
     public static int ut_getAlliedPortals(Character actual) {
         List<Character> chs = ut_getAllies(actual);
         int counter = 0;
-        foreach(Character ch in chs) {
+        foreach (Character ch in chs) {
             if (ch is Evocation) {
                 Evocation e = (Evocation)ch;
-                if (e.isPortal) counter++;
+                if (e.isPortal) {
+                    counter++;
+                }
             }
         }
         return counter;

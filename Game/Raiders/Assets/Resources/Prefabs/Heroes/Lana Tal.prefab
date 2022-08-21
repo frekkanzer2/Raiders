@@ -131,9 +131,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Offence
     icon: {fileID: 21300000, guid: e5bf3f0f1540ef142a9ea669b4230598, type: 3}
-    description: Summons a Portal in a free adjacent cell to the target (25% chance).
-      Each ally gains 1 PM at the start of their turn for each ally Portal in-game
-      for 1 turn
+    description: Summons a Portal in a free adjacent cell to the target (25% chance)
     element: 1
     damage: 46
     lifeSteal: 0

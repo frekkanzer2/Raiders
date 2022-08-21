@@ -108,7 +108,7 @@ MonoBehaviour:
     name: Wakmeha
     icon: {fileID: 21300000, guid: 8ad96ee520691d24484ee58dc62a56f4, type: 3}
     description: Inflict Fire damage to each enemy in a row of 5 cells. If the primary
-      target is a Wakfu Totem, switch position with the target
+      target is a Wakfu Totem or a Portal, switch position with the target
     element: 1
     damage: 40
     lifeSteal: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
     name: Audacious
     icon: {fileID: 21300000, guid: 385d52f14cc7d6b4fa63683e2793cb9a, type: 3}
     description: If the caster has the "Wakfu Raider" status and the target is a
-      Wakfu Totem, repels it of 3 cells
+      Wakfu Totem or a Portal, repels it of 3 cells
     element: 3
     damage: 46
     lifeSteal: 0
@@ -156,7 +156,8 @@ MonoBehaviour:
     name: Affront
     icon: {fileID: 21300000, guid: 1ee732e8e95b6564f8ec37f7d78fab62, type: 3}
     description: Inflict Fire damage to each enemy up to 2 cells from the target.
-      If the primary target is a Wakfu Totem, switch position with the target
+      If the primary target is a Wakfu Totem or a Portal, switch position with the
+      target
     element: 1
     damage: 36
     lifeSteal: 0
@@ -180,7 +181,8 @@ MonoBehaviour:
     name: Lightning Fist
     icon: {fileID: 21300000, guid: 241e14476a9df19429d9aed4815d0f36, type: 3}
     description: If the caster has the "Wakfu Raider" status and the target is a
-      Wakfu Totem, inflict Water damage to each enemy adjacent to each Wakfu Totem
+      Wakfu Totem or a Portal, inflict Water damage to each enemy adjacent to each
+      Wakfu Totem
     element: 3
     damage: 34
     lifeSteal: 0

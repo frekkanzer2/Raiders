@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2347270675974649033}
   - component: {fileID: 5404421346664201683}
   m_Layer: 0
-  m_Name: Djonz
+  m_Name: Sick Arachnee
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 7cab2fb87a22ce94fbcecce526f35be0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 354cbefc1c46f5b4daca6c67a2121eda, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,8 +105,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.41634846, y: 0.18903448}
-    oldSize: {x: 4, y: 4}
+    pivot: {x: 0.481815, y: 0.4145302}
+    oldSize: {x: 2.3529413, y: 2.3529413}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -127,68 +127,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ced9ac50935ee468f328a59e67782b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Djonz
+  name: Sick Arachnee
   heroClass: 18
   spells:
   - link: {fileID: 0}
-    name: Money throw
-    icon: {fileID: 0}
-    description: 
-    element: 3
-    damage: 30
+    name: Alpha Teeth
+    icon: {fileID: 21300000, guid: 9c169c8e1e3ce464ba618c16bd2a727a, type: 3}
+    description: -1 PA
+    element: 2
+    damage: 80
     lifeSteal: 0
     minRange: 1
-    maxRange: 14
+    maxRange: 1
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 2
+    paCost: 4
     pmCost: 0
-    maxTimesInTurn: 10
+    maxTimesInTurn: 2
     executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 45
-    hasEffect: 0
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  - link: {fileID: 0}
-    name: Scavenger
-    icon: {fileID: 0}
-    description: 
-    element: 1
-    damage: 80
-    lifeSteal: 0
-    minRange: 3
-    maxRange: 5
-    distanceType: 0
-    overObstacles: 1
-    hpCost: 0
-    paCost: 2
-    pmCost: 0
-    maxTimesInTurn: 1
-    executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 20
-    hasEffect: 0
+    effectDuration: 1
+    criticalProbability: 5
+    hasEffect: 1
     isEffectOnly: 0
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 480
-  pa: 8
-  pm: 6
-  ini: 30
-  res_e: -16
-  res_f: 24
-  res_a: 16
-  res_w: 38
+  hp: 680
+  pa: 5
+  pm: 5
+  ini: 40
+  res_e: 10
+  res_f: 5
+  res_a: 10
+  res_w: -5
   att_e: 0
   att_f: 0
-  att_a: 0
-  att_w: 16
+  att_a: 8
+  att_w: 0
   numberOfSummons: 0
   isEvocation: 0
   actual_hp: 0
@@ -243,8 +220,8 @@ MonoBehaviour:
   immuneCloseCombat: 0
   shushuCounter: 0
   behaviour:
-    spellsOrderToCheckId: 0100000000000000
-    movementAfterFight: 2
+    spellsOrderToCheckId: 00000000
+    movementAfterFight: 1
     movementWhenCannotAttack: 1
   id: 0
   isCommunionActive: 0

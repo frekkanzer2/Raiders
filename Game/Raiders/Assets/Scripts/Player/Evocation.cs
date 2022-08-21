@@ -17,7 +17,11 @@ public class Evocation : Character {
     [HideInInspector]
     public bool isBomb = false;
     [HideInInspector]
+    public bool isShelly = false;
+    [HideInInspector]
     public bool isPortal = false;
+    [HideInInspector]
+    public bool isPint = false;
     [HideInInspector]
     public bool isYapper = false;
     [HideInInspector]
@@ -268,6 +272,14 @@ public class Evocation : Character {
                 }
             }
             incrementRunicPower();
+        }
+        if (this.isPint) {
+            List<Character> allies = Spell.ut_getAllies(this);
+            foreach (Character c in allies) {
+                if (Spell.ut_isNearOf(c, this, 1)) {
+                    c.receiveHeal(c.getTotalHP() * 3 / 100);
+                }
+            }
         }
     }
 

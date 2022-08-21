@@ -142,7 +142,7 @@ MonoBehaviour:
     paCost: 2
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 5
+    executeAfterTurns: 6
     effectDuration: 0
     criticalProbability: 0
     hasEffect: 1
@@ -166,7 +166,7 @@ MonoBehaviour:
     pmCost: 0
     maxTimesInTurn: 1
     executeAfterTurns: 4
-    effectDuration: 2
+    effectDuration: 3
     criticalProbability: 0
     hasEffect: 1
     isEffectOnly: 1
@@ -183,7 +183,7 @@ MonoBehaviour:
     minRange: 5
     maxRange: 5
     distanceType: 0
-    overObstacles: 1
+    overObstacles: 0
     hpCost: 0
     paCost: 3
     pmCost: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
   att_f: 0
   att_a: 0
   att_w: 8
-  numberOfSummons: 5
+  numberOfSummons: 6
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0
