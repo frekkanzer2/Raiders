@@ -29,6 +29,7 @@ public class Character : MonoBehaviour
         Steamer,
         Elatrop,
         Uginak,
+        DemonSlayer,
         MONSTER,
         EVOCATION
     }
@@ -111,11 +112,13 @@ public class Character : MonoBehaviour
         }
         this.hp += upgrade.getHpBonus();
         if (this.heroClass == HeroClass.Sacrido) this.hp += upgrade.getHpBonus();
+        if (this.heroClass == HeroClass.DemonSlayer) this.hp += (upgrade.getHpBonus() / 4);
         this.bonusHeal += upgrade.getHealBonus();
         this.bonusGainShield += upgrade.getGainShieldBonus();
         if (this.heroClass == HeroClass.Aniripsa) this.bonusHeal += (this.bonusHeal / 2);
         this.actual_shield = upgrade.getShieldBonus();
         if (this.heroClass == HeroClass.Danzal || this.heroClass == HeroClass.Ladrurbo) this.actual_shield += (this.actual_shield / 2);
+        if (this.heroClass == HeroClass.DemonSlayer) this.actual_shield += (this.actual_shield / 4);
         else if (this.heroClass == HeroClass.Pandawa) this.hp += this.actual_shield;
         else if (this.heroClass == HeroClass.Uginak) this.hp += upgrade.getInitBonus();
         this.actual_hp = this.hp;
@@ -137,12 +140,16 @@ public class Character : MonoBehaviour
             this.att_a += dmgBonus.Item3 / 4;
             this.att_w += dmgBonus.Item4 / 4;
         } else if (this.heroClass == HeroClass.Ocra) {
-            this.att_e += dmgBonus.Item1 / 8;
-            this.att_f += dmgBonus.Item2 / 8;
-            this.att_a += dmgBonus.Item3 / 8;
-            this.att_w += dmgBonus.Item4 / 8;
-        }
-        else if (this.heroClass == HeroClass.Sadida)
+            this.att_e += dmgBonus.Item1 / 6;
+            this.att_f += dmgBonus.Item2 / 6;
+            this.att_a += dmgBonus.Item3 / 6;
+            this.att_w += dmgBonus.Item4 / 6;
+        } else if (this.heroClass == HeroClass.DemonSlayer) {
+            this.att_e += dmgBonus.Item1 / 10;
+            this.att_f += dmgBonus.Item2 / 10;
+            this.att_a += dmgBonus.Item3 / 10;
+            this.att_w += dmgBonus.Item4 / 10;
+        } else if (this.heroClass == HeroClass.Sadida)
         {
             this.att_e += upgrade.getPaBonus() * 50;
             this.att_f += upgrade.getPaBonus() * 50;
@@ -164,10 +171,10 @@ public class Character : MonoBehaviour
         this.res_w += resBonus.Item4;
         if (this.heroClass == HeroClass.Ocra)
         {
-            this.res_e += resBonus.Item1 / 10;
-            this.res_f += resBonus.Item2 / 10;
-            this.res_a += resBonus.Item3 / 10;
-            this.res_w += resBonus.Item4 / 10;
+            this.res_e += resBonus.Item1 / 6;
+            this.res_f += resBonus.Item2 / 6;
+            this.res_a += resBonus.Item3 / 6;
+            this.res_w += resBonus.Item4 / 6;
         }
         if (this.heroClass == HeroClass.Feca) {
             this.res_e += resBonus.Item1 / 4;

@@ -112,7 +112,7 @@ MonoBehaviour:
     damage: 18
     lifeSteal: 0
     minRange: 1
-    maxRange: 4
+    maxRange: 6
     distanceType: 0
     overObstacles: 1
     hpCost: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 4f3bb6d7ee799fc41b9a06f6d740e8e4, type: 3}
     description: Steals HP in the Air element
     element: 2
-    damage: 42
+    damage: 48
     lifeSteal: 1
     minRange: 6
     maxRange: 7

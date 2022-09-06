@@ -157,19 +157,19 @@ MonoBehaviour:
     description: The effect of this spell cannot kill the enemy. Inflicts additional
       80% of Fire damage at the end of the turn of the target
     element: 1
-    damage: 30
+    damage: 24
     lifeSteal: 0
     minRange: 3
     maxRange: 5
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 4
+    paCost: 3
     pmCost: 0
     maxTimesInTurn: 2
     executeAfterTurns: 0
     effectDuration: 1
-    criticalProbability: 15
+    criticalProbability: 5
     hasEffect: 1
     isEffectOnly: 0
     canUseInEmptyCell: 0

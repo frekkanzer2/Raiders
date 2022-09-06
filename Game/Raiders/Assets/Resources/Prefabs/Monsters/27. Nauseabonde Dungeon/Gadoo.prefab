@@ -223,7 +223,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 4400
+  hp: 3800
   pa: 9
   pm: 4
   ini: 20

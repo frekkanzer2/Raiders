@@ -128,7 +128,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 240
+  hp: 260
   pa: 4
   pm: 5
   ini: 0

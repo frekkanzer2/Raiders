@@ -501,6 +501,8 @@ public class Spell {
         else if (spell.name == "White Rat Overhit") EXECUTE_RAT_ATTACK(caster, spell, 1);
         else if (spell.name == "Crocorage") EXECUTE_CROCORAGE(caster, spell);
         else if (spell.name == "Crocorage Chief") EXECUTE_CHIEF_CROCORAGE(caster, spell);
+        else if (spell.name == "Survarmor") EXECUTE_SURVARMOR(caster, spell);
+        else if (spell.name == "Nelween Power") EXECUTE_NELWEEN_POWER(caster, spell);
         else if (spell.name == "Black Rat Overhit") EXECUTE_RAT_ATTACK(caster, spell, 2);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -652,6 +654,22 @@ public class Spell {
         target.addEvent(powerEvent);
         if (target.Equals(s.link))
             powerEvent.useIstantanely();
+    }
+
+    public static void EXECUTE_UNCONSCIOUS_COMBAT(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        if (caster.getActualPA() > 0) caster.decrementPA(caster.getActualPA());
+        if (caster.getActualPM() > 0) caster.decrementPM(caster.getActualPM());
+        UnconsciousCombatEvent e = new UnconsciousCombatEvent("Unconscious Combat", caster, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+        caster.addEvent(e);
+        e.useIstantanely();
+    }
+
+    public static void EXECUTE_REFLEX(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        ReflexEvent e = new ReflexEvent("Reflex", caster, s.effectDuration, ParentEvent.Mode.PermanentAndEachTurn, s.icon);
+        caster.addEvent(e);
+        e.useIstantanely();
     }
 
     public static void EXECUTE_FIGHT_BACK(Character caster, Spell s) {
@@ -1009,6 +1027,42 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         ut_attracts(caster, targetBlock, 6);
     }
+
+    public static void EXECUTE_THUNDERCLAP_FLASH(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        Block casterBlock = caster.connectedCell.GetComponent<Block>();
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        Coordinate old = new Coordinate(casterBlock.coordinate.row, casterBlock.coordinate.column);
+        EXECUTE_EXODUS(caster, targetBlock, s);
+        casterBlock = caster.connectedCell.GetComponent<Block>();
+        Coordinate newb = new Coordinate(casterBlock.coordinate.row, casterBlock.coordinate.column);
+        if (old.equalsTo(newb)) {
+            List<Character> heroes = ut_getAllies(caster);
+            heroes.AddRange(ut_getEnemies(caster));
+            foreach (Character c in heroes) {
+                if (ut_isNearOf(caster, c, 4) && !c.Equals(target)) {
+                    int damageToInflict = Spell.calculateDamage(caster, c, s);
+                    if (ut_isNearOf(caster, c, 1)) {
+                        damageToInflict = damageToInflict * 70 / 100;
+                    } else if (ut_isNearOf(caster, c, 2)) {
+                        damageToInflict = damageToInflict * 50 / 100;
+                    } else if (ut_isNearOf(caster, c, 3)) {
+                        damageToInflict = damageToInflict * 30 / 100;
+                    } else if (ut_isNearOf(caster, c, 4)) {
+                        damageToInflict = damageToInflict * 10 / 100;
+                    }
+                    c.inflictDamage(damageToInflict);
+                }
+            }
+            ut_repelsCaster(caster, targetBlock, 3);
+        }
+    }
+    public static void EXECUTE_GODLIKE_SPEED(Character caster, Block targetBlock) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_comesCloser(caster, targetBlock, 20);
+    }
+
     public static void EXECUTE_REPRISAL(Character caster, Block targetBlock)
     {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
@@ -3367,6 +3421,22 @@ public class Spell {
                 c.addEvent(hbe);
                 hbe.useIstantanely();
             }
+        }
+    }
+
+    public static void EXECUTE_NELWEEN_POWER(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character c in ut_getAllies(caster)) {
+            NelweenPowerEvent hbe = new NelweenPowerEvent("Nelween Power", c, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+            c.addEvent(hbe);
+        }
+    }
+    public static void EXECUTE_SURVARMOR(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character c in ut_getAllies(caster)) {
+            SurvarmorEvent hbe = new SurvarmorEvent("Survarmor", c, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+            c.addEvent(hbe);
+            hbe.useIstantanely();
         }
     }
 

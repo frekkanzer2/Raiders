@@ -8263,6 +8263,18 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: dfa0c873fabb8eb4988e7b4d5e855612, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 9de0c3092bc02344e83b705c4ef4e366, type: 3}
     isEvocation: 0
+  - characterName: Tanjiro
+    characterFullSprite: {fileID: 21300000, guid: 91e8c182c9da80144931e8ca24591b89, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 45b81c55a49f1704cba32f7b0aa97997, type: 3}
+    isEvocation: 0
+  - characterName: Zenitsu
+    characterFullSprite: {fileID: 21300000, guid: 6d8b4f5a4a3c1d04f9d32063383c7228, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 77657fa1df2076d4e95e19cc8a87f41d, type: 3}
+    isEvocation: 0
+  - characterName: Inosuke
+    characterFullSprite: {fileID: 21300000, guid: bfa15a0dde235e44abe4b54d2296e9f1, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 2a8f7df9c1028274497da254f50d82b6, type: 3}
+    isEvocation: 0
   - characterName: Wakfu Totem
     characterFullSprite: {fileID: 21300000, guid: 1eb4e46e680075b4692fdccf95a4cd91, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 147308b09338c3a47b98df2c98747198, type: 3}
@@ -13533,12 +13545,177 @@ MonoBehaviour:
       startingShield: 0
   - name: Nelween Lair
     bossIcon: {fileID: 21300000, guid: 1d3648791f817e44e8f4a73060e6242b, type: 3}
-    monsters: []
-    rooms: []
+    monsters:
+    - name: Kolerat
+      prefab: {fileID: 557098361630938699, guid: ba39b3ca4be245040a72e245124c0efb, type: 3}
+      sprite: {fileID: 21300000, guid: 8f5105ca196d0b649bb087c61214422c, type: 3}
+    - name: Crovus
+      prefab: {fileID: 557098361630938699, guid: 02c135141e745c2479a1540bcdf76e40, type: 3}
+      sprite: {fileID: 21300000, guid: d125efbf3fbc766489659d034eb8a0a6, type: 3}
+    - name: Scurvion
+      prefab: {fileID: 557098361630938699, guid: c34900882ef4269478fc2eca8c265631, type: 3}
+      sprite: {fileID: 21300000, guid: 28bc263f29c464542ac2cd6c0d0a3b26, type: 3}
+    - name: Macian
+      prefab: {fileID: 557098361630938699, guid: fc9df9ea4c276c249b1c99b33949e47b, type: 3}
+      sprite: {fileID: 21300000, guid: bbbbd7dc5a35a524abe921e5ec7ea30c, type: 3}
+    - name: Rabid Ouginak
+      prefab: {fileID: 557098361630938699, guid: 39fbdece4517b9d41a8d5a517114b3e6, type: 3}
+      sprite: {fileID: 21300000, guid: acc1e1cd3008ca345953daa76af74153, type: 3}
+    - name: Croc Gland
+      prefab: {fileID: 557098361630938699, guid: 5b971a969e218dd43a4b1ca4e63a8072, type: 3}
+      sprite: {fileID: 21300000, guid: ef8aa4119eea6414b9639222cbd3873a, type: 3}
+    - name: Nelween
+      prefab: {fileID: 557098361630938699, guid: 0f8871fed9c8fab49af1caa262608a91, type: 3}
+      sprite: {fileID: 21300000, guid: 6cbb97ad3beb10c4491d36e8aaa20d36, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 5
+        quantity: 1
+        spawnCoordinates:
+        - row: 6
+          column: 15
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 8
+          column: 15
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 2
+          column: 10
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 10
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 5
+        quantity: 1
+        spawnCoordinates:
+        - row: 6
+          column: 15
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 8
+          column: 15
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 10
+        - row: 6
+          column: 10
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 4
+          column: 10
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 5
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 16
+        - row: 9
+          column: 16
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 7
+          column: 12
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 12
+        - row: 9
+          column: 12
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 3
+          column: 12
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 5
+        quantity: 2
+        spawnCoordinates:
+        - row: 6
+          column: 16
+        - row: 9
+          column: 16
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 7
+          column: 12
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 1
+          column: 12
+        - row: 9
+          column: 12
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 3
+          column: 12
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 5
+          column: 12
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 6
+        quantity: 1
+        spawnCoordinates:
+        - row: 7
+          column: 10
+      - monsterID: 5
+        quantity: 3
+        spawnCoordinates:
+        - row: 5
+          column: 10
+        - row: 3
+          column: 10
+        - row: 9
+          column: 10
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 7
+          column: 12
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 5
+          column: 12
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 9
+          column: 12
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 6
+          column: 16
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 9
+          column: 16
     ThreeCharactersChallenge:
       availablePoints: 0
       pointsToAssign: 0
-      hpLevel: 0
+      hpLevel: 15
       initLevel: 0
       pmLevel: 0
       paLevel: 0
@@ -13554,6 +13731,29 @@ MonoBehaviour:
       allDefLevel: 2
       evocationLevel: 0
       startingShield: 10
+  - name: Goblin Fair
+    bossIcon: {fileID: 21300000, guid: 03439c0fc13bb2a4fb428f23ff105455, type: 3}
+    monsters: []
+    rooms: []
+    ThreeCharactersChallenge:
+      availablePoints: 0
+      pointsToAssign: 0
+      hpLevel: 30
+      initLevel: 25
+      pmLevel: 0
+      paLevel: 0
+      atkEarthLevel: 34
+      atkFireLevel: 18
+      atkAirLevel: 20
+      atkWaterLevel: 26
+      allAtkLevel: 0
+      defEarthLevel: 0
+      defFireLevel: 0
+      defAirLevel: 0
+      defWaterLevel: 0
+      allDefLevel: 0
+      evocationLevel: 0
+      startingShield: 0
   - name: Blacknide Dungeon
     bossIcon: {fileID: 21300000, guid: c5814d9a01b8c554d8512bd523152e63, type: 3}
     monsters: []
