@@ -109,7 +109,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 40f22f8185150034ebbc68c55e873718, type: 3}
     description: Inflict Water damage on adjacent heroes
     element: 3
-    damage: 26
+    damage: 30
     lifeSteal: 0
     minRange: 0
     maxRange: 0
@@ -140,10 +140,10 @@ MonoBehaviour:
     distanceType: 1
     overObstacles: 1
     hpCost: 0
-    paCost: 5
+    paCost: 4
     pmCost: 2
-    maxTimesInTurn: 1
-    executeAfterTurns: 1
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 20
     hasEffect: 1
@@ -168,7 +168,7 @@ MonoBehaviour:
     pmCost: 0
     maxTimesInTurn: 2
     executeAfterTurns: 0
-    effectDuration: 0
+    effectDuration: 1
     criticalProbability: 25
     hasEffect: 1
     isEffectOnly: 0
@@ -176,12 +176,12 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   - link: {fileID: 0}
-    name: Burning Bones Summer Sun
+    name: Burning Bones
     icon: {fileID: 21300000, guid: 8aa461efa02afed4a9926e3392c0f3d8, type: 3}
     description: Caster comes close of 2 cells. Inflict Fire damage to each enemy
       in a row of 3 cells
     element: 1
-    damage: 32
+    damage: 40
     lifeSteal: 0
     minRange: 1
     maxRange: 3
@@ -190,8 +190,8 @@ MonoBehaviour:
     hpCost: 0
     paCost: 4
     pmCost: 1
-    maxTimesInTurn: 2
-    executeAfterTurns: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 1
     effectDuration: 0
     criticalProbability: 10
     hasEffect: 1
@@ -200,7 +200,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1260
+  hp: 1280
   pa: 7
   pm: 3
   ini: 40

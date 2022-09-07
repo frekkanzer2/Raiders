@@ -121,7 +121,7 @@ MonoBehaviour:
     pmCost: 2
     maxTimesInTurn: 1
     executeAfterTurns: 5
-    effectDuration: 3
+    effectDuration: 5
     criticalProbability: 0
     hasEffect: 1
     isEffectOnly: 1
@@ -131,7 +131,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Reflex
     icon: {fileID: 21300000, guid: e80d2548fad36844aa7c36e155e99772, type: 3}
-    description: Adds 3 PM and decreases spells' complessive damage of 50%
+    description: Adds 2 PM and decreases spells' complessive damage of 50%
     element: 5
     damage: 0
     lifeSteal: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
       each enemy up to 4 cells from the caster. The amount of the damage depends
       on the targets distance from the main target. Repels the caster of 3 cells
     element: 2
-    damage: 43
+    damage: 52
     lifeSteal: 0
     minRange: 4
     maxRange: 6
@@ -167,7 +167,7 @@ MonoBehaviour:
     hpCost: 0
     paCost: 4
     pmCost: 2
-    maxTimesInTurn: 3
+    maxTimesInTurn: 2
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 5
@@ -181,7 +181,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: a1660c57f0508bc4485ced7eb78197e0, type: 3}
     description: Caster comes close of 20 cells
     element: 2
-    damage: 70
+    damage: 80
     lifeSteal: 0
     minRange: 4
     maxRange: 10
@@ -200,7 +200,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1040
+  hp: 1240
   pa: 7
   pm: 3
   ini: 70

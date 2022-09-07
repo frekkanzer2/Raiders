@@ -655,7 +655,11 @@ public class Character : MonoBehaviour
         }
         if (this.actual_hp - damage < 0) actual_hp = 0;
         else this.actual_hp -= damage;
-        if (actual_hp == 0) setDead();
+        if (actual_hp == 0) {
+            if (this.getEventSystem().getEvents("Indomitable Will").Count > 0) {
+                actual_hp = 1;
+            } else setDead();
+        }
         // Check Yugo and Tristepin transformation
         else if (actual_hp <= hp * 30 / 100 && !hasActivatedBonus30) {
             if (this.name == "Yugo") {

@@ -20,7 +20,7 @@ public class ReflexEvent : ParentEvent
     override public void both_newTurnExecute() {
         base.both_newTurnExecute();
         if (preactivation)
-            connected.incrementPM(3);
+            connected.incrementPM(2);
         else preactivation = true;
     }
 

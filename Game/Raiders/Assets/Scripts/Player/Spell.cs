@@ -199,7 +199,9 @@ public class Spell {
         else if (spell.name == "Inferno") EXECUTE_INFERNO(caster, targetBlock, spell);
         else if (spell.name == "Duel") EXECUTE_DUEL(caster, targetBlock, spell);
         else if (spell.name == "Iop's Wrath") EXECUTE_IOP_WRATH(caster, spell);
-        else if (spell.name == "Devastate") EXECUTE_DEVASTATE(caster, spell);
+        else if (spell.name == "Extrasensory Perception") EXECUTE_EXTRASENSORY_PERCEPTION(caster, spell);
+        else if (spell.name == "Indomitable Will") EXECUTE_INDOMITABLE_WILL(caster, spell);
+        else if (spell.name == "Devastate" || spell.name == "Crazy Cutting") EXECUTE_DEVASTATE(caster, spell);
         else if (spell.name == "Sentence") EXECUTE_SENTENCE(caster, spell);
         else if (spell.name == "Fight Back") EXECUTE_FIGHT_BACK(caster, spell);
         else if (spell.name == "Compulsion") EXECUTE_COMPULSION(targetBlock, spell);
@@ -427,6 +429,14 @@ public class Spell {
         else if (spell.name == "Offence") EXECUTE_OFFENCE(caster, targetBlock, spell);
         else if (spell.name == "Sinecure") EXECUTE_SINECURE(caster, targetBlock, spell);
         else if (spell.name == "Portal Interruption") EXECUTE_PORTAL_INTERRUPTION(caster);
+        else if (spell.name == "Unconscious Combat") EXECUTE_UNCONSCIOUS_COMBAT(caster, spell);
+        else if (spell.name == "Reflex") EXECUTE_REFLEX(caster, spell);
+        else if (spell.name == "Thunderclap and Flash") EXECUTE_THUNDERCLAP_FLASH(caster, targetBlock, spell);
+        else if (spell.name == "Water Wheel") EXECUTE_WATER_WHEEL(caster, targetBlock, spell);
+        else if (spell.name == "Flowing Dance") EXECUTE_FLOWING_DANCE(caster, targetBlock, spell);
+        else if (spell.name == "Raging Sun") EXECUTE_RAGING_SUN(caster, targetBlock, spell);
+        else if (spell.name == "Burning Bones") EXECUTE_BURNING_BONES(caster, targetBlock, spell);
+        else if (spell.name == "Godlike Speed") EXECUTE_GODLIKE_SPEED(caster, targetBlock);
 
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -512,6 +522,77 @@ public class Spell {
 
     #region CHARACTER SPELLS SPECIALIZATION
 
+    public static void EXECUTE_FLOWING_DANCE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Coordinate oldCoord = caster.connectedCell.GetComponent<Block>().coordinate;
+        EXECUTE_EXODUS(caster, targetBlock, s);
+        Coordinate newCoord = caster.connectedCell.GetComponent<Block>().coordinate;
+        if (oldCoord.equalsTo(newCoord)) return;
+        if (oldCoord.row > newCoord.row)
+            for (int i = newCoord.row; i <= oldCoord.row; i++) {
+                Coordinate toCheck = new Coordinate(i, oldCoord.column);
+                Block bToCheck = Map.Instance.getBlock(toCheck);
+                if (bToCheck == null) continue;
+                if (bToCheck.linkedObject == null) continue;
+                Character target = bToCheck.linkedObject.GetComponent<Character>();
+                if (target.team != caster.team)
+                    target.inflictDamage(Spell.calculateDamage(caster, target, s));
+            }
+        else if (oldCoord.row < newCoord.row)
+            for (int i = oldCoord.row; i <= newCoord.row; i++) {
+                Coordinate toCheck = new Coordinate(i, oldCoord.column);
+                Block bToCheck = Map.Instance.getBlock(toCheck);
+                if (bToCheck == null) continue;
+                if (bToCheck.linkedObject == null) continue;
+                Character target = bToCheck.linkedObject.GetComponent<Character>();
+                if (target.team != caster.team)
+                    target.inflictDamage(Spell.calculateDamage(caster, target, s));
+            }
+        else if (oldCoord.column < newCoord.column)
+            for (int i = oldCoord.column; i <= newCoord.column; i++) {
+                Coordinate toCheck = new Coordinate(newCoord.row, i);
+                Block bToCheck = Map.Instance.getBlock(toCheck);
+                if (bToCheck == null) continue;
+                if (bToCheck.linkedObject == null) continue;
+                Character target = bToCheck.linkedObject.GetComponent<Character>();
+                if (target.team != caster.team)
+                    target.inflictDamage(Spell.calculateDamage(caster, target, s));
+            }
+        else if (oldCoord.column > newCoord.column)
+            for (int i = newCoord.column; i <= oldCoord.column; i++) {
+                Coordinate toCheck = new Coordinate(newCoord.row, i);
+                Block bToCheck = Map.Instance.getBlock(toCheck);
+                if (bToCheck == null) continue;
+                if (bToCheck.linkedObject == null) continue;
+                Character target = bToCheck.linkedObject.GetComponent<Character>();
+                if (target.team != caster.team)
+                    target.inflictDamage(Spell.calculateDamage(caster, target, s));
+            }
+    }
+
+    public static void EXECUTE_BURNING_BONES(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        ut_damageInLine(caster, targetBlock, s, 3, true);
+        ut_comesCloser(caster, targetBlock, 2);
+    }
+
+    public static void EXECUTE_RAGING_SUN(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new RagingSunEvent("Raging Sun", target, s.effectDuration, ParentEvent.Mode.ActivationEachEndTurn, s.icon, caster, s));
+    }
+
+    public static void EXECUTE_WATER_WHEEL(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        foreach (Character c in ut_getAdjacentHeroes(caster.connectedCell.GetComponent<Block>().coordinate)) {
+            c.inflictDamage(calculateDamage(caster, c, s));
+        }
+    }
+    
     public static void SUMMONS_PORTAL(Character caster, Block targetBlock, bool isFlexible) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         if (!isFlexible) {
@@ -567,6 +648,23 @@ public class Spell {
         }
     }
 
+    public static void EXECUTE_EXTRASENSORY_PERCEPTION(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        int gain = 0;
+        foreach (Character c in ut_getEnemies(caster)) {
+            if (ut_isNearOf(caster, c, 8)) {
+                gain++;
+            }
+        }
+        if (gain == 0) return;
+        else caster.incrementPM(gain);
+    }
+
+    public static void EXECUTE_INDOMITABLE_WILL(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        caster.addEvent(new IndomitableWillEvent("Indomitable Will", caster, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
     public static void EXECUTE_OFFENCE(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
@@ -587,7 +685,6 @@ public class Spell {
     public static void EXECUTE_JUMP(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         if (!caster.canMovedByEffects) return;
-        Debug.Log("Jump for " + caster.name);
         if (caster.connectedCell.GetComponent<Block>() != null) {
             caster.connectedCell.GetComponent<Block>().linkedObject = null;
         }
@@ -1037,24 +1134,24 @@ public class Spell {
         EXECUTE_EXODUS(caster, targetBlock, s);
         casterBlock = caster.connectedCell.GetComponent<Block>();
         Coordinate newb = new Coordinate(casterBlock.coordinate.row, casterBlock.coordinate.column);
-        if (old.equalsTo(newb)) {
-            List<Character> heroes = ut_getAllies(caster);
-            heroes.AddRange(ut_getEnemies(caster));
-            foreach (Character c in heroes) {
-                if (ut_isNearOf(caster, c, 4) && !c.Equals(target)) {
-                    int damageToInflict = Spell.calculateDamage(caster, c, s);
-                    if (ut_isNearOf(caster, c, 1)) {
-                        damageToInflict = damageToInflict * 70 / 100;
-                    } else if (ut_isNearOf(caster, c, 2)) {
-                        damageToInflict = damageToInflict * 50 / 100;
-                    } else if (ut_isNearOf(caster, c, 3)) {
-                        damageToInflict = damageToInflict * 30 / 100;
-                    } else if (ut_isNearOf(caster, c, 4)) {
-                        damageToInflict = damageToInflict * 10 / 100;
-                    }
-                    c.inflictDamage(damageToInflict);
+        List<Character> heroes = ut_getAllies(caster);
+        heroes.AddRange(ut_getEnemies(caster));
+        foreach (Character c in heroes) {
+            if (ut_isNearOf(caster, c, 4) && !c.Equals(target)) {
+                int damageToInflict = Spell.calculateDamage(caster, c, s);
+                if (ut_isNearOf(caster, c, 1)) {
+                    damageToInflict = damageToInflict * 70 / 100;
+                } else if (ut_isNearOf(caster, c, 2)) {
+                    damageToInflict = damageToInflict * 50 / 100;
+                } else if (ut_isNearOf(caster, c, 3)) {
+                    damageToInflict = damageToInflict * 30 / 100;
+                } else if (ut_isNearOf(caster, c, 4)) {
+                    damageToInflict = damageToInflict * 10 / 100;
                 }
+                c.inflictDamage(damageToInflict);
             }
+        }
+        if (!old.equalsTo(newb)) {
             ut_repelsCaster(caster, targetBlock, 3);
         }
     }
