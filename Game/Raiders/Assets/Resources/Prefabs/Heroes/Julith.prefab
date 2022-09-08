@@ -105,6 +105,31 @@ MonoBehaviour:
   heroClass: 3
   spells:
   - link: {fileID: 0}
+    name: Creation
+    icon: {fileID: 21300000, guid: d29b8f0dcfc7dc34f80380d7e97c85d6, type: 3}
+    description: 'Summons a random Rune. The Rune will gain 1 Runic Power each turn:
+      when it reaches 5 Runic Power, it will explode. Other Runes are not involved
+      in the explosion'
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 5
+    distanceType: 0
+    overObstacles: 1
+    hpCost: 0
+    paCost: 5
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 2
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 1
+    isJump: 0
+    isSummon: 1
+  - link: {fileID: 0}
     name: Overcharge
     icon: {fileID: 21300000, guid: 07c58dd1a3f72764894928b3000868d8, type: 3}
     description: The caster uses all remaining PA to gain bonus shield
@@ -124,6 +149,29 @@ MonoBehaviour:
     criticalProbability: 0
     hasEffect: 1
     isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Aerial Wave
+    icon: {fileID: 21300000, guid: 1c3f1d1e52f2e134d9cd296441a8a0cb, type: 3}
+    description: Repels the target of 3 cells and repels the caster of 3 cells
+    element: 2
+    damage: 36
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 5
+    hasEffect: 1
+    isEffectOnly: 0
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
@@ -151,54 +199,8 @@ MonoBehaviour:
     canUseInEmptyCell: 1
     isJump: 1
     isSummon: 0
-  - link: {fileID: 0}
-    name: Hupperkap
-    icon: {fileID: 21300000, guid: 63cc2bc2c1b51314da828369d25906cb, type: 3}
-    description: Inflicts Air damage
-    element: 2
-    damage: 42
-    lifeSteal: 0
-    minRange: 1
-    maxRange: 1
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 4
-    pmCost: 0
-    maxTimesInTurn: 2
-    executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 15
-    hasEffect: 0
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  - link: {fileID: 0}
-    name: Aerial Wave
-    icon: {fileID: 21300000, guid: 1c3f1d1e52f2e134d9cd296441a8a0cb, type: 3}
-    description: Repels the target of 3 cells and repels the caster of 3 cells
-    element: 2
-    damage: 36
-    lifeSteal: 0
-    minRange: 1
-    maxRange: 1
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 3
-    pmCost: 0
-    maxTimesInTurn: 1
-    executeAfterTurns: 0
-    effectDuration: 0
-    criticalProbability: 5
-    hasEffect: 1
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
   team: 1
-  hp: 1275
+  hp: 1280
   pa: 7
   pm: 3
   ini: 130
@@ -210,7 +212,7 @@ MonoBehaviour:
   att_f: 0
   att_a: 10
   att_w: 0
-  numberOfSummons: 0
+  numberOfSummons: 3
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0
@@ -222,6 +224,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

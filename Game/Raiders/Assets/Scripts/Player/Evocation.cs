@@ -224,20 +224,22 @@ public class Evocation : Character {
         sos.addEffect_PA_PM(StatsOutputSystem.Effect.Rage, this.RunicPower + " RP");
         if (this.RunicPower == 5)
         {
-            List<Character> all = Spell.ut_getAllies(this);
-            all.AddRange(Spell.ut_getEnemies(this));
-            foreach (Character c in all)
-            {
-                if (c is Evocation)
-                {
-                    if (((Evocation)c).isRune)
-                        continue;
-                }
-                if (Spell.ut_isNearOf(c, this, 3))
-                    c.inflictDamage(Spell.calculateDamage(this, c, this.spells[0]));
-            }
-            this.inflictDamage(this.actual_hp);
+            runeExplosion();
         }
+    }
+
+    public void runeExplosion() {
+        List<Character> all = Spell.ut_getAllies(this);
+        all.AddRange(Spell.ut_getEnemies(this));
+        foreach (Character c in all) {
+            if (c is Evocation) {
+                if (((Evocation)c).isRune)
+                    continue;
+            }
+            if (Spell.ut_isNearOf(c, this, 3))
+                c.inflictDamage(Spell.calculateDamage(this, c, this.spells[0]));
+        }
+        this.inflictDamage(this.actual_hp);
     }
 
     public override void newTurn() {

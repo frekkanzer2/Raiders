@@ -214,7 +214,7 @@ MonoBehaviour:
   att_f: 0
   att_a: 0
   att_w: 0
-  numberOfSummons: 4
+  numberOfSummons: 5
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0
@@ -226,6 +226,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

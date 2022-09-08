@@ -328,7 +328,9 @@ public class Spell {
         else if (spell.name == "Eviction") EXECUTE_EVICTION(caster, targetBlock);
         else if (spell.name == "Pandjiu") EXECUTE_PANDJIU(caster, targetBlock);
         else if (spell.name == "Explosive Flask") EXECUTE_EXPLOSIVE_FLASK(caster, targetBlock, spell);
+        else if (spell.name == "Hupperpunch" || spell.name == "Hupperkut") EXECUTE_HUPPERDIE(caster, targetBlock, spell);
         else if (spell.name == "Death Con") EXECUTE_DEATH_CON(caster, targetBlock, spell);
+        else if (spell.name == "Sun Lance") EXECUTE_SUN_LANCE(caster, targetBlock, spell);
         else if (spell.name == "Contagion") EXECUTE_CONTAGION(caster, targetBlock, spell);
         else if (spell.name == "Nature Poison") EXECUTE_NATURE_POISON(caster, targetBlock, spell);
         else if (spell.name == "Earthquake") EXECUTE_EARTHQUAKE(caster, spell);
@@ -1779,6 +1781,7 @@ public class Spell {
         int bonus_damage = remaining_pm * 15;
         foreach (Character c in ut_getEnemies(caster)) {
             if (ut_isNearOf(caster, c, 5)) {
+                if (c is Evocation) if (((Evocation)c).isRune) continue;
                 int damage = Spell.calculateDamage(caster, c, s);
                 damage += bonus_damage;
                 c.inflictDamage(damage);
@@ -1800,6 +1803,14 @@ public class Spell {
         targetBlock.linkedObject.GetComponent<Character>().addEvent(
             new StrategaEvent("Stratega", targetBlock.linkedObject.GetComponent<Character>(), s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon)
         );
+    }
+    public static void EXECUTE_HUPPERDIE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.inflictDamage(Spell.calculateDamage(caster, target, s));
+        if (target.isDead)
+            SUMMONS_RUNE(caster, targetBlock);
     }
     public static void EXECUTE_FRIGHTENING_WORD(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
@@ -2280,6 +2291,18 @@ public class Spell {
         if (target is Evocation)
             if (((Evocation)target).isRune)
                 ((Evocation)target).incrementRunicPower();
+    }
+
+    public static void EXECUTE_SUN_LANCE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation)
+            if (((Evocation)target).isRune) {
+                ((Evocation)target).runeExplosion();
+                return;
+            }
+        target.inflictDamage(Spell.calculateDamage(caster, target, s));
     }
 
     public static void EXECUTE_ELEMENTAL_DRAIN(Character caster, Spell s)

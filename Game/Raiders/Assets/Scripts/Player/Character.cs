@@ -159,10 +159,10 @@ public class Character : MonoBehaviour
         else if (this.heroClass == HeroClass.Hipermago)
         {
             this.ini += upgrade.getInitBonus();
-            this.att_e += upgrade.getInitBonus() / 5;
-            this.att_f += upgrade.getInitBonus() / 5;
-            this.att_a += upgrade.getInitBonus() / 5;
-            this.att_w += upgrade.getInitBonus() / 5;
+            this.att_e += upgrade.getInitBonus() / 4;
+            this.att_f += upgrade.getInitBonus() / 4;
+            this.att_a += upgrade.getInitBonus() / 4;
+            this.att_w += upgrade.getInitBonus() / 4;
         }
         Tuple<int, int, int, int> resBonus = upgrade.getDefenceBonus();
         this.res_e += resBonus.Item1;

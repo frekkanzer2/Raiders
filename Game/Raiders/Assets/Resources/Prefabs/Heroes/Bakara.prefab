@@ -32,6 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -47,6 +48,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -129,12 +131,12 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Sun Lance
     icon: {fileID: 21300000, guid: 4a6f7a8dd3ec2e340bddd7a69b87443a, type: 3}
-    description: 'Inflicts Fire damage '
+    description: Inflicts Fire damage. If the target is a Rune, it explodes
     element: 1
     damage: 34
     lifeSteal: 0
     minRange: 3
-    maxRange: 7
+    maxRange: 6
     distanceType: 0
     overObstacles: 0
     hpCost: 0
@@ -144,15 +146,15 @@ MonoBehaviour:
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 25
-    hasEffect: 0
-    isEffectOnly: 0
+    hasEffect: 1
+    isEffectOnly: 1
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
   - link: {fileID: 0}
     name: Hupperkut
     icon: {fileID: 21300000, guid: b31b60f2684efb847bd7fd708e93e809, type: 3}
-    description: 'Inflicts Water damage '
+    description: Inflicts Water damage. If the target dies, summons a Rune
     element: 3
     damage: 52
     lifeSteal: 0
@@ -164,11 +166,11 @@ MonoBehaviour:
     paCost: 6
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 0
+    executeAfterTurns: 1
     effectDuration: 0
     criticalProbability: 15
-    hasEffect: 0
-    isEffectOnly: 0
+    hasEffect: 1
+    isEffectOnly: 1
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
@@ -187,7 +189,7 @@ MonoBehaviour:
     paCost: 4
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 0
+    executeAfterTurns: 1
     effectDuration: 1
     criticalProbability: 15
     hasEffect: 1
@@ -196,7 +198,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1150
+  hp: 1160
   pa: 7
   pm: 3
   ini: 70
@@ -208,7 +210,7 @@ MonoBehaviour:
   att_f: 12
   att_a: 0
   att_w: 10
-  numberOfSummons: 0
+  numberOfSummons: 2
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0
@@ -218,7 +220,9 @@ MonoBehaviour:
   actual_shield: 0
   isDead: 0
   canMovedByEffects: 1
+  rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0
@@ -250,12 +254,15 @@ MonoBehaviour:
   monsterSummons: []
   summonsIdCounter: 0
   isDebugEnabled: 0
+  hasXelorBonus: 0
   accumulationCounter: 0
+  smithereensCounter: 0
   criticShooting: 0
   connectedSacrifice: {fileID: 0}
   hasActivedSacrifice: 0
   canCritical: 1
   immuneCloseCombat: 0
+  shushuCounter: 0
 --- !u!61 &8528018890230597465
 BoxCollider2D:
   m_ObjectHideFlags: 0

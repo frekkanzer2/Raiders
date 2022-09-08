@@ -130,7 +130,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Hupperpunch
     icon: {fileID: 21300000, guid: 60c1e03e9b7e8f54490c394826fe655e, type: 3}
-    description: Inflicts Air damage
+    description: Inflicts Air damage. If the target dies, summons a Rune
     element: 2
     damage: 38
     lifeSteal: 0
@@ -145,8 +145,8 @@ MonoBehaviour:
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 5
-    hasEffect: 0
-    isEffectOnly: 0
+    hasEffect: 1
+    isEffectOnly: 1
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
     name: Telluric Wave
     icon: {fileID: 21300000, guid: 00a7cd722cc822749a7aab5e5646115b, type: 3}
     description: Inflict Earth damage to each enemy up to 5 cells. The caster uses
-      all remaining PM to deal bonus damage
+      all remaining PM to deal bonus damage. Runes are immune
     element: 0
     damage: 42
     lifeSteal: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 1270
+  hp: 1370
   pa: 7
   pm: 3
   ini: 10
@@ -210,7 +210,7 @@ MonoBehaviour:
   att_f: 8
   att_a: 12
   att_w: 0
-  numberOfSummons: 0
+  numberOfSummons: 2
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0
@@ -222,6 +222,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0
