@@ -112,7 +112,7 @@ MonoBehaviour:
     damage: 80
     lifeSteal: 0
     minRange: 1
-    maxRange: 6
+    maxRange: 5
     distanceType: 1
     overObstacles: 0
     hpCost: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   hp: 760
   pa: 6
   pm: 4
-  ini: 65
+  ini: 70
   res_e: 10
   res_f: 4
   res_a: 8
@@ -215,8 +215,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.5, y: 0.2}
+    oldSize: {x: 2.2222223, y: 2.2222223}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

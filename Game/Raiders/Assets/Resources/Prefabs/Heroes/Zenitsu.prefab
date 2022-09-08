@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Zenitsu
-  heroClass: 18
+  heroClass: 20
   spells:
   - link: {fileID: 0}
     name: Unconscious Combat
@@ -158,7 +158,7 @@ MonoBehaviour:
       each enemy up to 4 cells from the caster. The amount of the damage depends
       on the targets distance from the main target. Repels the caster of 3 cells
     element: 2
-    damage: 52
+    damage: 70
     lifeSteal: 0
     minRange: 4
     maxRange: 6
@@ -181,7 +181,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: a1660c57f0508bc4485ced7eb78197e0, type: 3}
     description: Caster comes close of 20 cells
     element: 2
-    damage: 80
+    damage: 102
     lifeSteal: 0
     minRange: 4
     maxRange: 10

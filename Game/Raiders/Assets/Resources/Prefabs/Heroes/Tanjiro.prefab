@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Tanjiro
-  heroClass: 18
+  heroClass: 20
   spells:
   - link: {fileID: 0}
     name: Water Wheel

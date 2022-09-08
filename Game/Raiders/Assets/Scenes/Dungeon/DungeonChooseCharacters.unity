@@ -13733,19 +13733,245 @@ MonoBehaviour:
       startingShield: 10
   - name: Goblin Fair
     bossIcon: {fileID: 21300000, guid: 03439c0fc13bb2a4fb428f23ff105455, type: 3}
-    monsters: []
-    rooms: []
+    monsters:
+    - name: Director Grunob
+      prefab: {fileID: 557098361630938699, guid: 45c8c33cf0d02134caa7ae27d0b41221, type: 3}
+      sprite: {fileID: 21300000, guid: 842627854a16f3943a99446aca207cbc, type: 3}
+    - name: Gob Trotter
+      prefab: {fileID: 557098361630938699, guid: bfaf6419f89e79442872e7e7ff863be3, type: 3}
+      sprite: {fileID: 21300000, guid: 47bdbb0a01865ac4b8e0ce97c8a41d61, type: 3}
+    - name: Goballista
+      prefab: {fileID: 557098361630938699, guid: d14f93a8d0763c74a8b14bf02b533a22, type: 3}
+      sprite: {fileID: 21300000, guid: fea8c5cc8b13a864ca31c2c027a83aff, type: 3}
+    - name: Gobdoroad
+      prefab: {fileID: 557098361630938699, guid: aa67894c6e7221a499792bba542a7498, type: 3}
+      sprite: {fileID: 21300000, guid: d75e4d44cea10b749932d110a00223e7, type: 3}
+    - name: Gobelishous
+      prefab: {fileID: 557098361630938699, guid: c22f1f36b30052445b67f183ee60a182, type: 3}
+      sprite: {fileID: 21300000, guid: 544ab0ca566b7e3478ab9e93dcc0acdb, type: 3}
+    - name: Gobnoramus
+      prefab: {fileID: 557098361630938699, guid: 059881d0cb5322a4599e372ae9308e66, type: 3}
+      sprite: {fileID: 21300000, guid: f143f7007aa7c744681b303aa639843c, type: 3}
+    - name: Mekascarecrow
+      prefab: {fileID: 557098361630938699, guid: 1b5643f23ff76114baf033d9ccbcbc2f, type: 3}
+      sprite: {fileID: 21300000, guid: e4aa6f4550a9b6f41b08ff4965dd647b, type: 3}
+    - name: Skeleton Wabbit
+      prefab: {fileID: 557098361630938699, guid: 7d4b1ede13db20f4b83571d96c505617, type: 3}
+      sprite: {fileID: 21300000, guid: 2fc75bd5c48621f4da6ed378aa24a526, type: 3}
+    - name: Dagobert
+      prefab: {fileID: 557098361630938699, guid: 6b7aa015f7c5b7a4185e90d280e9a4cf, type: 3}
+      sprite: {fileID: 21300000, guid: 4d0c80f452fcd9443a1523c47c366dfc, type: 3}
+    - name: Pushy Robot
+      prefab: {fileID: 557098361630938699, guid: c5d0f38b48dac6d4c876884ebbd80379, type: 3}
+      sprite: {fileID: 21300000, guid: 23a45b0c5f2aa7e4b90de29b15bf1007, type: 3}
+    - name: Robionicle
+      prefab: {fileID: 557098361630938699, guid: ee2c2156811cc29468ed8702386ca6c7, type: 3}
+      sprite: {fileID: 21300000, guid: 92295a4156a566f4bbcc663cc2f58518, type: 3}
+    - name: Robo Mace
+      prefab: {fileID: 557098361630938699, guid: 4df439ecd925cad40aec09f9724a0d62, type: 3}
+      sprite: {fileID: 21300000, guid: e94bf86fa20a3254d99338339efea955, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 14
+          column: 2
+        - row: 14
+          column: 16
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 15
+          column: 8
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 15
+          column: 10
+      - monsterID: 5
+        quantity: 3
+        spawnCoordinates:
+        - row: 16
+          column: 3
+        - row: 16
+          column: 15
+        - row: 16
+          column: 9
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 14
+          column: 9
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 14
+          column: 2
+        - row: 14
+          column: 16
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 15
+          column: 8
+        - row: 15
+          column: 10
+      - monsterID: 5
+        quantity: 1
+        spawnCoordinates:
+        - row: 15
+          column: 9
+      - monsterID: 7
+        quantity: 2
+        spawnCoordinates:
+        - row: 15
+          column: 2
+        - row: 15
+          column: 16
+      - monsterID: 8
+        quantity: 0
+        spawnCoordinates: []
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 14
+          column: 2
+        - row: 14
+          column: 16
+      - monsterID: 5
+        quantity: 4
+        spawnCoordinates:
+        - row: 15
+          column: 2
+        - row: 15
+          column: 16
+        - row: 15
+          column: 5
+        - row: 15
+          column: 13
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 14
+          column: 9
+      - monsterID: 3
+        quantity: 1
+        spawnCoordinates:
+        - row: 15
+          column: 8
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 15
+          column: 10
+      - monsterID: 8
+        quantity: 0
+        spawnCoordinates: []
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 14
+          column: 2
+        - row: 14
+          column: 16
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 14
+          column: 3
+        - row: 14
+          column: 15
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 15
+          column: 7
+        - row: 15
+          column: 11
+      - monsterID: 4
+        quantity: 2
+        spawnCoordinates:
+        - row: 14
+          column: 8
+        - row: 14
+          column: 10
+      - monsterID: 5
+        quantity: 3
+        spawnCoordinates:
+        - row: 15
+          column: 9
+        - row: 15
+          column: 1
+        - row: 15
+          column: 17
+      - monsterID: 7
+        quantity: 2
+        spawnCoordinates:
+        - row: 16
+          column: 7
+        - row: 16
+          column: 11
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 1
+        spawnCoordinates:
+        - row: 2
+          column: 9
+      - monsterID: 1
+        quantity: 4
+        spawnCoordinates:
+        - row: 2
+          column: 2
+        - row: 2
+          column: 16
+        - row: 14
+          column: 16
+        - row: 14
+          column: 2
+      - monsterID: 5
+        quantity: 2
+        spawnCoordinates:
+        - row: 8
+          column: 2
+        - row: 8
+          column: 16
+      - monsterID: 6
+        quantity: 1
+        spawnCoordinates:
+        - row: 14
+          column: 9
+      - monsterID: 8
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 6
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 10
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 11
+        quantity: 0
+        spawnCoordinates: []
     ThreeCharactersChallenge:
       availablePoints: 0
       pointsToAssign: 0
-      hpLevel: 30
-      initLevel: 25
-      pmLevel: 0
+      hpLevel: 20
+      initLevel: 20
+      pmLevel: 5
       paLevel: 0
-      atkEarthLevel: 34
+      atkEarthLevel: 10
       atkFireLevel: 18
-      atkAirLevel: 20
-      atkWaterLevel: 26
+      atkAirLevel: 16
+      atkWaterLevel: 20
       allAtkLevel: 0
       defEarthLevel: 0
       defFireLevel: 0
@@ -13753,7 +13979,7 @@ MonoBehaviour:
       defWaterLevel: 0
       allDefLevel: 0
       evocationLevel: 0
-      startingShield: 0
+      startingShield: 5
   - name: Blacknide Dungeon
     bossIcon: {fileID: 21300000, guid: c5814d9a01b8c554d8512bd523152e63, type: 3}
     monsters: []

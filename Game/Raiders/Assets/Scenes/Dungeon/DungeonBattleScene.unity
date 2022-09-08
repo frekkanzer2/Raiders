@@ -1293,6 +1293,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 616bbb2af75f9b84ab92646d08311542, type: 3}
   - {fileID: 4900000, guid: 398715721382f5d4eb1ad0218c809813, type: 3}
   - {fileID: 4900000, guid: 67a8b4d33128a7f4cab529beeaa7a7ea, type: 3}
+  - {fileID: 4900000, guid: 3de44218d0bfd3f4abd7be451d8f83c5, type: 3}
+  - {fileID: 4900000, guid: 4cdc90279a26ff5428b15808b61589a8, type: 3}
+  - {fileID: 4900000, guid: c8d005cdbb4a8374d90cbcec9bba9cd5, type: 3}
+  - {fileID: 4900000, guid: 14bf080a145a798418662deae75dceae, type: 3}
+  - {fileID: 4900000, guid: 2032e97b7af507a41b41596e2eec48e5, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481
@@ -16015,6 +16020,8 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: a2831f2e22dfcba4992aa99f70366f73, type: 3}
   - track_name_maiusc: NELWEEN LAIR
     music: {fileID: 8300000, guid: 57450b7bd7bb7ef4db5c8b711cc4b4b9, type: 3}
+  - track_name_maiusc: GOBLIN FAIR
+    music: {fileID: 8300000, guid: b463877528443f149b43f14b5fa7bfea, type: 3}
   - track_name_maiusc: BLACKNIDE DUNGEON
     music: {fileID: 8300000, guid: b889bc93f18a956438dc2fef16d85636, type: 3}
 --- !u!82 &1527921472

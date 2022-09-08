@@ -455,16 +455,20 @@ public class Spell {
         else if (spell.name == "My Tofu Childs") EXECUTE_MY_TOFU_CHILDS(caster, targetBlock, spell);
         else if (spell.name == "Attractive Smell") EXECUTE_ATTRACTIVE_SMELL(caster, targetBlock, spell);
         else if (spell.name == "Call of the forest") EXECUTE_CALL_OF_THE_FOREST(caster, targetBlock, spell);
+        else if (spell.name == "Call of the cat") EXECUTE_CALL_OF_THE_CAT(caster, targetBlock, spell);
+        else if (spell.name == "Meka Evocation") EXECUTE_CALL_OF_THE_MEKA(caster, targetBlock, spell);
         else if (spell.name == "Kannilance") EXECUTE_KANNILANCE(caster, targetBlock, spell);
         else if (spell.name == "Wolf Cry") EXECUTE_WOLF_CRY(caster, spell);
         else if (spell.name == "Vilinslash") EXECUTE_VILINSLASH(caster, targetBlock, spell);
         else if (spell.name == "Wax Shot") EXECUTE_WAX_SHOT(caster, targetBlock, spell);
+        else if (spell.name == "Evocation killer") EXECUTE_EVOKILLER(caster, targetBlock, spell);
         else if (spell.name == "Ninjawax") EXECUTE_NINJAWAX(caster, targetBlock, spell);
         else if (spell.name == "Kankenswift") EXECUTE_KANKENSWIFT(caster, targetBlock);
         else if (spell.name == "Kankendust") EXECUTE_KANKENDUST(caster, targetBlock, spell);
         else if (spell.name == "Mud throw") EXECUTE_MUD_THROW(caster, targetBlock, spell);
         else if (spell.name == "Mud shot") EXECUTE_MUD_SHOT(caster, targetBlock);
         else if (spell.name == "Insect Cry") EXECUTE_INSECT_CRY(caster, targetBlock, spell);
+        else if (spell.name == "Devil Hungry") EXECUTE_DEVIL_HUNGRY(caster, spell);
         else if (spell.name == "Hideout") EXECUTE_HIDEOUT(caster, spell);
         else if (spell.name == "Hard Bone") EXECUTE_HARD_BONE(caster, spell);
         else if (spell.name == "Ax of the Valkyrie" || spell.name == "Ax of Bworkette" || spell.name == "Double cut") EXECUTE_AX_OF_THE_VALKYRIE(caster, targetBlock, spell);
@@ -657,6 +661,7 @@ public class Spell {
             }
         }
         if (gain == 0) return;
+        if (gain > 6) gain = 6;
         else caster.incrementPM(gain);
     }
 
@@ -3315,8 +3320,7 @@ public class Spell {
         }
     }
 
-    public static void EXECUTE_CALL_OF_THE_FOREST(Character caster, Block targetBlock, Spell s)
-    {
+    public static void EXECUTE_CALL_OF_THE_FOREST(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
         Monster casterMonster = (Monster)caster;
@@ -3325,11 +3329,9 @@ public class Spell {
         Block closestBlock = closest.connectedCell.GetComponent<Block>();
         Block toSummonBlock = null;
         int bestDistance = 10000;
-        foreach (Block free in (targetBlock.getFreeAdjacentBlocks()))
-        {
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks())) {
             int actualDistance = Monster.getDistance(free.coordinate, closestBlock.coordinate);
-            if (actualDistance < bestDistance)
-            {
+            if (actualDistance < bestDistance) {
                 bestDistance = actualDistance;
                 toSummonBlock = free;
             }
@@ -3337,6 +3339,53 @@ public class Spell {
         if (toSummonBlock == null) return;
         ut_execute_monsterSummon(caster, toSummonBlock, "Bear");
     }
+    public static void EXECUTE_CALL_OF_THE_CAT(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Monster casterMonster = (Monster)caster;
+        Character closest = casterMonster.getClosestEnemy();
+        if (closest == null) return;
+        Block closestBlock = closest.connectedCell.GetComponent<Block>();
+        Block toSummonBlock = null;
+        int bestDistance = 10000;
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks())) {
+            int actualDistance = Monster.getDistance(free.coordinate, closestBlock.coordinate);
+            if (actualDistance < bestDistance) {
+                bestDistance = actualDistance;
+                toSummonBlock = free;
+            }
+        }
+        if (toSummonBlock == null) return;
+        ut_execute_monsterSummon(caster, toSummonBlock, "Dagobert");
+    }
+
+    public static void EXECUTE_CALL_OF_THE_MEKA(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Monster casterMonster = (Monster)caster;
+        Character closest = casterMonster.getClosestEnemy();
+        if (closest == null) return;
+        Block closestBlock = closest.connectedCell.GetComponent<Block>();
+        Block toSummonBlock = null;
+        int bestDistance = 10000;
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks())) {
+            int actualDistance = Monster.getDistance(free.coordinate, closestBlock.coordinate);
+            if (actualDistance < bestDistance) {
+                bestDistance = actualDistance;
+                toSummonBlock = free;
+            }
+        }
+        if (toSummonBlock == null) return;
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+        int i = UnityEngine.Random.Range(0, 3);
+        if (i == 0)
+            ut_execute_monsterSummon(caster, toSummonBlock, "Pushy Robot");
+        else if (i == 1)
+            ut_execute_monsterSummon(caster, toSummonBlock, "Robo Mace");
+        else if (i == 2)
+            ut_execute_monsterSummon(caster, toSummonBlock, "Robionicle");
+    }
+
     public static void EXECUTE_CALL_OF_ARACHNEE(Character caster, Block targetBlock, Spell s)
     {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
@@ -3484,6 +3533,18 @@ public class Spell {
         }
     }
 
+    public static void EXECUTE_EVOKILLER(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        if (targetBlock.linkedObject == null) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation) {
+            target.inflictDamage(target.getActualHP() + target.actual_shield);
+        } else {
+            target.inflictDamage(Spell.calculateDamage(caster, target, s));
+        }
+    }
+
     public static void EXECUTE_NINJAWAX(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
@@ -3501,6 +3562,15 @@ public class Spell {
         if (!put_CheckLinkedObject(targetBlock)) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         target.addEvent(new InsectCryEvent("Insect Cry", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
+    }
+    public static void EXECUTE_DEVIL_HUNGRY(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach(Character c in ut_getAlliesWithCaster(caster)) {
+            DevilHungryEvent e = new DevilHungryEvent("Devil Hungry", c, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+            c.addEvent(e);
+            if (c.Equals(caster))
+                e.useIstantanely();
+        }
     }
 
     public static void EXECUTE_HIDEOUT(Character caster, Spell s) {

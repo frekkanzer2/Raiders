@@ -29,9 +29,9 @@ public class Character : MonoBehaviour
         Steamer,
         Elatrop,
         Uginak,
-        DemonSlayer,
         MONSTER,
-        EVOCATION
+        EVOCATION,
+        DemonSlayer
     }
 
     private int AI_SEARCHPATH_STEPS = 100;

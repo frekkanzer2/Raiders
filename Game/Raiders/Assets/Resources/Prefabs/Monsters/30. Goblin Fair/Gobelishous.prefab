@@ -105,8 +105,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.685, y: 0.19}
+    oldSize: {x: 2.3529413, y: 2.3529413}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
     isJump: 0
     isSummon: 0
   - link: {fileID: 0}
-    name: Devil hungry
+    name: Devil Hungry
     icon: {fileID: 21300000, guid: 3ed479ee0d494d64f8a0f1e1b3dd6d67, type: 3}
     description: +30% dmgs to every ally
     element: 5
@@ -168,8 +168,8 @@ MonoBehaviour:
     paCost: 3
     pmCost: 0
     maxTimesInTurn: 1
-    executeAfterTurns: 7
-    effectDuration: 4
+    executeAfterTurns: 5
+    effectDuration: 3
     criticalProbability: 0
     hasEffect: 1
     isEffectOnly: 1
@@ -180,7 +180,7 @@ MonoBehaviour:
   hp: 800
   pa: 6
   pm: 3
-  ini: 70
+  ini: 60
   res_e: -8
   res_f: 9
   res_a: 4

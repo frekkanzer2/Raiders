@@ -105,8 +105,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.52, y: 0.17}
+    oldSize: {x: 2.2222223, y: 2.2222223}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -131,64 +131,41 @@ MonoBehaviour:
   heroClass: 18
   spells:
   - link: {fileID: 0}
-    name: Group Wabbheal
+    name: Evocation killer
     icon: {fileID: 0}
-    description: Also heals each ally in 2 cells
-    element: 4
-    damage: 100
-    lifeSteal: 0
-    minRange: 0
-    maxRange: 0
-    distanceType: 0
-    overObstacles: 0
-    hpCost: 0
-    paCost: 2
-    pmCost: 0
-    maxTimesInTurn: 1
-    executeAfterTurns: 2
-    effectDuration: 0
-    criticalProbability: 0
-    hasEffect: 1
-    isEffectOnly: 0
-    canUseInEmptyCell: 0
-    isJump: 0
-    isSummon: 0
-  - link: {fileID: 0}
-    name: Wabbhit
-    icon: {fileID: 0}
-    description: 
-    element: 3
-    damage: 60
+    description: if the target is an evocation, kills it
+    element: 0
+    damage: 40
     lifeSteal: 0
     minRange: 1
     maxRange: 2
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 4
+    paCost: 3
     pmCost: 0
-    maxTimesInTurn: 1
-    executeAfterTurns: 1
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
     effectDuration: 0
-    criticalProbability: 30
-    hasEffect: 0
-    isEffectOnly: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
   team: 1
-  hp: 780
+  hp: 740
   pa: 6
   pm: 4
-  ini: 80
-  res_e: 2
-  res_f: -6
-  res_a: -6
-  res_w: 9
-  att_e: 0
+  ini: 25
+  res_e: 10
+  res_f: -8
+  res_a: 6
+  res_w: -9
+  att_e: 10
   att_f: 0
   att_a: 0
-  att_w: 18
+  att_w: 0
   numberOfSummons: 0
   isEvocation: 0
   actual_hp: 0
@@ -243,7 +220,7 @@ MonoBehaviour:
   immuneCloseCombat: 0
   shushuCounter: 0
   behaviour:
-    spellsOrderToCheckId: 0000000001000000
+    spellsOrderToCheckId: 00000000
     movementAfterFight: 1
     movementWhenCannotAttack: 1
   id: 0

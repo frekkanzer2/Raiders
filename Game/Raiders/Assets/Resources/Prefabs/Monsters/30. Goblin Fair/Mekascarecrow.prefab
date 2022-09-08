@@ -105,8 +105,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.46, y: 0.2}
+    oldSize: {x: 6.6666665, y: 6.6666665}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 4
-    damage: 200
+    damage: 100
     lifeSteal: 0
     minRange: 1
     maxRange: 2
@@ -144,7 +144,7 @@ MonoBehaviour:
     hpCost: 0
     paCost: 3
     pmCost: 0
-    maxTimesInTurn: 1
+    maxTimesInTurn: 2
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     description: 
     element: 1
-    damage: 350
+    damage: 300
     lifeSteal: 0
     minRange: 1
     maxRange: 1
@@ -181,7 +181,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 152e77e873c28f344ba8183d27db19f1, type: 3}
     description: dmg in a row of 3 cells
     element: 2
-    damage: 150
+    damage: 100
     lifeSteal: 0
     minRange: 1
     maxRange: 3
@@ -199,20 +199,43 @@ MonoBehaviour:
     canUseInEmptyCell: 0
     isJump: 0
     isSummon: 0
+  - link: {fileID: 0}
+    name: Meka Evocation
+    icon: {fileID: 0}
+    description: Summons a random Meka
+    element: 5
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 0
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 6
+    pmCost: 0
+    maxTimesInTurn: 1
+    executeAfterTurns: 2
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 1
+    isEffectOnly: 1
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 1
   team: 1
   hp: 5400
   pa: 12
-  pm: 5
+  pm: 3
   ini: 5
   res_e: 0
   res_f: 0
   res_a: 0
   res_w: 0
   att_e: 0
-  att_f: 0
-  att_a: 0
+  att_f: 10
+  att_a: 10
   att_w: 0
-  numberOfSummons: 0
+  numberOfSummons: 10
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0
@@ -266,7 +289,7 @@ MonoBehaviour:
   immuneCloseCombat: 0
   shushuCounter: 0
   behaviour:
-    spellsOrderToCheckId: 010000000200000000000000
+    spellsOrderToCheckId: 03000000010000000200000000000000
     movementAfterFight: 3
     movementWhenCannotAttack: 1
   id: 0
