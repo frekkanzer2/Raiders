@@ -472,6 +472,7 @@ public class Spell {
         else if (spell.name == "Insect Cry") EXECUTE_INSECT_CRY(caster, targetBlock, spell);
         else if (spell.name == "Devil Hungry") EXECUTE_DEVIL_HUNGRY(caster, spell);
         else if (spell.name == "Hideout") EXECUTE_HIDEOUT(caster, spell);
+        else if (spell.name == "Healing plant") EXECUTE_HEALING_PLANT(caster, spell);
         else if (spell.name == "Hard Bone") EXECUTE_HARD_BONE(caster, spell);
         else if (spell.name == "Ax of the Valkyrie" || spell.name == "Ax of Bworkette" || spell.name == "Double cut") EXECUTE_AX_OF_THE_VALKYRIE(caster, targetBlock, spell);
         else if (spell.name == "Destruction Sword") EXECUTE_DESTRUCTION_SWORD(caster, targetBlock, spell);
@@ -496,6 +497,7 @@ public class Spell {
         else if (spell.name == "Alpha Teeth") EXECUTE_ALPHA_TEETH(caster, targetBlock, spell);
         else if (spell.name == "Crobak Shot") SUMMONS_CROBAK_DISTANCE(caster, targetBlock, spell);
         else if (spell.name == "Crobak Liberation") EXECUTE_MY_CROBAK_CHILDS(caster, targetBlock, spell);
+        else if (spell.name == "Blocking Spit") EXECUTE_BLOCKING_SPIT(caster, targetBlock, spell);
         else if (spell.name == "High Temperature") EXECUTE_HIGH_TEMPERATURE(caster, targetBlock, spell);
         else if (spell.name == "Gwandisolation") EXECUTE_GWANDISOLATION(caster, targetBlock);
         else if (spell.name == "Bottaboule") EXECUTE_BOTTABOULE(caster, targetBlock, spell);
@@ -511,6 +513,9 @@ public class Spell {
         else if (spell.name == "Turtle Catch") EXECUTE_TURTLE_CATCH(caster, targetBlock);
         else if (spell.name == "Long Turtle Hit") EXECUTE_LONG_TURTLE_HIT(caster, targetBlock);
         else if (spell.name == "Long Turtle Teleportation") EXECUTE_LONG_TURTLE_TELEPORTATION(caster, targetBlock, spell);
+        else if (spell.name == "Aracashot") SUMMONS_AGGR_ARACHNEE_DISTANCE(caster, targetBlock, spell);
+        else if (spell.name == "Call of Arachnee Major") EXECUTE_CALL_OF_ARACHNEE_MAJOR(caster, targetBlock, spell);
+        else if (spell.name == "Call of Sick Arachnee") EXECUTE_CALL_OF_SICK_ARACHNEE(caster, targetBlock, spell);
         else if (spell.name == "Bomb Throw") EXECUTE_BOMB_THROW(caster, targetBlock, spell);
         else if (spell.name == "Sparoboom") EXECUTE_SPAROBOOM(caster, targetBlock, spell);
         else if (spell.name == "Swingewl") EXECUTE_SWINGEWL(caster, targetBlock);
@@ -519,6 +524,9 @@ public class Spell {
         else if (spell.name == "Crocorage Chief") EXECUTE_CHIEF_CROCORAGE(caster, spell);
         else if (spell.name == "Survarmor") EXECUTE_SURVARMOR(caster, spell);
         else if (spell.name == "Nelween Power") EXECUTE_NELWEEN_POWER(caster, spell);
+        else if (spell.name == "Talisman Power") EXECUTE_TALISMAN_POWER(caster, spell);
+        else if (spell.name == "Arachnee Explosion") EXECUTE_ARACHNEE_EXPLOSION(caster, spell);
+        else if (spell.name == "Flambe Tomb") EXECUTE_CALL_CHAFER_FLAMBE(caster, targetBlock, spell);
         else if (spell.name == "Black Rat Overhit") EXECUTE_RAT_ATTACK(caster, spell, 2);
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -3327,6 +3335,13 @@ public class Spell {
             ut_execute_monsterSummon(caster, free, "Tofu Doll");
         }
     }
+    public static void EXECUTE_CALL_OF_ARACHNEE_MAJOR(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks())) {
+            ut_execute_monsterSummon(caster, free, "Alpha Arachnee");
+        }
+    }
     public static void EXECUTE_ATTRACTIVE_SMELL(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
@@ -3362,6 +3377,60 @@ public class Spell {
         if (toSummonBlock == null) return;
         ut_execute_monsterSummon(caster, toSummonBlock, "Bear");
     }
+
+    public static void EXECUTE_CALL_CHAFER_FLAMBE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Monster casterMonster = (Monster)caster;
+        Character closest = casterMonster.getClosestEnemy();
+        if (closest == null) return;
+        Block closestBlock = closest.connectedCell.GetComponent<Block>();
+        Block toSummonBlock = null;
+        int bestDistance = 10000;
+        foreach (Block free in (caster.connectedCell.GetComponent<Block>().getFreeAdjacentBlocks())) {
+            int actualDistance = Monster.getDistance(free.coordinate, closestBlock.coordinate);
+            if (actualDistance < bestDistance) {
+                bestDistance = actualDistance;
+                toSummonBlock = free;
+            }
+        }
+        if (toSummonBlock == null) return;
+        ut_execute_monsterSummon(caster, toSummonBlock, "Chafer Flambe");
+    }
+
+    public static void EXECUTE_TALISMAN_POWER(Character caster, Spell s) {
+        foreach(Character c in ut_getEnemies(caster)) {
+            c.addEvent(new TalismanPowerEvent("Talisman Power", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+        }
+        MonsterTalismanPowerEvent mtpe = new MonsterTalismanPowerEvent("Talisman Power", caster, s.effectDuration+1, ParentEvent.Mode.Permanent, s.icon);
+        caster.addEvent(mtpe);
+        mtpe.useIstantanely();
+    }
+
+    public static void EXECUTE_CALL_OF_SICK_ARACHNEE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Monster casterMonster = (Monster)caster;
+        Character closest = casterMonster.getClosestEnemy();
+        if (closest == null) return;
+        Block closestBlock = closest.connectedCell.GetComponent<Block>();
+        Block toSummonBlock = null;
+        int bestDistance = 10000;
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks())) {
+            int actualDistance = Monster.getDistance(free.coordinate, closestBlock.coordinate);
+            if (actualDistance < bestDistance) {
+                bestDistance = actualDistance;
+                toSummonBlock = free;
+            }
+        }
+        if (toSummonBlock == null) return;
+        MonsterEvocation e = ut_execute_monsterSummon(caster, toSummonBlock, "Sick Arachnee");
+        if (casterMonster.getCompleteName().Contains("Branch")) {
+            e.hp = e.getTotalHP() / 2;
+            e.actual_hp = e.hp;
+        }
+    }
+
     public static void EXECUTE_CALL_OF_THE_CAT(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         if (!put_CheckLinkedObject(targetBlock)) return;
@@ -3488,6 +3557,18 @@ public class Spell {
         ut_execute_monsterSummon(caster, toSummonBlock, "Little Crobak");
     }
 
+    public static void SUMMONS_AGGR_ARACHNEE_DISTANCE(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Block toSummonBlock = null;
+        List<Block> frees = targetBlock.getFreeAdjacentBlocks();
+        if (frees.Count == 0) return;
+        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+        int indexResult = UnityEngine.Random.Range(0, frees.Count);
+        toSummonBlock = frees[indexResult];
+        ut_execute_monsterSummon(caster, toSummonBlock, "Aggressive Arachnee");
+    }
+
     public static void EXECUTE_MY_CROBAK_CHILDS(Character caster, Block targetBlock, Spell s)
     {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
@@ -3507,6 +3588,14 @@ public class Spell {
         target.addEvent(new HighTemperatureEvent("High Temperature", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon, caster, s));
     }
 
+    public static void EXECUTE_BLOCKING_SPIT(Character caster, Block targetBlock, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        if (targetBlock.linkedObject == null) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        target.addEvent(new BlockingSpitEvent("Blocking Spit", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
+    }
+
     public static void EXECUTE_WOLF_CRY(Character caster, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         foreach (Character enemy in ut_getAlliesWithCaster(caster))
@@ -3518,7 +3607,6 @@ public class Spell {
             }
     }
 
-
     public static void EXECUTE_CHIEF_CROCORAGE(Character caster, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         foreach (Character enemy in ut_getAlliesWithCaster(caster))
@@ -3528,6 +3616,37 @@ public class Spell {
                 if (enemy.Equals(caster))
                     wce.useIstantanely();
             }
+    }
+
+    public static void EXECUTE_ARACHNEE_EXPLOSION(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        List<MonsterEvocation> toExplode = new List<MonsterEvocation>();
+        foreach (Character enemy in ut_getAllies(caster))
+            if (enemy is Monster) {
+                Monster m = (Monster)enemy;
+                if (m.monsterSummons.Count > 0) {
+                    foreach (MonsterEvocation evoc in m.monsterSummons) {
+                        if (evoc.getCompleteName().ToLower().Contains("arach"))
+                            toExplode.Add(evoc);
+                    }
+                }
+            }
+        foreach (Character hero in ut_getEnemies(caster)) {
+            foreach (MonsterEvocation mev in toExplode) {
+                if (ut_isNearOf(hero, mev, 2)) {
+                    hero.inflictDamage(Spell.calculateDamage(caster, hero, s));
+                }
+            }
+        }
+        foreach (MonsterEvocation mev in toExplode) {
+            mev.inflictDamage(mev.getActualHP() + mev.actual_shield);
+        }
+    }
+
+    public static void EXECUTE_HEALING_PLANT(Character caster, Spell s) {
+        if (!put_CheckArguments(new System.Object[] { caster, s })) return;
+        foreach (Character enemy in ut_getAlliesWithCaster(caster))
+            enemy.receiveHeal(s.damage);
     }
 
 

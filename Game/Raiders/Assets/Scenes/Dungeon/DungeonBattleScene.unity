@@ -1298,6 +1298,11 @@ MonoBehaviour:
   - {fileID: 4900000, guid: c8d005cdbb4a8374d90cbcec9bba9cd5, type: 3}
   - {fileID: 4900000, guid: 14bf080a145a798418662deae75dceae, type: 3}
   - {fileID: 4900000, guid: 2032e97b7af507a41b41596e2eec48e5, type: 3}
+  - {fileID: 4900000, guid: 9fab05a24a628cc4f961af81c8b629e7, type: 3}
+  - {fileID: 4900000, guid: ca56c0dd03aa63349a6c13d3ba7b2467, type: 3}
+  - {fileID: 4900000, guid: bf857fa2221ba0542a54ed009076efdc, type: 3}
+  - {fileID: 4900000, guid: bc9c5e2d52ab68548a4077a96db0309d, type: 3}
+  - {fileID: 4900000, guid: 146d770f9f477ca4699a4366ceed0c95, type: 3}
   isTestingMap: 0
   testingMap: {fileID: 0}
 --- !u!114 &93772481
@@ -16024,6 +16029,8 @@ MonoBehaviour:
     music: {fileID: 8300000, guid: b463877528443f149b43f14b5fa7bfea, type: 3}
   - track_name_maiusc: BLACKNIDE DUNGEON
     music: {fileID: 8300000, guid: b889bc93f18a956438dc2fef16d85636, type: 3}
+  - track_name_maiusc: KOALAK HELL
+    music: {fileID: 8300000, guid: 2400fa274412e7047b0ce9f841a80df7, type: 3}
 --- !u!82 &1527921472
 AudioSource:
   m_ObjectHideFlags: 0

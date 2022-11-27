@@ -129,17 +129,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Tempered Darknide
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Rovo
+    icon: {fileID: 0}
+    description: 
+    element: 0
+    damage: 130
+    lifeSteal: 0
+    minRange: 2
+    maxRange: 6
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 15
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
+  - link: {fileID: 0}
+    name: Darknide Hit
+    icon: {fileID: 0}
+    description: 
+    element: 0
+    damage: 500
+    lifeSteal: 0
+    minRange: 1
+    maxRange: 1
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 3
+    pmCost: 0
+    maxTimesInTurn: 3
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 50
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 2580
   pa: 8
-  pm: 5
+  pm: 2
   ini: 60
   res_e: 43
   res_f: -52
   res_a: 23
   res_w: 41
-  att_e: 0
+  att_e: 18
   att_f: 0
   att_a: 0
   att_w: 0
@@ -197,7 +243,7 @@ MonoBehaviour:
   immuneCloseCombat: 0
   shushuCounter: 0
   behaviour:
-    spellsOrderToCheckId: 
+    spellsOrderToCheckId: 0100000000000000
     movementAfterFight: 1
     movementWhenCannotAttack: 1
   id: 0

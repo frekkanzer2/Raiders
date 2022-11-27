@@ -155,19 +155,19 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 3164f2a27fd04c5478137a55999b3c67, type: 3}
     description: Inflicts Earth damage
     element: 0
-    damage: 52
+    damage: 56
     lifeSteal: 0
     minRange: 1
     maxRange: 6
     distanceType: 0
     overObstacles: 0
     hpCost: 0
-    paCost: 4
+    paCost: 5
     pmCost: 0
-    maxTimesInTurn: 1
+    maxTimesInTurn: 2
     executeAfterTurns: 0
     effectDuration: 0
-    criticalProbability: 25
+    criticalProbability: 35
     hasEffect: 0
     isEffectOnly: 0
     canUseInEmptyCell: 0

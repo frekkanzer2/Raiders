@@ -158,12 +158,12 @@ MonoBehaviour:
       each enemy up to 4 cells from the caster. The amount of the damage depends
       on the targets distance from the main target. Repels the caster of 3 cells
     element: 2
-    damage: 70
+    damage: 56
     lifeSteal: 0
-    minRange: 4
+    minRange: 5
     maxRange: 6
     distanceType: 1
-    overObstacles: 0
+    overObstacles: 1
     hpCost: 0
     paCost: 4
     pmCost: 2
@@ -188,7 +188,7 @@ MonoBehaviour:
     distanceType: 1
     overObstacles: 0
     hpCost: 0
-    paCost: 5
+    paCost: 7
     pmCost: 3
     maxTimesInTurn: 1
     executeAfterTurns: 2

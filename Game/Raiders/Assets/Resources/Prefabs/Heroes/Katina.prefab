@@ -178,7 +178,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: f2b2737906f14ce478d9d820e58f3624, type: 3}
     description: Repels the target of 2 cells
     element: 2
-    damage: 23
+    damage: 24
     lifeSteal: 0
     minRange: 1
     maxRange: 3
@@ -221,6 +221,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0

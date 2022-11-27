@@ -105,8 +105,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    pivot: {x: 0.475, y: 0.185}
+    oldSize: {x: 5, y: 5}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -129,21 +129,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Arachnotron
   heroClass: 18
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: Aracashot
+    icon: {fileID: 0}
+    description: Summons an Aggressive Arachnee on an adjacent cell of the target
+    element: 1
+    damage: 60
+    lifeSteal: 0
+    minRange: 3
+    maxRange: 8
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 4
+    pmCost: 0
+    maxTimesInTurn: 2
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 10
+    hasEffect: 1
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 1100
   pa: 9
   pm: 3
-  ini: 60
-  res_e: -27
+  ini: 40
+  res_e: 19
   res_f: 19
-  res_a: 19
+  res_a: -27
   res_w: -27
   att_e: 0
-  att_f: 0
+  att_f: 12
   att_a: 0
   att_w: 0
-  numberOfSummons: 0
+  numberOfSummons: 10
   isEvocation: 0
   actual_hp: 0
   actual_pa: 0
@@ -197,9 +220,9 @@ MonoBehaviour:
   immuneCloseCombat: 0
   shushuCounter: 0
   behaviour:
-    spellsOrderToCheckId: 
+    spellsOrderToCheckId: 00000000
     movementAfterFight: 1
-    movementWhenCannotAttack: 1
+    movementWhenCannotAttack: 0
   id: 0
   isCommunionActive: 0
 --- !u!114 &8914096617352650622

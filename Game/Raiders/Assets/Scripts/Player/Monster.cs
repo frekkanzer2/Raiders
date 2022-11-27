@@ -28,6 +28,9 @@ public class Monster : Character {
 
     public override void setDead() {
         base.setDead();
+        foreach (MonsterEvocation me in this.monsterSummons) {
+            me.inflictDamage(me.getActualHP() + me.actual_shield);
+        }
     }
 
     public virtual string getCompleteName() {
@@ -80,7 +83,16 @@ public class Monster : Character {
 
     private int getDistanceFromTarget(Character target) {
         Coordinate selfCoord, targetCoord;
-        if (this.connectedCell.GetComponent<Block>() == null || target.connectedCell.GetComponent<Block>() == null) return 0;
+        try {
+            if (this.connectedCell.GetComponent<Block>() == null || target.connectedCell.GetComponent<Block>() == null) return 0;
+        }
+        catch(NullReferenceException e) {
+            Debug.LogWarning("Null exception catched. Debugging some info.");
+            Debug.LogWarning("this.connectedCell = " + this.connectedCell);
+            Debug.LogWarning("target.connectedCell = " + target.connectedCell);
+            Debug.LogWarning("target is " + target.name);
+            return 0;
+        }
         selfCoord = this.connectedCell.GetComponent<Block>().coordinate;
         targetCoord = target.connectedCell.GetComponent<Block>().coordinate;
         int dist_row = Mathf.Abs(selfCoord.row - targetCoord.row);

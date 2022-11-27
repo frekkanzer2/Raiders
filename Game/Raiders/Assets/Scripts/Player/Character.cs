@@ -801,7 +801,7 @@ public class Character : MonoBehaviour
                 foreach (Evocation e in evoTemp)
                     this.summons.Remove(e);
                 foreach (Evocation e in evoTemp)
-                    e.inflictDamage(e.actual_hp);
+                    e.inflictDamage(e.actual_hp + e.actual_shield);
             }
         }
         if (TurnsManager.active.Equals(this))

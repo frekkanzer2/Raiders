@@ -13982,8 +13982,217 @@ MonoBehaviour:
       startingShield: 5
   - name: Blacknide Dungeon
     bossIcon: {fileID: 21300000, guid: c5814d9a01b8c554d8512bd523152e63, type: 3}
-    monsters: []
-    rooms: []
+    monsters:
+    - name: Sick Abraknide
+      prefab: {fileID: 557098361630938699, guid: 98657738ff15114438f0db84f73bea1e, type: 3}
+      sprite: {fileID: 21300000, guid: e8182c9139f5d6a468c756eb27270089, type: 3}
+    - name: Dark Abrakne
+      prefab: {fileID: 557098361630938699, guid: d1114358c7145804fac84a2a3c040ce2, type: 3}
+      sprite: {fileID: 21300000, guid: cab2af0174395d243be093cc80781da0, type: 3}
+    - name: Arachnotron
+      prefab: {fileID: 557098361630938699, guid: af669fc71de78ab4e863627161648e6c, type: 3}
+      sprite: {fileID: 21300000, guid: 258ea8cf200a4ef4d81b27c081cfd834, type: 3}
+    - name: Tempered Darknide
+      prefab: {fileID: 557098361630938699, guid: e1d4ce02800df5d4ba70ee735ecd876e, type: 3}
+      sprite: {fileID: 21300000, guid: c90c73d883a13f44d9313228bd71217e, type: 3}
+    - name: Healing Branch
+      prefab: {fileID: 557098361630938699, guid: 797fb17a1a92bd641a7637660cbe7040, type: 3}
+      sprite: {fileID: 21300000, guid: 35a0313cb28481f4fad2491b7ce8034d, type: 3}
+    - name: Summoning Branch
+      prefab: {fileID: 557098361630938699, guid: 73f30d1c750a20f4090c39edd4c6ba0a, type: 3}
+      sprite: {fileID: 21300000, guid: e71cd54636e22cb4d846d192cdf0b34a, type: 3}
+    - name: Soft Oaknide
+      prefab: {fileID: 557098361630938699, guid: 4cbf60c6ead13f940a48efdbb2cbf826, type: 3}
+      sprite: {fileID: 21300000, guid: 9307ab2bcc11e7c4ab002e30b79d2223, type: 3}
+    - name: Aggressive Arachnee
+      prefab: {fileID: 557098361630938699, guid: 87ad6de3f88cd914795958098a9605df, type: 3}
+      sprite: {fileID: 21300000, guid: 3f4e77e35ef8f3d4e8cd840b339e6101, type: 3}
+    - name: Alpha Arachnee
+      prefab: {fileID: 557098361630938699, guid: e24e132ba570958499a23df370291e79, type: 3}
+      sprite: {fileID: 21300000, guid: d92f5d5263b9b764785c0459b72031ea, type: 3}
+    - name: Sick Arachnee
+      prefab: {fileID: 557098361630938699, guid: d3961aa156dc55d46816efe944c6f6d4, type: 3}
+      sprite: {fileID: 21300000, guid: 354cbefc1c46f5b4daca6c67a2121eda, type: 3}
+    - name: Chafer Flambe
+      prefab: {fileID: 557098361630938699, guid: 87b052670549cf84aae9a23aa2757cbe, type: 3}
+      sprite: {fileID: 21300000, guid: b42caafb88af0d84e99f511a40f0f15e, type: 3}
+    rooms:
+    - roomNumber: 1
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 3
+        - row: 2
+          column: 11
+      - monsterID: 2
+        quantity: 2
+        spawnCoordinates:
+        - row: 13
+          column: 4
+        - row: 13
+          column: 10
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 12
+          column: 7
+      - monsterID: 7
+        quantity: 0
+        spawnCoordinates: []
+    - roomNumber: 2
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 4
+        spawnCoordinates:
+        - row: 2
+          column: 3
+        - row: 2
+          column: 11
+        - row: 13
+          column: 3
+        - row: 13
+          column: 11
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 7
+        - row: 12
+          column: 7
+      - monsterID: 2
+        quantity: 1
+        spawnCoordinates:
+        - row: 18
+          column: 7
+      - monsterID: 7
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 8
+        quantity: 0
+        spawnCoordinates: []
+    - roomNumber: 3
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 12
+          column: 2
+        - row: 12
+          column: 12
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 13
+          column: 7
+      - monsterID: 2
+        quantity: 3
+        spawnCoordinates:
+        - row: 3
+          column: 3
+        - row: 3
+          column: 7
+        - row: 3
+          column: 11
+      - monsterID: 4
+        quantity: 1
+        spawnCoordinates:
+        - row: 1
+          column: 12
+      - monsterID: 5
+        quantity: 1
+        spawnCoordinates:
+        - row: 1
+          column: 2
+      - monsterID: 7
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 8
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 9
+        quantity: 0
+        spawnCoordinates: []
+    - roomNumber: 4
+      monstersAndQuantity:
+      - monsterID: 0
+        quantity: 2
+        spawnCoordinates:
+        - row: 12
+          column: 4
+        - row: 12
+          column: 10
+      - monsterID: 1
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 4
+        - row: 2
+          column: 10
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 3
+          column: 7
+        - row: 18
+          column: 7
+      - monsterID: 5
+        quantity: 1
+        spawnCoordinates:
+        - row: 1
+          column: 7
+      - monsterID: 7
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 8
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 9
+        quantity: 0
+        spawnCoordinates: []
+    - roomNumber: 5
+      monstersAndQuantity:
+      - monsterID: 6
+        quantity: 1
+        spawnCoordinates:
+        - row: 2
+          column: 7
+      - monsterID: 5
+        quantity: 4
+        spawnCoordinates:
+        - row: 1
+          column: 3
+        - row: 1
+          column: 5
+        - row: 1
+          column: 11
+        - row: 1
+          column: 9
+      - monsterID: 3
+        quantity: 2
+        spawnCoordinates:
+        - row: 2
+          column: 5
+        - row: 2
+          column: 9
+      - monsterID: 1
+        quantity: 1
+        spawnCoordinates:
+        - row: 12
+          column: 7
+      - monsterID: 7
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 8
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 9
+        quantity: 0
+        spawnCoordinates: []
+      - monsterID: 10
+        quantity: 0
+        spawnCoordinates: []
     ThreeCharactersChallenge:
       availablePoints: 0
       pointsToAssign: 0
@@ -13996,8 +14205,8 @@ MonoBehaviour:
       atkAirLevel: 20
       atkWaterLevel: 26
       allAtkLevel: 0
-      defEarthLevel: 0
-      defFireLevel: 0
+      defEarthLevel: 4
+      defFireLevel: 4
       defAirLevel: 0
       defWaterLevel: 0
       allDefLevel: 0

@@ -164,7 +164,7 @@ MonoBehaviour:
     hpCost: 0
     paCost: 3
     pmCost: 0
-    maxTimesInTurn: 2
+    maxTimesInTurn: 3
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 25
@@ -178,16 +178,16 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 19c55a193d53abb459a7f63be7e19947, type: 3}
     description: Attracts the target of 2 cell
     element: 0
-    damage: 38
+    damage: 28
     lifeSteal: 0
     minRange: 3
     maxRange: 3
     distanceType: 1
     overObstacles: 0
     hpCost: 0
-    paCost: 4
+    paCost: 2
     pmCost: 0
-    maxTimesInTurn: 2
+    maxTimesInTurn: 3
     executeAfterTurns: 0
     effectDuration: 0
     criticalProbability: 15
@@ -221,6 +221,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0
