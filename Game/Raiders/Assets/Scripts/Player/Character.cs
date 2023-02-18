@@ -1065,7 +1065,7 @@ public class Character : MonoBehaviour
         }
 
         // Remove unreachable blocks
-        SynchronizedCollection<Block> blocksToRemove = new SynchronizedCollection<Block>();
+        List<Block> blocksToRemove = new List<Block>();
         foreach(Block b in bufferColored) {
             if (b.linkedObject != null)
                 blocksToRemove.Add(b);
@@ -1095,7 +1095,7 @@ public class Character : MonoBehaviour
             bufferColored.Remove(b);
     }
 
-    public void th_work_DestPath(Block toCheck, List<Block> list, SynchronizedCollection<Block> toRemove) {
+    public void th_work_DestPath(Block toCheck, List<Block> list, List<Block> toRemove) {
         bool found = false;
         foreach (Block b in list)
             if (toCheck.equalsTo(b)) {
