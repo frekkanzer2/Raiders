@@ -21,15 +21,23 @@ public class DungeonSave {
     }
 
     public int getReachedDungeonID() {
+#if !DEBUG
         if (!PlayerPrefs.HasKey(DUNGEON_PROGRESS_STRING)) return -1;
         return PlayerPrefs.GetInt(DUNGEON_PROGRESS_STRING);
+#else
+        return DungeonSave.BUFFER_ALL_DUNGEONS.Count - 1;
+#endif
     }
 
     public int getNextDungeonID(List<DungeonUtils> listOfDungeons) {
+#if !DEBUG
         int id = 0;
         if (PlayerPrefs.HasKey(DUNGEON_PROGRESS_STRING)) id = getReachedDungeonID() + 1;
         if (id >= listOfDungeons.Count) id = listOfDungeons.Count - 1;
         return id;
+#else
+        return DungeonSave.BUFFER_ALL_DUNGEONS.Count - 1;
+#endif
     }
 
     public string getDungeonNameByID(List<DungeonUtils> listOfDungeons) {
