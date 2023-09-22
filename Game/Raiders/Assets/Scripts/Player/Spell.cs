@@ -439,6 +439,9 @@ public class Spell {
         else if (spell.name == "Raging Sun") EXECUTE_RAGING_SUN(caster, targetBlock, spell);
         else if (spell.name == "Burning Bones") EXECUTE_BURNING_BONES(caster, targetBlock, spell);
         else if (spell.name == "Godlike Speed") EXECUTE_GODLIKE_SPEED(caster, targetBlock);
+        else if (spell.name == "Hellbak") EXECUTE_HELLBAK(caster, targetBlock, spell);
+        else if (spell.name == "Changebak") EXECUTE_CHANGEBAK(caster, targetBlock, spell);
+        else if (spell.name == "Shootinbak") EXECUTE_SHOOTINBAK(caster, targetBlock, spell);
 
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -535,6 +538,37 @@ public class Spell {
     #endregion
 
     #region CHARACTER SPELLS SPECIALIZATION
+
+    public static void EXECUTE_HELLBAK(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        foreach (Block free in (targetBlock.getFreeAdjacentBlocks()))
+        {
+            if (caster.summons.Count < caster.numberOfSummons)
+                ut_execute_summon(caster, free, "Little Crobak", 2);
+        }
+    }
+
+    public static void EXECUTE_SHOOTINBAK(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        ut_repels(caster, targetBlock, 1);
+        Block b = ut_repels(caster, targetBlock, 1);
+        if (caster.summons.Count == caster.numberOfSummons) return;
+        if (b != null)
+            ut_execute_summon(caster, targetBlock, "Little Crobak", 2);
+    }
+
+    public static void EXECUTE_CHANGEBAK(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        if (!put_CheckLinkedObject(targetBlock)) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target.name.Contains("Little Crobak"))
+            EXECUTE_TRANSPOSITION(caster, targetBlock);
+    }
 
     public static void EXECUTE_FLOWING_DANCE(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;

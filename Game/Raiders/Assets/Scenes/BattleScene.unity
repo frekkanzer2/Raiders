@@ -104,7 +104,7 @@ NavMeshSettings:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_BuildSettings:
-    serializedVersion: 2
+    serializedVersion: 3
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
@@ -117,7 +117,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
-    accuratePlacement: 0
+    buildHeightMesh: 0
     maxJobWorkers: 0
     preserveTilesOutsideBounds: 0
     debug:
@@ -557,6 +557,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1318,6 +1319,7 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: 58488357dd5ed0046adfea56deb40b3f, type: 3}
   - {fileID: 557098361630938699, guid: 315ba1dc99ba46d439b56c8f0565df44, type: 3}
   - {fileID: 557098361630938699, guid: 5f3a7fc4d8689964c87a66feb42e4e8f, type: 3}
+  - {fileID: 557098361630938699, guid: 2af6a052e72a8c44c9fb3a5bde615ac5, type: 3}
   heroesPrefabs_team2:
   - {fileID: 557098361630938699, guid: 3968d5a638ef5994cad63e85612468ac, type: 3}
   - {fileID: 557098361630938699, guid: 2ccb042d5c633dc48854a46bd4a9972e, type: 3}
@@ -1400,6 +1402,7 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: 58488357dd5ed0046adfea56deb40b3f, type: 3}
   - {fileID: 557098361630938699, guid: 315ba1dc99ba46d439b56c8f0565df44, type: 3}
   - {fileID: 557098361630938699, guid: 5f3a7fc4d8689964c87a66feb42e4e8f, type: 3}
+  - {fileID: 557098361630938699, guid: 2af6a052e72a8c44c9fb3a5bde615ac5, type: 3}
 --- !u!114 &93772482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1921,6 +1924,14 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 7bd253126b359a741ba07f0ff25f7406, type: 3}
     characterMidSprite: {fileID: 21300000, guid: ada3e87a5a4e543478a748fc254c9127, type: 3}
     isEvocation: 1
+  - characterName: Master Crobak
+    characterFullSprite: {fileID: 21300000, guid: 29220f9e0fbb9fd428819f21b9f5e444, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 03c10fb57116b104f9a52b4dba0582c8, type: 3}
+    isEvocation: 0
+  - characterName: Little Crobak
+    characterFullSprite: {fileID: 21300000, guid: 6e021d673e957d04ead668225a174023, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 15d0a1f37dc39db4bac041fbaae88b4b, type: 3}
+    isEvocation: 1
 --- !u!114 &93772484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2179,6 +2190,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -3905,6 +3917,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -4448,6 +4461,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -5156,6 +5170,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -5298,6 +5313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -5786,6 +5802,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -6814,6 +6831,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -8241,6 +8259,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -9513,6 +9532,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -9934,6 +9954,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -13932,9 +13953,17 @@ Camera:
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -16587,6 +16616,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -16766,6 +16796,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -17981,6 +18012,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

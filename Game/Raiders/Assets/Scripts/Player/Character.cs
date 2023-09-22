@@ -489,6 +489,9 @@ public class Character : MonoBehaviour
             }
         }
 
+        if (TurnsManager.isGameStarted && this.connectedCell != null)
+            this.connectedCell.GetComponent<Block>().linkedObject = this.gameObject;
+
         // DEBUG TO REMOVE
         if (Input.GetKeyDown(KeyCode.D)) {
             Debug.LogWarning("Debug cheat command!");
