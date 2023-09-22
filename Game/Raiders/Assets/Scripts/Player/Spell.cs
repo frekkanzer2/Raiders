@@ -576,7 +576,8 @@ public class Spell {
         Coordinate oldCoord = caster.connectedCell.GetComponent<Block>().coordinate;
         EXECUTE_EXODUS(caster, targetBlock, s);
         Coordinate newCoord = caster.connectedCell.GetComponent<Block>().coordinate;
-        if (oldCoord.equalsTo(newCoord)) return;
+        Character t = targetBlock.linkedObject.GetComponent<Character>();
+        t.inflictDamage(Spell.calculateDamage(caster, t, s));
         if (oldCoord.row > newCoord.row)
             for (int i = newCoord.row; i <= oldCoord.row; i++) {
                 Coordinate toCheck = new Coordinate(i, oldCoord.column);
@@ -584,7 +585,7 @@ public class Spell {
                 if (bToCheck == null) continue;
                 if (bToCheck.linkedObject == null) continue;
                 Character target = bToCheck.linkedObject.GetComponent<Character>();
-                if (target.team != caster.team)
+                if (target.team != caster.team && !t.Equals(target))
                     target.inflictDamage(Spell.calculateDamage(caster, target, s));
             }
         else if (oldCoord.row < newCoord.row)
@@ -594,7 +595,7 @@ public class Spell {
                 if (bToCheck == null) continue;
                 if (bToCheck.linkedObject == null) continue;
                 Character target = bToCheck.linkedObject.GetComponent<Character>();
-                if (target.team != caster.team)
+                if (target.team != caster.team && !t.Equals(target))
                     target.inflictDamage(Spell.calculateDamage(caster, target, s));
             }
         else if (oldCoord.column < newCoord.column)
@@ -604,7 +605,7 @@ public class Spell {
                 if (bToCheck == null) continue;
                 if (bToCheck.linkedObject == null) continue;
                 Character target = bToCheck.linkedObject.GetComponent<Character>();
-                if (target.team != caster.team)
+                if (target.team != caster.team && !t.Equals(target))
                     target.inflictDamage(Spell.calculateDamage(caster, target, s));
             }
         else if (oldCoord.column > newCoord.column)
@@ -614,7 +615,7 @@ public class Spell {
                 if (bToCheck == null) continue;
                 if (bToCheck.linkedObject == null) continue;
                 Character target = bToCheck.linkedObject.GetComponent<Character>();
-                if (target.team != caster.team)
+                if (target.team != caster.team && !t.Equals(target))
                     target.inflictDamage(Spell.calculateDamage(caster, target, s));
             }
     }
