@@ -178,8 +178,8 @@ MonoBehaviour:
     name: Earthen Weakness
     icon: {fileID: 21300000, guid: a74586f6d2296654c9bb5d8ea6c7132d, type: 3}
     description: Inflict Earth damage to each enemy up to 2 cells from the target.
-      Switch position with the target. If the target is an Immortal Lance, recall
-      the Immortal Lance
+      If the target is not an Immortal Lance, switch position with the target. If
+      the target is an Immortal Lance, recall the Immortal Lance
     element: 0
     damage: 19
     lifeSteal: 0
@@ -301,7 +301,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5548711, y: 0.12924932}
-    oldSize: {x: 3.2894738, y: 4.2763157}
+    oldSize: {x: 3.6764705, y: 4.779412}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

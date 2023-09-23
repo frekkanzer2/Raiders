@@ -103,7 +103,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Immortal Lance
   heroClass: 19
-  spells: []
+  spells:
+  - link: {fileID: 0}
+    name: 
+    icon: {fileID: 21300000, guid: e453a6ef3f899784fbe010da4f152d4d, type: 3}
+    description: 
+    element: 0
+    damage: 0
+    lifeSteal: 0
+    minRange: 0
+    maxRange: 0
+    distanceType: 0
+    overObstacles: 0
+    hpCost: 0
+    paCost: 0
+    pmCost: 0
+    maxTimesInTurn: 0
+    executeAfterTurns: 0
+    effectDuration: 0
+    criticalProbability: 0
+    hasEffect: 0
+    isEffectOnly: 0
+    canUseInEmptyCell: 0
+    isJump: 0
+    isSummon: 0
   team: 1
   hp: 150
   pa: 0
@@ -180,6 +203,7 @@ MonoBehaviour:
   isYapper: 0
   isGuardian: 0
   isRune: 0
+  isImmortalLance: 0
   RunicPower: 0
   isWakfuTotem: 0
   isTurrect: 0
@@ -221,8 +245,8 @@ BoxCollider2D:
   m_Offset: {x: -0.21601868, y: 0.66759527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.50876117, y: 0.17259867}
-    oldSize: {x: 2, y: 2.56}
+    pivot: {x: 0.50876117, y: 0.19}
+    oldSize: {x: 4, y: 5.12}
     newSize: {x: 3.2894738, y: 4.2763157}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

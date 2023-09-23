@@ -362,6 +362,7 @@ public class Spell {
         else if (spell.name == "Vivacity") EXECUTE_VIVACITY(caster, targetBlock);
         else if (spell.name == "Mist") EXECUTE_MIST(caster, spell);
         else if (spell.name == "Double") SUMMONS_DOUBLE(caster, targetBlock);
+        else if (spell.name == "Heroic Lance") SUMMONS_IMMORTAL_LANCE(caster, targetBlock);
         else if (spell.name == "Chaferfu") SUMMONS_CHAFERFU(caster, targetBlock);
         else if (spell.name == "Cruelty") EXECUTE_CRUELTY(caster, targetBlock, spell);
         else if (spell.name == "Perquisition") EXECUTE_PERQUISITION(caster, targetBlock, spell);
@@ -439,9 +440,12 @@ public class Spell {
         else if (spell.name == "Raging Sun") EXECUTE_RAGING_SUN(caster, targetBlock, spell);
         else if (spell.name == "Burning Bones") EXECUTE_BURNING_BONES(caster, targetBlock, spell);
         else if (spell.name == "Godlike Speed") EXECUTE_GODLIKE_SPEED(caster, targetBlock);
+        else if (spell.name == "Balestra") EXECUTE_BALESTRA(caster, targetBlock);
         else if (spell.name == "Hellbak") EXECUTE_HELLBAK(caster, targetBlock, spell);
         else if (spell.name == "Changebak") EXECUTE_CHANGEBAK(caster, targetBlock, spell);
         else if (spell.name == "Shootinbak") EXECUTE_SHOOTINBAK(caster, targetBlock, spell);
+        else if (spell.name == "Biting Trident") EXECUTE_BITING_TRIDENT(caster, targetBlock, spell);
+        else if (spell.name == "Earthen Weakness") EXECUTE_EARTHEN_WEAKNESS(caster, targetBlock, spell);
 
         // ADD HERE ELSE IF (...) ...
         else Debug.LogError("Effect for " + spell.name + " has not implemented yet");
@@ -1205,9 +1209,50 @@ public class Spell {
             ut_repelsCaster(caster, targetBlock, 3);
         }
     }
-    public static void EXECUTE_GODLIKE_SPEED(Character caster, Block targetBlock) {
+    public static void EXECUTE_GODLIKE_SPEED(Character caster, Block targetBlock)
+    {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         ut_comesCloser(caster, targetBlock, 20);
+    }
+    public static void EXECUTE_BALESTRA(Character caster, Block targetBlock)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        ut_comesCloser(caster, targetBlock, 4);
+    }
+    public static void EXECUTE_BITING_TRIDENT(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        foreach (Character c in ut_getAllies(target))
+        {
+            if (ut_isNearOf(targetBlock.coordinate, c.connectedCell.GetComponent<Block>().coordinate, 2))
+            {
+                c.inflictDamage(Spell.calculateDamage(caster, c, s));
+            }
+        }
+        if (!target.isDead) ut_attracts(caster, targetBlock, 2);
+    }
+    public static void EXECUTE_EARTHEN_WEAKNESS(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target.team != caster.team)
+            foreach (Character c in ut_getAllies(target))
+            {
+                if (ut_isNearOf(targetBlock.coordinate, c.connectedCell.GetComponent<Block>().coordinate, 2))
+                {
+                    c.inflictDamage(Spell.calculateDamage(caster, c, s));
+                }
+            }
+        if (target is Evocation)
+        {
+            Evocation e = (Evocation)target;
+            if (!target.isDead && e.isImmortalLance)
+            {
+                target.inflictDamage(target.actual_hp);
+            }
+        }
+        if (!target.isDead) EXECUTE_TRANSPOSITION(caster, targetBlock);
     }
 
     public static void EXECUTE_REPRISAL(Character caster, Block targetBlock)
@@ -1222,7 +1267,6 @@ public class Spell {
         if (!put_CheckLinkedObject(targetBlock)) return;
         UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
         int prob = UnityEngine.Random.Range(1, 101);
-        Debug.Log("Spell " + s.name + " prob: " + prob);
         if (prob <= 25) {
             Character target = targetBlock.linkedObject.GetComponent<Character>();
             target.addEvent(new DesolationEvent("Desolation", target, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
@@ -2904,12 +2948,19 @@ public class Spell {
             }
     }
 
-    public static void SUMMONS_CHAFERFU(Character caster, Block targetBlock) {
+    public static void SUMMONS_CHAFERFU(Character caster, Block targetBlock)
+    {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         if (ut_getDeadStatsAllies(caster).Item1 > 1)
             ut_execute_summon(caster, targetBlock, "Chafer", 2);
         else
             ut_execute_summon(caster, targetBlock, "Chafer_Lancer", 1);
+    }
+    public static void SUMMONS_IMMORTAL_LANCE(Character caster, Block targetBlock)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        Evocation e = ut_execute_summon(caster, targetBlock, "Immortal Lance", 2);
+        e.isImmortalLance = true;
     }
 
     public static void EXECUTE_CRUELTY(Character caster, Block targetBlock, Spell s) {

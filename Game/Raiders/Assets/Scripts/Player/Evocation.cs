@@ -29,6 +29,8 @@ public class Evocation : Character {
     [HideInInspector]
     public bool isRune = false;
     [HideInInspector]
+    public bool isImmortalLance = false;
+    [HideInInspector]
     public int RunicPower = 0;
     [HideInInspector]
     public bool isWakfuTotem = false;
@@ -280,6 +282,19 @@ public class Evocation : Character {
             foreach (Character c in allies) {
                 if (Spell.ut_isNearOf(c, this, 1)) {
                     c.receiveHeal(c.getTotalHP() * 3 / 100);
+                }
+            }
+        }
+        if (this.isImmortalLance)
+        {
+            List<Character> allies = Spell.ut_getAllies(this);
+            foreach (Character c in allies)
+            {
+                if (Spell.ut_isNearOf(c, this, 1))
+                {
+                    HeroicPowerEvent hpe = new HeroicPowerEvent("Heroic Power", c, 1, ParentEvent.Mode.Permanent, this.spells[0].icon);
+                    c.addEvent(hpe);
+                    hpe.useIstantanely();
                 }
             }
         }
