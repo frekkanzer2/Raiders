@@ -143,7 +143,7 @@ MonoBehaviour:
     pmCost: 0
     maxTimesInTurn: 0
     executeAfterTurns: 3
-    effectDuration: 3
+    effectDuration: 4
     criticalProbability: 0
     hasEffect: 1
     isEffectOnly: 1
@@ -153,7 +153,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Dazzling
     icon: {fileID: 21300000, guid: acfa5b13ce1d8714e872f41a34c4d0f9, type: 3}
-    description: Decreases a target random resistance of 15% (25% chance)
+    description: Decreases a target random resistance of 15% (40% chance)
     element: 0
     damage: 47
     lifeSteal: 0
@@ -221,6 +221,7 @@ MonoBehaviour:
   canMovedByEffects: 1
   rageCounter: 0
   bonusHeal: 0
+  bonusGainShield: 0
   isMoving: 0
   isForcedMoving: 0
   isBotMoving: 0
@@ -271,6 +272,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

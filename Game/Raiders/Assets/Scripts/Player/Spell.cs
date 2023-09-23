@@ -1782,7 +1782,7 @@ public class Spell {
         UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
         int prob = UnityEngine.Random.Range(1, 101);
         Debug.Log("Spell " + s.name + " prob: " + prob);
-        if (prob <= 15) {
+        if (prob <= 40) {
             Character target = targetBlock.linkedObject.GetComponent<Character>();
             if (target != null)
                 target.addEvent(new DazzlingEvent("Dazzling", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
