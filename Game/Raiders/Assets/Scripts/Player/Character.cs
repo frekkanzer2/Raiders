@@ -31,7 +31,8 @@ public class Character : MonoBehaviour
         Uginak,
         MONSTER,
         EVOCATION,
-        DemonSlayer
+        DemonSlayer,
+        Forgelance
     }
 
     private int AI_SEARCHPATH_STEPS = 100;

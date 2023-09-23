@@ -1320,6 +1320,9 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: 315ba1dc99ba46d439b56c8f0565df44, type: 3}
   - {fileID: 557098361630938699, guid: 5f3a7fc4d8689964c87a66feb42e4e8f, type: 3}
   - {fileID: 557098361630938699, guid: 2af6a052e72a8c44c9fb3a5bde615ac5, type: 3}
+  - {fileID: 557098361630938699, guid: 3ee04841e07146a46a8db55cc21c9b22, type: 3}
+  - {fileID: 557098361630938699, guid: 037dd185820ca00458e2990ca24d6b0c, type: 3}
+  - {fileID: 557098361630938699, guid: a3dd9880da6b7984ab51b5378a7f50b4, type: 3}
   heroesPrefabs_team2:
   - {fileID: 557098361630938699, guid: 3968d5a638ef5994cad63e85612468ac, type: 3}
   - {fileID: 557098361630938699, guid: 2ccb042d5c633dc48854a46bd4a9972e, type: 3}
@@ -1403,6 +1406,9 @@ MonoBehaviour:
   - {fileID: 557098361630938699, guid: 315ba1dc99ba46d439b56c8f0565df44, type: 3}
   - {fileID: 557098361630938699, guid: 5f3a7fc4d8689964c87a66feb42e4e8f, type: 3}
   - {fileID: 557098361630938699, guid: 2af6a052e72a8c44c9fb3a5bde615ac5, type: 3}
+  - {fileID: 557098361630938699, guid: 3ee04841e07146a46a8db55cc21c9b22, type: 3}
+  - {fileID: 557098361630938699, guid: 037dd185820ca00458e2990ca24d6b0c, type: 3}
+  - {fileID: 557098361630938699, guid: a3dd9880da6b7984ab51b5378a7f50b4, type: 3}
 --- !u!114 &93772482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1716,6 +1722,10 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: ed7e583c9cda9aa489cbc6ccbe118222, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 2c8c2bbc0fa58b741bf6dcab3fa96f7f, type: 3}
     isEvocation: 0
+  - characterName: Master Crobak
+    characterFullSprite: {fileID: 21300000, guid: 29220f9e0fbb9fd428819f21b9f5e444, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 03c10fb57116b104f9a52b4dba0582c8, type: 3}
+    isEvocation: 0
   - characterName: Persepolo
     characterFullSprite: {fileID: 21300000, guid: eae90f8be5dc9d14e808a8eefbf01ff7, type: 3}
     characterMidSprite: {fileID: 21300000, guid: dcd360b0adbb4c94f962625a34f237ca, type: 3}
@@ -1755,6 +1765,18 @@ MonoBehaviour:
   - characterName: Inosuke
     characterFullSprite: {fileID: 21300000, guid: bfa15a0dde235e44abe4b54d2296e9f1, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 2a8f7df9c1028274497da254f50d82b6, type: 3}
+    isEvocation: 0
+  - characterName: Star
+    characterFullSprite: {fileID: 21300000, guid: 338df58cc3fb34141b3086365551362f, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 128f6ae7f692da8459efad0e136ffefc, type: 3}
+    isEvocation: 0
+  - characterName: Padar
+    characterFullSprite: {fileID: 21300000, guid: 30931c4092fa74d4ea8d870d6079bae4, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: f2ad0dda19f598e419a76efcc4f95e91, type: 3}
+    isEvocation: 0
+  - characterName: Natar
+    characterFullSprite: {fileID: 21300000, guid: d3913684619a31b478704fd26a182d21, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 11e3bd5940e509b45b79f54b2fd56717, type: 3}
     isEvocation: 0
   - characterName: Wakfu Totem
     characterFullSprite: {fileID: 21300000, guid: 1eb4e46e680075b4692fdccf95a4cd91, type: 3}
@@ -1924,13 +1946,13 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: 7bd253126b359a741ba07f0ff25f7406, type: 3}
     characterMidSprite: {fileID: 21300000, guid: ada3e87a5a4e543478a748fc254c9127, type: 3}
     isEvocation: 1
-  - characterName: Master Crobak
-    characterFullSprite: {fileID: 21300000, guid: 29220f9e0fbb9fd428819f21b9f5e444, type: 3}
-    characterMidSprite: {fileID: 21300000, guid: 03c10fb57116b104f9a52b4dba0582c8, type: 3}
-    isEvocation: 0
   - characterName: Little Crobak
     characterFullSprite: {fileID: 21300000, guid: 6e021d673e957d04ead668225a174023, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 15d0a1f37dc39db4bac041fbaae88b4b, type: 3}
+    isEvocation: 1
+  - characterName: Immortal Lance
+    characterFullSprite: {fileID: 21300000, guid: 221844b19fe331f4fb9021ae939e3bd2, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 1bd0ae39dd78043489b7d68098383edd, type: 3}
     isEvocation: 1
 --- !u!114 &93772484
 MonoBehaviour:

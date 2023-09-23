@@ -179,7 +179,7 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Godlike Speed
     icon: {fileID: 21300000, guid: a1660c57f0508bc4485ced7eb78197e0, type: 3}
-    description: Caster comes close of 20 cells
+    description: Caster comes close of 9 cells
     element: 2
     damage: 102
     lifeSteal: 0
@@ -275,6 +275,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
