@@ -214,9 +214,8 @@ public class TurnsManager : MonoBehaviour
                     if (ci.characterName == c.name) {
                         relatedInfo = ci;
                         break;
-                    } else Debug.Log("ci.characterName: " + ci.characterName + " | c.name: " + c.name);
+                    }
                 }
-                Debug.Log("Related info: " + relatedInfo);
                 card = Instantiate(prefabPreviewCardBeta);
                 c.connectedPreview = card;
                 card.transform.SetParent(turnsListContainer.transform);

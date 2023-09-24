@@ -155,8 +155,8 @@ MonoBehaviour:
   - link: {fileID: 0}
     name: Slingshot
     icon: {fileID: 21300000, guid: 86fcc6ab9075519428f9ce46a60f839b, type: 3}
-    description: Inflict Earth damage to each enemy up to 2 cells from the target
-      if the target is an Immortal Lance
+    description: If the target is an Immortal Lance, inflict Earth damage to each
+      enemy up to 2 cells from the target
     element: 0
     damage: 34
     lifeSteal: 0

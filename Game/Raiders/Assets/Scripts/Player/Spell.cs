@@ -21,13 +21,13 @@ public class Spell {
         Line,
         Diagonal
     }
-    
+
     [HideInInspector]
     public Character link;
 
     public string name;
-	public Sprite icon;
-	public string description; // done
+    public Sprite icon;
+    public string description; // done
     public Element element; // done
     public int damage; // done
     public bool lifeSteal; // done
@@ -85,7 +85,7 @@ public class Spell {
         }
         return true;
     }
-    
+
     public static int getRemainingTurns(Character caster, Spell spell) {
         if (spell.executeAfterTurns > 0 && caster.getSpellSystem().getNumberOfUses(spell.name) == 1)
             return caster.getSpellSystem().getEvent(spell.name).turnRemains;
@@ -202,8 +202,9 @@ public class Spell {
         else if (spell.name == "Recall") EXECUTE_RECALL(caster, targetBlock);
         else if (spell.name == "Inferno") EXECUTE_INFERNO(caster, targetBlock, spell);
         else if (spell.name == "Seismic Pike") EXECUTE_SEISMIC_PIKE(caster, targetBlock, spell);
-        else if (spell.name == "Slingshot") EXECUTE_SLINGSHOT(caster, targetBlock, spell);
+        else if (spell.name == "Slingshot" || spell.name == "Rain of Lances") EXECUTE_SLINGSHOT(caster, targetBlock, spell);
         else if (spell.name == "Twilight") EXECUTE_TWILIGHT(caster, targetBlock, spell);
+        else if (spell.name == "Valkyrie Thunder") EXECUTE_VALKYRIE_THUNDER(caster, targetBlock, spell);
         else if (spell.name == "Duel") EXECUTE_DUEL(caster, targetBlock, spell);
         else if (spell.name == "Iop's Wrath") EXECUTE_IOP_WRATH(caster, spell);
         else if (spell.name == "Extrasensory Perception") EXECUTE_EXTRASENSORY_PERCEPTION(caster, spell);
@@ -217,6 +218,8 @@ public class Spell {
         else if (spell.name == "Virus") EXECUTE_VIRUS(caster, spell, targetBlock);
         else if (spell.name == "Karcham") EXECUTE_KARCHAM(caster, targetBlock, spell);
         else if (spell.name == "Sword of Yop") EXECUTE_SWORD_OF_YOP(caster, targetBlock, spell);
+        else if (spell.name == "Lance Gang") EXECUTE_LANCE_GANG(caster, targetBlock, spell);
+        else if (spell.name == "Cyclone Lancer") EXECUTE_CYCLONE_LANCER(caster, targetBlock, spell);
         else if (spell.name == "Tumult") EXECUTE_TUMULT(caster, targetBlock, spell);
         else if (spell.name == "Powerful Shooting") EXECUTE_POWERFUL_SHOOTING(targetBlock, spell);
         else if (spell.name == "Bow Skill") EXECUTE_BOW_SKILL(caster, spell);
@@ -560,7 +563,7 @@ public class Spell {
             {
                 DelayedEvocationCoroutine dec = new(caster);
             }
-                ut_execute_summon(caster, free, "Little Crobak", 2);
+            ut_execute_summon(caster, free, "Little Crobak", 2);
         }
     }
 
@@ -658,7 +661,7 @@ public class Spell {
             c.inflictDamage(calculateDamage(caster, c, s));
         }
     }
-    
+
     public static void SUMMONS_PORTAL(Character caster, Block targetBlock, bool isFlexible) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         if (!isFlexible) {
@@ -875,7 +878,7 @@ public class Spell {
         if (!put_CheckLinkedObject(targetBlock)) return;
         if (caster.rageCounter >= 2) {
             Character target = targetBlock.linkedObject.GetComponent<Character>();
-            target.receiveHeal(target.getTotalHP()*10/100 + caster.bonusHeal);
+            target.receiveHeal(target.getTotalHP() * 10 / 100 + caster.bonusHeal);
         }
         caster.decrementRage(caster.rageCounter);
     }
@@ -1041,7 +1044,7 @@ public class Spell {
         int distance = 10000;
         Character toDamage = null;
         if (allies.Count > 0)
-            foreach(Character c in allies) {
+            foreach (Character c in allies) {
                 int act_dist = Monster.getDistance(target.connectedCell.GetComponent<Block>().coordinate, c.connectedCell.GetComponent<Block>().coordinate);
                 if (act_dist < distance && act_dist != 0) {
                     distance = act_dist;
@@ -1089,7 +1092,7 @@ public class Spell {
             caster.transform.position = new Vector3(newPosition.x, newPosition.y, -20);
         } else if (casterCoord.column == targetCoord.column && casterCoord.row > targetCoord.row) {
             // upper jump
-            Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row-1, targetCoord.column));
+            Block toJump = Map.Instance.getBlock(new Coordinate(targetCoord.row - 1, targetCoord.column));
             if (toJump == null) return;
             if (toJump.linkedObject != null) return;
             if (caster.connectedCell.GetComponent<Block>() != null)
@@ -1287,12 +1290,31 @@ public class Spell {
             }
         }
     }
+
+    public static void EXECUTE_VALKYRIE_THUNDER(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation)
+        {
+            Evocation e = (Evocation)target;
+            if (!target.isDead && e.isImmortalLance)
+            {
+                e.inflictDamage(e.actual_hp);
+                EXECUTE_JUMP(caster, targetBlock);
+                List<Character> adj = ut_getAdjacentHeroes(caster.connectedCell.GetComponent<Block>().coordinate);
+                foreach (Character c in adj)
+                    c.addEvent(new ValkyrieThunderEvent("Valkyrie Thunder", c, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
+            }
+        }
+    }
+
     public static void EXECUTE_TWILIGHT(Character caster, Block targetBlock, Spell s)
     {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         List<Character> lances = ut_getAlliesWithCaster(caster);
         lances = lances.Where(ch => ch is Evocation && ((Evocation)ch).isImmortalLance).ToList();
-        foreach(Character lance in lances)
+        foreach (Character lance in lances)
         {
             foreach (Character c in ut_getAllies(lance))
             {
@@ -1303,6 +1325,38 @@ public class Spell {
                     te.useIstantanely();
                 }
             }
+        }
+    }
+
+    public static void EXECUTE_LANCE_GANG(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        List<Character> lances = ut_getAll(caster);
+        lances = lances.Where(ch => ch is Evocation && ((Evocation)ch).isImmortalLance).ToList();
+        LanceGangEvent lge = new("Lance Gang", target, s.effectDuration, ParentEvent.Mode.Permanent, s.icon, 15 * lances.Count);
+        target.addEvent(lge);
+        if (target.Equals(caster))
+            lge.useIstantanely();
+    }
+
+    public static void EXECUTE_CYCLONE_LANCER(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        foreach (Character c in ut_getAllies(target))
+        {
+            if (ut_isNearOf(target, c, 3))
+            {
+                c.inflictDamage(Spell.calculateDamage(caster, c, s));
+            }
+        }
+        Block isRepelled = null;
+        if (!target.isDead) isRepelled = ut_repels(caster, targetBlock, 3);
+        if (isRepelled is not null && caster.summons.Count < caster.numberOfSummons)
+        {
+            DelayedEvocationCoroutine dec = new(caster);
+            dec.Run(caster, targetBlock, "Immortal Lance", 2, DELAYED_SUMMON_TIME);
         }
     }
 
@@ -1330,7 +1384,7 @@ public class Spell {
     {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
-        if(target is Evocation)
+        if (target is Evocation)
         {
             Evocation e = (Evocation)target;
             if (!target.isDead && e.isImmortalLance)
@@ -1482,7 +1536,7 @@ public class Spell {
             }
         }
     }
-    
+
     public static void EXECUTE_DEVASTATE(Character caster, Spell s) {
         if (!put_CheckArguments(new System.Object[] { s })) return;
         List<Character> heroes = ut_getAllies(caster);
@@ -1517,11 +1571,11 @@ public class Spell {
                     damageToInflict = damageToInflict * 100 / 100;
                 } else if (ut_isNearOf(caster, c, 2)) {
                     damageToInflict = damageToInflict * 80 / 100;
-                } else if(ut_isNearOf(caster, c, 3)) {
+                } else if (ut_isNearOf(caster, c, 3)) {
                     damageToInflict = damageToInflict * 65 / 100;
                 } else if (ut_isNearOf(caster, c, 4)) {
                     damageToInflict = damageToInflict * 50 / 100;
-                } else if(ut_isNearOf(caster, c, 5)) {
+                } else if (ut_isNearOf(caster, c, 5)) {
                     damageToInflict = damageToInflict * 30 / 100;
                 }
                 c.inflictDamage(damageToInflict);
@@ -2003,7 +2057,7 @@ public class Spell {
     public static void EXECUTE_STRIKING_METEOR(Character caster, Block targetBlock, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         EXECUTE_JUMP(caster, targetBlock);
-        foreach(Character enemy in ut_getEnemies(caster))
+        foreach (Character enemy in ut_getEnemies(caster))
             if (ut_isNearOf(caster, enemy, 3))
                 enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
     }
@@ -2071,7 +2125,7 @@ public class Spell {
         if (!put_CheckLinkedObject(targetBlock)) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         List<Character> adjs = ut_getAdjacentHeroes(targetBlock.coordinate);
-        foreach(Character c in adjs) {
+        foreach (Character c in adjs) {
             c.inflictDamage(10);
             ut_repels(target, c.connectedCell.GetComponent<Block>(), 1);
         }
@@ -2303,7 +2357,7 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         List<Character> adjacentChars = ut_getAdjacentHeroes(caster.connectedCell.GetComponent<Block>().coordinate);
         bool isNear = false;
-        foreach(Character c in adjacentChars)
+        foreach (Character c in adjacentChars)
         {
             if (c is Evocation)
             {
@@ -2380,7 +2434,7 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         ut_execute_summon(caster, targetBlock, "Dragonnet", 2);
     }
-    
+
     public static void EXECUTE_NATURAL_ATTRACTION(Character caster, Block targetBlock) {
         if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         ut_attracts(caster, targetBlock, 2);
@@ -2451,7 +2505,7 @@ public class Spell {
 
     public static void EXECUTE_SONAR(Character caster, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
-        foreach(Evocation e in caster.summons) {
+        foreach (Evocation e in caster.summons) {
             if (e.isShelly) e.addEvent(new SonarEvent("Sonar", e, s.effectDuration, ParentEvent.Mode.Permanent, s.icon));
         }
     }
@@ -2482,7 +2536,7 @@ public class Spell {
     {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
         bool found = false;
-        foreach(Character c in Spell.ut_getAllies(caster))
+        foreach (Character c in Spell.ut_getAllies(caster))
         {
             if (c is Evocation) {
                 if (((Evocation)c).isRune)
@@ -2543,7 +2597,7 @@ public class Spell {
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         // Manual check to avoid ID check
         if (target is Evocation && target.name == "Bamboo" && target.team == caster.team) {
-            foreach(Character c in ut_getAllies(caster)) {
+            foreach (Character c in ut_getAllies(caster)) {
                 if (c.name != "Bamboo")
                     c.receiveHeal(20 + caster.bonusHeal);
             }
@@ -2761,14 +2815,14 @@ public class Spell {
                 }
             }
         else
-        foreach (Character ch in allHeroes)
-            if (ut_isNearOf(ch, bomb, 2)) {
-                ch.inflictDamage(bomb.getBombDamage(ch));
-                if (bomb.name == "Tornabombe")
-                    ch.addEvent(new TornabombEvent("Tornabombe", ch, 1, ParentEvent.Mode.ActivationEachTurn, bomb.getBombSpellSprite()));
-                else if (bomb.name == "Waterbombe")
-                    ch.addEvent(new WaterbombEvent("Waterbombe", ch, 1, ParentEvent.Mode.ActivationEachTurn, bomb.getBombSpellSprite()));
-            }
+            foreach (Character ch in allHeroes)
+                if (ut_isNearOf(ch, bomb, 2)) {
+                    ch.inflictDamage(bomb.getBombDamage(ch));
+                    if (bomb.name == "Tornabombe")
+                        ch.addEvent(new TornabombEvent("Tornabombe", ch, 1, ParentEvent.Mode.ActivationEachTurn, bomb.getBombSpellSprite()));
+                    else if (bomb.name == "Waterbombe")
+                        ch.addEvent(new WaterbombEvent("Waterbombe", ch, 1, ParentEvent.Mode.ActivationEachTurn, bomb.getBombSpellSprite()));
+                }
     }
 
     public static void SUBEXECUTE_EXPLOSION(MonsterEvocation bomb) {
@@ -2834,9 +2888,9 @@ public class Spell {
         if (target is Evocation) {
             Evocation evoTarget = (Evocation)target;
             if (evoTarget.isBomb) {
-	            EXECUTE_TRANSPOSITION(caster, targetBlock);
-	            evoTarget.incrementBombCharge();
-	            evoTarget.incrementBombCharge();
+                EXECUTE_TRANSPOSITION(caster, targetBlock);
+                evoTarget.incrementBombCharge();
+                evoTarget.incrementBombCharge();
             }
         }
     }
@@ -2849,16 +2903,16 @@ public class Spell {
             Evocation evoTarget = (Evocation)target;
             if (evoTarget.isBomb) {
                 // single target -> bomb
-	            ut_repels(caster, targetBlock, 5);
-	            evoTarget.incrementBombCharge();
+                ut_repels(caster, targetBlock, 5);
+                evoTarget.incrementBombCharge();
             }
         } else if (target.Equals(caster)) {
             foreach (Character c in ut_getAdjacentHeroes(targetBlock.coordinate))
                 if (c is Evocation)
-	                if (((Evocation)c).isBomb) {
-		                ut_repels(caster, c.connectedCell.GetComponent<Block>(), 3);
-		                ((Evocation)c).incrementBombCharge();
-	                }
+                    if (((Evocation)c).isBomb) {
+                        ut_repels(caster, c.connectedCell.GetComponent<Block>(), 3);
+                        ((Evocation)c).incrementBombCharge();
+                    }
         }
     }
 
@@ -3143,12 +3197,12 @@ public class Spell {
         if (!put_CheckLinkedObject(targetBlock)) return;
         Character c = targetBlock.linkedObject.GetComponent<Character>();
         c.addEvent(new ToolboxEvent("Toolbox", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
-        foreach(Evocation e in c.summons)
+        foreach (Evocation e in c.summons)
             e.addEvent(new ToolboxEvent("Toolbox", e, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
     }
 
     public static void EXECUTE_TUNNELING(Character caster, Block targetBlock, Spell s) {
-        if (!put_CheckArguments(new System.Object[] { caster, targetBlock ,s })) return;
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
         EXECUTE_JUMP(caster, targetBlock);
         foreach (Character enemy in ut_getAdjacentHeroes(targetBlock.coordinate))
             if (caster.isEnemyOf(enemy))
@@ -3571,10 +3625,10 @@ public class Spell {
     }
 
     public static void EXECUTE_TALISMAN_POWER(Character caster, Spell s) {
-        foreach(Character c in ut_getEnemies(caster)) {
+        foreach (Character c in ut_getEnemies(caster)) {
             c.addEvent(new TalismanPowerEvent("Talisman Power", c, s.effectDuration, ParentEvent.Mode.ActivationEachTurn, s.icon));
         }
-        MonsterTalismanPowerEvent mtpe = new MonsterTalismanPowerEvent("Talisman Power", caster, s.effectDuration+1, ParentEvent.Mode.Permanent, s.icon);
+        MonsterTalismanPowerEvent mtpe = new MonsterTalismanPowerEvent("Talisman Power", caster, s.effectDuration + 1, ParentEvent.Mode.Permanent, s.icon);
         caster.addEvent(mtpe);
         mtpe.useIstantanely();
     }
@@ -3879,7 +3933,7 @@ public class Spell {
     }
     public static void EXECUTE_DEVIL_HUNGRY(Character caster, Spell s) {
         if (!put_CheckArguments(new System.Object[] { caster, s })) return;
-        foreach(Character c in ut_getAlliesWithCaster(caster)) {
+        foreach (Character c in ut_getAlliesWithCaster(caster)) {
             DevilHungryEvent e = new DevilHungryEvent("Devil Hungry", c, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
             c.addEvent(e);
             if (c.Equals(caster))
@@ -4186,8 +4240,8 @@ public class Spell {
         if (!put_CheckLinkedObject(targetBlock)) return;
         Character target = targetBlock.linkedObject.GetComponent<Character>();
         foreach (Character enemy in ut_getAllies(target))
-                if (ut_isNearOf(target, enemy, 2))
-                    enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
+            if (ut_isNearOf(target, enemy, 2))
+                enemy.inflictDamage(Spell.calculateDamage(caster, enemy, s));
     }
 
     public static void EXECUTE_KANNIDESTRUCTION(Character caster, Spell s) {
@@ -4388,7 +4442,7 @@ public class Spell {
                 }
             }
             return 0;
-        } 
+        }
         else if (caster.name == "Sanaster" && s.name == "Shock") {
             List<Block> adj = targetch.connectedCell.GetComponent<Block>().getAdjacentBlocks();
             foreach (Block b in adj) {
@@ -4403,7 +4457,7 @@ public class Spell {
                 }
             }
             return 0;
-        } 
+        }
         else if (caster.name == "Humawolf" && s.name == "Tetanisation") {
             List<Block> adj = targetch.connectedCell.GetComponent<Block>().getAdjacentBlocks();
             foreach (Block b in adj) {
@@ -4537,7 +4591,7 @@ public class Spell {
         if (!put_CheckArguments(new System.Object[] { caster })) return null;
         int counterDead = 0;
         int counterAlive = 0;
-        foreach(Character c in TurnsManager.Instance.allCharacters) {
+        foreach (Character c in TurnsManager.Instance.allCharacters) {
             if (!c.isEnemyOf(caster) && c.isDead) counterDead++;
             else if (!c.isEnemyOf(caster) && !c.isDead) counterAlive++;
         }
@@ -4628,6 +4682,16 @@ public class Spell {
             }
         }
         return toReturn;
+    }
+
+    public static List<Character> ut_getAll(Character caster)
+    {
+        List<Character> allies = ut_getAlliesWithCaster(caster);
+        List<Character> enemies = ut_getEnemies(caster);
+        List<Character> all = new();
+        all.AddRange(allies);
+        all.AddRange(enemies);
+        return all;
     }
 
     public static Block ut_repels(Character caster, Block targetBlock, int numberOfCellsToMove) {
@@ -4730,7 +4794,6 @@ public class Spell {
         Coordinate targetPosition = targetBlock.coordinate;
         Debug.Log("Coordinate hit: " + targetPosition.display());
         if (targetPosition.row > casterPosition.row) {
-            Debug.Log("Target is down");
             // target is down
             for (int i = 1; i <= numberOfCellsToMove; i++) {
                 Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row - i, targetPosition.column));
@@ -4739,7 +4802,6 @@ public class Spell {
                 else break;
             }
         } else if (targetPosition.row < casterPosition.row) {
-            Debug.Log("Target is up");
             // target is up
             for (int i = 1; i <= numberOfCellsToMove; i++) {
                 Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row + i, targetPosition.column));
@@ -4748,7 +4810,6 @@ public class Spell {
                 else break;
             }
         } else if (targetPosition.column > casterPosition.column) {
-            Debug.Log("Target is on the right");
             // target is on the right
             for (int i = 1; i <= numberOfCellsToMove; i++) {
                 Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row, targetPosition.column - i));
@@ -4757,7 +4818,6 @@ public class Spell {
                 else break;
             }
         } else if (targetPosition.column < casterPosition.column) {
-            Debug.Log("Target is on the left");
             // target is on the left
             for (int i = 1; i <= numberOfCellsToMove; i++) {
                 Block pointed = Map.Instance.getBlock(new Coordinate(targetPosition.row, targetPosition.column + i));
@@ -4776,9 +4836,7 @@ public class Spell {
         List<Block> path = new List<Block>();
         Coordinate casterPosition = caster.connectedCell.GetComponent<Block>().coordinate;
         Coordinate targetPosition = targetBlock.coordinate;
-        Debug.Log("Coordinate hit: " + targetPosition.display());
         if (targetPosition.row > casterPosition.row) {
-            Debug.Log("Target is down");
             // target is down
             for (int i = 1; i <= numberOfCellsToMove; i++) {
                 Block pointed = Map.Instance.getBlock(new Coordinate(casterPosition.row + i, casterPosition.column));
@@ -4787,7 +4845,6 @@ public class Spell {
                 else break;
             }
         } else if (targetPosition.row < casterPosition.row) {
-            Debug.Log("Target is up");
             // target is up
             for (int i = 1; i <= numberOfCellsToMove; i++) {
                 Block pointed = Map.Instance.getBlock(new Coordinate(casterPosition.row - i, casterPosition.column));
@@ -4796,7 +4853,6 @@ public class Spell {
                 else break;
             }
         } else if (targetPosition.column > casterPosition.column) {
-            Debug.Log("Target is on the right");
             // target is on the right
             for (int i = 1; i <= numberOfCellsToMove; i++) {
                 Block pointed = Map.Instance.getBlock(new Coordinate(casterPosition.row, casterPosition.column + i));
@@ -4805,7 +4861,6 @@ public class Spell {
                 else break;
             }
         } else if (targetPosition.column < casterPosition.column) {
-            Debug.Log("Target is on the left");
             // target is on the left
             for (int i = 1; i <= numberOfCellsToMove; i++) {
                 Block pointed = Map.Instance.getBlock(new Coordinate(casterPosition.row, casterPosition.column - i));

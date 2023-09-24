@@ -104,7 +104,7 @@ NavMeshSettings:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_BuildSettings:
-    serializedVersion: 2
+    serializedVersion: 3
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
@@ -117,7 +117,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
-    accuratePlacement: 0
+    buildHeightMesh: 0
     maxJobWorkers: 0
     preserveTilesOutsideBounds: 0
     debug:
@@ -487,6 +487,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -5358,7 +5359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.000061035, y: 125.23001}
+  m_AnchoredPosition: {x: -0.000061035, y: 125.22998}
   m_SizeDelta: {x: 1080, y: 250.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &835572444
@@ -5419,6 +5420,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -6324,6 +6326,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -8235,6 +8238,10 @@ MonoBehaviour:
     characterFullSprite: {fileID: 21300000, guid: ed7e583c9cda9aa489cbc6ccbe118222, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 2c8c2bbc0fa58b741bf6dcab3fa96f7f, type: 3}
     isEvocation: 0
+  - characterName: Master Crobak
+    characterFullSprite: {fileID: 21300000, guid: 29220f9e0fbb9fd428819f21b9f5e444, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 03c10fb57116b104f9a52b4dba0582c8, type: 3}
+    isEvocation: 0
   - characterName: Persepolo
     characterFullSprite: {fileID: 21300000, guid: eae90f8be5dc9d14e808a8eefbf01ff7, type: 3}
     characterMidSprite: {fileID: 21300000, guid: dcd360b0adbb4c94f962625a34f237ca, type: 3}
@@ -8274,6 +8281,18 @@ MonoBehaviour:
   - characterName: Inosuke
     characterFullSprite: {fileID: 21300000, guid: bfa15a0dde235e44abe4b54d2296e9f1, type: 3}
     characterMidSprite: {fileID: 21300000, guid: 2a8f7df9c1028274497da254f50d82b6, type: 3}
+    isEvocation: 0
+  - characterName: Star
+    characterFullSprite: {fileID: 21300000, guid: 338df58cc3fb34141b3086365551362f, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 128f6ae7f692da8459efad0e136ffefc, type: 3}
+    isEvocation: 0
+  - characterName: Padar
+    characterFullSprite: {fileID: 21300000, guid: 30931c4092fa74d4ea8d870d6079bae4, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: f2ad0dda19f598e419a76efcc4f95e91, type: 3}
+    isEvocation: 0
+  - characterName: Natar
+    characterFullSprite: {fileID: 21300000, guid: d3913684619a31b478704fd26a182d21, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 11e3bd5940e509b45b79f54b2fd56717, type: 3}
     isEvocation: 0
   - characterName: Wakfu Totem
     characterFullSprite: {fileID: 21300000, guid: 1eb4e46e680075b4692fdccf95a4cd91, type: 3}
@@ -8442,6 +8461,14 @@ MonoBehaviour:
   - characterName: Scaphander
     characterFullSprite: {fileID: 21300000, guid: 7bd253126b359a741ba07f0ff25f7406, type: 3}
     characterMidSprite: {fileID: 21300000, guid: ada3e87a5a4e543478a748fc254c9127, type: 3}
+    isEvocation: 1
+  - characterName: Little Crobak
+    characterFullSprite: {fileID: 21300000, guid: 6e021d673e957d04ead668225a174023, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 15d0a1f37dc39db4bac041fbaae88b4b, type: 3}
+    isEvocation: 1
+  - characterName: Immortal Lance
+    characterFullSprite: {fileID: 21300000, guid: 221844b19fe331f4fb9021ae939e3bd2, type: 3}
+    characterMidSprite: {fileID: 21300000, guid: 1bd0ae39dd78043489b7d68098383edd, type: 3}
     isEvocation: 1
 --- !u!114 &1295197767
 MonoBehaviour:
@@ -15688,6 +15715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -16694,9 +16722,17 @@ Camera:
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
