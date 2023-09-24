@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeroicPowerEvent : ParentEvent
+public class TwilightEvent : ParentEvent
 {
 
-    public HeroicPowerEvent(string name, Character c, int duration, Mode mode, Sprite s) : base(name, c, duration, mode, s) { }
+    public TwilightEvent(string name, Character c, int duration, Mode mode, Sprite s) : base(name, c, duration, mode, s) { }
 
     override public void execute() {
         base.execute();
@@ -13,10 +13,6 @@ public class HeroicPowerEvent : ParentEvent
         connected.att_e += 25;
         connected.att_w += 25;
         connected.att_f += 25;
-        connected.res_a += 10;
-        connected.res_e += 10;
-        connected.res_w += 10;
-        connected.res_f += 10;
     }
 
     override public void restoreCharacter() {
@@ -25,10 +21,6 @@ public class HeroicPowerEvent : ParentEvent
         connected.att_e -= 25;
         connected.att_w -= 25;
         connected.att_f -= 25;
-        connected.res_a -= 10;
-        connected.res_e -= 10;
-        connected.res_w -= 10;
-        connected.res_f -= 10;
     }
 
 }

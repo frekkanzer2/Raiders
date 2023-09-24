@@ -7,7 +7,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, IDelayedEvocationSummoner
 {
 
     public enum HeroClass {
@@ -1244,6 +1244,21 @@ public class Character : MonoBehaviour
         }
         return toRemove; // This blocks will be colored with another colour
 
+    }
+
+    public void OnSummonExecuted(DelayedEvocationCoroutine dec)
+    {
+        Evocation e = dec.GetEvocation();
+        if (e is null)
+            Debug.LogError("Delayed summon system has not created the evocation");
+        else
+        {
+            e.connectedCell.GetComponent<Block>().linkedObject = e.gameObject; // setting block connection
+            if (e.getCompleteName().Contains("Immortal") && e.getCompleteName().Contains("Lance"))
+            {
+                e.isImmortalLance = true;
+            }
+        }
     }
 
     #endregion

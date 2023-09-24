@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -46,6 +47,8 @@ public class Spell {
     public bool canUseInEmptyCell; // done
     public bool isJump; // done
     public bool isSummon;
+
+    public static float DELAYED_SUMMON_TIME = 0.2f;
 
     public void OnPreviewPressed() {
         link.displayAttackCells(link, this);
@@ -196,7 +199,11 @@ public class Spell {
         else if (spell.name == "Agitation") EXECUTE_AGITATION(targetBlock, spell);
         else if (spell.name == "Accumulation") EXECUTE_ACCUMULATION(caster, spell);
         else if (spell.name == "Power") EXECUTE_POWER(targetBlock, spell);
+        else if (spell.name == "Recall") EXECUTE_RECALL(caster, targetBlock);
         else if (spell.name == "Inferno") EXECUTE_INFERNO(caster, targetBlock, spell);
+        else if (spell.name == "Seismic Pike") EXECUTE_SEISMIC_PIKE(caster, targetBlock, spell);
+        else if (spell.name == "Slingshot") EXECUTE_SLINGSHOT(caster, targetBlock, spell);
+        else if (spell.name == "Twilight") EXECUTE_TWILIGHT(caster, targetBlock, spell);
         else if (spell.name == "Duel") EXECUTE_DUEL(caster, targetBlock, spell);
         else if (spell.name == "Iop's Wrath") EXECUTE_IOP_WRATH(caster, spell);
         else if (spell.name == "Extrasensory Perception") EXECUTE_EXTRASENSORY_PERCEPTION(caster, spell);
@@ -550,6 +557,9 @@ public class Spell {
         foreach (Block free in (targetBlock.getFreeAdjacentBlocks()))
         {
             if (caster.summons.Count < caster.numberOfSummons)
+            {
+                DelayedEvocationCoroutine dec = new(caster);
+            }
                 ut_execute_summon(caster, free, "Little Crobak", 2);
         }
     }
@@ -562,7 +572,10 @@ public class Spell {
         Block b = ut_repels(caster, targetBlock, 1);
         if (caster.summons.Count == caster.numberOfSummons) return;
         if (b != null)
-            ut_execute_summon(caster, targetBlock, "Little Crobak", 2);
+        {
+            DelayedEvocationCoroutine dec = new(caster);
+            dec.Run(caster, targetBlock, "Little Crobak", 2, DELAYED_SUMMON_TIME);
+        }
     }
 
     public static void EXECUTE_CHANGEBAK(Character caster, Block targetBlock, Spell s)
@@ -1244,6 +1257,7 @@ public class Spell {
                     c.inflictDamage(Spell.calculateDamage(caster, c, s));
                 }
             }
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
         if (target is Evocation)
         {
             Evocation e = (Evocation)target;
@@ -1253,6 +1267,78 @@ public class Spell {
             }
         }
         if (!target.isDead) EXECUTE_TRANSPOSITION(caster, targetBlock);
+    }
+    public static void EXECUTE_SLINGSHOT(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if (target is Evocation)
+        {
+            Evocation e = (Evocation)target;
+            if (!target.isDead && e.isImmortalLance)
+            {
+                foreach (Character c in ut_getEnemies(target))
+                {
+                    if (ut_isNearOf(targetBlock.coordinate, c.connectedCell.GetComponent<Block>().coordinate, 2))
+                    {
+                        c.inflictDamage(Spell.calculateDamage(caster, c, s));
+                    }
+                }
+            }
+        }
+    }
+    public static void EXECUTE_TWILIGHT(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        List<Character> lances = ut_getAlliesWithCaster(caster);
+        lances = lances.Where(ch => ch is Evocation && ((Evocation)ch).isImmortalLance).ToList();
+        foreach(Character lance in lances)
+        {
+            foreach (Character c in ut_getAllies(lance))
+            {
+                if (ut_isNearOf(c, lance, 1))
+                {
+                    TwilightEvent te = new TwilightEvent("Twilight", c, s.effectDuration, ParentEvent.Mode.Permanent, s.icon);
+                    c.addEvent(te);
+                    te.useIstantanely();
+                }
+            }
+        }
+    }
+
+    public static void EXECUTE_SEISMIC_PIKE(Character caster, Block targetBlock, Spell s)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock, s })) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        foreach (Character c in ut_getAllies(target))
+        {
+            if (ut_isNearOf(targetBlock.coordinate, c.connectedCell.GetComponent<Block>().coordinate, 2))
+            {
+                c.inflictDamage(Spell.calculateDamage(caster, c, s));
+            }
+        }
+        Block isRepelled = null;
+        if (!target.isDead) isRepelled = ut_repels(caster, targetBlock, 1);
+        if (isRepelled is not null && caster.summons.Count < caster.numberOfSummons)
+        {
+            DelayedEvocationCoroutine dec = new(caster);
+            dec.Run(caster, targetBlock, "Immortal Lance", 2, DELAYED_SUMMON_TIME);
+        }
+    }
+
+    public static void EXECUTE_RECALL(Character caster, Block targetBlock)
+    {
+        if (!put_CheckArguments(new System.Object[] { caster, targetBlock })) return;
+        Character target = targetBlock.linkedObject.GetComponent<Character>();
+        if(target is Evocation)
+        {
+            Evocation e = (Evocation)target;
+            if (!target.isDead && e.isImmortalLance)
+            {
+                target.inflictDamage(target.actual_hp);
+                caster.incrementPA(2);
+            }
+        }
     }
 
     public static void EXECUTE_REPRISAL(Character caster, Block targetBlock)
