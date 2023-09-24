@@ -13979,7 +13979,7 @@ MonoBehaviour:
       - monsterID: 8
         quantity: 0
         spawnCoordinates: []
-      - monsterID: 6
+      - monsterID: 9
         quantity: 0
         spawnCoordinates: []
       - monsterID: 10
